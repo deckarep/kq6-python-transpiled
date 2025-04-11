@@ -1,0 +1,673 @@
+#!/usr/bin/env python3
+
+### Sierra Script 1.0 - (do not remove this comment)
+### Decompiled by sluicebox
+### Transpiled by deckarep (python3.10+)
+# script# 903
+import sci_sh
+import Main
+import EgoGroop
+import KQ6Print
+import Kq6Window
+import Print
+import Slider
+import IconBar
+import GameControls
+import System
+
+# Public Export Declarations
+SCI.public_exports(
+	kq6Controls = 0,
+)
+
+# script local declarations
+# NOTE: notice how locals are incremented by how many slots the previous local used?
+# This doesn't really matter in Python-land, but we will preserve it so everything matches up.
+local0 = None
+local1 = None
+
+
+@SCI.instance
+class kq6Controls(GameControls):
+	#property vars (may be empty)
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		(Load 128 947)
+		global63 = self
+		(self
+			window:
+				(controlWin
+					top: (((200 - ((CelHigh 947 1 1) + 0)) / 2) - 15)
+					left: (((320 - (+ 157 (CelWide 947 0 1) 0)) / 2) - 10)
+					bottom:
+						(-
+							(+
+								(CelHigh 947 1 1)
+								0
+								((200 - ((CelHigh 947 1 1) + 0)) / 2)
+								10
+							)
+							5
+						)
+					right:
+						(+
+							157
+							(CelWide 947 0 1)
+							0
+							((320 - (+ 157 (CelWide 947 0 1) 0)) / 2)
+							10
+						)
+					back: 19
+					yourself:
+				)
+			add:
+				iconOk
+				(iconTextSwitch
+					theObj: iconTextSwitch
+					selector: #doit
+					yourself:
+				)
+				(iconSave init: theObj: global1 selector: #save yourself:)
+				(iconRestore init: theObj: global1 selector: #restore yourself:)
+				(iconRestart init: theObj: global1 selector: #restart yourself:)
+				(iconQuit init: theObj: global1 selector: #quitGame yourself:)
+				(iconAbout init: selector: #doit yourself:)
+				(detailSlider
+					init:
+					theObj: global1
+					selector: #detailLevel
+					topValue: 3
+					bottomValue: 0
+					yStep: 2
+					yourself:
+				)
+				(volumeSlider
+					init:
+					theObj: global1
+					selector: #masterVolume
+					topValue: 15
+					bottomValue: 0
+					yStep: 2
+					yourself:
+				)
+				(speedSlider init: theObj: 0 selector: #y yStep: 2 yourself:)
+			eachElementDo: #highlightColor 0
+			eachElementDo: #lowlightColor 19
+			curIcon: iconRestore
+		)
+		(super init: &rest)
+	#end:method
+
+	@classmethod
+	def dispose():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		(super dispose: &rest)
+		(DisposeScript 934)
+		(DisposeScript 903)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class controlWin(Kq6Window):
+	#property vars (may be empty)
+	@classmethod
+	def open():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		(super open: &rest)
+		priority = -1
+		local0 = (PicNotValid)
+		(PicNotValid 1)
+		if 
+			(not
+				(= temp54
+					if (global169 and (not (Platform 5))):
+						(Platform 6)
+					#endif
+				)
+			)
+			(DrawCel
+				947
+				0
+				7
+				(-
+					(+
+						(/
+							(-
+								(-
+									(+ 157 (CelWide 947 0 1) 0)
+									(4 + (CelWide 947 1 1))
+								)
+								(CelWide 947 0 5)
+							)
+							2
+						)
+						4
+						(CelWide 947 1 1)
+					)
+					35
+				)
+				12
+				-1
+				0
+			)
+			local1 = 0
+		#endif
+		(DrawCel 947 1 1 14 11 -1 0)
+		(DrawCel 947 1 0 106 56 -1 0)
+		(DrawCel 947 1 0 149 56 -1 0)
+		(DrawCel 947 1 2 104 (+ 0 (103 if (global107 == 256) else 104) 7) -1 0)
+		(DrawCel 947 0 4 75 ((30 - ((CelHigh 947 0 4) + 0)) + 24) -1 0)
+		(DrawCel 947 0 3 115 ((30 - ((CelHigh 947 0 4) + 0)) + 24) -1 0)
+		(DrawCel 947 0 2 162 ((30 - ((CelHigh 947 0 4) + 0)) + 24) -1 0)
+		(PicNotValid local0)
+		temp0 = (GetPort)
+		(SetPort 0)
+		(Graph 12 top left bottom right 1)
+		if temp54:
+			(= temp55
+				(+
+					left
+					(-
+						(+
+							(/
+								(-
+									(-
+										(+ 157 (CelWide 947 0 1) 0)
+										(4 + (CelWide 947 1 1))
+									)
+									(CelWide 947 0 5)
+								)
+								2
+							)
+							4
+							(CelWide 947 1 1)
+						)
+						35
+					)
+				)
+			)
+			temp56 = (top + 18)
+			(= local1
+				(Graph
+					15
+					temp56
+					temp55
+					(((CelHigh 948 12 0) / 2) + temp56)
+					(((CelWide 948 12 0) / 2) + temp55)
+				)
+			)
+			(DrawCel 948 12 0 0 0 -1 0 local1)
+		#endif
+		(SetPort temp0)
+		temp53 = global15
+		(DrawCel
+			947
+			10
+			0
+			(+
+				(((+ 157 (CelWide 947 0 1) 0) - (+ 10 (CelWide 947 1 1) 6)) / 2)
+				37
+			)
+			(+ 39 (CelHigh 947 0 1) 3 17)
+			-1
+			0
+		)
+		temp51 = 93
+		temp52 = 0
+		while (temp52 < 3): # inline for
+			(temp51 -= 7)
+			if (and (temp52 == 2) ((mod temp53 10) == 0) (not (global15 == 0))):
+				temp50 = 11
+			else:
+				temp50 = (mod temp53 10)
+			#endif
+			(/= temp53 10)
+			(DrawCel
+				947
+				11
+				temp50
+				(+
+					(/
+						(-
+							(+ 157 (CelWide 947 0 1) 0)
+							(+ 10 (CelWide 947 1 1) 6)
+						)
+						2
+					)
+					temp51
+				)
+				(+ 39 (CelHigh 947 0 1) 3 17)
+				-1
+				0
+			)
+			# for:reinit
+			temp52++
+		#end:loop
+		(DrawCel
+			947
+			11
+			10
+			(+
+				(((+ 157 (CelWide 947 0 1) 0) - (+ 10 (CelWide 947 1 1) 6)) / 2)
+				93
+			)
+			(+ 39 (CelHigh 947 0 1) 3 17)
+			-1
+			0
+		)
+		temp51 = 123
+		temp53 = global16
+		temp52 = 0
+		while (temp52 < 3): # inline for
+			(temp51 -= 7)
+			temp50 = (mod temp53 10)
+			(/= temp53 10)
+			(DrawCel
+				947
+				11
+				temp50
+				(+
+					(/
+						(-
+							(+ 157 (CelWide 947 0 1) 0)
+							(+ 10 (CelWide 947 1 1) 6)
+						)
+						2
+					)
+					temp51
+				)
+				(+ 39 (CelHigh 947 0 1) 3 17)
+				-1
+				0
+			)
+			# for:reinit
+			temp52++
+		#end:loop
+		(global1 setCursor: global20)
+	#end:method
+
+	@classmethod
+	def dispose():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if local1:
+			(Graph 8 local1)
+		#endif
+		(super dispose:)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class detailSlider(Slider):
+	#property vars (may be empty)
+	view = 947
+	loop = 0
+	cel = 1
+	signal = 128
+	sliderView = 947
+	topValue = 3
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 79
+		nsTop = 55
+		sRight = 0
+		(super show: &rest)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class volumeSlider(Slider):
+	#property vars (may be empty)
+	view = 947
+	loop = 0
+	cel = 1
+	signal = 128
+	sliderView = 947
+	topValue = 15
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		view = 947
+		nsLeft = 121
+		sliderView = 947
+		nsTop = 55
+		sRight = 0
+		(super show: &rest)
+	#end:method
+
+	@classmethod
+	def doit(param1 = None):
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if theObj:
+			if ((proc999_7 theObj selector) != param1):
+				(proc999_7 theObj selector param1 &rest)
+			else:
+				(proc999_7 theObj selector)
+			#endif
+		#endif
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class speedSlider(Slider):
+	#property vars (may be empty)
+	view = 947
+	loop = 0
+	cel = 1
+	signal = 128
+	sliderView = 947
+	bottomValue = 15
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if ((global0 looper:) and ((global0 looper:) == EgoGroop)):
+			topValue = ((global0 looper:) speedState:)
+			bottomValue = (topValue + 15)
+		else:
+			topValue = 0
+			bottomValue = 15
+		#endif
+		nsLeft = 163
+		nsTop = 55
+		sRight = 0
+		(super show: &rest)
+	#end:method
+
+	@classmethod
+	def doit(param1 = None):
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if argc:
+			(global0 currentSpeed: param1)
+			(global0 setSpeed: (global0 currentSpeed:))
+		#endif
+		(global0 currentSpeed:)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconSave(ControlIcon):
+	#property vars (may be empty)
+	view = 947
+	loop = 2
+	cel = 0
+	message = 0
+	signal = 451
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (3 if (global107 == 256) else 4) 10)
+		(super show: &rest)
+	#end:method
+
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (3 if (global107 == 256) else 4) 10)
+		(super init: &rest)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconRestore(ControlIcon):
+	#property vars (may be empty)
+	view = 947
+	loop = 3
+	cel = 0
+	message = 0
+	signal = 451
+	
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (23 if (global107 == 256) else 24) 10)
+		(super init: &rest)
+	#end:method
+
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (23 if (global107 == 256) else 24) 10)
+		(super show: &rest)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconRestart(ControlIcon):
+	#property vars (may be empty)
+	view = 947
+	loop = 4
+	cel = 0
+	message = 0
+	signal = 451
+	
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (43 if (global107 == 256) else 44) 10)
+		(super init: &rest)
+	#end:method
+
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (43 if (global107 == 256) else 44) 10)
+		(super show: &rest)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconTextSwitch(ControlIcon):
+	#property vars (may be empty)
+	view = 947
+	cel = 0
+	signal = 387
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if (global90 == 2):
+			loop = 8
+		else:
+			loop = 9
+		#endif
+		nsLeft = 108
+		nsTop = (+ 0 (103 if (global107 == 256) else 104) 10)
+		(super show: &rest)
+	#end:method
+
+	@classmethod
+	def doit():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		(cond
+			case (not (FileIO 10 r"""KQ6CD""")):
+				(Print
+					font: global22
+					addText:
+						r"""This button is reserved for the CD version of King's Quest VI"""
+					init:
+				)
+			#end:case
+			case (not (DoAudio 9)):
+				(Print
+					font: global22
+					addText:
+						r"""Sorry, but a sound card capable of playing samples is required to hear speech"""
+					init:
+				)
+			#end:case
+			else:
+				match global90
+					case 1:
+						global90 = 2
+					#end:case
+					case 2:
+						global90 = 1
+					#end:case
+				#end:match
+				loop = (8 if (loop == 9) else 9)
+			#end:else
+		)
+		(self show:)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconQuit(ControlIcon):
+	#property vars (may be empty)
+	view = 947
+	loop = 5
+	cel = 0
+	message = 0
+	signal = 451
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (63 if (global107 == 256) else 64) 10)
+		(super show: &rest)
+	#end:method
+
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (63 if (global107 == 256) else 64) 10)
+		(super init: &rest)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconAbout(ControlIcon):
+	#property vars (may be empty)
+	view = 947
+	loop = 6
+	cel = 0
+	message = 0
+	signal = 449
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (83 if (global107 == 256) else 84) 10)
+		(super show: &rest)
+	#end:method
+
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (83 if (global107 == 256) else 84) 10)
+		(super init: &rest)
+	#end:method
+
+	@classmethod
+	def select():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		(super select: &rest)
+		(global63 hide:)
+		if (global2 script:):
+			(KQ6Print font: global22 say: 0 7 0 16 0 1 0 0 0 init:)
+		else:
+			(global2 setScript: 905)
+		#endif
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class iconOk(IconI):
+	#property vars (may be empty)
+	view = 947
+	loop = 7
+	cel = 0
+	message = 0
+	signal = 451
+	
+	@classmethod
+	def show():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		nsLeft = 18
+		nsTop = (+ 0 (103 if (global107 == 256) else 104) 10)
+		(super show: &rest)
+	#end:method
+
+#end:class or instance
+
+@SCI.instance
+class helpCursor(Cursor):
+	#property vars (may be empty)
+	view = 998
+	loop = 1
+	cel = 4
+	
+#end:class or instance
+

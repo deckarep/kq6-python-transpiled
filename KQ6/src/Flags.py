@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+
+### Sierra Script 1.0 - (do not remove this comment)
+### Decompiled by sluicebox
+### Transpiled by deckarep (python3.10+)
+# script# 985
+import sci_sh
+import System
+
+class Flags(Obj):
+	#property vars (may be empty)
+	size = 0
+	array = 0
+	
+	@classmethod
+	def init():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if (size and (not array)):
+			(self setSize: size)
+		#endif
+	#end:method
+
+	@classmethod
+	def setSize(param1 = None):
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		temp0 = (param1 / 16)
+		if (mod param1 16):
+			temp0++
+		#endif
+		size = (temp0 * 16)
+		array = (Memory 1 (temp0 * 2))
+		temp1 = 0
+		while (temp1 < temp0): # inline for
+			(Memory 6 (array + (temp1 * 2)) 0)
+			# for:reinit
+			temp1++
+		#end:loop
+	#end:method
+
+	@classmethod
+	def dispose():
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		if array:
+			(Memory 3 array)
+			array = 0
+		#endif
+		(super dispose:)
+	#end:method
+
+	@classmethod
+	def set(param1 = None):
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		while argc:
+
+			temp1 = ((param1[argc--] / 16) * 2)
+			(= temp0
+				(|
+					temp0 = (Memory 5 (array + temp1))
+					(0x8000 >> (mod param1[argc] 16))
+				)
+			)
+			(Memory 6 (array + temp1) temp0)
+		#end:loop
+	#end:method
+
+	@classmethod
+	def clear(param1 = None):
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		while argc:
+
+			temp1 = ((param1[argc--] / 16) * 2)
+			(= temp0
+				(&
+					temp0 = (Memory 5 (array + temp1))
+					(~ (0x8000 >> (mod param1[argc] 16)))
+				)
+			)
+			(Memory 6 (array + temp1) temp0)
+		#end:loop
+	#end:method
+
+	@classmethod
+	def test(param1 = None):
+		# Python3 magic, for those function which use argc.
+		argc = sum(v is not None for v in locals().values())
+
+		temp1 = ((param1 / 16) * 2)
+		(return
+			(temp0 = (Memory 5 (array + temp1)) & (0x8000 >> (mod param1 16)))
+		)
+	#end:method
+
+#end:class or instance
+
