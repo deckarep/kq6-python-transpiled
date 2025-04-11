@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 984
 import sci_sh
+import kernel
 import Main
 import Print
 import Motion
@@ -161,7 +162,7 @@ class RegionPath(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc921_1 r"""%s needs an 'at:' method.""" name)
+		proc921_1(r"""%s needs an 'at:' method.""", name)
 		return 0
 	#end:method
 
@@ -171,11 +172,11 @@ class RegionPath(MoveTo):
 		argc = sum(v is not None for v in locals().values())
 
 		if theRegion:
-			if (not ((ScriptID theRegion) keep:)):
+			if (not (kernel.ScriptID(theRegion) keep:)):
 				(super dispose:)
 			#endif
 		else:
-			(proc921_1 r"""%s theRegion: not defined.""" name)
+			proc921_1(r"""%s theRegion: not defined.""", name)
 		#endif
 	#end:method
 
@@ -203,7 +204,7 @@ class RegionPath(MoveTo):
 				currentRoom = (self at: (value + 1))
 			#endif
 			# for:reinit
-			value++
+			value.post('++')
 		#end:loop
 	#end:method
 
@@ -218,7 +219,7 @@ class RegionPath(MoveTo):
 				currentRoom = (self at: (temp0 + 1))
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 

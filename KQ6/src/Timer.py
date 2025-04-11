@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 973
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -22,7 +23,7 @@ class Timer(Obj):
 
 		temp0 = client
 		client = 0
-		if (IsObject temp0):
+		if kernel.IsObject(temp0):
 			if (temp0 respondsTo: #timer):
 				(temp0 timer: 0)
 			#endif
@@ -54,7 +55,7 @@ class Timer(Obj):
 		client = param1
 		(global7 add: self)
 		if (param1 respondsTo: #timer):
-			if (IsObject (param1 timer:)):
+			if kernel.IsObject((param1 timer:)):
 				((param1 timer:) dispose:)
 			#endif
 			(param1 timer: self)
@@ -68,14 +69,14 @@ class Timer(Obj):
 
 		(cond
 			case (cycleCnt != -1):
-				if (not cycleCnt--):
+				if (not cycleCnt.post('--')):
 					(localproc_0)
 				#endif
 			#end:case
 			case (seconds != -1):
-				if (lastTime != temp0 = (GetTime 1)):
+				if (lastTime != temp0 = kernel.GetTime(1)):
 					lastTime = temp0
-					if (not seconds--):
+					if (not seconds.post('--')):
 						(localproc_0)
 					#endif
 				#endif
@@ -91,7 +92,7 @@ class Timer(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((IsObject client) and (client respondsTo: #timer)):
+		if (kernel.IsObject(client) and (client respondsTo: #timer)):
 			(client timer: 0)
 		#endif
 		client = 0
@@ -209,7 +210,7 @@ class TO(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if timeLeft:
-			timeLeft--
+			timeLeft.post('--')
 		#endif
 	#end:method
 

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 342
 import sci_sh
+import kernel
 import Main
 import Conversation
 import Scaler
@@ -171,7 +172,7 @@ class glintScript(Script):
 			#end:case
 			case 3:
 				(client hide:)
-				seconds = (Random 2 5)
+				seconds = kernel.Random(2, 5)
 			#end:case
 			case 4:
 				(self start: 1 init:)
@@ -217,14 +218,14 @@ class celesteRescue(Script):
 				(shieldGuard stopUpd:)
 				(spearGuard stopUpd:)
 				(global105 number: 909 setLoop: 1 play:)
-				((ScriptID 340 2) setMotion: MoveTo 0 149 self)
+				(kernel.ScriptID(340, 2) setMotion: MoveTo 0 149 self)
 			#end:case
 			case 3:
-				((ScriptID 340 2) addToPic: dispose:)
+				(kernel.ScriptID(340, 2) addToPic: dispose:)
 				seconds = 2
 			#end:case
 			case 4:
-				(UnLoad 128 340)
+				kernel.UnLoad(128, 340)
 				(celeste
 					view: 361
 					setLoop: 2
@@ -264,7 +265,7 @@ class celesteRescue(Script):
 					setCycle: Walk
 					setMotion: MoveTo 39 139 self
 				)
-				(UnLoad 128 361)
+				kernel.UnLoad(128, 361)
 			#end:case
 			case 11:
 				(celeste setMotion: MoveTo 89 139 self)
@@ -314,7 +315,7 @@ class celesteRescue(Script):
 					posn: 96 69
 					setCycle: End self
 				)
-				(UnLoad 128 364)
+				kernel.UnLoad(128, 364)
 			#end:case
 			case 19:
 				(celeste
@@ -326,7 +327,7 @@ class celesteRescue(Script):
 					setCycle: Fwd
 					setMotion: MoveTo 228 82 self
 				)
-				(UnLoad 128 365)
+				kernel.UnLoad(128, 365)
 			#end:case
 			case 20:
 				(global105 number: 344 setLoop: 1 play:)
@@ -390,7 +391,7 @@ class celesteRescue(Script):
 					posn: (global0 x:) ((global0 y:) + 4)
 					setCycle: End self
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 27:
 				(global0
@@ -402,7 +403,7 @@ class celesteRescue(Script):
 					cel: 0
 					setCycle: End self
 				)
-				(UnLoad 128 3510)
+				kernel.UnLoad(128, 3510)
 			#end:case
 			case 28:
 				(global0
@@ -411,7 +412,7 @@ class celesteRescue(Script):
 					posn: (global0 x:) ((global0 y:) - 40)
 					setMotion: MoveTo (global0 x:) -50 self
 				)
-				(UnLoad 128 3512)
+				kernel.UnLoad(128, 3512)
 			#end:case
 			case 29:
 				(global102 fade: 0 20 15)
@@ -534,7 +535,7 @@ class flyIn(Script):
 			#end:case
 			case 1:
 				(global0 view: 3512 cel: 0 posn: 212 88 setCycle: End self)
-				(UnLoad 128 3511)
+				kernel.UnLoad(128, 3511)
 			#end:case
 			case 2:
 				(global0
@@ -543,7 +544,7 @@ class flyIn(Script):
 					posn: 170 128
 					setMotion: MoveTo 145 128 self
 				)
-				(UnLoad 128 3512)
+				kernel.UnLoad(128, 3512)
 				(shieldGuard
 					view: 344
 					posn: 186 126
@@ -590,7 +591,7 @@ class tossEmIn(Script):
 					setCycle: StopWalk -1
 					setMotion: MoveTo 139 109 self
 				)
-				(UnLoad 128 349)
+				kernel.UnLoad(128, 349)
 				(global0 setLoop: -1 setSpeed: 4 setMotion: MoveTo 111 110)
 				(spearGuard
 					view: 343
@@ -600,7 +601,7 @@ class tossEmIn(Script):
 					setCycle: StopWalk -1
 					setMotion: MoveTo 85 109 self
 				)
-				(UnLoad 128 348)
+				kernel.UnLoad(128, 348)
 			#end:case
 			case 1:
 				(shieldGuard setHeading: 270)
@@ -622,7 +623,7 @@ class tossEmIn(Script):
 			case 4:
 				(spearGuard setCycle: Beg)
 				(global105 number: 342 setLoop: 1 play:)
-				((ScriptID 340 1) setCycle: End self)
+				(kernel.ScriptID(340, 1) setCycle: End self)
 			#end:case
 			case 5:
 				if register:
@@ -654,7 +655,7 @@ class tossEmIn(Script):
 				(global0 hide:)
 				(spearGuard show:)
 				(shieldGuard show:)
-				((ScriptID 340 1) setCycle: Beg self)
+				(kernel.ScriptID(340, 1) setCycle: Beg self)
 			#end:case
 			case 8:
 				(global105 number: 403 setLoop: 1 play: self)

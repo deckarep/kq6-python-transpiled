@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 282
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import rm280
@@ -38,7 +39,7 @@ class reanimationScr(Script):
 		match state = param1
 			case 0:
 				(global0 hide:)
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 113 144
 					view: 282
 					loop: 6
@@ -57,13 +58,13 @@ class reanimationScr(Script):
 			case 3: 0#end:case
 			case 4:
 				(global105 client: 0)
-				((ScriptID 280 2) setCycle: End self)
+				(kernel.ScriptID(280, 2) setCycle: End self)
 			#end:case
 			case 5:
-				((ScriptID 280 2) setCycle: Beg self)
+				(kernel.ScriptID(280, 2) setCycle: Beg self)
 			#end:case
 			case 6:
-				((ScriptID 280 2) loop: 2 cel: 0 setCycle: End self)
+				(kernel.ScriptID(280, 2) loop: 2 cel: 0 setCycle: End self)
 			#end:case
 			case 7:
 				(global91 say: 1 0 8 2 self)
@@ -77,7 +78,7 @@ class reanimationScr(Script):
 			case 10:
 				(global102 number: 240 loop: -1 fade: 70 10 20 0)
 				(global0 show: posn: 123 140 reset: 3)
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 135 136
 					loop: 7
 					cel: 0
@@ -88,18 +89,18 @@ class reanimationScr(Script):
 				cycles = 2
 			#end:case
 			case 12:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					view: 2841
 					loop: 0
 					cel: 0
 					posn: 236 127
 					stopUpd:
-					setScript: (ScriptID 280 9)
+					setScript: kernel.ScriptID(280, 9)
 				)
 				(global1 handsOn:)
 				(global102 number: 240 loop: -1 play: 0 fade: 70 25 10 0)
 				(self dispose:)
-				(DisposeScript 282)
+				kernel.DisposeScript(282)
 			#end:case
 		#end:match
 	#end:method
@@ -118,7 +119,7 @@ class drinkPotionNoGenieScr(Script):
 			case 0:
 				(global0 put: 33 global11)
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 			#end:case
 			case 1:
 				(global0 setMotion: PolyPath 156 136 self)
@@ -152,7 +153,7 @@ class drinkPotionNoGenieScr(Script):
 				(global91 say: 2 14 10 1 self)
 			#end:case
 			case 8:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 236 127
 					view: 282
 					loop: 3
@@ -161,7 +162,7 @@ class drinkPotionNoGenieScr(Script):
 				)
 			#end:case
 			case 9:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 171 110
 					loop: 4
 					cel: 0
@@ -173,12 +174,12 @@ class drinkPotionNoGenieScr(Script):
 			#end:case
 			case 11:
 				if ((global104 prevSignal:) != -1):
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
 			case 12:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 171 110
 					loop: 5
 					cel: 0
@@ -197,7 +198,7 @@ class drinkPotionNoGenieScr(Script):
 			case 16:
 				(global104 client: 0)
 				(global0 hide:)
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 113 144
 					loop: 6
 					cel: 0
@@ -208,7 +209,7 @@ class drinkPotionNoGenieScr(Script):
 				(global91 say: 2 14 10 3 self)
 			#end:case
 			case 18:
-				((ScriptID 280 2) loop: 2 cel: 0 setCycle: End self)
+				(kernel.ScriptID(280, 2) loop: 2 cel: 0 setCycle: End self)
 			#end:case
 			case 19:
 				(global91 say: 2 14 10 4 self oneOnly: 0)
@@ -216,7 +217,7 @@ class drinkPotionNoGenieScr(Script):
 			case 20:
 				(global102 number: 240 loop: -1 play: 0 fade: 70 25 10 0)
 				(global0 show: posn: 123 140 reset: 3)
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 135 136
 					loop: 7
 					cel: 0
@@ -227,13 +228,13 @@ class drinkPotionNoGenieScr(Script):
 				cycles = 2
 			#end:case
 			case 22:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					view: 2841
 					loop: 0
 					cel: 0
 					posn: 236 127
 					stopUpd:
-					setScript: (ScriptID 280 9)
+					setScript: kernel.ScriptID(280, 9)
 				)
 				(global1 handsOn:)
 				(self dispose:)
@@ -247,7 +248,7 @@ class drinkPotionNoGenieScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 282)
+		kernel.DisposeScript(282)
 	#end:method
 
 #end:class or instance
@@ -265,11 +266,11 @@ class drinkPotionGenieScr(Script):
 				(global0 put: 33 global11)
 				(global1 handsOff:)
 				(global1 givePoints: 3)
-				(proc280_10 self)
+				proc280_10(self)
 			#end:case
 			case 1:
-				(proc913_1 41)
-				(proc913_1 82)
+				proc913_1(41)
+				proc913_1(82)
 				(global91 say: 2 14 9 1 self 280)
 				(global102 fade:)
 			#end:case
@@ -284,10 +285,10 @@ class drinkPotionGenieScr(Script):
 				(global91 say: 2 14 9 3 self 280)
 			#end:case
 			case 5:
-				(proc281_1 self)
+				proc281_1(self)
 			#end:case
 			case 6:
-				((ScriptID 281 0)
+				(kernel.ScriptID(281, 0)
 					view: 289
 					posn: 88 129
 					setLoop: Grooper
@@ -296,7 +297,7 @@ class drinkPotionGenieScr(Script):
 				cycles = 2
 			#end:case
 			case 7:
-				((ScriptID 281 0) setHeading: 90 self)
+				(kernel.ScriptID(281, 0) setHeading: 90 self)
 			#end:case
 			case 8:
 				(global0
@@ -347,7 +348,7 @@ class drinkPotionGenieScr(Script):
 				(global104 number: 926 loop: 1 play:)
 			#end:case
 			case 18:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					setPri: -1
 					posn: 236 127
 					view: 282
@@ -360,7 +361,7 @@ class drinkPotionGenieScr(Script):
 				ticks = 120
 			#end:case
 			case 20:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					posn: 171 110
 					setPri: 14
 					loop: 4
@@ -370,7 +371,7 @@ class drinkPotionGenieScr(Script):
 			#end:case
 			case 21:
 				if ((global104 prevSignal:) != -1):
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
@@ -378,21 +379,21 @@ class drinkPotionGenieScr(Script):
 				(global91 say: 2 14 9 7 self 280)
 			#end:case
 			case 23:
-				((ScriptID 280 2) loop: 5 cel: 0 setCycle: End self)
+				(kernel.ScriptID(280, 2) loop: 5 cel: 0 setCycle: End self)
 			#end:case
 			case 24:
 				(global91 say: 2 14 9 8 self 280)
 			#end:case
 			case 25:
-				(proc280_8 0)
-				((ScriptID 281 0) view: 2833 loop: 0 cel: 0 setCycle: Fwd)
+				proc280_8(0)
+				(kernel.ScriptID(281, 0) view: 2833 loop: 0 cel: 0 setCycle: Fwd)
 				ticks = 90
 			#end:case
 			case 26:
-				((ScriptID 281 0) setCycle: End self)
+				(kernel.ScriptID(281, 0) setCycle: End self)
 			#end:case
 			case 27:
-				((ScriptID 281 0) view: 289 loop: 0 cel: 0 setHeading: 270 self)
+				(kernel.ScriptID(281, 0) view: 289 loop: 0 cel: 0 setHeading: 270 self)
 			#end:case
 			case 28:
 				(self setScript: genieExitScr self)
@@ -426,16 +427,16 @@ class genieMirrorScr(Script):
 			#end:case
 			case 2:
 				(global0 setHeading: 270 self)
-				(proc281_1 self)
+				proc281_1(self)
 			#end:case
 			case 3: 0#end:case
 			case 4:
 				(cond
-					case (((ScriptID 281 0) cel:) > 3):
-						((ScriptID 281 0) setCycle: CT 3 -1 self)
+					case ((kernel.ScriptID(281, 0) cel:) > 3):
+						(kernel.ScriptID(281, 0) setCycle: CT 3 -1 self)
 					#end:case
-					case (((ScriptID 281 0) cel:) < 3):
-						((ScriptID 281 0) setCycle: CT 3 1 self)
+					case ((kernel.ScriptID(281, 0) cel:) < 3):
+						(kernel.ScriptID(281, 0) setCycle: CT 3 1 self)
 					#end:case
 					else:
 						ticks = 1
@@ -466,7 +467,7 @@ class genieMirrorScr(Script):
 				cycles = 2
 			#end:case
 			case 10:
-				(proc280_8 0)
+				proc280_8(0)
 				(self setScript: genieExitScr self)
 			#end:case
 			case 11:
@@ -485,7 +486,7 @@ class genieMirrorScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 282)
+		kernel.DisposeScript(282)
 	#end:method
 
 #end:class or instance
@@ -500,7 +501,7 @@ class genieExitScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 281 0)
+				(kernel.ScriptID(281, 0)
 					signal: 16384
 					cycleSpeed: 3
 					moveSpeed: 3
@@ -510,15 +511,15 @@ class genieExitScr(Script):
 				)
 			#end:case
 			case 1:
-				((ScriptID 280 3) setPri: 14 setCycle: End self)
+				(kernel.ScriptID(280, 3) setPri: 14 setCycle: End self)
 				(global105 number: 901 loop: 1 play:)
 			#end:case
 			case 2:
-				((ScriptID 281 0) setMotion: MoveTo 35 124 self)
+				(kernel.ScriptID(281, 0) setMotion: MoveTo 35 124 self)
 			#end:case
 			case 3:
-				((ScriptID 281 0) dispose:)
-				((ScriptID 280 3) setPri: -1 setCycle: Beg self)
+				(kernel.ScriptID(281, 0) dispose:)
+				(kernel.ScriptID(280, 3) setPri: -1 setCycle: Beg self)
 			#end:case
 			case 4:
 				(global105 number: 902 loop: 1 play:)
@@ -542,11 +543,11 @@ class genieTakeMintScr(Script):
 
 		match state = param1
 			case 0:
-				(proc280_8 0)
-				(proc281_1 self)
+				proc280_8(0)
+				proc281_1(self)
 			#end:case
 			case 1:
-				((ScriptID 281 0)
+				(kernel.ScriptID(281, 0)
 					signal: 16384
 					view: 289
 					setCycle: Walk
@@ -557,7 +558,7 @@ class genieTakeMintScr(Script):
 				(global91 say: 4 70 19 10 self)
 			#end:case
 			case 3:
-				((ScriptID 281 0)
+				(kernel.ScriptID(281, 0)
 					view: 2834
 					setPri: 1
 					loop: 0
@@ -567,18 +568,18 @@ class genieTakeMintScr(Script):
 				)
 			#end:case
 			case 4:
-				(UnLoad 128 289)
-				((ScriptID 281 0) loop: 1 cel: 0 setCycle: End self)
+				kernel.UnLoad(128, 289)
+				(kernel.ScriptID(281, 0) loop: 1 cel: 0 setCycle: End self)
 			#end:case
 			case 5:
-				((ScriptID 281 0) cel: 0 setCycle: End self)
+				(kernel.ScriptID(281, 0) cel: 0 setCycle: End self)
 			#end:case
 			case 6:
-				((ScriptID 281 0) setCycle: Beg self)
+				(kernel.ScriptID(281, 0) setCycle: Beg self)
 			#end:case
 			case 7:
-				((ScriptID 281 0)
-					cel: ((ScriptID 281 0) lastCel:)
+				(kernel.ScriptID(281, 0)
+					cel: (kernel.ScriptID(281, 0) lastCel:)
 					setCycle: Beg self
 				)
 			#end:case
@@ -589,7 +590,7 @@ class genieTakeMintScr(Script):
 				(global91 say: 4 70 19 11 self)
 			#end:case
 			case 10:
-				((ScriptID 281 0)
+				(kernel.ScriptID(281, 0)
 					view: 2835
 					loop: 2
 					cel: 0
@@ -598,8 +599,8 @@ class genieTakeMintScr(Script):
 				)
 			#end:case
 			case 11:
-				(UnLoad 128 2834)
-				((ScriptID 281 0)
+				kernel.UnLoad(128, 2834)
+				(kernel.ScriptID(281, 0)
 					posn: 168 133
 					setLoop: 3
 					cel: 0
@@ -609,24 +610,24 @@ class genieTakeMintScr(Script):
 				cycles = 2
 			#end:case
 			case 12:
-				((ScriptID 281 0) setMotion: PolyPath 51 124 self)
+				(kernel.ScriptID(281, 0) setMotion: PolyPath 51 124 self)
 			#end:case
 			case 13:
-				((ScriptID 281 0) view: 289 setLoop: -1 loop: 1 posn: 51 124)
-				((ScriptID 280 3) setPri: 14 setCycle: End)
+				(kernel.ScriptID(281, 0) view: 289 setLoop: -1 loop: 1 posn: 51 124)
+				(kernel.ScriptID(280, 3) setPri: 14 setCycle: End)
 				(global105 number: 901 loop: 1 play:)
 				ticks = 12
 			#end:case
 			case 14:
-				(UnLoad 128 2835)
-				((ScriptID 281 0) setMotion: MoveTo 35 124 self)
+				kernel.UnLoad(128, 2835)
+				(kernel.ScriptID(281, 0) setMotion: MoveTo 35 124 self)
 			#end:case
 			case 15:
-				((ScriptID 281 0) dispose:)
-				((ScriptID 280 3) setCycle: Beg self)
+				(kernel.ScriptID(281, 0) dispose:)
+				(kernel.ScriptID(280, 3) setCycle: Beg self)
 			#end:case
 			case 16:
-				(UnLoad 128 289)
+				kernel.UnLoad(128, 289)
 				(global105 number: 902 loop: 1 play:)
 				(self dispose:)
 			#end:case
@@ -645,8 +646,8 @@ class genieBadgerOwnerScr(Script):
 
 		match state = param1
 			case 0:
-				(proc280_8 0)
-				((ScriptID 281 0)
+				proc280_8(0)
+				(kernel.ScriptID(281, 0)
 					view: 289
 					loop: 0
 					setLoop: Grooper
@@ -701,7 +702,7 @@ class genieBadgerOwnerScr(Script):
 				)
 			#end:case
 			case 9:
-				((ScriptID 281 0) setHeading: 270 self)
+				(kernel.ScriptID(281, 0) setHeading: 270 self)
 			#end:case
 			case 10:
 				(self setScript: genieExitScr self)
@@ -710,7 +711,7 @@ class genieBadgerOwnerScr(Script):
 				cycles = 2
 			#end:case
 			case 12:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -723,7 +724,7 @@ class genieBadgerOwnerScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 282)
+		kernel.DisposeScript(282)
 	#end:method
 
 #end:class or instance
@@ -739,7 +740,7 @@ class givePeppermintScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc281_1 self)
+				proc281_1(self)
 			#end:case
 			case 1:
 				(global91 say: 5 67 0 1 self)
@@ -764,7 +765,7 @@ class givePeppermintScr(Script):
 				(global91 say: 5 67 0 3 self)
 			#end:case
 			case 8:
-				((ScriptID 281 0)
+				(kernel.ScriptID(281, 0)
 					view: 2834
 					loop: 0
 					cel: 0
@@ -774,22 +775,22 @@ class givePeppermintScr(Script):
 				cycles = 2
 			#end:case
 			case 9:
-				((ScriptID 281 0) setCycle: End self)
+				(kernel.ScriptID(281, 0) setCycle: End self)
 			#end:case
 			case 10:
 				(global0 setCycle: Beg)
-				((ScriptID 281 0) loop: 1 cel: 0 setCycle: End self)
+				(kernel.ScriptID(281, 0) loop: 1 cel: 0 setCycle: End self)
 			#end:case
 			case 11:
 				(global0 reset: 1)
-				((ScriptID 281 0) cel: 0 setCycle: End self)
+				(kernel.ScriptID(281, 0) cel: 0 setCycle: End self)
 			#end:case
 			case 12:
-				((ScriptID 281 0) setCycle: Beg self)
+				(kernel.ScriptID(281, 0) setCycle: Beg self)
 			#end:case
 			case 13:
-				((ScriptID 281 0)
-					cel: ((ScriptID 281 0) lastCel:)
+				(kernel.ScriptID(281, 0)
+					cel: (kernel.ScriptID(281, 0) lastCel:)
 					setCycle: Beg self
 				)
 			#end:case
@@ -797,11 +798,11 @@ class givePeppermintScr(Script):
 				(global91 say: 5 67 0 4 self)
 			#end:case
 			case 15:
-				((ScriptID 281 0) view: 2835 loop: 2 cel: 0 setCycle: End self)
+				(kernel.ScriptID(281, 0) view: 2835 loop: 2 cel: 0 setCycle: End self)
 			#end:case
 			case 16:
-				(proc280_8 0)
-				((ScriptID 281 0)
+				proc280_8(0)
+				(kernel.ScriptID(281, 0)
 					setLoop: 3
 					setCycle: Walk
 					posn: 70 133
@@ -809,17 +810,17 @@ class givePeppermintScr(Script):
 				)
 			#end:case
 			case 17:
-				((ScriptID 281 0) view: 289 setLoop: -1 loop: 1 posn: 51 124)
-				((ScriptID 280 3) setPri: 14 setCycle: End)
+				(kernel.ScriptID(281, 0) view: 289 setLoop: -1 loop: 1 posn: 51 124)
+				(kernel.ScriptID(280, 3) setPri: 14 setCycle: End)
 				(global105 number: 901 loop: 1 play:)
 				ticks = 12
 			#end:case
 			case 18:
-				((ScriptID 281 0) setMotion: MoveTo 35 124 self)
+				(kernel.ScriptID(281, 0) setMotion: MoveTo 35 124 self)
 			#end:case
 			case 19:
-				((ScriptID 281 0) dispose:)
-				((ScriptID 280 3) setCycle: Beg self)
+				(kernel.ScriptID(281, 0) dispose:)
+				(kernel.ScriptID(280, 3) setCycle: Beg self)
 			#end:case
 			case 20:
 				(global105 number: 902 loop: 1 play:)
@@ -838,7 +839,7 @@ class givePeppermintScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 282)
+		kernel.DisposeScript(282)
 	#end:method
 
 #end:class or instance

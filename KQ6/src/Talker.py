@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 928
 import sci_sh
+import kernel
 import Main
 import Print
 import Sync
@@ -48,7 +49,7 @@ class Blink(Cycle):
 			#end:case
 			case 
 				((temp0 = (self nextCel:) > (client lastCel:)) or (temp0 < 0)):
-				cycleDir = (- cycleDir)
+				cycleDir = -cycleDir
 				(self cycleDone:)
 			#end:case
 			else:
@@ -65,7 +66,7 @@ class Blink(Cycle):
 		if (cycleDir == -1):
 			(self init:)
 		else:
-			waitCount = ((Random waitMin waitMax) + global88)
+			waitCount = (kernel.Random(waitMin, waitMax) + global88)
 		#endif
 	#end:method
 
@@ -102,22 +103,22 @@ class Narrator(Prop):
 				temp2 = curVolume
 				
 					(temp0 = curVolume)
-					(temp0 >= (proc999_3 3 (curVolume / 2)))
-					(temp0--)
+					(temp0 >= proc999_3(3, (curVolume / 2)))
+					(temp0.post('--'))
 					
 					(global1 masterVolume: temp0)
 					temp1 = 0
 					while (temp1 <= 400): # inline for
 					#end:loop
 					# for:reinit
-					temp0--
+					temp0.post('--')
 				#end:loop
 			#endif
 		#endif
-		if (((global90 & 0x0002) and (not modeless)) or (not (HaveMouse))):
+		if (((global90 & 0x0002) and (not modeless)) or (not kernel.HaveMouse())):
 			saveCursor = (global1 setCursor: global21 1)
 		#endif
-		global88 = (global86 + (GetTime))
+		global88 = (global86 + kernel.GetTime())
 		initialized = 1
 	#end:method
 
@@ -145,7 +146,7 @@ class Narrator(Prop):
 				(global72 addToFront: self)
 				(global78 add: self)
 			#end:case
-			case (IsObject global84):
+			case kernel.IsObject(global84):
 				(global84 add: self)
 			#end:case
 			else:
@@ -165,7 +166,7 @@ class Narrator(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not (global90 & 0x0002)):
-			ticks = (proc999_3 240 (* global94 2 temp0 = (StrLen param1)))
+			ticks = proc999_3(240, (* global94 2 temp0 = kernel.StrLen(param1)))
 		#endif
 		if global25:
 			(global25 dispose:)
@@ -185,7 +186,7 @@ class Narrator(Prop):
 			temp0 = talkWidth
 		#endif
 		(temp1 = (global38 new:) color: color back: back)
-		if ((not (HaveMouse)) and (global19 != 996)):
+		if ((not kernel.HaveMouse()) and (global19 != 996)):
 			saveCursor = global19
 			(global1 setCursor: 996)
 		else:
@@ -210,12 +211,12 @@ class Narrator(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (proc999_6 param1 0)
-		temp1 = (proc999_6 param1 1)
-		temp2 = (proc999_6 param1 2)
-		temp3 = (proc999_6 param1 3)
-		temp4 = (proc999_6 param1 4)
-		ticks = (DoAudio 2 temp0 temp1 temp2 temp3 temp4)
+		temp0 = proc999_6(param1, 0)
+		temp1 = proc999_6(param1, 1)
+		temp2 = proc999_6(param1, 2)
+		temp3 = proc999_6(param1, 3)
+		temp4 = proc999_6(param1, 4)
+		ticks = kernel.DoAudio(2, temp0, temp1, temp2, temp3, temp4)
 	#end:method
 
 	@classmethod
@@ -228,7 +229,7 @@ class Narrator(Prop):
 				(ticks != -1)
 				((global88 - ticks) > 0)
 				if (global90 & 0x0002):
-					((DoAudio 6) == -1)
+					(kernel.DoAudio(6) == -1)
 				else:
 					1
 				#endif
@@ -269,7 +270,7 @@ class Narrator(Prop):
 						((param1 type:) & 0x4101)
 						(and
 							((param1 type:) & 0x0004)
-							(proc999_5 (param1 message:) 13 27)
+							proc999_5((param1 message:), 13, 27)
 						)
 					)
 					(param1 claimed: 1)
@@ -301,7 +302,7 @@ class Narrator(Prop):
 				#end:case
 			)
 			if (global90 & 0x0002):
-				(DoAudio 3)
+				kernel.DoAudio(3)
 			#endif
 			modNum = -1
 			initialized = 0
@@ -313,24 +314,24 @@ class Narrator(Prop):
 			
 				(temp0 = (global1 masterVolume:))
 				(temp0 <= curVolume)
-				(temp0++)
+				(temp0.post('++'))
 				
 				(global1 masterVolume: temp0)
 				temp1 = 0
 				while (temp1 <= 400): # inline for
 				#end:loop
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		#endif
-		if (((global90 & 0x0002) and (not modeless)) or (not (HaveMouse))):
+		if (((global90 & 0x0002) and (not modeless)) or (not kernel.HaveMouse())):
 			(global1 setCursor: saveCursor)
 		#endif
 		if caller:
 			(caller cue: cueVal)
 		#endif
 		cueVal = 0
-		(DisposeClone self)
+		kernel.DisposeClone(self)
 	#end:method
 
 #end:class or instance
@@ -383,67 +384,57 @@ class Talker(Narrator):
 		(= nsRight
 			(+
 				nsLeft
-				(proc999_3
-					if view:
-						(CelWide view loop cel)
-					else:
-						0
-					#endif
-					(and
-						(IsObject bust)
-						(+
-							(bust nsLeft:)
-							(CelWide (bust view:) (bust loop:) (bust cel:))
-						)
+				proc999_3(if view:
+					kernel.CelWide(view, loop, cel)
+				else:
+					0
+				#endif, (and
+					kernel.IsObject(bust)
+					(+
+						(bust nsLeft:)
+						kernel.CelWide((bust view:), (bust loop:), (bust cel:))
 					)
-					(and
-						(IsObject eyes)
-						(+
-							(eyes nsLeft:)
-							(CelWide (eyes view:) (eyes loop:) (eyes cel:))
-						)
+				), (and
+					kernel.IsObject(eyes)
+					(+
+						(eyes nsLeft:)
+						kernel.CelWide((eyes view:), (eyes loop:), (eyes cel:))
 					)
-					(and
-						(IsObject mouth)
-						(+
-							(mouth nsLeft:)
-							(CelWide (mouth view:) (mouth loop:) (mouth cel:))
-						)
+				), (and
+					kernel.IsObject(mouth)
+					(+
+						(mouth nsLeft:)
+						kernel.CelWide((mouth view:), (mouth loop:), (mouth cel:))
 					)
-				)
+				))
 			)
 		)
 		(= nsBottom
 			(+
 				nsTop
-				(proc999_3
-					if view:
-						(CelHigh view loop cel)
-					else:
-						0
-					#endif
-					(and
-						(IsObject bust)
-						(+
-							(bust nsTop:)
-							(CelHigh (bust view:) (bust loop:) (bust cel:))
-						)
+				proc999_3(if view:
+					kernel.CelHigh(view, loop, cel)
+				else:
+					0
+				#endif, (and
+					kernel.IsObject(bust)
+					(+
+						(bust nsTop:)
+						kernel.CelHigh((bust view:), (bust loop:), (bust cel:))
 					)
-					(and
-						(IsObject eyes)
-						(+
-							(eyes nsTop:)
-							(CelHigh (eyes view:) (eyes loop:) (eyes cel:))
-						)
+				), (and
+					kernel.IsObject(eyes)
+					(+
+						(eyes nsTop:)
+						kernel.CelHigh((eyes view:), (eyes loop:), (eyes cel:))
 					)
-					(and
-						(IsObject mouth)
-						(+
-							(mouth nsTop:)
-							(CelHigh (mouth view:) (mouth loop:) (mouth cel:))
-						)
+				), (and
+					kernel.IsObject(mouth)
+					(+
+						(mouth nsTop:)
+						kernel.CelHigh((mouth view:), (mouth loop:), (mouth cel:))
 					)
-				)
+				))
 			)
 		)
 	#end:method
@@ -454,43 +445,31 @@ class Talker(Narrator):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not underBits):
-			underBits = (Graph 7 nsTop nsLeft nsBottom nsRight 3)
+			underBits = kernel.Graph(7, nsTop, nsLeft, nsBottom, nsRight, 3)
 		#endif
-		temp0 = (PicNotValid)
-		(PicNotValid 1)
+		temp0 = kernel.PicNotValid()
+		kernel.PicNotValid(1)
 		if bust:
-			(DrawCel
-				(bust view:)
-				(bust loop:)
-				(bust cel:)
-				((bust nsLeft:) + nsLeft)
-				((bust nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((bust view:), (bust loop:), (bust cel:), (+
+				(bust nsLeft:)
+				nsLeft
+			), ((bust nsTop:) + nsTop), -1)
 		#endif
 		if eyes:
-			(DrawCel
-				(eyes view:)
-				(eyes loop:)
-				(eyes cel:)
-				((eyes nsLeft:) + nsLeft)
-				((eyes nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((eyes view:), (eyes loop:), (eyes cel:), (+
+				(eyes nsLeft:)
+				nsLeft
+			), ((eyes nsTop:) + nsTop), -1)
 		#endif
 		if mouth:
-			(DrawCel
-				(mouth view:)
-				(mouth loop:)
-				(mouth cel:)
-				((mouth nsLeft:) + nsLeft)
-				((mouth nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((mouth view:), (mouth loop:), (mouth cel:), (+
+				(mouth nsLeft:)
+				nsLeft
+			), ((mouth nsTop:) + nsTop), -1)
 		#endif
-		(DrawCel view loop cel nsLeft nsTop -1)
-		(Graph 12 nsTop nsLeft nsBottom nsRight 1)
-		(PicNotValid temp0)
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
+		kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
+		kernel.PicNotValid(temp0)
 	#end:method
 
 	@classmethod
@@ -500,33 +479,19 @@ class Talker(Narrator):
 
 		if (not underBits):
 			(= underBits
-				(Graph
-					15
-					y
+				kernel.Graph(15, y, x, (y + ((kernel.CelHigh(5, 0, 0) * 5) / 11)), (+
 					x
-					(y + (((CelHigh 5 0 0) * 5) / 11))
-					(x + ((CelWide 5 0 0) / 2))
-				)
+					(kernel.CelWide(5, 0, 0) / 2)
+				))
 			)
-			(DrawCel 5 0 0 0 0 -1 0 underBits)
+			kernel.DrawCel(5, 0, 0, 0, 0, -1, 0, underBits)
 			temp0 = 0
 		else:
 			temp0 = 1
 		#endif
 		if 
 			(==
-				(Portrait
-					1
-					raveName
-					(x + 4)
-					(y - 7)
-					param1
-					param2
-					param3
-					param4
-					param5
-					temp0
-				)
+				kernel.Portrait(1, raveName, (x + 4), (y - 7), param1, param2, param3, param4, param5, temp0)
 				2
 			)
 			cueVal = 27
@@ -569,7 +534,7 @@ class Talker(Narrator):
 		argc = sum(v is not None for v in locals().values())
 
 		(temp3 = (global38 new:) color: color back: back)
-		if ((not (HaveMouse)) and (global19 != 996)):
+		if ((not kernel.HaveMouse()) and (global19 != 996)):
 			saveCursor = global19
 			(global1 setCursor: 996)
 		else:
@@ -625,18 +590,18 @@ class Talker(Narrator):
 		argc = sum(v is not None for v in locals().values())
 
 		if (raving or ((not raving) and mouth)):
-			temp0 = (proc999_6 param1 0)
-			temp1 = (proc999_6 param1 1)
-			temp2 = (proc999_6 param1 2)
-			temp3 = (proc999_6 param1 3)
-			temp4 = (proc999_6 param1 4)
+			temp0 = proc999_6(param1, 0)
+			temp1 = proc999_6(param1, 1)
+			temp2 = proc999_6(param1, 2)
+			temp3 = proc999_6(param1, 3)
+			temp4 = proc999_6(param1, 4)
 		#endif
 		if (raving and raveName):
 			(self showRave: temp0 temp1 temp2 temp3 temp4)
 		else:
 			(self show:)
 			if mouth:
-				if (ResCheck 147 temp0 temp1 temp2 temp3 temp4):
+				if kernel.ResCheck(147, temp0, temp1, temp2, temp3, temp4):
 					(mouth setCycle: MouthSync temp0 temp1 temp2 temp3 temp4)
 					(super startAudio: param1)
 				else:
@@ -661,44 +626,32 @@ class Talker(Narrator):
 			temp0 = (param1 cel:)
 			((param1 cycler:) doit:)
 			if (temp0 != (param1 cel:)):
-				(DrawCel
-					(param1 view:)
-					(param1 loop:)
-					(param1 cel:)
-					((param1 nsLeft:) + nsLeft)
-					((param1 nsTop:) + nsTop)
-					-1
-				)
+				kernel.DrawCel((param1 view:), (param1 loop:), (param1 cel:), (+
+					(param1 nsLeft:)
+					nsLeft
+				), ((param1 nsTop:) + nsTop), -1)
 				(param1
 					nsRight:
 						(+
 							(param1 nsLeft:)
-							(CelWide
-								(param1 view:)
-								(param1 loop:)
-								(param1 cel:)
-							)
+							kernel.CelWide((param1 view:), (param1 loop:), (param1
+								cel:
+							))
 						)
 				)
 				(param1
 					nsBottom:
 						(+
 							(param1 nsTop:)
-							(CelHigh
-								(param1 view:)
-								(param1 loop:)
-								(param1 cel:)
-							)
+							kernel.CelHigh((param1 view:), (param1 loop:), (param1
+								cel:
+							))
 						)
 				)
-				(Graph
-					12
-					((param1 nsTop:) + nsTop)
-					((param1 nsLeft:) + nsLeft)
-					((param1 nsBottom:) + nsTop)
-					((param1 nsRight:) + nsLeft)
-					1
-				)
+				kernel.Graph(12, ((param1 nsTop:) + nsTop), (+
+					(param1 nsLeft:)
+					nsLeft
+				), ((param1 nsBottom:) + nsTop), ((param1 nsRight:) + nsLeft), 1)
 			#endif
 		#endif
 	#end:method
@@ -721,9 +674,9 @@ class Talker(Narrator):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Graph 8 underBits)
+		kernel.Graph(8, underBits)
 		underBits = 0
-		(Graph 13 nsTop nsLeft nsBottom nsRight)
+		kernel.Graph(13, nsTop, nsLeft, nsBottom, nsRight)
 		if global69:
 			(global69 enable:)
 		#endif
@@ -736,14 +689,10 @@ class Talker(Narrator):
 
 		if (mouth and underBits):
 			(mouth cel: 0)
-			(DrawCel
-				(mouth view:)
-				(mouth loop:)
-				0
-				((mouth nsLeft:) + nsLeft)
-				((mouth nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((mouth view:), (mouth loop:), 0, (+
+				(mouth nsLeft:)
+				nsLeft
+			), ((mouth nsTop:) + nsTop), -1)
 		#endif
 		if (mouth and (mouth cycler:)):
 			if ((mouth cycler:) respondsTo: #cue):
@@ -753,26 +702,20 @@ class Talker(Narrator):
 		#endif
 		if ((not argc) or (param1 == 1)):
 			if raving:
-				(Graph 8 underBits)
-				(Graph
-					13
+				kernel.Graph(8, underBits)
+				kernel.Graph(13, (y - 10), (x - 10), (+
+					10
 					(y - 10)
-					(x - 10)
-					(+ 10 (y - 10) (((CelHigh 5 0 0) * 5) / 11))
-					(+ 10 (x - 10) ((CelWide 5 0 0) / 2))
-				)
+					((kernel.CelHigh(5, 0, 0) * 5) / 11)
+				), (+ 10 (x - 10) (kernel.CelWide(5, 0, 0) / 2)))
 				raving = underBits = 0
 			#endif
 			if (eyes and underBits):
 				(eyes setCycle: 0 cel: 0)
-				(DrawCel
-					(eyes view:)
-					(eyes loop:)
-					0
-					((eyes nsLeft:) + nsLeft)
-					((eyes nsTop:) + nsTop)
-					-1
-				)
+				kernel.DrawCel((eyes view:), (eyes loop:), 0, (+
+					(eyes nsLeft:)
+					nsLeft
+				), ((eyes nsTop:) + nsTop), -1)
 			#endif
 			if saveX:
 				x = saveX

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 255
 import sci_sh
+import kernel
 import Main
 import Print
 import System
@@ -34,11 +35,11 @@ def proc255_1(param1 = None, param2 = None):
 
 	temp0 = 0
 	if (argc > 1):
-		(Format @temp0 r"""%d""" param2)
+		kernel.Format(@temp0, r"""%d""", param2)
 	#endif
 	(return
-		if (proc921_2 @temp0 5 param1):
-			(ReadNumber @temp0)
+		if proc921_2(@temp0, 5, param1):
+			kernel.ReadNumber(@temp0)
 		else:
 			-1
 		#endif
@@ -147,14 +148,14 @@ class Class_255_0(Obj):
 				param1 = (Event new: -32768)
 				(param1 localize:)
 				if (temp0 = (self check: param1) != temp1):
-					(HiliteControl self)
+					kernel.HiliteControl(self)
 					temp1 = temp0
 				#endif
 				(param1 dispose:)
 				(breakif (not (proc255_0)))
 			#end:loop
 			if temp0:
-				(HiliteControl self)
+				kernel.HiliteControl(self)
 			#endif
 			return temp0
 		else:
@@ -213,7 +214,7 @@ class Class_255_0(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawControl self)
+		kernel.DrawControl(self)
 	#end:method
 
 	@classmethod
@@ -235,10 +236,10 @@ class DText(Class_255_0):
 		argc = sum(v is not None for v in locals().values())
 
 		if (text and ((not argc) or (not param1))):
-			(Memory 3 (self text:))
+			kernel.Memory(3, (self text:))
 		#endif
 		if rects:
-			(Memory 3 (self rects:))
+			kernel.Memory(3, (self rects:))
 		#endif
 		(super dispose:)
 	#end:method
@@ -256,7 +257,7 @@ class DText(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(TextSize @temp0[0] text font (param1 if argc else 0))
+		kernel.TextSize(@temp0[0], text, font, (param1 if argc else 0))
 		nsBottom = (nsTop + temp0[2])
 		nsRight = (nsLeft + temp0[3])
 	#end:method
@@ -271,18 +272,18 @@ class DText(Class_255_0):
 				global17
 				rects
 				(or
-					(proc999_5 (param1 type:) 1 256)
+					proc999_5((param1 type:), 1, 256)
 					(((param1 type:) == 4) and ((param1 message:) == 13))
 				)
 			)
 			temp0 = -1
 			(param1 globalize: claimed: 1)
-			while ((proc999_6 rects (temp0 + 1)) != 30583):
+			while (proc999_6(rects, (temp0 + 1)) != 30583):
 
-				temp2 = (proc999_6 rects temp0++)
-				temp1 = (proc999_6 rects temp0++)
-				temp4 = (proc999_6 rects temp0++)
-				temp3 = (proc999_6 rects temp0++)
+				temp2 = proc999_6(rects, temp0.post('++'))
+				temp1 = proc999_6(rects, temp0.post('++'))
+				temp4 = proc999_6(rects, temp0.post('++'))
+				temp3 = proc999_6(rects, temp0.post('++'))
 				if 
 					(and
 						(<= temp2 (param1 x:) temp4)
@@ -302,7 +303,7 @@ class DText(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		rects = (DrawControl self)
+		rects = kernel.DrawControl(self)
 	#end:method
 
 #end:class or instance
@@ -329,8 +330,8 @@ class Dialog(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((PicNotValid) and global5):
-			(Animate (global5 elements:) 0)
+		if (kernel.PicNotValid() and global5):
+			kernel.Animate((global5 elements:), 0)
 		#endif
 		window = (window new:)
 		(window
@@ -360,7 +361,7 @@ class Dialog(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		global88 = (global86 + (GetTime))
+		global88 = (global86 + kernel.GetTime())
 		temp2 = 0
 		(self eachElementDo: #init)
 		if theItem:
@@ -378,25 +379,25 @@ class Dialog(List):
 		#endif
 		if (not theItem):
 			eatTheMice = global79
-			lastTicks = (GetTime)
+			lastTicks = kernel.GetTime()
 		else:
 			eatTheMice = 0
 		#endif
 		temp1 = 0
 		while (not temp1):
 
-			global88 = (global86 + (GetTime))
+			global88 = (global86 + kernel.GetTime())
 			(self eachElementDo: #cycle)
 			temp0 = ((Event new:) localize:)
 			if eatTheMice:
-				eatTheMice--
+				eatTheMice.post('--')
 				if ((temp0 type:) == 1):
 					(temp0 type: 0)
 				#endif
-				while (lastTicks == (GetTime)):
+				while (lastTicks == kernel.GetTime()):
 
 				#end:loop
-				lastTicks = (GetTime)
+				lastTicks = kernel.GetTime()
 			#endif
 			(self eachElementDo: #perform checkHiliteCode self temp0)
 			temp1 = (self handleEvent: temp0)
@@ -406,10 +407,10 @@ class Dialog(List):
 			#endif
 			if (temp1 == -2):
 				temp1 = 0
-				(EditControl theItem 0)
+				kernel.EditControl(theItem, 0)
 				(break)
 			#endif
-			(Wait 1)
+			kernel.Wait(1)
 		#end:loop
 		return temp1
 	#end:method
@@ -420,10 +421,10 @@ class Dialog(List):
 		argc = sum(v is not None for v in locals().values())
 
 		if seconds:
-			temp0 = (GetTime 1)
+			temp0 = kernel.GetTime(1)
 			if (lastSeconds != temp0):
 				lastSeconds = temp0
-				return (not seconds--)
+				return (not seconds.post('--'))
 			#endif
 		#endif
 	#end:method
@@ -435,7 +436,7 @@ class Dialog(List):
 
 		(self eachElementDo: #dispose release:)
 		if (self == global25):
-			(SetPort global41)
+			kernel.SetPort(global41)
 			global25 = 0
 			global41 = 0
 		#endif
@@ -463,7 +464,7 @@ class Dialog(List):
 				if (not temp1 = (self next: temp1)):
 					temp1 = (self first:)
 				#endif
-				theItem = (NodeValue temp1)
+				theItem = kernel.NodeValue(temp1)
 				if ((theItem state:) & 0x0001):
 					(break)
 				#endif
@@ -494,7 +495,7 @@ class Dialog(List):
 				if (not temp1 = (self prev: temp1)):
 					temp1 = (self last:)
 				#endif
-				theItem = (NodeValue temp1)
+				theItem = kernel.NodeValue(temp1)
 				if ((theItem state:) & 0x0001):
 					(break)
 				#endif
@@ -537,7 +538,7 @@ class Dialog(List):
 		temp1 = (param1 type:)
 		temp2 = (param1 message:)
 		if temp0 = (self firstTrue: #handleEvent param1):
-			(EditControl theItem 0)
+			kernel.EditControl(theItem, 0)
 			if (not (temp0 checkState: 2)):
 				if theItem:
 					(theItem select: 0)
@@ -560,7 +561,7 @@ class Dialog(List):
 						(theItem checkState: 1)
 					):
 					temp0 = theItem
-					(EditControl theItem 0)
+					kernel.EditControl(theItem, 0)
 					(param1 claimed: 1)
 				#end:case
 				case ((temp1 == 4) and (temp2 == 27)):
@@ -572,7 +573,7 @@ class Dialog(List):
 						(not (self firstTrue: #checkState 1))
 						(or
 							((temp1 == 4) and (temp2 == 13))
-							(proc999_5 temp1 1 256)
+							proc999_5(temp1, 1, 256)
 						)
 					):
 					(param1 claimed: 1)
@@ -580,20 +581,20 @@ class Dialog(List):
 				#end:case
 				case 
 					(and
-						(IsObject theItem)
+						kernel.IsObject(theItem)
 						(theItem isType: 3)
 						(temp1 == 4)
 						(temp2 == 19712)
 					):
-					if ((theItem cursor:) >= (StrLen (theItem text:))):
+					if ((theItem cursor:) >= kernel.StrLen((theItem text:))):
 						(self advance:)
 					else:
-						(EditControl theItem param1)
+						kernel.EditControl(theItem, param1)
 					#endif
 				#end:case
 				case 
 					(and
-						(IsObject theItem)
+						kernel.IsObject(theItem)
 						(theItem isType: 3)
 						(temp1 == 4)
 						(temp2 == 19200)
@@ -601,19 +602,19 @@ class Dialog(List):
 					if ((theItem cursor:) <= 0):
 						(self retreat:)
 					else:
-						(EditControl theItem param1)
+						kernel.EditControl(theItem, param1)
 					#endif
 				#end:case
-				case ((temp1 == 4) and (proc999_5 temp2 9 19712 20480)):
+				case ((temp1 == 4) and proc999_5(temp2, 9, 19712, 20480)):
 					(param1 claimed: 1)
 					(self advance:)
 				#end:case
-				case ((temp1 == 4) and (proc999_5 temp2 3840 19200 18432)):
+				case ((temp1 == 4) and proc999_5(temp2, 3840, 19200, 18432)):
 					(param1 claimed: 1)
 					(self retreat:)
 				#end:case
 				else:
-					(EditControl theItem param1)
+					kernel.EditControl(theItem, param1)
 				#end:else
 			)
 		#endif
@@ -675,7 +676,7 @@ class Dialog(List):
 		argc = sum(v is not None for v in locals().values())
 
 		if text:
-			(TextSize @temp2[0] text font -1 0)
+			kernel.TextSize(@temp2[0], text, font, -1, 0)
 			nsTop = temp2[0]
 			nsLeft = temp2[1]
 			nsBottom = temp2[2]
@@ -685,7 +686,7 @@ class Dialog(List):
 		#endif
 		temp0 = (self first:)
 		while temp0: # inline for
-			temp1 = (NodeValue temp0)
+			temp1 = kernel.NodeValue(temp0)
 			if ((temp1 nsLeft:) < nsLeft):
 				nsLeft = (temp1 nsLeft:)
 			#endif

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 408
 import sci_sh
+import kernel
 import Main
 import rLab
 import n402
@@ -29,14 +30,14 @@ class rm408(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc402_0)
+		proc402_0()
 		(super init: &rest)
 		if (((global9 at: 43) owner:) == 408):
 			(theShield init:)
 		#endif
-		(global2 setScript: (ScriptID 30 1))
-		((ScriptID 30 7) addToPic:)
-		((ScriptID 30 0) initCrypt: 2)
+		(global2 setScript: kernel.ScriptID(30, 1))
+		(kernel.ScriptID(30, 7) addToPic:)
+		(kernel.ScriptID(30, 0) initCrypt: 2)
 	#end:method
 
 	@classmethod
@@ -44,8 +45,8 @@ class rm408(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 30 7) addToPic:)
-		((ScriptID 30 3) show:)
+		(kernel.ScriptID(30, 7) addToPic:)
+		(kernel.ScriptID(30, 3) show:)
 	#end:method
 
 #end:class or instance

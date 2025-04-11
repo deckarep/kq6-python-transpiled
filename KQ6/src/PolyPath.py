@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 945
 import sci_sh
+import kernel
 import Main
 import Motion
 import System
@@ -29,23 +30,21 @@ class PolyPath(Motion):
 					case (argc >= 6):
 						obstacles = param6
 					#end:case
-					case (not (IsObject obstacles)):
+					case (not kernel.IsObject(obstacles)):
 						obstacles = (global2 obstacles:)
 					#end:case
 				)
 				if points:
-					(Memory 3 points)
+					kernel.Memory(3, points)
 				#endif
 				(= points
-					(AvoidPath
-						(param1 x:)
-						(param1 y:)
-						finalX = param2
-						finalY = param3
-						(obstacles and (obstacles elements:))
-						(obstacles and (obstacles size:))
-						(param5 if (argc >= 5) else 1)
-					)
+					kernel.AvoidPath((param1 x:), (param1 y:), finalX = param2, (=
+						finalY
+						param3
+					), (obstacles and (obstacles elements:)), (and
+						obstacles
+						(obstacles size:)
+					), (param5 if (argc >= 5) else 1))
 				)
 				if (argc > 3):
 					caller = param4
@@ -62,7 +61,7 @@ class PolyPath(Motion):
 		argc = sum(v is not None for v in locals().values())
 
 		if points:
-			(Memory 3 points)
+			kernel.Memory(3, points)
 		#endif
 		points = 0
 		(super dispose:)
@@ -73,30 +72,24 @@ class PolyPath(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((proc999_6 points value) != 30583):
-			x = (proc999_6 points value)
-			y = (proc999_6 points value++)
-			value++
-			if ((IsObject global95) and temp3 = (global95 size:)):
+		if (proc999_6(points, value) != 30583):
+			x = proc999_6(points, value)
+			y = proc999_6(points, value.post('++'))
+			value.post('++')
+			if (kernel.IsObject(global95) and temp3 = (global95 size:)):
 				(= temp0
-					(AvoidPath
-						(client x:)
-						(client y:)
-						x
-						y
-						(global95 elements:)
-						temp3
-						0
-					)
+					kernel.AvoidPath((client x:), (client y:), x, y, (global95
+						elements:
+					), temp3, 0)
 				)
-				temp1 = (proc999_6 temp0 2)
-				temp2 = (proc999_6 temp0 3)
+				temp1 = proc999_6(temp0, 2)
+				temp2 = proc999_6(temp0, 3)
 				if ((x != temp1) or (y != temp2)):
 					x = temp1
 					y = temp2
-					(Memory 6 (+ points value 2) 30583)
+					kernel.Memory(6, (+ points value 2), 30583)
 				#endif
-				(Memory 3 temp0)
+				kernel.Memory(3, temp0)
 			#endif
 		#endif
 	#end:method
@@ -106,7 +99,7 @@ class PolyPath(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((proc999_6 points value) == 30583):
+		if (proc999_6(points, value) == 30583):
 			(super moveDone:)
 		else:
 			(self setTarget: init:)

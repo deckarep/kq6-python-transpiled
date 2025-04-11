@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 98
 import sci_sh
+import kernel
 import Main
 import IconBar
 import Tutorial
@@ -29,13 +30,13 @@ class Kq6IconBar(IconBar):
 		if (state & 0x0020):
 			(global8 pause: 0)
 			(state &= 0xffdf)
-			temp0 = (FirstNode elements)
+			temp0 = kernel.FirstNode(elements)
 			while temp0: # inline for
-				temp1 = (NextNode temp0)
-				if (not (IsObject temp2 = (NodeValue temp0))):
+				temp1 = kernel.NextNode(temp0)
+				if (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))):
 					return
 				#endif
-				(temp2 = (NodeValue temp0)
+				(temp2 = kernel.NodeValue(temp0)
 					signal: ((temp2 signal:) & 0xffdf)
 					view: local0
 					maskView: local0
@@ -52,10 +53,10 @@ class Kq6IconBar(IconBar):
 				)
 				(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
 			#endif
-			(Graph 8 underBits)
-			(Graph 12 y 0 (y + height) 320 1)
-			(Graph 13 y 0 (y + height) 320)
-			(SetPort port)
+			kernel.Graph(8, underBits)
+			kernel.Graph(12, y, 0, (y + height), 320, 1)
+			kernel.Graph(13, y, 0, (y + height), 320)
+			kernel.SetPort(port)
 			hiRes = 0
 			height = activateHeight
 		#endif
@@ -72,8 +73,8 @@ class Kq6IconBar(IconBar):
 		temp0 = (self at: 0)
 		local0 = (temp0 view:)
 		(= hiRes
-			if (global169 and (not (Platform 5))):
-				(Platform 6)
+			if (global169 and (not kernel.Platform(5))):
+				kernel.Platform(6)
 			#endif
 		)
 		if hiRes:
@@ -81,23 +82,23 @@ class Kq6IconBar(IconBar):
 		else:
 			(temp0 view: (temp0 view:))
 		#endif
-		height = (CelHigh (temp0 view:) (temp0 loop:) (temp0 cel:))
-		port = (GetPort)
-		(SetPort -1)
+		height = kernel.CelHigh((temp0 view:), (temp0 loop:), (temp0 cel:))
+		port = kernel.GetPort()
+		kernel.SetPort(-1)
 		if hiRes:
-			(/= height 2)
-			underBits = (Graph 15 y 0 (y + height) 319)
+			(height /= 2)
+			underBits = kernel.Graph(15, y, 0, (y + height), 319)
 		else:
-			underBits = (Graph 7 y 0 (y + height) 320 1)
+			underBits = kernel.Graph(7, y, 0, (y + height), 320, 1)
 		#endif
-		temp1 = (PicNotValid)
-		(PicNotValid 1)
+		temp1 = kernel.PicNotValid()
+		kernel.PicNotValid(1)
 		temp3 = 0
 		temp4 = y
-		temp5 = (FirstNode elements)
+		temp5 = kernel.FirstNode(elements)
 		while temp5: # inline for
-			temp6 = (NextNode temp5)
-			if (not (IsObject temp7 = (NodeValue temp5))):
+			temp6 = kernel.NextNode(temp5)
+			if (not kernel.IsObject(temp7 = kernel.NodeValue(temp5))):
 				return
 			#endif
 			if hiRes:
@@ -123,16 +124,12 @@ class Kq6IconBar(IconBar):
 			temp5 = temp6
 		#end:loop
 		(self updateInvIcon:)
-		(PicNotValid temp1)
-		(Graph
-			12
-			y
+		kernel.PicNotValid(temp1)
+		kernel.Graph(12, y, 0, (height * (2 if hiRes else 1)), 639, 1, if hiRes:
+			underBits
+		else:
 			0
-			(height * (2 if hiRes else 1))
-			639
-			1
-			(underBits if hiRes else 0)
-		)
+		#endif)
 		(self highlight: curIcon)
 	#end:method
 
@@ -146,12 +143,12 @@ class Kq6IconBar(IconBar):
 			(= temp0
 				(self at: (mod (temp1 + (self indexOf: highlightedIcon)) size))
 			)
-			if (not (IsObject temp0)):
-				temp0 = (NodeValue (self first:))
+			if (not kernel.IsObject(temp0)):
+				temp0 = kernel.NodeValue((self first:))
 			#endif
 			(breakif (not ((temp0 signal:) & 0x0004)))
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 		(self highlight: temp0 (state & 0x0020))
 	#end:method
@@ -166,12 +163,12 @@ class Kq6IconBar(IconBar):
 			(= temp0
 				(self at: (mod ((self indexOf: highlightedIcon) - temp1) size))
 			)
-			if (not (IsObject temp0)):
-				temp0 = (NodeValue (self last:))
+			if (not kernel.IsObject(temp0)):
+				temp0 = kernel.NodeValue((self last:))
 			#endif
 			(breakif (not ((temp0 signal:) & 0x0004)))
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 		(self highlight: temp0 (state & 0x0020))
 	#end:method
@@ -189,11 +186,9 @@ class Kq6IconBar(IconBar):
 						(/
 							(-
 								((useIconItem nsRight:) - (useIconItem nsLeft:))
-								(CelWide
-									(curInvIcon view:)
-									(curInvIcon loop:)
-									(curInvIcon cel:)
-								)
+								kernel.CelWide((curInvIcon view:), (curInvIcon
+									loop:
+								), (curInvIcon cel:))
 							)
 							2
 						)
@@ -206,27 +201,18 @@ class Kq6IconBar(IconBar):
 						(/
 							(-
 								((useIconItem nsBottom:) - (useIconItem nsTop:))
-								(CelHigh
-									(curInvIcon view:)
-									(curInvIcon loop:)
-									(curInvIcon cel:)
-								)
+								kernel.CelHigh((curInvIcon view:), (curInvIcon
+									loop:
+								), (curInvIcon cel:))
 							)
 							2
 						)
 						(useIconItem nsTop:)
 					)
 				)
-				(DrawCel
-					(curInvIcon view:)
-					(curInvIcon loop:)
-					(curInvIcon cel:)
-					temp0
-					temp1
-					-1
-					0
-					(underBits if hiRes else 0)
-				)
+				kernel.DrawCel((curInvIcon view:), (curInvIcon loop:), (curInvIcon
+					cel:
+				), temp0, temp1, -1, 0, (underBits if hiRes else 0))
 				if ((useIconItem signal:) & 0x0004):
 					(useIconItem mask:)
 				#endif
@@ -289,11 +275,9 @@ class Kq6IconBar(IconBar):
 								(-
 									(+
 										(curIcon nsTop:)
-										(CelHigh
-											(curIcon view:)
-											(curIcon loop:)
-											(curIcon cel:)
-										)
+										kernel.CelHigh((curIcon view:), (curIcon
+											loop:
+										), (curIcon cel:))
 									)
 									3
 								)
@@ -319,7 +303,7 @@ class Kq6IconBar(IconBar):
 				match (param1 message:)
 					case 13:
 						(cond
-							case (not (IsObject curIcon)):#end:case
+							case (not kernel.IsObject(curIcon)):#end:case
 							case ((curIcon != useIconItem) or curInvIcon):
 								(param1
 									type: (curIcon type:)
@@ -362,7 +346,7 @@ class Kq6IconBar(IconBar):
 						#endif
 						(param1 claimed: 1)
 					#end:case
-					case (IsObject curIcon):
+					case kernel.IsObject(curIcon):
 						(param1
 							type: (curIcon type:)
 							message:
@@ -399,17 +383,17 @@ class Kq6IconItem(IconI):
 			temp1 = (nsLeft + 1)
 			temp2 = (nsBottom - 3)
 			temp3 = (nsRight - 3)
-			(Graph 4 temp0 temp1 temp0 temp3 temp4 -1 -1)
-			(Graph 4 temp0 temp3 temp2 temp3 temp4 -1 -1)
-			(Graph 4 temp2 temp3 temp2 temp1 temp4 -1 -1)
-			(Graph 4 temp2 temp1 temp0 temp1 temp4 -1 -1)
+			kernel.Graph(4, temp0, temp1, temp0, temp3, temp4, -1, -1)
+			kernel.Graph(4, temp0, temp3, temp2, temp3, temp4, -1, -1)
+			kernel.Graph(4, temp2, temp3, temp2, temp1, temp4, -1, -1)
+			kernel.Graph(4, temp2, temp1, temp0, temp1, temp4, -1, -1)
 		else:
 			(self show:)
 			if (Kq6IconBar curInvIcon:):
 				(Kq6IconBar updateInvIcon:)
 			#endif
 		#endif
-		(Graph 12 (nsTop - 2) (nsLeft - 2) nsBottom (nsRight + 3) 1)
+		kernel.Graph(12, (nsTop - 2), (nsLeft - 2), nsBottom, (nsRight + 3), 1)
 	#end:method
 
 	@classmethod
@@ -469,55 +453,29 @@ class Kq6IconItem(IconI):
 			(cond
 				case (signal & 0x0004): 0#end:case
 				case (and argc param1 (signal & 0x0001)):
-					(DrawCel view loop temp1 = 1 nsLeft nsTop -1 0 temp3)
-					(Graph 12 nsTop nsLeft nsBottom nsRight 1 temp3)
+					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
+					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					while ((temp0 = (Event new:) type:) != 2):
 
 						(temp0 localize:)
 						(cond
 							case (self onMe: temp0):
 								if (not temp1):
-									(DrawCel
-										view
-										loop
-										temp1 = 1
-										nsLeft
-										nsTop
-										-1
-										0
-										temp3
-									)
-									(Graph
-										12
-										nsTop
-										nsLeft
-										nsBottom
-										nsRight
-										1
-										temp3
-									)
+									kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
+									kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 								#endif
 							#end:case
 							case temp1:
-								(DrawCel
-									view
-									loop
-									temp1 = 0
-									nsLeft
-									nsTop
-									-1
-									0
-									temp3
-								)
-								(Graph 12 nsTop nsLeft nsBottom nsRight 1 temp3)
+								kernel.DrawCel(view, loop, temp1 = 0, nsLeft, nsTop, -1, 0, temp3)
+								kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 							#end:case
 						)
 						(temp0 dispose:)
 					#end:loop
 					(temp0 dispose:)
 					if (temp1 == 1):
-						(DrawCel view loop 0 nsLeft nsTop -1 0 temp3)
-						(Graph 12 nsTop nsLeft nsBottom nsRight 1 temp3)
+						kernel.DrawCel(view, loop, 0, nsLeft, nsTop, -1, 0, temp3)
+						kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					#endif
 					if 
 						(and
@@ -577,38 +535,23 @@ class Kq6IconItem(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawCel
-			maskView
-			maskLoop
-			maskCel
-			(+
-				nsLeft
-				(/
-					(-
-						(CelWide view loop cel)
-						(CelWide maskView maskLoop maskCel)
-					)
-					2
-				)
+		kernel.DrawCel(maskView, maskLoop, maskCel, (+
+			nsLeft
+			(/
+				(kernel.CelWide(view, loop, cel) - kernel.CelWide(maskView, maskLoop, maskCel))
+				2
 			)
-			(+
-				nsTop
-				(/
-					(-
-						(CelHigh view loop cel)
-						(CelHigh maskView maskLoop maskCel)
-					)
-					2
-				)
+		), (+
+			nsTop
+			(/
+				(kernel.CelHigh(view, loop, cel) - kernel.CelHigh(maskView, maskLoop, maskCel))
+				2
 			)
-			-1
+		), -1, 0, if hiRes:
+			(global69 underBits:)
+		else:
 			0
-			if hiRes:
-				(global69 underBits:)
-			else:
-				0
-			#endif
-		)
+		#endif)
 	#end:method
 
 	@classmethod
@@ -617,32 +560,23 @@ class Kq6IconItem(IconI):
 		argc = sum(v is not None for v in locals().values())
 
 		(= hiRes
-			if (global169 and (not (Platform 5))):
-				(Platform 6)
+			if (global169 and (not kernel.Platform(5))):
+				kernel.Platform(6)
 			#endif
 		)
 		(signal |= 0x0020)
 		if argc:
-			nsRight = (nsLeft = param1 + (CelWide view loop cel))
-			nsBottom = (nsTop = param2 + (CelHigh view loop cel))
+			nsRight = (nsLeft = param1 + kernel.CelWide(view, loop, cel))
+			nsBottom = (nsTop = param2 + kernel.CelHigh(view, loop, cel))
 		else:
-			nsRight = (nsLeft + (CelWide view loop cel))
-			nsBottom = (nsTop + (CelHigh view loop cel))
+			nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
+			nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 		#endif
-		(DrawCel
-			view
-			loop
-			cel
-			nsLeft
-			nsTop
-			-1
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1, 0, if hiRes:
+			(global69 underBits:)
+		else:
 			0
-			if hiRes:
-				(global69 underBits:)
-			else:
-				0
-			#endif
-		)
+		#endif)
 		if (signal & 0x0004):
 			(self mask:)
 		#endif

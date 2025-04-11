@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 425
 import sci_sh
+import kernel
 import Main
 import rLab
 import n402
@@ -37,16 +38,16 @@ class rm425(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc402_1)
+		proc402_1()
 		(super init: &rest)
 		(westDoor addToPic:)
 		(westWing addToPic:)
-		((ScriptID 30 3) init:)
-		((ScriptID 30 0) initCrypt: 1)
-		((ScriptID 30 6) addToPic:)
-		((ScriptID 30 10) addToPic:)
-		((ScriptID 30 8) addToPic:)
-		(global2 setScript: (ScriptID 30 1) self)
+		(kernel.ScriptID(30, 3) init:)
+		(kernel.ScriptID(30, 0) initCrypt: 1)
+		(kernel.ScriptID(30, 6) addToPic:)
+		(kernel.ScriptID(30, 10) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
+		(global2 setScript: kernel.ScriptID(30, 1) self)
 	#end:method
 
 	@classmethod
@@ -54,26 +55,26 @@ class rm425(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc913_0 1)):
-			match ((ScriptID 30 0) timesGenieHasAppeared:)
+		if (not proc913_0(1)):
+			match (kernel.ScriptID(30, 0) timesGenieHasAppeared:)
 				case 0:
 					(genie init: setScript: genieMeeting)
-					((ScriptID 30 0) geniePresent: 1)
+					(kernel.ScriptID(30, 0) geniePresent: 1)
 				#end:case
 				case 1:
 					(genieMeeting start: 12)
 					(genie init: setScript: genieMeeting)
-					((ScriptID 30 0) geniePresent: 1)
+					(kernel.ScriptID(30, 0) geniePresent: 1)
 				#end:case
 				case 2:
 					(genieMeeting start: 22)
 					(genie init: setScript: genieMeeting)
-					((ScriptID 30 0) geniePresent: 1)
+					(kernel.ScriptID(30, 0) geniePresent: 1)
 				#end:case
 				else:
-					((ScriptID 30 0)
+					(kernel.ScriptID(30, 0)
 						timesGenieHasAppeared:
-							(((ScriptID 30 0) timesGenieHasAppeared:) + 1)
+							((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
 					)
 				#end:else
 			#end:match
@@ -87,10 +88,10 @@ class rm425(LabRoom):
 
 		(westDoor addToPic:)
 		(westWing addToPic:)
-		((ScriptID 30 6) addToPic:)
-		((ScriptID 30 10) addToPic:)
-		((ScriptID 30 8) addToPic:)
-		((ScriptID 30 3) show:)
+		(kernel.ScriptID(30, 6) addToPic:)
+		(kernel.ScriptID(30, 10) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
+		(kernel.ScriptID(30, 3) show:)
 	#end:method
 
 	@classmethod
@@ -98,7 +99,7 @@ class rm425(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 30 0) geniePresent: 0)
+		(kernel.ScriptID(30, 0) geniePresent: 0)
 		(super dispose:)
 	#end:method
 
@@ -125,11 +126,11 @@ class genieMeeting(Script):
 				#endif
 			#end:case
 			case 2:
-				((ScriptID 30 0)
+				(kernel.ScriptID(30, 0)
 					timesGenieHasAppeared:
-						(((ScriptID 30 0) timesGenieHasAppeared:) + 1)
+						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
 				)
-				temp1 = (GetAngle (global0 x:) (global0 y:) 85 158)
+				temp1 = kernel.GetAngle((global0 x:), (global0 y:), 85, 158)
 				(global0 setHeading: temp1)
 				local0 = 1
 				(genie
@@ -189,11 +190,11 @@ class genieMeeting(Script):
 				#endif
 			#end:case
 			case 15:
-				((ScriptID 30 0)
+				(kernel.ScriptID(30, 0)
 					timesGenieHasAppeared:
-						(((ScriptID 30 0) timesGenieHasAppeared:) + 1)
+						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
 				)
-				temp1 = (GetAngle (global0 x:) (global0 y:) 85 158)
+				temp1 = kernel.GetAngle((global0 x:), (global0 y:), 85, 158)
 				(global0 setHeading: temp1)
 				local0 = 1
 				(genie setCycle: Walk setMotion: PolyPath 85 158 self)
@@ -245,11 +246,11 @@ class genieMeeting(Script):
 				#endif
 			#end:case
 			case 25:
-				((ScriptID 30 0)
+				(kernel.ScriptID(30, 0)
 					timesGenieHasAppeared:
-						(((ScriptID 30 0) timesGenieHasAppeared:) + 1)
+						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
 				)
-				temp1 = (GetAngle (global0 x:) (global0 y:) 85 158)
+				temp1 = kernel.GetAngle((global0 x:), (global0 y:), 85, 158)
 				(global0 setHeading: temp1)
 				local0 = 1
 				(genie setCycle: Walk setMotion: PolyPath 85 158 self)

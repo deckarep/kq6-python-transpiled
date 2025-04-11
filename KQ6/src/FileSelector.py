@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 944
 import sci_sh
+import kernel
 import Dialog
 
 @SCI.procedure
@@ -18,18 +19,18 @@ def localproc_0(param1 = None, param2 = None):
 		temp1 = 0
 		while (temp1 < temp0): # inline for
 			temp17 = (temp16 = (param1 + (temp1 * 13)) + 13)
-			if ((StrCmp temp17 temp16) < 0):
-				(StrCpy @temp2 temp16)
-				(StrCpy temp16 temp17)
-				(StrCpy temp17 @temp2)
+			if (kernel.StrCmp(temp17, temp16) < 0):
+				kernel.StrCpy(@temp2, temp16)
+				kernel.StrCpy(temp16, temp17)
+				kernel.StrCpy(temp17, @temp2)
 				temp15 = 1
 			#endif
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 		(breakif (not temp15))
 		# for:reinit
-		temp0--
+		temp0.post('--')
 	#end:loop
 #end:procedure
 
@@ -52,33 +53,33 @@ class FileSelector(DSelector):
 			mask = r"""*.*"""
 		#endif
 		if text:
-			(Memory 3 text)
+			kernel.Memory(3, text)
 			text = 0
 		#endif
 		nFiles = 0
-		temp9 = (FileIO 8 mask @temp0 0)
+		temp9 = kernel.FileIO(8, mask, @temp0, 0)
 		while temp9: # inline for
-			nFiles++
+			nFiles.post('++')
 			# for:reinit
-			temp9 = (FileIO 9 @temp0)
+			temp9 = kernel.FileIO(9, @temp0)
 		#end:loop
-		if (not text = (Memory 2 ((nFiles * 13) + 1))):
+		if (not text = kernel.Memory(2, ((nFiles * 13) + 1))):
 			return 0
 		#endif
 		temp7 = 0
 		temp8 = text
 		
-			(temp9 = (FileIO 8 mask @temp0 0))
+			(temp9 = kernel.FileIO(8, mask, @temp0, 0))
 			(temp9 and (temp7 < nFiles))
-			(temp9 = (FileIO 9 @temp0))
+			(temp9 = kernel.FileIO(9, @temp0))
 			
-			(StrCpy temp8 @temp0)
-			temp7++
+			kernel.StrCpy(temp8, @temp0)
+			temp7.post('++')
 			(temp8 += 13)
 			# for:reinit
-			temp9 = (FileIO 9 @temp0)
+			temp9 = kernel.FileIO(9, @temp0)
 		#end:loop
-		(StrAt text (nFiles * 13) 0)
+		kernel.StrAt(text, (nFiles * 13), 0)
 		if sort:
 			(localproc_0 text nFiles)
 		#endif
@@ -91,7 +92,7 @@ class FileSelector(DSelector):
 		argc = sum(v is not None for v in locals().values())
 
 		(super setSize:)
-		(TextSize @temp0[0] r"""M""" font)
+		kernel.TextSize(@temp0[0], r"""M""", font)
 		nsRight = (nsLeft + (temp0[3] * x))
 	#end:method
 
@@ -101,7 +102,7 @@ class FileSelector(DSelector):
 		argc = sum(v is not None for v in locals().values())
 
 		if text:
-			(Memory 3 text)
+			kernel.Memory(3, text)
 			text = 0
 		#endif
 		(super dispose:)

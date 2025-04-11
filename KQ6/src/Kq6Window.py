@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 912
 import sci_sh
+import kernel
 import Window
 
 class Kq6Window(SysWindow):
@@ -36,15 +37,15 @@ class Kq6Window(SysWindow):
 		type = 128
 		priority = 15
 		(super open:)
-		temp1 = (GetPort)
-		(SetPort 0)
+		temp1 = kernel.GetPort()
+		kernel.SetPort(0)
 		(self drawEdgedWindow: temp0)
-		(DrawCel 930 0 0 (left - 5) (top - 5) -1)
-		(DrawCel 930 0 1 (left - 5) (bottom - 1) -1)
-		(DrawCel 930 0 2 (right - 1) (top - 5) -1)
-		(DrawCel 930 0 3 (right - 1) (bottom - 1) -1)
-		(Graph 12 lsTop lsLeft lsBottom lsRight 1)
-		(SetPort temp1)
+		kernel.DrawCel(930, 0, 0, (left - 5), (top - 5), -1)
+		kernel.DrawCel(930, 0, 1, (left - 5), (bottom - 1), -1)
+		kernel.DrawCel(930, 0, 2, (right - 1), (top - 5), -1)
+		kernel.DrawCel(930, 0, 3, (right - 1), (bottom - 1), -1)
+		kernel.Graph(12, lsTop, lsLeft, lsBottom, lsRight, 1)
+		kernel.SetPort(temp1)
 	#end:method
 
 	@classmethod
@@ -52,7 +53,7 @@ class Kq6Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Graph 11 top left (bottom + 1) (right + 1) param1 back priority)
+		kernel.Graph(11, top, left, (bottom + 1), (right + 1), param1, back, priority)
 		temp2 = 1
 		while (temp2 < 6): # inline for
 			(= temp3
@@ -64,28 +65,16 @@ class Kq6Window(SysWindow):
 					case 5: colorFive#end:case
 				#end:match
 			)
-			(Graph
-				4
-				(top - temp2)
-				(left - temp2)
-				(top - temp2)
-				(right + temp2)
-				temp3
-				priority
-				-1
-			)
-			(Graph
-				4
-				(top - temp2)
-				(left - temp2)
-				(bottom + temp2)
-				(left - temp2)
-				temp3
-				priority
-				-1
-			)
+			kernel.Graph(4, (top - temp2), (left - temp2), (top - temp2), (+
+				right
+				temp2
+			), temp3, priority, -1)
+			kernel.Graph(4, (top - temp2), (left - temp2), (bottom + temp2), (-
+				left
+				temp2
+			), temp3, priority, -1)
 			# for:reinit
-			temp2++
+			temp2.post('++')
 		#end:loop
 		temp2 = 1
 		while (temp2 < 6): # inline for
@@ -98,28 +87,16 @@ class Kq6Window(SysWindow):
 					case 5: colorFive#end:case
 				#end:match
 			)
-			(Graph
-				4
-				(bottom + temp2)
-				(left - temp2)
-				(bottom + temp2)
-				(right + temp2)
-				temp3
-				priority
-				-1
-			)
-			(Graph
-				4
-				(top - temp2)
-				(right + temp2)
-				(bottom + temp2)
-				(right + temp2)
-				temp3
-				priority
-				-1
-			)
+			kernel.Graph(4, (bottom + temp2), (left - temp2), (bottom + temp2), (+
+				right
+				temp2
+			), temp3, priority, -1)
+			kernel.Graph(4, (top - temp2), (right + temp2), (bottom + temp2), (+
+				right
+				temp2
+			), temp3, priority, -1)
 			# for:reinit
-			temp2++
+			temp2.post('++')
 		#end:loop
 	#end:method
 

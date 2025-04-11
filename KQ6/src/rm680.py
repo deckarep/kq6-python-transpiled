@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 680
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -114,12 +115,12 @@ class rm680(KQ6Room):
 				)
 		)
 		(super init: &rest)
-		(UnLoad 128 670)
-		(UnLoad 128 671)
-		(UnLoad 128 672)
-		(UnLoad 128 690)
-		(UnLoad 128 691)
-		(UnLoad 128 692)
+		kernel.UnLoad(128, 670)
+		kernel.UnLoad(128, 671)
+		kernel.UnLoad(128, 672)
+		kernel.UnLoad(128, 690)
+		kernel.UnLoad(128, 691)
+		kernel.UnLoad(128, 692)
 		local0 = global91
 		global91 = rm680Messager
 		(flame1 init: setCycle: RandCycle)
@@ -220,7 +221,7 @@ class rm680(KQ6Room):
 
 		global91 = local0
 		(super dispose: &rest)
-		(DisposeScript 942)
+		kernel.DisposeScript(942)
 	#end:method
 
 #end:class or instance
@@ -513,7 +514,7 @@ class rGuard(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 5 1):
+			case proc999_5(param1, 5, 1):
 				(super doVerb: param1 &rest)
 			#end:case
 			case (param1 == 2):
@@ -544,7 +545,7 @@ class lGuard(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 5 1):
+			case proc999_5(param1, 5, 1):
 				(super doVerb: param1 &rest)
 			#end:case
 			case (param1 == 2):
@@ -570,13 +571,13 @@ class pgrScript(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 3 10)
+				seconds = kernel.Random(3, 10)
 			#end:case
 			case 1:
 				(client show: setLoop: 4 cel: 0 setCycle: End self)
 			#end:case
 			case 2:
-				cycles = (Random 5 10)
+				cycles = kernel.Random(5, 10)
 			#end:case
 			case 3:
 				(rArm setCycle: End self)
@@ -604,13 +605,13 @@ class pglScript(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 3 10)
+				seconds = kernel.Random(3, 10)
 			#end:case
 			case 1:
 				(client show: setLoop: 3 cel: 0 setCycle: End self)
 			#end:case
 			case 2:
-				cycles = (Random 5 10)
+				cycles = kernel.Random(5, 10)
 			#end:case
 			case 3:
 				(lArm setCycle: End self)
@@ -638,7 +639,7 @@ class lordGhoulScript(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 10 30)
+				seconds = kernel.Random(10, 30)
 			#end:case
 			case 1:
 				(client show: setLoop: 0 cel: 0 setCycle: End self)
@@ -841,7 +842,7 @@ class wonDeadScript(Script):
 				(lArm setLoop: 4 cel: 0 setCycle: End self)
 			#end:case
 			case 7:
-				(proc913_2 91)
+				proc913_2(91)
 				(lordGhoul dispose:)
 				(rArm dispose:)
 				cycles = 2
@@ -874,7 +875,7 @@ class wonDeadScript(Script):
 			#end:case
 			case 12:
 				(poolGhoulRight view: 685 setLoop: 0 setCycle: End self)
-				(UnLoad 128 6801)
+				kernel.UnLoad(128, 6801)
 			#end:case
 			case 13:
 				(poolGhoulRight

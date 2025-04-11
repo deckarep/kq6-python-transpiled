@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 13
 import sci_sh
+import kernel
 import Motion
 import System
 
@@ -27,16 +28,16 @@ class windScr(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 2 10)
+				seconds = kernel.Random(2, 10)
 			#end:case
 			case 1:
 				(client startUpd:)
 				cycles = 1
 			#end:case
 			case 2:
-				minWindSpeed = (Random 3 12)
+				minWindSpeed = kernel.Random(3, 12)
 				curWindSpeed = minWindSpeed
-				intervalDuration = (Random 10 30)
+				intervalDuration = kernel.Random(10, 30)
 				(client cycleSpeed: curWindSpeed setCycle: Fwd)
 				(self cue:)
 			#end:case
@@ -45,14 +46,14 @@ class windScr(Script):
 			#end:case
 			case 4:
 				if loopDir:
-					curWindSpeed--
+					curWindSpeed.post('--')
 					if (curWindSpeed == -1):
 						loopDir = 0
 					else:
 						(client cycleSpeed: curWindSpeed)
 					#endif
 				else:
-					curWindSpeed++
+					curWindSpeed.post('++')
 					if (curWindSpeed == (minWindSpeed + 1)):
 						loopDir = 1
 					else:

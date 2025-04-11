@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 104
 import sci_sh
+import kernel
 import Main
 import Interface
 import Kq6Talker
@@ -30,7 +31,7 @@ class myDialog(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((super check:) or ((DoAudio 6) == -1)):
+		if ((super check:) or (kernel.DoAudio(6) == -1)):
 			return 1
 		#endif
 	#end:method
@@ -40,7 +41,7 @@ class myDialog(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((DoAudio 6) == -1):
+		if (kernel.DoAudio(6) == -1):
 			return -2
 		else:
 			(super handleEvent: &rest)
@@ -53,8 +54,8 @@ class myDialog(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not ((DoAudio 6) == -1)):
-			(DoAudio 3)
+		if (not (kernel.DoAudio(6) == -1)):
+			kernel.DoAudio(3)
 		#endif
 		(super dispose: &rest)
 	#end:method
@@ -110,13 +111,13 @@ class KQ6Print(Print):
 			(self addText: &rest)
 		#endif
 		if (not modeless):
-			if (not (IsObject global92)):
+			if (not kernel.IsObject(global92)):
 				global92 = ((EventHandler new:) name: r"""prints""")
 			#endif
 			(global92 add: self)
 		#endif
 		if (global90 & 0x0002):
-			(DoAudio 2 local0 local1 local2 local3 local4)
+			kernel.DoAudio(2, local0, local1, local2, local3, local4)
 		#endif
 		if modeless:
 			(global69 disable: 6)
@@ -134,7 +135,7 @@ class KQ6Print(Print):
 		#endif
 		repressText = 0
 		if (global90 & 0x0002):
-			(DoAudio 3)
+			kernel.DoAudio(3)
 		#endif
 		(super dispose: &rest)
 	#end:method
@@ -168,12 +169,12 @@ class KQ6Print(Print):
 					#endif
 				#endif
 			#endif
-			if temp8 = (Message 2 temp6 temp0 temp1 temp2 temp3):
-				temp7 = (Memory 1 temp8)
-				if (Message 0 temp6 temp0 temp1 temp2 temp3 temp7):
-					temp9 = (StrAt temp7 0)
+			if temp8 = kernel.Message(2, temp6, temp0, temp1, temp2, temp3):
+				temp7 = kernel.Memory(1, temp8)
+				if kernel.Message(0, temp6, temp0, temp1, temp2, temp3, temp7):
+					temp9 = kernel.StrAt(temp7, 0)
 					if (>= 90 temp9 65):
-						(StrAt temp7 0 9)
+						kernel.StrAt(temp7, 0, 9)
 						temp10 = (0 + ((temp9 - 65) / 13))
 						temp11 = (mod (temp9 - 65) 13)
 						(dialog
@@ -222,8 +223,8 @@ class KQ6Print(Print):
 					temp5 = param1[2]
 				#endif
 			#endif
-			temp7 = (Memory 1 ((StrLen param1[0]) + 1))
-			(StrCpy temp7 param1[0])
+			temp7 = kernel.Memory(1, (kernel.StrLen(param1[0]) + 1))
+			kernel.StrCpy(temp7, param1[0])
 			(dialog
 				add:
 					((DText new:)
@@ -290,13 +291,13 @@ class KQ6Print(Print):
 			#endif
 		)
 		(dialog moveTo: temp3 temp4)
-		temp1 = (GetPort)
+		temp1 = kernel.GetPort()
 		if (not repressText):
 			(dialog open: (4 if title else 0) 15)
 		#endif
 		if modeless:
-			global41 = (GetPort)
-			(SetPort temp1)
+			global41 = kernel.GetPort()
+			kernel.SetPort(temp1)
 			global25 = dialog
 			if temp5:
 				(global1 handsOn:)
@@ -313,17 +314,17 @@ class KQ6Print(Print):
 						(temp0 state: (| (temp0 state:) 0x0002))
 					#endif
 				#end:case
-				case (not (IsObject temp0)):
+				case (not kernel.IsObject(temp0)):
 					temp0 = (dialog at: temp0)
 				#end:case
 			)
 			retValue = (dialog doit: temp0)
-			(SetPort temp1)
+			kernel.SetPort(temp1)
 			(cond
 				case (retValue == -1):
 					retValue = 0
 				#end:case
-				case ((IsObject retValue) and (retValue isKindOf: DButton)):
+				case (kernel.IsObject(retValue) and (retValue isKindOf: DButton)):
 					retValue = (retValue value:)
 				#end:case
 				case (not (dialog theItem:)):

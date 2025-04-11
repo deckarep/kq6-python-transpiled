@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 409
 import sci_sh
+import kernel
 import Main
 import rLab
 import n404
@@ -125,10 +126,10 @@ class rm409(KQ6Room):
 			)
 		#endif
 		(super init: &rest)
-		if (((ScriptID 30 0) holeCoords:) == global11):
-			(proc404_1)
+		if ((kernel.ScriptID(30, 0) holeCoords:) == global11):
+			proc404_1()
 		#endif
-		((ScriptID 30 0) initCrypt: 1)
+		(kernel.ScriptID(30, 0) initCrypt: 1)
 		(tapestry init:)
 		(openDoor init:)
 		(door init:)
@@ -144,11 +145,11 @@ class rm409(KQ6Room):
 		(cond
 			case (global2 script:):#end:case
 			case (global0 inRect: 287 167 319 189):
-				((ScriptID 30 0) prevEdgeHit: 2)
+				(kernel.ScriptID(30, 0) prevEdgeHit: 2)
 				(global2 setScript: walkOut)
 			#end:case
 			case ((global0 edgeHit:) == 3):
-				((ScriptID 30 0) prevEdgeHit: 3)
+				(kernel.ScriptID(30, 0) prevEdgeHit: 3)
 				(global2 setScript: walkOut)
 			#end:case
 		)
@@ -266,7 +267,7 @@ class door(Prop):
 
 		match param1
 			case 25:
-				(proc404_0 2)
+				proc404_0(2)
 			#end:case
 			case 1:
 				(global91 say: 19 1 local0 1 0 400)
@@ -286,10 +287,10 @@ class door(Prop):
 						):
 						(global91 say: 19 2 53 1 0 400)
 					#end:case
-					case ((rLab hiddenDoorOpen:) and (not (proc913_0 1))):
+					case ((rLab hiddenDoorOpen:) and (not proc913_0(1))):
 						(global91 say: 19 2 56 1 0 400)
 					#end:case
-					case (proc913_0 1):
+					case proc913_0(1):
 						(global91 say: 19 2 57 1 0 400)
 					#end:case
 				)
@@ -445,7 +446,7 @@ class walkIn(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				match ((ScriptID 30 0) prevEdgeHit:)
+				match (kernel.ScriptID(30, 0) prevEdgeHit:)
 					case 4:
 						(global0
 							posn: 282 164
@@ -470,8 +471,8 @@ class walkIn(Script):
 				cycles = 6
 			#end:case
 			case 2:
-				if ((global12 == 440) and (not (proc913_0 1))):
-					(proc913_1 142)
+				if ((global12 == 440) and (not proc913_0(1))):
+					proc913_1(142)
 					(global91 say: 1 0 50 1 self 400)
 				else:
 					(self cue:)
@@ -498,7 +499,7 @@ class walkOut(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				match ((ScriptID 30 0) prevEdgeHit:)
+				match (kernel.ScriptID(30, 0) prevEdgeHit:)
 					case 3:
 						(global0 setMotion: PolyPath (global0 x:) 250 self)
 					#end:case
@@ -508,7 +509,7 @@ class walkOut(Script):
 				#end:match
 			#end:case
 			case 1:
-				match ((ScriptID 30 0) prevEdgeHit:)
+				match (kernel.ScriptID(30, 0) prevEdgeHit:)
 					case 3:
 						(global2 newRoom: 400)
 					#end:case

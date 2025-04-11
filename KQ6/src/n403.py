@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 403
 import sci_sh
+import kernel
 import Main
 import Polygon
 
@@ -57,7 +58,7 @@ def proc403_0():
 				yourself:
 			)
 	)
-	(DisposeScript 403)
+	kernel.DisposeScript(403)
 #end:procedure
 
 @SCI.procedure
@@ -83,7 +84,7 @@ def proc403_1():
 				yourself:
 			)
 	)
-	(DisposeScript 403)
+	kernel.DisposeScript(403)
 #end:procedure
 
 @SCI.procedure
@@ -129,7 +130,7 @@ def proc403_2():
 				yourself:
 			)
 	)
-	(DisposeScript 403)
+	kernel.DisposeScript(403)
 #end:procedure
 
 @SCI.procedure
@@ -173,6 +174,6 @@ def proc403_3():
 				yourself:
 			)
 	)
-	(DisposeScript 403)
+	kernel.DisposeScript(403)
 #end:procedure
 

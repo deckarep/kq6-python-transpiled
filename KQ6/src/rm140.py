@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 140
 import sci_sh
+import kernel
 import Main
 import AnimatePrint
 import KQ6Room
@@ -50,7 +51,7 @@ class rm140(KQ6Room):
 		local72 = global91
 		global91 = localMessager
 		(global69 disable:)
-		(proc913_1 59)
+		proc913_1(59)
 		(singSing init:)
 		(leftArm init:)
 		local0 = ((global9 at: 47) owner:)
@@ -77,8 +78,8 @@ class rm140(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		global91 = local72
-		(proc913_2 59)
-		(DisposeScript 371)
+		proc913_2(59)
+		kernel.DisposeScript(371)
 		(super dispose: &rest)
 		(global69 enable:)
 	#end:method
@@ -123,7 +124,7 @@ class singSingEnterScr(Script):
 					#end:case
 				#end:match
 				(leftArm setCycle: End)
-				state++
+				state.post('++')
 				(followItem init:)
 				(self cue:)
 			#end:case
@@ -131,16 +132,16 @@ class singSingEnterScr(Script):
 				ticks = 15
 			#end:case
 			case 2:
-				if (local3[local69++] != -1):
+				if (local3[local69.post('++')] != -1):
 					(state -= 2)
 					if (local3[local69] == -99):
 						(singSing loop: ((singSing loop:) + 1))
 						(followItem loop: ((followItem loop:) + 1))
-						local69++
+						local69.post('++')
 					#endif
 					temp40 = local3[local69]
-					temp41 = local3[local69++]
-					temp42 = local3[local69++]
+					temp41 = local3[local69.post('++')]
+					temp42 = local3[local69.post('++')]
 					(singSing posn: temp40 temp41 cel: temp42)
 					(followItem posn: temp40 temp41 cel: temp42)
 				#endif
@@ -185,25 +186,25 @@ class singSingLeaveScr(Script):
 				#end:match
 				local69 = -1
 				(singSing loop: 3)
-				state++
+				state.post('++')
 				(self cue:)
 			#end:case
 			case 1:
 				ticks = 20
 			#end:case
 			case 2:
-				if (local38[local69++] != -1):
+				if (local38[local69.post('++')] != -1):
 					(state -= 2)
 					if (local38[local69] == -99):
 						(singSing loop: ((singSing loop:) + 1))
 						if register:
 							(followItem loop: ((followItem loop:) + 1))
 						#endif
-						local69++
+						local69.post('++')
 					#endif
 					temp0 = local38[local69]
-					temp1 = local38[local69++]
-					temp2 = local38[local69++]
+					temp1 = local38[local69.post('++')]
+					temp2 = local38[local69.post('++')]
 					(singSing posn: temp0 temp1 cel: temp2)
 					if register:
 						(followItem posn: temp0 temp1 cel: temp2)
@@ -471,7 +472,7 @@ class poemSegueScr(CartoonScript):
 					setScript:
 						singSingLeaveScr
 						self
-						(2 if (proc999_5 register 7 2) else 0)
+						(2 if proc999_5(register, 7, 2) else 0)
 				)
 			#end:case
 			case 18:

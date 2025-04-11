@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 520
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -44,7 +45,7 @@ class rm520(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Load 128 308)
+		kernel.Load(128, 308)
 		(global2
 			addObstacle:
 				((Polygon new:)
@@ -135,7 +136,7 @@ class rm520(KQ6Room):
 		else:
 			(global0 init: reset: 3 posn: 105 187)
 		#endif
-		if (not (proc913_0 13)):
+		if (not proc913_0(13)):
 			(boilingPond
 				init:
 				signal: (| (boilingPond signal:) 0x1000)
@@ -164,7 +165,7 @@ class rm520(KQ6Room):
 		(banks init:)
 		(rocks init:)
 		(trees init:)
-		if (<= temp0 (Random 1 100) 500):
+		if (<= temp0 kernel.Random(1, 100) 500):
 			(bunny init: setScript: bunnyScript)
 		else:
 			(squirrel init:)
@@ -182,7 +183,7 @@ class rm520(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((GameIsRestarting) and (not (proc913_0 13))):
+		if (kernel.GameIsRestarting() and (not proc913_0(13))):
 			(boilFx play:)
 		#endif
 		(super doit: &rest)
@@ -207,7 +208,7 @@ class rm520(KQ6Room):
 		(return
 			match param1
 				case 1:
-					if (proc913_0 13):
+					if proc913_0(13):
 						(global91 say: noun param1 4)
 						1
 					else:
@@ -260,7 +261,7 @@ class theHuntersLamp(Prop):
 				(global91 say: noun param1)
 			#end:case
 			case 5:
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global1 handsOff:)
 					local1 = 1
 					(global0 setScript: getLamp)
@@ -272,7 +273,7 @@ class theHuntersLamp(Prop):
 				(super doVerb: param1 &rest)
 			#end:case
 			else:
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global91 say: noun 0 4)
 				else:
 					(global91 say: noun 0 3)
@@ -317,27 +318,27 @@ class finishedPond(Feature):
 				local2 = 1
 				(global0 setScript: feelPond)
 			#end:case
-			case (proc999_5 param1 1 2):
-				if (proc913_0 13):
+			case proc999_5(param1, 1, 2):
+				if proc913_0(13):
 					(global91 say: noun param1 4)
 				else:
 					(global91 say: noun param1 3)
 				#endif
 			#end:case
-			case (proc999_5 param1 28 25 43 94 44 34):
+			case proc999_5(param1, 28, 25, 43, 94, 44, 34):
 				(global91 say: noun param1 0)
 			#end:case
 			case (param1 == 54):
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global91 say: noun param1 4)
 				else:
 					(global91 say: noun param1 3)
 				#endif
 			#end:case
-			case (proc999_5 param1 52 53):
+			case proc999_5(param1, 52, 53):
 				(global0 setScript: throwLettuceInPond 0 param1)
 			#end:case
-			case (proc913_0 13):
+			case proc913_0(13):
 				(global91 say: noun 0 4)
 			#end:case
 			else:
@@ -414,7 +415,7 @@ class feelPond(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global91 say: 3 5 4 0 self)
 				else:
 					(global91 say: 3 5 3 0 self)
@@ -488,7 +489,7 @@ class throwLettuceInPond(Script):
 				ticks = 6
 			#end:case
 			case 2:
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global91 say: 3 52 4 1 self)
 				else:
 					(global91 say: 3 52 3 1 self)
@@ -514,16 +515,16 @@ class throwLettuceInPond(Script):
 			case 6:
 				(splash dispose:)
 				(global0 put: 21 global11 reset: 3)
-				((ScriptID 0 7) dispose:)
+				(kernel.ScriptID(0, 7) dispose:)
 				ticks = 12
 			#end:case
 			case 7:
 				(global1 handsOn:)
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global91 say: 3 52 4 2 self)
 					(self dispose:)
 				else:
-					(proc913_1 13)
+					proc913_1(13)
 					(global1 givePoints: 4)
 					(boilingPond
 						setLoop: 1
@@ -566,10 +567,10 @@ class bravePond(Script):
 		match state = param1
 			case 0:
 				(cond
-					case (not (proc913_0 13)):
+					case (not proc913_0(13)):
 						cycles = 1
 					#end:case
-					case (not (proc913_0 83)):
+					case (not proc913_0(83)):
 						(global91 say: 3 3 5 1 self)
 					#end:case
 					else:
@@ -578,7 +579,7 @@ class bravePond(Script):
 				)
 			#end:case
 			case 1:
-				if (proc913_0 13):
+				if proc913_0(13):
 					(global0
 						illegalBits: 0
 						view: 521
@@ -605,7 +606,7 @@ class bravePond(Script):
 				#endif
 			#end:case
 			case 3:
-				if (proc913_0 83):
+				if proc913_0(83):
 					cycles = 1
 				else:
 					(global91 say: 3 3 5 2 self)
@@ -613,8 +614,8 @@ class bravePond(Script):
 			#end:case
 			case 4:
 				(global0 reset:)
-				if (not (proc913_0 83)):
-					(proc913_1 83)
+				if (not proc913_0(83)):
+					proc913_1(83)
 					(global91 say: 3 3 5 3 self)
 				else:
 					cycles = 1
@@ -676,7 +677,7 @@ class egoBoilsScript(Script):
 			#end:case
 			case 4:
 				local0 = 0
-				(proc0_1 5)
+				proc0_1(5)
 			#end:case
 		#end:match
 	#end:method
@@ -730,7 +731,7 @@ class rocks(Feature):
 			case (param1 == 1):
 				(global91 say: noun param1 2 0 0 0)
 			#end:case
-			case (proc999_5 param1 1 2 5):
+			case proc999_5(param1, 1, 2, 5):
 				(global91 say: noun param1 0 0 0 0)
 			#end:case
 			else:
@@ -763,7 +764,7 @@ class squirrel(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		if (proc913_0 13):
+		if proc913_0(13):
 			(self setScript: squirrelScript)
 		else:
 			(self stopUpd:)

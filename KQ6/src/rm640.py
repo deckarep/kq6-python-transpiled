@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 640
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room
@@ -108,7 +109,7 @@ class rm640(KQ6Room):
 				)
 		)
 		(super init: &rest)
-		(Lock 143 modNum 0)
+		kernel.Lock(143, modNum, 0)
 		(global69 enable:)
 		(global1 handsOff:)
 		(global0 init: reset: 3 setScale: Scaler 100 70 200 70)
@@ -120,7 +121,7 @@ class rm640(KQ6Room):
 		(keyMaster init: signal: (| (keyMaster signal:) 0x1000) approachVerbs: 2)
 		(cond
 			case (global0 has: 44): 0#end:case
-			case (proc913_0 115):
+			case proc913_0(115):
 				(boneKey
 					init:
 					view: 647
@@ -146,7 +147,7 @@ class rm640(KQ6Room):
 		(door init:)
 		(theSkull init:)
 		(xylophone init:)
-		if (proc913_0 44):
+		if proc913_0(44):
 			(global102 stop:)
 			(global103 stop:)
 			(global104 stop:)
@@ -188,7 +189,7 @@ class rm640(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(proc958_0 0 969 942)
+		proc958_0(0, 969, 942)
 	#end:method
 
 #end:class or instance
@@ -297,7 +298,7 @@ class deathCartoonScr(Script):
 
 		(super doit:)
 		(cond
-			case ((global0 has: 44) or (proc913_0 115)): 0#end:case
+			case ((global0 has: 44) or proc913_0(115)): 0#end:case
 			case ((keyMaster view:) == 6404):
 				(boneKey posn: ((keyMaster x:) + 14) ((keyMaster y:) - 14))
 			#end:case
@@ -657,20 +658,20 @@ class playXylophone(Script):
 				(boneMallet hide:)
 			#end:case
 			case 2:
-				(UnLoad 128 900)
-				if (proc913_0 100):
+				kernel.UnLoad(128, 900)
+				if proc913_0(100):
 					(global91 say: 6 5 4 1 self)
 				else:
 					(global91 say: 6 5 3 1 self)
 				#endif
 			#end:case
 			case 3:
-				if (proc913_0 100):
+				if proc913_0(100):
 					cycles = 1
 				else:
 					(global1 givePoints: 2)
 					(global91 say: 6 5 3 2 self)
-					(proc913_1 100)
+					proc913_1(100)
 				#endif
 				if (global0 script:):
 					(global0 setScript: 0)
@@ -708,7 +709,7 @@ class playXylophone(Script):
 					(global102 number: 600 loop: -1 play:)
 					cycles = 1
 				else:
-					register = (Random 2 3)
+					register = kernel.Random(2, 3)
 					(self start: 6 init:)
 				#endif
 			#end:case
@@ -808,7 +809,7 @@ class keyDanceScript(Script):
 			#end:case
 			case 4:
 				(keyMaster view: 645 setLoop: 0 cel: 0 setCycle: Fwd)
-				if ((not (global0 has: 44)) and (not (proc913_0 115))):
+				if ((not (global0 has: 44)) and (not proc913_0(115))):
 					(boneKey view: 645 setLoop: 1 cel: 1)
 					register = 1
 				#endif
@@ -816,7 +817,7 @@ class keyDanceScript(Script):
 			#end:case
 			case 5:
 				register = 0
-				if ((not (global0 has: 44)) and (not (proc913_0 115))):
+				if ((not (global0 has: 44)) and (not proc913_0(115))):
 					(boneKey
 						setLoop: 2
 						cel: 0
@@ -830,7 +831,7 @@ class keyDanceScript(Script):
 				#endif
 			#end:case
 			case 6:
-				if ((not (global0 has: 44)) and (not (proc913_0 115))):
+				if ((not (global0 has: 44)) and (not proc913_0(115))):
 					(global103 play:)
 					(boneKey setCycle: MCyc @local45 self)
 				else:
@@ -838,9 +839,9 @@ class keyDanceScript(Script):
 				#endif
 			#end:case
 			case 7:
-				if ((not (global0 has: 44)) and (not (proc913_0 115))):
+				if ((not (global0 has: 44)) and (not proc913_0(115))):
 					(global103 play:)
-					(proc913_1 115)
+					proc913_1(115)
 					(boneKey view: 647 loop: 0 cel: 1 noun: 7)
 				#endif
 				((doorMaster script:) cue:)
@@ -941,7 +942,7 @@ class chorusScript(Script):
 					(chorusRight dispose:)
 					(self dispose:)
 				else:
-					register--
+					register.post('--')
 					(self init:)
 				#endif
 			#end:case
@@ -985,7 +986,7 @@ class getKeyScript(Script):
 					get: 44
 				)
 				(global1 givePoints: 1)
-				(proc913_2 115)
+				proc913_2(115)
 				cycles = 1
 			#end:case
 			case 4:
@@ -1017,7 +1018,7 @@ class ghostScr(Script):
 					(client dispose:)
 					(self dispose:)
 				else:
-					seconds = (Random 5 10)
+					seconds = kernel.Random(5, 10)
 				#endif
 			#end:case
 			case 2:
@@ -1204,7 +1205,7 @@ class boneKey(Prop):
 
 		match param1
 			case 5:
-				if (proc913_0 115):
+				if proc913_0(115):
 					(global1 handsOff:)
 					(global2 setScript: getKeyScript)
 				else:
@@ -1286,7 +1287,7 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 3):
+		if proc999_5(param1, 5, 3):
 			(global91 say: 8 3 0 1)
 			(global0 setMotion: PolyPath approachX approachY)
 		else:

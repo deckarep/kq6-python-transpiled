@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 270
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room
@@ -112,51 +113,51 @@ class rm270(KQ6Room):
 		if (((global9 at: 45) owner:) == global11):
 			(spellBook init:)
 		#endif
-		if (not (proc999_5 ((global9 at: 1) owner:) global0 -1)):
-			((ScriptID 273 0) init:)
+		if (not proc999_5(((global9 at: 1) owner:), global0, -1)):
+			(kernel.ScriptID(273, 0) init:)
 		#endif
 		(shopOwner init:)
-		if (not (proc913_0 27)):
-			(proc913_2 54)
-			(proc913_1 53)
+		if (not proc913_0(27)):
+			proc913_2(54)
+			proc913_1(53)
 		#endif
 		(cond
-			case (not (proc913_0 16)):
-				(proc913_1 27)
-				((ScriptID 271 0) init:)
+			case (not proc913_0(16)):
+				proc913_1(27)
+				(kernel.ScriptID(271, 0) init:)
 				local132 = 1
 				(clownBook init:)
 			#end:case
 			case 
 				(and
-					(proc913_0 16)
+					proc913_0(16)
 					(global153 == 1)
-					(not (proc913_0 26))
-					(proc913_0 54)
+					(not proc913_0(26))
+					proc913_0(54)
 				):
-				(proc913_1 26)
-				((ScriptID 274 0) init:)
-				(proc913_2 54)
-				(proc913_1 53)
+				proc913_1(26)
+				(kernel.ScriptID(274, 0) init:)
+				proc913_2(54)
+				proc913_1(53)
 			#end:case
 			case 
 				(or
 					(and
 						(global153 == 1)
-						(proc913_0 26)
-						(proc913_0 53)
-						(not (proc913_0 54))
+						proc913_0(26)
+						proc913_0(53)
+						(not proc913_0(54))
 					)
 					(and
 						(global153 == 2)
-						(not (proc913_0 54))
-						(not (proc913_0 10))
+						(not proc913_0(54))
+						(not proc913_0(10))
 					)
-					((not (proc913_0 54)) and (proc999_5 global153 3 4))
+					((not proc913_0(54)) and proc999_5(global153, 3, 4))
 				):
-				((ScriptID 274 0) init:)
-				if ((proc913_0 10) and (proc999_5 global153 3 4)):
-					(global2 setScript: (ScriptID 277 1))
+				(kernel.ScriptID(274, 0) init:)
+				if (proc913_0(10) and proc999_5(global153, 3, 4)):
+					(global2 setScript: kernel.ScriptID(277, 1))
 				#endif
 			#end:case
 			else:
@@ -164,8 +165,8 @@ class rm270(KQ6Room):
 			#end:else
 		)
 		if (not (global2 script:)):
-			if (not ((ScriptID 10 0) isSet: 64)):
-				((ScriptID 10 0) setIt: 64)
+			if (not (kernel.ScriptID(10, 0) isSet: 64)):
+				(kernel.ScriptID(10, 0) setIt: 64)
 				(global2 setScript: ownerFromCounterScr)
 			else:
 				(global2 setScript: ownerNotAtCounterScr)
@@ -174,7 +175,7 @@ class rm270(KQ6Room):
 		if (not (global5 contains: clownBook)):
 			(global102 number: 780 loop: -1 play:)
 		#endif
-		(proc913_1 27)
+		proc913_1(27)
 		if (not (global2 script:)):
 			(global1 handsOn:)
 		#endif
@@ -187,8 +188,8 @@ class rm270(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = 1
-		if ((ScriptID 10 0) isSet: 2):
-			((ScriptID 10 0) clrIt: 2)
+		if (kernel.ScriptID(10, 0) isSet: 2):
+			(kernel.ScriptID(10, 0) clrIt: 2)
 		#endif
 		match param1
 			case 87:
@@ -208,19 +209,19 @@ class rm270(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((global102 number:) == 240):
-			((ScriptID 10 0) setIt: 512)
+			(kernel.ScriptID(10, 0) setIt: 512)
 			(global102 fade: 127 15 15 0)
 		else:
 			(global102 fade:)
 		#endif
 		(super dispose:)
-		(DisposeScript 923)
-		(DisposeScript 11)
-		(DisposeScript 271)
-		(DisposeScript 272)
-		(DisposeScript 273)
-		(DisposeScript 274)
-		(DisposeScript 276)
+		kernel.DisposeScript(923)
+		kernel.DisposeScript(11)
+		kernel.DisposeScript(271)
+		kernel.DisposeScript(272)
+		kernel.DisposeScript(273)
+		kernel.DisposeScript(274)
+		kernel.DisposeScript(276)
 	#end:method
 
 #end:class or instance
@@ -257,7 +258,7 @@ class spiderScr(Script):
 			case 0:
 				local133 = -1
 				(= local134
-					match (Random 0 3)
+					match kernel.Random(0, 3)
 						case 0: @local0#end:case
 						case 1: @local32#end:case
 						case 2: @local45#end:case
@@ -266,42 +267,42 @@ class spiderScr(Script):
 				)
 				(spider
 					posn:
-						(proc999_6 local134 local133++)
-						(proc999_6 local134 local133++)
+						proc999_6(local134, local133.post('++'))
+						proc999_6(local134, local133.post('++'))
 				)
 				cycles = 2
 			#end:case
 			case 1:
-				match temp0 = (proc999_6 local134 local133++)
+				match temp0 = proc999_6(local134, local133.post('++'))
 					case -4088:
 						(spider setScale: 0)
 					#end:case
 					case -4095:
-						(spider setLoop: (proc999_6 local134 local133++))
-						state--
+						(spider setLoop: proc999_6(local134, local133.post('++')))
+						state.post('--')
 						cycles = 1
 					#end:case
 					case -4094:
 						(spider
 							posn:
-								(proc999_6 local134 local133++)
-								(proc999_6 local134 local133++)
+								proc999_6(local134, local133.post('++'))
+								proc999_6(local134, local133.post('++'))
 						)
-						state--
+						state.post('--')
 						cycles = 1
 					#end:case
 					case -4092:
-						state++
+						state.post('++')
 						ticks = 1
 					#end:case
 					else:
 						(spider
-							cycleSpeed: (Random 3 8)
-							moveSpeed: (Random 3 8)
+							cycleSpeed: kernel.Random(3, 8)
+							moveSpeed: kernel.Random(3, 8)
 							setMotion:
 								MoveTo
 								temp0
-								(proc999_6 local134 local133++)
+								proc999_6(local134, local133.post('++'))
 								self
 						)
 					#end:else
@@ -309,15 +310,15 @@ class spiderScr(Script):
 			#end:case
 			case 2:
 				state = 0
-				if (not (Random 0 1)):
-					seconds = (Random 3 5)
+				if (not kernel.Random(0, 1)):
+					seconds = kernel.Random(3, 5)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 3:
 				(spider hide:)
-				seconds = (Random 5 20)
+				seconds = kernel.Random(5, 20)
 			#end:case
 			case 4:
 				(spider show:)
@@ -454,7 +455,7 @@ class clownChairScr(CartoonScript):
 				(global91 say: 14 5 20 3 self)
 			#end:case
 			case 17:
-				(UnLoad 128 2711)
+				kernel.UnLoad(128, 2711)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -483,7 +484,7 @@ class randomConvScr(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(global91 say: 18 2 24 (Random 1 5) self)
+				(global91 say: 18 2 24 kernel.Random(1, 5) self)
 			#end:case
 			case 4:
 				(global1 handsOn:)
@@ -572,7 +573,7 @@ class ownerFromCounterScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					view: 276
 					loop: 0
 					cel: 0
@@ -590,7 +591,7 @@ class ownerFromCounterScr(Script):
 			#end:case
 			case 2:
 				(global105 number: 902 loop: 1 play:)
-				((ScriptID 270 2) setCycle: End self)
+				(kernel.ScriptID(270, 2) setCycle: End self)
 			#end:case
 			case 3:
 				cycles = 2
@@ -602,7 +603,7 @@ class ownerFromCounterScr(Script):
 				ticks = 150
 			#end:case
 			case 6:
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					posn: 290 138
 					loop: 1
 					cel: 0
@@ -611,7 +612,7 @@ class ownerFromCounterScr(Script):
 				)
 			#end:case
 			case 7:
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					posn: 288 140
 					loop: 2
 					cel: 0
@@ -619,13 +620,13 @@ class ownerFromCounterScr(Script):
 				)
 			#end:case
 			case 8:
-				((ScriptID 270 2) setPri: 12 setCycle: End self)
+				(kernel.ScriptID(270, 2) setPri: 12 setCycle: End self)
 			#end:case
 			case 9:
 				cycles = 2
 			#end:case
 			case 10:
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					loop: 3
 					cel: 0
 					posn: 303 151
@@ -636,7 +637,7 @@ class ownerFromCounterScr(Script):
 				cycles = 2
 			#end:case
 			case 12:
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					view: 277
 					loop: 2
 					cel: 0
@@ -649,8 +650,8 @@ class ownerFromCounterScr(Script):
 				cycles = 1
 			#end:case
 			case 14:
-				(UnLoad 128 276)
-				((ScriptID 270 2) stopUpd:)
+				kernel.UnLoad(128, 276)
+				(kernel.ScriptID(270, 2) stopUpd:)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -757,26 +758,26 @@ class shopOwner(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((ScriptID 10 0) isSet: 2):
-			((ScriptID 10 0) clrIt: 2)
+		if (kernel.ScriptID(10, 0) isSet: 2):
+			(kernel.ScriptID(10, 0) clrIt: 2)
 		#endif
 		match param1
 			case 2:
 				(cond
-					case (not (proc913_0 64)):
-						(proc913_1 64)
-						(proc913_1 73)
+					case (not proc913_0(64)):
+						proc913_1(64)
+						proc913_1(73)
 						(global2 setScript: genericTalkScr 0 26)
 					#end:case
-					case ((not (proc913_0 16)) and (proc913_0 73)):
+					case ((not proc913_0(16)) and proc913_0(73)):
 						(global1 givePoints: 1)
-						(proc913_1 16)
-						(proc913_2 54)
-						(proc913_1 53)
-						(global2 setScript: (ScriptID 276 3))
+						proc913_1(16)
+						proc913_2(54)
+						proc913_1(53)
+						(global2 setScript: kernel.ScriptID(276, 3))
 					#end:case
-					case (not (proc913_0 16)):
-						(proc913_1 16)
+					case (not proc913_0(16)):
+						proc913_1(16)
 						(global1 givePoints: 1)
 						(global2 setScript: genericTalkScr 0 22)
 					#end:case
@@ -786,10 +787,10 @@ class shopOwner(Actor):
 				)
 			#end:case
 			case 27:
-				(global2 setScript: (ScriptID 276 1))
+				(global2 setScript: kernel.ScriptID(276, 1))
 			#end:case
 			else:
-				if (proc999_5 param1 28 32):
+				if proc999_5(param1, 28, 32):
 					(global2 setScript: boringBookDoScr 0 param1)
 				else:
 					if (param1 == 67):
@@ -930,7 +931,7 @@ class bookStand(Feature):
 				if (((global9 at: 1) owner:) != global11):
 					(global91 say: noun param1 3)
 				else:
-					(global2 setScript: (ScriptID 273 1))
+					(global2 setScript: kernel.ScriptID(273, 1))
 				#endif
 			#end:case
 			else:
@@ -967,10 +968,10 @@ class poemShelf(Feature):
 
 		match param1
 			case 5:
-				(global2 setScript: (ScriptID 272 0))
+				(global2 setScript: kernel.ScriptID(272, 0))
 			#end:case
 			else:
-				if ((param1 == 2) or (not (proc999_5 param1 5 1))):
+				if ((param1 == 2) or (not proc999_5(param1, 5, 1))):
 					if (param1 != 2):
 						param1 = 0
 					#endif
@@ -1008,7 +1009,7 @@ class shelfFeatures(Feature):
 		#endif
 		(return
 			(= noun
-				match (OnControl 4 (param1 x:) (param1 y:))
+				match kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 512:
 						x = 162
 						y = 113
@@ -1052,7 +1053,7 @@ class shelfFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((param1 == 2) or (not (proc999_5 param1 5 1))):
+		if ((param1 == 2) or (not proc999_5(param1, 5, 1))):
 			noun = 4
 			if (param1 != 2):
 				param1 = 0
@@ -1075,7 +1076,7 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match (OnControl 4 (param1 x:) (param1 y:))
+				match kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 32:
 						x = 225
 						y = 118
@@ -1146,7 +1147,7 @@ class clownChair(Feature):
 		argc = sum(v is not None for v in locals().values())
 
 		if temp0 = (super onMe: param1 &rest):
-			temp1 = (OnControl 4 (param1 x:) (param1 y:))
+			temp1 = kernel.OnControl(4, (param1 x:), (param1 y:))
 			(cond
 				case (((param1 message:) == 5) and (temp1 == 16384)):
 					temp0 = 0
@@ -1154,7 +1155,7 @@ class clownChair(Feature):
 				case 
 					(and
 						((param1 message:) == 5)
-						(not (global5 contains: (ScriptID 274 0)))
+						(not (global5 contains: kernel.ScriptID(274, 0)))
 						(temp1 == 8)
 					):
 					(self approachVerbs: 5)
@@ -1176,7 +1177,7 @@ class clownChair(Feature):
 			case 5:
 				if 
 					(and
-						(global5 contains: (ScriptID 274 0))
+						(global5 contains: kernel.ScriptID(274, 0))
 						(not (global5 contains: clownBook))
 					)
 					(global91 say: noun param1 19)
@@ -1223,7 +1224,7 @@ class clownBook(View):
 		if temp0 = (super onMe: param1 &rest):
 			if 
 				(and
-					(not (global5 contains: (ScriptID 274 0)))
+					(not (global5 contains: kernel.ScriptID(274, 0)))
 					(((param1 message:) == 5) or ((param1 message:) == 1))
 				)
 				(self approachVerbs: 5 1)
@@ -1278,7 +1279,7 @@ class readingTable(Feature):
 		if temp0 = (super onMe: param1 &rest):
 			if 
 				(and
-					(not (global5 contains: (ScriptID 274 0)))
+					(not (global5 contains: kernel.ScriptID(274, 0)))
 					(((param1 message:) == 5) or ((param1 message:) == 1))
 				)
 				(self approachVerbs: 5 1)
@@ -1303,7 +1304,7 @@ class readingTable(Feature):
 
 		match param1
 			case 1:
-				if (global5 contains: (ScriptID 274 0)):
+				if (global5 contains: kernel.ScriptID(274, 0)):
 					(global91 say: noun param1 37)
 				else:
 					(global91 say: noun param1 38)
@@ -1345,10 +1346,10 @@ class spellBook(View):
 
 		match param1
 			case 5:
-				if (proc913_0 7):
+				if proc913_0(7):
 					(global91 say: noun param1 2)
 				else:
-					(proc913_1 7)
+					proc913_1(7)
 					(global1 givePoints: 2)
 					(global91 say: noun param1 1)
 				#endif

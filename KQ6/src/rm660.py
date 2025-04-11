@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 660
 import sci_sh
+import kernel
 import Main
 import rgDead
 import KQ6Room
@@ -95,9 +96,9 @@ class rm660(KQ6Room):
 			stopUpd:
 		)
 		(spiritFeat init:)
-		(proc70_1 torch @local1)
-		(proc70_1 shimmer @local20)
-		(proc70_1 glow @local36)
+		proc70_1(torch, @local1)
+		proc70_1(shimmer, @local20)
+		proc70_1(glow, @local36)
 		(global5 eachElementDo: #checkDetail)
 		(global1 handsOn:)
 	#end:method
@@ -154,7 +155,7 @@ class swimScr(Script):
 				(global91 say: 3 3 0 2 self)
 			#end:case
 			case 6:
-				(proc0_1 31)
+				proc0_1(31)
 			#end:case
 		#end:match
 	#end:method
@@ -180,12 +181,9 @@ class missedCharonScript(Script):
 				(global102 number: 601 loop: 1 play:)
 				if 
 					(>
-						(GetDistance
-							(global0 x:)
-							(global0 y:)
-							(charon x:)
-							(charon y:)
-						)
+						kernel.GetDistance((global0 x:), (global0 y:), (charon
+							x:
+						), (charon y:))
 						40
 					)
 					(global0 setMotion: PolyPath 114 160 self)
@@ -219,7 +217,7 @@ class missedCharonScript(Script):
 				(global91 say: 6 0 9 3 self)
 			#end:case
 			case 8:
-				(proc0_1 39)
+				proc0_1(39)
 			#end:case
 		#end:match
 	#end:method
@@ -297,13 +295,13 @@ class buyTransportScr(Script):
 			case 11:
 				(boat dispose:)
 				(charon view: 668 setLoop: 0 cel: 0 setCycle: End self)
-				(UnLoad 128 663)
+				kernel.UnLoad(128, 663)
 			#end:case
 			case 12:
 				(global0 setPri: -1 dispose:)
 				(charon dispose:)
 				if global169:
-					(DrawPic 660 15)
+					kernel.DrawPic(660, 15)
 				else:
 					(global2 drawPic: 660)
 				#endif
@@ -316,8 +314,8 @@ class buyTransportScr(Script):
 					setScale: Scaler 100 50 137 59
 					init:
 				)
-				(UnLoad 128 668)
-				(UnLoad 128 661)
+				kernel.UnLoad(128, 668)
+				kernel.UnLoad(128, 661)
 				ticks = 10
 			#end:case
 			case 13:
@@ -382,15 +380,15 @@ class getWaterScr(Script):
 				cycles = 2
 			#end:case
 			case 4:
-				(global91 say: 3 44 (4 if (proc913_0 68) else 3) 0 self)
+				(global91 say: 3 44 (4 if proc913_0(68) else 3) 0 self)
 			#end:case
 			case 5:
 				(global0 reset: 1 setPri: 12 posn: 119 184)
 				cycles = 1
 			#end:case
 			case 6:
-				(UnLoad 128 666)
-				(proc913_1 58)
+				kernel.UnLoad(128, 666)
+				proc913_1(58)
 				(global1 givePoints: 1)
 				(self dispose:)
 				(global1 handsOn:)
@@ -410,7 +408,7 @@ class playFlute(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: (ScriptID 85 0) self)
+				(self setScript: kernel.ScriptID(85, 0) self)
 			#end:case
 			case 1:
 				(global91 say: 8 31 0 0 self)
@@ -434,7 +432,7 @@ class playNightingale(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: (ScriptID 93 0) self)
+				(self setScript: kernel.ScriptID(93, 0) self)
 			#end:case
 			case 1:
 				(global91 say: 8 37 0 0 self)
@@ -460,12 +458,9 @@ class tryToBoardScript(Script):
 			case 0:
 				if 
 					(>
-						(GetDistance
-							(global0 x:)
-							(global0 y:)
-							(charon x:)
-							(charon y:)
-						)
+						kernel.GetDistance((global0 x:), (global0 y:), (charon
+							x:
+						), (charon y:))
 						20
 					)
 					(global0 setMotion: MoveTo 112 149 self)
@@ -474,7 +469,7 @@ class tryToBoardScript(Script):
 				#endif
 			#end:case
 			case 1:
-				(proc913_4 global0 charon self)
+				proc913_4(global0, charon, self)
 			#end:case
 			case 2:
 				(charonHead
@@ -506,12 +501,9 @@ class talkCharonScript(Script):
 			case 0:
 				if 
 					(>
-						(GetDistance
-							(global0 x:)
-							(global0 y:)
-							(charon x:)
-							(charon y:)
-						)
+						kernel.GetDistance((global0 x:), (global0 y:), (charon
+							x:
+						), (charon y:))
 						20
 					)
 					(global0 setMotion: MoveTo 112 149 self)
@@ -520,7 +512,7 @@ class talkCharonScript(Script):
 				#endif
 			#end:case
 			case 1:
-				(proc913_4 global0 charon self)
+				proc913_4(global0, charon, self)
 			#end:case
 			case 2:
 				(global91 say: 2 register 0 1 self)
@@ -541,7 +533,7 @@ class talkCharonScript(Script):
 				cycles = 15
 			#end:case
 			case 5:
-				if (proc999_5 register 48 2 37):
+				if proc999_5(register, 48, 2, 37):
 					(global91 say: 2 register 0 2 self)
 				else:
 					cycles = 1
@@ -732,13 +724,13 @@ class charon(Actor):
 
 		(super init: &rest)
 		(cond
-			case (((ScriptID 0 6) client:) == (ScriptID 70 0)): 0#end:case
-			case (proc913_0 121):
+			case ((kernel.ScriptID(0, 6) client:) == kernel.ScriptID(70, 0)): 0#end:case
+			case proc913_0(121):
 				(global1 handsOff:)
 				(global2 setScript: missedCharonScript)
 			#end:case
 			else:
-				((ScriptID 0 6) setReal: (ScriptID 70 0) 0 2 0)
+				(kernel.ScriptID(0, 6) setReal: kernel.ScriptID(70, 0) 0 2 0)
 			#end:else
 		)
 		(global93 addToFront: self)
@@ -761,7 +753,7 @@ class charon(Actor):
 		(super doit:)
 		(cond
 			case (global2 script:): 0#end:case
-			case (proc913_0 121):
+			case proc913_0(121):
 				(global1 handsOff:)
 				(global2 setScript: missedCharonScript)
 			#end:case
@@ -782,7 +774,7 @@ class charon(Actor):
 		match param1
 			case 7:
 				(global1 handsOff:)
-				((ScriptID 0 6) dispose:)
+				(kernel.ScriptID(0, 6) dispose:)
 				(global2 setScript: buyTransportScr)
 			#end:case
 			case 3:
@@ -798,7 +790,7 @@ class charon(Actor):
 				(global2 setScript: playNightingale)
 			#end:case
 			else:
-				if (proc999_5 param1 2 5 1 13 28 8 30 48 50 16 35):
+				if proc999_5(param1, 2, 5, 1, 13, 28, 8, 30, 48, 50, 16, 35):
 					(global1 handsOff:)
 					(global2 setScript: talkCharonScript 0 param1)
 				else:
@@ -833,7 +825,7 @@ class riverStyx(Feature):
 
 		match param1
 			case 44:
-				if (not (proc913_0 58)):
+				if (not proc913_0(58)):
 					(global1 handsOff:)
 					(global2 setScript: getWaterScr)
 				else:

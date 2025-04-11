@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 107
 import sci_sh
+import kernel
 import Main
 import Actor
 import System
@@ -38,7 +39,7 @@ class findSize(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(TextSize @local429 param1 2207 315)
+		kernel.TextSize(@local429, param1, 2207, 315)
 		return (((180 - (local429[2] - local429[0])) / 2) - 10)
 	#end:method
 
@@ -54,7 +55,7 @@ class startOfCredits(Script):
 
 		match state = param1
 			case 0:
-				if ((Graph 2) == 256):
+				if (kernel.Graph(2) == 256):
 					local428 = 0
 				else:
 					local428 = 1
@@ -96,7 +97,7 @@ class startOfCredits(Script):
 			#end:case
 			case 7:
 				(self dispose:)
-				(DisposeScript 107)
+				kernel.DisposeScript(107)
 			#end:case
 		#end:match
 	#end:method
@@ -113,8 +114,8 @@ class openingCredits(Script):
 
 		match state = param1
 			case 0:
-				(Display 107 0 108 local400)
-				(Display 107 0 108 local401)
+				kernel.Display(107, 0, 108, local400)
+				kernel.Display(107, 0, 108, local401)
 				if (local403[local402] == 0):
 					(self dispose:)
 				else:
@@ -122,45 +123,17 @@ class openingCredits(Script):
 				#endif
 			#end:case
 			case 1:
-				local427++
-				(Message 0 94 0 0 0 local403[local402] @local0)
+				local427.post('++')
+				kernel.Message(0, 94, 0, 0, 0, local403[local402], @local0)
 				temp1 = (findSize doit: @local0)
-				local402++
+				local402.post('++')
 				(= local400
-					(Display
-						@local0
-						102
-						7
-						100
-						60
-						temp1
-						106
-						200
-						105
-						3110
-						101
-						1
-						107
-					)
+					kernel.Display(@local0, 102, 7, 100, 60, temp1, 106, 200, 105, 3110, 101, 1, 107)
 				)
-				(Message 0 94 0 0 0 local403[local402] @local200)
-				local402++
+				kernel.Message(0, 94, 0, 0, 0, local403[local402], @local200)
+				local402.post('++')
 				(= local401
-					(Display
-						@local200
-						102
-						7
-						100
-						60
-						(temp1 + 15)
-						106
-						200
-						105
-						2207
-						101
-						1
-						107
-					)
+					kernel.Display(@local200, 102, 7, 100, 60, (temp1 + 15), 106, 200, 105, 2207, 101, 1, 107)
 				)
 				cycles = 1
 			#end:case
@@ -211,22 +184,22 @@ class fadeThePic(Code):
 		if (param1 == 1):
 			temp0 = 100
 			while (temp0 > 0): # inline for
-				(Palette 4 0 231 temp0)
+				kernel.Palette(4, 0, 231, temp0)
 				temp1 = 0
 				while (temp1 < 10): # inline for
 				#end:loop
 				# for:reinit
-				temp0--
+				temp0.post('--')
 			#end:loop
 		else:
 			temp0 = 0
 			while (temp0 < 100): # inline for
-				(Palette 4 0 231 temp0)
+				kernel.Palette(4, 0, 231, temp0)
 				temp1 = 0
 				while (temp1 < 10): # inline for
 				#end:loop
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		#endif
 		temp2 = param2

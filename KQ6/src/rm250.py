@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 250
 import sci_sh
+import kernel
 import Main
 import walkEgoInScr
 import KQ6Room
@@ -47,7 +48,7 @@ def localproc_1():
 
 	(return
 		if (localproc_0):
-			(10 if (proc913_0 37) else 12)
+			(10 if proc913_0(37) else 12)
 		else:
 			11
 		#endif
@@ -90,9 +91,9 @@ class rm250(KQ6Room):
 		(global0 init: setScale: Scaler 100 67 153 109)
 		(super init: &rest)
 		if (global12 == 260):
-			(proc12_1 8 116)
+			proc12_1(8, 116)
 		else:
-			(proc12_1 272 187 -50)
+			proc12_1(272, 187, -50)
 		#endif
 		(houseDoor init:)
 		(gate init:)
@@ -100,25 +101,25 @@ class rm250(KQ6Room):
 		(houseRoses init:)
 		(palmTrees init:)
 		(featureToBeIgnored init:)
-		((ScriptID 10 4) onMeCheck: 8 init:)
+		(kernel.ScriptID(10, 4) onMeCheck: 8 init:)
 		(leaves init:)
 		if ((global1 _detailLevel:) >= 2):
-			(leaves setScript: (ScriptID 13 0))
+			(leaves setScript: kernel.ScriptID(13, 0))
 		#endif
 		(cond
-			case ((global0 has: 37) and (not (proc913_0 43))):
+			case ((global0 has: 37) and (not proc913_0(43))):
 				(beauty init: 1)
 			#end:case
 			case 
 				(and
 					(global154 != global153)
 					(global155 <= 3)
-					(not (proc913_0 43))
+					(not proc913_0(43))
 				):
 				(beauty
 					init: 0
 					setScript:
-						if (proc999_5 global155++ 3 4):
+						if proc999_5(global155.post('++'), 3, 4):
 							rmAct3and4Scr
 						else:
 							rmAct1and2Scr
@@ -137,15 +138,15 @@ class rm250(KQ6Room):
 		temp0 = 1
 		match param1
 			case 3:
-				(proc12_0 param1 -50)
+				proc12_0(param1, -50)
 				return 0
 			#end:case
 			case 2:
-				(proc12_0 3 -50)
+				proc12_0(3, -50)
 				return 0
 			#end:case
 			case 4:
-				(proc12_0 param1)
+				proc12_0(param1)
 				return 0
 			#end:case
 			else:
@@ -182,10 +183,10 @@ class rm250(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		global154 = global153
-		(proc913_2 59)
+		proc913_2(59)
 		(super dispose: &rest)
-		(DisposeScript 964)
-		(DisposeScript 13)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(13)
 	#end:method
 
 	@classmethod
@@ -254,7 +255,7 @@ class rmAct1and2Scr(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 59)
+				proc913_1(59)
 				(client
 					view: 253
 					loop: 2
@@ -276,7 +277,7 @@ class rmAct1and2Scr(Script):
 				(client loop: 4 cel: 0 posn: 191 96 setCycle: End self)
 			#end:case
 			case 5:
-				seconds = register = (Random 1 9)
+				seconds = register = kernel.Random(1, 9)
 			#end:case
 			case 6:
 				(client loop: 5 cel: 0 posn: 174 97 setCycle: End self)
@@ -317,7 +318,7 @@ class rmAct1and2Scr(Script):
 				if (register != 4):
 					(houseDoor setCycle: End self)
 				else:
-					state++
+					state.post('++')
 					ticks = 1
 				#endif
 			#end:case
@@ -331,7 +332,7 @@ class rmAct1and2Scr(Script):
 				if (register == 4):
 					(houseDoor setCycle: End self)
 				else:
-					state++
+					state.post('++')
 					ticks = 1
 				#endif
 			#end:case
@@ -366,12 +367,12 @@ class rmAct3and4Scr(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 59)
+				proc913_1(59)
 				(client view: 253 loop: 4 cel: 7 posn: 191 96)
 				cycles = 1
 			#end:case
 			case 1:
-				seconds = register = (Random 1 9)
+				seconds = register = kernel.Random(1, 9)
 			#end:case
 			case 2:
 				(client loop: 5 cel: 0 posn: 174 97 setCycle: End self)
@@ -427,13 +428,13 @@ class rmGiveRoseScr(Script):
 			case 0:
 				(global0 put: 38 global11)
 				(global1 handsOff:)
-				((ScriptID 10 0) setIt: 128)
-				if (proc913_1 37):
+				(kernel.ScriptID(10, 0) setIt: 128)
+				if proc913_1(37):
 					register = 20
 				else:
 					register = 19
 					(global1 givePoints: 2)
-					(proc913_2 47)
+					proc913_2(47)
 				#endif
 				(beauty setScript: 0)
 				(global91 say: 6 71 register 1 self)
@@ -504,13 +505,13 @@ class roseTendingScr(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				seconds = (Random 2 5)
+				seconds = kernel.Random(2, 5)
 			#end:case
 			case 2:
 				(client setCycle: End self)
 			#end:case
 			case 3:
-				seconds = (Random 2 5)
+				seconds = kernel.Random(2, 5)
 			#end:case
 			case 4:
 				(client setCycle: Beg self)
@@ -730,7 +731,7 @@ class rmEndofScriptsScr(Script):
 			#end:case
 			case 5:
 				(global105 number: 902 loop: 1 play:)
-				(proc913_2 59)
+				proc913_2(59)
 				(client dispose:)
 			#end:case
 		#end:match
@@ -751,12 +752,12 @@ class useFluteOnBeautyScr(Script):
 				(global1 handsOff:)
 				register = (localproc_1)
 				if (register != 11):
-					state++
+					state.post('++')
 				#endif
 				cycles = 2
 			#end:case
 			case 1:
-				(self setScript: (ScriptID 85) self)
+				(self setScript: kernel.ScriptID(85) self)
 			#end:case
 			case 2:
 				match register
@@ -767,7 +768,7 @@ class useFluteOnBeautyScr(Script):
 						(global91 say: 6 31 12 1 self)
 					#end:case
 					else:
-						state++
+						state.post('++')
 						(global91 say: 6 31 register 0 self)
 					#end:else
 				#end:match
@@ -885,26 +886,26 @@ class beauty(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case ((proc999_5 param1 42 27 28 7 32 12 65 33) and (localproc_0)):
+			case (proc999_5(param1, 42, 27, 28, 7, 32, 12, 65, 33) and (localproc_0)):
 				(global91 say: noun param1 18)
 			#end:case
-			case ((proc999_5 param1 57 58 59 60 96 43 56) and (localproc_0)):
-				(global91 say: noun 43 (10 if (proc913_0 37) else 12))
+			case (proc999_5(param1, 57, 58, 59, 60, 96, 43, 56) and (localproc_0)):
+				(global91 say: noun 43 (10 if proc913_0(37) else 12))
 			#end:case
-			case ((proc999_5 param1 66 70) and (localproc_0)):
-				(global91 say: noun 66 (10 if (proc913_0 37) else 12))
+			case (proc999_5(param1, 66, 70) and (localproc_0)):
+				(global91 say: noun 66 (10 if proc913_0(37) else 12))
 			#end:case
 			case (param1 == 31):
 				(global2 setScript: useFluteOnBeautyScr)
 			#end:case
-			case ((proc999_5 param1 74 73 55) and (localproc_0)):
+			case (proc999_5(param1, 74, 73, 55) and (localproc_0)):
 				(global91 say: noun 55 18)
 			#end:case
 			case ((param1 == 71) and (localproc_0)):
 				(global2 setScript: rmGiveRoseScr)
 			#end:case
 			case (param1 == 69):
-				if (proc913_0 37):
+				if proc913_0(37):
 					(global2 setScript: rmGiveRingScr)
 				else:
 					(global91 say: noun param1 12)
@@ -917,32 +918,32 @@ class beauty(Actor):
 						param1
 						if (localproc_0):
 							(cond
-								case (proc913_0 37):
+								case proc913_0(37):
 									(+
 										22
 										if (local0 < 3):
-											local0++
+											local0.post('++')
 										else:
 											local0
 										#endif
 									)
 								#end:case
-								case (proc913_0 47): 14#end:case
+								case proc913_0(47): 14#end:case
 								else: 13#end:else
 							)
 						else:
 							11
 						#endif
 				)
-				(proc913_1 47)
+				proc913_1(47)
 			#end:case
 			case (param1 == 1):
 				(global91
 					say:
 						noun
 						param1
-						if (proc913_1 70):
-							(10 if (proc913_0 37) else 9)
+						if proc913_1(70):
+							(10 if proc913_0(37) else 9)
 						else:
 							21
 						#endif
@@ -998,7 +999,7 @@ class gate(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		if (param1 == 2):
-			local4++
+			local4.post('++')
 		#endif
 		(super doVerb: param1 &rest)
 	#end:method
@@ -1131,7 +1132,7 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match temp0 = (OnControl 4 (param1 x:) (param1 y:))
+				match temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 2: 8#end:case
 					case 1024: 21#end:case
 					case 16: 12#end:case

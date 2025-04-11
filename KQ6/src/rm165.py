@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 165
 import sci_sh
+import kernel
 import KQ6Room
 
 # Public Export Declarations

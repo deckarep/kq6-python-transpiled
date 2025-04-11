@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 752
 import sci_sh
+import kernel
 import Main
 import Motion
 import Actor
@@ -41,19 +42,15 @@ class throwDazzle(Script):
 				if (global106 == global0):
 					(global1 handsOff:)
 				#endif
-				(Load 132 708)
-				(Load 132 707)
+				kernel.Load(132, 708)
+				kernel.Load(132, 707)
 				cycles = 4
 			#end:case
 			case 1:
 				(= temp2
-					(GetAngle
-						(register x:)
-						(register y:)
-						(global106 x:)
-						(global106 y:)
-						60
-					)
+					kernel.GetAngle((register x:), (register y:), (global106 x:), (global106
+						y:
+					), 60)
 				)
 				(register
 					loop:
@@ -68,10 +65,10 @@ class throwDazzle(Script):
 							else: 7#end:else
 						)
 				)
-				(UnLoad 128 (register view:))
-				temp0 = ((NumCels register) - 1)
+				kernel.UnLoad(128, (register view:))
+				temp0 = (kernel.NumCels(register) - 1)
 				(register cel: temp0)
-				(SetNowSeen register)
+				kernel.SetNowSeen(register)
 				if ((register loop:) != 3):
 					(projectile
 						priority: (register priority:)
@@ -147,7 +144,7 @@ class throwDazzle(Script):
 				#endif
 				(projectile dispose:)
 				(cond
-					case (IsObject global156):
+					case kernel.IsObject(global156):
 						(self setScript: global156 self)
 						global156 = 0
 					#end:case
@@ -220,7 +217,7 @@ class getEgo(Script):
 				if register:
 					(self dispose:)
 				else:
-					(proc0_1 18)
+					proc0_1(18)
 				#endif
 			#end:case
 		#end:match
@@ -238,7 +235,7 @@ class geniePoofIn(Script):
 
 		match state = param1
 			case 0:
-				(Load 132 943)
+				kernel.Load(132, 943)
 				cycles = 2
 			#end:case
 			case 1:

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 300
 import sci_sh
+import kernel
 import Main
 import rCliffs
 import KQ6Print
@@ -83,10 +84,10 @@ class WalkFeature(Feature):
 					(global2 setScript: splatterDie 0 0)
 				#end:case
 				case ((global0 y:) <= 105):
-					((ScriptID 21 0) cue:)
+					(kernel.ScriptID(21, 0) cue:)
 					(global2 setScript: stepDownToBeach)
 				#end:case
-				case (proc999_5 (== (global0 view:) 301 301)): 0#end:case
+				case proc999_5((== (global0 view:) 301 301)): 0#end:case
 				else:
 					if (((temp0 y:) > 160) and ((global0 onControl: 1) == 64)):
 						(temp0 y: 160)
@@ -200,7 +201,7 @@ class rm300(CliffRoom):
 			(global102 number: 915 setLoop: -1 play:)
 		#endif
 		(global105 number: 916 setLoop: -1 play:)
-		if (proc913_0 157):
+		if proc913_0(157):
 			(self north: 340)
 		else:
 			(self north: 320)
@@ -212,10 +213,10 @@ class rm300(CliffRoom):
 		#endif
 		(super init:)
 		(global32 add: cliffs ocean rock stone beach eachElementDo: #init)
-		if (proc913_0 5):
+		if proc913_0(5):
 			(self allRocksOut:)
 		#endif
-		(proc958_0 128 320 321 308 3081 3082)
+		proc958_0(128, 320, 321, 308, 3081, 3082)
 		(wave init: hide: setScript: waveScr)
 		(sanScript init:)
 		(shimmer1 init:)
@@ -228,15 +229,15 @@ class rm300(CliffRoom):
 		#endif
 		(global0 actions: egoDoVerb)
 		(cond
-			case (proc999_5 global12 370 380):
+			case proc999_5(global12, 370, 380):
 				(global0 init: reset: posn: 340 -10)
-				(proc301_0)
+				proc301_0()
 			#end:case
-			case (proc999_5 global12 320 340):
+			case proc999_5(global12, 320, 340):
 				if (global12 == 320):
-					(UnLoad 128 322)
+					kernel.UnLoad(128, 322)
 				#endif
-				(Load 128 321)
+				kernel.Load(128, 321)
 				(global0 view: 301 setLoop: 1 cel: 0 init: posn: 70 4)
 				(global2 setScript: stepDownFromCliff)
 			#end:case
@@ -322,7 +323,7 @@ class rm300(CliffRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DisposeScript 301)
+		kernel.DisposeScript(301)
 		(super dispose:)
 	#end:method
 
@@ -365,7 +366,7 @@ class puzzle(PuzzleInset):
 			buttKill: @local289
 		)
 		(global0 hide: view: 300)
-		(UnLoad 128 900)
+		kernel.UnLoad(128, 900)
 		(words init:)
 		(super init:)
 	#end:method
@@ -563,7 +564,7 @@ class sanScript(View):
 				((param1 type:) != 16384)
 				(not (param1 modifiers:))
 				(self onMe: param1)
-				(not ((ScriptID 21 0) puzzleIsUp:))
+				(not (kernel.ScriptID(21, 0) puzzleIsUp:))
 				(or
 					((global69 curIcon:) == (global69 at: 1))
 					((global69 curIcon:) == (global69 at: 2))
@@ -584,7 +585,7 @@ class sanScript(View):
 						(global91 say: 3 1 14 1)
 					#endif
 				#end:case
-				case ((proc913_0 6) or (proc913_0 5)):
+				case (proc913_0(6) or proc913_0(5)):
 					(puzzle puzzSolved:)
 				#end:case
 				else:
@@ -690,7 +691,7 @@ class beach(Feature):
 						(global2 setScript: splatterDie 0 0)
 					#end:case
 					case ((global0 y:) <= 105):
-						((ScriptID 21 0) cue:)
+						(kernel.ScriptID(21, 0) cue:)
 						(global2 setScript: stepDownToBeach)
 					#end:case
 					case (((global0 view:) == 301) or ((global0 view:) == 301)): 0#end:case
@@ -707,7 +708,7 @@ class beach(Feature):
 				)
 			#end:case
 			case 1:
-				if (proc913_0 5):
+				if proc913_0(5):
 					(global91 say: 2 1 22 1)
 				else:
 					(global91 say: 2 1 5 1)
@@ -744,7 +745,7 @@ class waveScr(Script):
 			case 2:
 				state = -1
 				(wave hide:)
-				seconds = (Random 1 7)
+				seconds = kernel.Random(1, 7)
 			#end:case
 		#end:match
 	#end:method
@@ -845,9 +846,9 @@ class splatterDie(Script):
 				(global1 handsOff:)
 				(rCliffs cheatCount: 0)
 				if (register == 0):
-					(Load 128 201)
+					kernel.Load(128, 201)
 				#endif
-				((ScriptID 21 0) cue:)
+				(kernel.ScriptID(21, 0) cue:)
 				(global91 say: 4 3 8 1 self)
 			#end:case
 			case 1:
@@ -892,7 +893,7 @@ class splatterDie(Script):
 				if ((global0 view:) == 301):
 					(global0
 						posn: ((global0 x:) + 18) ((global0 y:) - 7)
-						setLoop: (Random 1 2)
+						setLoop: kernel.Random(1, 2)
 					)
 				else:
 					(global0
@@ -910,7 +911,7 @@ class splatterDie(Script):
 					(global0 posn: ((global0 x:) - 1) ((global0 y:) - 3))
 				#endif
 				(global0 view: 307 cycleSpeed: 1 setLoop: 0)
-				(proc913_1 59)
+				proc913_1(59)
 				if (global90 & 0x0002):
 					(KQ6Print modeless: 1 posn: -1 10 say: 0 4 3 8 2 init:)
 				#endif
@@ -920,7 +921,7 @@ class splatterDie(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 7:
-				(proc913_2 59)
+				proc913_2(59)
 				(global104 number: 306 setLoop: 1 play:)
 				(global0 setLoop: 1 yStep: 35)
 				if (register == 0):
@@ -983,7 +984,7 @@ class splatterDie(Script):
 					(self dispose:)
 				else:
 					(global105 fade: 0 5 5)
-					(proc0_1 8)
+					proc0_1(8)
 				#endif
 			#end:case
 		#end:match
@@ -1001,7 +1002,7 @@ class bounceButt(Script):
 
 		match state = param1
 			case 0:
-				local326++
+				local326.post('++')
 				(global0
 					view: 307
 					setLoop: 3
@@ -1077,7 +1078,7 @@ class stepDownFromCliff(Script):
 				#endif
 			#end:case
 			case 2:
-				(proc21_1)
+				proc21_1()
 				(global0 cel: 1 posn: (global0 x:) (global0 y:))
 				cycles = 8
 			#end:case
@@ -1116,7 +1117,7 @@ class stepDownFromCliff(Script):
 			#end:case
 			case 9:
 				if (local327 < 3):
-					local327++
+					local327.post('++')
 					(state -= 9)
 				else:
 					local327 = 0
@@ -1126,7 +1127,7 @@ class stepDownFromCliff(Script):
 			#end:case
 			case 10:
 				(global1 handsOn:)
-				((ScriptID 21 0) notify:)
+				(kernel.ScriptID(21, 0) notify:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1217,7 +1218,7 @@ class goToInset(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (proc913_0 5):
+				if proc913_0(5):
 					(self cue:)
 				else:
 					(global91 say: 3 1 0 1 self)
@@ -1330,13 +1331,13 @@ class pickItem(Script):
 						reset: 7
 						posn: ((global0 x:) + 11) ((global0 y:) - 5)
 					)
-					(UnLoad 128 302)
+					kernel.UnLoad(128, 302)
 				else:
 					(global0
 						reset: 2
 						posn: ((global0 x:) + 2) ((global0 y:) - 9)
 					)
-					(UnLoad 128 311)
+					kernel.UnLoad(128, 311)
 				#endif
 				(global1 handsOn:)
 				(self dispose:)
@@ -1357,7 +1358,7 @@ class rockStair(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 5)
+				proc913_1(5)
 				seconds = 2
 			#end:case
 			case 1:

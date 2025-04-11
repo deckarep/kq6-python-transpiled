@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 990
 import sci_sh
+import kernel
 import Main
 import Interface
 import Print
@@ -58,7 +59,7 @@ def proc990_0(param1 = None):
 					(Print
 						font: 0
 						addText: 1 0 0 1 0 0 990
-						addEdit: (StrCpy @temp1 param1) 29 0 20 param1
+						addEdit: kernel.StrCpy(@temp1, param1) 29 0 20 param1
 						addButton: 1 27 0 0 1 0 34 990
 						addButton: 0 38 0 0 1 50 34 990
 						init:
@@ -67,15 +68,15 @@ def proc990_0(param1 = None):
 			)
 			return 0
 		#endif
-		if (not (StrLen @temp1)):
-			(GetCWD @temp1)
+		if (not kernel.StrLen(@temp1)):
+			kernel.GetCWD(@temp1)
 		#endif
-		if (ValidPath @temp1):
-			(StrCpy param1 @temp1)
+		if kernel.ValidPath(@temp1):
+			kernel.StrCpy(param1, @temp1)
 			return 1
 		else:
-			(Message 0 990 29 0 0 1 @temp134)
-			(Format @temp34 @temp134 @temp1)
+			kernel.Message(0, 990, 29, 0, 0, 1, @temp134)
+			kernel.Format(@temp34, @temp134, @temp1)
 			(Print font: 0 addText: @temp34 init:)
 		#endif
 	#end:loop
@@ -87,7 +88,7 @@ def localproc_1():
 	argc = sum(v is not None for v in locals().values())
 
 	if (local2 < 20):
-		(CheckFreeSpace global29)
+		kernel.CheckFreeSpace(global29)
 	#endif
 #end:procedure
 
@@ -116,12 +117,12 @@ class SRDialog(Dialog):
 
 		window = global38
 		nsBottom = 0
-		if (local2 = (GetSaveFiles (global1 name:) param2 param3) == -1):
+		if (local2 = kernel.GetSaveFiles((global1 name:), param2, param3) == -1):
 			return 0
 		#endif
 		if (local4 = (localproc_0) == 1):
 			(editI
-				text: (StrCpy param1 param2)
+				text: kernel.StrCpy(param1, param2)
 				font: global23
 				setSize:
 				moveTo: 4 4
@@ -137,13 +138,13 @@ class SRDialog(Dialog):
 		)
 		match local4
 			case 0:
-				(Message 0 990 26 0 0 1 @local5)
+				kernel.Message(0, 990, 26, 0, 0, 1, @local5)
 			#end:case
 			case 1:
-				(Message 0 990 28 0 0 1 @local5)
+				kernel.Message(0, 990, 28, 0, 0, 1, @local5)
 			#end:case
 			else:
-				(Message 0 990 25 0 0 1 @local5)
+				kernel.Message(0, 990, 25, 0, 0, 1, @local5)
 			#end:else
 		#end:match
 		local1 = ((selectorI nsRight:) + 4)
@@ -158,21 +159,21 @@ class SRDialog(Dialog):
 					3
 				#endif
 		)
-		(Message 0 990 24 0 0 1 @local20)
+		kernel.Message(0, 990, 24, 0, 0, 1, @local20)
 		(deleteI
 			text: @local20
 			setSize:
 			moveTo: local1 ((okI nsBottom:) + 4)
 			state: (0 if (not local2) else 3)
 		)
-		(Message 0 990 23 0 0 1 @local35)
+		kernel.Message(0, 990, 23, 0, 0, 1, @local35)
 		(changeDirI
 			text: @local35
 			setSize:
 			moveTo: local1 ((deleteI nsBottom:) + 4)
 			state: ((changeDirI state:) & 0xfff7)
 		)
-		(Message 0 990 22 0 0 1 @local50)
+		kernel.Message(0, 990, 22, 0, 0, 1, @local50)
 		(cancelI
 			text: @local50
 			setSize:
@@ -182,13 +183,13 @@ class SRDialog(Dialog):
 		(self add: selectorI okI deleteI changeDirI cancelI setSize:)
 		match local4
 			case 0:
-				(Message 0 990 10 0 0 1 @temp0)
+				kernel.Message(0, 990, 10, 0, 0, 1, @temp0)
 			#end:case
 			case 1:
-				(Message 0 990 11 0 0 1 @temp0)
+				kernel.Message(0, 990, 11, 0, 0, 1, @temp0)
 			#end:case
 			else:
-				(Message 0 990 30 0 0 1 @temp0)
+				kernel.Message(0, 990, 30, 0, 0, 1, @temp0)
 			#end:else
 		#end:match
 		(textI text: @temp0 setSize: ((nsRight - nsLeft) - 8) moveTo: 4 4)
@@ -207,16 +208,15 @@ class SRDialog(Dialog):
 			if 
 				(==
 					(= temp0
-						(FileIO
-							0
-							(Format @temp385 r"""%ssg.dir""" (global1 name:))
-						)
+						kernel.FileIO(0, kernel.Format(@temp385, r"""%ssg.dir""", (global1
+							name:
+						)))
 					)
 					-1
 				)
 				return
 			#endif
-			(FileIO 1 temp0)
+			kernel.FileIO(1, temp0)
 		#endif
 		if (not (self init: param1 @temp3 @temp364)):
 			return -1
@@ -241,7 +241,7 @@ class SRDialog(Dialog):
 						(proc990_0 global29)
 						(==
 							(= local2
-								(GetSaveFiles (global1 name:) @temp3 @temp364)
+								kernel.GetSaveFiles((global1 name:), @temp3, @temp364)
 							)
 							-1
 						)
@@ -253,7 +253,7 @@ class SRDialog(Dialog):
 			else:
 				if ((local4 == 2) and (local1 == okI)):
 					(self dispose:)
-					if (GetReplaceName doit: (StrCpy param1 @temp3[temp2])):
+					if (GetReplaceName doit: kernel.StrCpy(param1, @temp3[temp2])):
 						temp1 = temp364[local3]
 						(break)
 					#endif
@@ -261,7 +261,7 @@ class SRDialog(Dialog):
 					(continue)
 				#endif
 				if ((local4 == 1) and ((local1 == okI) or (local1 == editI))):
-					if ((StrLen param1) == 0):
+					if (kernel.StrLen(param1) == 0):
 						(self dispose:)
 						(localproc_2)
 						(self init: param1 @temp3 @temp364)
@@ -272,11 +272,11 @@ class SRDialog(Dialog):
 					while (local1 < local2): # inline for
 						(breakif
 							(not
-								temp1 = (StrCmp param1 @temp3[(local1 * 18)])
+								temp1 = kernel.StrCmp(param1, @temp3[(local1 * 18)])
 							)
 						)
 						# for:reinit
-						local1++
+						local1.post('++')
 					#end:loop
 					if (not temp1):
 						temp1 = temp364[local1]
@@ -292,13 +292,13 @@ class SRDialog(Dialog):
 						while (local1 < local2): # inline for
 							(breakif (temp1 == temp364[local1]))
 							# for:reinit
-							local1++
+							local1.post('++')
 						#end:loop
 						if (local1 == local2):
 							(break)
 						#endif
 						# for:reinit
-						temp1++
+						temp1.post('++')
 					#end:loop
 					(break)
 				#endif
@@ -317,7 +317,7 @@ class SRDialog(Dialog):
 							(self init: param1 @temp3 @temp364)
 						else:
 							(temp0 = (File new:)
-								name: (DeviceInfo 7 @temp385 (global1 name:))
+								name: kernel.DeviceInfo(7, @temp385, (global1 name:))
 								open: 2
 							)
 							temp1 = 2570
@@ -329,17 +329,14 @@ class SRDialog(Dialog):
 									(temp0 write: @temp1 1)
 								#endif
 								# for:reinit
-								local1++
+								local1.post('++')
 							#end:loop
 							temp1 = -1
 							(temp0 write: @temp1 2 close: dispose:)
-							(DeviceInfo
-								8
-								@temp385
-								(global1 name:)
-								temp364[local3]
-							)
-							(FileIO 4 @temp385)
+							kernel.DeviceInfo(8, @temp385, (global1 name:), [temp364
+								local3
+							])
+							kernel.FileIO(4, @temp385)
 							(self init: param1 @temp3 @temp364)
 						#endif
 					#end:case
@@ -353,16 +350,16 @@ class SRDialog(Dialog):
 					#end:case
 					case (local4 == 1):
 						(editI
-							cursor: (StrLen (StrCpy param1 @temp3[temp2]))
+							cursor: kernel.StrLen(kernel.StrCpy(param1, @temp3[temp2]))
 							draw:
 						)
 					#end:case
 				)
 			#endif
 		#end:loop
-		(DisposeScript 993)
+		kernel.DisposeScript(993)
 		(self dispose:)
-		(DisposeScript 990)
+		kernel.DisposeScript(990)
 		return temp1
 	#end:method
 
@@ -375,7 +372,7 @@ class Restore(SRDialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Message 0 990 20 0 0 1 @local65)
+		kernel.Message(0, 990, 20, 0, 0, 1, @local65)
 		text = @local65
 		(super init: &rest)
 	#end:method
@@ -389,7 +386,7 @@ class Save(SRDialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Message 0 990 21 0 0 1 @local65)
+		kernel.Message(0, 990, 21, 0, 0, 1, @local65)
 		text = @local65
 		(super init: &rest)
 	#end:method
@@ -405,19 +402,19 @@ class GetReplaceName(Dialog):
 		argc = sum(v is not None for v in locals().values())
 
 		window = global38
-		(Message 0 990 33 0 0 1 @temp1)
+		kernel.Message(0, 990, 33, 0, 0, 1, @temp1)
 		(text1 text: @temp1 setSize: moveTo: 4 4)
 		(self add: text1 setSize:)
 		(oldName text: param1 font: global23 setSize: moveTo: 4 nsBottom)
 		(self add: oldName setSize:)
-		(Message 0 990 34 0 0 1 @temp16)
+		kernel.Message(0, 990, 34, 0, 0, 1, @temp16)
 		(text2 text: @temp16 setSize: moveTo: 4 nsBottom)
 		(self add: text2 setSize:)
 		(newName text: param1 font: global23 setSize: moveTo: 4 nsBottom)
 		(self add: newName setSize:)
-		(Message 0 990 33 0 0 1 @temp31)
+		kernel.Message(0, 990, 33, 0, 0, 1, @temp31)
 		(button1 text: @temp31 nsLeft: 0 nsTop: 0 setSize:)
-		(Message 0 990 38 0 0 1 @temp46)
+		kernel.Message(0, 990, 38, 0, 0, 1, @temp46)
 		(button2 text: @temp46 nsLeft: 0 nsTop: 0 setSize:)
 		(button2 moveTo: (nsRight - ((button2 nsRight:) + 4)) nsBottom)
 		(button1
@@ -426,7 +423,7 @@ class GetReplaceName(Dialog):
 		(self add: button1 button2 setSize: center: open: 0 -1)
 		temp0 = (super doit: newName)
 		(self dispose:)
-		if (not (StrLen param1)):
+		if (not kernel.StrLen(param1)):
 			(localproc_2)
 			temp0 = 0
 		#endif

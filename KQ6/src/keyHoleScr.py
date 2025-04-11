@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 82
 import sci_sh
+import kernel
 import Main
 import n913
 import Inset
@@ -32,7 +33,7 @@ class keyHoleScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_1 49)
+		proc913_1(49)
 		(super init: &rest)
 	#end:method
 
@@ -41,11 +42,11 @@ class keyHoleScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 49)
+		proc913_2(49)
 		register = 0
 		(super dispose:)
 		(global1 handsOn:)
-		(DisposeScript 82)
+		kernel.DisposeScript(82)
 	#end:method
 
 	@classmethod
@@ -115,8 +116,8 @@ class keyHole(Inset):
 		argc = sum(v is not None for v in locals().values())
 
 		(global0 stopUpd:)
-		x = (160 - ((CelWide view loop cel) / 2))
-		y = (100 - ((CelHigh view loop cel) / 2))
+		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
+		y = (100 - (kernel.CelHigh(view, loop, cel) / 2))
 		(super init: &rest)
 	#end:method
 

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 942
 import sci_sh
+import kernel
 import Main
 import Motion
 import System
@@ -28,7 +29,7 @@ class MCyc(Cycle):
 					cycleDir = param4
 					caller = param3
 				#end:case
-				case (IsObject param3):
+				case kernel.IsObject(param3):
 					caller = param3
 				#end:case
 				else:
@@ -37,7 +38,7 @@ class MCyc(Cycle):
 			)
 		#endif
 		size = 0
-		while ((proc999_6 points size) != -32768): # inline for
+		while (proc999_6(points, size) != -32768): # inline for
 		#end:loop
 		if (cycleDir == 1):
 			value = 0
@@ -52,7 +53,7 @@ class MCyc(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((Abs (global88 - cycleCnt)) >= (client cycleSpeed:)):
+		if (kernel.Abs((global88 - cycleCnt)) >= (client cycleSpeed:)):
 			cycleCnt = global88
 			(self nextCel:)
 		#endif
@@ -64,10 +65,10 @@ class MCyc(Cycle):
 		argc = sum(v is not None for v in locals().values())
 
 		(client
-			loop: (proc999_6 points value)
-			cel: (proc999_6 points (value + 1))
-			x: (proc999_6 points (value + 2))
-			y: (proc999_6 points (value + 3))
+			loop: proc999_6(points, value)
+			cel: proc999_6(points, (value + 1))
+			x: proc999_6(points, (value + 2))
+			y: proc999_6(points, (value + 3))
 		)
 		(value += (cycleDir * 4))
 		if 

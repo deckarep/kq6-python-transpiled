@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 909
 import sci_sh
+import kernel
 import Main
 import Kq6Window
 import Print
@@ -32,7 +33,7 @@ class Kq6Talker(Talker):
 		keepWindow = 1
 		color = (Kq6Window color:)
 		back = (Kq6Window back:)
-		if (and (global90 == 2) argc (IsObject param1) raveName):
+		if (and (global90 == 2) argc kernel.IsObject(param1) raveName):
 			saveX = x
 			saveY = y
 			if (winPosn == 0):
@@ -51,9 +52,9 @@ class Kq6Talker(Talker):
 						param1
 						global169
 						(global90 == 2)
-						(not (Platform 5))
+						(not kernel.Platform(5))
 					)
-					(Platform 6)
+					kernel.Platform(6)
 				#endif
 			)
 		else:
@@ -63,9 +64,9 @@ class Kq6Talker(Talker):
 						(bust or param1)
 						global169
 						(global90 == 2)
-						(not (Platform 5))
+						(not kernel.Platform(5))
 					)
-					(Platform 6)
+					kernel.Platform(6)
 				#endif
 			)
 		#endif
@@ -104,9 +105,9 @@ class Kq6Narrator(Narrator):
 			temp0 = talkWidth
 		#endif
 		(temp1 = (global38 new:) color: color back: back)
-		temp2 = (StrAt param1 0)
+		temp2 = kernel.StrAt(param1, 0)
 		if (>= 90 temp2 65):
-			(StrAt param1 0 9)
+			kernel.StrAt(param1, 0, 9)
 			(temp3 = (DIcon new:)
 				view: strView
 				loop: (0 + ((temp2 - 65) / 13))

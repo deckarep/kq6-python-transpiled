@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 958
 import sci_sh
+import kernel
 
 # Public Export Declarations
 SCI.public_exports(
@@ -21,13 +22,13 @@ def proc958_0(param1 = None, param2 = None):
 	while (temp0 <= argc): # inline for
 		temp1 = param2[temp0]
 		if param1:
-			(Load param1 temp1)
+			kernel.Load(param1, temp1)
 		else:
-			(DisposeScript temp1)
+			kernel.DisposeScript(temp1)
 		#endif
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
-	(DisposeScript 958)
+	kernel.DisposeScript(958)
 #end:procedure
 

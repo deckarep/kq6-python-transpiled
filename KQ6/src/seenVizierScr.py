@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 221
 import sci_sh
+import kernel
 import Main
 import n913
 import Scaler
@@ -68,29 +69,29 @@ class seenVizierScr(Script):
 		match state = param1
 			case 0:
 				(global0 hide:)
-				(proc913_1 72)
-				((ScriptID 220 5) setCycle: End self)
+				proc913_1(72)
+				(kernel.ScriptID(220, 5) setCycle: End self)
 			#end:case
 			case 1:
 				(self setScript: egoScr)
 				ticks = 30
 			#end:case
 			case 2:
-				((ScriptID 220 6) init: setMotion: MoveTo 105 94 self)
+				(kernel.ScriptID(220, 6) init: setMotion: MoveTo 105 94 self)
 			#end:case
 			case 3:
-				((ScriptID 220 6)
+				(kernel.ScriptID(220, 6)
 					setPri: -1
 					setScale: Scaler 100 94 189 95
 					setMotion: DPath 115 107 117 111 118 115 self
 				)
 			#end:case
 			case 4:
-				((ScriptID 220 6) setHeading: 180 self)
+				(kernel.ScriptID(220, 6) setHeading: 180 self)
 			#end:case
 			case 5:
 				if script:
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
@@ -104,7 +105,7 @@ class seenVizierScr(Script):
 				(global91 say: 1 0 5 2 self)
 			#end:case
 			case 9:
-				((ScriptID 220 6) setMotion: MoveTo 117 111 self)
+				(kernel.ScriptID(220, 6) setMotion: MoveTo 117 111 self)
 			#end:case
 			case 10:
 				cycles = 2
@@ -113,14 +114,14 @@ class seenVizierScr(Script):
 				(global91 say: 1 0 5 3 self)
 			#end:case
 			case 12:
-				((ScriptID 220 6) setMotion: DPath 115 107 105 94 self)
+				(kernel.ScriptID(220, 6) setMotion: DPath 115 107 105 94 self)
 			#end:case
 			case 13:
-				((ScriptID 220 6) cue: self)
+				(kernel.ScriptID(220, 6) cue: self)
 			#end:case
 			case 14:
-				((ScriptID 220 6) dispose:)
-				(self setScript: (ScriptID 220 2) self)
+				(kernel.ScriptID(220, 6) dispose:)
+				(self setScript: kernel.ScriptID(220, 2) self)
 			#end:case
 			case 15:
 				(global91 say: 1 0 5 4 self)
@@ -128,7 +129,7 @@ class seenVizierScr(Script):
 			case 16:
 				(global0 reset: 3)
 				(global1 handsOn:)
-				((ScriptID 220 5) stopUpd:)
+				(kernel.ScriptID(220, 5) stopUpd:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -140,7 +141,7 @@ class seenVizierScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 221)
+		kernel.DisposeScript(221)
 	#end:method
 
 #end:class or instance

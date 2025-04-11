@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 822
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import n913
@@ -35,9 +36,9 @@ def localproc_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	if ((ScriptID 820 4) cycler:):
-		((ScriptID 820 4) setCycle: 0 stopUpd:)
-		((ScriptID 820 5) setCycle: 0 stopUpd:)
+	if (kernel.ScriptID(820, 4) cycler:):
+		(kernel.ScriptID(820, 4) setCycle: 0 stopUpd:)
+		(kernel.ScriptID(820, 5) setCycle: 0 stopUpd:)
 	#endif
 #end:procedure
 
@@ -46,9 +47,9 @@ def localproc_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	if (not ((ScriptID 820 4) cycler:)):
-		((ScriptID 820 4) startUpd: setCycle: Fwd)
-		((ScriptID 820 5) startUpd: setCycle: RandCycle)
+	if (not (kernel.ScriptID(820, 4) cycler:)):
+		(kernel.ScriptID(820, 4) startUpd: setCycle: Fwd)
+		(kernel.ScriptID(820, 5) startUpd: setCycle: RandCycle)
 	#endif
 #end:procedure
 
@@ -63,7 +64,7 @@ class boyGhostScript(Script):
 		(global1 handsOn:)
 		(super dispose:)
 		(boyGhost delete:)
-		(DisposeScript 822)
+		kernel.DisposeScript(822)
 	#end:method
 
 	@classmethod
@@ -73,7 +74,7 @@ class boyGhostScript(Script):
 
 		match state = param1
 			case 0:
-				(Load 128 763)
+				kernel.Load(128, 763)
 				cycles = 5
 			#end:case
 			case 1:
@@ -125,11 +126,11 @@ class boyGhostScript(Script):
 				#endif
 			#end:case
 			case 7:
-				(global2 setScript: (ScriptID 820 1))
+				(global2 setScript: kernel.ScriptID(820, 1))
 			#end:case
 			case 8:
 				(global1 handsOff:)
-				((ScriptID 80 0) setFlag: 709 -32768)
+				(kernel.ScriptID(80, 0) setFlag: 709 -32768)
 				(global91 say: 6 50 0 1 self)
 			#end:case
 			case 9:
@@ -162,7 +163,7 @@ class boyGhostScript(Script):
 				cycles = 4
 			#end:case
 			case 14:
-				((ScriptID 820 2)
+				(kernel.ScriptID(820, 2)
 					add: -1 6 50 0 2
 					add: -1 6 50 0 3
 					add: -1 6 50 0 4
@@ -240,7 +241,7 @@ class showNonHanky(Script):
 			#end:case
 			case 3:
 				if register:
-					((ScriptID 820 2)
+					(kernel.ScriptID(820, 2)
 						add: -1 6 2 16 2
 						add: -1 6 2 16 3
 						init: self
@@ -295,11 +296,11 @@ class cryBaby(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		local3 = (GetTime 1)
+		local3 = kernel.GetTime(1)
 		if (and (not local1) (local4 != local3) (global11 == global13)):
 			local4 = local3
 			if (local2 < 30):
-				local2++
+				local2.post('++')
 			#endif
 		#endif
 		(super doit:)
@@ -357,7 +358,7 @@ class cryBaby(Script):
 						cycles = 1
 					else:
 						state = 1
-						cycles = (Random 1 15)
+						cycles = kernel.Random(1, 15)
 					#endif
 				#end:case
 			#end:match
@@ -388,7 +389,7 @@ class noHanky(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				((ScriptID 820 2)
+				(kernel.ScriptID(820, 2)
 					add: -1 1 0 5 3 -1 10
 					add: -1 1 0 5 4 -1 10
 					init: self
@@ -399,7 +400,7 @@ class noHanky(Script):
 				(self setScript: justCryToMama self 5)
 			#end:case
 			case 5:
-				(proc913_4 global0 (ScriptID 820 3) self)
+				proc913_4(global0, kernel.ScriptID(820, 3), self)
 			#end:case
 			case 6:
 				(localproc_0)
@@ -416,30 +417,30 @@ class noHanky(Script):
 				(boyGhost setLoop: 0 cel: 7 x: 260 y: 118 setCycle: Beg self)
 			#end:case
 			case 10:
-				if ((global0 x:) <= ((ScriptID 820 3) approachX:)):
+				if ((global0 x:) <= (kernel.ScriptID(820, 3) approachX:)):
 					(global0
 						setMotion:
 							PolyPath
-							((ScriptID 820 3) approachX:)
-							((ScriptID 820 3) approachY:)
+							(kernel.ScriptID(820, 3) approachX:)
+							(kernel.ScriptID(820, 3) approachY:)
 							self
 					)
 				else:
-					state++
+					state.post('++')
 					cycles = 1
 				#endif
 			#end:case
 			case 11:
-				(proc913_4 global0 (ScriptID 820 3) self)
+				proc913_4(global0, kernel.ScriptID(820, 3), self)
 			#end:case
 			case 12:
 				(global0 setPri: 9)
 				(global105 number: 821 loop: 1 play:)
-				((ScriptID 820 3) setPri: 10 setCycle: End self)
+				(kernel.ScriptID(820, 3) setPri: 10 setCycle: End self)
 			#end:case
 			case 13:
 				(localproc_0)
-				((ScriptID 820 3) stopUpd:)
+				(kernel.ScriptID(820, 3) stopUpd:)
 				cycles = 4
 			#end:case
 			case 14:
@@ -447,7 +448,7 @@ class noHanky(Script):
 			#end:case
 			case 15:
 				(global105 stop:)
-				((ScriptID 820 2)
+				(kernel.ScriptID(820, 2)
 					add: -1 1 0 5 9
 					add: -1 1 0 5 10
 					add: -1 1 0 5 11
@@ -458,7 +459,7 @@ class noHanky(Script):
 			#end:case
 			case 16:
 				(localproc_1)
-				((ScriptID 820 3) setCycle: Beg self)
+				(kernel.ScriptID(820, 3) setCycle: Beg self)
 				(global105 number: 822 loop: 1 play:)
 			#end:case
 			case 17:

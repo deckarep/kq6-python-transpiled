@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 711
 import sci_sh
+import kernel
 import Main
 import Motion
 import Actor
@@ -24,7 +25,7 @@ class magicDoorAppears(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 711)
+		kernel.DisposeScript(711)
 	#end:method
 
 	@classmethod

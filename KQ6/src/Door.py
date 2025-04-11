@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 954
 import sci_sh
+import kernel
 import Main
 import PolyPath
 import Polygon
@@ -53,9 +54,9 @@ class Door(Prop):
 			#endif
 		else:
 			(global95 delete: doorPoly)
-			cel = ((NumCels self) - 1)
+			cel = (kernel.NumCels(self) - 1)
 			if doubleDoor:
-				(doubleDoor setCel: ((NumCels doubleDoor) - 1))
+				(doubleDoor setCel: (kernel.NumCels(doubleDoor) - 1))
 			#endif
 		#endif
 		if (state == 2):

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 108
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import System
@@ -39,8 +40,8 @@ class rm108(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(ShowMovie 3)
-		(ShowMovie 6)
+		kernel.ShowMovie(3)
+		kernel.ShowMovie(6)
 		(global69 disable: height: 0 activateHeight: 0)
 		(global1 restart: 1)
 	#end:method
@@ -72,15 +73,15 @@ class sShowMovieWin(Script):
 				cycles = 10
 			#end:case
 			case 1:
-				if (not (ShowMovie 0 r"""toon.avi""")):
-					(ShowMovie 1 0 0)
-					(ShowMovie 2 0 self)
+				if (not kernel.ShowMovie(0, r"""toon.avi""")):
+					kernel.ShowMovie(1, 0, 0)
+					kernel.ShowMovie(2, 0, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				(ShowMovie 6)
+				kernel.ShowMovie(6)
 				cycles = 1
 			#end:case
 			case 3:

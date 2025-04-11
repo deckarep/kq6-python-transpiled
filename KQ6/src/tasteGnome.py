@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 4561
 import sci_sh
+import kernel
 import Main
 import rm450
 import Motion
@@ -42,7 +43,7 @@ class tasteGnome(Gnome):
 		if (param1 == 1):
 			(global91 say: noun param1 22 1 0 450)
 		else:
-			((ScriptID 450 6) setScript: tasteScript 0 param1)
+			(kernel.ScriptID(450, 6) setScript: tasteScript 0 param1)
 		#endif
 	#end:method
 
@@ -64,7 +65,7 @@ class tasteInit(Script):
 				(global91 say: 17 0 39 1 self 450)
 			#end:case
 			case 2:
-				(((ScriptID 450 6) script:) cue:)
+				((kernel.ScriptID(450, 6) script:) cue:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -101,7 +102,7 @@ class tasteScript(Script):
 				#end:match
 			#end:case
 			case 1:
-				(self setScript: (ScriptID 450 2) self register)
+				(self setScript: kernel.ScriptID(450, 2) self register)
 			#end:case
 			case 2:
 				(global104 number: 454 setLoop: 1 play:)
@@ -119,9 +120,9 @@ class tasteScript(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 5:
-				if ((ScriptID 40 0) alexX:):
+				if (kernel.ScriptID(40, 0) alexX:):
 					(global0
-						posn: ((ScriptID 40 0) alexX:) ((ScriptID 40 0) alexY:)
+						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
 					)
 				#endif
 				if ((global0 view:) != 900):
@@ -135,7 +136,7 @@ class tasteScript(Script):
 			case 7:
 				(global0 put: 23 450)
 				(global69 curIcon: (global69 at: 0))
-				((ScriptID 450 6) setScript: (ScriptID 450 3) 0 tasteGnome)
+				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 3) 0 tasteGnome)
 			#end:case
 		#end:match
 	#end:method
@@ -153,7 +154,7 @@ class failScript(Script):
 		match state = param1
 			case 0:
 				(cond
-					case (((ScriptID 40 0) alexInvisible:) or (register == 31)):
+					case ((kernel.ScriptID(40, 0) alexInvisible:) or (register == 31)):
 						(self state: (state + 1) cue:)
 					#end:case
 					case register:
@@ -165,9 +166,9 @@ class failScript(Script):
 				)
 			#end:case
 			case 1:
-				if ((ScriptID 40 0) alexX:):
+				if (kernel.ScriptID(40, 0) alexX:):
 					(global0
-						posn: ((ScriptID 40 0) alexX:) ((ScriptID 40 0) alexY:)
+						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
 					)
 				#endif
 				if ((global0 view:) != 900):
@@ -197,7 +198,7 @@ class failScript(Script):
 				#endif
 			#end:case
 			case 6:
-				(self setScript: (ScriptID 450 4) self register)
+				(self setScript: kernel.ScriptID(450, 4) self register)
 			#end:case
 			case 7:
 				(global91 say: 16 0 31 1 self 450)
@@ -207,7 +208,7 @@ class failScript(Script):
 				cycles = 10
 			#end:case
 			case 9:
-				((ScriptID 450 6) setScript: (ScriptID 450 5))
+				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 5))
 			#end:case
 		#end:match
 	#end:method

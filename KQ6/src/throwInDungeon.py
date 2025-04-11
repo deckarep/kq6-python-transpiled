@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 821
 import sci_sh
+import kernel
 import Main
 import n913
 import DPath
@@ -34,7 +35,7 @@ class throwInDungeon(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 821)
+		kernel.DisposeScript(821)
 	#end:method
 
 	@classmethod
@@ -45,7 +46,7 @@ class throwInDungeon(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 0) dungeonEntered: 3)
+				(kernel.ScriptID(80, 0) dungeonEntered: 3)
 				(global0
 					normal: 0
 					view: 825
@@ -69,16 +70,16 @@ class throwInDungeon(Script):
 				(global105 number: 960 setLoop: 1 play: self)
 			#end:case
 			case 3:
-				if (not ((ScriptID 80 0) tstFlag: 711 64)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 64)):
 					(global91 say: 1 0 8 0 self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 4:
-				if (not ((ScriptID 80 0) tstFlag: 711 64)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 64)):
 					(global105 number: 902 loop: 1 play:)
-					((ScriptID 820 3) setCycle: Beg self)
+					(kernel.ScriptID(820, 3) setCycle: Beg self)
 				else:
 					(state += 2)
 					cycles = 1
@@ -93,27 +94,27 @@ class throwInDungeon(Script):
 			case 7:
 				local0 = 0
 				(cond
-					case ((ScriptID 80 0) tstFlag: 709 128):
+					case (kernel.ScriptID(80, 0) tstFlag: 709 128):
 						state = 9
 						(self setScript: beautyEntrance self)
 					#end:case
-					case ((ScriptID 80 0) tstFlag: 709 4096):
-						((ScriptID 80 0) clrFlag: 709 4096)
+					case (kernel.ScriptID(80, 0) tstFlag: 709 4096):
+						(kernel.ScriptID(80, 0) clrFlag: 709 4096)
 						(self setScript: searchEgo self)
 					#end:case
-					case ((ScriptID 80 0) tstFlag: 711 32):
-						((ScriptID 80 0) clrFlag: 711 32)
+					case (kernel.ScriptID(80, 0) tstFlag: 711 32):
+						(kernel.ScriptID(80, 0) clrFlag: 711 32)
 						local0 = (global0 has: 44)
-						((ScriptID 820 3) setPri: -1 stopUpd:)
+						(kernel.ScriptID(820, 3) setPri: -1 stopUpd:)
 						(self setScript: afterClownHelpedEgoEscape self)
 					#end:case
 					case 
 						(and
-							(proc913_0 10)
-							(not ((ScriptID 80 0) tstFlag: 709 16384))
+							proc913_0(10)
+							(not (kernel.ScriptID(80, 0) tstFlag: 709 16384))
 						):
-						((ScriptID 80 0) setFlag: 709 16384 1)
-						((ScriptID 80 0) setFlag: 711 32)
+						(kernel.ScriptID(80, 0) setFlag: 709 16384 1)
+						(kernel.ScriptID(80, 0) setFlag: 711 32)
 						(self register: jolloHelpsEgo setScript: jolloHelpsEgo)
 					#end:case
 					case (global0 has: 44):
@@ -126,7 +127,7 @@ class throwInDungeon(Script):
 				)
 			#end:case
 			case 8:
-				((ScriptID 80 0) setFlag: 711 64)
+				(kernel.ScriptID(80, 0) setFlag: 711 64)
 				if (not register):
 					register = self
 				#endif
@@ -147,11 +148,11 @@ class throwInDungeon(Script):
 				cycles = 3
 			#end:case
 			case 11:
-				(global2 setScript: (ScriptID 820 1))
+				(global2 setScript: kernel.ScriptID(820, 1))
 			#end:case
 			case 12:
 				(global1 handsOn:)
-				((ScriptID 820 3) setPri: -1 stopUpd:)
+				(kernel.ScriptID(820, 3) setPri: -1 stopUpd:)
 				(global0 reset: 1)
 				(self dispose:)
 			#end:case
@@ -174,11 +175,11 @@ class searchEgo(Script):
 				(global91 say: 1 0 13 0 self)
 			#end:case
 			case 1:
-				((ScriptID 820 3) setCycle: Beg self)
+				(kernel.ScriptID(820, 3) setCycle: Beg self)
 			#end:case
 			case 2:
 				(global105 number: 822 loop: 1 play:)
-				((ScriptID 820 3) setPri: -1 stopUpd:)
+				(kernel.ScriptID(820, 3) setPri: -1 stopUpd:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -212,7 +213,7 @@ class beautyEntrance(Script):
 				cycles = 4
 			#end:case
 			case 5:
-				((ScriptID 820 3) setPri: -1 stopUpd:)
+				(kernel.ScriptID(820, 3) setPri: -1 stopUpd:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -233,7 +234,7 @@ class afterClownHelpedEgoEscape(Script):
 				(global91 say: 1 0 11 0 self)
 			#end:case
 			case 1:
-				((ScriptID 820 3) setCycle: Beg self)
+				(kernel.ScriptID(820, 3) setCycle: Beg self)
 			#end:case
 			case 2:
 				(global105 number: 822 loop: 1 play:)
@@ -267,7 +268,7 @@ class jolloHelpsEgo(Script):
 			#end:case
 			case 4:
 				(global105 number: 821 loop: 1 play:)
-				((ScriptID 820 3) setCycle: End self)
+				(kernel.ScriptID(820, 3) setCycle: End self)
 			#end:case
 			case 5:
 				(global105 stop:)
@@ -287,7 +288,7 @@ class jolloHelpsEgo(Script):
 				(global91 say: 1 0 9 2 self)
 			#end:case
 			case 8:
-				(proc913_4 global0 jollo self)
+				proc913_4(global0, jollo, self)
 			#end:case
 			case 9:
 				cycles = 5

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 936
 import sci_sh
+import kernel
 import Window
 
 @SCI.procedure
@@ -12,63 +13,36 @@ def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, para
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = (GetPort)
-	(SetPort 0)
-	(Graph 11 param1 param2 (param3 + 1) (param4 + 1) param13 param5 param12)
+	temp0 = kernel.GetPort()
+	kernel.SetPort(0)
+	kernel.Graph(11, param1, param2, (param3 + 1), (param4 + 1), param13, param5, param12)
 	(param1 -= param10)
 	(param2 -= param10)
 	(param4 += param10)
 	(param3 += param10)
-	(Graph 11 param1 param2 (param1 + param10) param4 param13 param6 param12)
-	(Graph 11 (param3 - param10) param2 param3 param4 param13 param8 param12)
+	kernel.Graph(11, param1, param2, (param1 + param10), param4, param13, param6, param12)
+	kernel.Graph(11, (param3 - param10), param2, param3, param4, param13, param8, param12)
 	temp1 = 0
 	while (temp1 < param10): # inline for
-		(Graph
-			4
-			(param1 + temp1)
-			(param2 + temp1)
-			(param3 - (temp1 + 1))
-			(param2 + temp1)
-			param7
-			param12
-			-1
-		)
-		(Graph
-			4
-			(param1 + temp1)
-			(param4 - (temp1 + 1))
-			(param3 - (temp1 + 1))
-			(param4 - (temp1 + 1))
-			param9
-			param12
-			-1
-		)
+		kernel.Graph(4, (param1 + temp1), (param2 + temp1), (-
+			param3
+			(temp1 + 1)
+		), (param2 + temp1), param7, param12, -1)
+		kernel.Graph(4, (param1 + temp1), (param4 - (temp1 + 1)), (-
+			param3
+			(temp1 + 1)
+		), (param4 - (temp1 + 1)), param9, param12, -1)
 		# for:reinit
-		temp1++
+		temp1.post('++')
 	#end:loop
 	if param11:
-		(Graph
-			11
-			(param1 + param11)
+		kernel.Graph(11, (param1 + param11), param4, (param3 + param11), (+
 			param4
-			(param3 + param11)
-			(param4 + param11)
-			param13
-			0
-			param12
-		)
-		(Graph
-			11
-			param3
-			(param2 + param11)
-			(param3 + param11)
-			param4
-			param13
-			0
-			param12
-		)
+			param11
+		), param13, 0, param12)
+		kernel.Graph(11, param3, (param2 + param11), (param3 + param11), param4, param13, 0, param12)
 	#endif
-	(SetPort temp0)
+	kernel.SetPort(temp0)
 #end:procedure
 
 @SCI.procedure
@@ -121,7 +95,7 @@ class BorderWindow(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(SetPort 0)
+		kernel.SetPort(0)
 		temp1 = 1
 		if (priority != -1):
 			(temp1 |= 0x0002)
@@ -147,10 +121,10 @@ class BorderWindow(SysWindow):
 			priority
 			temp1
 		)
-		temp0 = (GetPort)
-		(SetPort 0)
-		(Graph 12 lsTop lsLeft lsBottom lsRight 1)
-		(SetPort temp0)
+		temp0 = kernel.GetPort()
+		kernel.SetPort(0)
+		kernel.Graph(12, lsTop, lsLeft, lsBottom, lsRight, 1)
+		kernel.SetPort(temp0)
 	#end:method
 
 	@classmethod
@@ -159,7 +133,7 @@ class BorderWindow(SysWindow):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(SetPort 0)
+		kernel.SetPort(0)
 	#end:method
 
 #end:class or instance
@@ -219,17 +193,13 @@ class InsetWindow(BorderWindow):
 			priority
 			temp0
 		)
-		temp1 = (GetPort)
-		(SetPort 0)
-		(Graph
-			12
-			(temp2 - bevWid)
-			(temp3 - bevWid)
-			(temp4 + bevWid)
-			(temp5 + bevWid)
-			1
-		)
-		(SetPort temp1)
+		temp1 = kernel.GetPort()
+		kernel.SetPort(0)
+		kernel.Graph(12, (temp2 - bevWid), (temp3 - bevWid), (temp4 + bevWid), (+
+			temp5
+			bevWid
+		), 1)
+		kernel.SetPort(temp1)
 	#end:method
 
 #end:class or instance

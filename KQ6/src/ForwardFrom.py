@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 231
 import sci_sh
+import kernel
 import Motion
 
 # Public Export Declarations
@@ -38,7 +39,7 @@ class ForwardFrom(Fwd):
 		argc = sum(v is not None for v in locals().values())
 
 		(client cel: startAt)
-		if (not cycleCount--):
+		if (not cycleCount.post('--')):
 			completed = 1
 			(self motionCue:)
 		#endif

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 993
 import sci_sh
+import kernel
 import System
 
 class File(Obj):
@@ -19,10 +20,10 @@ class File(Obj):
 		(= handle
 			match argc
 				case 0:
-					(FileIO 0 name 0)
+					kernel.FileIO(0, name, 0)
 				#end:case
 				case 1:
-					(FileIO 0 name param1)
+					kernel.FileIO(0, name, param1)
 				#end:case
 				else: 0#end:else
 			#end:match
@@ -43,7 +44,7 @@ class File(Obj):
 		#endif
 		(return
 			if handle:
-				(FileIO 3 handle param1 param2)
+				kernel.FileIO(3, handle, param1, param2)
 			else:
 				0
 			#endif
@@ -61,11 +62,11 @@ class File(Obj):
 		if handle:
 			temp0 = 0
 			while (temp0 < argc): # inline for
-				if (not (FileIO 6 handle param1[temp0])):
+				if (not kernel.FileIO(6, handle, param1[temp0])):
 					return 0
 				#endif
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		#endif
 		return 1
@@ -84,7 +85,7 @@ class File(Obj):
 		#endif
 		(return
 			if handle:
-				(FileIO 2 handle param1 param2)
+				kernel.FileIO(2, handle, param1, param2)
 			else:
 				0
 			#endif
@@ -104,7 +105,7 @@ class File(Obj):
 		#endif
 		(return
 			if handle:
-				(FileIO 5 param1 param2 handle)
+				kernel.FileIO(5, param1, param2, handle)
 			else:
 				0
 			#endif
@@ -116,7 +117,7 @@ class File(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not temp0 = (FileIO 11 name param1)):
+		if (not temp0 = kernel.FileIO(11, name, param1)):
 			name = param1
 		#endif
 		return temp0
@@ -133,7 +134,7 @@ class File(Obj):
 		#endif
 		(return
 			if handle:
-				(FileIO 7 handle param1 temp0)
+				kernel.FileIO(7, handle, param1, temp0)
 			else:
 				0
 			#endif
@@ -146,7 +147,7 @@ class File(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if handle:
-			(FileIO 1 handle)
+			kernel.FileIO(1, handle)
 			handle = 0
 		#endif
 	#end:method
@@ -159,7 +160,7 @@ class File(Obj):
 		if handle:
 			(self close:)
 		#endif
-		(FileIO 4 name)
+		kernel.FileIO(4, name)
 	#end:method
 
 	@classmethod
@@ -176,7 +177,7 @@ class File(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Format param1 r"""File: %s""" name)
+		kernel.Format(param1, r"""File: %s""", name)
 	#end:method
 
 #end:class or instance

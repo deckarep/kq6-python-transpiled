@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 405
 import sci_sh
+import kernel
 import Main
 import rLab
 import n402
@@ -37,7 +38,7 @@ class rm405(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 1):
+		if proc913_0(1):
 			(global2
 				addObstacle:
 					((Polygon new:)
@@ -91,22 +92,22 @@ class rm405(LabRoom):
 					)
 			)
 		else:
-			(proc402_2)
+			proc402_2()
 		#endif
-		((ScriptID 30 0) labCoords: 117)
+		(kernel.ScriptID(30, 0) labCoords: 117)
 		(super init: &rest)
-		if ((not (proc913_0 1)) and (global12 != 400)):
+		if ((not proc913_0(1)) and (global12 != 400)):
 			(self setScript: closeEntranceDoor)
 		else:
 			if (global12 != 400):
-				((ScriptID 30 0) prevEdgeHit: 1)
+				(kernel.ScriptID(30, 0) prevEdgeHit: 1)
 			#endif
-			(global2 setScript: (ScriptID 30 1))
+			(global2 setScript: kernel.ScriptID(30, 1))
 		#endif
-		((ScriptID 30 0) initCrypt: 2)
-		((ScriptID 30 7) addToPic:)
-		((ScriptID 30 5) addToPic:)
-		((ScriptID 30 9) addToPic:)
+		(kernel.ScriptID(30, 0) initCrypt: 2)
+		(kernel.ScriptID(30, 7) addToPic:)
+		(kernel.ScriptID(30, 5) addToPic:)
+		(kernel.ScriptID(30, 9) addToPic:)
 		(door addToPic:)
 		(lBlock addToPic:)
 		(rBlock addToPic:)
@@ -120,7 +121,7 @@ class rm405(LabRoom):
 		(cond
 			case (global2 script:):#end:case
 			case ((global0 edgeHit:) == 3):
-				((ScriptID 30 0) prevEdgeHit: 3)
+				(kernel.ScriptID(30, 0) prevEdgeHit: 3)
 				(global2 setScript: walkOut)
 			#end:case
 		)
@@ -134,7 +135,7 @@ class rm405(LabRoom):
 
 		match param1
 			case 1:
-				if (proc913_0 1):
+				if proc913_0(1):
 					(global91 say: 2 1 14 1 0 400)
 				else:
 					(global91 say: 2 1 15 1 0 400)
@@ -167,7 +168,7 @@ class door(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(self approachVerbs: 5)
-		if (proc913_0 1):
+		if proc913_0(1):
 			(self x: 259)
 		else:
 			(self x: 160)
@@ -182,14 +183,14 @@ class door(Prop):
 
 		match param1
 			case 5:
-				if (not (proc913_0 1)):
+				if (not proc913_0(1)):
 					(global91 say: 11 5 15 1 0 400)
 				else:
 					(global91 say: 11 5 14 1 0 400)
 				#endif
 			#end:case
 			case 1:
-				if (proc913_0 1):
+				if proc913_0(1):
 					(global91 say: 11 1 14 1 0 400)
 				else:
 					(global91 say: 11 1 15 1 0 400)
@@ -199,7 +200,7 @@ class door(Prop):
 				(super doVerb: param1 &rest)
 			#end:case
 			else:
-				if (proc913_0 1):
+				if proc913_0(1):
 					(global91 say: 11 0 14 1 0 400)
 				else:
 					(global91 say: 11 0 15 1 0 400)
@@ -310,7 +311,7 @@ class closeEntranceDoor(Script):
 				(global105 number: 434 setLoop: 1 play: self)
 			#end:case
 			case 3:
-				if (not (proc913_0 1)):
+				if (not proc913_0(1)):
 					(global91 say: 1 0 11 0 self 400)
 				else:
 					(self cue:)

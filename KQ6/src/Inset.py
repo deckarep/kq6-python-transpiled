@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 923
 import sci_sh
+import kernel
 import Main
 import Actor
 import System
@@ -97,13 +98,14 @@ class Inset(Code):
 
 		if (picture > 0):
 			if global169:
-				(DrawPic picture 15 (0 if anOverlay else 1))
+				kernel.DrawPic(picture, 15, (0 if anOverlay else 1))
 			else:
-				(DrawPic
-					picture
-					(100 if anOverlay else style)
-					(0 if anOverlay else 1)
-				)
+				kernel.DrawPic(picture, (100 if anOverlay else style), if 
+					anOverlay
+					0
+				else:
+					1
+				#endif)
 			#endif
 		#endif
 		if view:
@@ -165,7 +167,7 @@ class Inset(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			temp0 = (param1 x:)
 			temp1 = (param1 y:)
 		else:
@@ -187,7 +189,7 @@ class Inset(Code):
 		if (modNum == -1):
 			modNum = global11
 		#endif
-		if (global90 and (Message 0 modNum noun param1 0 1)):
+		if (global90 and kernel.Message(0, modNum, noun, param1, 0, 1)):
 			(global91 say: noun param1 0 0 0 modNum)
 		#endif
 	#end:method
@@ -201,7 +203,7 @@ class Inset(Code):
 			(script doit:)
 		#endif
 		if (not hideTheCast):
-			(Animate (oldCast elements:) 0)
+			kernel.Animate((oldCast elements:), 0)
 		#endif
 	#end:method
 
@@ -213,24 +215,24 @@ class Inset(Code):
 		(cond
 			case view:
 				if global169:
-					(DrawPic (global2 picture:) 15)
+					kernel.DrawPic((global2 picture:), 15)
 				else:
-					(DrawPic (global2 picture:) 100)
+					kernel.DrawPic((global2 picture:), 100)
 				#endif
 			#end:case
 			case global169:
-				(DrawPic (global2 picture:) 15)
+				kernel.DrawPic((global2 picture:), 15)
 			#end:case
 			else:
-				(DrawPic (global2 picture:) style)
+				kernel.DrawPic((global2 picture:), style)
 			#end:else
 		)
 		(global2 style: oldStyle)
 		if (global36 != -1):
 			if global169:
-				(DrawPic global36 15 0)
+				kernel.DrawPic(global36, 15, 0)
 			else:
-				(DrawPic global36 100 0)
+				kernel.DrawPic(global36, 100, 0)
 			#endif
 		#endif
 		if (global2 inset:):
@@ -294,7 +296,7 @@ class Inset(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		script = (param1 if argc else 0)
@@ -313,9 +315,9 @@ class Inset(Code):
 		while (temp0 < (global5 size:)):
 
 			((global5 at: temp0) z: (((global5 at: temp0) z:) + temp1))
-			temp0++
+			temp0.post('++')
 		#end:loop
-		(Animate (global5 elements:) 0)
+		kernel.Animate((global5 elements:), 0)
 	#end:method
 
 #end:class or instance

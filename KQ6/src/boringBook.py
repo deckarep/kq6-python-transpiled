@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 273
 import sci_sh
+import kernel
 import Main
 import Motion
 import Actor
@@ -27,7 +28,7 @@ class takeBoringBookScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				register = (1 if (((ScriptID 270 2) y:) < 140) else 0)
+				register = (1 if ((kernel.ScriptID(270, 2) y:) < 140) else 0)
 				(global0
 					setSpeed: 6
 					view: 278
@@ -52,9 +53,9 @@ class takeBoringBookScr(Script):
 			#end:case
 			case 5:
 				if register:
-					((ScriptID 270 2) view: 276 cel: 0 setCycle: CT 4 1 self)
+					(kernel.ScriptID(270, 2) view: 276 cel: 0 setCycle: CT 4 1 self)
 				else:
-					state++
+					state.post('++')
 					(self cue:)
 				#endif
 			#end:case
@@ -66,14 +67,14 @@ class takeBoringBookScr(Script):
 			#end:case
 			case 8:
 				if register:
-					((ScriptID 270 2) setCycle: Beg self)
+					(kernel.ScriptID(270, 2) setCycle: Beg self)
 				else:
-					state++
+					state.post('++')
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
-				((ScriptID 270 2) view: 276 loop: 0 cel: 0)
+				(kernel.ScriptID(270, 2) view: 276 loop: 0 cel: 0)
 				cycles = 1
 			#end:case
 			case 10:
@@ -82,7 +83,7 @@ class takeBoringBookScr(Script):
 				cycles = 2
 			#end:case
 			case 11:
-				(UnLoad 128 278)
+				kernel.UnLoad(128, 278)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -95,7 +96,7 @@ class takeBoringBookScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 273)
+		kernel.DisposeScript(273)
 	#end:method
 
 #end:class or instance
@@ -137,7 +138,7 @@ class boringBook(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 270 1) doVerb: param1 &rest)
+		(kernel.ScriptID(270, 1) doVerb: param1 &rest)
 	#end:method
 
 	@classmethod

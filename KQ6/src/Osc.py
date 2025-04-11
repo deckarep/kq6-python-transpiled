@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 939
 import sci_sh
+import kernel
 import Motion
 
 class Osc(Cycle):
@@ -31,7 +32,7 @@ class Osc(Cycle):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((temp0 = (self nextCel:) > (client lastCel:)) or (temp0 < 0)):
-			cycleDir = (- cycleDir)
+			cycleDir = -cycleDir
 			(self cycleDone:)
 		else:
 			(client cel: temp0)
@@ -46,7 +47,7 @@ class Osc(Cycle):
 		if howManyCycles:
 			(client cel: (self nextCel:))
 			if (howManyCycles > 0):
-				howManyCycles--
+				howManyCycles.post('--')
 			#endif
 		else:
 			completed = 1

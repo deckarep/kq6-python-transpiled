@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 87
 import sci_sh
+import kernel
 import Main
 import n913
 import LoadMany
@@ -70,7 +71,7 @@ class egoDrinks(Script):
 				(global91 say: 1 14 0 2 self 0)
 			#end:case
 			case 6:
-				(client setScript: (ScriptID 87 1))
+				(client setScript: kernel.ScriptID(87, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -106,7 +107,7 @@ class drinkMeScript(Script):
 				(global72 = (EventHandler new:) name: r"""newKH""" add: self)
 				(global74 = (EventHandler new:) name: r"""newDH""" add: self)
 				(global93 = (EventHandler new:) name: r"""newWH""" add:)
-				(DrawPic 981 9)
+				kernel.DrawPic(981, 9)
 				cycles = 2
 			#end:case
 			case 1:
@@ -125,10 +126,10 @@ class drinkMeScript(Script):
 				)
 			#end:case
 			case 3:
-				(Palette 1 981)
+				kernel.Palette(1, 981)
 			#end:case
 			case 4:
-				(Palette 1 97)
+				kernel.Palette(1, 97)
 				if ((localMusic prevSignal:) == -1):
 					cycles = 1
 				#endif
@@ -140,7 +141,7 @@ class drinkMeScript(Script):
 				cycles = 1
 			#end:case
 			case 6:
-				(Palette 1 981)
+				kernel.Palette(1, 981)
 				cycles = 1
 			#end:case
 			case 7:
@@ -189,7 +190,7 @@ class drinkMeScript(Script):
 				global74 = local5
 				global93 = local6
 				global10 = local2
-				(DrawPic (global2 picture:) 9)
+				kernel.DrawPic((global2 picture:), 9)
 				(global0 reset: 2)
 				cycles = 3
 			#end:case
@@ -205,10 +206,10 @@ class drinkMeScript(Script):
 			case 19:
 				(global69 enable:)
 				(global1 handsOn: killSound: 0)
-				(proc913_1 153)
+				proc913_1(153)
 				(localMusic stop: dispose:)
 				(self dispose:)
-				(proc958_0 0 87)
+				proc958_0(0, 87)
 			#end:case
 		#end:match
 	#end:method

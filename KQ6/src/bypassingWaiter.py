@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 731
 import sci_sh
+import kernel
 import Main
 import rm730
 import n913
@@ -26,7 +27,7 @@ class bypassingWaiter(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 731)
+		kernel.DisposeScript(731)
 	#end:method
 
 	@classmethod
@@ -37,7 +38,7 @@ class bypassingWaiter(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 59)
+				proc913_1(59)
 				cycles = 2
 			#end:case
 			case 1:
@@ -69,7 +70,7 @@ class bypassingWaiter(Script):
 			#end:case
 			case 10:
 				(global1 handsOn:)
-				(proc913_2 59)
+				proc913_2(59)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -99,7 +100,7 @@ class convScript(Script):
 				(global0 setHeading: 315)
 				(global105 number: 901 loop: 1 play:)
 				(global104 number: 731 loop: -1 play:)
-				((ScriptID 730 1) setCycle: End self)
+				(kernel.ScriptID(730, 1) setCycle: End self)
 			#end:case
 			case 1:
 				(global105 stop:)
@@ -115,7 +116,7 @@ class convScript(Script):
 				)
 			#end:case
 			case 3:
-				((ScriptID 730 1) cel: 0 stopUpd:)
+				(kernel.ScriptID(730, 1) cel: 0 stopUpd:)
 				(global104 stop:)
 				(global105 number: 902 loop: 1 play:)
 				(waiter cel: 5 setCycle: End self)
@@ -150,16 +151,16 @@ class convScript(Script):
 					setCycle: End self
 				)
 				(global105 number: 901 loop: 1 play:)
-				((ScriptID 730 2) hide:)
+				(kernel.ScriptID(730, 2) hide:)
 			#end:case
 			case 9:
 				(waiter dispose: setCycle: 0)
-				((ScriptID 730 2) show: cel: 3 setCycle: Beg self)
+				(kernel.ScriptID(730, 2) show: cel: 3 setCycle: Beg self)
 			#end:case
 			case 10:
 				(global105 number: 902 loop: 1 play:)
-				((ScriptID 730 2) stopUpd:)
-				((ScriptID 730 1) stopUpd:)
+				(kernel.ScriptID(730, 2) stopUpd:)
+				(kernel.ScriptID(730, 1) stopUpd:)
 				(self dispose:)
 			#end:case
 			case 11:
@@ -189,7 +190,7 @@ class convScript(Script):
 			case 16:
 				(global0 reset: 0 posn: 260 165)
 				(global0 put: 5)
-				(proc730_3)
+				proc730_3()
 				(self dispose:)
 			#end:case
 		#end:match

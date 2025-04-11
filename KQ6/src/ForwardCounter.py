@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 956
 import sci_sh
+import kernel
 import Motion
 
 class ForwardCounter(Fwd):
@@ -30,7 +31,7 @@ class ForwardCounter(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if count--:
+		if count.post('--'):
 			(super cycleDone:)
 		else:
 			completed = 1

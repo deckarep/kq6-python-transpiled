@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1001
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -29,7 +30,7 @@ class Alex(Kq6Talker):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case ((proc913_0 59) and (global11 != 850)):
+			case (proc913_0(59) and (global11 != 850)):
 				(self cel: 1 x: 5 y: 5 textX: 76 textY: 8 talkWidth: 213)
 				(super init: 0 0 0 &rest)
 			#end:case
@@ -41,7 +42,7 @@ class Alex(Kq6Talker):
 				(and
 					(global11 == 406)
 					((global0 view:) != 900)
-					(not (proc913_0 1))
+					(not proc913_0(1))
 				):
 				(self cel: 1 x: 5 y: 5 textX: 1 textY: 8 talkWidth: 213)
 				(super init: 0 0 0 &rest)
@@ -95,19 +96,19 @@ class Alex(Kq6Talker):
 				)
 				(super init: 0 0 tMouth690 &rest)
 			#end:case
-			case (proc913_0 102):
+			case proc913_0(102):
 				(self cel: 1 x: 176 y: 60 textX: 20 textY: -40 talkWidth: 100)
 				(tEyes view: 7832 loop: 12 cel: 0 nsLeft: 0 nsTop: 0)
 				(tMouth view: 7832 loop: 11 cel: 0 nsLeft: 0 nsTop: 6)
 				(super init: 0 tEyes tMouth &rest)
 			#end:case
-			case (proc913_0 99):
+			case proc913_0(99):
 				(self cel: 1 x: 44 y: 41 textX: -10 textY: 71 talkWidth: 100)
 				(tEyes view: 161 loop: 4 cel: 0 nsLeft: 0 nsTop: 0)
 				(tMouth view: 161 loop: 3 cel: 0 nsLeft: 2 nsTop: 10)
 				(super init: 0 tEyes tMouth &rest)
 			#end:case
-			case (proc913_0 150):
+			case proc913_0(150):
 				(self cel: 0 x: 5 y: 5 textX: 78 textY: 8 talkWidth: 213)
 				(tEyes view: 890 loop: 2 nsTop: 27 nsLeft: 27)
 				(super init: tBust tEyes 0 &rest)
@@ -115,14 +116,14 @@ class Alex(Kq6Talker):
 			else:
 				if 
 					(or
-						(proc999_5 global11 750 290 220 260)
+						proc999_5(global11, 750, 290, 220, 260)
 						(and
 							((global0 view:) == 900)
 							(or
-								(proc999_5 (global0 loop:) 1 5 7)
+								proc999_5((global0 loop:), 1, 5, 7)
 								(and
 									((global0 loop:) == 9)
-									(proc999_5 (global0 cel:) 1 5 7)
+									proc999_5((global0 cel:), 1, 5, 7)
 								)
 							)
 						)

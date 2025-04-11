@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 85
 import sci_sh
+import kernel
 import Main
 import Sound
 import Motion
@@ -115,7 +116,7 @@ class playTheFlute(Script):
 				(localMusic stop: dispose:)
 				(global1 killSound: 0)
 				(self dispose:)
-				(DisposeScript 85)
+				kernel.DisposeScript(85)
 			#end:case
 		#end:match
 	#end:method

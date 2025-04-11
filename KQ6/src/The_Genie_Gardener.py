@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1056
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -30,7 +31,7 @@ class The_Genie_Gardener(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 163):
+		if proc913_0(163):
 			x = 204
 			y = 74
 		else:

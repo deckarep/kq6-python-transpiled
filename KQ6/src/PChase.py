@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 930
 import sci_sh
+import kernel
 import Main
 import PolyPath
 import System
@@ -26,7 +27,7 @@ class PChase(PolyPath):
 				case (argc >= 5):
 					obstacles = param5
 				#end:case
-				case (not (IsObject obstacles)):
+				case (not kernel.IsObject(obstacles)):
 					obstacles = (global2 obstacles:)
 				#end:case
 			)
@@ -56,9 +57,9 @@ class PChase(PolyPath):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case ((GetDistance targetX targetY (who x:) (who y:)) > distance):
+			case (kernel.GetDistance(targetX, targetY, (who x:), (who y:)) > distance):
 				if points:
-					(Memory 3 points)
+					kernel.Memory(3, points)
 				#endif
 				points = 0
 				value = 2
@@ -82,9 +83,9 @@ class PChase(PolyPath):
 			case (temp0 = (client distanceTo: who) <= distance):
 				(super moveDone:)
 			#end:case
-			case ((proc999_6 points value) == 30583):
+			case (proc999_6(points, value) == 30583):
 				if points:
-					(Memory 3 points)
+					kernel.Memory(3, points)
 				#endif
 				points = 0
 				value = 2

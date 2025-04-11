@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1042
 import sci_sh
+import kernel
 import Kq6Talker
 
 # Public Export Declarations

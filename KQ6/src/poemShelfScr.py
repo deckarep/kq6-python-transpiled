@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 272
 import sci_sh
+import kernel
 import Main
 import Conversation
 import Motion
@@ -149,14 +150,14 @@ class poemShelfScr(Script):
 			#end:case
 			case 8:
 				if ((not local1) and (not register)):
-					state--
+					state.post('--')
 					ticks = 12
 				else:
 					cycles = 2
 				#endif
 			#end:case
 			case 9:
-				(UnLoad 128 279)
+				kernel.UnLoad(128, 279)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -211,7 +212,7 @@ class takePoemScr(Script):
 				cycles = 2
 			#end:case
 			case 5:
-				(UnLoad 128 2701)
+				kernel.UnLoad(128, 2701)
 				(global91 say: 6 5 0 1 self)
 			#end:case
 			case 6:
@@ -232,7 +233,7 @@ class takePoemScr(Script):
 			case 11:
 				(global1 handsOn:)
 				(self dispose:)
-				(DisposeScript 272)
+				kernel.DisposeScript(272)
 			#end:case
 		#end:match
 	#end:method
@@ -258,7 +259,7 @@ class poem(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not local0++):
+		if (not local0.post('++')):
 			(self setCycle: End self)
 		else:
 			(self view: 270 setLoop: 2 cel: 1)

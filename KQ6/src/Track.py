@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 955
 import sci_sh
+import kernel
 import Motion
 
 class Track(Motion):
@@ -52,7 +53,7 @@ class Track(Motion):
 		if (client looper:):
 			((client looper:) doit: client temp0)
 		else:
-			(DirLoop client temp0)
+			kernel.DirLoop(client, temp0)
 		#endif
 	#end:method
 

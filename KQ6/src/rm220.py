@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 220
 import sci_sh
+import kernel
 import Main
 import rgCrown
 import walkEgoInScr
@@ -130,12 +131,12 @@ class rm220(KQ6Room):
 					yourself:
 				)
 		)
-		(proc958_0 128 725 224 220)
+		proc958_0(128, 725, 224, 220)
 		if (global0 has: 5):
-			(proc958_0 128 221 733)
+			proc958_0(128, 221, 733)
 		#endif
 		(super init: &rest)
-		(proc913_1 162)
+		proc913_1(162)
 		(global0
 			init:
 			actions: egoDoVerbCode
@@ -147,10 +148,10 @@ class rm220(KQ6Room):
 				(global0 reset: 2 hide:)
 			#end:case
 			case 230:
-				(proc12_1 12 118)
+				proc12_1(12, 118)
 			#end:case
 			else:
-				(proc12_1 155 184 38)
+				proc12_1(155, 184, 38)
 			#end:else
 		#end:match
 		(castleDoor init:)
@@ -158,34 +159,34 @@ class rm220(KQ6Room):
 		(guard2 init:)
 		(genericFeatures init:)
 		(guardHut init:)
-		((ScriptID 10 4) onMeCheck: 1024 init:)
+		(kernel.ScriptID(10, 4) onMeCheck: 1024 init:)
 		(backOffScr client: guard1)
 		(cond
 			case (global12 == 150):
-				(self setScript: (ScriptID 221 0))
+				(self setScript: kernel.ScriptID(221, 0))
 			#end:case
-			case ((ScriptID 10 0) isSet: 2):
+			case (kernel.ScriptID(10, 0) isSet: 2):
 				local2 = 1
-				(proc10_2 (ScriptID 224 0))
-				if ((global153 == 3) and (not (proc913_0 18))):
-					(proc913_1 135)
+				proc10_2(kernel.ScriptID(224, 0))
+				if ((global153 == 3) and (not proc913_0(18))):
+					proc913_1(135)
 				#endif
 			#end:case
 			case 
 				(or
 					(and
 						(global153 == 3)
-						((not (proc913_0 18)) or (proc913_0 135))
+						((not proc913_0(18)) or proc913_0(135))
 					)
-					(and (global153 == 5) (global0 has: 5) (not (proc913_0 18)))
+					(and (global153 == 5) (global0 has: 5) (not proc913_0(18)))
 				):
 				local2 = 1
-				(proc10_2 (ScriptID 223 0))
-				(proc913_2 135)
+				proc10_2(kernel.ScriptID(223, 0))
+				proc913_2(135)
 			#end:case
 		)
 		(global102 number: 220 loop: -1 play:)
-		(proc913_1 18)
+		proc913_1(18)
 	#end:method
 
 	@classmethod
@@ -195,11 +196,11 @@ class rm220(KQ6Room):
 
 		match param1
 			case 3:
-				(proc12_0 param1 38)
+				proc12_0(param1, 38)
 				0
 			#end:case
 			case 4:
-				(proc12_0 param1)
+				proc12_0(param1)
 				0
 			#end:case
 			case 2:
@@ -219,7 +220,7 @@ class rm220(KQ6Room):
 
 		(return
 			if (param1 == 1):
-				(global91 say: noun param1 (23 if (proc913_0 64) else 22))
+				(global91 say: noun param1 (23 if proc913_0(64) else 22))
 				1
 			else:
 				(super doVerb: param1)
@@ -232,8 +233,8 @@ class rm220(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (proc999_4 106 110 140 118 (global0 x:) (global0 y:))
-		if ((local2 == 1) and ((ScriptID 10 0) isSet: 4096)):
+		temp0 = proc999_4(106, 110, 140, 118, (global0 x:), (global0 y:))
+		if ((local2 == 1) and (kernel.ScriptID(10, 0) isSet: 4096)):
 			local2 = 0
 			(global0 setHeading: 0)
 		#endif
@@ -257,8 +258,8 @@ class rm220(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 964)
-		(DisposeScript 969)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(969)
 		if (global13 == 210):
 			(global102 fadeTo: 917 -1)
 		else:
@@ -504,7 +505,7 @@ class guardStanceScr(Script):
 		match state = param1
 			case 0:
 				if (local4 and (not (global0 isStopped:))):
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
@@ -523,12 +524,12 @@ class guardStanceScr(Script):
 			case 2:
 				if (and (not local0) (not register) (not local1)):
 					(cond
-						case (not (proc913_0 20)):
+						case (not proc913_0(20)):
 							(global91 say: 4 3 8 1 self)
 						#end:case
 						case 
 							(or
-								((global153 == 1) and (proc913_0 72))
+								((global153 == 1) and proc913_0(72))
 								(global153 > 1)
 							):
 							(global91 say: 4 3 17 1 self)
@@ -547,10 +548,10 @@ class guardStanceScr(Script):
 					(guard1 loop: 0)
 					(guard2 loop: 1)
 					local0 = 0
-					(proc913_1 162)
+					proc913_1(162)
 				else:
 					local0 = 1
-					(proc913_2 162)
+					proc913_2(162)
 				#endif
 				(guard1 stopUpd:)
 				(guard2 stopUpd:)
@@ -619,7 +620,7 @@ class wearClothingScr(Script):
 				cycles = 2
 			#end:case
 			case 8:
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 2 45 0 2 self)
 			#end:case
 			case 9:
@@ -817,12 +818,12 @@ class castleDoor(Prop):
 					return
 				#endif
 				(cond
-					case (not (proc913_0 20)):
+					case (not proc913_0(20)):
 						(global91 say: 4 3 8 1 self)
 					#end:case
 					case 
 						(or
-							((global153 == 1) and (proc913_0 72))
+							((global153 == 1) and proc913_0(72))
 							(global153 > 1)
 						):
 						(global91 say: 4 3 17 1 self)
@@ -864,7 +865,7 @@ class castleDoor(Prop):
 						((global0 x:) == approachX)
 						((global0 y:) == approachY)
 					)
-					(proc999_4 106 110 140 118 (global0 x:) (global0 y:))
+					proc999_4(106, 110, 140, 118, (global0 x:), (global0 y:))
 				)
 				local3 = 1
 			else:
@@ -896,7 +897,7 @@ class genericCoinShowScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (proc913_0 64):
+				if proc913_0(64):
 					(global0
 						setSpeed: 6
 						normal: 0
@@ -913,7 +914,7 @@ class genericCoinShowScr(Script):
 				(global91 say: 5 40 register 1 self)
 			#end:case
 			case 2:
-				if (proc913_0 64):
+				if proc913_0(64):
 					(state += 3)
 					(self cue:)
 				else:
@@ -922,7 +923,7 @@ class genericCoinShowScr(Script):
 					if (not (((global0 x:) == 125) and ((global0 y:) == 118))):
 						(global0 setMotion: PolyPath 125 118 self)
 					else:
-						state++
+						state.post('++')
 						(self cue:)
 					#endif
 				#endif
@@ -932,7 +933,7 @@ class genericCoinShowScr(Script):
 			#end:case
 			case 4:
 				if ((global2 script:) == guardStanceScr):
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
@@ -947,7 +948,7 @@ class genericCoinShowScr(Script):
 				)
 			#end:case
 			case 6:
-				if (not (proc913_0 64)):
+				if (not proc913_0(64)):
 					(global91 say: 5 40 register 2 self)
 				else:
 					(self cue:)
@@ -957,17 +958,17 @@ class genericCoinShowScr(Script):
 				(global0 setCycle: Beg self)
 			#end:case
 			case 8:
-				if (not (proc913_0 64)):
+				if (not proc913_0(64)):
 					(global91 say: 5 40 register 3 self)
 				else:
 					(global91 say: 5 40 register 2 self oneOnly: 0)
 				#endif
 			#end:case
 			case 9:
-				if (not (proc999_5 register 8 22)):
+				if (not proc999_5(register, 8, 22)):
 					(self cue:)
 				else:
-					state++
+					state.post('++')
 					(backOffScr client: self cue:)
 				#endif
 			#end:case
@@ -1011,12 +1012,12 @@ class genericGiveAllScr(Script):
 						5
 						0
 						(cond
-							case ((proc913_0 72) or (global153 > 1)):
+							case (proc913_0(72) or (global153 > 1)):
 								register = 0
 								17
 							#end:case
-							case (not (proc913_0 20)): 8#end:case
-							case ((global153 == 1) and (proc913_0 20)): 18#end:case
+							case (not proc913_0(20)): 8#end:case
+							case ((global153 == 1) and proc913_0(20)): 18#end:case
 						)
 						0
 						self
@@ -1029,7 +1030,7 @@ class genericGiveAllScr(Script):
 				if register:
 					(self cue:)
 				else:
-					state++
+					state.post('++')
 					(backOffScr client: self cue:)
 				#endif
 			#end:case
@@ -1107,8 +1108,8 @@ class notAct1NotNameScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 72)
-				(proc913_1 20)
+				proc913_1(72)
+				proc913_1(20)
 				(global0 setHeading: 0 self)
 			#end:case
 			case 1:
@@ -1248,13 +1249,11 @@ class GateGuardDog(Actor):
 			temp1 = (global66 doit: 0)
 			if 
 				(and
-					(not (proc913_0 64))
+					(not proc913_0(64))
 					((global69 curIcon:) == (global69 useIconItem:))
-					(proc999_5
-						(global69 curInvIcon:)
-						(global9 at: 39)
-						(global9 at: 9)
-					)
+					proc999_5((global69 curInvIcon:), (global9 at: 39), (global9
+						at: 9
+					))
 				)
 				(self _approachVerbs: ((~ temp1) & (self _approachVerbs:)))
 			else:
@@ -1295,23 +1294,23 @@ class GateGuardDog(Actor):
 			#end:case
 			case 2:
 				(cond
-					case (not (proc913_0 64)):
-						(proc913_1 64)
+					case (not proc913_0(64)):
+						proc913_1(64)
 						(self setScript: genericTalkScr 0 22)
 					#end:case
 					case 
 						(or
-							((global153 == 1) and (proc913_0 72))
-							((global153 > 1) and (proc913_0 20))
+							((global153 == 1) and proc913_0(72))
+							((global153 > 1) and proc913_0(20))
 						):
 						(self setScript: genericTalkScr 0 17)
 					#end:case
-					case ((global153 == 1) and (proc913_1 19)):
-						if ((ScriptID 10 0) isSet: 8192):
+					case ((global153 == 1) and proc913_1(19)):
+						if (kernel.ScriptID(10, 0) isSet: 8192):
 							(self setScript: genericTalkScr 0 16)
 						else:
-							((ScriptID 10 0) setIt: 8192)
-							(proc913_1 20)
+							(kernel.ScriptID(10, 0) setIt: 8192)
+							proc913_1(20)
 							(self setScript: genericTalkScr 0 15)
 						#endif
 					#end:case
@@ -1324,32 +1323,32 @@ class GateGuardDog(Actor):
 				)
 			#end:case
 			case 70:
-				if (not (proc913_0 64)):
+				if (not proc913_0(64)):
 					(global91 say: noun param1 22)
 				else:
 					(cond
 						case 
 							(or
-								(proc913_0 72)
-								((global153 > 1) and (proc913_0 20))
+								proc913_0(72)
+								((global153 > 1) and proc913_0(20))
 							):
 							(self setScript: genericGiveAllScr)
 						#end:case
-						case ((global153 == 1) and (proc913_0 20)):
-							(proc913_1 162)
-							(self setScript: (ScriptID 222 0) 0 18)
+						case ((global153 == 1) and proc913_0(20)):
+							proc913_1(162)
+							(self setScript: kernel.ScriptID(222, 0) 0 18)
 						#end:case
 						case (global153 == 1):
-							(proc913_1 162)
-							(self setScript: (ScriptID 222 0) 0 14)
+							proc913_1(162)
+							(self setScript: kernel.ScriptID(222, 0) 0 14)
 						#end:case
 						else:
 							(self setScript: notAct1NotNameScr 0 param1)
 						#end:else
 					)
-					(proc913_1 19)
-					(proc913_1 20)
-					((ScriptID 10 0) setIt: 8192)
+					proc913_1(19)
+					proc913_1(20)
+					(kernel.ScriptID(10, 0) setIt: 8192)
 				#endif
 			#end:case
 			case 5:
@@ -1361,8 +1360,8 @@ class GateGuardDog(Actor):
 						noun
 						param1
 						(cond
-							case (not (proc913_0 20)): 8#end:case
-							case ((global153 == 1) and (proc913_0 72)): 17#end:case
+							case (not proc913_0(20)): 8#end:case
+							case ((global153 == 1) and proc913_0(72)): 17#end:case
 							case (global153 == 1): 18#end:case
 							else: 17#end:else
 						)
@@ -1370,22 +1369,22 @@ class GateGuardDog(Actor):
 			#end:case
 			case 40:
 				(cond
-					case (not (proc913_0 64)):
+					case (not proc913_0(64)):
 						(self setScript: genericCoinShowScr 0 22)
 					#end:case
-					case (not (proc913_0 20)):
+					case (not proc913_0(20)):
 						(self setScript: genericCoinShowScr 0 8)
 					#end:case
 					case 
 						(or
-							((global153 == 1) and (proc913_0 72))
+							((global153 == 1) and proc913_0(72))
 							(global153 > 1)
 						):
 						(self setScript: genericGiveAllScr)
 					#end:case
-					case (not (proc913_0 66)):
+					case (not proc913_0(66)):
 						(self setScript: genericCoinShowScr 0 20)
-						(proc913_1 66)
+						proc913_1(66)
 					#end:case
 					else:
 						(global91 say: noun param1 21)
@@ -1428,8 +1427,8 @@ class myHeadingCode(Code):
 				doit: global0 (global0 heading:) ((argc >= 2) and param2)
 			)
 		else:
-			(DirLoop global0 (global0 heading:))
-			if ((argc >= 2) and (IsObject param2)):
+			kernel.DirLoop(global0, (global0 heading:))
+			if ((argc >= 2) and kernel.IsObject(param2)):
 				(param2 cue: &rest)
 			#endif
 		#endif
@@ -1542,7 +1541,7 @@ class genericFeatures(Feature):
 		(genericFeatures x: (param1 x:) y: (param1 y:))
 		(return
 			(= noun
-				match (OnControl 4 (param1 x:) (param1 y:))
+				match kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 8192: 8#end:case
 					case 4096: 11#end:case
 					case 2048: 9#end:case

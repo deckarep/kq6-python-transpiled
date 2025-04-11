@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 81
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import RegionPath
@@ -33,29 +34,29 @@ class RgBasement(rgCastle):
 
 		(super init: &rest)
 		if (self tstFlag: 709 1):
-			((ScriptID 80 5)
+			(kernel.ScriptID(80, 5)
 				view: 725
 				regPathID: guardPath1
-				setMotion: guardPath1 (ScriptID 80 5) (ScriptID 80 5)
+				setMotion: guardPath1 kernel.ScriptID(80, 5) kernel.ScriptID(80, 5)
 				init:
 			)
 		#endif
 		if (self tstFlag: 709 2):
-			((ScriptID 80 6)
+			(kernel.ScriptID(80, 6)
 				view: 727
 				regPathID: guardPath2
-				setMotion: guardPath2 (ScriptID 80 6) (ScriptID 80 6)
+				setMotion: guardPath2 kernel.ScriptID(80, 6) kernel.ScriptID(80, 6)
 				init:
 			)
 		#endif
 		if 
 			(and
 				(or
-					(not (proc999_5 global12 840 710 720 770 820 780))
+					(not proc999_5(global12, 840, 710, 720, 770, 820, 780))
 					((global102 number:) != 704)
 				)
-				(not ((ScriptID 80 0) tstFlag: 709 2))
-				(not ((ScriptID 80 0) tstFlag: 709 8192))
+				(not (kernel.ScriptID(80, 0) tstFlag: 709 2))
+				(not (kernel.ScriptID(80, 0) tstFlag: 709 8192))
 			)
 			(global102 fadeTo: 704 -1)
 		#endif
@@ -83,7 +84,7 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		keep = (proc999_5 param1 840 710 720 770 820 780)
+		keep = proc999_5(param1, 840, 710, 720, 770, 820, 780)
 		initialized = 0
 		(super newRoom: param1 &rest)
 	#end:method
@@ -93,7 +94,7 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((not (rFlag1 & 0x0004)) and (not (proc999_5 global11 820 780))):
+		if ((not (rFlag1 & 0x0004)) and (not proc999_5(global11, 820, 780))):
 			if ((not (rFlag1 & 0x0001)) and (not (rFlag1 & 0x0002))):
 				match global11
 					case 710:
@@ -116,20 +117,20 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((rFlag1 & 0x0001) and (not ((ScriptID 80 5) mover:))):
-			((ScriptID 80 5)
+		if ((rFlag1 & 0x0001) and (not (kernel.ScriptID(80, 5) mover:))):
+			(kernel.ScriptID(80, 5)
 				view: 725
 				init:
 				regPathID: guardPath1
-				setMotion: guardPath1 (ScriptID 80 5) (ScriptID 80 5) 1
+				setMotion: guardPath1 kernel.ScriptID(80, 5) kernel.ScriptID(80, 5) 1
 			)
 		#endif
-		if ((rFlag1 & 0x0002) and (not ((ScriptID 80 6) mover:))):
-			((ScriptID 80 6)
+		if ((rFlag1 & 0x0002) and (not (kernel.ScriptID(80, 6) mover:))):
+			(kernel.ScriptID(80, 6)
 				view: 727
 				init:
 				regPathID: guardPath2
-				setMotion: guardPath2 (ScriptID 80 6) (ScriptID 80 6) 1
+				setMotion: guardPath2 kernel.ScriptID(80, 6) kernel.ScriptID(80, 6) 1
 			)
 		#endif
 		(self setupGuards:)
@@ -141,7 +142,7 @@ class RgBasement(rgCastle):
 		argc = sum(v is not None for v in locals().values())
 
 		(rFlag1 &= (~ param2))
-		if (IsObject (param1 regPathID:)):
+		if kernel.IsObject((param1 regPathID:)):
 			((param1 regPathID:) value: 0)
 		#endif
 	#end:method
@@ -152,13 +153,13 @@ class RgBasement(rgCastle):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((global11 != 840) and (rFlag1 & 0x0001)):
-			((ScriptID 80 5)
-				okToCheck: (>= 10 ((((ScriptID 80 5) regPathID:) value:) / 2) 4)
+			(kernel.ScriptID(80, 5)
+				okToCheck: (>= 10 (((kernel.ScriptID(80, 5) regPathID:) value:) / 2) 4)
 			)
 		#endif
 		if ((global11 != 840) and (rFlag1 & 0x0002)):
-			((ScriptID 80 6)
-				okToCheck: (>= 13 ((((ScriptID 80 6) regPathID:) value:) / 2) 3)
+			(kernel.ScriptID(80, 6)
+				okToCheck: (>= 13 (((kernel.ScriptID(80, 6) regPathID:) value:) / 2) 3)
 			)
 		#endif
 		(super setupGuards:)
@@ -169,10 +170,10 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 80 5) z: 0 setMotion: 0)
-		((ScriptID 80 6) z: 0 setMotion: 0)
+		(kernel.ScriptID(80, 5) z: 0 setMotion: 0)
+		(kernel.ScriptID(80, 6) z: 0 setMotion: 0)
 		(super dispose: &rest)
-		(DisposeScript 918)
+		kernel.DisposeScript(918)
 	#end:method
 
 	@classmethod
@@ -186,12 +187,12 @@ class RgBasement(rgCastle):
 					(global91 say: param2 param3 param4)
 				#endif
 				(cond
-					case (((ScriptID 80 0) weddingMusicCount:) >= 3):
+					case ((kernel.ScriptID(80, 0) weddingMusicCount:) >= 3):
 						(rFlag1 |= 0x0004)
 						(self startGuard:)
 					#end:case
-					case (not ((ScriptID 80 0) weddingRemind:)):
-						((ScriptID 80 0) weddingRemind: 15)
+					case (not (kernel.ScriptID(80, 0) weddingRemind:)):
+						(kernel.ScriptID(80, 0) weddingRemind: 15)
 					#end:case
 				)
 			#end:case
@@ -232,12 +233,12 @@ class guardPath1(RegionPath):
 
 		temp0 = (currentRoom == global11)
 		(super nextRoom: &rest)
-		if ((IsObject global2) and (not temp0)):
+		if (kernel.IsObject(global2) and (not temp0)):
 			(cond
 				case (value > 2):
 					(global2 warnUser: 5 currentRoom)
 				#end:case
-				case (not ((ScriptID 81 0) tstFlag: 709 4)):
+				case (not (kernel.ScriptID(81, 0) tstFlag: 709 4)):
 					(global2 warnUser: 6 7)
 				#end:case
 			)
@@ -279,7 +280,7 @@ class guardPath2(RegionPath):
 			value = 10
 		#endif
 		(super nextRoom: &rest)
-		if ((IsObject global2) and (not temp0)):
+		if (kernel.IsObject(global2) and (not temp0)):
 			if (value > 2):
 				(global2 warnUser: 5 currentRoom)
 			else:

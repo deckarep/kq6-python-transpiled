@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 281
 import sci_sh
+import kernel
 import Main
 import n913
 import Motion
@@ -48,15 +49,15 @@ class pawnShopGenie(Actor):
 
 		match param1
 			case 13:
-				(global2 setScript: (ScriptID 282 3))
+				(global2 setScript: kernel.ScriptID(282, 3))
 			#end:case
 			case 67:
 				(global0 put: 31 -1)
-				(global2 setScript: (ScriptID 282 6))
+				(global2 setScript: kernel.ScriptID(282, 6))
 			#end:case
 			case 2:
-				if (proc999_5 global153 4 5):
-					(global91 say: noun param1 (68 if (proc913_1 122) else 1))
+				if proc999_5(global153, 4, 5):
+					(global91 say: noun param1 (68 if proc913_1(122) else 1))
 				else:
 					(super doVerb: param1 &rest)
 				#endif
@@ -77,7 +78,7 @@ class pawnShopGenie(Actor):
 		if param1:
 			(self setScript: genieBrowseScr)
 		else:
-			(global2 setScript: (ScriptID 282 4))
+			(global2 setScript: kernel.ScriptID(282, 4))
 		#endif
 	#end:method
 
@@ -88,7 +89,7 @@ class pawnShopGenie(Actor):
 
 		(super dispose:)
 		(self delete:)
-		(DisposeScript 281)
+		kernel.DisposeScript(281)
 	#end:method
 
 #end:class or instance
@@ -118,13 +119,13 @@ class genieBrowseScr(Script):
 				(self cue:)
 			#end:case
 			case 1:
-				(pawnShopGenie cycleSpeed: (Random 30 75) setCycle: CT 3 1 self)
+				(pawnShopGenie cycleSpeed: kernel.Random(30, 75) setCycle: CT 3 1 self)
 			#end:case
 			case 2:
-				ticks = (Random 60 120)
+				ticks = kernel.Random(60, 120)
 			#end:case
 			case 3:
-				if (((global0 x:) > 67) and (proc999_5 (Random 0 2) 0 1)):
+				if (((global0 x:) > 67) and proc999_5(kernel.Random(0, 2), 0, 1)):
 					(eye init: cel: 0 cycleSpeed: 12 setCycle: End self)
 				else:
 					(self cue:)
@@ -135,7 +136,7 @@ class genieBrowseScr(Script):
 			#end:case
 			case 5:
 				(eye dispose:)
-				ticks = (Random 60 120)
+				ticks = kernel.Random(60, 120)
 			#end:case
 			case 6:
 				(pawnShopGenie setCycle: End self)

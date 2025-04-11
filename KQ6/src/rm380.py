@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 380
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -167,7 +168,7 @@ class goodNews(Script):
 			#end:case
 			case 3:
 				(oracArm view: 383 setCycle: CT 3 1 self)
-				(UnLoad 128 3832)
+				kernel.UnLoad(128, 3832)
 			#end:case
 			case 4:
 				(global105 number: 381 setLoop: 1 play:)
@@ -175,7 +176,7 @@ class goodNews(Script):
 			#end:case
 			case 5:
 				(oracArm view: 3832 cel: 0 stopUpd:)
-				(UnLoad 128 383)
+				kernel.UnLoad(128, 383)
 				seconds = 1
 			#end:case
 			case 6:
@@ -219,8 +220,8 @@ class goodNews(Script):
 			case 13:
 				(cassFace dispose:)
 				(oracArm view: 383 setCycle: CT 3 1 self)
-				(UnLoad 128 384)
-				(UnLoad 128 3832)
+				kernel.UnLoad(128, 384)
+				kernel.UnLoad(128, 3832)
 			#end:case
 			case 14:
 				(global105 number: 381 setLoop: 1 play:)
@@ -228,7 +229,7 @@ class goodNews(Script):
 			#end:case
 			case 15:
 				(oracArm view: 3832 cel: 0 stopUpd:)
-				(UnLoad 128 383)
+				kernel.UnLoad(128, 383)
 				seconds = 1
 			#end:case
 			case 16:
@@ -237,7 +238,7 @@ class goodNews(Script):
 			#end:case
 			case 17:
 				(deadHead dispose:)
-				(UnLoad 128 3841)
+				kernel.UnLoad(128, 3841)
 				cycles = 6
 			#end:case
 			case 18:
@@ -258,7 +259,7 @@ class goodNews(Script):
 			#end:case
 			case 21:
 				(oracArm view: 3831 posn: 158 82 setCycle: CT 5 1 self)
-				(UnLoad 128 383)
+				kernel.UnLoad(128, 383)
 			#end:case
 			case 22:
 				(global105 number: 924 setLoop: 1 play:)
@@ -283,7 +284,7 @@ class goodNews(Script):
 			#end:case
 			case 26:
 				(oracArm view: 3832 posn: 94 87 cel: 0 stopUpd:)
-				(UnLoad 128 3831)
+				kernel.UnLoad(128, 3831)
 				(global0
 					view: 3812
 					cel: 0
@@ -302,7 +303,7 @@ class goodNews(Script):
 				(global91 say: 1 0 1 24 self)
 			#end:case
 			case 30:
-				(proc913_1 3)
+				proc913_1(3)
 				(global0 get: 40)
 				(oracArm dispose:)
 				(global1 givePoints: 1)

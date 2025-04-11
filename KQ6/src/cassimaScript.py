@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 801
 import sci_sh
+import kernel
 import Main
 import rm800
 import n913
@@ -30,7 +31,7 @@ class cassimaScript(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 801)
+		kernel.DisposeScript(801)
 	#end:method
 
 	@classmethod
@@ -65,17 +66,17 @@ class cassimaScript(Script):
 				(global1 handsOff:)
 				(global5 eachElementDo: #startUpd)
 				(global10 eachElementDo: #dispose)
-				if (not ((ScriptID 80 0) tstFlag: 710 256)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
 					(global1 givePoints: 1)
 				#endif
 				cycles = 2
 			#end:case
 			case 1:
 				(cond
-					case (not ((ScriptID 80 0) tstFlag: 710 256)):
+					case (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
 						(global91 say: 1 0 7 1 self)
 					#end:case
-					case ((ScriptID 80 0) tstFlag: 711 16384):
+					case (kernel.ScriptID(80, 0) tstFlag: 711 16384):
 						(global91 say: 4 1 21 1 self)
 					#end:case
 					else:
@@ -103,7 +104,7 @@ class cassimaScript(Script):
 				(global2 drawPic: 802 10)
 				(chinkOverlay addToPic:)
 				(background addToPic:)
-				if (not ((ScriptID 80 0) tstFlag: 710 256)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
 					(global102 fadeTo: 703 -1)
 					(cassima init: stopUpd:)
 				#endif
@@ -114,9 +115,9 @@ class cassimaScript(Script):
 			case 4:
 				(global69 enable:)
 				(cond
-					case (not ((ScriptID 80 0) tstFlag: 710 256)):
+					case (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
 						(global32 add: cassimaFeature)
-						if (proc999_5 ((global9 at: 39) owner:) 140 210):
+						if proc999_5(((global9 at: 39) owner:), 140, 210):
 							(self
 								setScript:
 									(sentRing
@@ -137,7 +138,7 @@ class cassimaScript(Script):
 									0
 							)
 						#endif
-						((ScriptID 800 2)
+						(kernel.ScriptID(800, 2)
 							add: -1 1 0 7 2
 							add: convScr
 							add: -1 1 0 7 3
@@ -147,11 +148,11 @@ class cassimaScript(Script):
 							init: script
 						)
 					#end:case
-					case ((ScriptID 80 0) tstFlag: 711 16384):
+					case (kernel.ScriptID(80, 0) tstFlag: 711 16384):
 						(global91 say: 4 1 21 2 self oneOnly: 0)
 					#end:case
 					else:
-						((ScriptID 80 0) setFlag: 711 16384)
+						(kernel.ScriptID(80, 0) setFlag: 711 16384)
 						(global91 say: 4 1 20 2 self oneOnly: 0)
 					#end:else
 				)
@@ -169,7 +170,7 @@ class cassimaScript(Script):
 				#endif
 				(global73 delete: self)
 				(global72 delete: self)
-				(proc800_1)
+				proc800_1()
 				cycles = 2
 			#end:case
 			case 6:
@@ -181,8 +182,8 @@ class cassimaScript(Script):
 				cycles = 4
 			#end:case
 			case 8:
-				if (not ((ScriptID 80 0) tstFlag: 710 256)):
-					((ScriptID 80 0) setFlag: 710 256)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
+					(kernel.ScriptID(80, 0) setFlag: 710 256)
 					(global91 say: 1 0 13 4 self)
 				else:
 					(self cue:)
@@ -216,13 +217,13 @@ class sentRing(Script):
 				(self setScript: ringScr self 1)
 			#end:case
 			case 3:
-				((ScriptID 800 2) add: -1 1 0 8 2 add: -1 1 0 8 3 init: self)
+				(kernel.ScriptID(800, 2) add: -1 1 0 8 2 add: -1 1 0 8 3 init: self)
 			#end:case
 			case 4:
 				(self setScript: ringScr self)
 			#end:case
 			case 5:
-				((ScriptID 800 2) add: -1 1 0 8 4 add: -1 1 0 8 5 init: self)
+				(kernel.ScriptID(800, 2) add: -1 1 0 8 4 add: -1 1 0 8 5 init: self)
 			#end:case
 			case 6:
 				(self dispose:)
@@ -242,7 +243,7 @@ class noRing(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 800 2) add: -1 1 0 9 1 add: -1 1 0 9 2 init: self)
+				(kernel.ScriptID(800, 2) add: -1 1 0 9 1 add: -1 1 0 9 2 init: self)
 			#end:case
 			case 1:
 				(self setScript: cassimaStands self)
@@ -251,13 +252,13 @@ class noRing(Script):
 				(self setScript: ringScr self 0)
 			#end:case
 			case 3:
-				((ScriptID 800 2) add: -1 1 0 9 3 add: -1 1 0 9 4 init: self)
+				(kernel.ScriptID(800, 2) add: -1 1 0 9 3 add: -1 1 0 9 4 init: self)
 			#end:case
 			case 4:
 				(self setScript: ringScr self)
 			#end:case
 			case 5:
-				((ScriptID 800 2)
+				(kernel.ScriptID(800, 2)
 					add: -1 1 0 9 5
 					add: -1 1 0 9 6
 					add: -1 1 0 9 7
@@ -284,7 +285,7 @@ class endDialog(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 102)
+		proc913_2(102)
 		(super dispose:)
 	#end:method
 
@@ -295,7 +296,7 @@ class endDialog(Script):
 
 		match state = param1
 			case 0:
-				if ((ScriptID 80 0) tstFlag: 711 16):
+				if (kernel.ScriptID(80, 0) tstFlag: 711 16):
 					(self setScript: watchedVizInStudy self)
 				else:
 					(self setScript: didn_tWatchVizInStudy self)
@@ -362,7 +363,7 @@ class watchedVizInStudy(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 800 2)
+				(kernel.ScriptID(800, 2)
 					add: -1 1 0 10 1
 					add: -1 1 0 10 2
 					add: -1 1 0 10 3
@@ -402,7 +403,7 @@ class didn_tWatchVizInStudy(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 800 2)
+				(kernel.ScriptID(800, 2)
 					add: -1 1 0 11 1
 					add: -1 1 0 11 2
 					add: -1 1 0 11 3
@@ -685,12 +686,12 @@ class ringScr(Script):
 				(cassima dispose:)
 				(cassArm init: stopUpd:)
 				(alexArm init: hide:)
-				(proc913_1 102)
+				proc913_1(102)
 				cycles = 4
 			#end:case
 			case 4:
-				(UnLoad 128 783)
-				(UnLoad 128 784)
+				kernel.UnLoad(128, 783)
+				kernel.UnLoad(128, 784)
 				(self dispose:)
 			#end:case
 			case 5:
@@ -790,8 +791,8 @@ class cassimaInset(View):
 				(endDialog setScript: giveDagger)
 			#end:case
 			case 61:
-				if (not ((ScriptID 80 0) tstFlag: 710 8)):
-					((ScriptID 80 0) setFlag: 710 8)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 710 8)):
+					(kernel.ScriptID(80, 0) setFlag: 710 8)
 					(endDialog setScript: giveLetter)
 				else:
 					(global91 say: 5 param1 28)
@@ -872,7 +873,7 @@ class cassimaFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 8 61):
+		if proc999_5(param1, 8, 61):
 			(cassimaInset doVerb: param1)
 		else:
 			(super doVerb: param1)

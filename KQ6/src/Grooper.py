@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 977
 import sci_sh
+import kernel
 import Main
 import StopWalk
 import Sight
@@ -43,7 +44,7 @@ class Grooper(Code):
 			caller = 0
 			return
 		#endif
-		temp1 = (4 if ((NumLoops client) < 8) else 8)
+		temp1 = (4 if (kernel.NumLoops(client) < 8) else 8)
 		if ((not (global5 contains: client)) or ((argc >= 4) and param4)):
 			(client
 				loop:
@@ -51,10 +52,7 @@ class Grooper(Code):
 						(*
 							(2 if (temp1 == 4) else 1)
 							(/
-								(proc999_1
-									((client heading:) + (180 / temp1))
-									360
-								)
+								proc999_1(((client heading:) + (180 / temp1)), 360)
 								(360 / temp1)
 							)
 						)
@@ -69,7 +67,7 @@ class Grooper(Code):
 		(= temp0
 			if 
 				(and
-					((client loop:) == ((NumLoops client) - 1))
+					((client loop:) == (kernel.NumLoops(client) - 1))
 					((client cycler:) isKindOf: StopWalk)
 					(((client cycler:) vStopped:) == -1)
 				)
@@ -84,7 +82,7 @@ class Grooper(Code):
 		#endif
 		if 
 			(and
-				(IsObject oldCycler)
+				kernel.IsObject(oldCycler)
 				(or
 					(oldCycler isMemberOf: Grycler)
 					(not ((client cycler:) isMemberOf: Grycler))
@@ -108,10 +106,10 @@ class Grooper(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (IsObject (client mover:))):
+		if (not kernel.IsObject((client mover:))):
 			(client mover: oldMover)
 		#endif
-		if (IsObject oldCycler):
+		if kernel.IsObject(oldCycler):
 			(client cycler: oldCycler)
 		#endif
 		temp0 = caller
@@ -126,11 +124,11 @@ class Grooper(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject oldCycler):
+		if kernel.IsObject(oldCycler):
 			(oldCycler dispose:)
 			oldCycler = 0
 		#endif
-		if (IsObject oldMover):
+		if kernel.IsObject(oldMover):
 			(oldMover dispose:)
 			oldMover = 0
 		#endif
@@ -154,8 +152,8 @@ class Grycler(Cycle):
 
 		(super init: param1)
 		caller = param2
-		numOfLoops = (4 if ((NumLoops client) < 8) else 8)
-		cycleDir = (- (proc999_0 (proc982_2 (param3 * 45) (param1 heading:))))
+		numOfLoops = (4 if (kernel.NumLoops(client) < 8) else 8)
+		cycleDir = -proc999_0(proc982_2((param3 * 45), (param1 heading:)))
 		loopIndex = param3
 		if (self loopIsCorrect:):
 			if 
@@ -195,7 +193,7 @@ class Grycler(Cycle):
 
 		(return
 			(<
-				(Abs (proc982_2 (loopIndex * 45) (client heading:)))
+				kernel.Abs(proc982_2((loopIndex * 45), (client heading:)))
 				((180 / numOfLoops) + 1)
 			)
 		)
@@ -209,14 +207,14 @@ class Grycler(Cycle):
 		(return
 			if 
 				(or
-					((Abs (global88 - cycleCnt)) < (client cycleSpeed:))
+					(kernel.Abs((global88 - cycleCnt)) < (client cycleSpeed:))
 					(self loopIsCorrect:)
 				)
 				(client loop:)
 			else:
 				cycleCnt = global88
 				(loopIndex += (cycleDir * (8 / numOfLoops)))
-				loopIndex = (proc999_1 loopIndex 8)
+				loopIndex = proc999_1(loopIndex, 8)
 				local8[loopIndex]
 			#endif
 		)

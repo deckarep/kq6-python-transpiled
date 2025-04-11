@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 915
 import sci_sh
+import kernel
 import Main
 import n913
 import Motion
@@ -76,7 +77,7 @@ class mixPaintScr(Script):
 				(global91 say: 3 0 8 4 self 0)
 			#end:case
 			case 13:
-				(proc913_1 22)
+				proc913_1(22)
 				(self dispose:)
 				(global1 handsOn:)
 			#end:case
@@ -90,7 +91,7 @@ class mixPaintScr(Script):
 
 		(super dispose:)
 		register = 0
-		(DisposeScript 915)
+		kernel.DisposeScript(915)
 	#end:method
 
 #end:class or instance

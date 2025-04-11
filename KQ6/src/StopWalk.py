@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 961
 import sci_sh
+import kernel
 import Motion
 
 # Public Export Declarations
@@ -53,11 +54,11 @@ class StopWalk(Fwd):
 				case 
 					(and
 						(vStopped == -1)
-						((client loop:) != ((NumLoops client) - 1))
+						((client loop:) != (kernel.NumLoops(client) - 1))
 					):
 					temp0 = (client loop:)
 					(super doit:)
-					(client loop: ((NumLoops client) - 1) setCel: temp0)
+					(client loop: (kernel.NumLoops(client) - 1) setCel: temp0)
 				#end:case
 				case ((vStopped != -1) and ((client view:) == vWalking)):
 					(client view: vStopped)
@@ -74,7 +75,7 @@ class StopWalk(Fwd):
 				#end:case
 				case -1:
 					(client setLoop: -1 setCel: -1)
-					if ((client loop:) == ((NumLoops client) - 1)):
+					if ((client loop:) == (kernel.NumLoops(client) - 1)):
 						(client loop: (client cel:) cel: 0)
 					#endif
 				#end:case

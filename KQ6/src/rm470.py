@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 470
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -74,7 +75,7 @@ def localproc_0():
 			addToPic:
 		)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -95,7 +96,7 @@ def localproc_1():
 			stopUpd:
 		)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -109,7 +110,7 @@ def localproc_2():
 	while (temp0 < 3): # inline for
 		(local105[temp0] setCycle: Fwd)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -123,7 +124,7 @@ def localproc_3():
 	while (temp0 < 3): # inline for
 		(local105[temp0] setCycle: Beg)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -136,7 +137,7 @@ def localproc_4():
 	while (temp0 < 3): # inline for
 		(local105[temp0] stopUpd:)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -159,7 +160,7 @@ class rm470(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (and global100 (global12 == 99) (FileIO 10 r"""g""")):
+		if (and global100 (global12 == 99) kernel.FileIO(10, r"""g""")):
 			(global0 get: 49 get: 46 get: 19 get: 11 get: 8)
 		#endif
 		(super init: &rest)
@@ -235,7 +236,7 @@ class rm470(KQ6Room):
 		(cond
 			case 
 				(and
-					(not (proc913_0 127))
+					(not proc913_0(127))
 					(((global9 at: 49) owner:) == global11)
 				):
 				(mater
@@ -271,13 +272,13 @@ class rm470(KQ6Room):
 				(stick init: cue: 1)
 				local55 = 2
 			#end:case
-			case ((proc913_0 127) and (((global9 at: 49) owner:) == global11)):
+			case (proc913_0(127) and (((global9 at: 49) owner:) == global11)):
 				global167 = 5
 				global168 = 5
 				(stick init: cue: 1)
 				local55 = 2
 			#end:case
-			case (proc913_0 134):
+			case proc913_0(134):
 				(stick init: cue: 0)
 				local55 = 1
 			#end:case
@@ -310,8 +311,8 @@ class rm470(KQ6Room):
 			#end:case
 			case ((global0 inRect: 104 142 190 167) and (not local2)):
 				local2 = 1
-				(Load 128 4731)
-				(Load 143 470)
+				kernel.Load(128, 4731)
+				kernel.Load(143, 470)
 			#end:case
 			case ((local0 == 5) and (local1 == 5)):
 				local0 = 6
@@ -320,7 +321,7 @@ class rm470(KQ6Room):
 				(local140 = (Prop new:) view: 476 init: setScript: stepOnFrog)
 			#end:case
 		)
-		(Palette 6 64 68 -10)
+		kernel.Palette(6, 64, 68, -10)
 	#end:method
 
 	@classmethod
@@ -328,7 +329,7 @@ class rm470(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DisposeScript 939)
+		kernel.DisposeScript(939)
 		(super dispose:)
 	#end:method
 
@@ -388,7 +389,7 @@ class dogTree(Feature):
 
 		match param1
 			case 1:
-				local0++
+				local0.post('++')
 				(global91 say: 5 1 0 1)
 			#end:case
 			case 0:
@@ -452,7 +453,7 @@ class swamp2(Feature):
 		match param1
 			case 44:
 				(cond
-					case (proc913_0 68):
+					case proc913_0(68):
 						(global91 say: 6 44 12 1)
 					#end:case
 					case (local55 == 2):
@@ -493,7 +494,7 @@ class milkers(Feature):
 		match param1
 			case 5:
 				if (global0 has: 22):
-					local1++
+					local1.post('++')
 					(global91 say: 9 5 20 1)
 				else:
 					(global2 setScript: getMilk)
@@ -625,7 +626,7 @@ class bump(Prop):
 					case (local55 == 0):
 						(global91 say: 7 2 13 1)
 					#end:case
-					case (global167++ == 1):
+					case (global167.post('++') == 1):
 						(self setScript: fightTalk self)
 					#end:case
 					case (global167 == 2):
@@ -637,7 +638,7 @@ class bump(Prop):
 				)
 			#end:case
 			case 34:
-				if ((ScriptID 40 0) stickTalk:):
+				if (kernel.ScriptID(40, 0) stickTalk:):
 					global168 = 3
 					(global0 put: 49 bump)
 					(global2 setScript: bumpMaterToss)
@@ -703,7 +704,7 @@ class stick(Prop):
 
 		if 
 			(and
-				((ScriptID 40 0) stickTalk:)
+				(kernel.ScriptID(40, 0) stickTalk:)
 				(((global9 at: 49) owner:) != global11)
 			)
 			(self view: 475 setLoop: 1)
@@ -920,7 +921,7 @@ class slimeBall(Prop):
 
 		match param1
 			case 44:
-				if (not (proc913_0 68)):
+				if (not proc913_0(68)):
 					(global2 setScript: getOoze)
 				else:
 					(global91 say: 6 44 12 1)
@@ -1012,11 +1013,11 @@ class egoEnters(Script):
 							posn: 162 249
 							setMotion: MoveTo 165 185 self
 						)
-						if (not (Random 0 1)):
+						if (not kernel.Random(0, 1)):
 							(local142 = (Prop new:)
 								view: 476
 								init:
-								setScript: (Clone sFrogX)
+								setScript: kernel.Clone(sFrogX)
 							)
 						#endif
 					#end:case
@@ -1026,18 +1027,18 @@ class egoEnters(Script):
 							posn: -10 135
 							setMotion: MoveTo 10 139 self
 						)
-						if (not (Random 0 1)):
+						if (not kernel.Random(0, 1)):
 							(local141 = (Prop new:)
 								view: 476
 								init:
-								setScript: (Clone sFrogY)
+								setScript: kernel.Clone(sFrogY)
 							)
 						#endif
-						if (not (Random 0 1)):
+						if (not kernel.Random(0, 1)):
 							(local142 = (Prop new:)
 								view: 476
 								init:
-								setScript: (Clone sFrogX)
+								setScript: kernel.Clone(sFrogX)
 							)
 						#endif
 					#end:else
@@ -1099,8 +1100,8 @@ class getMilk(Script):
 			#end:case
 			case 1:
 				(global0 setHeading: 0)
-				(UnLoad 128 474)
-				(UnLoad 128 475)
+				kernel.UnLoad(128, 474)
+				kernel.UnLoad(128, 475)
 				ticks = 6
 			#end:case
 			case 2:
@@ -1117,8 +1118,8 @@ class getMilk(Script):
 				(global91 say: 9 5 19 1 self)
 			#end:case
 			case 4:
-				if (not (proc913_0 130)):
-					(proc913_1 130)
+				if (not proc913_0(130)):
+					proc913_1(130)
 					(global1 givePoints: 1)
 				#endif
 				(global0
@@ -1141,7 +1142,7 @@ class getMilk(Script):
 			case 8:
 				(global1 handsOn:)
 				(global0 reset: 3)
-				(UnLoad 128 472)
+				kernel.UnLoad(128, 472)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1163,8 +1164,8 @@ class getOoze(Script):
 				(global0 setHeading: 270 self)
 			#end:case
 			case 1:
-				if (not (proc913_0 68)):
-					(proc913_1 68)
+				if (not proc913_0(68)):
+					proc913_1(68)
 					(global1 givePoints: 1)
 				#endif
 				(global0
@@ -1243,7 +1244,7 @@ class doPussy(Script):
 			#end:case
 			case 6:
 				if (local62 < 3):
-					local62++
+					local62.post('++')
 					(local105[2] setCycle: Beg)
 					(state -= 4)
 					(self cue:)
@@ -1292,13 +1293,13 @@ class teaParty(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 40 0) stickTalk: 1)
+				(kernel.ScriptID(40, 0) stickTalk: 1)
 				(cond
 					case (local57 >= 3):
 						(global91 say: 6 44 11 1)
 						(self dispose:)
 					#end:case
-					case (proc913_0 68):
+					case proc913_0(68):
 						(global91 say: 6 44 12 1)
 						(self dispose:)
 					#end:case
@@ -1353,7 +1354,7 @@ class teaParty(Script):
 				#endif
 			#end:case
 			case 8:
-				match temp0 = (Random 0 2)
+				match temp0 = kernel.Random(0, 2)
 					case 0:
 						(global91 say: 6 44 8 1 self)
 					#end:case
@@ -1379,7 +1380,7 @@ class teaParty(Script):
 				#end:match
 			#end:case
 			case 10:
-				local57++
+				local57.post('++')
 				(global0 reset:)
 				(stick setLoop: 2 setCycle: Osc 1 self)
 				cycles = 1
@@ -1390,7 +1391,7 @@ class teaParty(Script):
 			case 12:
 				(global1 handsOn:)
 				(stick cue: 0)
-				(proc913_1 134)
+				proc913_1(134)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1484,7 +1485,7 @@ class backOut(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(Load 128 475)
+				kernel.Load(128, 475)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1502,7 +1503,7 @@ class materTossSlime(Script):
 
 		match state = param1
 			case 0:
-				(UnLoad 128 474)
+				kernel.UnLoad(128, 474)
 				(mater setLoop: 8 cel: 0 z: 0 posn: 275 129 setCycle: End self)
 			#end:case
 			case 1:
@@ -1560,7 +1561,7 @@ class materTossSlime(Script):
 			case 8:
 				(local49[local59] addToPic:)
 				if (local59 < 2):
-					local59++
+					local59.post('++')
 					(state -= 9)
 				#endif
 				(self cue:)
@@ -1624,7 +1625,7 @@ class egoMaterThrowAway(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 127)
+				proc913_1(127)
 				(global91 say: 10 34 25 1 self)
 			#end:case
 			case 1:
@@ -1770,7 +1771,7 @@ class bowWow(Script):
 			#end:case
 			case 3:
 				(doggy setCel: 1)
-				if local61--:
+				if local61.post('--'):
 					(state -= 3)
 				else:
 					(doggy setCycle: Beg)
@@ -1806,14 +1807,14 @@ class theBattle(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				local58++
+				local58.post('++')
 				(stick view: 475 setLoop: 4 cel: 0 setCycle: End self)
 			#end:case
 			case 1:
 				(global103 number: 0 stop:)
 				(global103 number: 476 setLoop: 1 play:)
 				(slime
-					posn: (Random 248 252) (Random 88 92)
+					posn: kernel.Random(248, 252) kernel.Random(88, 92)
 					illegalBits: 0
 					ignoreActors:
 					init:
@@ -1821,16 +1822,16 @@ class theBattle(Script):
 					cel: 0
 					setPri: 15
 					setCycle: Fwd
-					setMotion: MoveTo (Random 180 185) (Random 60 65) self
+					setMotion: MoveTo kernel.Random(180, 185) kernel.Random(60, 65) self
 				)
 			#end:case
 			case 2:
-				(slime setMotion: MoveTo (Random 115 122) (Random 75 82) self)
+				(slime setMotion: MoveTo kernel.Random(115, 122) kernel.Random(75, 82) self)
 			#end:case
 			case 3:
 				(slime
 					cel: 1
-					setMotion: MoveTo (Random 68 74) (Random 110 115) self
+					setMotion: MoveTo kernel.Random(68, 74) kernel.Random(110, 115) self
 				)
 			#end:case
 			case 4:
@@ -1885,8 +1886,8 @@ class bumpMaterToss(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not (proc913_0 139)):
-					(proc913_1 139)
+				if (not proc913_0(139)):
+					proc913_1(139)
 					(global1 givePoints: 3)
 				#endif
 				(global0 setMotion: PolyPath 87 177 self)
@@ -1943,8 +1944,8 @@ class bumpMaterToss(Script):
 			case 9:#end:case
 			case 10:
 				(stick cue: 0)
-				(UnLoad 128 474)
-				(UnLoad 128 475)
+				kernel.UnLoad(128, 474)
+				kernel.UnLoad(128, 475)
 				(myConv
 					add: -1 7 34 14 7
 					add: -1 7 34 14 8
@@ -2090,12 +2091,12 @@ class sTalkToStick(Script):
 				#endif
 			#end:case
 			case 1:
-				register = (GetAngle (global0 x:) (global0 y:) 292 135)
+				register = kernel.GetAngle((global0 x:), (global0 y:), 292, 135)
 				cycles = 2
 			#end:case
 			case 2:
 				if ((global0 heading:) != register):
-					(proc913_4 global0 292 135 self)
+					proc913_4(global0, 292, 135, self)
 				else:
 					cycles = 2
 				#endif
@@ -2104,10 +2105,10 @@ class sTalkToStick(Script):
 				cycles = 4
 			#end:case
 			case 4:
-				global168++
+				global168.post('++')
 				(cond
 					case (local55 == 0):
-						global168--
+						global168.post('--')
 						(global91 say: 10 2 13 1 self)
 					#end:case
 					case (global168 == 1):
@@ -2187,7 +2188,7 @@ class quagmire(Script):
 				(global91 say: 6 3 0 2 self)
 			#end:case
 			case 8:
-				(proc0_1 36)
+				proc0_1(36)
 			#end:case
 		#end:match
 	#end:method
@@ -2204,7 +2205,7 @@ class sFrogY(Script):
 
 		match state = param1
 			case 0:
-				register = (Random 0 3)
+				register = kernel.Random(0, 3)
 				(client
 					loop: 2
 					cel: 0
@@ -2215,7 +2216,7 @@ class sFrogY(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				cycles = (Random 4 8)
+				cycles = kernel.Random(4, 8)
 			#end:case
 			case 2:
 				(client setCycle: CT 3 1 self)
@@ -2246,7 +2247,7 @@ class sFrogX(Script):
 
 		match state = param1
 			case 0:
-				register = (Random 0 4)
+				register = kernel.Random(0, 4)
 				(client
 					loop: 1
 					cel: 0
@@ -2257,10 +2258,10 @@ class sFrogX(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				cycles = (Random 4 8)
+				cycles = kernel.Random(4, 8)
 			#end:case
 			case 2:
-				if (proc999_5 register 0 1):
+				if proc999_5(register, 0, 1):
 					(client setCycle: CT 9 1 self)
 				else:
 					(state += 2)
@@ -2269,7 +2270,7 @@ class sFrogX(Script):
 			#end:case
 			case 3:
 				(client posn: ((client x:) + 66) ((client y:) - 8) cel: 0)
-				cycles = (Random 2 4)
+				cycles = kernel.Random(2, 4)
 			#end:case
 			case 4:
 				(client setCycle: End self)

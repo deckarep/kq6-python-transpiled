@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 921
 import sci_sh
+import kernel
 import Main
 import Interface
 import Dialog
@@ -48,7 +49,7 @@ def proc921_2(param1 = None, param2 = None, param3 = None, param4 = None):
 			addEdit: param1 param2 0 12 param1
 			init:
 		)
-		(StrLen param1)
+		kernel.StrLen(param1)
 	#endif
 #end:procedure
 
@@ -57,12 +58,12 @@ def proc921_3(param1 = None, param2 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = temp1 = (StrLen param1)
+	temp0 = temp1 = kernel.StrLen(param1)
 	temp2 = 0
 	temp3 = 0
 	while (temp3 < temp1): # inline for
-		if ((StrAt param1 temp3) == 37):
-			match (StrAt param1 temp3++)
+		if (kernel.StrAt(param1, temp3) == 37):
+			match kernel.StrAt(param1, temp3.post('++'))
 				case 100:
 					(temp0 += 5)
 				#end:case
@@ -70,15 +71,15 @@ def proc921_3(param1 = None, param2 = None):
 					(temp0 += 4)
 				#end:case
 				case 115:
-					(temp0 += (StrLen param2[temp2]))
+					(temp0 += kernel.StrLen(param2[temp2]))
 				#end:case
 			#end:match
-			temp2++
+			temp2.post('++')
 		#endif
 		# for:reinit
-		temp3++
+		temp3.post('++')
 	#end:loop
-	temp0++
+	temp0.post('++')
 #end:procedure
 
 class Print(Obj):
@@ -126,9 +127,9 @@ class Print(Obj):
 					#endif
 				#endif
 			#endif
-			if temp8 = (Message 2 temp6 temp0 temp1 temp2 temp3):
-				temp7 = (Memory 1 temp8)
-				if (not (Message 0 temp6 temp0 temp1 temp2 temp3 temp7)):
+			if temp8 = kernel.Message(2, temp6, temp0, temp1, temp2, temp3):
+				temp7 = kernel.Memory(1, temp8)
+				if (not kernel.Message(0, temp6, temp0, temp1, temp2, temp3, temp7)):
 					temp7 = 0
 				#endif
 			#endif
@@ -141,8 +142,8 @@ class Print(Obj):
 					temp5 = param2[2]
 				#endif
 			#endif
-			temp7 = (Memory 1 ((StrLen param2[0]) + 1))
-			(StrCpy temp7 param2[0])
+			temp7 = kernel.Memory(1, (kernel.StrLen(param2[0]) + 1))
+			kernel.StrCpy(temp7, param2[0])
 		#endif
 		if temp7:
 			(dialog
@@ -168,7 +169,7 @@ class Print(Obj):
 		if (not dialog):
 			dialog = (Dialog new:)
 		#endif
-		(StrCpy param1 (param5 if (argc > 4) else r""""""))
+		kernel.StrCpy(param1, (param5 if (argc > 4) else r""""""))
 		if (argc > 2):
 			temp0 = param3
 			if (argc > 3):
@@ -202,7 +203,7 @@ class Print(Obj):
 		else:
 			temp0 = temp1 = 0
 		#endif
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			(dialog
 				add: (param1 setSize: moveTo: (temp0 + 4) (temp1 + 4) yourself:)
 				setSize:
@@ -251,9 +252,9 @@ class Print(Obj):
 					#endif
 				#endif
 			#endif
-			if temp8 = (Message 2 temp6 temp0 temp1 temp2 temp3):
-				temp7 = (Memory 1 temp8)
-				if (Message 0 temp6 temp0 temp1 temp2 temp3 temp7):
+			if temp8 = kernel.Message(2, temp6, temp0, temp1, temp2, temp3):
+				temp7 = kernel.Memory(1, temp8)
+				if kernel.Message(0, temp6, temp0, temp1, temp2, temp3, temp7):
 					(dialog
 						add:
 							((DText new:)
@@ -277,8 +278,8 @@ class Print(Obj):
 					temp5 = param1[2]
 				#endif
 			#endif
-			temp7 = (Memory 1 ((StrLen param1[0]) + 1))
-			(StrCpy temp7 param1[0])
+			temp7 = kernel.Memory(1, (kernel.StrLen(param1[0]) + 1))
+			kernel.StrCpy(temp7, param1[0])
 			(dialog
 				add:
 					((DText new:)
@@ -300,10 +301,10 @@ class Print(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = (proc921_3 &rest)
-		temp1 = (Memory 1 temp0)
-		(Format temp1 &rest)
+		temp1 = kernel.Memory(1, temp0)
+		kernel.Format(temp1, &rest)
 		(self addText: temp1)
-		(Memory 3 temp1)
+		kernel.Memory(3, temp1)
 	#end:method
 
 	@classmethod
@@ -317,13 +318,13 @@ class Print(Obj):
 			temp2 = param1[2]
 			temp3 = param1[3]
 			temp4 = param1[4]
-			if temp5 = (Message 2 temp4 temp0 temp1 temp2 temp3):
-				title = (Memory 1 temp5)
-				(Message 0 temp4 temp0 temp1 temp2 temp3 title)
+			if temp5 = kernel.Message(2, temp4, temp0, temp1, temp2, temp3):
+				title = kernel.Memory(1, temp5)
+				kernel.Message(0, temp4, temp0, temp1, temp2, temp3, title)
 			#endif
 		else:
-			title = (Memory 1 ((StrLen param1[0]) + 1))
-			(StrCpy title param1[0])
+			title = kernel.Memory(1, (kernel.StrLen(param1[0]) + 1))
+			kernel.StrCpy(title, param1[0])
 		#endif
 	#end:method
 
@@ -340,7 +341,7 @@ class Print(Obj):
 			#endif
 		#endif
 		if title:
-			(Memory 3 title)
+			kernel.Memory(3, title)
 		#endif
 		width = mode = title = first = saveCursor = window = 0
 		x = y = -1
@@ -387,7 +388,7 @@ class Print(Obj):
 			(self addText: &rest)
 		#endif
 		if (not modeless):
-			if (not (IsObject global92)):
+			if (not kernel.IsObject(global92)):
 				global92 = ((EventHandler new:) name: r"""prints""")
 			#endif
 			(global92 add: self)
@@ -446,11 +447,11 @@ class Print(Obj):
 			#endif
 		)
 		(dialog moveTo: temp3 temp4)
-		temp1 = (GetPort)
+		temp1 = kernel.GetPort()
 		(dialog open: (4 if title else 0) 15)
 		if modeless:
-			global41 = (GetPort)
-			(SetPort temp1)
+			global41 = kernel.GetPort()
+			kernel.SetPort(temp1)
 			global25 = dialog
 		else:
 			(global8 pause: 1)
@@ -464,17 +465,17 @@ class Print(Obj):
 						(temp0 state: (| (temp0 state:) 0x0002))
 					#endif
 				#end:case
-				case (not (IsObject temp0)):
+				case (not kernel.IsObject(temp0)):
 					temp0 = (dialog at: temp0)
 				#end:case
 			)
 			retValue = (dialog doit: temp0)
-			(SetPort temp1)
+			kernel.SetPort(temp1)
 			(cond
 				case (retValue == -1):
 					retValue = 0
 				#end:case
-				case ((IsObject retValue) and (retValue isKindOf: DButton)):
+				case (kernel.IsObject(retValue) and (retValue isKindOf: DButton)):
 					retValue = (retValue value:)
 				#end:case
 				case (not (dialog theItem:)):

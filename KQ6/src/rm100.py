@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 100
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import Motion
@@ -35,10 +36,10 @@ class rm100(KQ6Room):
 
 		(super init: &rest)
 		if ((global87 == 0) or (not global169)):
-			(Palette 4 0 255 0)
-			(Load 129 100)
+			kernel.Palette(4, 0, 255, 0)
+			kernel.Load(129, 100)
 			(presents init:)
-			(DrawPic 99)
+			kernel.DrawPic(99)
 		#endif
 		(global1 setCursor: blankCursor)
 		(global69 disable:)
@@ -90,7 +91,7 @@ class introScript(Script):
 		match state = param1
 			case 0:
 				(global72 add: self)
-				if (and global169 (Platform 7) (global87 > 0)):
+				if (and global169 kernel.Platform(7) (global87 > 0)):
 					(self setScript: winLogo self)
 				else:
 					(self setScript: dosLogo self)
@@ -124,7 +125,7 @@ class introScript(Script):
 					height: -100
 					activateHeight: -100
 				)
-				(Portrait 0 r"""ALEX""")
+				kernel.Portrait(0, r"""ALEX""")
 				(Cursor showCursor: 1)
 				(global1 setCursor: global20)
 				(six stopUpd:)
@@ -167,13 +168,13 @@ class FadeCode(Code):
 
 		if (local0 != local2):
 			(local0 += (1 * local1))
-			(Palette 4 0 255 local0)
+			kernel.Palette(4, 0, 255, local0)
 			temp0 = 0
 			while (temp0 < 10): # inline for
 			#end:loop
 		else:
 			(global78 delete: self)
-			if (local3 and (IsObject local3)):
+			if (local3 and kernel.IsObject(local3)):
 				(local3 cue:)
 				local3 = 0
 			#endif
@@ -266,14 +267,14 @@ class ButtonActor(Actor):
 
 			(temp0 localize:)
 			(self cel: (super onMe: temp0))
-			(Animate (global5 elements:) 1)
+			kernel.Animate((global5 elements:), 1)
 			(temp0 dispose:)
 		#end:loop
 		if (cel == 1):
 			temp1 = 1
 		#endif
 		(self cel: 0 stopUpd:)
-		(Animate (global5 elements:) 1)
+		kernel.Animate((global5 elements:), 1)
 		(temp0 dispose:)
 		if (not temp1):
 			((global2 script:) seconds: 8)
@@ -297,15 +298,15 @@ class openingBut(ButtonActor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (and global169 (Platform 7) (DoSound 4)):
+			case (and global169 kernel.Platform(7) kernel.DoSound(4)):
 				(global2 newRoom: 108)
 			#end:case
 			case 
 				(and
 					(not global169)
 					(not (global87 == 0))
-					((Graph 2) == 256)
-					(DoSound 4)
+					(kernel.Graph(2) == 256)
+					kernel.DoSound(4)
 				):
 				(global2 newRoom: 105)
 			#end:case
@@ -451,15 +452,15 @@ class winLogo(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				if (not (ShowMovie 0 r"""hdlogo.avi""")):
-					(ShowMovie 1 0 5)
-					(ShowMovie 2 0 self)
+				if (not kernel.ShowMovie(0, r"""hdlogo.avi""")):
+					kernel.ShowMovie(1, 0, 5)
+					kernel.ShowMovie(2, 0, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				(ShowMovie 6)
+				kernel.ShowMovie(6)
 				(self dispose:)
 			#end:case
 		#end:match

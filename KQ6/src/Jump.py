@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 991
 import sci_sh
+import kernel
 import Main
 import Motion
 
@@ -48,7 +49,7 @@ class Jump(Motion):
 						(client xStep:)
 					#end:case
 					else:
-						(- (client xStep:))
+						-(client xStep:)
 					#end:else
 				)
 			)
@@ -68,7 +69,7 @@ class Jump(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((Abs (global88 - b-moveCnt)) >= (client moveSpeed:)):
+		if (kernel.Abs((global88 - b-moveCnt)) >= (client moveSpeed:)):
 			b-moveCnt = global88
 			xLast = (client x:)
 			yLast = (client y:)
@@ -147,7 +148,7 @@ class Jump(Motion):
 		argc = sum(v is not None for v in locals().values())
 
 		(client mover: 0)
-		if (completed and (IsObject caller)):
+		if (completed and kernel.IsObject(caller)):
 			(caller cue:)
 		#endif
 		(self dispose:)
@@ -173,7 +174,7 @@ class JumpTo(Jump):
 		#endif
 		temp0 = (x - (param1 x:))
 		temp1 = (y - (param1 y:))
-		(SetJump self temp0 temp1 gy)
+		kernel.SetJump(self, temp0, temp1, gy)
 		if (not temp0):
 			x = 20000
 		#endif

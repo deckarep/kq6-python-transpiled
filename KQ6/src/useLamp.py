@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 754
 import sci_sh
+import kernel
 import Main
 import rm750
 import Jump
@@ -27,14 +28,14 @@ class useLamp(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 752)
-		(UnLoad 128 7501)
-		(UnLoad 128 7503)
-		(UnLoad 128 7504)
-		(UnLoad 128 702)
-		(DisposeScript 1012)
-		(DisposeScript 991)
-		(DisposeScript 754)
+		kernel.DisposeScript(752)
+		kernel.UnLoad(128, 7501)
+		kernel.UnLoad(128, 7503)
+		kernel.UnLoad(128, 7504)
+		kernel.UnLoad(128, 702)
+		kernel.DisposeScript(1012)
+		kernel.DisposeScript(991)
+		kernel.DisposeScript(754)
 	#end:method
 
 	@classmethod
@@ -57,7 +58,7 @@ class useLamp(Script):
 				)
 			#end:case
 			case 1:
-				((ScriptID 750 1)
+				(kernel.ScriptID(750, 1)
 					add: -1 5 92 0 1
 					add: -1 5 92 0 2
 					add: -1 5 92 0 3
@@ -65,33 +66,33 @@ class useLamp(Script):
 				)
 			#end:case
 			case 2:
-				(self setScript: (ScriptID 752 2) self (ScriptID 750 4))
+				(self setScript: kernel.ScriptID(752, 2) self kernel.ScriptID(750, 4))
 			#end:case
 			case 3:
-				((ScriptID 750 4) posn: 165 137)
+				(kernel.ScriptID(750, 4) posn: 165 137)
 				ticks = 60
 			#end:case
 			case 4:
-				(self setScript: (ScriptID 752 1) self (ScriptID 750 4))
+				(self setScript: kernel.ScriptID(752, 1) self kernel.ScriptID(750, 4))
 			#end:case
 			case 5:
-				((ScriptID 750 4)
+				(kernel.ScriptID(750, 4)
 					view: 7503
 					loop: 1
 					cel: 0
 					ignoreActors: 1
-					x: (((ScriptID 750 4) x:) + 32)
-					y: (((ScriptID 750 4) y:) - 8)
+					x: ((kernel.ScriptID(750, 4) x:) + 32)
+					y: ((kernel.ScriptID(750, 4) y:) - 8)
 					setCycle: End self
 				)
 			#end:case
 			case 6:
-				((ScriptID 1012 32)
+				(kernel.ScriptID(1012, 32)
 					x: 50
 					y: 59
-					talkWidth: (((ScriptID 750 4) x:) - 50)
+					talkWidth: ((kernel.ScriptID(750, 4) x:) - 50)
 				)
-				((ScriptID 750 4) dispose:)
+				(kernel.ScriptID(750, 4) dispose:)
 				cycles = 3
 			#end:case
 			case 7:
@@ -99,14 +100,14 @@ class useLamp(Script):
 			#end:case
 			case 8:
 				(global0 setCycle: CT 1 -1)
-				((ScriptID 750 2) dispose:)
+				(kernel.ScriptID(750, 2) dispose:)
 				if global169:
 					(global2 drawPic: 750 15)
 				else:
 					(global2 drawPic: 750 100)
 				#endif
-				((ScriptID 750 9) addToPic:)
-				((ScriptID 750 3)
+				(kernel.ScriptID(750, 9) addToPic:)
+				(kernel.ScriptID(750, 3)
 					view: 7504
 					loop: 0
 					cel: 0
@@ -117,7 +118,7 @@ class useLamp(Script):
 				)
 			#end:case
 			case 9:
-				((ScriptID 750 3)
+				(kernel.ScriptID(750, 3)
 					view: 7504
 					setLoop: 0
 					cel: 0
@@ -127,7 +128,7 @@ class useLamp(Script):
 				)
 			#end:case
 			case 10:
-				((ScriptID 750 3)
+				(kernel.ScriptID(750, 3)
 					view: 7504
 					setLoop: 1
 					cel: 0
@@ -140,7 +141,7 @@ class useLamp(Script):
 			#end:case
 			case 11:
 				(global0 view: 703 setLoop: 0 cel: 0 setCycle: End)
-				((ScriptID 750 3) setCycle: End)
+				(kernel.ScriptID(750, 3) setCycle: End)
 				(jar init: setCycle: Walk)
 				(self setScript: jarGoesFlying self)
 			#end:case
@@ -167,14 +168,14 @@ class useLamp(Script):
 				(global91 say: 5 92 0 5 self oneOnly: 0)
 			#end:case
 			case 15:
-				((ScriptID 755 0) register: 1)
+				(kernel.ScriptID(755, 0) register: 1)
 				cycles = 4
 			#end:case
 			case 16:
 				(global0 put: 25 740)
-				(proc750_5)
+				proc750_5()
 				(global69 disable: 5)
-				if ((not global87) or (not (HaveMouse))):
+				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
 					seconds = 8
@@ -198,7 +199,7 @@ class stabEgo(Script):
 
 		match state = param1
 			case 0:
-				(proc750_5 1)
+				proc750_5(1)
 				cycles = 1
 			#end:case
 			case 1:
@@ -206,7 +207,7 @@ class stabEgo(Script):
 				if (((global9 at: 25) owner:) == 740):
 					cycles = 2
 				else:
-					((ScriptID 750 3)
+					(kernel.ScriptID(750, 3)
 						view: 7504
 						setLoop: 5
 						setCycle: Walk
@@ -219,7 +220,7 @@ class stabEgo(Script):
 			#end:case
 			case 2:
 				(global0 hide:)
-				((ScriptID 750 3)
+				(kernel.ScriptID(750, 3)
 					view: 755
 					setLoop: 0
 					cel: 0
@@ -231,18 +232,18 @@ class stabEgo(Script):
 				)
 			#end:case
 			case 3:
-				((ScriptID 750 3) setCycle: End self)
+				(kernel.ScriptID(750, 3) setCycle: End self)
 				(global103 number: 756 setLoop: 1 play:)
 			#end:case
 			case 4:
-				((ScriptID 750 3) setLoop: 1 cel: 0 setCycle: End self)
+				(kernel.ScriptID(750, 3) setLoop: 1 cel: 0 setCycle: End self)
 				(global103 number: 756 setLoop: 1 play:)
 			#end:case
 			case 5:
 				ticks = 30
 			#end:case
 			case 6:
-				((ScriptID 750 3) setLoop: 2 cel: 0 setCycle: CT 3 1 self)
+				(kernel.ScriptID(750, 3) setLoop: 2 cel: 0 setCycle: CT 3 1 self)
 			#end:case
 			case 7:
 				(global103 number: 971 setLoop: 1 play:)
@@ -253,11 +254,11 @@ class stabEgo(Script):
 				(global91 say: 6 23 16 3 self)
 			#end:case
 			case 9:
-				((ScriptID 750 3) setCycle: End self)
+				(kernel.ScriptID(750, 3) setCycle: End self)
 				(global103 number: 652 setLoop: 1 play:)
 			#end:case
 			case 10:
-				(proc0_1 41)
+				proc0_1(41)
 			#end:case
 		#end:match
 	#end:method

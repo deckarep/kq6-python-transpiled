@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 981
 import sci_sh
+import kernel
 import System
 
 class SysWindow(Obj):
@@ -35,21 +36,7 @@ class SysWindow(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		(= window
-			(NewWindow
-				top
-				left
-				bottom
-				right
-				lsTop
-				lsLeft
-				lsBottom
-				lsRight
-				title
-				type
-				priority
-				color
-				back
-			)
+			kernel.NewWindow(top, left, bottom, right, lsTop, lsLeft, lsBottom, lsRight, title, type, priority, color, back)
 		)
 	#end:method
 
@@ -59,7 +46,7 @@ class SysWindow(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if window:
-			(DisposeWindow window eraseOnly)
+			kernel.DisposeWindow(window, eraseOnly)
 			window = 0
 		#endif
 		(super dispose:)
@@ -134,7 +121,7 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Graph 12 top left bottom right (self setMapSet:))
+		kernel.Graph(12, top, left, bottom, right, (self setMapSet:))
 	#end:method
 
 	@classmethod
@@ -148,7 +135,7 @@ class Window(SysWindow):
 		if (argc >= 2):
 			priority = param2
 		#endif
-		(Graph 11 top left bottom right (self setMapSet:) color priority)
+		kernel.Graph(11, top, left, bottom, right, (self setMapSet:), color, priority)
 	#end:method
 
 	@classmethod
@@ -156,7 +143,7 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		underBits = (Graph 7 top left bottom right (self setMapSet:))
+		underBits = kernel.Graph(7, top, left, bottom, right, (self setMapSet:))
 	#end:method
 
 	@classmethod
@@ -165,7 +152,7 @@ class Window(SysWindow):
 		argc = sum(v is not None for v in locals().values())
 
 		if underBits:
-			(Graph 8 underBits)
+			kernel.Graph(8, underBits)
 		#endif
 	#end:method
 
@@ -187,7 +174,7 @@ class Window(SysWindow):
 
 		(self restore:)
 		if window:
-			(DisposeWindow window)
+			kernel.DisposeWindow(window)
 			window = 0
 		#endif
 		(super dispose:)

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1013
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -32,7 +33,7 @@ class Genie(Kq6Talker):
 
 		if (global11 == 145):
 			(self view: 1466 loop: 3 talkWidth: 175)
-			if (proc913_0 133):
+			if proc913_0(133):
 				(self x: 173 y: 134 textX: -73 textY: -114)
 				temp0 = tMouthLo
 			else:

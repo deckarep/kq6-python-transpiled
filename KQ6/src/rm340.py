@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 340
 import sci_sh
+import kernel
 import Main
 import rSacred
 import genie_341
@@ -56,7 +57,7 @@ class rm340(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc344_1)
+		proc344_1()
 	#end:method
 
 	@classmethod
@@ -65,13 +66,13 @@ class rm340(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		(Lock 143 340 0)
-		(proc343_0)
+		kernel.Lock(143, 340, 0)
+		proc343_0()
 		(global32
 			add: labDoor niteShade cave oracle myPath mount
 			eachElementDo: #init
 		)
-		if (proc913_0 1):
+		if proc913_0(1):
 			local2 = 23
 			(minoOpening init:)
 		else:
@@ -87,11 +88,11 @@ class rm340(KQ6Room):
 			#end:case
 			case (global12 == 405):
 				(global1 handsOff:)
-				if (and (proc913_0 14) (proc913_0 4) (not (proc913_0 15))):
-					(proc958_0 128 335 337 336)
+				if (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+					proc958_0(128, 335, 337, 336)
 					(global103 number: 345 play:)
-					(Load 130 344)
-					(proc344_0)
+					kernel.Load(130, 344)
+					proc344_0()
 				#endif
 				(global2 setScript: fromLab)
 			#end:case
@@ -105,34 +106,34 @@ class rm340(KQ6Room):
 					normal: 0
 					hide:
 				)
-				if (not (proc913_0 3)):
-					(Load 130 342)
+				if (not proc913_0(3)):
+					kernel.Load(130, 342)
 					(berries addToPic: dispose:)
 					(theDoor addToPic: dispose:)
-					(UnLoad 128 330)
-					(proc342_0)
+					kernel.UnLoad(128, 330)
+					proc342_0()
 				else:
 					(global1 handsOff:)
-					if (and (proc913_0 14) (proc913_0 4) (not (proc913_0 15))):
-						(proc958_0 128 335 337 336)
+					if (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+						proc958_0(128, 335, 337, 336)
 						(global103 number: 345 play:)
-						(Load 130 344)
-						(proc344_0)
+						kernel.Load(130, 344)
+						proc344_0()
 					#endif
 					(global2 setScript: fromLab)
 				#endif
 			#end:case
 			case (global12 == 370):
 				(global2 north: 0)
-				(Load 130 342)
+				kernel.Load(130, 342)
 				(global0 posn: 340 -10 reset: ignoreHorizon:)
-				(proc342_1)
+				proc342_1()
 			#end:case
-			case ((not (proc913_0 1)) and (proc913_0 2)):
-				(proc958_0 128 343 344)
-				(Load 130 342)
+			case ((not proc913_0(1)) and proc913_0(2)):
+				proc958_0(128, 343, 344)
+				kernel.Load(130, 342)
 				(berries addToPic: dispose:)
-				(proc342_2)
+				proc342_2()
 			#end:case
 			case (global12 == 350):
 				(global1 handsOn:)
@@ -146,16 +147,16 @@ class rm340(KQ6Room):
 			#end:case
 			else:
 				(cond
-					case ((proc999_5 global12 320 300) and (not (proc913_0 4))):
-						(proc958_0 128 334 330)
-						(Load 130 341)
-						(proc341_0)
+					case (proc999_5(global12, 320, 300) and (not proc913_0(4))):
+						proc958_0(128, 334, 330)
+						kernel.Load(130, 341)
+						proc341_0()
 					#end:case
-					case (and (proc913_0 14) (proc913_0 4) (not (proc913_0 15))):
-						(proc958_0 128 335 337 336)
+					case (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+						proc958_0(128, 335, 337, 336)
 						(global103 number: 345 play:)
-						(Load 130 344)
-						(proc344_0)
+						kernel.Load(130, 344)
+						proc344_0()
 					#end:case
 				)
 				(global0
@@ -170,7 +171,7 @@ class rm340(KQ6Room):
 				(global2 setScript: egoEnters)
 			#end:else
 		)
-		(proc913_1 157)
+		proc913_1(157)
 	#end:method
 
 	@classmethod
@@ -193,7 +194,7 @@ class rm340(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 0 341 342 344)
+		proc958_0(0, 341, 342, 344)
 		if (not ((global103 number:) == 155)):
 			(global103 fade: 0 5 5)
 		#endif
@@ -210,7 +211,7 @@ class rm340(KQ6Room):
 		(return
 			match param1
 				case 1:
-					if (proc913_0 1):
+					if proc913_0(1):
 						(global91 say: 3 1 23 1 self)
 					else:
 						(global91 say: 3 1 20 1 self)
@@ -250,7 +251,7 @@ class rm340(KQ6Room):
 				(global102 fade: 0 10 10)
 				(global2 newRoom: 405)
 			#end:case
-			case (((global0 onControl: 1) == 512) and (proc913_0 1)):
+			case (((global0 onControl: 1) == 512) and proc913_0(1)):
 				(global102 fade: 0 10 10)
 				(global2 setScript: goToLair)
 			#end:case
@@ -321,7 +322,7 @@ class theDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 3):
+		if proc913_0(3):
 			(self cel: 4 stopUpd:)
 		else:
 			(self cel: 0 stopUpd:)
@@ -352,7 +353,7 @@ class labRock(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 3):
+		if proc913_0(3):
 			(self posn: 0 149 stopUpd:)
 		else:
 			(self posn: 9 137 stopUpd:)
@@ -431,7 +432,7 @@ class labDoor(Feature):
 			#end:case
 			case 5:
 				(cond
-					case (proc913_0 1):
+					case proc913_0(1):
 						(global91 say: 4 5 local2 1)
 					#end:case
 					case (global2 script:): 0#end:case
@@ -629,9 +630,9 @@ class egoEnters(Script):
 			#end:case
 			case 10:
 				(cond
-					case ((global12 == 320) and (not (proc913_0 4))):
+					case ((global12 == 320) and (not proc913_0(4))):
 						(global91 say: 1 0 1 1)
-						(proc341_1)
+						proc341_1()
 					#end:case
 					case (global12 == 300):
 						(global1 handsOn:)
@@ -753,9 +754,9 @@ class crawlIntoCave(Script):
 			case 2:
 				if ((rSacred geniePresent:) == 1):
 					(global0 setScript: 0)
-					(proc341_3)
+					proc341_3()
 				#endif
-				if (proc913_0 96):
+				if proc913_0(96):
 					(global91 say: 7 5 32 1 self)
 				else:
 					(global91 say: 7 5 31 1 self)
@@ -767,7 +768,7 @@ class crawlIntoCave(Script):
 			#end:case
 			case 4:
 				if ((rSacred geniePresent:) == 1):
-					(proc341_2)
+					proc341_2()
 				#endif
 				(global0
 					setScale: 0
@@ -782,7 +783,7 @@ class crawlIntoCave(Script):
 				)
 			#end:case
 			case 5:
-				(DisposeScript 341)
+				kernel.DisposeScript(341)
 				(global0
 					setLoop: 2
 					cel: 0
@@ -818,7 +819,7 @@ class goNorth(Script):
 		match state = param1
 			case 0:
 				if ((rSacred geniePresent:) == 1):
-					(self setScript: (ScriptID 341 5) self)
+					(self setScript: kernel.ScriptID(341, 5) self)
 				else:
 					cycles = 6
 				#endif
@@ -929,7 +930,7 @@ class stepDown(Script):
 				(global1 handsOff:)
 				(global0 setMotion: 0 posn: 162 169)
 				if ((rSacred geniePresent:) == 1):
-					(self setScript: (ScriptID 341 5) self)
+					(self setScript: kernel.ScriptID(341, 5) self)
 				else:
 					cycles = 6
 				#endif
@@ -996,7 +997,7 @@ class gag_Die(Script):
 		match state = param1
 			case 0:
 				if (rSacred geniePresent:):
-					((ScriptID 341 4) setScript: 0)
+					(kernel.ScriptID(341, 4) setScript: 0)
 				#endif
 				(global0 setScript: 0)
 				if ((rSacred geniePresent:) == 1):
@@ -1027,7 +1028,7 @@ class gag_Die(Script):
 			#end:case
 			case 5:
 				if ((rSacred geniePresent:) == 1):
-					(proc341_3)
+					proc341_3()
 				#endif
 				(global104 stop:)
 				(global105 number: 343 setLoop: 1 play:)
@@ -1041,19 +1042,19 @@ class gag_Die(Script):
 			#end:case
 			case 6:
 				if ((rSacred geniePresent:) == 1):
-					(proc341_2)
+					proc341_2()
 				#endif
 				cycles = 6
 			#end:case
 			case 7:
-				(DisposeScript 341)
+				kernel.DisposeScript(341)
 				cycles = 6
 			#end:case
 			case 8:
 				(global91 say: 12 5 local0 4 self)
 			#end:case
 			case 9:
-				(proc0_1 20)
+				proc0_1(20)
 			#end:case
 		#end:match
 	#end:method
@@ -1099,14 +1100,14 @@ class dieHard(Script):
 			#end:case
 			case 5:
 				(global105 number: 307 setLoop: 1 play:)
-				(ShakeScreen 3 1)
+				kernel.ShakeScreen(3, 1)
 				seconds = 3
 			#end:case
 			case 6:
 				(global91 say: 3 3 17 2 self 340)
 			#end:case
 			case 7:
-				(proc0_1 8)
+				proc0_1(8)
 			#end:case
 		#end:match
 	#end:method
@@ -1132,9 +1133,9 @@ class egoDoVerb(Actions):
 				return 0
 			#end:case
 			case 31:
-				if (and (proc913_0 14) (proc913_0 4) (not (proc913_0 15))):
+				if (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
 					(global1 handsOff:)
-					((ScriptID 344 2) setScript: (ScriptID 344 3))
+					(kernel.ScriptID(344, 2) setScript: kernel.ScriptID(344, 3))
 					return 1
 				else:
 					return 0

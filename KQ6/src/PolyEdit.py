@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 943
 import sci_sh
+import kernel
 import Main
 import Print
 import Polygon
@@ -97,16 +98,14 @@ def localproc_2(param1 = None, param2 = None, param3 = None, param4 = None, para
 			)
 		)
 		(return
-			if temp0 = (GetDistance param1 param2 param3 param4):
+			if temp0 = kernel.GetDistance(param1, param2, param3, param4):
 				(/
-					(Abs
-						(localproc_1
-							(param4 - param2)
-							(param1 - param3)
-							(param5 - param1)
-							(param6 - param2)
-						)
-					)
+					kernel.Abs((localproc_1
+						(param4 - param2)
+						(param1 - param3)
+						(param5 - param1)
+						(param6 - param2)
+					))
 					temp0
 				)
 			else:
@@ -115,10 +114,7 @@ def localproc_2(param1 = None, param2 = None, param3 = None, param4 = None, para
 		)
 	else:
 		(return
-			(proc999_2
-				(GetDistance param5 param6 param1 param2)
-				(GetDistance param5 param6 param3 param4)
-			)
+			proc999_2(kernel.GetDistance(param5, param6, param1, param2), kernel.GetDistance(param5, param6, param3, param4))
 		)
 	#endif
 #end:procedure
@@ -148,33 +144,33 @@ class ClickMenu(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		text = (Memory 2 81)
-		(Memory 6 text 0)
+		text = kernel.Memory(2, 81)
+		kernel.Memory(6, text, 0)
 		temp1 = array = param1
 		temp48 = 0
 		temp0 = 0
-		while temp2 = (Memory 5 temp1):
+		while temp2 = kernel.Memory(5, temp1):
 
-			(StrCpy @temp8 temp2)
+			kernel.StrCpy(@temp8, temp2)
 			if (not temp0):
-				(StrCat @temp8 r""": """)
+				kernel.StrCat(@temp8, r""": """)
 			#endif
-			(StrCat @temp8 r""" """)
-			(StrCat text @temp8)
-			(TextSize @temp4 @temp8 0 0)
+			kernel.StrCat(@temp8, r""" """)
+			kernel.StrCat(text, @temp8)
+			kernel.TextSize(@temp4, @temp8, 0, 0)
 			(temp48 += temp4[3])
-			(Memory 6 (temp1 + 4) temp48)
-			if (not (Memory 5 (temp1 + 2))):
-				temp49 = (StrAt temp2 0)
+			kernel.Memory(6, (temp1 + 4), temp48)
+			if (not kernel.Memory(5, (temp1 + 2))):
+				temp49 = kernel.StrAt(temp2, 0)
 				if (<= 65 temp49 90):
 					(temp49 += 32)
 				#endif
-				(Memory 6 (temp1 + 2) temp49)
+				kernel.Memory(6, (temp1 + 2), temp49)
 			#endif
-			temp0++
+			temp0.post('++')
 			(temp1 += 6)
 		#end:loop
-		(DrawStatus text)
+		kernel.DrawStatus(text)
 	#end:method
 
 	@classmethod
@@ -190,13 +186,13 @@ class ClickMenu(Obj):
 		#endif
 		temp0 = array
 		temp1 = 0
-		while (Memory 5 temp0):
+		while kernel.Memory(5, temp0):
 
-			if (((param1 x:) < (Memory 5 (temp0 + 4))) and temp1):
-				(param1 type: 4 message: (Memory 5 (temp0 + 2)))
+			if (((param1 x:) < kernel.Memory(5, (temp0 + 4))) and temp1):
+				(param1 type: 4 message: kernel.Memory(5, (temp0 + 2)))
 				return 0
 			#endif
-			temp1++
+			temp1.post('++')
 			(temp0 += 6)
 		#end:loop
 		(param1 claimed: 1)
@@ -207,7 +203,7 @@ class ClickMenu(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Memory 3 text)
+		kernel.Memory(3, text)
 		(super dispose:)
 	#end:method
 
@@ -250,7 +246,7 @@ class Class_943_1
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Clone self)
+		kernel.Clone(self)
 	#end:method
 
 	@classmethod
@@ -273,7 +269,7 @@ class Class_943_1
 			temp0 = 0
 			temp1 = -1
 		#endif
-		(Graph 4 y x (param1 y:) (param1 x:) temp0 -1 temp1)
+		kernel.Graph(4, y, x, (param1 y:), (param1 x:), temp0, -1, temp1)
 	#end:method
 
 	@classmethod
@@ -283,9 +279,9 @@ class Class_943_1
 
 		(localproc_0 x y (param1 x:) (param1 y:))
 		if underBits:
-			(UnLoad 133 underBits)
+			kernel.UnLoad(133, underBits)
 		#endif
-		underBits = (Graph 7 local42 local43 local44 local45 local0)
+		underBits = kernel.Graph(7, local42, local43, local44, local45, local0)
 	#end:method
 
 	@classmethod
@@ -294,7 +290,7 @@ class Class_943_1
 		argc = sum(v is not None for v in locals().values())
 
 		if underBits:
-			(Graph 8 underBits)
+			kernel.Graph(8, underBits)
 			underBits = 0
 		#endif
 	#end:method
@@ -305,10 +301,10 @@ class Class_943_1
 		argc = sum(v is not None for v in locals().values())
 
 		if underBits:
-			(UnLoad 133 underBits)
+			kernel.UnLoad(133, underBits)
 			underBits = 0
 		#endif
-		(DisposeClone self)
+		kernel.DisposeClone(self)
 	#end:method
 
 #end:class or instance
@@ -368,11 +364,11 @@ class _EditablePolygon(List):
 			(param1 writeString: r"""\t\t\t\tinit:\t\t""")
 			temp14 = 1
 			temp0 = 17
-			temp3 = (FirstNode elements)
+			temp3 = kernel.FirstNode(elements)
 			while temp3: # inline for
-				temp2 = (NodeValue temp3)
-				(Format @temp4 943 0 (temp2 x:) (temp2 y:))
-				if ((temp0 += temp1 = ((StrLen @temp4) + 1)) >= 80):
+				temp2 = kernel.NodeValue(temp3)
+				kernel.Format(@temp4, 943, 0, (temp2 x:), (temp2 y:))
+				if ((temp0 += temp1 = (kernel.StrLen(@temp4) + 1)) >= 80):
 					(param1 writeString: r"""\0d\n\t\t\t\t\t\t""")
 					temp14 = 1
 					temp0 = (17 + temp1)
@@ -383,7 +379,7 @@ class _EditablePolygon(List):
 				(param1 writeString: @temp4)
 				temp14 = 0
 				# for:reinit
-				temp3 = (NextNode temp3)
+				temp3 = kernel.NextNode(temp3)
 			#end:loop
 			(param1 writeString: r""",\0d\n""")
 			(param1
@@ -399,24 +395,24 @@ class _EditablePolygon(List):
 
 		temp0 = (self first:)
 		while temp0: # inline for
-			temp2 = (NodeValue temp0)
-			temp15 = (NextNode temp0)
+			temp2 = kernel.NodeValue(temp0)
+			temp15 = kernel.NextNode(temp0)
 			while temp15: # inline for
-				temp16 = (NodeValue temp15)
+				temp16 = kernel.NodeValue(temp15)
 				if 
 					(and
 						((temp2 x:) == (temp16 x:))
 						((temp2 y:) == (temp16 y:))
 					)
-					temp15 = (PrevNode temp15)
+					temp15 = kernel.PrevNode(temp15)
 					(self delete: temp16)
 					(temp16 dispose:)
 				#endif
 				# for:reinit
-				temp15 = (NextNode temp15)
+				temp15 = kernel.NextNode(temp15)
 			#end:loop
 			# for:reinit
-			temp0 = (NextNode temp0)
+			temp0 = kernel.NextNode(temp0)
 		#end:loop
 		temp4 = 0
 		temp9 = 0
@@ -424,10 +420,10 @@ class _EditablePolygon(List):
 		temp8 = 1
 		temp0 = temp6 = (self first:)
 		while 1: # inline for
-			temp2 = (NodeValue temp0)
+			temp2 = kernel.NodeValue(temp0)
 			temp1 = (self next: temp0)
-			temp3 = (NodeValue temp1)
-			temp4 = (ATan (temp2 x:) (temp2 y:) (temp3 x:) (temp3 y:))
+			temp3 = kernel.NodeValue(temp1)
+			temp4 = kernel.ATan((temp2 x:), (temp2 y:), (temp3 x:), (temp3 y:))
 			if (not temp8):
 				(cond
 					case (temp5 = (temp4 - temp9) > 180):
@@ -446,32 +442,32 @@ class _EditablePolygon(List):
 			temp0 = temp1
 		#end:loop
 		if (type == 3):
-			temp7 = (- temp7)
+			temp7 = -temp7
 		#endif
 		(cond
 			case (temp7 == -360):
 				temp0 = (self first:)
 				
 					(temp10 = (self last:))
-					((temp0 != temp10) and (temp0 != (NextNode temp10)))
-					(temp10 = (PrevNode temp10))
+					((temp0 != temp10) and (temp0 != kernel.NextNode(temp10)))
+					(temp10 = kernel.PrevNode(temp10))
 					
-					temp2 = (NodeValue temp0)
-					temp11 = (NodeValue temp10)
+					temp2 = kernel.NodeValue(temp0)
+					temp11 = kernel.NodeValue(temp10)
 					temp12 = (temp2 x:)
 					temp13 = (temp2 y:)
 					(temp2 x: (temp11 x:))
 					(temp2 y: (temp11 y:))
 					(temp11 x: temp12)
 					(temp11 y: temp13)
-					temp0 = (NextNode temp0)
+					temp0 = kernel.NextNode(temp0)
 					# for:reinit
-					temp10 = (PrevNode temp10)
+					temp10 = kernel.PrevNode(temp10)
 				#end:loop
 			#end:case
 			case (temp7 != 360):
-				(Format @temp17 943 1 name temp7)
-				(proc921_0 @temp17)
+				kernel.Format(@temp17, 943, 1, name, temp7)
+				proc921_0(@temp17)
 			#end:case
 		)
 	#end:method
@@ -481,14 +477,14 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp1 = (Memory 2 (size * 4))
-		temp2 = (FirstNode elements)
+		temp1 = kernel.Memory(2, (size * 4))
+		temp2 = kernel.FirstNode(elements)
 		temp0 = temp1
 		while temp2: # inline for
-			temp3 = (NodeValue temp2)
-			(Memory 6 temp0 (temp3 x:))
-			(Memory 6 (temp0 + 2) (temp3 y:))
-			temp2 = (NextNode temp2)
+			temp3 = kernel.NodeValue(temp2)
+			kernel.Memory(6, temp0, (temp3 x:))
+			kernel.Memory(6, (temp0 + 2), (temp3 y:))
+			temp2 = kernel.NextNode(temp2)
 			# for:reinit
 			(temp0 += 4)
 		#end:loop
@@ -557,7 +553,7 @@ class _EditablePolygon(List):
 		(super
 			add: curPt = ((Class_943_1 new:) x: param1 y: param2 yourself:)
 		)
-		(self setCur: (FindKey elements curPt) param3)
+		(self setCur: kernel.FindKey(elements, curPt) param3)
 	#end:method
 
 	@classmethod
@@ -582,7 +578,7 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values())
 
 		if curNode = param1:
-			curPt = (NodeValue curNode)
+			curPt = kernel.NodeValue(curNode)
 			if ((argc < 2) or param2):
 				(global1 setCursor: 999 1 (curPt x:) (curPt y:))
 			#endif
@@ -594,7 +590,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(self setCur: (FindKey elements closestPt) param1)
+		(self setCur: kernel.FindKey(elements, closestPt) param1)
 	#end:method
 
 	@classmethod
@@ -603,12 +599,12 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values())
 
 		if temp0 = (self next: curNode):
-			temp3 = (NodeValue temp0)
+			temp3 = kernel.NodeValue(temp0)
 		else:
 			temp3 = curPt
 		#endif
 		if temp1 = (self prev: curNode):
-			temp4 = (NodeValue temp1)
+			temp4 = kernel.NodeValue(temp1)
 		else:
 			temp4 = curPt
 		#endif
@@ -632,7 +628,7 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values())
 
 		(localproc_0 (curPt x:) (curPt y:) lsLeft lsTop lsRight lsBottom)
-		(Graph 12 local42 local43 local44 local45 local0)
+		kernel.Graph(12, local42, local43, local44, local45, local0)
 	#end:method
 
 	@classmethod
@@ -645,10 +641,10 @@ class _EditablePolygon(List):
 		temp0 = (self last:)
 		while 1:
 
-			temp2 = (NodeValue temp1)
+			temp2 = kernel.NodeValue(temp1)
 			if 
 				(<
-					temp3 = (GetDistance param1 param2 (temp2 x:) (temp2 y:))
+					temp3 = kernel.GetDistance(param1, param2, (temp2 x:), (temp2 y:))
 					temp4
 				)
 				temp4 = temp3
@@ -673,9 +669,9 @@ class _EditablePolygon(List):
 		temp0 = (self last:)
 		while 1:
 
-			temp2 = (NodeValue temp1)
+			temp2 = kernel.NodeValue(temp1)
 			temp6 = (self next: temp1)
-			temp5 = (NodeValue temp6)
+			temp5 = kernel.NodeValue(temp6)
 			if 
 				(<
 					(= temp3
@@ -706,7 +702,7 @@ class _EditablePolygon(List):
 
 		temp0 = ((Class_943_1 new:) x: param1 y: param2 yourself:)
 		(self addAfter: closestPt temp0)
-		(self setCur: (FindKey elements temp0))
+		(self setCur: kernel.FindKey(elements, temp0))
 	#end:method
 
 	@classmethod
@@ -719,8 +715,8 @@ class _EditablePolygon(List):
 		while ((temp0 != temp4) or closed):
 
 			temp1 = (self next: temp0)
-			temp2 = (NodeValue temp0)
-			temp3 = (NodeValue temp1)
+			temp2 = kernel.NodeValue(temp0)
+			temp3 = kernel.NodeValue(temp1)
 			(temp2 param1: temp3 &rest)
 			(breakif (temp0 == temp4))
 			temp0 = temp1
@@ -769,20 +765,20 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp1 = temp0 = (Memory 2 (2 * ((2 * size) + 3)))
-		(Memory 6 temp1 closed)
+		temp1 = temp0 = kernel.Memory(2, (2 * ((2 * size) + 3)))
+		kernel.Memory(6, temp1, closed)
 		(temp1 += 2)
-		(Memory 6 temp1 size)
+		kernel.Memory(6, temp1, size)
 		(temp1 += 2)
-		(Memory 6 temp1 (self indexOf: curPt))
+		kernel.Memory(6, temp1, (self indexOf: curPt))
 		(temp1 += 2)
 		temp2 = (self first:)
 		while temp2:
 
-			temp3 = (NodeValue temp2)
-			(Memory 6 temp1 (temp3 x:))
-			(Memory 6 (temp1 += 2) (temp3 y:))
-			temp2 = (NextNode temp2)
+			temp3 = kernel.NodeValue(temp2)
+			kernel.Memory(6, temp1, (temp3 x:))
+			kernel.Memory(6, (temp1 += 2), (temp3 y:))
+			temp2 = kernel.NextNode(temp2)
 			(temp1 += 2)
 		#end:loop
 		return temp0
@@ -794,20 +790,20 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values())
 
 		(self eachElementDo: #dispose release:)
-		closed = (Memory 5 param1)
+		closed = kernel.Memory(5, param1)
 		(param1 += 2)
-		temp1 = (Memory 5 param1)
+		temp1 = kernel.Memory(5, param1)
 		(param1 += 2)
-		temp3 = (Memory 5 param1)
+		temp3 = kernel.Memory(5, param1)
 		(param1 += 2)
 		temp2 = 0
 		while (temp2 < temp1):
 
-			(self add: (Memory 5 param1) (Memory 5 (param1 += 2)) 0)
-			temp2++
+			(self add: kernel.Memory(5, param1) kernel.Memory(5, (param1 += 2)) 0)
+			temp2.post('++')
 			(param1 += 2)
 		#end:loop
-		(self setCur: (FindKey elements (self at: temp3)) 0)
+		(self setCur: kernel.FindKey(elements, (self at: temp3)) 0)
 	#end:method
 
 #end:class or instance
@@ -825,11 +821,11 @@ class readObstacle(Code):
 		temp1 = (param1 points:)
 		while (temp0 < (param1 size:)): # inline for
 			(temp2
-				add: (Memory 5 temp1) (Memory 5 (temp1 + 2)) 0
+				add: kernel.Memory(5, temp1) kernel.Memory(5, (temp1 + 2)) 0
 				type: (param1 type:)
 				srcList: param2
 			)
-			temp0++
+			temp0.post('++')
 			# for:reinit
 			(temp1 += 4)
 		#end:loop
@@ -868,8 +864,8 @@ class PolyEdit(List):
 					if 
 						(and
 							isMouseDown
-							(not (proc999_5 state 0 2))
-							(((Abs (temp1 - x)) + (Abs (temp2 - y))) > 1)
+							(not proc999_5(state, 0, 2))
+							((kernel.Abs((temp1 - x)) + kernel.Abs((temp2 - y))) > 1)
 						)
 						if (state != 3):
 							(self saveForUndo:)
@@ -878,13 +874,13 @@ class PolyEdit(List):
 					#endif
 					if 
 						(and
-							(proc999_5 state 2 0)
+							proc999_5(state, 2, 0)
 							((temp1 != x) or (temp2 != y))
 						)
 						(self movePt: x y)
 					#endif
 					if (state == 2):
-						(DrawStatus (Format @temp3 943 2 x y))
+						kernel.DrawStatus(kernel.Format(@temp3, 943, 2, x, y))
 					#endif
 				#endif
 			#end:case
@@ -916,7 +912,7 @@ class PolyEdit(List):
 			#end:case
 			case 2:
 				isMouseDown = 0
-				if (proc999_5 state 2 3):
+				if proc999_5(state, 2, 3):
 					(self changeState: 1)
 				#endif
 			#end:case
@@ -1095,7 +1091,7 @@ class PolyEdit(List):
 		(self eachElementDo: #restore)
 		(self eachElementDo: #save)
 		(self eachElementDo: #draw)
-		(Graph 12 0 0 190 320 local0)
+		kernel.Graph(12, 0, 0, 190, 320, local0)
 	#end:method
 
 	@classmethod
@@ -1105,7 +1101,7 @@ class PolyEdit(List):
 
 		(self select: 486 1)
 		temp0 = (Event new:)
-		(GlobalToLocal temp0)
+		kernel.GlobalToLocal(temp0)
 		x = (temp0 x:)
 		y = (temp0 y:)
 		(temp0 dispose:)
@@ -1142,7 +1138,7 @@ class PolyEdit(List):
 				curPolygon = 0
 			#end:case
 			else:
-				curPolygon = (NodeValue temp0)
+				curPolygon = kernel.NodeValue(temp0)
 				(self draw:)
 			#end:else
 		)
@@ -1176,7 +1172,7 @@ class PolyEdit(List):
 		(self changeState: 3)
 		(self eachElementDo: #save)
 		(self eachElementDo: #draw)
-		(Graph 12 0 0 190 320 local0)
+		kernel.Graph(12, 0, 0, 190, 320, local0)
 	#end:method
 
 	@classmethod
@@ -1210,7 +1206,7 @@ class PolyEdit(List):
 		#endif
 		(self eachElementDo: #save)
 		(self eachElementDo: #draw)
-		(Graph 12 0 0 190 320 local0)
+		kernel.Graph(12, 0, 0, 190, 320, local0)
 	#end:method
 
 	@classmethod
@@ -1220,15 +1216,15 @@ class PolyEdit(List):
 
 		temp0 = 32767
 		temp1 = 0
-		temp4 = (FirstNode elements)
+		temp4 = kernel.FirstNode(elements)
 		while temp4: # inline for
-			temp3 = (NodeValue temp4)
+			temp3 = kernel.NodeValue(temp4)
 			if (temp2 = (temp3 param1: x y) < temp0):
 				temp0 = temp2
 				temp1 = temp3
 			#endif
 			# for:reinit
-			temp4 = (NextNode temp4)
+			temp4 = kernel.NextNode(temp4)
 		#end:loop
 		(curPolygon = temp1 setCurClosest: param2)
 	#end:method
@@ -1238,7 +1234,7 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp1 = (FindKey elements curPolygon)
+		temp1 = kernel.FindKey(elements, curPolygon)
 		if 
 			(and
 				(not temp0 = (self param1: temp1))
@@ -1246,7 +1242,7 @@ class PolyEdit(List):
 			)
 			temp0 = temp1
 		#endif
-		curPolygon = (NodeValue temp0)
+		curPolygon = kernel.NodeValue(temp0)
 		(curPolygon setCur: (curPolygon curNode:))
 	#end:method
 
@@ -1258,7 +1254,7 @@ class PolyEdit(List):
 		if undoPoly = curPolygon:
 			undoPrvPoly = (self prev: undoPoly)
 			if (((not argc) or param1) and undoPolyBuf):
-				(Memory 3 undoPolyBuf)
+				kernel.Memory(3, undoPolyBuf)
 			#endif
 			undoPolyBuf = (curPolygon saveForUndo:)
 		#endif
@@ -1273,7 +1269,7 @@ class PolyEdit(List):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not undoPoly):
-			(proc921_0 r"""Nothing to undo""")
+			proc921_0(r"""Nothing to undo""")
 			return
 		#endif
 		temp1 = undoPoly
@@ -1297,13 +1293,13 @@ class PolyEdit(List):
 		else:
 			curPolygon = (self add:)
 		#endif
-		(Memory 3 temp3)
+		kernel.Memory(3, temp3)
 		x = temp4
 		y = temp5
 		(self changeState: temp6)
 		(self eachElementDo: #save)
 		(self eachElementDo: #draw)
-		(Graph 12 0 0 190 320 local0)
+		kernel.Graph(12, 0, 0, 190, 320, local0)
 		(global1 setCursor: 999 1 x y)
 	#end:method
 
@@ -1324,7 +1320,7 @@ class PolyEdit(List):
 			local0 = param1
 			(self eachElementDo: #save)
 			(self eachElementDo: #draw)
-			(Graph 12 0 0 190 320 local0)
+			kernel.Graph(12, 0, 0, 190, 320, local0)
 		#endif
 	#end:method
 
@@ -1333,13 +1329,13 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawPic (global2 curPic:) 100 1)
+		kernel.DrawPic((global2 curPic:), 100, 1)
 		if (global36 != -1):
-			(DrawPic global36 100 0)
+			kernel.DrawPic(global36, 100, 0)
 		#endif
 		(global10 doit:)
 		(global5 eachElementDo: #stopUpd)
-		(Animate (global5 elements:) 0)
+		kernel.Animate((global5 elements:), 0)
 		local1 = global38
 		global38 = SysWindow
 		local0 = 1
@@ -1358,7 +1354,7 @@ class PolyEdit(List):
 		while True: #repeat
 			temp0 = (Event new:)
 			if (not (curMenu and (curMenu handleEvent: temp0))):
-				(GlobalToLocal temp0)
+				kernel.GlobalToLocal(temp0)
 				(breakif (self handleEvent: temp0))
 			#endif
 			(temp0 dispose:)
@@ -1381,7 +1377,7 @@ class PolyEdit(List):
 		#endif
 		(self eachElementDo: #check)
 		if (not local2):
-			(Format @local2 943 3 (global2 curPic:))
+			kernel.Format(@local2, 943, 3, (global2 curPic:))
 		#endif
 		if 
 			(not
@@ -1402,8 +1398,8 @@ class PolyEdit(List):
 		if (temp100 == 2):
 			return 1
 		#endif
-		if (FileIO 10 @local2):
-			(Format @temp0 943 4 @local2)
+		if kernel.FileIO(10, @local2):
+			kernel.Format(@temp0, 943, 4, @local2)
 			if 
 				(not
 					(= temp100
@@ -1422,15 +1418,15 @@ class PolyEdit(List):
 		#endif
 		temp102 = (2 if (temp100 == 1) else 0)
 		if (not (temp101 = (File new:) name: @local2 open: temp102)):
-			(Format @temp0 943 5 (temp101 name:))
-			(proc921_0 @temp0)
+			kernel.Format(@temp0, 943, 5, (temp101 name:))
+			proc921_0(@temp0)
 			(temp101 dispose:)
 			return 0
 		#endif
-		(temp101 writeString: (Format @temp0 943 6 r"""Polygon Editor 1.11"""))
+		(temp101 writeString: kernel.Format(@temp0, 943, 6, r"""Polygon Editor 1.11"""))
 		(temp101
 			writeString:
-				(Format @temp0 943 7 r"""Dynamic Obstacles""" (global2 curPic:))
+				kernel.Format(@temp0, 943, 7, r"""Dynamic Obstacles""", (global2 curPic:))
 		)
 		(temp101 writeString: r"""\t\t(curRoom addObstacle:\0d\n""")
 		(self eachElementDo: #writeFile temp101 0)
@@ -1453,13 +1449,13 @@ class PolyEdit(List):
 			curMenu = 0
 		#endif
 		if undoPolyBuf:
-			(Memory 3 undoPolyBuf)
+			kernel.Memory(3, undoPolyBuf)
 			undoPolyBuf = 0
 		#endif
-		(DrawStatus r""" """ 0 0)
-		(DrawStatus 0)
+		kernel.DrawStatus(r""" """, 0, 0)
+		kernel.DrawStatus(0)
 		(global5 eachElementDo: #startUpd)
-		(Animate (global5 elements:) 0)
+		kernel.Animate((global5 elements:), 0)
 		(self eachElementDo: #draw)
 		if 
 			(Print
@@ -1468,16 +1464,16 @@ class PolyEdit(List):
 				addButton: 0 r""" No """ 85 12
 				init:
 			)
-			(DrawPic (global2 curPic:) 100 1)
+			kernel.DrawPic((global2 curPic:), 100, 1)
 			if (global36 != -1):
-				(DrawPic global36 100 0)
+				kernel.DrawPic(global36, 100, 0)
 			#endif
 			(global10 doit:)
 		#endif
 		global38 = local1
-		(DisposeScript 993)
+		kernel.DisposeScript(993)
 		(super dispose:)
-		(DisposeScript 943)
+		kernel.DisposeScript(943)
 	#end:method
 
 #end:class or instance

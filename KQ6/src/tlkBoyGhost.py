@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1050
 import sci_sh
+import kernel
 import Main
 import Kq6Window
 import Talker

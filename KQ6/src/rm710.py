@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 710
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -76,13 +77,13 @@ class DungeonDoor(Prop):
 				(cond
 					case 
 						(or
-							((ScriptID 80 0) tstFlag: 709 2)
-							((ScriptID 81 0) tstFlag: 709 4)
+							(kernel.ScriptID(80, 0) tstFlag: 709 2)
+							(kernel.ScriptID(81, 0) tstFlag: 709 4)
 						):
 						(global91 say: noun param1 8 1)
 					#end:case
-					case (not ((ScriptID 80 0) tstFlag: 709 2)):
-						((ScriptID 80 0) dungeonEntered: dungeon#)
+					case (not (kernel.ScriptID(80, 0) tstFlag: 709 2)):
+						(kernel.ScriptID(80, 0) dungeonEntered: dungeon#)
 						(global2 setScript: enterDungeon 0 self)
 					#end:case
 				)
@@ -155,8 +156,8 @@ class rm710(CastleRoom):
 				)
 		)
 		(global32 add: armour roomStuff eachElementDo: #init)
-		((ScriptID 80 6) noun: 13 actions: guardDoVerb)
-		((ScriptID 81 0) guard2Code: path2Code setupGuards:)
+		(kernel.ScriptID(80, 6) noun: 13 actions: guardDoVerb)
+		(kernel.ScriptID(81, 0) guard2Code: path2Code setupGuards:)
 		spotEgoScr = captureEgo
 		(super init: &rest)
 		(dungeonDoor1 init: stopUpd:)
@@ -172,20 +173,20 @@ class rm710(CastleRoom):
 		match global12
 			case 770:
 				(global0 posn: 65 134)
-				if ((ScriptID 81 0) tstFlag: 709 4):
-					((ScriptID 81 0) setFlag: 709 2)
-					((ScriptID 81 0) startGuard:)
+				if (kernel.ScriptID(81, 0) tstFlag: 709 4):
+					(kernel.ScriptID(81, 0) setFlag: 709 2)
+					(kernel.ScriptID(81, 0) startGuard:)
 				#endif
 			#end:case
 			case 720:
-				if (not ((ScriptID 80 0) tstFlag: 711 512)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 512)):
 					temp1 = 1
 				#endif
 				(global0 posn: 148 114)
 			#end:case
 			case 820:
-				((ScriptID 80 0) clrFlag: 709 8192)
-				match ((ScriptID 80 0) dungeonEntered:)
+				(kernel.ScriptID(80, 0) clrFlag: 709 8192)
+				match (kernel.ScriptID(80, 0) dungeonEntered:)
 					case 1:
 						(global0
 							posn:
@@ -207,8 +208,8 @@ class rm710(CastleRoom):
 								(dungeonDoor3 approachY:)
 						)
 						(cond
-							case ((ScriptID 80 0) tstFlag: 709 1):
-								((ScriptID 80 0) clrFlag: 709 1)
+							case (kernel.ScriptID(80, 0) tstFlag: 709 1):
+								(kernel.ScriptID(80, 0) clrFlag: 709 1)
 								(jollo
 									view: 717
 									loop: 4
@@ -226,9 +227,9 @@ class rm710(CastleRoom):
 								)
 								(self setScript: jolloHelpedEgo)
 							#end:case
-							case ((ScriptID 80 0) tstFlag: 709 2):
+							case (kernel.ScriptID(80, 0) tstFlag: 709 2):
 								(global102 fadeTo: 701 -1)
-								((ScriptID 81 0) setFlag: 709 2)
+								(kernel.ScriptID(81, 0) setFlag: 709 2)
 								(self setScript: tempScript)
 							#end:case
 						)
@@ -241,18 +242,18 @@ class rm710(CastleRoom):
 			#end:case
 			else:
 				(global0 posn: 88 132)
-				(proc913_1 15)
-				(self setScript: (ScriptID 711 0))
+				proc913_1(15)
+				(self setScript: kernel.ScriptID(711, 0))
 			#end:else
 		#end:match
 		if 
 			(and
 				temp1
-				(not ((ScriptID 81 0) tstFlag: 709 1))
-				(not ((ScriptID 81 0) tstFlag: 709 2))
-				(not (Random 0 5))
+				(not (kernel.ScriptID(81, 0) tstFlag: 709 1))
+				(not (kernel.ScriptID(81, 0) tstFlag: 709 2))
+				(not kernel.Random(0, 5))
 			)
-			((ScriptID 81 0) setFlag: 709 2 loiterTimer: 1)
+			(kernel.ScriptID(81, 0) setFlag: 709 2 loiterTimer: 1)
 		#endif
 		((global0 scaler:) doit:)
 		if (not script):
@@ -265,7 +266,7 @@ class rm710(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 80 0) stopTimers: 0)
+		(kernel.ScriptID(80, 0) stopTimers: 0)
 		if param1:
 			((global2 script:) changeState: 2)
 		else:
@@ -300,7 +301,7 @@ class rm710(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(global0 setMotion: 0)
-		((ScriptID 80 6) actions: 0)
+		(kernel.ScriptID(80, 6) actions: 0)
 		(super newRoom: param1 &rest)
 	#end:method
 
@@ -330,29 +331,29 @@ class rm710(CastleRoom):
 				#endif
 			#end:case
 			case 4:
-				if ((ScriptID 81 0) tstFlag: 709 1):
-					((ScriptID 81 0) clrFlag: 709 1)
-					((ScriptID 80 5) dispose:)
+				if (kernel.ScriptID(81, 0) tstFlag: 709 1):
+					(kernel.ScriptID(81, 0) clrFlag: 709 1)
+					(kernel.ScriptID(80, 5) dispose:)
 					(global91 say: 9 0 37)
 				else:
-					((ScriptID 81 0) clrFlag: 709 2)
-					((ScriptID 80 6) dispose:)
+					(kernel.ScriptID(81, 0) clrFlag: 709 2)
+					(kernel.ScriptID(80, 6) dispose:)
 					(global91 say: 9 0 36)
 				#endif
 			#end:case
 			case 1:
 				temp1 = 0
 				(cond
-					case (((ScriptID 80 0) weddingMusicCount:) >= 3):
+					case ((kernel.ScriptID(80, 0) weddingMusicCount:) >= 3):
 						if (not (global5 contains: alphaInset)):
-							((ScriptID 81 0) setFlag: 709 2)
+							(kernel.ScriptID(81, 0) setFlag: 709 2)
 						else:
-							((ScriptID 81 0) setFlag: 709 16)
+							(kernel.ScriptID(81, 0) setFlag: 709 16)
 						#endif
 					#end:case
-					case (not ((ScriptID 80 0) weddingMusicCount:)):
+					case (not (kernel.ScriptID(80, 0) weddingMusicCount:)):
 						if (global12 == 770):
-							((ScriptID 80 0)
+							(kernel.ScriptID(80, 0)
 								weddingMusicCount: 2
 								weddingRemind: 2
 							)
@@ -363,7 +364,7 @@ class rm710(CastleRoom):
 						temp1 = 25
 					#end:else
 				)
-				((ScriptID 81 0) warnUser: param1 9 0 temp1)
+				(kernel.ScriptID(81, 0) warnUser: param1 9 0 temp1)
 			#end:case
 			else:
 				(super warnUser: param1 &rest)
@@ -376,9 +377,9 @@ class rm710(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 81 0) clrFlag: 709 16)
+		(kernel.ScriptID(81, 0) clrFlag: 709 16)
 		(super dispose:)
-		(DisposeScript 964)
+		kernel.DisposeScript(964)
 	#end:method
 
 	@classmethod
@@ -387,12 +388,12 @@ class rm710(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 87 908):
+			case proc999_5(param1, 87, 908):
 				if 
 					(or
-						((ScriptID 81 0) tstFlag: 709 1)
-						((ScriptID 81 0) tstFlag: 709 2)
-						((ScriptID 81 0) tstFlag: 709 4)
+						(kernel.ScriptID(81, 0) tstFlag: 709 1)
+						(kernel.ScriptID(81, 0) tstFlag: 709 2)
+						(kernel.ScriptID(81, 0) tstFlag: 709 4)
 					)
 					(global91 say: 1 14 1 0 0 899)
 					return 0
@@ -402,8 +403,8 @@ class rm710(CastleRoom):
 			#end:case
 			case 
 				(or
-					((ScriptID 81 0) tstFlag: 709 1)
-					((ScriptID 81 0) tstFlag: 709 2)
+					(kernel.ScriptID(81, 0) tstFlag: 709 1)
+					(kernel.ScriptID(81, 0) tstFlag: 709 2)
 				):
 				(global91 say: 0 0 6 0 0 899)
 				return 0
@@ -429,7 +430,7 @@ class tempScript(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				((ScriptID 81 0) startGuard:)
+				(kernel.ScriptID(81, 0) startGuard:)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -490,9 +491,9 @@ class doTreasureDoor(Script):
 				(global91 say: 11 2 31 0 self)
 			#end:case
 			case 1:
-				local10 = ((ScriptID 81 0) loiterTimer:)
-				((ScriptID 81 0) loiterTimer: 0)
-				((ScriptID 80 0) stopTimers: 1)
+				local10 = (kernel.ScriptID(81, 0) loiterTimer:)
+				(kernel.ScriptID(81, 0) loiterTimer: 0)
+				(kernel.ScriptID(80, 0) stopTimers: 1)
 				(global1 handsOn:)
 				(global69 disable: 0 2 3 4 5)
 				(alphaInset
@@ -522,7 +523,7 @@ class doTreasureDoor(Script):
 				(global91 say: 2 5 4 2 self)
 			#end:case
 			case 6:
-				(proc80_2 4)
+				proc80_2(4)
 				(self dispose:)
 			#end:case
 			case 7:
@@ -534,11 +535,11 @@ class doTreasureDoor(Script):
 			#end:case
 			case 9:
 				(global1 handsOn:)
-				if ((ScriptID 81 0) tstFlag: 709 16):
-					((ScriptID 81 0) setFlag: 709 2 clrFlag: 709 16)
-					((ScriptID 81 0) startGuard:)
+				if (kernel.ScriptID(81, 0) tstFlag: 709 16):
+					(kernel.ScriptID(81, 0) setFlag: 709 2 clrFlag: 709 16)
+					(kernel.ScriptID(81, 0) startGuard:)
 				#endif
-				((ScriptID 81 0) loiterTimer: local10)
+				(kernel.ScriptID(81, 0) loiterTimer: local10)
 				local10 = 0
 				(self dispose:)
 			#end:case
@@ -569,14 +570,14 @@ class jolloHelpedEgo(Script):
 				(jollo setMotion: MoveTo 343 180 self)
 			#end:case
 			case 4:
-				if ((ScriptID 81 0) tstFlag: 709 4):
-					((ScriptID 81 0) setFlag: 709 2)
-					((ScriptID 81 0) startGuard:)
+				if (kernel.ScriptID(81, 0) tstFlag: 709 4):
+					(kernel.ScriptID(81, 0) setFlag: 709 2)
+					(kernel.ScriptID(81, 0) startGuard:)
 				#endif
-				if ((ScriptID 80 0) tstFlag: 709 2):
+				if (kernel.ScriptID(80, 0) tstFlag: 709 2):
 					(global102 fadeTo: 701 -1)
-					((ScriptID 81 0) setFlag: 709 2)
-					((ScriptID 81 0) startGuard:)
+					(kernel.ScriptID(81, 0) setFlag: 709 2)
+					(kernel.ScriptID(81, 0) startGuard:)
 					(jollo dispose:)
 				else:
 					(global102 fadeTo: 704 -1)
@@ -600,11 +601,11 @@ class followTimer(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 0) setFlag: 711 -32768)
+				(kernel.ScriptID(80, 0) setFlag: 711 -32768)
 				seconds = 6
 			#end:case
 			case 1:
-				((ScriptID 80 0) clrFlag: 711 -32768)
+				(kernel.ScriptID(80, 0) clrFlag: 711 -32768)
 				(jollo dispose:)
 			#end:case
 		#end:match
@@ -644,8 +645,8 @@ class talkToGuards(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 5) okToCheck: 0)
-				((ScriptID 80 6) okToCheck: 0 checkCode: 0)
+				(kernel.ScriptID(80, 5) okToCheck: 0)
+				(kernel.ScriptID(80, 6) okToCheck: 0 checkCode: 0)
 				register = (CueObj client:)
 				(global91 say: 13 2 0 1 self)
 			#end:case
@@ -654,7 +655,7 @@ class talkToGuards(Script):
 			#end:case
 			case 2:
 				if (not (global0 facingMe: register)):
-					(proc913_4 global0 register self)
+					proc913_4(global0, register, self)
 				else:
 					cycles = 1
 				#endif
@@ -691,13 +692,13 @@ class captureEgo(Script):
 				#endif
 			#end:case
 			case 1:
-				(proc913_4 (ScriptID 80 6) global0 self)
+				proc913_4(kernel.ScriptID(80, 6), global0, self)
 			#end:case
 			case 2:
 				(global91 say: 9 0 17 2 self)
 			#end:case
 			case 3:
-				((ScriptID 80 6) setScript: (ScriptID 80 4) self 1)
+				(kernel.ScriptID(80, 6) setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 4:
 				(global91 say: 9 0 17 3 self)
@@ -791,8 +792,8 @@ class treasureDoor(Prop):
 			case 2:
 				if 
 					(or
-						((ScriptID 81 0) tstFlag: 709 2)
-						((ScriptID 81 0) tstFlag: 709 4)
+						(kernel.ScriptID(81, 0) tstFlag: 709 2)
+						(kernel.ScriptID(81, 0) tstFlag: 709 4)
 					)
 					(global91 say: noun 2 30 1)
 				else:
@@ -840,7 +841,7 @@ class alphaInset(PanelInset):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = 0
-		if (not (proc999_5 value 26 27 29 30)):
+		if (not proc999_5(value, 26, 27, 29, 30)):
 			if (not (local11[(value / 16)] & (0x8000 >> (mod value 16)))):
 				(local11[(value / 16)] |= (0x8000 >> (mod value 16)))
 				temp0 = (super drawButton: &rest)
@@ -876,8 +877,8 @@ class clearedInset(Script):
 			#end:case
 			case 2:
 				(global1 handsOn:)
-				((ScriptID 80 0) stopTimers: 0)
-				((ScriptID 81 0) loiterTimer: local10)
+				(kernel.ScriptID(80, 0) stopTimers: 0)
+				(kernel.ScriptID(81, 0) loiterTimer: local10)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -919,7 +920,7 @@ class roomStuff(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		(return
 			(or
 				((0x1000 & temp0) and noun = 14)

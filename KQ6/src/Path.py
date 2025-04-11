@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 983
 import sci_sh
+import kernel
 import Print
 import Motion
 
@@ -55,8 +56,8 @@ class Path(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		x = (self at: value++)
-		y = (self at: value++)
+		x = (self at: value.post('++'))
+		y = (self at: value.post('++'))
 	#end:method
 
 	@classmethod
@@ -90,8 +91,8 @@ class RelPath(Path):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(x += (self at: value++))
-		(y += (self at: value++))
+		(x += (self at: value.post('++')))
+		(y += (self at: value.post('++')))
 	#end:method
 
 #end:class or instance

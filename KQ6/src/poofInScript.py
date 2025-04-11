@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 89
 import sci_sh
+import kernel
 import Main
 import Scaler
 import Sound
@@ -64,7 +65,7 @@ class poofInScript(Script):
 				if (global11 == 450):
 					(global0 setScale: Scaler 100 30 126 70)
 				#endif
-				(DisposeScript 89)
+				kernel.DisposeScript(89)
 			#end:case
 		#end:match
 	#end:method

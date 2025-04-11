@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 21
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -43,14 +44,14 @@ def proc21_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	if (((ScriptID 21 0) stepSound:) == 1):
-		((ScriptID 21 0) stepSound: 4)
+	if ((kernel.ScriptID(21, 0) stepSound:) == 1):
+		(kernel.ScriptID(21, 0) stepSound: 4)
 	else:
-		((ScriptID 21 0) stepSound: (((ScriptID 21 0) stepSound:) - 1))
+		(kernel.ScriptID(21, 0) stepSound: ((kernel.ScriptID(21, 0) stepSound:) - 1))
 	#endif
 	(global104
 		number:
-			match ((ScriptID 21 0) stepSound:)
+			match (kernel.ScriptID(21, 0) stepSound:)
 				case 1: 301#end:case
 				case 2: 302#end:case
 				case 3: 303#end:case
@@ -74,7 +75,7 @@ class rCliffs(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		keep = (proc999_5 param1 300 320)
+		keep = proc999_5(param1, 300, 320)
 		initialized = 0
 		(super newRoom: param1 &rest)
 	#end:method
@@ -85,7 +86,7 @@ class rCliffs(Rgn):
 		argc = sum(v is not None for v in locals().values())
 
 		local325 = 1
-		local326 = (Random 500 1000)
+		local326 = kernel.Random(500, 1000)
 	#end:method
 
 	@classmethod
@@ -160,7 +161,7 @@ class CliffRoom(KQ6Room):
 				(local200[temp0] addToPic:)
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -188,7 +189,7 @@ class CliffRoom(KQ6Room):
 			#endif
 			((global2 script:) cue:)
 		else:
-			(ShakeScreen 1 (Random 0 2))
+			kernel.ShakeScreen(1, kernel.Random(0, 2))
 			(global104 number: 300 setLoop: 1 play:)
 			if (rockCount > 0):
 				(local200[(rockCount - 1)] stopUpd:)
@@ -301,9 +302,9 @@ class CliffRoom(KQ6Room):
 				(local200[temp0] addToPic:)
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
-		(UnLoad 128 300)
+		kernel.UnLoad(128, 300)
 	#end:method
 
 	@classmethod
@@ -321,7 +322,7 @@ class CliffRoom(KQ6Room):
 				local200[temp0] = 0
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		temp0 = 0
 		while (temp0 < 16): # inline for
@@ -330,7 +331,7 @@ class CliffRoom(KQ6Room):
 				local200[temp0] = 0
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -358,7 +359,7 @@ class CliffRoom(KQ6Room):
 				((param1 type:) & 0x0040)
 				((param1 message:) != 0)
 				((global69 curIcon:) == (global69 at: 0))
-				(IsObject rockList)
+				kernel.IsObject(rockList)
 			)
 			if (not temp0 = (rockList firstTrue: #onMe (User curEvent:))):
 				temp0 = (rockList firstTrue: #onMe global0)
@@ -377,8 +378,8 @@ class CliffRoom(KQ6Room):
 				#end:case
 				else: 0#end:else
 			#end:match
-			if (IsObject temp0):
-				(SetCursor ((temp0 x:) + 8) (temp0 y:))
+			if kernel.IsObject(temp0):
+				kernel.SetCursor(((temp0 x:) + 8), (temp0 y:))
 			#endif
 			(param1 claimed: 1)
 			return
@@ -457,7 +458,7 @@ class RockStep(Prop):
 			(cond
 				case (global0 script:):#end:case
 				case (local326 > 0):
-					local326--
+					local326.post('--')
 				#end:case
 				else:
 					(global0 setScript: egoWobbles)
@@ -488,7 +489,7 @@ class RockStep(Prop):
 				local325 = 0
 				(cond
 					case ((global0 script:) == egoWobbles):
-						(proc913_1 59)
+						proc913_1(59)
 						(global91 say: 6 3 17 1 0 21)
 					#end:case
 					case 
@@ -513,8 +514,8 @@ class RockStep(Prop):
 					#end:case
 					case 
 						(or
-							((Abs ((global0 y:) - (self y:))) > 20)
-							((Abs ((global0 x:) - (self x:))) > 64)
+							(kernel.Abs(((global0 y:) - (self y:))) > 20)
+							(kernel.Abs(((global0 x:) - (self x:))) > 64)
 						):
 						(global91 say: 6 3 16 1 0 21)
 					#end:case
@@ -620,14 +621,14 @@ class PuzzleInset(View):
 			if 
 				(and
 					(<=
-						(proc999_6 buttLeft temp0)
+						proc999_6(buttLeft, temp0)
 						param1
-						(proc999_6 buttRight temp0)
+						proc999_6(buttRight, temp0)
 					)
 					(<=
-						(proc999_6 buttTop temp0)
+						proc999_6(buttTop, temp0)
 						param2
-						(proc999_6 buttBottom temp0)
+						proc999_6(buttBottom, temp0)
 					)
 				)
 				if (local218[temp0] == 0):
@@ -639,16 +640,16 @@ class PuzzleInset(View):
 					else:
 						temp1 = 0
 					#endif
-					local324++
+					local324.post('++')
 					(global104 number: 308 setLoop: 1 play:)
 					(local218[temp0] = (letter new:)
 						view: buttView
-						setLoop: (proc999_6 buttLoop temp0)
-						cel: (proc999_6 buttCel temp0)
-						x: ((proc999_6 buttX temp0) + temp1)
-						y: (proc999_6 buttY temp0)
-						hyroVal: (proc999_6 buttVal temp0)
-						deathButt: (proc999_6 buttKill temp0)
+						setLoop: proc999_6(buttLoop, temp0)
+						cel: proc999_6(buttCel, temp0)
+						x: (proc999_6(buttX, temp0) + temp1)
+						y: proc999_6(buttY, temp0)
+						hyroVal: proc999_6(buttVal, temp0)
+						deathButt: proc999_6(buttKill, temp0)
 						setPri: 14
 						init:
 						stopUpd:
@@ -668,7 +669,7 @@ class PuzzleInset(View):
 				(break)
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -715,7 +716,7 @@ class PuzzleInset(View):
 				local218[temp0] = 0
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -729,7 +730,7 @@ class PuzzleInset(View):
 		while (temp0 < 28): # inline for
 			local218[temp0] = 0
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		(rCliffs puzzleIsUp: 1)
 		(self setPri: 12 signal: 4112 ignoreActors: stopUpd:)
@@ -1007,7 +1008,7 @@ class stepDown(Script):
 					case ((register corner:) and ((global0 loop:) == 5)):
 						(global0
 							posn: ((register x:) + 27) ((register y:) - 2)
-							setLoop: (Random 1 2)
+							setLoop: kernel.Random(1, 2)
 							cel: 0
 						)
 					#end:case
@@ -1021,7 +1022,7 @@ class stepDown(Script):
 					case ((rCliffs stepDirection:) == 1):
 						(global0
 							view: 301
-							setLoop: (Random 1 2)
+							setLoop: kernel.Random(1, 2)
 							cel: 0
 							posn: ((register x:) + 26) ((register y:) - 1)
 						)
@@ -1041,10 +1042,10 @@ class stepDown(Script):
 				(global1 handsOn:)
 				if ((register corner:) != 1):
 					local325 = 1
-					local326 = (Random 1000 2000)
+					local326 = kernel.Random(1000, 2000)
 				#endif
 				if ((register rockPointer:) == 0):
-					if (((ScriptID 21 0) cliffFace:) == 0):
+					if ((kernel.ScriptID(21, 0) cliffFace:) == 0):
 						(global2 cue: -1)
 					else:
 						(global2 cue: 0)
@@ -1097,7 +1098,7 @@ class takeFirstStep(Script):
 				)
 				local325 = 1
 				(rCliffs stepDirection: 3)
-				local326 = (Random 1000 2000)
+				local326 = kernel.Random(1000, 2000)
 				(global74 add: global2)
 				(self dispose:)
 			#end:case
@@ -1165,7 +1166,7 @@ class takeStep(Script):
 					(global0
 						view: 301
 						cycleSpeed: 10
-						setLoop: (Random 1 2)
+						setLoop: kernel.Random(1, 2)
 						cel: 0
 						posn: ((register x:) - 2) ((register y:) + 10)
 						setCycle: End self
@@ -1235,7 +1236,7 @@ class takeStep(Script):
 					case (register corner:):
 						(global0
 							posn: ((register x:) + 27) ((register y:) - 2)
-							setLoop: (Random 1 2)
+							setLoop: kernel.Random(1, 2)
 							cel: 0
 						)
 						(rCliffs stepDirection: 3)
@@ -1247,7 +1248,7 @@ class takeStep(Script):
 				(global1 handsOn:)
 				if ((register corner:) != 1):
 					local325 = 1
-					local326 = (Random 1000 2000)
+					local326 = kernel.Random(1000, 2000)
 				#endif
 				if ((register capStone:) == 1):
 					if ((rCliffs stepDirection:) == 4):
@@ -1294,7 +1295,7 @@ class nextScreenUp(Script):
 				if ((rCliffs stepDirection:) == 4):
 					(global0
 						cycleSpeed: 10
-						setLoop: (Random 1 2)
+						setLoop: kernel.Random(1, 2)
 						setCycle: End self
 					)
 				else:
@@ -1349,22 +1350,22 @@ class notifyTheRoom(Script):
 					case 0:
 						match global11
 							case 300:
-								(proc913_1 5)
+								proc913_1(5)
 							#end:case
 							case 320:
-								(proc913_1 123)
+								proc913_1(123)
 							#end:case
 						#end:match
 					#end:case
 					case 1:
-						(proc913_1 124)
+						proc913_1(124)
 					#end:case
 					case 2:
-						(proc913_1 125)
+						proc913_1(125)
 					#end:case
 					case 3:
-						(proc913_1 126)
-						(proc913_1 6)
+						proc913_1(126)
+						proc913_1(6)
 					#end:case
 				#end:match
 				if (global11 == 320):
@@ -1404,7 +1405,7 @@ class egoWobbles(Script):
 					(global0
 						view: 301
 						posn: ((global0 x:) - 18) ((global0 y:) + 7)
-						cycleSpeed: (Random 4 16)
+						cycleSpeed: kernel.Random(4, 16)
 						setLoop: 3
 					)
 				#endif
@@ -1421,7 +1422,7 @@ class egoWobbles(Script):
 				if ((global0 view:) == 301):
 					(global0
 						posn: ((global0 x:) + 18) ((global0 y:) - 7)
-						setLoop: (Random 1 2)
+						setLoop: kernel.Random(1, 2)
 					)
 				else:
 					(global0
@@ -1430,8 +1431,8 @@ class egoWobbles(Script):
 					)
 				#endif
 				(global0 view: 301 cycleSpeed: 18 cel: 0)
-				local326 = (Random 1000 2000)
-				(proc913_2 59)
+				local326 = kernel.Random(1000, 2000)
+				proc913_2(59)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1486,7 +1487,7 @@ class seeYa(Script):
 			#end:case
 			case 7:
 				(global104 number: 307 setLoop: 1 play:)
-				(ShakeScreen 2 2)
+				kernel.ShakeScreen(2, 2)
 				ticks = 4
 			#end:case
 			case 8:
@@ -1494,7 +1495,7 @@ class seeYa(Script):
 			#end:case
 			case 9:
 				(global105 fade: 0 5 5)
-				(proc0_1 6)
+				proc0_1(6)
 			#end:case
 		#end:match
 	#end:method
@@ -1556,7 +1557,7 @@ class puzzleSolvedPause(Script):
 						(global0 view: 301 setLoop: 1)
 					#endif
 				#endif
-				(UnLoad 128 3012)
+				kernel.UnLoad(128, 3012)
 				(self dispose:)
 			#end:case
 		#end:match

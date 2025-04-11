@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 690
 import sci_sh
+import kernel
 import Main
 import rgDead
 import KQ6Print
@@ -48,7 +49,7 @@ class rm690(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Load 128 691)
+		kernel.Load(128, 691)
 		(flame init: setCycle: Fwd)
 		(alex init:)
 		(lord init:)
@@ -69,7 +70,7 @@ class rm690(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(introGhost setCycle: 0)
-		(proc958_0 0 942)
+		proc958_0(0, 942)
 		(super newRoom: &rest)
 	#end:method
 
@@ -135,7 +136,7 @@ class lord(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 28 8 14 30 31 47 50 1 32 65 68 33 70 16 37):
+		if proc999_5(param1, 28, 8, 14, 30, 31, 47, 50, 1, 32, 65, 68, 33, 70, 16, 37):
 			(global91 say: noun param1)
 		else:
 			match param1
@@ -332,8 +333,8 @@ class deadInHereScript(Script):
 				(global102 number: 970 loop: 1 play:)
 				(global5 eachElementDo: #dispose)
 				(global2 drawPic: 98 10)
-				(Message 0 916 0 0 register 1 @temp1)
-				(Display @temp1 100 29 40 106 260 102 47 105 global22 101 1)
+				kernel.Message(0, 916, 0, 0, register, 1, @temp1)
+				kernel.Display(@temp1, 100, 29, 40, 106, 260, 102, 47, 105, global22, 101, 1)
 				(global0
 					init:
 					view: 8902

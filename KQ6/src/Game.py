@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 994
 import sci_sh
+import kernel
 import Main
 import Print
 import Polygon
@@ -20,27 +21,27 @@ def localproc_0(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp81 = (Memory 1 150)
+	temp81 = kernel.Memory(1, 150)
 	temp0 = 1
-	(DeviceInfo 0 global29 @temp1)
-	(DeviceInfo 1 @temp41)
+	kernel.DeviceInfo(0, global29, @temp1)
+	kernel.DeviceInfo(1, @temp41)
 	if 
 		(and
-			(DeviceInfo 3 @temp41)
+			kernel.DeviceInfo(3, @temp41)
 			(or
-				(DeviceInfo 2 @temp1 @temp41)
-				(not (DeviceInfo 6 (global1 name:)))
+				kernel.DeviceInfo(2, @temp1, @temp41)
+				(not kernel.DeviceInfo(6, (global1 name:)))
 			)
 		)
-		(Message 0 994 6 0 0 1 @temp82)
-		(Message 0 994 7 0 0 1 @temp122)
-		(Message 0 994 8 0 0 1 @temp132)
-		(Format temp81 @temp82 (@temp122 if param1 else @temp132) @temp1)
-		(Load 135 global22)
-		(DeviceInfo 4)
-		(Message 0 994 2 0 0 1 @temp82)
-		(Message 0 994 4 0 0 1 @temp122)
-		(Message 0 994 5 0 0 1 @temp132)
+		kernel.Message(0, 994, 6, 0, 0, 1, @temp82)
+		kernel.Message(0, 994, 7, 0, 0, 1, @temp122)
+		kernel.Message(0, 994, 8, 0, 0, 1, @temp132)
+		kernel.Format(temp81, @temp82, (@temp122 if param1 else @temp132), @temp1)
+		kernel.Load(135, global22)
+		kernel.DeviceInfo(4)
+		kernel.Message(0, 994, 2, 0, 0, 1, @temp82)
+		kernel.Message(0, 994, 4, 0, 0, 1, @temp122)
+		kernel.Message(0, 994, 5, 0, 0, 1, @temp132)
 		if 
 			(==
 				(= temp0
@@ -64,10 +65,10 @@ def localproc_0(param1 = None):
 				)
 				2
 			)
-			temp0 = (proc990_0 global29)
+			temp0 = proc990_0(global29)
 		#endif
 	#endif
-	(Memory 3 temp81)
+	kernel.Memory(3, temp81)
 	return temp0
 #end:procedure
 
@@ -127,7 +128,7 @@ class addToPics(EventHandler):
 		argc = sum(v is not None for v in locals().values())
 
 		(self eachElementDo: #perform aTOC)
-		(AddToPic elements)
+		kernel.AddToPic(elements)
 	#end:method
 
 #end:class or instance
@@ -188,16 +189,16 @@ class aTOC(Code):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not ((param1 signal:) & 0x4000)):
-			temp0 = ((global0 xStep:) + ((CelWide (global0 view:) 2 0) / 2))
+			temp0 = ((global0 xStep:) + (kernel.CelWide((global0 view:), 2, 0) / 2))
 			temp1 = ((global0 yStep:) * 2)
 			(global2
 				addObstacle:
 					((Polygon new:)
 						init:
 							((param1 brLeft:) - temp0)
-							((CoordPri 1 (CoordPri (param1 y:))) - temp1)
+							(kernel.CoordPri(1, kernel.CoordPri((param1 y:))) - temp1)
 							((param1 brRight:) + temp0)
-							((CoordPri 1 (CoordPri (param1 y:))) - temp1)
+							(kernel.CoordPri(1, kernel.CoordPri((param1 y:))) - temp1)
 							((param1 brRight:) + temp0)
 							((param1 y:) + temp1)
 							((param1 brLeft:) - temp0)
@@ -226,7 +227,7 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		global1 = self
-		global29 = (GetSaveDir)
+		global29 = kernel.GetSaveDir()
 		(self setCursor: global21 1 init:)
 		(self setCursor: global20 1)
 		while (not global4):
@@ -251,9 +252,9 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if argc:
-			(DoSound 0 param1)
+			kernel.DoSound(0, param1)
 		else:
-			(DoSound 0)
+			kernel.DoSound(0)
 		#endif
 	#end:method
 
@@ -283,15 +284,15 @@ class Game(Obj):
 		(global5 eachElementDo: #perform RU)
 		(global1 setCursor: global21 1)
 		(= temp0
-			if (not (proc999_5 (global2 style:) -1 11 12 13 14)):
+			if (not proc999_5((global2 style:), -1, 11, 12, 13, 14)):
 				(global2 style:)
 			else:
 				100
 			#endif
 		)
-		(DrawPic (global2 curPic:) temp0 1)
+		kernel.DrawPic((global2 curPic:), temp0, 1)
 		if (global36 != -1):
-			(DrawPic global36 100 0)
+			kernel.DrawPic(global36, 100, 0)
 		#endif
 		(global10 doit:)
 		(cond
@@ -306,9 +307,9 @@ class Game(Obj):
 			#end:else
 		)
 		(SL doit:)
-		(DoSound 2)
+		kernel.DoSound(2)
 		(global8 pause: 0)
-		global86 = (global88 - (GetTime))
+		global86 = (global88 - kernel.GetTime())
 		while (not global4):
 
 			(self doit:)
@@ -334,7 +335,7 @@ class Game(Obj):
 		(global74 = directionHandler add:)
 		(global93 = walkHandler add:)
 		global84 = 0
-		global29 = (GetSaveDir)
+		global29 = kernel.GetSaveDir()
 		(Inv init:)
 		if (not global80):
 			global80 = User
@@ -351,9 +352,9 @@ class Game(Obj):
 			temp1 = panelObj
 			temp2 = panelSelector
 			panelObj = panelSelector = 0
-			(proc999_7 temp1 temp2)
+			proc999_7(temp1, temp2)
 		#endif
-		global88 = (global86 + (GetTime))
+		global88 = (global86 + kernel.GetTime())
 		if global84:
 			while global84:
 
@@ -362,7 +363,7 @@ class Game(Obj):
 					(global84 firstTrue: #handleEvent temp0)
 				#endif
 				(temp0 dispose:)
-				global88 = (global86 + (GetTime))
+				global88 = (global86 + kernel.GetTime())
 				(global8 eachElementDo: #check)
 			#end:loop
 		#endif
@@ -373,7 +374,7 @@ class Game(Obj):
 					(global92 firstTrue: #handleEvent temp0)
 				#endif
 				(temp0 dispose:)
-				global88 = (global86 + (GetTime))
+				global88 = (global86 + kernel.GetTime())
 				return
 			#endif
 		#endif
@@ -382,7 +383,7 @@ class Game(Obj):
 		if (global25 and (global25 check:)):
 			(global25 dispose:)
 		#endif
-		(Animate (global5 elements:) 1)
+		kernel.Animate((global5 elements:), 1)
 		if global37:
 			global37 = 0
 			(global5 eachElementDo: #motionCue)
@@ -405,7 +406,7 @@ class Game(Obj):
 			(self newRoom: global13)
 		#endif
 		(global7 eachElementDo: #delete)
-		(GameIsRestarting 0)
+		kernel.GameIsRestarting(0)
 	#end:method
 
 	@classmethod
@@ -419,11 +420,11 @@ class Game(Obj):
 		(global7 eachElementDo: #delete)
 		(global6 eachElementDo: #perform DNKR release:)
 		(global78 release:)
-		(Animate 0)
+		kernel.Animate(0)
 		global12 = global11
 		global11 = param1
 		global13 = param1
-		(FlushResources param1)
+		kernel.FlushResources(param1)
 		(self startRoom: global11)
 		while (temp5 = (Event new: 3) type:):
 
@@ -438,9 +439,9 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if global14:
-			(SetDebug)
+			kernel.SetDebug()
 		#endif
-		(global6 addToFront: global2 = (ScriptID param1))
+		(global6 addToFront: global2 = kernel.ScriptID(param1))
 		(global2 init:)
 	#end:method
 
@@ -476,7 +477,7 @@ class Game(Obj):
 		if global25:
 			(global25 dispose:)
 		#endif
-		(RestartGame)
+		kernel.RestartGame()
 	#end:method
 
 	@classmethod
@@ -484,14 +485,14 @@ class Game(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (ValidPath global29)):
-			(Message 0 994 9 0 0 1 @temp22)
-			(Format @temp127 @temp22 global29)
+		if (not kernel.ValidPath(global29)):
+			kernel.Message(0, 994, 9, 0, 0, 1, @temp22)
+			kernel.Format(@temp127, @temp22, global29)
 			(Print font: 0 addText: @temp127 init:)
-			(proc990_0 global29)
+			proc990_0(global29)
 		#endif
-		(Load 135 global23)
-		(ScriptID 990)
+		kernel.Load(135, global23)
+		kernel.ScriptID(990)
 		temp21 = (self setCursor: global20)
 		(global8 pause: 1)
 		if (localproc_0 1):
@@ -500,9 +501,9 @@ class Game(Obj):
 			#endif
 			if (temp20 = (Save doit: @temp0) != -1):
 				temp21 = (self setCursor: global21 1)
-				if (not (SaveGame name temp20 @temp0 global27)):
-					(Message 0 994 1 0 0 1 @temp22)
-					(Message 0 994 2 0 0 1 @temp122)
+				if (not kernel.SaveGame(name, temp20, @temp0, global27)):
+					kernel.Message(0, 994, 1, 0, 0, 1, @temp22)
+					kernel.Message(0, 994, 2, 0, 0, 1, @temp122)
 					(Print
 						font: 0
 						addText: @temp22
@@ -510,7 +511,7 @@ class Game(Obj):
 						init:
 					)
 				#endif
-				(self setCursor: temp21 (HaveMouse))
+				(self setCursor: temp21 kernel.HaveMouse())
 			#endif
 			(localproc_0 0)
 		#endif
@@ -522,14 +523,14 @@ class Game(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (ValidPath global29)):
-			(Message 0 994 9 0 0 1 @temp22)
-			(Format @temp127 @temp22 global29)
+		if (not kernel.ValidPath(global29)):
+			kernel.Message(0, 994, 9, 0, 0, 1, @temp22)
+			kernel.Format(@temp127, @temp22, global29)
 			(Print font: 0 addText: @temp127 init:)
-			(proc990_0 global29)
+			proc990_0(global29)
 		#endif
-		(Load 135 global23)
-		(ScriptID 990)
+		kernel.Load(135, global23)
+		kernel.ScriptID(990)
 		temp21 = (self setCursor: global20)
 		(global8 pause: 1)
 		if (localproc_0 1):
@@ -538,18 +539,18 @@ class Game(Obj):
 			#endif
 			if (temp20 = (Restore doit: &rest) != -1):
 				(self setCursor: global21 1)
-				if (CheckSaveGame name temp20 global27):
-					(RestoreGame name temp20 global27)
+				if kernel.CheckSaveGame(name, temp20, global27):
+					kernel.RestoreGame(name, temp20, global27)
 				else:
-					(Message 0 994 3 0 0 1 @temp22)
-					(Message 0 994 2 0 0 1 @temp122)
+					kernel.Message(0, 994, 3, 0, 0, 1, @temp22)
+					kernel.Message(0, 994, 2, 0, 0, 1, @temp122)
 					(Print
 						font: 0
 						addText: @temp22
 						addButton: 1 @temp122 0 40
 						init:
 					)
-					(self setCursor: temp21 (HaveMouse))
+					(self setCursor: temp21 kernel.HaveMouse())
 				#endif
 			#endif
 			(localproc_0 0)
@@ -563,18 +564,18 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = global19
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			global19 = param1
 			(param1 init:)
 		else:
-			(SetCursor param1 0 0)
+			kernel.SetCursor(param1, 0, 0)
 		#endif
 		if (argc > 1):
-			(SetCursor param2)
+			kernel.SetCursor(param2)
 			if (argc > 2):
-				(SetCursor param3 param4)
+				kernel.SetCursor(param3, param4)
 				if (argc > 4):
-					(SetCursor param1 0 0 param5 param6)
+					kernel.SetCursor(param1, 0, 0, param5, param6)
 				#endif
 			#endif
 		#endif
@@ -586,14 +587,10 @@ class Game(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Format
-			@temp0
-			r"""Free Heap: %u Bytes\nLargest ptr: %u Bytes\nFreeHunk: %u KBytes\nLargest hunk: %u Bytes"""
-			(MemoryInfo 1)
-			(MemoryInfo 0)
-			((MemoryInfo 3) >> 0x0006)
-			(MemoryInfo 2)
-		)
+		kernel.Format(@temp0, r"""Free Heap: %u Bytes\nLargest ptr: %u Bytes\nFreeHunk: %u KBytes\nLargest hunk: %u Bytes""", kernel.MemoryInfo(1), kernel.MemoryInfo(0), (>>
+			kernel.MemoryInfo(3)
+			0x0006
+		), kernel.MemoryInfo(2))
 		(Print addText: @temp0 init:)
 	#end:method
 
@@ -635,7 +632,7 @@ class Game(Obj):
 			(handsOffCode doit: &rest)
 		else:
 			(User canControl: 0 canInput: 0)
-			if (IsObject global0):
+			if kernel.IsObject(global0):
 				(global0 setMotion: 0)
 			#endif
 		#endif
@@ -720,7 +717,7 @@ class Rgn(Obj):
 			modNum = global11
 		#endif
 		(return
-			if (Message 0 modNum noun param1 0 1):
+			if kernel.Message(0, modNum, noun, param1, 0, 1):
 				(global91 say: noun param1 0 0 0 modNum)
 				1
 			else:
@@ -735,14 +732,14 @@ class Rgn(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		(global6 delete: self)
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
-		if (IsObject timer):
+		if kernel.IsObject(timer):
 			(timer dispose: delete:)
 		#endif
 		(global8 eachElementDo: #clean self)
-		(DisposeScript number)
+		kernel.DisposeScript(number)
 	#end:method
 
 	@classmethod
@@ -750,7 +747,7 @@ class Rgn(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		if param1:
@@ -917,14 +914,14 @@ class Rm(Rgn):
 		temp0 = 0
 		while (temp0 < argc): # inline for
 			temp1 = param1[temp0]
-			temp2 = (ScriptID temp1)
+			temp2 = kernel.ScriptID(temp1)
 			(temp2 number: temp1)
 			(global6 add: temp2)
 			if (not (temp2 initialized:)):
 				(temp2 init:)
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -933,7 +930,7 @@ class Rm(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (IsObject obstacles)):
+		if (not kernel.IsObject(obstacles)):
 			obstacles = (List new:)
 		#endif
 		(obstacles add: param1 &rest)
@@ -959,15 +956,11 @@ class Rm(Rgn):
 		#endif
 		curPic = param1
 		global36 = -1
-		(DrawPic
-			param1
-			(cond
-				case (argc == 2): param2#end:case
-				case (style != -1): style#end:case
-				else: 100#end:else
-			)
-			1
-		)
+		kernel.DrawPic(param1, (cond
+			case (argc == 2): param2#end:case
+			case (style != -1): style#end:case
+			else: 100#end:else
+		), 1)
 	#end:method
 
 	@classmethod
@@ -976,15 +969,11 @@ class Rm(Rgn):
 		argc = sum(v is not None for v in locals().values())
 
 		global36 = param1
-		(DrawPic
-			param1
-			(cond
-				case (argc == 2): param2#end:case
-				case (style != -1): style#end:case
-				else: 100#end:else
-			)
-			0
-		)
+		kernel.DrawPic(param1, (cond
+			case (argc == 2): param2#end:case
+			case (style != -1): style#end:case
+			else: 100#end:else
+		), 0)
 	#end:method
 
 #end:class or instance
@@ -1000,10 +989,10 @@ class SL(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if code:
-			temp0 = (Memory 1 150)
+			temp0 = kernel.Memory(1, 150)
 			(code doit: temp0)
-			(DrawStatus (temp0 if state else 0))
-			(Memory 3 temp0)
+			kernel.DrawStatus((temp0 if state else 0))
+			kernel.Memory(3, temp0)
 		#endif
 	#end:method
 

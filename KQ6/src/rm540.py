@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 540
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -127,12 +128,12 @@ class rm540(KQ6Room):
 					setCycle: Walk
 				)
 				(beast init:)
-				((ScriptID 0 5) dispose:)
+				(kernel.ScriptID(0, 5) dispose:)
 				(weasel init: setCycle: Walk)
 				(glint init: hide:)
 				(self setScript: beautyScript)
 			#end:case
-			case (not (proc913_0 46)):
+			case (not proc913_0(46)):
 				(beast init:)
 				(self setScript: beastScript)
 				(global0 setMotion: MoveTo 116 131)
@@ -159,7 +160,7 @@ class rm540(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 969)
+		kernel.DisposeScript(969)
 	#end:method
 
 #end:class or instance
@@ -282,7 +283,7 @@ class castle(Feature):
 
 		match param1
 			case 1:
-				if (proc913_0 43):
+				if proc913_0(43):
 					(global91 say: noun param1 4 1)
 				else:
 					(global91 say: noun param1 3 1)
@@ -309,7 +310,7 @@ class hedge(Feature):
 
 		match param1
 			case 5:
-				if (proc913_0 43):
+				if proc913_0(43):
 					(global91 say: noun param1 4 1)
 				else:
 					(global91 say: noun param1 3 1)
@@ -338,8 +339,8 @@ class fountain(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 57 58 59 60 96 56):
-			if (proc913_0 77):
+		if proc999_5(param1, 57, 58, 59, 60, 96, 56):
+			if proc913_0(77):
 				(global91 say: noun param1 8)
 			else:
 				(global91 say: noun param1 9)
@@ -355,10 +356,10 @@ class fountain(Feature):
 						case (global161 & 0x0001):
 							(global91 say: noun 43 5)
 						#end:case
-						case (not (proc913_0 43)):
+						case (not proc913_0(43)):
 							(global91 say: noun param1 3 1)
 						#end:case
-						case (not (proc913_0 77)):
+						case (not proc913_0(77)):
 							(global91 say: 5 43 9 0)
 						#end:case
 						case 
@@ -376,10 +377,10 @@ class fountain(Feature):
 				#end:case
 				case 44:
 					(cond
-						case (not (proc913_0 43)):
+						case (not proc913_0(43)):
 							(global91 say: noun 43 3 1)
 						#end:case
-						case (proc913_0 77):
+						case proc913_0(77):
 							(global91 say: noun 56 8)
 						#end:case
 						else:
@@ -388,14 +389,14 @@ class fountain(Feature):
 					)
 				#end:case
 				case 24:
-					if (not (proc913_0 43)):
+					if (not proc913_0(43)):
 						(global91 say: noun 43 3 1)
 					else:
 						(global91 say: noun 26 0)
 					#endif
 				#end:case
 				case 0:
-					if (proc913_0 43):
+					if proc913_0(43):
 						(global91 say: noun param1 4 1)
 					else:
 						(global91 say: noun param1 3 1)
@@ -431,7 +432,7 @@ class gateFeat(Feature):
 
 		match param1
 			case 5:
-				if (proc913_0 43):
+				if proc913_0(43):
 					(global91 say: noun param1 4 1)
 				else:
 					(global91 say: noun param1 3 1)
@@ -455,7 +456,7 @@ class beastScript(Script):
 
 		match state = param1
 			case 0:
-				(Load 128 543)
+				kernel.Load(128, 543)
 				(gate hide:)
 				(beast
 					posn: 72 62
@@ -495,7 +496,7 @@ class beastScript(Script):
 				cycles = 2
 			#end:case
 			case 5:
-				(proc913_4 global0 beast self)
+				proc913_4(global0, beast, self)
 			#end:case
 			case 6:
 				cycles = 2
@@ -593,8 +594,8 @@ class beastScript(Script):
 			#end:case
 			case 21:
 				(global1 handsOn:)
-				((ScriptID 0 5) setReal: (global9 at: 37) 0 3 0)
-				(proc913_1 46)
+				(kernel.ScriptID(0, 5) setReal: (global9 at: 37) 0 3 0)
+				proc913_1(46)
 				(global1 givePoints: 1)
 				(global0 get: 37)
 				(beast dispose:)
@@ -650,7 +651,7 @@ class beautyScript(Script):
 					y: ((beast y:) + 3)
 					setMotion: MoveTo 114 134 self
 				)
-				(UnLoad 128 533)
+				kernel.UnLoad(128, 533)
 				(weasel setScript: weaselScript)
 			#end:case
 			case 4:#end:case
@@ -671,17 +672,17 @@ class beautyScript(Script):
 			case 7:
 				(beast view: 544 setLoop: 2 cel: 0 setCycle: End self)
 				(gateFx number: 546 play:)
-				(proc913_1 113)
+				proc913_1(113)
 			#end:case
 			case 8:
 				(global91 say: 1 0 2 6 self)
 			#end:case
 			case 9:
 				(beauty view: 5405 setLoop: 0 cel: 0 setCycle: End self)
-				(UnLoad 128 544)
+				kernel.UnLoad(128, 544)
 			#end:case
 			case 10:
-				(UnLoad 128 252)
+				kernel.UnLoad(128, 252)
 				(global91 say: 1 0 2 7 self)
 			#end:case
 			case 11:
@@ -690,7 +691,7 @@ class beautyScript(Script):
 			case 12:
 				(beauty setLoop: 1 cel: 0 setCycle: End self)
 				(gateFx number: 546 play:)
-				(proc913_1 43)
+				proc913_1(43)
 			#end:case
 			case 13:
 				(beast
@@ -714,7 +715,7 @@ class beautyScript(Script):
 				(global0 setMotion: MoveTo ((beauty x:) + 30) (beauty y:) self)
 			#end:case
 			case 17:
-				(proc913_4 global0 beauty self)
+				proc913_4(global0, beauty, self)
 			#end:case
 			case 18:
 				(global91 say: 1 0 2 11 self)
@@ -724,8 +725,8 @@ class beautyScript(Script):
 			#end:case
 			case 20:
 				(global0 get: 5 hide:)
-				if (not (proc913_0 93)):
-					(proc913_1 112)
+				if (not proc913_0(93)):
+					proc913_1(112)
 				#endif
 				(beauty
 					view: 549
@@ -742,7 +743,7 @@ class beautyScript(Script):
 					setLoop: 4
 					cel: 0
 				)
-				(UnLoad 128 549)
+				kernel.UnLoad(128, 549)
 				(global0 show:)
 				seconds = 1
 			#end:case
@@ -800,8 +801,8 @@ class beautyScript(Script):
 				cycles = 3
 			#end:case
 			case 29:
-				(UnLoad 128 541)
-				(UnLoad 128 5403)
+				kernel.UnLoad(128, 541)
+				kernel.UnLoad(128, 5403)
 				(myConv add: -1 1 0 2 15 init: self)
 			#end:case
 			case 30:
@@ -853,7 +854,7 @@ class beautyScript(Script):
 					setCycle: Walk
 					setMotion: PolyPath 108 104
 				)
-				(UnLoad 128 548)
+				kernel.UnLoad(128, 548)
 			#end:case
 			case 37:
 				(gate hide:)
@@ -894,7 +895,7 @@ class beautyScript(Script):
 				(gate show:)
 				(beast dispose:)
 				(global1 givePoints: 2)
-				(proc913_3)
+				proc913_3()
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1021,7 +1022,7 @@ class getWater(Script):
 			#end:case
 			case 3:
 				if register:
-					if (not (proc913_0 14)):
+					if (not proc913_0(14)):
 						(global1 givePoints: 1)
 					#endif
 					(global161 |= 0x0001)

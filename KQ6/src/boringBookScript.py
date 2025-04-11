@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 88
 import sci_sh
+import kernel
 import Main
 import LoadMany
 import Sound
@@ -88,7 +89,7 @@ class boringBookScript(Script):
 				(global1 handsOn:)
 				(localMusic stop: dispose:)
 				(self dispose:)
-				(proc958_0 0 88)
+				proc958_0(0, 88)
 			#end:case
 		#end:match
 	#end:method

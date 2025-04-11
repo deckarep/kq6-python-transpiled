@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 560
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -234,7 +235,7 @@ class trees(Feature):
 			case (param1 != 2):
 				(super doVerb: param1 &rest)
 			#end:case
-			case (proc913_0 25):
+			case proc913_0(25):
 				(global91 say: noun param1 4)
 			#end:case
 			else:
@@ -268,7 +269,7 @@ class rocks(Feature):
 			case (param1 == 1):
 				(global91 say: noun param1 10 0 0 0)
 			#end:case
-			case (proc999_5 param1 2 5):
+			case proc999_5(param1, 2, 5):
 				(global91 say: noun param1 0 0 0 0)
 			#end:case
 			else:
@@ -322,11 +323,11 @@ class doors(Feature):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 8 16 35):
+			case proc999_5(param1, 8, 16, 35):
 				(global91 say: noun param1 0)
 			#end:case
-			case (proc999_5 param1 2 5):
-				if (proc913_0 25):
+			case proc999_5(param1, 2, 5):
+				if proc913_0(25):
 					(global91 say: noun param1 4)
 				else:
 					(global91 say: noun param1 3)
@@ -414,7 +415,7 @@ class lookFireKludgeScript(Script):
 				(global91 say: 5 1 0 1 self)
 			#end:case
 			case 1:
-				if (not (proc913_0 14)):
+				if (not proc913_0(14)):
 					(global91 say: 5 1 8 1 self)
 				else:
 					cycles = 1

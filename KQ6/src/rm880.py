@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 880
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import KQ6Print
@@ -55,14 +56,14 @@ class rm880(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 128 882 881 880)
+		proc958_0(128, 882, 881, 880)
 		if 
 			(and
-				((ScriptID 80 0) tstFlag: 711 512)
-				(not ((ScriptID 80 0) tstFlag: 710 1))
-				(not ((ScriptID 80 0) tstFlag: 709 2))
+				(kernel.ScriptID(80, 0) tstFlag: 711 512)
+				(not (kernel.ScriptID(80, 0) tstFlag: 710 1))
+				(not (kernel.ScriptID(80, 0) tstFlag: 709 2))
 			)
-			((ScriptID 80 0) guardTimer: 0 setFlag: 710 1)
+			(kernel.ScriptID(80, 0) guardTimer: 0 setFlag: 710 1)
 		#endif
 		(self
 			addObstacle:
@@ -113,7 +114,7 @@ class rm880(CastleRoom):
 			reset: 0
 			setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
 		)
-		local0 = (proc999_5 ((global9 at: 26) owner:) 880 global0)
+		local0 = proc999_5(((global9 at: 26) owner:), 880, global0)
 		(global32 add: roomFeatures pillar eachElementDo: #init)
 		(portrait init: stopUpd:)
 		if (((global9 at: 27) owner:) == 850):
@@ -123,18 +124,18 @@ class rm880(CastleRoom):
 			(nail init:)
 		#endif
 		(super init: &rest)
-		((ScriptID 1015 6) talkWidth: 150 x: 15 y: 20)
-		((ScriptID 1015 7) talkWidth: 135 x: 160 y: 20)
+		(kernel.ScriptID(1015, 6) talkWidth: 150 x: 15 y: 20)
+		(kernel.ScriptID(1015, 7) talkWidth: 135 x: 160 y: 20)
 		(cond
-			case ((ScriptID 80 0) tstFlag: 709 256):
-				((ScriptID 80 0) clrFlag: 709 256)
+			case (kernel.ScriptID(80, 0) tstFlag: 709 256):
+				(kernel.ScriptID(80, 0) clrFlag: 709 256)
 				(self setScript: enterRoomScr 0 guardsTakeBird)
 			#end:case
-			case ((ScriptID 80 0) tstFlag: 710 1):
+			case (kernel.ScriptID(80, 0) tstFlag: 710 1):
 				(self setScript: enterRoomScr 0 watchGuardsComeBack)
 			#end:case
 			case (((global9 at: 27) owner:) != 730):
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					init:
 					setPri: 5
 					ignoreActors:
@@ -147,7 +148,7 @@ class rm880(CastleRoom):
 					posn: 200 87
 					setScript: guardsPatrol
 				)
-				((ScriptID 80 6)
+				(kernel.ScriptID(80, 6)
 					init:
 					setPri: 5
 					ignoreActors:
@@ -165,7 +166,7 @@ class rm880(CastleRoom):
 		if (not script):
 			(global1 handsOn:)
 		#endif
-		((ScriptID 80 0) clrFlag: 711 256)
+		(kernel.ScriptID(80, 0) clrFlag: 711 256)
 	#end:method
 
 	@classmethod
@@ -221,8 +222,8 @@ class rm880(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 80 5) setScript: 0 setPri: -1)
-		((ScriptID 80 6) setPri: -1)
+		(kernel.ScriptID(80, 5) setScript: 0 setPri: -1)
+		(kernel.ScriptID(80, 6) setPri: -1)
 		(super dispose:)
 	#end:method
 
@@ -231,7 +232,7 @@ class rm880(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			if (hideEgo caller:):
 				(waitForEgoToHide register: ((waitForEgoToHide register:) + 1))
 				(param1 next: waitForEgoToHide)
@@ -275,7 +276,7 @@ class enterRoomScr(Script):
 			case 1:
 				match register
 					case guardsTakeBird:
-						((ScriptID 80 0) setFlag: 711 128)
+						(kernel.ScriptID(80, 0) setFlag: 711 128)
 						(global91 say: 1 0 2 1 self)
 					#end:case
 					case watchGuardsComeBack:
@@ -307,7 +308,7 @@ class waitedToLongToEscape(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 964)
+		kernel.DisposeScript(964)
 	#end:method
 
 	@classmethod
@@ -318,7 +319,7 @@ class waitedToLongToEscape(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 0) setFlag: 711 128)
+				(kernel.ScriptID(80, 0) setFlag: 711 128)
 				cycles = 4
 			#end:case
 			case 1:
@@ -334,23 +335,23 @@ class waitedToLongToEscape(Script):
 				seconds = 2
 			#end:case
 			case 5:
-				((ScriptID 80 5) setMotion: MoveTo 108 98)
-				((ScriptID 80 6) setMotion: MoveTo 79 114 self)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 108 98)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo 79 114 self)
 			#end:case
 			case 6:
 				(global91 say: 1 0 5 4 self)
 			#end:case
 			case 7:
-				(proc913_4 (ScriptID 80 6) (ScriptID 80 5) self)
+				proc913_4(kernel.ScriptID(80, 6), kernel.ScriptID(80, 5), self)
 			#end:case
 			case 8:
 				(global91 say: 1 0 5 5 self)
 			#end:case
 			case 9:
-				((ScriptID 80 5) setPri: -1)
-				((ScriptID 80 6) setPri: -1)
-				((ScriptID 80 5) setMotion: MoveTo 161 111 self)
-				((ScriptID 80 6) setMotion: DPath 94 129 122 128)
+				(kernel.ScriptID(80, 5) setPri: -1)
+				(kernel.ScriptID(80, 6) setPri: -1)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 161 111 self)
+				(kernel.ScriptID(80, 6) setMotion: DPath 94 129 122 128)
 			#end:case
 			case 10:
 				(global91 say: 1 0 5 6 self)
@@ -366,7 +367,7 @@ class waitedToLongToEscape(Script):
 			#end:case
 			case 14:
 				(global2 moveOtherGuard: 1)
-				(global2 spotEgo: (proc80_7))
+				(global2 spotEgo: proc80_7())
 			#end:case
 		#end:match
 	#end:method
@@ -383,12 +384,12 @@ class walkGuardsOutPartial(Script):
 
 		(super init: &rest)
 		if (not register):
-			if ((ScriptID 80 0) tstFlag: 711 128):
-				((ScriptID 80 5) posn: 200 87)
-				((ScriptID 80 6) posn: 212 87)
+			if (kernel.ScriptID(80, 0) tstFlag: 711 128):
+				(kernel.ScriptID(80, 5) posn: 200 87)
+				(kernel.ScriptID(80, 6) posn: 212 87)
 			else:
-				((ScriptID 80 5) posn: 37 113)
-				((ScriptID 80 6) posn: 57 120)
+				(kernel.ScriptID(80, 5) posn: 37 113)
+				(kernel.ScriptID(80, 6) posn: 57 120)
 			#endif
 		#endif
 	#end:method
@@ -414,7 +415,7 @@ class walkGuardsOutPartial(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					init:
 					setPri: 5
 					setScale:
@@ -425,7 +426,7 @@ class walkGuardsOutPartial(Script):
 						(global2 minScaleY:)
 					setMotion: MoveTo local2 local3
 				)
-				((ScriptID 80 6)
+				(kernel.ScriptID(80, 6)
 					init:
 					setPri: 5
 					setScale:
@@ -438,8 +439,8 @@ class walkGuardsOutPartial(Script):
 				)
 			#end:case
 			case 2:
-				((ScriptID 80 5) setPri: -1)
-				((ScriptID 80 6) setPri: -1)
+				(kernel.ScriptID(80, 5) setPri: -1)
+				(kernel.ScriptID(80, 6) setPri: -1)
 				register = 0
 				(self dispose:)
 			#end:case
@@ -486,7 +487,7 @@ class takeDownPicture(Script):
 				if ((next == waitForEgoToHide) or (not next)):
 					(global1 handsOn:)
 				#endif
-				if (not (proc913_1 87)):
+				if (not proc913_1(87)):
 					(global1 givePoints: 3)
 				#endif
 				local0 = 1
@@ -558,7 +559,7 @@ class guardsTakeBird(Script):
 			case 0:
 				(global1 handsOff:)
 				(global1 givePoints: 2)
-				((ScriptID 80 0) clrFlag: 711 128)
+				(kernel.ScriptID(80, 0) clrFlag: 711 128)
 				(self setScript: leaveConvScr self)
 			#end:case
 			case 1:
@@ -592,7 +593,7 @@ class guardsTakeBird(Script):
 			#end:case
 			case 7:
 				((global9 at: 27) owner: 730)
-				((ScriptID 80 0) guardTimer: 301 setFlag: 709 512)
+				(kernel.ScriptID(80, 0) guardTimer: 301 setFlag: 709 512)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -620,7 +621,7 @@ class leaveConvScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					init:
 					setPri: 5
 					setScale:
@@ -632,7 +633,7 @@ class leaveConvScr(Script):
 					posn: 200 87
 					setMotion: MoveTo 93 105 self
 				)
-				((ScriptID 80 6)
+				(kernel.ScriptID(80, 6)
 					init:
 					setPri: 5
 					setScale:
@@ -647,43 +648,43 @@ class leaveConvScr(Script):
 			#end:case
 			case 1: 0#end:case
 			case 2:
-				((ScriptID 80 5) setHeading: 180 self)
+				(kernel.ScriptID(80, 5) setHeading: 180 self)
 			#end:case
 			case 3:
 				(self dispose:)
 			#end:case
 			case 4:
-				((ScriptID 80 5) setMotion: MoveTo 90 108 self)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 90 108 self)
 			#end:case
 			case 5:
-				((ScriptID 80 5) setHeading: 180 self)
+				(kernel.ScriptID(80, 5) setHeading: 180 self)
 			#end:case
 			case 6:
 				cycles = 4
 			#end:case
 			case 7:
-				((ScriptID 80 5) view: 884 loop: 0 cel: 0 setCycle: CT 5 1 self)
+				(kernel.ScriptID(80, 5) view: 884 loop: 0 cel: 0 setCycle: CT 5 1 self)
 			#end:case
 			case 8:
 				(bird dispose:)
-				((ScriptID 80 5) setCycle: End self)
+				(kernel.ScriptID(80, 5) setCycle: End self)
 			#end:case
 			case 9:
 				(self dispose:)
 			#end:case
 			case 10:
 				(global102 fadeTo: 700 -1)
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					view: 724
 					loop: 2
 					setCycle: StopWalk -1
 					setMotion: MoveTo 52 111
 				)
-				((ScriptID 80 6) setMotion: MoveTo 52 120 self)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo 52 120 self)
 			#end:case
 			case 11:
-				((ScriptID 80 5) dispose:)
-				((ScriptID 80 6) dispose:)
+				(kernel.ScriptID(80, 5) dispose:)
+				(kernel.ScriptID(80, 6) dispose:)
 				state = -1
 				(self dispose:)
 			#end:case
@@ -718,7 +719,7 @@ class returningConvScr(Script):
 				seconds = 3
 			#end:case
 			case 1:
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					init:
 					setPri: 5
 					setScale:
@@ -730,7 +731,7 @@ class returningConvScr(Script):
 					posn: 37 113
 					setMotion: MoveTo 93 105 self
 				)
-				((ScriptID 80 6)
+				(kernel.ScriptID(80, 6)
 					init:
 					setPri: 5
 					setScale:
@@ -745,33 +746,33 @@ class returningConvScr(Script):
 			#end:case
 			case 2: 0#end:case
 			case 3:
-				if (proc999_5 ((global9 at: 26) owner:) 880 global0):
+				if proc999_5(((global9 at: 26) owner:), 880, global0):
 					(state += 4)
 				#endif
 				(self cue:)
 			#end:case
 			case 4:
-				(proc913_4 (ScriptID 80 5) (ScriptID 80 6))
-				(proc913_4 (ScriptID 80 6) (ScriptID 80 5) self)
+				proc913_4(kernel.ScriptID(80, 5), kernel.ScriptID(80, 6))
+				proc913_4(kernel.ScriptID(80, 6), kernel.ScriptID(80, 5), self)
 			#end:case
 			case 5:
 				(self dispose: 1)
 			#end:case
 			case 6:
-				((ScriptID 80 5) setHeading: 45)
-				((ScriptID 80 6) setHeading: 45 self)
+				(kernel.ScriptID(80, 5) setHeading: 45)
+				(kernel.ScriptID(80, 6) setHeading: 45 self)
 			#end:case
 			case 7:
 				(self dispose: 1)
 			#end:case
 			case 8:
-				if (proc999_5 ((global9 at: 26) owner:) 880 global0):
+				if proc999_5(((global9 at: 26) owner:), 880, global0):
 					(hideEgo caller: 0)
 					caller = 0
 					(global2 setScript: pictureDownGetEgo)
 				else:
-					((ScriptID 80 5) setMotion: MoveTo 200 87 self)
-					((ScriptID 80 6) setMotion: MoveTo 212 87)
+					(kernel.ScriptID(80, 5) setMotion: MoveTo 200 87 self)
+					(kernel.ScriptID(80, 6) setMotion: MoveTo 212 87)
 				#endif
 			#end:case
 			case 9:
@@ -837,7 +838,7 @@ class getNail(Script):
 			#end:case
 			case 4:
 				(global0 reset: 6 posn: 204 110)
-				if (not (proc913_1 88)):
+				if (not proc913_1(88)):
 					(global1 givePoints: 1)
 				#endif
 				if ((next == waitForEgoToHide) or (not next)):
@@ -926,25 +927,25 @@ class hideEgo(Script):
 		match state = param1
 			case 0:
 				(waitForEgoToHide register: 0)
-				state++
+				state.post('++')
 				if 
 					(= temp0
 						(cond
 							case 
 								(and
 									((global2 script:) != waitedToLongToEscape)
-									((ScriptID 80 0) tstFlag: 709 2)
+									(kernel.ScriptID(80, 0) tstFlag: 709 2)
 								):
-								state--
+								state.post('--')
 								15
 							#end:case
 							case (((global9 at: 27) owner:) == 850): 16#end:case
 							case 
 								(and
-									((ScriptID 80 0) tstFlag: 709 512)
-									(not ((ScriptID 80 0) tstFlag: 710 1))
+									(kernel.ScriptID(80, 0) tstFlag: 709 512)
+									(not (kernel.ScriptID(80, 0) tstFlag: 710 1))
 								):
-								state--
+								state.post('--')
 								14
 							#end:case
 							else: 0#end:else
@@ -1083,11 +1084,11 @@ class guardsPatrol(Script):
 			#end:case
 			case 1:
 				if (hideEgo client:):
-					state--
+					state.post('--')
 					(hideEgo caller: self)
 				else:
 					(global91 say: 1 0 1 0 self)
-					((ScriptID 80 0) setFlag: 711 128)
+					(kernel.ScriptID(80, 0) setFlag: 711 128)
 				#endif
 			#end:case
 			case 2:
@@ -1098,7 +1099,7 @@ class guardsPatrol(Script):
 			case 3:
 				(global1 handsOff:)
 				if register:
-					state++
+					state.post('++')
 				#endif
 				(self setScript: guardsWalk self)
 			#end:case
@@ -1107,7 +1108,7 @@ class guardsPatrol(Script):
 			#end:case
 			case 5:
 				if register:
-					state++
+					state.post('++')
 					seconds = 3
 				else:
 					seconds = 2
@@ -1117,8 +1118,8 @@ class guardsPatrol(Script):
 				(global91 say: 1 0 6 3 self)
 			#end:case
 			case 7:
-				((ScriptID 80 0) clrFlag: 711 128)
-				if (proc999_5 ((global9 at: 26) owner:) 880 global0):
+				(kernel.ScriptID(80, 0) clrFlag: 711 128)
+				if proc999_5(((global9 at: 26) owner:), 880, global0):
 					(global2 setScript: pictureDownGetEgo)
 				else:
 					(self setScript: guardsWalk self)
@@ -1141,11 +1142,11 @@ class guardsPatrol(Script):
 			#end:case
 			case 11:
 				if (global2 script:):
-					state--
+					state.post('--')
 					((global2 script:) caller: self)
 				else:
 					(global91 say: 1 0 7 0 self)
-					((ScriptID 80 0) setFlag: 711 128)
+					(kernel.ScriptID(80, 0) setFlag: 711 128)
 				#endif
 			#end:case
 			case 12:
@@ -1183,8 +1184,8 @@ class guardsWalk(Script):
 					temp2 = 57
 					temp3 = 120
 				#endif
-				((ScriptID 80 5) setMotion: MoveTo temp0 temp1 self)
-				((ScriptID 80 6) setMotion: MoveTo temp2 temp3 self)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo temp0 temp1 self)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo temp2 temp3 self)
 			#end:case
 			case 1: 0#end:case
 			case 2:
@@ -1226,15 +1227,9 @@ class waitForEgoToHide(Script):
 				if 
 					(and
 						(register <= 2)
-						(proc999_5
-							(global2 script:)
-							getNail
-							takeDownPicture
-							replacePicture
-							lookAtPicture
-						)
+						proc999_5((global2 script:), getNail, takeDownPicture, replacePicture, lookAtPicture)
 					)
-					state--
+					state.post('--')
 					((global2 script:) caller: self)
 				else:
 					temp0 = (hideEgo caller:)
@@ -1260,7 +1255,7 @@ class waitedTooLong(Script):
 				(self setScript: walkGuardsOutPartial self)
 			#end:case
 			case 1:
-				((ScriptID 80 6) setHeading: 180 self)
+				(kernel.ScriptID(80, 6) setHeading: 180 self)
 			#end:case
 			case 2:
 				match register
@@ -1277,7 +1272,7 @@ class waitedTooLong(Script):
 				(roomConv init: self)
 			#end:case
 			case 3:
-				(proc913_4 global0 (ScriptID 80 5) self)
+				proc913_4(global0, kernel.ScriptID(80, 5), self)
 			#end:case
 			case 4:
 				cycles = 2
@@ -1289,7 +1284,7 @@ class waitedTooLong(Script):
 				if (global0 inRect: 57 117 124 169):
 					(global2 setScript: getEgo)
 				else:
-					(global2 spotEgo: (proc80_7))
+					(global2 spotEgo: proc80_7())
 				#endif
 			#end:case
 		#end:match
@@ -1314,11 +1309,11 @@ class pictureDownGetEgo(Script):
 					setScript:
 						walkGuardsOutPartial
 						self
-						(not ((ScriptID 80 0) tstFlag: 711 128))
+						(not (kernel.ScriptID(80, 0) tstFlag: 711 128))
 				)
 			#end:case
 			case 2:
-				((ScriptID 80 6) setHeading: 180 self)
+				(kernel.ScriptID(80, 6) setHeading: 180 self)
 			#end:case
 			case 3:
 				(global91 say: 1 0 19 1 self)
@@ -1333,7 +1328,7 @@ class pictureDownGetEgo(Script):
 				(global91 say: 1 0 19 3 self)
 			#end:case
 			case 7:
-				(global2 spotEgo: (proc80_7))
+				(global2 spotEgo: proc80_7())
 			#end:case
 		#end:match
 	#end:method
@@ -1493,11 +1488,11 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		approachX = approachY = _approachVerbs = 0
 		(return
 			(or
-				((not (proc999_4 71 39 251 144 param1)) and noun = 6)
+				((not proc999_4(71, 39, 251, 144, param1)) and noun = 6)
 				(and
 					(0x0004 & temp0)
 					noun = 9
@@ -1602,8 +1597,8 @@ class portraitInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		x = (160 - ((CelWide view loop cel) / 2))
-		y = (90 - ((CelHigh view loop cel) / 2))
+		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
+		y = (90 - (kernel.CelHigh(view, loop, cel) / 2))
 		(super init: &rest)
 	#end:method
 
@@ -1627,11 +1622,11 @@ class getEgo(Script):
 				(global1 handsOff:)
 				(global102 stop:)
 				(global103 number: 710 loop: -1 play:)
-				((ScriptID 80 5) setMotion: MoveTo 78 109 self)
-				((ScriptID 80 6) setLoop: 2 setMotion: MoveTo 100 120)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 78 109 self)
+				(kernel.ScriptID(80, 6) setLoop: 2 setMotion: MoveTo 100 120)
 			#end:case
 			case 1:
-				((ScriptID 80 5) setLoop: 2 setMotion: MoveTo 76 120 self)
+				(kernel.ScriptID(80, 5) setLoop: 2 setMotion: MoveTo 76 120 self)
 			#end:case
 			case 2:
 				ticks = 30
@@ -1659,9 +1654,9 @@ class watchGuardsComeBack(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 150)
-				((ScriptID 1012 32) talkWidth: 100 x: 160 y: 10)
-				((ScriptID 80 0) clrFlag: 710 1)
+				proc913_1(150)
+				(kernel.ScriptID(1012, 32) talkWidth: 100 x: 160 y: 10)
+				(kernel.ScriptID(80, 0) clrFlag: 710 1)
 				cycles = 3
 			#end:case
 			case 1:
@@ -1708,13 +1703,13 @@ class watchGuardsComeBack(Script):
 				(self setScript: hideEgo self)
 			#end:case
 			case 8:
-				((ScriptID 80 0) weddingRemind: 125 clrFlag: 709 512)
-				((ScriptID 80 0) clrFlag: 710 1 setFlag: 709 2)
+				(kernel.ScriptID(80, 0) weddingRemind: 125 clrFlag: 709 512)
+				(kernel.ScriptID(80, 0) clrFlag: 710 1 setFlag: 709 2)
 				cycles = 3
 			#end:case
 			case 9:
 				(global1 handsOn:)
-				(proc913_2 150)
+				proc913_2(150)
 				(self dispose:)
 			#end:case
 		#end:match

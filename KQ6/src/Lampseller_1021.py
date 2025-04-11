@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1021
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -31,7 +32,7 @@ class Lampseller(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(tBust cel: 1)
 			cel = 1
 			(super init: tBust 0 0 &rest)

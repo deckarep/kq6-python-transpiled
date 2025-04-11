@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 320
 import sci_sh
+import kernel
 import Main
 import rCliffs
 import n913
@@ -76,10 +77,10 @@ class rm320(CliffRoom):
 				(global102 number: 915 setLoop: -1 play:)
 			#endif
 		#endif
-		(proc958_0 128 322 325)
+		proc958_0(128, 322, 325)
 		(super init: &rest)
 		(rCliffs stepDirection: 3)
-		if (proc913_0 123):
+		if proc913_0(123):
 			(global2 allRocksOut: 0)
 		else:
 			(global2 constantRocks:)
@@ -96,7 +97,7 @@ class rm320(CliffRoom):
 			init:
 			actions: egoStepVerb
 		)
-		((ScriptID 21 0) notify:)
+		(kernel.ScriptID(21, 0) notify:)
 		(global74 add: self)
 		(global1 handsOn:)
 	#end:method
@@ -270,7 +271,7 @@ class puzzle1(PuzzleInset):
 		(headStoneWords dispose:)
 		(super dispose:)
 		(global0 view: 301 setLoop: 6 cel: 0)
-		(UnLoad 128 3012)
+		kernel.UnLoad(128, 3012)
 	#end:method
 
 #end:class or instance
@@ -317,7 +318,7 @@ class puzzle2(PuzzleInset):
 		(rollos dispose:)
 		(super dispose:)
 		(global0 view: 301 setLoop: 1)
-		(UnLoad 128 3012)
+		kernel.UnLoad(128, 3012)
 	#end:method
 
 #end:class or instance
@@ -366,7 +367,7 @@ class puzzle3(PuzzleInset):
 		(headStoneWords dispose:)
 		(super dispose:)
 		(global0 view: 301 setLoop: 6 cel: 0)
-		(UnLoad 128 3012)
+		kernel.UnLoad(128, 3012)
 	#end:method
 
 #end:class or instance
@@ -413,7 +414,7 @@ class puzzle4(PuzzleInset):
 		(words dispose:)
 		(super dispose:)
 		(global0 view: 301 setLoop: 1)
-		(UnLoad 128 3012)
+		kernel.UnLoad(128, 3012)
 	#end:method
 
 #end:class or instance
@@ -528,7 +529,7 @@ class theRoom(Feature):
 
 		match param1
 			case 3:
-				(proc913_1 59)
+				proc913_1(59)
 				(global2 setScript: dieHard)
 			#end:case
 			else:
@@ -578,7 +579,7 @@ class writ(View):
 
 		if 
 			(and
-				(not ((ScriptID 21 0) puzzleIsUp:))
+				(not (kernel.ScriptID(21, 0) puzzleIsUp:))
 				(or
 					((global69 curIcon:) == (global69 at: 1))
 					((global69 curIcon:) == (global69 at: 2))
@@ -601,31 +602,31 @@ class writ(View):
 				else:
 					(global0 view: 3012 setLoop: 0 cel: 0)
 				#endif
-				(UnLoad 128 301)
-				match ((ScriptID 21 0) cliffFace:)
+				kernel.UnLoad(128, 301)
+				match (kernel.ScriptID(21, 0) cliffFace:)
 					case 0:
-						if (proc913_0 123):
+						if proc913_0(123):
 							(puzzle1 puzzSolved:)
 						else:
 							(global2 setScript: insetInit 0 puzzle1)
 						#endif
 					#end:case
 					case 1:
-						if (proc913_0 124):
+						if proc913_0(124):
 							(puzzle2 puzzSolved:)
 						else:
 							(global2 setScript: insetInit 0 puzzle2)
 						#endif
 					#end:case
 					case 2:
-						if (proc913_0 125):
+						if proc913_0(125):
 							(puzzle3 puzzSolved:)
 						else:
 							(global2 setScript: insetInit 0 puzzle3)
 						#endif
 					#end:case
 					case 3:
-						if (proc913_0 126):
+						if proc913_0(126):
 							(puzzle4 puzzSolved:)
 						else:
 							(global2 setScript: insetInit 0 puzzle4)
@@ -654,7 +655,7 @@ class insetDispose(Script):
 				ticks = 6
 			#end:case
 			case 1:
-				if (mod ((ScriptID 21 0) cliffFace:) 2):
+				if (mod (kernel.ScriptID(21, 0) cliffFace:) 2):
 					(global2 flipRocks: 1 callForRocks:)
 				else:
 					(global2 flipRocks: 0 callForRocks:)
@@ -680,7 +681,7 @@ class nextCliffUp(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (((ScriptID 21 0) cliffFace:) == 3):
+				if ((kernel.ScriptID(21, 0) cliffFace:) == 3):
 					(global102 fade: 0 10 10)
 					(global105 stop:)
 					(global2 newRoom: 340)
@@ -694,42 +695,42 @@ class nextCliffUp(Script):
 				if ((rCliffs cliffFace:) > 3):
 					(rCliffs cliffFace: 3)
 				#endif
-				match ((ScriptID 21 0) cliffFace:)
+				match (kernel.ScriptID(21, 0) cliffFace:)
 					case 1:
-						(UnLoad 128 322)
-						(UnLoad 128 325)
-						if (proc913_0 124):
+						kernel.UnLoad(128, 322)
+						kernel.UnLoad(128, 325)
+						if proc913_0(124):
 							(global2 allRocksOut: 1)
 						else:
 							(global2 constantRocks: 1)
 						#endif
-						(proc958_0 128 320 323)
+						proc958_0(128, 320, 323)
 					#end:case
 					case 2:
-						(UnLoad 128 320)
-						(UnLoad 128 323)
-						if (proc913_0 125):
+						kernel.UnLoad(128, 320)
+						kernel.UnLoad(128, 323)
+						if proc913_0(125):
 							(global2 allRocksOut: 0)
 						else:
 							(global2 constantRocks:)
 						#endif
-						(proc958_0 128 322 325)
+						proc958_0(128, 322, 325)
 					#end:case
 					case 3:
-						(UnLoad 128 322)
-						(UnLoad 128 325)
-						if (proc913_0 126):
+						kernel.UnLoad(128, 322)
+						kernel.UnLoad(128, 325)
+						if proc913_0(126):
 							(global2 allRocksOut: 1)
 						else:
 							(global2 constantRocks: 1)
 						#endif
-						(proc958_0 128 320 324)
+						proc958_0(128, 320, 324)
 					#end:case
 				#end:match
 				(global2 drawPic: 320 14)
-				if (mod ((ScriptID 21 0) cliffFace:) 2):
+				if (mod (kernel.ScriptID(21, 0) cliffFace:) 2):
 					(writ
-						loop: (1 if (((ScriptID 21 0) cliffFace:) == 1) else 0)
+						loop: (1 if ((kernel.ScriptID(21, 0) cliffFace:) == 1) else 0)
 						x: 90
 						stopUpd:
 					)
@@ -739,7 +740,7 @@ class nextCliffUp(Script):
 					(global0 posn: 101 182 setLoop: 2 cel: 0 setPri: 10 show:)
 				#endif
 				(global1 handsOn:)
-				((ScriptID 21 0) notify:)
+				(kernel.ScriptID(21, 0) notify:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -758,7 +759,7 @@ class downToBeach(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc21_1)
+				proc21_1()
 				(global0
 					view: 301
 					setLoop: 7
@@ -822,7 +823,7 @@ class nextCliffDown(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 21 0) cue:)
+				(kernel.ScriptID(21, 0) cue:)
 				if ((rCliffs stepDirection:) == 2):
 					temp0 = 5
 					temp1 = 18
@@ -843,7 +844,7 @@ class nextCliffDown(Script):
 				)
 			#end:case
 			case 1:
-				(proc21_1)
+				proc21_1()
 				if ((rCliffs stepDirection:) == 2):
 					temp0 = 7
 					temp1 = -14
@@ -925,26 +926,26 @@ class nextCliffDown(Script):
 				cycles = 8
 			#end:case
 			case 9:
-				((ScriptID 21 0) cliffFace: (((ScriptID 21 0) cliffFace:) - 1))
+				(kernel.ScriptID(21, 0) cliffFace: ((kernel.ScriptID(21, 0) cliffFace:) - 1))
 				(global2 dumpRocks:)
 				(global2 drawPic: 320 13)
-				match ((ScriptID 21 0) cliffFace:)
+				match (kernel.ScriptID(21, 0) cliffFace:)
 					case 0:
-						(UnLoad 128 320)
-						(UnLoad 128 323)
-						(proc958_0 128 322 325)
+						kernel.UnLoad(128, 320)
+						kernel.UnLoad(128, 323)
+						proc958_0(128, 322, 325)
 						(global2 allRocksOut: 0)
 						(writ loop: 0 x: 230 stopUpd:)
 						(global0 view: 301 setLoop: 6 cel: 0 posn: 210 4)
 					#end:case
 					case 1:
-						(UnLoad 128 322)
-						(UnLoad 128 325)
-						(proc958_0 128 320 323)
+						kernel.UnLoad(128, 322)
+						kernel.UnLoad(128, 325)
+						proc958_0(128, 320, 323)
 						(global2 allRocksOut: 1)
 						(writ
 							loop:
-								if (((ScriptID 21 0) cliffFace:) == 1):
+								if ((kernel.ScriptID(21, 0) cliffFace:) == 1):
 									1
 								else:
 									0
@@ -955,9 +956,9 @@ class nextCliffDown(Script):
 						(global0 view: 301 setLoop: 1 cel: 0 posn: 127 4)
 					#end:case
 					case 2:
-						(UnLoad 128 320)
-						(UnLoad 128 324)
-						(proc958_0 128 322 325)
+						kernel.UnLoad(128, 320)
+						kernel.UnLoad(128, 324)
+						proc958_0(128, 322, 325)
 						(global2 allRocksOut: 0)
 						(writ loop: 0 x: 230 stopUpd:)
 						(global0 view: 301 setLoop: 6 cel: 0 posn: 210 4)
@@ -966,7 +967,7 @@ class nextCliffDown(Script):
 				cycles = 8
 			#end:case
 			case 10:
-				(proc21_1)
+				proc21_1()
 				if ((rCliffs stepDirection:) == 2):
 					temp0 = 7
 					temp1 = 1
@@ -1058,7 +1059,7 @@ class nextCliffDown(Script):
 			#end:case
 			case 18:
 				if (local0 < 3):
-					local0++
+					local0.post('++')
 					(state -= 9)
 				else:
 					local0 = 0
@@ -1104,8 +1105,8 @@ class nextCliffDown(Script):
 			#end:case
 			case 21:
 				(global1 handsOn:)
-				((ScriptID 21 0) cheatCount: 10)
-				((ScriptID 21 0) notify:)
+				(kernel.ScriptID(21, 0) cheatCount: 10)
+				(kernel.ScriptID(21, 0) notify:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1123,7 +1124,7 @@ class insetInit(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 21 0) cue:)
+				(kernel.ScriptID(21, 0) cue:)
 				(global91 say: 4 1 12 1 self)
 			#end:case
 			case 1:
@@ -1147,7 +1148,7 @@ class dieHard(Script):
 			case 0:
 				(global1 handsOff:)
 				(global69 disable: 6)
-				((ScriptID 21 0) cue:)
+				(kernel.ScriptID(21, 0) cue:)
 				if ((global0 loop:) < 6):
 					(global0
 						posn: ((global0 x:) - 8) ((global0 y:) - 3)
@@ -1166,7 +1167,7 @@ class dieHard(Script):
 				cycles = 6
 			#end:case
 			case 1:
-				(proc913_2 59)
+				proc913_2(59)
 				(global0
 					x:
 						if ((global0 loop:) == 1):
@@ -1197,7 +1198,7 @@ class dieHard(Script):
 			#end:case
 			case 4:
 				(global104 number: 307 setLoop: 1 play:)
-				(ShakeScreen 2 2)
+				kernel.ShakeScreen(2, 2)
 				ticks = 4
 			#end:case
 			case 5:
@@ -1205,7 +1206,7 @@ class dieHard(Script):
 			#end:case
 			case 6:
 				(global105 fade: 0 5 5)
-				(proc0_1 8)
+				proc0_1(8)
 			#end:case
 		#end:match
 	#end:method

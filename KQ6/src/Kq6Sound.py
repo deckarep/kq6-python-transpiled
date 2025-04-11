@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 102
 import sci_sh
+import kernel
 import Sound
 
 # Public Export Declarations

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 80
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -72,10 +73,10 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 	temp1 = ((global0 brBottom:) + param3)
 	if (not local2):
 		if (global2 moveOtherGuard:):
-			local2++
+			local2.post('++')
 		#endif
-		local0 = (proc999_3 temp2 (proc999_2 temp3 (param1 x:)))
-		local1 = (proc999_3 temp0 (proc999_2 temp1 (param1 y:)))
+		local0 = proc999_3(temp2, proc999_2(temp3, (param1 x:)))
+		local1 = proc999_3(temp0, proc999_2(temp1, (param1 y:)))
 	else:
 		local2 = 0
 		temp4 = ((((global0 x:) <= (param1 x:)) * 2) - 1)
@@ -88,7 +89,7 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 				)
 			)
 		)
-		local1 = (proc999_3 temp0 (proc999_2 temp1 (param1 y:)))
+		local1 = proc999_3(temp0, proc999_2(temp1, (param1 y:)))
 	#endif
 #end:procedure
 
@@ -97,12 +98,12 @@ def proc80_7():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = (localproc_1 (ScriptID 80 5))
-	temp1 = (localproc_1 (ScriptID 80 6))
+	temp0 = (localproc_1 kernel.ScriptID(80, 5))
+	temp1 = (localproc_1 kernel.ScriptID(80, 6))
 	if (temp0 <= temp1):
-		(ScriptID 80 5)
+		kernel.ScriptID(80, 5)
 	else:
-		(ScriptID 80 6)
+		kernel.ScriptID(80, 6)
 	#endif
 #end:procedure
 
@@ -113,7 +114,7 @@ def localproc_1(param1 = None):
 
 	if (global5 contains: param1):
 		(= temp0
-			(GetDistance (param1 x:) (param1 y:) (global0 x:) (global0 y:) 60)
+			kernel.GetDistance((param1 x:), (param1 y:), (global0 x:), (global0 y:), 60)
 		)
 	else:
 		temp0 = 500
@@ -179,24 +180,8 @@ class CastleRoom(KQ6Room):
 		temp0 = 0
 		if 
 			(and
-				(proc999_5 param1 85 87 93)
-				(proc999_5
-					global11
-					710
-					720
-					730
-					770
-					780
-					781
-					800
-					810
-					820
-					840
-					850
-					860
-					870
-					880
-				)
+				proc999_5(param1, 85, 87, 93)
+				proc999_5(global11, 710, 720, 730, 770, 780, 781, 800, 810, 820, 840, 850, 860, 870, 880)
 			)
 			match param1
 				case 85:
@@ -253,8 +238,8 @@ class GuardDog(Actor):
 		if 
 			(and
 				okToCheck
-				((not (IsObject okToCheck)) or (self perform: okToCheck))
-				(IsObject checkCode)
+				((not kernel.IsObject(okToCheck)) or (self perform: okToCheck))
+				kernel.IsObject(checkCode)
 				(self perform: checkCode)
 			)
 			checkCode = 0
@@ -262,7 +247,7 @@ class GuardDog(Actor):
 			(self setMotion: 0)
 			(global2 spotEgo: self)
 		#endif
-		if ((IsObject global2) and (global2 scalerCode:)):
+		if (kernel.IsObject(global2) and (global2 scalerCode:)):
 			(self perform: (global2 scalerCode:))
 		#endif
 	#end:method
@@ -273,7 +258,7 @@ class GuardDog(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		regPathID = checkCode = okToCheck = 0
-		if (IsObject scaler):
+		if kernel.IsObject(scaler):
 			(scaler dispose:)
 		#endif
 		scaler = 0
@@ -303,7 +288,7 @@ class rgCastle(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (GetTime 1)
+		temp0 = kernel.GetTime(1)
 		(cond
 			case 
 				(and
@@ -318,18 +303,18 @@ class rgCastle(Rgn):
 					(and
 						(loiterTimer > 0)
 						(not (global2 script:))
-						(loiterTimer-- == 0)
+						(loiterTimer.post('--') == 0)
 					)
 					(self doLoiter:)
 				#endif
-				if ((weddingRemind > 0) and (weddingRemind-- == 0)):
+				if ((weddingRemind > 0) and (weddingRemind.post('--') == 0)):
 					if 
 						(or
 							weddingMusicCount
 							(and
 								((global6 size:) == 3)
-								(not ((ScriptID 81 0) tstFlag: 709 1))
-								(not ((ScriptID 81 0) tstFlag: 709 2))
+								(not (kernel.ScriptID(81, 0) tstFlag: 709 1))
+								(not (kernel.ScriptID(81, 0) tstFlag: 709 2))
 							)
 							1
 						)
@@ -337,27 +322,27 @@ class rgCastle(Rgn):
 							(global102 fadeTo: 701 -1)
 						#endif
 						(rFlag1 |= 0x0002)
-						weddingMusicCount++
+						weddingMusicCount.post('++')
 						(global2 warnUser: 1)
 					else:
 						weddingRemind = 5
 					#endif
 				#endif
-				if ((guardTimer > 0) and (guardTimer-- == 0)):
+				if ((guardTimer > 0) and (guardTimer.post('--') == 0)):
 					(cond
 						case (not (rFlag2 & 0x0001)):
 							(rFlag2 |= 0x0001)
-							if (proc999_5 global11 850 880 781):
+							if proc999_5(global11, 850, 880, 781):
 								(global2 warnUser: 2)
 							#endif
 						#end:case
 						case (global11 == 850):
 							(global1 handsOff:)
-							(global2 spotEgo: (ScriptID 80 5))
+							(global2 spotEgo: kernel.ScriptID(80, 5))
 						#end:case
 					)
 				#endif
-				if ((guard2Timer > 0) and (guard2Timer-- == 0)):
+				if ((guard2Timer > 0) and (guard2Timer.post('--') == 0)):
 					(cond
 						case (not (rFlag2 & 0x0020)):
 							(rFlag2 |= 0x0020)
@@ -384,32 +369,9 @@ class rgCastle(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 80 0)
+		(kernel.ScriptID(80, 0)
 			keep:
-				(proc999_5
-					param1
-					700
-					710
-					720
-					730
-					740
-					750
-					760
-					770
-					780
-					781
-					790
-					800
-					810
-					820
-					840
-					850
-					860
-					870
-					880
-					180
-					743
-				)
+				proc999_5(param1, 700, 710, 720, 730, 740, 750, 760, 770, 780, 781, 790, 800, 810, 820, 840, 850, 860, 870, 880, 180, 743)
 		)
 		initialized = 0
 		loiterTimer = -1
@@ -433,7 +395,7 @@ class rgCastle(Rgn):
 
 		if (global5 contains: guard1):
 			(guard1 checkCode: guard1Code)
-			if (not (IsObject (guard1 scaler:))):
+			if (not kernel.IsObject((guard1 scaler:))):
 				(guard1
 					setScale:
 						Scaler
@@ -447,7 +409,7 @@ class rgCastle(Rgn):
 		#endif
 		if (global5 contains: guard2):
 			(guard2 checkCode: guard2Code)
-			if (not (IsObject (guard2 scaler:))):
+			if (not kernel.IsObject((guard2 scaler:))):
 				(guard2
 					setScale:
 						Scaler
@@ -473,7 +435,7 @@ class rgCastle(Rgn):
 		while (temp1 < argc): # inline for
 			(self temp0: (| (self temp0:) param1[temp1]))
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 	#end:method
 
@@ -489,7 +451,7 @@ class rgCastle(Rgn):
 		while (temp1 < argc): # inline for
 			(self temp0: ((self temp0:) & (~ param1[temp1])))
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 	#end:method
 
@@ -530,7 +492,7 @@ class guardsGetEgo(Script):
 						(not ((global0 signal:) & 0x0800))
 						(not (global0 facingMe: client))
 					)
-					(proc913_4 global0 client self)
+					proc913_4(global0, client, self)
 				else:
 					cycles = 2
 				#endif
@@ -581,7 +543,7 @@ class guardsGetEgo(Script):
 							temp0 = guard1
 						#end:case
 					#end:match
-					(proc913_4 temp0 global0 self)
+					proc913_4(temp0, global0, self)
 				else:
 					(self cue:)
 				#endif
@@ -614,7 +576,7 @@ class guard1(GuardDog):
 
 		(super init: &rest)
 		if ((global6 size:) == 3):
-			checkCode = ((ScriptID 81 0) guard1Code:)
+			checkCode = (kernel.ScriptID(81, 0) guard1Code:)
 		#endif
 	#end:method
 
@@ -632,7 +594,7 @@ class guard1(GuardDog):
 				#endif
 			#end:case
 			case ((global6 size:) == 3):
-				((ScriptID 81 0) clrFlag: 709 1 loiterTimer: 36)
+				(kernel.ScriptID(81, 0) clrFlag: 709 1 loiterTimer: 36)
 			#end:case
 		)
 	#end:method
@@ -654,7 +616,7 @@ class guard2(GuardDog):
 
 		(super init: &rest)
 		if ((global6 size:) == 3):
-			checkCode = ((ScriptID 81 0) guard2Code:)
+			checkCode = (kernel.ScriptID(81, 0) guard2Code:)
 		#endif
 	#end:method
 
@@ -677,8 +639,8 @@ class guard2(GuardDog):
 				#endif
 			#end:case
 			case ((global6 size:) == 3):
-				((ScriptID 81 0)
-					rFlag1: (((ScriptID 81 0) rFlag1:) & 0xfffd)
+				(kernel.ScriptID(81, 0)
+					rFlag1: ((kernel.ScriptID(81, 0) rFlag1:) & 0xfffd)
 					loiterTimer: 36
 				)
 			#end:case

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 932
 import sci_sh
+import kernel
 import Main
 import PolyPath
 
@@ -51,9 +52,9 @@ class PFollow(PolyPath):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case ((GetDistance targetX targetY (who x:) (who y:)) > distance):
+			case (kernel.GetDistance(targetX, targetY, (who x:), (who y:)) > distance):
 				if points:
-					(Memory 3 points)
+					kernel.Memory(3, points)
 				#endif
 				points = 0
 				value = 2
@@ -61,7 +62,7 @@ class PFollow(PolyPath):
 				0
 			#end:case
 			case (temp0 = (client distanceTo: who) <= distance):
-				temp1 = (GetAngle (client x:) (client y:) (who x:) (who y:))
+				temp1 = kernel.GetAngle((client x:), (client y:), (who x:), (who y:))
 				if ((client heading:) != temp1):
 					(client setHeading: temp1)
 				#endif

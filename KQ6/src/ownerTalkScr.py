@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 284
 import sci_sh
+import kernel
 import Main
 import rm280
 import n913
@@ -33,12 +34,12 @@ class ownerTalkScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 4 2 13 1 self)
@@ -47,7 +48,7 @@ class ownerTalkScr(Script):
 				(global91 say: 4 2 13 2 self)
 			#end:case
 			case 4:
-				((ScriptID 280 2)
+				(kernel.ScriptID(280, 2)
 					view: 286
 					posn: 236 127
 					loop: 1
@@ -73,22 +74,22 @@ class ownerTalkScr(Script):
 				(global91 say: 4 2 13 6 self)
 			#end:case
 			case 10:
-				((ScriptID 280 2) loop: 2 cel: 0 setCycle: CT 4 1 self)
+				(kernel.ScriptID(280, 2) loop: 2 cel: 0 setCycle: CT 4 1 self)
 			#end:case
 			case 11:
-				((ScriptID 280 1) init:)
-				((ScriptID 280 2) setCycle: End self)
+				(kernel.ScriptID(280, 1) init:)
+				(kernel.ScriptID(280, 2) setCycle: End self)
 			#end:case
 			case 12:
-				((ScriptID 280 2) setPri: -1 view: 280 loop: 8 cel: 0)
+				(kernel.ScriptID(280, 2) setPri: -1 view: 280 loop: 8 cel: 0)
 				cycles = 2
 			#end:case
 			case 13:
-				(UnLoad 128 286)
+				kernel.UnLoad(128, 286)
 				(global91 say: 4 2 13 7 self oneOnly: 0)
 			#end:case
 			case 14:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global0 reset: 0)
 				(global1 handsOn:)
 				(self dispose:)
@@ -102,7 +103,7 @@ class ownerTalkScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 284)
+		kernel.DisposeScript(284)
 	#end:method
 
 #end:class or instance
@@ -118,21 +119,21 @@ class ringMapNotOutScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(= register
-					if ((ScriptID 10 0) isSet: 1):
-						(self setScript: (ScriptID 286 2) self)
+					if (kernel.ScriptID(10, 0) isSet: 1):
+						(self setScript: kernel.ScriptID(286, 2) self)
 						36
 					else:
-						((ScriptID 10 0) setIt: 1)
-						(self setScript: (ScriptID 286 1) self 16384)
+						(kernel.ScriptID(10, 0) setIt: 1)
+						(self setScript: kernel.ScriptID(286, 1) self 16384)
 						18
 					#endif
 				)
@@ -154,13 +155,13 @@ class ringMapNotOutScr(Script):
 				#endif
 			#end:case
 			case 6:
-				(self setScript: (ScriptID 286 0) self)
+				(self setScript: kernel.ScriptID(286, 0) self)
 			#end:case
 			case 7:
 				(global91 say: 4 70 register 4 self)
 			#end:case
 			case 8:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global0 reset: 0)
 				(global1 handsOn:)
 				(self dispose:)
@@ -174,7 +175,7 @@ class ringMapNotOutScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 284)
+		kernel.DisposeScript(284)
 	#end:method
 
 #end:class or instance
@@ -191,24 +192,24 @@ class ringForMapActIScr(Script):
 			case 0:
 				(global0 put: 39 global11)
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global1 givePoints: 5)
-				(self setScript: (ScriptID 286 1) self 16384)
+				(self setScript: kernel.ScriptID(286, 1) self 16384)
 			#end:case
 			case 3:
-				(UnLoad 128 2811)
-				(UnLoad 128 284)
-				(global91 say: 4 70 19 1 (ScriptID 286 1))
+				kernel.UnLoad(128, 2811)
+				kernel.UnLoad(128, 284)
+				(global91 say: 4 70 19 1 kernel.ScriptID(286, 1))
 			#end:case
 			case 4:
-				(global91 say: 4 70 19 2 (ScriptID 286 1))
+				(global91 say: 4 70 19 2 kernel.ScriptID(286, 1))
 			#end:case
 			case 5:
 				(global91 say: 4 70 19 3 self)
@@ -232,12 +233,12 @@ class ringForMapActIScr(Script):
 				(global91 say: 4 70 19 9 self)
 			#end:case
 			case 12:
-				(proc913_3)
-				(self setScript: (ScriptID 286 3) self)
+				proc913_3()
+				(self setScript: kernel.ScriptID(286, 3) self)
 			#end:case
 			case 13:
-				(UnLoad 128 286)
-				(self setScript: (ScriptID 282 2) self)
+				kernel.UnLoad(128, 286)
+				(self setScript: kernel.ScriptID(282, 2) self)
 				cycles = 1
 			#end:case
 			case 14:
@@ -264,7 +265,7 @@ class ringForMapActIScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 284)
+		kernel.DisposeScript(284)
 	#end:method
 
 #end:class or instance
@@ -281,12 +282,12 @@ class ringForMapNotActIScr(Script):
 			case 0:
 				(global0 get: 0 put: 39 global11)
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 4 70 21 1 self)
@@ -295,7 +296,7 @@ class ringForMapNotActIScr(Script):
 				(global91 say: 4 70 21 2 self)
 			#end:case
 			case 4:
-				(self setScript: (ScriptID 286 1) self -32768)
+				(self setScript: kernel.ScriptID(286, 1) self -32768)
 			#end:case
 			case 5:
 				(script cue:)
@@ -304,10 +305,10 @@ class ringForMapNotActIScr(Script):
 				ticks = 15
 			#end:case
 			case 7:
-				(self setScript: (ScriptID 286 3) self)
+				(self setScript: kernel.ScriptID(286, 3) self)
 			#end:case
 			case 8:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global0 reset: 0)
 				(global1 handsOn:)
 				(self dispose:)
@@ -321,7 +322,7 @@ class ringForMapNotActIScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 284)
+		kernel.DisposeScript(284)
 	#end:method
 
 #end:class or instance
@@ -338,12 +339,12 @@ class ringForPearlScr(Script):
 			case 0:
 				(global0 put: 39 get: 30)
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 4 70 20 1 self)
@@ -352,7 +353,7 @@ class ringForPearlScr(Script):
 				(global91 say: 4 70 20 2 self)
 			#end:case
 			case 4:
-				(self setScript: (ScriptID 286 1) self)
+				(self setScript: kernel.ScriptID(286, 1) self)
 			#end:case
 			case 5:
 				(script cue:)
@@ -361,7 +362,7 @@ class ringForPearlScr(Script):
 				ticks = 120
 			#end:case
 			case 7:
-				(self setScript: (ScriptID 286 0) self)
+				(self setScript: kernel.ScriptID(286, 0) self)
 			#end:case
 			case 8:
 				(global91 say: 4 70 20 3 self)
@@ -380,7 +381,7 @@ class ringForPearlScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 284)
+		kernel.DisposeScript(284)
 	#end:method
 
 #end:class or instance
@@ -396,12 +397,12 @@ class talkAfterActI(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 4 2 47 1 self)
@@ -411,7 +412,7 @@ class talkAfterActI(Script):
 					say:
 						4
 						2
-						match (Random 0 4)
+						match kernel.Random(0, 4)
 							case 0: 15#end:case
 							case 1: 37#end:case
 							case 2: 44#end:case
@@ -436,7 +437,7 @@ class talkAfterActI(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 284)
+		kernel.DisposeScript(284)
 	#end:method
 
 #end:class or instance

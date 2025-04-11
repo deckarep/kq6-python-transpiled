@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 130
 import sci_sh
+import kernel
 import Main
 import n913
 import PolyPath
@@ -51,7 +52,7 @@ class pullOutMapScr(Script):
 				while (temp0 < 6): # inline for
 					local10[temp0] = (((global69 at: temp0) signal:) & 0x0004)
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				(global1 handsOff:)
 				(global69 disable:)
@@ -114,10 +115,10 @@ class pullOutMapScr(Script):
 			#end:case
 			case 5:
 				if next:
-					((ScriptID 130 1) next: next)
+					(kernel.ScriptID(130, 1) next: next)
 					next = 0
 				#endif
-				(global2 setScript: (ScriptID 130 1))
+				(global2 setScript: kernel.ScriptID(130, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -206,7 +207,7 @@ class MapScr(Script):
 
 		match state = param1
 			case 0:
-				(DrawPic 130 10)
+				kernel.DrawPic(130, 10)
 				(sacredMountain init:)
 				(wonder init:)
 				(crown init:)
@@ -244,8 +245,8 @@ class MapScr(Script):
 				global5 = local0
 				global32 = local1
 				global10 = local2
-				(UnLoad 128 131)
-				(DrawPic (global2 picture:) 100)
+				kernel.UnLoad(128, 131)
+				kernel.DrawPic((global2 picture:), 100)
 				if global10:
 					(global10 doit:)
 				#endif
@@ -282,7 +283,7 @@ class MapScr(Script):
 							(global69 disable: (global69 at: temp0))
 						#endif
 						# for:reinit
-						temp0++
+						temp0.post('++')
 					#end:loop
 					(self dispose:)
 				else:
@@ -295,7 +296,7 @@ class MapScr(Script):
 			#end:case
 			case 6:
 				(global69 enable: enable: 6)
-				(proc913_1 103)
+				proc913_1(103)
 				match (local8 tpRoom:)
 					case 200:
 						(global0 posn: 182 126)
@@ -353,8 +354,8 @@ class HighliteMap(Feature):
 				(MapScr register: 1 cue:)
 			#end:case
 			case (param1 == 5):
-				if (not (proc913_0 128)):
-					(proc913_1 128)
+				if (not proc913_0(128)):
+					proc913_1(128)
 					(global1 givePoints: 1)
 				#endif
 				(global91 say: noun param1 0 0 self 130)
@@ -473,7 +474,7 @@ class mists(HighliteMap):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 3):
+		if proc913_0(3):
 			(mistsLabel init:)
 			(mistsProp init:)
 		#endif
@@ -485,7 +486,7 @@ class mists(HighliteMap):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 3):
+		if proc913_0(3):
 			noun = 3
 		else:
 			noun = 4
@@ -498,13 +499,13 @@ class mists(HighliteMap):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (proc913_0 3)
+		temp0 = proc913_0(3)
 		(cond
 			case ((param1 == 5) and temp0):
 				(super doVerb: param1 &rest)
 			#end:case
-			case (and (param1 == 1) temp0 (not (proc913_0 80))):
-				(proc913_1 80)
+			case (and (param1 == 1) temp0 (not proc913_0(80))):
+				proc913_1(80)
 				(global91 say: noun param1 12 0 0 modNum)
 			#end:case
 			case ((param1 == 1) and temp0):

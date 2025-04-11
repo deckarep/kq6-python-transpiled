@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 260
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -62,13 +63,13 @@ class GenieCycler(Fwd):
 			case (temp0 = (self nextCel:) > (client lastCel:)):
 				(self cycleDone:)
 			#end:case
-			case (proc999_5 (client loop:) 1 5):
+			case proc999_5((client loop:), 1, 5):
 				if 
 					(and
 						(temp0 == 4)
-						waitCounter--
+						waitCounter.post('--')
 						waitCounter = 3
-						(Random 0 1)
+						kernel.Random(0, 1)
 					)
 					(self cycleDone:)
 				else:
@@ -228,7 +229,7 @@ class rm260(KQ6Room):
 			reset: 2
 			actions: egoDoVerb
 		)
-		((ScriptID 10 4) onMeCheck: 128 setOnMeCheck: 1 128 init:)
+		(kernel.ScriptID(10, 4) onMeCheck: 128 setOnMeCheck: 1 128 init:)
 		(hatch init:)
 		(sail1 init:)
 		(sail2 init:)
@@ -237,8 +238,8 @@ class rm260(KQ6Room):
 		if ((global1 _detailLevel:) > 0):
 			(BeachBird init:)
 			if ((global1 _detailLevel:) >= 2):
-				(sail1 setScript: (Clone sailScr))
-				(sail2 setScript: (Clone sailScr))
+				(sail1 setScript: kernel.Clone(sailScr))
+				(sail2 setScript: kernel.Clone(sailScr))
 				(sail3 setScript: sailScr)
 			#endif
 		#endif
@@ -253,11 +254,11 @@ class rm260(KQ6Room):
 		#end:match
 		if 
 			(and
-				(proc913_0 16)
-				(not ((ScriptID 10 0) isSet: 32))
+				proc913_0(16)
+				(not (kernel.ScriptID(10, 0) isSet: 32))
 				(global153 == 1)
 			)
-			((ScriptID 10 0) setIt: 32)
+			(kernel.ScriptID(10, 0) setIt: 32)
 			(genieBoy init: setScript: genieScr)
 			(global102 number: 260 loop: -1 play:)
 		else:
@@ -274,7 +275,7 @@ class rm260(KQ6Room):
 		(reflect5 init: setCycle: Fwd)
 		if 
 			(and
-				(not (Random 0 2))
+				(not kernel.Random(0, 2))
 				(global12 == 250)
 				(not (global5 contains: genieBoy))
 			)
@@ -302,16 +303,11 @@ class rm260(KQ6Room):
 				(or
 					(and
 						((global69 curIcon:) == (global69 at: 0))
-						(proc999_5
-							(OnControl 4 (param1 x:) (param1 y:))
-							4
-							32
-							512
-						)
+						proc999_5(kernel.OnControl(4, (param1 x:), (param1 y:)), 4, 32, 512)
 						(global5 contains: genieBoy)
 					)
 					(and
-						((OnControl 4 (param1 x:) (param1 y:)) == 4)
+						(kernel.OnControl(4, (param1 x:), (param1 y:)) == 4)
 						((global69 curIcon:) == (global69 at: 1))
 					)
 				)
@@ -382,11 +378,11 @@ class rm260(KQ6Room):
 		(global73 delete: self)
 		(global72 delete: self)
 		(super dispose:)
-		(DisposeScript 964)
-		(DisposeScript 231)
-		(DisposeScript 960)
-		(DisposeScript 942)
-		(DisposeScript 951)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(231)
+		kernel.DisposeScript(960)
+		kernel.DisposeScript(942)
+		kernel.DisposeScript(951)
 	#end:method
 
 #end:class or instance
@@ -400,22 +396,22 @@ class myMoveCycle(MCyc):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (temp0 = (proc999_6 points value) == -4095):
-				(client setPri: (proc999_6 points (value + 1)))
+			case (temp0 = proc999_6(points, value) == -4095):
+				(client setPri: proc999_6(points, (value + 1)))
 				(value += (cycleDir * 2))
-				temp0 = (proc999_6 points value)
+				temp0 = proc999_6(points, value)
 			#end:case
 			case (temp0 == -4094):
 				(client setPri: -1)
 				(value += cycleDir)
-				temp0 = (proc999_6 points value)
+				temp0 = proc999_6(points, value)
 			#end:case
 		)
 		(client
-			loop: (proc999_6 points value)
-			cel: (proc999_6 points (value + 1))
-			x: (proc999_6 points (value + 2))
-			y: (proc999_6 points (value + 3))
+			loop: proc999_6(points, value)
+			cel: proc999_6(points, (value + 1))
+			x: proc999_6(points, (value + 2))
+			y: proc999_6(points, (value + 3))
 		)
 		(value += (cycleDir * 4))
 		if 
@@ -467,13 +463,13 @@ class sailScr(Script):
 
 		match state = param1
 			case 0:
-				(client cycleSpeed: (Random 10 19) setCycle: End self)
+				(client cycleSpeed: kernel.Random(10, 19) setCycle: End self)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(client cycleSpeed: (Random 10 19) setCycle: Beg self)
+				(client cycleSpeed: kernel.Random(10, 19) setCycle: Beg self)
 				state = -1
 			#end:case
 		#end:match
@@ -494,7 +490,7 @@ class ferrymanScr(Script):
 				(client loop: 1 cel: 0 posn: 117 77 setCycle: End self)
 			#end:case
 			case 1:
-				ticks = (Random 45 90)
+				ticks = kernel.Random(45, 90)
 			#end:case
 			case 2:
 				(client setCycle: End self)
@@ -527,7 +523,7 @@ class snakeScr(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 3 5)
+				seconds = kernel.Random(3, 5)
 			#end:case
 			case 1:
 				(client setCycle: End self)
@@ -587,7 +583,7 @@ class BeachBird(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		while (previous == temp0 = (Random 0 3)):
+		while (previous == temp0 = kernel.Random(0, 3)):
 
 		#end:loop
 		match previous = temp0
@@ -620,7 +616,7 @@ class BeachBird(Prop):
 				(self fly:)
 			#end:case
 			case (param1 == 4660):
-				(self setScript: birdTimedCue (Random 4 12))
+				(self setScript: birdTimedCue kernel.Random(4, 12))
 			#end:case
 			else:
 				(BeachBird hide:)
@@ -680,7 +676,7 @@ class egoFallRightScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc958_0 128 296 269)
+				proc958_0(128, 296, 269)
 				(global0
 					normal: 0
 					setSpeed: 6
@@ -744,7 +740,7 @@ class egoFallForwardScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc958_0 128 296 269)
+				proc958_0(128, 296, 269)
 				(global0
 					setSpeed: 6
 					normal: 0
@@ -1182,7 +1178,7 @@ class diveIntoWaterScr(Script):
 				(global1 handsOff:)
 				register = (global5 contains: genieBoy)
 				if register:
-					(proc913_1 79)
+					proc913_1(79)
 					(genieBoy setScript: 0)
 				#endif
 				cycles = 1
@@ -1293,7 +1289,7 @@ class ocean(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 1):
+		if proc999_5(param1, 5, 1):
 			(super doVerb: param1 &rest)
 		else:
 			noun = 7
@@ -1314,8 +1310,8 @@ class knockOnDoorScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(Load 132 908)
-				(Load 128 261)
+				kernel.Load(132, 908)
+				kernel.Load(128, 261)
 				(global0 setHeading: 45 self)
 			#end:case
 			case 1:
@@ -1351,7 +1347,7 @@ class knockOnDoorScr(Script):
 				register = 5
 			#end:case
 			case 4:
-				register--
+				register.post('--')
 				(global0 cel: 0 loop: 3 setCycle: End self)
 			#end:case
 			case 5:
@@ -1378,7 +1374,7 @@ class knockOnDoorScr(Script):
 				cycles = 2
 			#end:case
 			case 9:
-				(UnLoad 128 261)
+				kernel.UnLoad(128, 261)
 				ticks = 60
 			#end:case
 			case 10:
@@ -1390,11 +1386,11 @@ class knockOnDoorScr(Script):
 				ticks = 60
 			#end:case
 			case 12:
-				if (proc913_0 17):
+				if proc913_0(17):
 					(state += 4)
 					(global91 say: 2 5 8 0 self)
 				else:
-					(global91 say: 2 5 (18 if (proc913_1 106) else 7) 0 self)
+					(global91 say: 2 5 (18 if proc913_1(106) else 7) 0 self)
 				#endif
 			#end:case
 			case 13:
@@ -1442,7 +1438,7 @@ class knockOnDoorScr(Script):
 		if 
 			(and
 				temp0 = (global2 script:)
-				(not (proc999_5 temp0 talkReferenceScr talkOrItemScr))
+				(not proc999_5(temp0, talkReferenceScr, talkOrItemScr))
 			)
 			(temp0 dispose:)
 		#endif
@@ -1522,7 +1518,7 @@ class talkOrItemScr(Script):
 				(global1 handsOff:)
 				(boatDoor setScript: 0)
 				if (register == 2):
-					if (proc913_1 105):
+					if proc913_1(105):
 						temp0 = 17
 					else:
 						temp0 = 9
@@ -1578,14 +1574,14 @@ class ferryMan(View):
 
 		match param1
 			case 2:
-				if (proc913_0 16):
+				if proc913_0(16):
 					(global2 setScript: talkReferenceScr)
 				else:
 					(global2 setScript: talkOrItemScr 0 param1)
 				#endif
 			#end:case
 			case 70:
-				if (proc913_1 104):
+				if proc913_1(104):
 					(global91 say: noun param1 16)
 				else:
 					(global91 say: noun param1 15)
@@ -1639,7 +1635,7 @@ class genericFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		(genericFeatures x: (param1 x:) y: (param1 y:))
 		(return
 			(= noun
@@ -1658,7 +1654,7 @@ class genericFeatures(Feature):
 						(16 if ((param1 y:) > 74) else 22)
 					#end:case
 					else:
-						(18 if (proc999_5 temp0 16384 8192) else 0)
+						(18 if proc999_5(temp0, 16384, 8192) else 0)
 					#end:else
 				#end:match
 			)
@@ -1686,7 +1682,7 @@ class sail1(Prop):
 
 		(self
 			cycleSpeed: ((sailScr register:) - 1)
-			setCycle: (ScriptID 231) ((self lastCel:) - 1)
+			setCycle: kernel.ScriptID(231) ((self lastCel:) - 1)
 		)
 	#end:method
 

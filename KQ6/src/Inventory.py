@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 995
 import sci_sh
+import kernel
 import Main
 import Print
 import IconBar
@@ -48,7 +49,7 @@ class InvI(IconI):
 		if (modNum == -1):
 			modNum = global11
 		#endif
-		if (global90 and (Message 0 modNum noun param1 0 1)):
+		if (global90 and kernel.Message(0, modNum, noun, param1, 0, 1)):
 			(global91 say: noun param1 0 0 0 modNum)
 		#endif
 		if (temp0 = (global1 script:) and (temp0 isKindOf: Tutorial)):
@@ -79,11 +80,11 @@ class InvI(IconI):
 		temp1 = (nsLeft - 2)
 		temp2 = (nsBottom + 1)
 		temp3 = (nsRight + 1)
-		(Graph 4 temp0 temp1 temp0 temp3 temp4 -1 -1)
-		(Graph 4 temp0 temp3 temp2 temp3 temp4 -1 -1)
-		(Graph 4 temp2 temp3 temp2 temp1 temp4 -1 -1)
-		(Graph 4 temp2 temp1 temp0 temp1 temp4 -1 -1)
-		(Graph 12 (nsTop - 2) (nsLeft - 2) (nsBottom + 2) (nsRight + 2) 1)
+		kernel.Graph(4, temp0, temp1, temp0, temp3, temp4, -1, -1)
+		kernel.Graph(4, temp0, temp3, temp2, temp3, temp4, -1, -1)
+		kernel.Graph(4, temp2, temp3, temp2, temp1, temp4, -1, -1)
+		kernel.Graph(4, temp2, temp1, temp0, temp1, temp4, -1, -1)
+		kernel.Graph(12, (nsTop - 2), (nsLeft - 2), (nsBottom + 2), (nsRight + 2), 1)
 	#end:method
 
 	@classmethod
@@ -91,7 +92,7 @@ class InvI(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawCel view loop cel nsLeft nsTop -1)
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 	#end:method
 
 	@classmethod
@@ -135,18 +136,16 @@ class Inv(IconBar):
 		temp0 = temp1 = temp2 = temp3 = temp4 = temp5 = 0
 		temp8 = (self first:)
 		while temp8: # inline for
-			if (temp9 = (NodeValue temp8) isKindOf: InvI):
+			if (temp9 = kernel.NodeValue(temp8) isKindOf: InvI):
 				if (temp9 ownedBy: param1):
 					(temp9 signal: ((temp9 signal:) & 0xfffb))
-					temp0++
+					temp0.post('++')
 					if 
 						(>
 							(= temp6
-								(CelWide
-									(temp9 view:)
-									(temp9 loop:)
-									(temp9 cel:)
-								)
+								kernel.CelWide((temp9 view:), (temp9 loop:), (temp9
+									cel:
+								))
 							)
 							temp2
 						)
@@ -155,11 +154,9 @@ class Inv(IconBar):
 					if 
 						(>
 							(= temp7
-								(CelHigh
-									(temp9 view:)
-									(temp9 loop:)
-									(temp9 cel:)
-								)
+								kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9
+									cel:
+								))
 							)
 							temp1
 						)
@@ -169,12 +166,12 @@ class Inv(IconBar):
 					(temp9 signal: (| (temp9 signal:) 0x0004))
 				#endif
 			else:
-				temp3++
-				(temp5 += (CelWide (temp9 view:) (temp9 loop:) (temp9 cel:)))
+				temp3.post('++')
+				(temp5 += kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:)))
 				if 
 					(>
 						(= temp7
-							(CelHigh (temp9 view:) (temp9 loop:) (temp9 cel:))
+							kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
 						)
 						temp4
 					)
@@ -188,17 +185,17 @@ class Inv(IconBar):
 			(Print addTextF: r"""%s %s""" normalHeading empty init:)
 			return 0
 		#endif
-		if ((temp16 = (Sqrt temp0) * temp16) > temp0):
-			temp16--
+		if ((temp16 = kernel.Sqrt(temp0) * temp16) > temp0):
+			temp16.post('--')
 		#endif
 		if (temp16 > 3):
 			temp16 = 3
 		#endif
 		local0 = (temp0 / temp16)
 		if ((temp16 * local0) < temp0):
-			local0++
+			local0.post('++')
 		#endif
-		temp10 = (proc999_3 (4 + temp5) (local0 * (4 + temp2)))
+		temp10 = proc999_3((4 + temp5), (local0 * (4 + temp2)))
 		temp11 = (temp16 * (4 + temp1))
 		temp12 = ((190 - temp11) / 2)
 		temp13 = ((320 - temp10) / 2)
@@ -231,7 +228,7 @@ class Inv(IconBar):
 			while temp8: # inline for
 				if 
 					(and
-						(not ((temp9 = (NodeValue temp8) signal:) & 0x0004))
+						(not ((temp9 = kernel.NodeValue(temp8) signal:) & 0x0004))
 						(temp9 isKindOf: InvI)
 					)
 					if (not ((temp9 signal:) & 0x0080)):
@@ -243,11 +240,9 @@ class Inv(IconBar):
 										(-
 											temp2
 											(= temp6
-												(CelWide
-													(temp9 view:)
-													(temp9 loop:)
-													(temp9 cel:)
-												)
+												kernel.CelWide((temp9 view:), (temp9
+													loop:
+												), (temp9 cel:))
 											)
 										)
 										2
@@ -260,11 +255,9 @@ class Inv(IconBar):
 										(-
 											temp1
 											(= temp7
-												(CelHigh
-													(temp9 view:)
-													(temp9 loop:)
-													(temp9 cel:)
-												)
+												kernel.CelHigh((temp9 view:), (temp9
+													loop:
+												), (temp9 cel:))
 											)
 										)
 										2
@@ -275,7 +268,7 @@ class Inv(IconBar):
 							nsRight: ((temp9 nsLeft:) + temp6)
 							nsBottom: ((temp9 nsTop:) + temp7)
 						)
-						if temp20--:
+						if temp20.post('--'):
 							(temp17 += temp2)
 						else:
 							temp20 = local0
@@ -300,10 +293,10 @@ class Inv(IconBar):
 		temp18 = 32767
 		temp8 = (self first:)
 		while temp8: # inline for
-			if (not (temp9 = (NodeValue temp8) isKindOf: InvI)):
+			if (not (temp9 = kernel.NodeValue(temp8) isKindOf: InvI)):
 				(temp9 nsTop: 0)
-				temp6 = (CelWide (temp9 view:) (temp9 loop:) (temp9 cel:))
-				temp7 = (CelHigh (temp9 view:) (temp9 loop:) (temp9 cel:))
+				temp6 = kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:))
+				temp7 = kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
 				if (not ((temp9 signal:) & 0x0080)):
 					if (temp18 == 32767):
 						temp18 = (temp11 - temp7)
@@ -361,7 +354,7 @@ class Inv(IconBar):
 			window = 0
 		#endif
 		if (not okButton):
-			okButton = (NodeValue (self first:))
+			okButton = kernel.NodeValue((self first:))
 		#endif
 		curIcon = 0
 		if (self show: (param1 if argc else global0)):
@@ -382,8 +375,8 @@ class Inv(IconBar):
 					(selectIcon cursor:)
 				#endif
 		)
-		temp0 = (PicNotValid)
-		(PicNotValid 0)
+		temp0 = kernel.PicNotValid()
+		kernel.PicNotValid(0)
 		(state |= 0x0020)
 		if 
 			(not
@@ -397,7 +390,7 @@ class Inv(IconBar):
 			)
 			(state &= 0xffdf)
 		#endif
-		(PicNotValid temp0)
+		kernel.PicNotValid(temp0)
 		return temp1
 	#end:method
 
@@ -420,13 +413,13 @@ class Inv(IconBar):
 						#endif
 				)
 			)
-			if (not (IsObject temp0)):
-				temp0 = (NodeValue (self first:))
+			if (not kernel.IsObject(temp0)):
+				temp0 = kernel.NodeValue((self first:))
 			#endif
 			if (not ((temp0 signal:) & 0x0004)):
 				(break)
 			else:
-				temp3++
+				temp3.post('++')
 			#endif
 		#end:loop
 		(self highlight: temp0 1)
@@ -441,13 +434,13 @@ class Inv(IconBar):
 		temp3 = (temp2 = (self indexOf: highlightedIcon) - temp1)
 		while True: #repeat
 			temp0 = (self at: temp3)
-			if (not (IsObject temp0)):
-				temp0 = (NodeValue (self last:))
+			if (not kernel.IsObject(temp0)):
+				temp0 = kernel.NodeValue((self last:))
 			#endif
 			if (not ((temp0 signal:) & 0x0004)):
 				(break)
 			else:
-				temp3--
+				temp3.post('--')
 			#endif
 		#end:loop
 		(self highlight: temp0 1)
@@ -461,7 +454,7 @@ class Inv(IconBar):
 			((((param1 nsRight:) - (param1 nsLeft:)) / 2) + (param1 nsLeft:))
 		)
 		temp1 = param2
-		while ((Abs (temp1 - param3)) >= 4):
+		while (kernel.Abs((temp1 - param3)) >= 4):
 
 			if 
 				(= temp0
@@ -520,7 +513,7 @@ class Inv(IconBar):
 				)
 				(temp1 type: 16384 message: (curIcon message:))
 			#endif
-			(MapKeyToDir temp1)
+			kernel.MapKeyToDir(temp1)
 			temp2 = (temp1 type:)
 			temp3 = (temp1 message:)
 			if global170:
@@ -536,7 +529,7 @@ class Inv(IconBar):
 			#endif
 			if global84:
 				(global84 eachElementDo: #doit)
-				global88 = (global86 + (GetTime))
+				global88 = (global86 + kernel.GetTime())
 				if global84:
 					(global84 handleEvent: temp1)
 				#endif
@@ -564,7 +557,7 @@ class Inv(IconBar):
 						):
 						if 
 							(and
-								(IsObject highlightedIcon)
+								kernel.IsObject(highlightedIcon)
 								(self select: highlightedIcon (temp2 == 1))
 							)
 							if (highlightedIcon == okButton):
@@ -665,23 +658,17 @@ class Inv(IconBar):
 								(and
 									temp0
 									(temp0 noun:)
-									(Message
-										0
-										(temp0 modNum:)
-										(temp0 noun:)
-										(temp0 helpVerb:)
-										0
-										1
-										@temp10
-									)
+									kernel.Message(0, (temp0 modNum:), (temp0
+										noun:
+									), (temp0 helpVerb:), 0, 1, @temp10)
 								)
 								if (global38 respondsTo: #eraseOnly):
 									temp7 = (global38 eraseOnly:)
 									(global38 eraseOnly: 1)
-									(proc921_0 @temp10)
+									proc921_0(@temp10)
 									(global38 eraseOnly: temp7)
 								else:
-									(proc921_0 @temp10)
+									proc921_0(@temp10)
 								#endif
 							#endif
 							(helpIconItem
@@ -744,7 +731,7 @@ class Inv(IconBar):
 		if window:
 			(window dispose:)
 		#endif
-		if ((IsObject curIcon) and (curIcon isKindOf: InvI)):
+		if (kernel.IsObject(curIcon) and (curIcon isKindOf: InvI)):
 			if (not (global69 curInvIcon:)):
 				(global69 enable: (global69 useIconItem:))
 			#endif

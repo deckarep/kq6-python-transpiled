@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 745
 import sci_sh
+import kernel
 import Main
 import n913
 import Motion
@@ -25,9 +26,9 @@ class closeupWedding(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		(proc913_1 99)
+		proc913_1(99)
 		(global2 noun: 3)
-		((ScriptID 80 0) setFlag: 710 2048)
+		(kernel.ScriptID(80, 0) setFlag: 710 2048)
 		(global93 addToFront: self)
 		(global74 addToFront: self)
 	#end:method
@@ -52,7 +53,7 @@ class closeupWedding(Script):
 				((param1 type:) & 0x1040)
 			)
 			(param1 claimed: 1)
-			next = (ScriptID 744 1)
+			next = kernel.ScriptID(744, 1)
 			(self cue:)
 		#endif
 		(param1 claimed:)
@@ -75,21 +76,21 @@ class closeupWedding(Script):
 		(glint1 dispose: delete:)
 		(glint2 dispose: delete:)
 		(global2 drawPic: 740)
-		(proc913_2 99)
+		proc913_2(99)
 		(global2 noun: 3)
 		(global5 eachElementDo: #show eachElementDo: #stopUpd)
 		(super dispose:)
 		(global0 startUpd:)
-		if (proc913_0 156):
+		if proc913_0(156):
 			(global0 posn: 149 144)
 		#endif
-		(UnLoad 128 160)
-		(UnLoad 128 161)
-		(UnLoad 128 902)
-		(UnLoad 129 160)
-		(UnLoad 143 160)
-		(DisposeScript 1005)
-		(DisposeScript 745)
+		kernel.UnLoad(128, 160)
+		kernel.UnLoad(128, 161)
+		kernel.UnLoad(128, 902)
+		kernel.UnLoad(129, 160)
+		kernel.UnLoad(143, 160)
+		kernel.DisposeScript(1005)
+		kernel.DisposeScript(745)
 	#end:method
 
 	@classmethod
@@ -118,7 +119,7 @@ class closeupWedding(Script):
 				(global69 enable:)
 			#end:case
 			case 3:
-				((ScriptID 740 7)
+				(kernel.ScriptID(740, 7)
 					add: 160 1 0 1 1
 					add: 160 1 0 1 2
 					add: 160 1 0 1 3
@@ -138,7 +139,7 @@ class closeupWedding(Script):
 				(glint2 setCycle: Beg)
 			#end:case
 			case 6:
-				((ScriptID 740 7) add: 160 1 0 1 7 add: 160 1 0 1 8 init: self)
+				(kernel.ScriptID(740, 7) add: 160 1 0 1 7 add: 160 1 0 1 8 init: self)
 			#end:case
 			case 7:
 				(glint1 dispose:)
@@ -147,9 +148,9 @@ class closeupWedding(Script):
 				cycles = 10
 			#end:case
 			case 8:
-				(DisposeScript 939)
+				kernel.DisposeScript(939)
 				(saladinArm cel: 2 startUpd:)
-				if (not register = ((ScriptID 80 0) tstFlag: 709 128)):
+				if (not register = (kernel.ScriptID(80, 0) tstFlag: 709 128)):
 					(saladinArm setCycle: Beg self)
 				else:
 					(saladinArm setScript: drawSword self)
@@ -162,7 +163,7 @@ class closeupWedding(Script):
 					(global91 say: 1 0 2 0 self 160)
 				else:
 					(global1 handsOn:)
-					state++
+					state.post('++')
 				#endif
 			#end:case
 			case 10:
@@ -176,12 +177,12 @@ class closeupWedding(Script):
 				(global69 disable:)
 				if (not next):
 					if (not register):
-						(UnLoad 128 738)
-						((ScriptID 740 5) view: 7424 loop: 0 cel: 0 setCycle: 0)
-						next = (ScriptID 742 3)
+						kernel.UnLoad(128, 738)
+						(kernel.ScriptID(740, 5) view: 7424 loop: 0 cel: 0 setCycle: 0)
+						next = kernel.ScriptID(742, 3)
 					else:
-						((ScriptID 744 1) register: 29)
-						next = (ScriptID 744 1)
+						(kernel.ScriptID(744, 1) register: 29)
+						next = kernel.ScriptID(744, 1)
 					#endif
 				#endif
 				(self dispose:)
@@ -243,8 +244,8 @@ class showMirror(Script):
 				(global91 say: 4 13 0 2 self 160)
 			#end:case
 			case 5:
-				(client seconds: 0 next: (ScriptID 744 0))
-				((ScriptID 740 5) view: 7424 loop: 0 cel: 0 setCycle: 0)
+				(client seconds: 0 next: kernel.ScriptID(744, 0))
+				(kernel.ScriptID(740, 5) view: 7424 loop: 0 cel: 0 setCycle: 0)
 				(global69 disable:)
 				(client dispose:)
 			#end:case
@@ -267,7 +268,7 @@ class showReplicaLamp(Script):
 				(global91 say: 7 56 0 0 self 160)
 			#end:case
 			case 1:
-				(closeupWedding next: (ScriptID 744 1) changeState: 12)
+				(closeupWedding next: kernel.ScriptID(744, 1) changeState: 12)
 			#end:case
 		#end:match
 	#end:method
@@ -316,7 +317,7 @@ class CloseupProp(Prop):
 		(return
 			(or
 				(super onMe: param1)
-				(controlColor & (OnControl 4 (param1 x:) (param1 y:)))
+				(controlColor & kernel.OnControl(4, (param1 x:), (param1 y:)))
 			)
 		)
 	#end:method
@@ -343,27 +344,27 @@ class genieHead(CloseupProp):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 33 18):
+			case proc999_5(param1, 33, 18):
 				(global91 say: noun 18 0 0 0 modNum)
 			#end:case
-			case (proc999_5 param1 57 58 59 60 43):
-				((ScriptID 740 7) add: modNum noun 43 0 1)
+			case proc999_5(param1, 57, 58, 59, 60, 43):
+				(kernel.ScriptID(740, 7) add: modNum noun 43 0 1)
 				if (param1 != 43):
-					((ScriptID 740 7) add: modNum noun 57 0 1)
+					(kernel.ScriptID(740, 7) add: modNum noun 57 0 1)
 				else:
-					((ScriptID 740 7) add: modNum noun 43 0 2)
+					(kernel.ScriptID(740, 7) add: modNum noun 43 0 2)
 				#endif
-				((ScriptID 740 7) init:)
+				(kernel.ScriptID(740, 7) init:)
 			#end:case
-			case (proc999_5 param1 56 2):
+			case proc999_5(param1, 56, 2):
 				(global1 handsOff:)
-				(closeupWedding seconds: 0 next: (ScriptID 744 1))
+				(closeupWedding seconds: 0 next: kernel.ScriptID(744, 1))
 				(global91 say: noun param1 0 0 closeupWedding modNum)
 			#end:case
-			case (proc999_5 param1 67 63):
+			case proc999_5(param1, 67, 63):
 				(global1 handsOff:)
-				(proc913_1 156)
-				(closeupWedding seconds: 0 next: (ScriptID 744 1))
+				proc913_1(156)
+				(closeupWedding seconds: 0 next: kernel.ScriptID(744, 1))
 				(global91 say: 4 67 0 0 closeupWedding 160)
 			#end:case
 			else:
@@ -398,11 +399,11 @@ class vizierHead(CloseupProp):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 33 18):
+			case proc999_5(param1, 33, 18):
 				param1 = 65
 				(super doVerb: 65)
 			#end:case
-			case (proc999_5 param1 57 58 59 60 43):
+			case proc999_5(param1, 57, 58, 59, 60, 43):
 				param1 = 43
 				(super doVerb: 43)
 			#end:case
@@ -466,7 +467,7 @@ class saladinArm(CloseupProp):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 33 18):
+		if proc999_5(param1, 33, 18):
 			(global91 say: noun 33 0 0 0 modNum)
 		else:
 			(super doVerb: param1)

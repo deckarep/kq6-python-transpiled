@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 605
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room

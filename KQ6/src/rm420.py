@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 420
 import sci_sh
+import kernel
 import Main
 import rLab
 import KQ6Room
@@ -85,9 +86,9 @@ class rm420(KQ6Room):
 				)
 		)
 		(super init: &rest)
-		(proc958_0 128 421)
+		proc958_0(128, 421)
 		(global0 init: setScale: Scaler 100 60 128 100 actions: egoDoCrushCode)
-		((ScriptID 30 0) cue:)
+		(kernel.ScriptID(30, 0) cue:)
 		(global32 add: floor walls exits eachElementDo: #init)
 		if local0 = (((global9 at: 2) owner:) == global11):
 			local1 = 5
@@ -115,11 +116,11 @@ class rm420(KQ6Room):
 		(cond
 			case (self script:):#end:case
 			case ((global0 onControl: 1) == 16384):
-				((ScriptID 30 0) prevEdgeHit: 2)
+				(kernel.ScriptID(30, 0) prevEdgeHit: 2)
 				(self setScript: walkOut)
 			#end:case
 			case ((global0 onControl: 1) == 8192):
-				((ScriptID 30 0) prevEdgeHit: 4)
+				(kernel.ScriptID(30, 0) prevEdgeHit: 4)
 				(self setScript: walkOut)
 			#end:case
 		)
@@ -360,8 +361,8 @@ class ceiling(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(self
-			y: ((ScriptID 30 0) crushCeilingY:)
-			cel: ((ScriptID 30 0) crushCeilingCel:)
+			y: (kernel.ScriptID(30, 0) crushCeilingY:)
+			cel: (kernel.ScriptID(30, 0) crushCeilingCel:)
 		)
 		(super addToPic:)
 	#end:method
@@ -846,7 +847,7 @@ class sqwishEm(Script):
 			#end:case
 			case 11:
 				(global1 handsOn:)
-				(proc0_1 9)
+				proc0_1(9)
 			#end:case
 		#end:match
 	#end:method
@@ -964,8 +965,8 @@ class useBrick(Script):
 				(global91 say: 6 39 0 4 self)
 			#end:case
 			case 21:
-				((ScriptID 30 0) crushCeilingCel: (ceiling cel:))
-				((ScriptID 30 0) crushCeilingY: (ceiling y:))
+				(kernel.ScriptID(30, 0) crushCeilingCel: (ceiling cel:))
+				(kernel.ScriptID(30, 0) crushCeilingY: (ceiling y:))
 				local0 = 1
 				local1 = 5
 				(ceiling stopUpd:)

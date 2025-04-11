@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 283
 import sci_sh
+import kernel
 import Main
 import rm280
 import n913
@@ -62,7 +63,7 @@ class counterInset(Inset):
 		if (((global2 script:) == lookAtCounterScr) and 1):
 			(global91 say: 9 1)
 		#endif
-		if (and (proc913_0 29) (proc913_0 30) (not (global0 has: 0))):
+		if (and proc913_0(29) proc913_0(30) (not (global0 has: 0))):
 			(counterMap init:)
 		#endif
 		(self setScript: initDoneScr)
@@ -94,10 +95,10 @@ class counterInset(Inset):
 
 		(global69 enable: 6)
 		(global1 handsOff:)
-		(DisposeClone insetView)
+		kernel.DisposeClone(insetView)
 		if (not local0):
-			(proc913_2 51)
-			(proc913_2 50)
+			proc913_2(51)
+			proc913_2(50)
 		#endif
 		(super dispose: &rest)
 		(global2 drawPic: global11 100)
@@ -138,8 +139,8 @@ class counterItemObj(View):
 
 		match param1
 			case 1:
-				if (not (proc913_0 lookFlagNum)):
-					(proc913_1 lookFlagNum)
+				if (not proc913_0(lookFlagNum)):
+					proc913_1(lookFlagNum)
 					(global91 say: noun 1 42 0 0 280)
 				else:
 					(global91 say: noun 1 43)
@@ -237,8 +238,8 @@ class counterMap(View):
 						noun
 						param1
 						(cond
-							case (proc913_0 50): 16#end:case
-							case (proc913_0 51): 39#end:case
+							case proc913_0(50): 16#end:case
+							case proc913_0(51): 39#end:case
 							else: 0#end:else
 						)
 				)
@@ -289,16 +290,16 @@ class itemTradeScr(Script):
 						(break)
 					#endif
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				(cond
 					case temp1:
 						state = 5
 						(global91 say: register 5 41 1 self)
 					#end:case
-					case ((proc913_0 50) or (proc913_0 51)):
+					case (proc913_0(50) or proc913_0(51)):
 						state = 3
-						local22 = (4 if (proc913_0 50) else 6)
+						local22 = (4 if proc913_0(50) else 6)
 						(global91 say: register 5 16 1 self)
 					#end:case
 					else:
@@ -311,7 +312,7 @@ class itemTradeScr(Script):
 				state = local22
 				(self
 					setScript:
-						(ScriptID 287 1)
+						kernel.ScriptID(287, 1)
 						self
 						match register
 							case 11: 2#end:case
@@ -340,8 +341,8 @@ class itemTradeScr(Script):
 				(global91 say: 10 5 38 2 self)
 			#end:case
 			case 9:
-				(proc913_2 50)
-				(proc913_2 51)
+				proc913_2(50)
+				proc913_2(51)
 				if (client == global2):
 					(global1 handsOn:)
 				#endif
@@ -363,14 +364,14 @@ class lookAtCounterScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 			#end:case
 			case 1:
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 2:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 				cycles = 2
 			#end:case
 			case 3:
@@ -393,7 +394,7 @@ class lookAtCounterScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 283)
+		kernel.DisposeScript(283)
 	#end:method
 
 #end:class or instance
@@ -409,14 +410,14 @@ class buyItemWithCoinScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 			#end:case
 			case 1:
 				(self
 					setScript:
-						(ScriptID 286 1)
+						kernel.ScriptID(286, 1)
 						self
-						if (proc913_1 109):
+						if proc913_1(109):
 							register = 69
 							-32768
 						else:
@@ -436,7 +437,7 @@ class buyItemWithCoinScr(Script):
 						register
 						2
 						if (register != 23):
-							state++
+							state.post('++')
 							self
 						else:
 							script
@@ -450,7 +451,7 @@ class buyItemWithCoinScr(Script):
 				cycles = 2
 			#end:case
 			case 6:
-				(proc913_1 50)
+				proc913_1(50)
 				(counterInset init: self global2)
 			#end:case
 			case 7:
@@ -460,21 +461,21 @@ class buyItemWithCoinScr(Script):
 				if (not local0):
 					(global91 say: 1 5 63 0 self)
 				else:
-					state++
+					state.post('++')
 					(global1 givePoints: 2)
 					(global0 put: 9 global11)
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
-				(self setScript: (ScriptID 286 0) self 1)
+				(self setScript: kernel.ScriptID(286, 0) self 1)
 			#end:case
 			case 10:
 				(global0 reset: 0)
 				cycles = 2
 			#end:case
 			case 11:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -487,7 +488,7 @@ class buyItemWithCoinScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 283)
+		kernel.DisposeScript(283)
 	#end:method
 
 #end:class or instance
@@ -503,7 +504,7 @@ class genericExchangeScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 			#end:case
 			case 1:
 				(= register
@@ -514,7 +515,7 @@ class genericExchangeScr(Script):
 						case 31: 2#end:case
 					#end:match
 				)
-				(self setScript: (ScriptID 287 0) self register)
+				(self setScript: kernel.ScriptID(287, 0) self register)
 			#end:case
 			case 2:
 				(global91 say: 4 20 24 1 script)
@@ -533,7 +534,7 @@ class genericExchangeScr(Script):
 				cycles = 2
 			#end:case
 			case 6:
-				(proc913_1 51)
+				proc913_1(51)
 				(counterInset init: self global2)
 			#end:case
 			case 7:
@@ -551,7 +552,7 @@ class genericExchangeScr(Script):
 				(global91 say: 1 5 64 2 self)
 			#end:case
 			case 10:
-				(self setScript: (ScriptID 287 1) self register)
+				(self setScript: kernel.ScriptID(287, 1) self register)
 			#end:case
 			case 11:
 				cycles = 2
@@ -561,7 +562,7 @@ class genericExchangeScr(Script):
 				cycles = 2
 			#end:case
 			case 13:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -574,7 +575,7 @@ class genericExchangeScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 283)
+		kernel.DisposeScript(283)
 	#end:method
 
 #end:class or instance
@@ -590,14 +591,14 @@ class offerCoinForMapScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 			#end:case
 			case 1:
 				(self
 					setScript:
-						(ScriptID 286 1)
+						kernel.ScriptID(286, 1)
 						self
-						if (proc913_1 109):
+						if proc913_1(109):
 							register = 70
 							-32768
 						else:
@@ -617,7 +618,7 @@ class offerCoinForMapScr(Script):
 						register
 						2
 						if (register != 22):
-							state++
+							state.post('++')
 							self
 						else:
 							script
@@ -631,7 +632,7 @@ class offerCoinForMapScr(Script):
 				cycles = 2
 			#end:case
 			case 6:
-				(proc913_1 50)
+				proc913_1(50)
 				(counterInset init: self global2)
 			#end:case
 			case 7:
@@ -641,21 +642,21 @@ class offerCoinForMapScr(Script):
 				if (not local0):
 					(global91 say: 1 5 63 0 self)
 				else:
-					state++
+					state.post('++')
 					(global1 givePoints: 2)
 					(global0 put: 9 global11)
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
-				(self setScript: (ScriptID 286 0) self)
+				(self setScript: kernel.ScriptID(286, 0) self)
 			#end:case
 			case 10:
 				(global0 reset: 0)
 				cycles = 2
 			#end:case
 			case 11:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -668,7 +669,7 @@ class offerCoinForMapScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 283)
+		kernel.DisposeScript(283)
 	#end:method
 
 #end:class or instance

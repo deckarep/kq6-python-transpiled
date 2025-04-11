@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 948
 import sci_sh
+import kernel
 import Main
 import Interface
 import Print
@@ -39,7 +40,7 @@ def localproc_0(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	(param1 sightAngle: (proc255_1 r"""sight angle?""" 40))
+	(param1 sightAngle: proc255_1(r"""sight angle?""", 40))
 #end:procedure
 
 @SCI.procedure
@@ -47,21 +48,21 @@ def localproc_1(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	(proc921_0 r"""Click left mouse button on top left corner""")
+	proc921_0(r"""Click left mouse button on top left corner""")
 	while ((temp0 = (Event new:) type:) != 1):
 
 		(temp0 dispose:)
 	#end:loop
-	(GlobalToLocal temp0)
+	kernel.GlobalToLocal(temp0)
 	temp3 = (temp0 y:)
 	temp4 = (temp0 x:)
 	(temp0 dispose:)
-	(proc921_0 r"""Click left mouse button on bottom right corner""")
+	proc921_0(r"""Click left mouse button on bottom right corner""")
 	while ((temp0 = (Event new:) type:) != 1):
 
 		(temp0 dispose:)
 	#end:loop
-	(GlobalToLocal temp0)
+	kernel.GlobalToLocal(temp0)
 	temp5 = (temp0 y:)
 	temp6 = (temp0 x:)
 	(temp0 dispose:)
@@ -76,11 +77,11 @@ def localproc_1(param1 = None):
 		nsRight: temp6
 	)
 	if local388:
-		(Graph 4 temp3 temp4 temp3 temp6 1 0)
-		(Graph 4 temp5 temp4 temp5 temp6 1 0)
-		(Graph 4 temp3 temp4 temp5 temp4 1 0)
-		(Graph 4 temp3 temp6 temp5 temp6 1 0)
-		(Graph 12 temp3 temp4 (temp5 + 1) (temp6 + 1) 1)
+		kernel.Graph(4, temp3, temp4, temp3, temp6, 1, 0)
+		kernel.Graph(4, temp5, temp4, temp5, temp6, 1, 0)
+		kernel.Graph(4, temp3, temp4, temp5, temp4, 1, 0)
+		kernel.Graph(4, temp3, temp6, temp5, temp6, 1, 0)
+		kernel.Graph(12, temp3, temp4, (temp5 + 1), (temp6 + 1), 1)
 	#endif
 #end:procedure
 
@@ -90,9 +91,9 @@ def localproc_2(param1 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	(param1
-		view: (proc255_1 r"""View?""" (global2 curPic:))
-		loop: (proc255_1 r"""Loop?""" 0)
-		cel: (proc255_1 r"""Cel?""" 0)
+		view: proc255_1(r"""View?""", (global2 curPic:))
+		loop: proc255_1(r"""Loop?""", 0)
+		cel: proc255_1(r"""Cel?""", 0)
 		signal: 16400
 		priority: 15
 		init:
@@ -102,9 +103,9 @@ def localproc_2(param1 = None):
 	#endif
 	while ((temp0 = (Event new:) type:) != 1):
 
-		(GlobalToLocal temp0)
+		kernel.GlobalToLocal(temp0)
 		(param1 posn: (temp0 x:) (temp0 y:))
-		(Animate (global5 elements:) 0)
+		kernel.Animate((global5 elements:), 0)
 		(temp0 dispose:)
 	#end:loop
 	(temp0 dispose:)
@@ -126,14 +127,14 @@ def localproc_3(param1 = None):
 
 			(temp0 dispose:)
 		#end:loop
-		(GlobalToLocal temp0)
+		kernel.GlobalToLocal(temp0)
 		(param1 approachX: temp1 = (temp0 x:) approachY: temp2 = (temp0 y:))
 		(temp0 dispose:)
-		(Graph 4 (temp2 - 1) (temp1 - 1) (temp2 - 1) (temp1 + 1) 7)
-		(Graph 4 temp2 (temp1 - 1) temp2 (temp1 + 1) 7)
-		(Graph 4 (temp2 + 1) (temp1 - 1) (temp2 + 1) (temp1 + 1) 7)
-		(Graph 4 temp2 temp1 temp2 temp1 0)
-		(Graph 12 (temp2 - 1) (temp1 - 1) (temp2 + 2) (temp1 + 2) 1)
+		kernel.Graph(4, (temp2 - 1), (temp1 - 1), (temp2 - 1), (temp1 + 1), 7)
+		kernel.Graph(4, temp2, (temp1 - 1), temp2, (temp1 + 1), 7)
+		kernel.Graph(4, (temp2 + 1), (temp1 - 1), (temp2 + 1), (temp1 + 1), 7)
+		kernel.Graph(4, temp2, temp1, temp2, temp1, 0)
+		kernel.Graph(12, (temp2 - 1), (temp1 - 1), (temp2 + 2), (temp1 + 2), 1)
 	else:
 		(param1 approachX: (param1 x:) approachY: (param1 y:))
 	#endif
@@ -150,7 +151,7 @@ def localproc_3(param1 = None):
 	)
 	(cond
 		case temp3:
-			(param1 approachDist: (ReadNumber @temp3))
+			(param1 approachDist: kernel.ReadNumber(@temp3))
 		#end:case
 		case (not temp13):
 			(param1 approachDist: 0)
@@ -160,18 +161,18 @@ def localproc_3(param1 = None):
 
 				(temp0 dispose:)
 			#end:loop
-			(GlobalToLocal temp0)
+			kernel.GlobalToLocal(temp0)
 			temp1 = (temp0 x:)
 			temp2 = (temp0 y:)
 			(param1
-				approachDist: (GetDistance (param1 x:) (param1 y:) temp1 temp2)
+				approachDist: kernel.GetDistance((param1 x:), (param1 y:), temp1, temp2)
 			)
 			(temp0 dispose:)
-			(Graph 4 (temp2 - 1) (temp1 - 1) (temp2 - 1) (temp1 + 1) 28)
-			(Graph 4 temp2 (temp1 - 1) temp2 (temp1 + 1) 28)
-			(Graph 4 (temp2 + 1) (temp1 - 1) (temp2 + 1) (temp1 + 1) 28)
-			(Graph 4 temp2 temp1 temp2 temp1 52)
-			(Graph 12 (temp2 - 1) (temp1 - 1) (temp2 + 2) (temp1 + 2) 1)
+			kernel.Graph(4, (temp2 - 1), (temp1 - 1), (temp2 - 1), (temp1 + 1), 28)
+			kernel.Graph(4, temp2, (temp1 - 1), temp2, (temp1 + 1), 28)
+			kernel.Graph(4, (temp2 + 1), (temp1 - 1), (temp2 + 1), (temp1 + 1), 28)
+			kernel.Graph(4, temp2, temp1, temp2, temp1, 52)
+			kernel.Graph(12, (temp2 - 1), (temp1 - 1), (temp2 + 2), (temp1 + 2), 1)
 		#end:else
 	)
 #end:procedure
@@ -211,11 +212,11 @@ class Class_948_0
 		global38 = wfWin
 		if (not local389):
 			temp0 = 0
-			(Format @temp0 r"""%d.fea""" (global2 curPic:))
-			if (not (proc921_2 @temp0 30 r"""Enter path and filename""")):
+			kernel.Format(@temp0, r"""%d.fea""", (global2 curPic:))
+			if (not proc921_2(@temp0, 30, r"""Enter path and filename""")):
 				return
 			else:
-				(Format @global42 @temp0)
+				kernel.Format(@global42, @temp0)
 				(= local388
 					(Print
 						addText: r"""Outline Features?"""
@@ -255,9 +256,9 @@ class Class_948_0
 		#endif
 		temp15 = (local390 new:)
 		local0 = 0
-		(proc921_2 @local0 30 r"""Name?""")
+		proc921_2(@local0, 30, r"""Name?""")
 		local50 = 0
-		(proc921_2 @local50 16 r"""Noun?""")
+		proc921_2(@local50, 16, r"""Noun?""")
 		(localproc_0 temp15)
 		if (local390 == Feature):
 			(localproc_1 temp15)
@@ -282,7 +283,7 @@ class Class_948_0
 
 				(temp16 dispose:)
 			#end:loop
-			(GlobalToLocal temp16)
+			kernel.GlobalToLocal(temp16)
 			(temp15 z: ((temp16 y:) - (temp15 y:)))
 			(temp15 y: (temp16 y:))
 			(temp16 dispose:)
@@ -301,8 +302,8 @@ class Class_948_1
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (FileIO 10 @global42):
-			(Format @temp492 r"""The file '%s' already exists""" @global42)
+		if kernel.FileIO(10, @global42):
+			kernel.Format(@temp492, r"""The file '%s' already exists""", @global42)
 			if 
 				(not
 					(= temp491
@@ -320,62 +321,57 @@ class Class_948_1
 		#endif
 		temp490 = (2 if (temp491 == 1) else 0)
 		if (not (local393 = (File new:) name: @global42 open: temp490)):
-			(Format @temp0 r"""Error opening '%s'""" @global42)
-			(proc921_0 @temp0)
+			kernel.Format(@temp0, r"""Error opening '%s'""", @global42)
+			proc921_0(@temp0)
 			(local393 dispose:)
 			return 0
 		#endif
 		temp0 = 0
 		if (param1 isMemberOf: Feature):
-			(Format
-				@temp400
-				r""" \t\tnsLeft\t\t\t%d\0d\n\t\tnsTop\t\t\t\t%d\0d\n\t\tnsBottom\t\t\t%d\0d\n\t\tnsRight\t\t\t%d\0d\n"""
-				(param1 nsLeft:)
-				(param1 nsTop:)
-				(param1 nsBottom:)
-				(param1 nsRight:)
-			)
-			(Format @temp592 r"""..\\msg\\%d.shm""" (global2 curPic:))
+			kernel.Format(@temp400, r""" \t\tnsLeft\t\t\t%d\0d\n\t\tnsTop\t\t\t\t%d\0d\n\t\tnsBottom\t\t\t%d\0d\n\t\tnsRight\t\t\t%d\0d\n""", (param1
+				nsLeft:
+			), (param1 nsTop:), (param1 nsBottom:), (param1 nsRight:))
+			kernel.Format(@temp592, r"""..\\msg\\%d.shm""", (global2 curPic:))
 			(shmFile name: @temp592)
 			if (not (shmFile open: 1)):
 				temp604 = 0
 			else:
 				temp605 = 0
-				while (temp605 <= (StrLen @local50)): # inline for
-					if (< 96 (StrAt @local50 temp605) 123):
-						temp628 = ((StrAt @local50 temp605) - 32)
-						(StrAt @local50 temp605 temp628)
+				while (temp605 <= kernel.StrLen(@local50)): # inline for
+					if (< 96 kernel.StrAt(@local50, temp605) 123):
+						temp628 = (kernel.StrAt(@local50, temp605) - 32)
+						kernel.StrAt(@local50, temp605, temp628)
 					#endif
 					# for:reinit
-					temp605++
+					temp605.post('++')
 				#end:loop
 				temp604 = 0
-				while ((FileIO 5 @temp552 80 (shmFile handle:)) != -1):
+				while (kernel.FileIO(5, @temp552, 80, (shmFile handle:)) != -1):
 
-					if (not (StrCmp @temp552 r"""(define""" 6)):
+					if (not kernel.StrCmp(@temp552, r"""(define""", 6)):
 						temp605 = 0
 						while (temp605 <= 40): # inline for
 							temp552[temp605] = temp552[(temp605 + 4)]
 							# for:reinit
-							temp605++
+							temp605.post('++')
 						#end:loop
-						if (not (StrCmp @temp552 @local50 (StrLen @local50))):
+						if (not kernel.StrCmp(@temp552, @local50, kernel.StrLen(@local50))):
 							temp606 = 0
 							
-								(temp605 = (((StrLen @local50) / 2) + 1))
+								(temp605 = ((kernel.StrLen(@local50) / 2) + 1))
 								(temp605 < 20)
-								(temp605++)
+								(temp605.post('++'))
 								
 								temp607[temp606] = temp552[temp605]
-								temp606++
+								temp606.post('++')
 								# for:reinit
-								temp605++
+								temp605.post('++')
 							#end:loop
-							temp604 = (ReadNumber @temp607)
+							temp604 = kernel.ReadNumber(@temp607)
 							(break)
 						#endif
 					#endif
-					if (not (StrCmp @temp552 r"""; CASES""")):
+					if (not kernel.StrCmp(@temp552, r"""; CASES""")):
 						(break)
 					#endif
 				#end:loop
@@ -399,36 +395,20 @@ class Class_948_1
 				noun: temp604
 			)
 		else:
-			(Format
-				@temp400
-				r""" \t\tview\t\t\t%d\0d\n\t\tloop\t\t\t%d\0d\n\t\tcel\t\t\t%d\0d\n"""
-				(param1 view:)
-				(param1 loop:)
-				(param1 cel:)
-			)
+			kernel.Format(@temp400, r""" \t\tview\t\t\t%d\0d\n\t\tloop\t\t\t%d\0d\n\t\tcel\t\t\t%d\0d\n""", (param1
+				view:
+			), (param1 loop:), (param1 cel:))
 		#endif
-		(Format
-			@temp440
-			r""" \t\tapproachX\t\t%d\0d\n\t\tapproachY\t\t%d\0d\n\t\tapproachDist\t%d\0d\n\t\t\_approachVerbs\t$%x\0d\n"""
-			(param1 approachX:)
-			(param1 approachY:)
-			(param1 approachDist:)
-			(param1 _approachVerbs:)
-		)
-		(Format
-			@temp0
-			r""" \0d\n(instance %s of %s\0d\n\t(properties\0d\n\t\tx\t\t\t\t\t%d\0d\n\t\ty\t\t\t\t\t%d\0d\n\t\tz\t\t\t\t\t%d\0d\n\t\theading\t\t\t%d\0d\n%s \t\tsightAngle\t\t%d\0d\n%s \t\tnoun\t\t\t\t%s\0d\n\t)\0d\n"""
-			@local0
-			((param1 -super-:) name:)
-			(param1 x:)
-			(param1 y:)
-			(param1 z:)
-			(param1 heading:)
-			@temp400
-			(param1 sightAngle:)
-			@temp440
-			@local50
-		)
+		kernel.Format(@temp440, r""" \t\tapproachX\t\t%d\0d\n\t\tapproachY\t\t%d\0d\n\t\tapproachDist\t%d\0d\n\t\t\_approachVerbs\t$%x\0d\n""", (param1
+			approachX:
+		), (param1 approachY:), (param1 approachDist:), (param1 _approachVerbs:))
+		kernel.Format(@temp0, r""" \0d\n(instance %s of %s\0d\n\t(properties\0d\n\t\tx\t\t\t\t\t%d\0d\n\t\ty\t\t\t\t\t%d\0d\n\t\tz\t\t\t\t\t%d\0d\n\t\theading\t\t\t%d\0d\n%s \t\tsightAngle\t\t%d\0d\n%s \t\tnoun\t\t\t\t%s\0d\n\t)\0d\n""", @local0, ((param1
+				-super-:
+			)
+			name:
+		), (param1 x:), (param1 y:), (param1 z:), (param1 heading:), @temp400, (param1
+			sightAngle:
+		), @temp440, @local50)
 		if local387:
 			(Print
 				font: 999
@@ -439,30 +419,24 @@ class Class_948_1
 		#endif
 		(localproc_5 @temp0)
 		if local391:
-			(Format
-				@temp0
-				r""" \t(method (doVerb theVerb)\0d\n\t\t(switch theVerb\0d\n"""
-			)
+			kernel.Format(@temp0, r""" \t(method (doVerb theVerb)\0d\n\t\t(switch theVerb\0d\n""")
 			(localproc_5 @temp0)
 			if local180[0]:
-				(Format @temp0 r""" \t\t\t(LOOK\0d\n\t\t\t)\0d\n""" @local180)
+				kernel.Format(@temp0, r""" \t\t\t(LOOK\0d\n\t\t\t)\0d\n""", @local180)
 				(localproc_5 @temp0)
 			#endif
 			if local80[0]:
-				(Format @temp0 r""" \t\t\t(DO\0d\n\t\t\t)\0d\n""" @local80)
+				kernel.Format(@temp0, r""" \t\t\t(DO\0d\n\t\t\t)\0d\n""", @local80)
 				(localproc_5 @temp0)
 			#endif
 			if local280[0]:
-				(Format @temp0 r""" \t\t\t(TALK\0d\n\t\t\t)\0d\n""" @local280)
+				kernel.Format(@temp0, r""" \t\t\t(TALK\0d\n\t\t\t)\0d\n""", @local280)
 				(localproc_5 @temp0)
 			#endif
-			(Format
-				@temp0
-				r""" \t\t\t(else\0d\n\t\t\t\t(super doVerb: theVerb)\0d\n\t\t\t)\0d\n\t\t)\0d\n\t)\0d\n"""
-			)
+			kernel.Format(@temp0, r""" \t\t\t(else\0d\n\t\t\t\t(super doVerb: theVerb)\0d\n\t\t\t)\0d\n\t\t)\0d\n\t)\0d\n""")
 			(localproc_5 @temp0)
 		#endif
-		(StrCpy @temp0 r""")\0d\n""")
+		kernel.StrCpy(@temp0, r""")\0d\n""")
 		(localproc_5 @temp0)
 		if (param1 isMemberOf: Feature):
 			(param1 dispose:)
@@ -470,8 +444,8 @@ class Class_948_1
 			(param1 addToPic:)
 		#endif
 		(local393 close: dispose:)
-		(DisposeScript 993)
-		return (DisposeScript 948)
+		kernel.DisposeScript(993)
+		return kernel.DisposeScript(948)
 	#end:method
 
 	@classmethod
@@ -481,7 +455,7 @@ class Class_948_1
 
 		(param1 eachElementDo: #perform self)
 		(Class_948_0 doit:)
-		(DisposeScript 948)
+		kernel.DisposeScript(948)
 	#end:method
 
 #end:class or instance
@@ -504,10 +478,10 @@ class selectorI(DSelector):
 				((temp0 == 1) and (param1 claimed:))
 				((temp0 == 4) and (temp1 == 32))
 			)
-			if ((StrAt cursor 0) == 62):
-				(StrAt cursor 0 32)
+			if (kernel.StrAt(cursor, 0) == 62):
+				kernel.StrAt(cursor, 0, 32)
 			else:
-				(StrAt cursor 0 62)
+				kernel.StrAt(cursor, 0, 62)
 			#endif
 			(self draw:)
 			(param1 claimed: 1)
@@ -530,9 +504,9 @@ class clearBut(DButton):
 
 		temp0 = 0
 		while (temp0 < 6): # inline for
-			(StrAt local380 (temp0 * 18) 32)
+			kernel.StrAt(local380, (temp0 * 18), 32)
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		(selectorI draw:)
 	#end:method
@@ -553,9 +527,9 @@ class allBut(DButton):
 
 		temp0 = 0
 		while (temp0 < 6): # inline for
-			(StrAt local380 (temp0 * 18) 62)
+			kernel.StrAt(local380, (temp0 * 18), 62)
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		(selectorI draw:)
 	#end:method

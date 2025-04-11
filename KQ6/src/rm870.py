@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 870
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -45,7 +46,7 @@ class rm870(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Load 128 723)
+		kernel.Load(128, 723)
 		(self
 			addObstacle:
 				((Polygon new:)
@@ -88,21 +89,21 @@ class rm870(CastleRoom):
 			else:
 				(global0 posn: 13 167)
 				(cond
-					case (not ((ScriptID 80 0) tstFlag: 710 64)):
+					case (not (kernel.ScriptID(80, 0) tstFlag: 710 64)):
 						(self setScript: firstTime)
 					#end:case
-					case (not ((ScriptID 80 0) tstFlag: 710 32)):
+					case (not (kernel.ScriptID(80, 0) tstFlag: 710 32)):
 						(self setScript: stillCrying)
 					#end:case
 					case 
 						(and
-							(not ((ScriptID 80 0) tstFlag: 711 256))
-							(Random 0 1)
+							(not (kernel.ScriptID(80, 0) tstFlag: 711 256))
+							kernel.Random(0, 1)
 						):
-						(global2 spotEgo: (ScriptID 80 5))
+						(global2 spotEgo: kernel.ScriptID(80, 5))
 					#end:case
 					else:
-						((ScriptID 80 0) guard2Timer: 15)
+						(kernel.ScriptID(80, 0) guard2Timer: 15)
 					#end:else
 				)
 			#end:else
@@ -114,8 +115,8 @@ class rm870(CastleRoom):
 		if 
 			(and
 				((global103 number:) != 710)
-				((ScriptID 80 0) tstFlag: 710 4)
-				(not ((ScriptID 80 0) tstFlag: 710 8))
+				(kernel.ScriptID(80, 0) tstFlag: 710 4)
+				(not (kernel.ScriptID(80, 0) tstFlag: 710 8))
 			)
 			(global102 fadeTo: 703 -1)
 		#endif
@@ -140,7 +141,7 @@ class rm870(CastleRoom):
 		match param1
 			case 3:
 				if ((argc > 1) and param2):
-					(global2 spotEgo: (ScriptID 80 5))
+					(global2 spotEgo: kernel.ScriptID(80, 5))
 				else:
 					(self setScript: warnAboutGuard)
 				#endif
@@ -163,14 +164,14 @@ class firstTime(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 0) setFlag: 710 64)
+				(kernel.ScriptID(80, 0) setFlag: 710 64)
 				cycles = 2
 			#end:case
 			case 1:
 				(global91 say: 1 0 1 0 self)
 			#end:case
 			case 2:
-				((ScriptID 80 0) guard2Timer: 31)
+				(kernel.ScriptID(80, 0) guard2Timer: 31)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -189,8 +190,8 @@ class stillCrying(Script):
 
 		match state = param1
 			case 0:
-				register = ((ScriptID 80 0) guard2Timer:)
-				((ScriptID 80 0) guard2Timer: 0)
+				register = (kernel.ScriptID(80, 0) guard2Timer:)
+				(kernel.ScriptID(80, 0) guard2Timer: 0)
 				cycles = 2
 			#end:case
 			case 1:
@@ -198,7 +199,7 @@ class stillCrying(Script):
 			#end:case
 			case 2:
 				(global1 handsOn:)
-				((ScriptID 80 0) guard2Timer: (register + 1))
+				(kernel.ScriptID(80, 0) guard2Timer: (register + 1))
 				register = 0
 				(self dispose:)
 			#end:case
@@ -216,7 +217,7 @@ class bendOverToDoor(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((client == global2) and (not next)):
-			((ScriptID 80 0) guardTimer: local0 guard2Timer: local1)
+			(kernel.ScriptID(80, 0) guardTimer: local0 guard2Timer: local1)
 			local0 = local1 = 0
 			(global1 handsOn:)
 		#endif
@@ -232,10 +233,10 @@ class bendOverToDoor(Script):
 			case 0:
 				(global1 handsOff:)
 				if (not local1):
-					local0 = ((ScriptID 80 0) guardTimer:)
-					local1 = ((ScriptID 80 0) guard2Timer:)
+					local0 = (kernel.ScriptID(80, 0) guardTimer:)
+					local1 = (kernel.ScriptID(80, 0) guard2Timer:)
 				#endif
-				((ScriptID 80 0) guardTimer: 0 guard2Timer: 0)
+				(kernel.ScriptID(80, 0) guardTimer: 0 guard2Timer: 0)
 				(global0
 					view: 723
 					normal: 0
@@ -290,7 +291,7 @@ class giveDagger(Script):
 			#end:case
 			case 1:
 				(global1 handsOn:)
-				((ScriptID 80 0) guardTimer: local0 guard2Timer: local1)
+				(kernel.ScriptID(80, 0) guardTimer: local0 guard2Timer: local1)
 				local0 = local1 = 0
 				(self dispose:)
 			#end:case
@@ -340,7 +341,7 @@ class walkGuardOn(Script):
 			case 0:
 				(global1 handsOff:)
 				(global105 number: 702 loop: 1 play:)
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					init:
 					loop: 3
 					setScale:
@@ -354,7 +355,7 @@ class walkGuardOn(Script):
 				)
 			#end:case
 			case 1:
-				(proc913_4 register global0 self)
+				proc913_4(register, global0, self)
 			#end:case
 			case 2:
 				(global91 say: 1 0 3 1 self)
@@ -363,14 +364,14 @@ class walkGuardOn(Script):
 				(global91 say: 1 0 3 2 self)
 			#end:case
 			case 4:
-				((ScriptID 80 5) setScript: (ScriptID 80 4) self 1)
+				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 5:
 				(global91 say: 1 0 3 3 self)
 			#end:case
 			case 6:
-				temp0 = (proc999_3 160 (proc999_2 185 ((ScriptID 80 5) y:)))
-				((ScriptID 80 6)
+				temp0 = proc999_3(160, proc999_2(185, (kernel.ScriptID(80, 5) y:)))
+				(kernel.ScriptID(80, 6)
 					init:
 					setScale:
 						Scaler
@@ -379,15 +380,15 @@ class walkGuardOn(Script):
 						(global2 maxScaleY:)
 						(global2 minScaleY:)
 					posn: 336 172
-					setSpeed: ((ScriptID 80 5) cycleSpeed:)
+					setSpeed: (kernel.ScriptID(80, 5) cycleSpeed:)
 					setMotion: MoveTo 300 temp0 self
 				)
 			#end:case
 			case 7:
-				((ScriptID 80 6)
+				(kernel.ScriptID(80, 6)
 					setMotion:
 						PolyPath
-						(((ScriptID 80 5) x:) + 10)
+						((kernel.ScriptID(80, 5) x:) + 10)
 						(global0 y:)
 						self
 				)
@@ -419,7 +420,7 @@ class warnAboutGuard(Script):
 				(global91 say: 1 0 2 0 self)
 			#end:case
 			case 1:
-				((ScriptID 80 0) guard2Timer: 6)
+				(kernel.ScriptID(80, 0) guard2Timer: 6)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -456,12 +457,12 @@ class cassima_door(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 1):
+		if proc999_5(param1, 5, 1):
 			(super doVerb: param1 &rest)
 		else:
 			match param1
 				case 2:
-					if ((ScriptID 80 0) tstFlag: 710 4):
+					if (kernel.ScriptID(80, 0) tstFlag: 710 4):
 						if (((global9 at: 8) owner:) == 870):
 							(global91 say: noun param1 15)
 						else:
@@ -475,7 +476,7 @@ class cassima_door(Feature):
 							add: -1 noun param1 7 2
 							add: -1 noun param1 7 3
 						)
-						if (not (proc999_5 ((global9 at: 39) owner:) 140 210)):
+						if (not proc999_5(((global9 at: 39) owner:), 140, 210)):
 							(roomConv
 								add: -1 noun param1 7 4
 								add: -1 noun param1 7 5
@@ -500,10 +501,10 @@ class cassima_door(Feature):
 							init:
 						)
 					#endif
-					((ScriptID 80 0) setFlag: 710 4)
+					(kernel.ScriptID(80, 0) setFlag: 710 4)
 				#end:case
 				case 8:
-					if ((ScriptID 80 0) tstFlag: 710 4):
+					if (kernel.ScriptID(80, 0) tstFlag: 710 4):
 						(bendOverToDoor next: giveDagger)
 						(global2 setScript: bendOverToDoor)
 					else:
@@ -518,11 +519,11 @@ class cassima_door(Feature):
 				#end:case
 				case 61:
 					(cond
-						case ((ScriptID 80 0) tstFlag: 710 8):
+						case (kernel.ScriptID(80, 0) tstFlag: 710 8):
 							(global91 say: noun param1 14)
 						#end:case
-						case ((ScriptID 80 0) tstFlag: 710 4):
-							((ScriptID 80 0) setFlag: 710 8)
+						case (kernel.ScriptID(80, 0) tstFlag: 710 4):
+							(kernel.ScriptID(80, 0) setFlag: 710 8)
 							(bendOverToDoor next: showLetter)
 							(global2 setScript: bendOverToDoor)
 						#end:case
@@ -532,7 +533,7 @@ class cassima_door(Feature):
 					)
 				#end:case
 				else:
-					if ((ScriptID 80 0) tstFlag: 710 4):
+					if (kernel.ScriptID(80, 0) tstFlag: 710 4):
 						(global91 say: noun 0 11 0)
 					else:
 						(global91 say: noun 0 10 0)
@@ -579,7 +580,7 @@ class roomStuff(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		(return
 			(or
 				((0x2002 & temp0) and noun = 9)

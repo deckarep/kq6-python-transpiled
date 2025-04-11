@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 937
 import sci_sh
+import kernel
 import Main
 import Print
 import Tutorial
@@ -41,13 +42,13 @@ class IconI(Obj):
 
 		(signal |= 0x0020)
 		if argc:
-			nsRight = (nsLeft = param1 + (CelWide view loop cel))
-			nsBottom = (nsTop = param2 + (CelHigh view loop cel))
+			nsRight = (nsLeft = param1 + kernel.CelWide(view, loop, cel))
+			nsBottom = (nsTop = param2 + kernel.CelHigh(view, loop, cel))
 		else:
-			nsRight = (nsLeft + (CelWide view loop cel))
-			nsBottom = (nsTop + (CelHigh view loop cel))
+			nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
+			nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 		#endif
-		(DrawCel view loop cel nsLeft nsTop -1)
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 		if (signal & 0x0004):
 			(self mask:)
 		#endif
@@ -61,32 +62,19 @@ class IconI(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawCel
-			maskView
-			maskLoop
-			maskCel
-			(+
-				nsLeft
-				(/
-					(-
-						(CelWide view loop cel)
-						(CelWide maskView maskLoop maskCel)
-					)
-					2
-				)
+		kernel.DrawCel(maskView, maskLoop, maskCel, (+
+			nsLeft
+			(/
+				(kernel.CelWide(view, loop, cel) - kernel.CelWide(maskView, maskLoop, maskCel))
+				2
 			)
-			(+
-				nsTop
-				(/
-					(-
-						(CelHigh view loop cel)
-						(CelHigh maskView maskLoop maskCel)
-					)
-					2
-				)
+		), (+
+			nsTop
+			(/
+				(kernel.CelHigh(view, loop, cel) - kernel.CelHigh(maskView, maskLoop, maskCel))
+				2
 			)
-			-1
-		)
+		), -1)
 	#end:method
 
 	@classmethod
@@ -117,11 +105,11 @@ class IconI(Obj):
 		temp1 = (nsLeft + 2)
 		temp2 = (nsBottom - 3)
 		temp3 = (nsRight - 4)
-		(Graph 4 temp0 temp1 temp0 temp3 temp4 -1 -1)
-		(Graph 4 temp0 temp3 temp2 temp3 temp4 -1 -1)
-		(Graph 4 temp2 temp3 temp2 temp1 temp4 -1 -1)
-		(Graph 4 temp2 temp1 temp0 temp1 temp4 -1 -1)
-		(Graph 12 (nsTop - 2) (nsLeft - 2) nsBottom (nsRight + 3) 1)
+		kernel.Graph(4, temp0, temp1, temp0, temp3, temp4, -1, -1)
+		kernel.Graph(4, temp0, temp3, temp2, temp3, temp4, -1, -1)
+		kernel.Graph(4, temp2, temp3, temp2, temp1, temp4, -1, -1)
+		kernel.Graph(4, temp2, temp1, temp0, temp1, temp4, -1, -1)
+		kernel.Graph(12, (nsTop - 2), (nsLeft - 2), nsBottom, (nsRight + 3), 1)
 	#end:method
 
 	@classmethod
@@ -133,36 +121,29 @@ class IconI(Obj):
 			(cond
 				case (signal & 0x0004): 0#end:case
 				case (and argc param1 (signal & 0x0001)):
-					(DrawCel view loop temp1 = 1 nsLeft nsTop -1)
-					(Graph 12 nsTop nsLeft nsBottom nsRight 1)
+					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1)
+					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 					while ((temp0 = (Event new:) type:) != 2):
 
 						(temp0 localize:)
 						(cond
 							case (self onMe: temp0):
 								if (not temp1):
-									(DrawCel
-										view
-										loop
-										temp1 = 1
-										nsLeft
-										nsTop
-										-1
-									)
-									(Graph 12 nsTop nsLeft nsBottom nsRight 1)
+									kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1)
+									kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 								#endif
 							#end:case
 							case temp1:
-								(DrawCel view loop temp1 = 0 nsLeft nsTop -1)
-								(Graph 12 nsTop nsLeft nsBottom nsRight 1)
+								kernel.DrawCel(view, loop, temp1 = 0, nsLeft, nsTop, -1)
+								kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 							#end:case
 						)
 						(temp0 dispose:)
 					#end:loop
 					(temp0 dispose:)
 					if (temp1 == 1):
-						(DrawCel view loop 0 nsLeft nsTop -1)
-						(Graph 12 nsTop nsLeft nsBottom nsRight 1)
+						kernel.DrawCel(view, loop, 0, nsLeft, nsTop, -1)
+						kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 					#endif
 					if 
 						(and
@@ -250,7 +231,7 @@ class IconBar(Set):
 				return temp1
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		return 0
 	#end:method
@@ -261,7 +242,7 @@ class IconBar(Set):
 		argc = sum(v is not None for v in locals().values())
 
 		temp1 = temp2 = 0
-		temp3 = (GetPort)
+		temp3 = kernel.GetPort()
 		temp4 = (global38 eraseOnly:)
 		(global38 eraseOnly: 1)
 		while (not (temp0 = ((global80 curEvent:) new:) type:)):
@@ -290,7 +271,7 @@ class IconBar(Set):
 							modeless: 1
 							init:
 						)
-						(SetPort temp3)
+						kernel.SetPort(temp3)
 					#endif
 				#end:case
 				case global25:
@@ -307,7 +288,7 @@ class IconBar(Set):
 		if global25:
 			(global25 dispose:)
 		#endif
-		(SetPort temp3)
+		kernel.SetPort(temp3)
 		if (not (helpIconItem onMe: temp0)):
 			(self dispatchEvent: temp0)
 		#endif
@@ -376,7 +357,7 @@ class IconBar(Set):
 							temp3
 							1
 							((param1 new:) x:)
-							(proc999_3 (param1 y:) (1 + height))
+							proc999_3((param1 y:), (1 + height))
 					)
 				#endif
 				(self hide:)
@@ -385,7 +366,7 @@ class IconBar(Set):
 				match (param1 message:)
 					case 13:
 						(cond
-							case (not (IsObject curIcon)):#end:case
+							case (not kernel.IsObject(curIcon)):#end:case
 							case ((curIcon != useIconItem) or curInvIcon):
 								(param1
 									type: (curIcon type:)
@@ -428,7 +409,7 @@ class IconBar(Set):
 						#endif
 						(param1 claimed: 1)
 					#end:case
-					case (IsObject curIcon):
+					case kernel.IsObject(curIcon):
 						(param1
 							type: (curIcon type:)
 							message:
@@ -453,7 +434,7 @@ class IconBar(Set):
 			temp0 = 0
 			while (temp0 < argc): # inline for
 				(= temp1
-					if (IsObject param1[temp0]):
+					if kernel.IsObject(param1[temp0]):
 						param1[temp0]
 					else:
 						(self at: param1[temp0])
@@ -469,7 +450,7 @@ class IconBar(Set):
 					#end:case
 				)
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		else:
 			(state |= 0x0004)
@@ -485,7 +466,7 @@ class IconBar(Set):
 			temp0 = 0
 			while (temp0 < argc): # inline for
 				(= temp1
-					if (IsObject param1[temp0]):
+					if kernel.IsObject(param1[temp0]):
 						param1[temp0]
 					else:
 						(self at: param1[temp0])
@@ -493,7 +474,7 @@ class IconBar(Set):
 				)
 				(temp1 signal: ((temp1 signal:) & 0xfffb))
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		else:
 			(state &= 0xfffb)
@@ -509,19 +490,19 @@ class IconBar(Set):
 		(state |= 0x0020)
 		(global1 setCursor: 999 1)
 		(= height
-			(CelHigh (temp0 = (self at: 0) view:) (temp0 loop:) (temp0 cel:))
+			kernel.CelHigh((temp0 = (self at: 0) view:), (temp0 loop:), (temp0 cel:))
 		)
-		port = (GetPort)
-		(SetPort -1)
-		underBits = (Graph 7 y 0 (y + height) 320 1)
-		temp1 = (PicNotValid)
-		(PicNotValid 1)
+		port = kernel.GetPort()
+		kernel.SetPort(-1)
+		underBits = kernel.Graph(7, y, 0, (y + height), 320, 1)
+		temp1 = kernel.PicNotValid()
+		kernel.PicNotValid(1)
 		temp3 = 0
 		temp4 = y
-		temp5 = (FirstNode elements)
+		temp5 = kernel.FirstNode(elements)
 		while temp5: # inline for
-			temp6 = (NextNode temp5)
-			if (not (IsObject temp7 = (NodeValue temp5))):
+			temp6 = kernel.NextNode(temp5)
+			if (not kernel.IsObject(temp7 = kernel.NodeValue(temp5))):
 				return
 			#endif
 			if ((temp7 nsRight:) <= 0):
@@ -540,11 +521,9 @@ class IconBar(Set):
 						(/
 							(-
 								((useIconItem nsRight:) - (useIconItem nsLeft:))
-								(CelWide
-									(curInvIcon view:)
-									(curInvIcon loop:)
-									(curInvIcon cel:)
-								)
+								kernel.CelWide((curInvIcon view:), (curInvIcon
+									loop:
+								), (curInvIcon cel:))
 							)
 							2
 						)
@@ -557,25 +536,18 @@ class IconBar(Set):
 						(/
 							(-
 								((useIconItem nsBottom:) - (useIconItem nsTop:))
-								(CelHigh
-									(curInvIcon view:)
-									(curInvIcon loop:)
-									(curInvIcon cel:)
-								)
+								kernel.CelHigh((curInvIcon view:), (curInvIcon
+									loop:
+								), (curInvIcon cel:))
 							)
 							2
 						)
 						(useIconItem nsTop:)
 					)
 				)
-				(DrawCel
-					(curInvIcon view:)
-					(curInvIcon loop:)
-					(curInvIcon cel:)
-					temp3
-					temp4
-					-1
-				)
+				kernel.DrawCel((curInvIcon view:), (curInvIcon loop:), (curInvIcon
+					cel:
+				), temp3, temp4, -1)
 				if ((useIconItem signal:) & 0x0004):
 					(useIconItem mask:)
 				#endif
@@ -583,8 +555,8 @@ class IconBar(Set):
 				curInvIcon = 0
 			#endif
 		#endif
-		(PicNotValid temp1)
-		(Graph 12 y 0 (y + height) 320 1)
+		kernel.PicNotValid(temp1)
+		kernel.Graph(12, y, 0, (y + height), 320, 1)
 		(self highlight: curIcon)
 	#end:method
 
@@ -596,28 +568,28 @@ class IconBar(Set):
 		if (state & 0x0020):
 			(global8 pause: 0)
 			(state &= 0xffdf)
-			temp0 = (FirstNode elements)
+			temp0 = kernel.FirstNode(elements)
 			while temp0: # inline for
-				temp1 = (NextNode temp0)
-				if (not (IsObject temp2 = (NodeValue temp0))):
+				temp1 = kernel.NextNode(temp0)
+				if (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))):
 					return
 				#endif
-				(temp2 = (NodeValue temp0) signal: ((temp2 signal:) & 0xffdf))
+				(temp2 = kernel.NodeValue(temp0) signal: ((temp2 signal:) & 0xffdf))
 				# for:reinit
 				temp0 = temp1
 			#end:loop
 			if 
 				(and
 					(not (state & 0x0800))
-					(IsObject helpIconItem)
+					kernel.IsObject(helpIconItem)
 					((helpIconItem signal:) & 0x0010)
 				)
 				(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
 			#endif
-			(Graph 8 underBits)
-			(Graph 12 y 0 (y + height) 320 1)
-			(Graph 13 y 0 (y + height) 320)
-			(SetPort port)
+			kernel.Graph(8, underBits)
+			kernel.Graph(12, y, 0, (y + height), 320, 1)
+			kernel.Graph(13, y, 0, (y + height), 320)
+			kernel.SetPort(port)
 			height = activateHeight
 		#endif
 	#end:method
@@ -632,8 +604,8 @@ class IconBar(Set):
 			temp1 = (temp0 type:)
 			temp2 = (temp0 message:)
 			temp3 = (temp0 modifiers:)
-			(Wait 1)
-			global88 = (global86 + (GetTime))
+			kernel.Wait(1)
+			global88 = (global86 + kernel.GetTime())
 			if global18:
 				(global18 eachElementDo: #doit)
 			#endif
@@ -650,12 +622,12 @@ class IconBar(Set):
 			if 
 				(and
 					((temp1 == 1) or ((temp1 == 4) and (temp2 == 13)))
-					(IsObject helpIconItem)
+					kernel.IsObject(helpIconItem)
 					((helpIconItem signal:) & 0x0010)
 				)
 				(temp0 type: 24576 message: (helpIconItem message:))
 			#endif
-			(MapKeyToDir temp0)
+			kernel.MapKeyToDir(temp0)
 			(breakif (self dispatchEvent: temp0))
 		#end:loop
 	#end:method
@@ -696,7 +668,7 @@ class IconBar(Set):
 								(and
 									(state & 0x0400)
 									(or
-										(not (IsObject helpIconItem))
+										(not kernel.IsObject(helpIconItem))
 										(not ((helpIconItem signal:) & 0x0010))
 									)
 								)
@@ -753,7 +725,7 @@ class IconBar(Set):
 										)
 									#endif
 								#end:case
-								case ((IsObject temp4) and (self select: temp4)):
+								case (kernel.IsObject(temp4) and (self select: temp4)):
 									(temp4 doit:)
 									temp5 = (temp58 & 0x0040)
 								#end:case
@@ -769,10 +741,10 @@ class IconBar(Set):
 				#end:case
 				case 24576:
 					if (temp4 and (temp4 helpVerb:)):
-						if (not (HaveMouse)):
+						if (not kernel.HaveMouse()):
 							temp60 = (global1 setCursor: 996)
 						#endif
-						temp6 = (GetPort)
+						temp6 = kernel.GetPort()
 						(Print
 							font: global22
 							width: 250
@@ -786,8 +758,8 @@ class IconBar(Set):
 								(temp4 modNum:)
 							init:
 						)
-						(SetPort temp6)
-						if (not (HaveMouse)):
+						kernel.SetPort(temp6)
+						if (not kernel.HaveMouse()):
 							(global1 setCursor: temp60)
 						#endif
 					#endif
@@ -811,8 +783,8 @@ class IconBar(Set):
 			(= temp0
 				(self at: (mod (temp1 + (self indexOf: highlightedIcon)) size))
 			)
-			if (not (IsObject temp0)):
-				temp0 = (NodeValue (self first:))
+			if (not kernel.IsObject(temp0)):
+				temp0 = kernel.NodeValue((self first:))
 			#endif
 			(breakif (not ((temp0 signal:) & 0x0004)))
 			# for:reinit
@@ -831,8 +803,8 @@ class IconBar(Set):
 			(= temp0
 				(self at: (mod ((self indexOf: highlightedIcon) - temp1) size))
 			)
-			if (not (IsObject temp0)):
-				temp0 = (NodeValue (self last:))
+			if (not kernel.IsObject(temp0)):
+				temp0 = kernel.NodeValue((self last:))
 			#endif
 			(breakif (not ((temp0 signal:) & 0x0004)))
 			# for:reinit
@@ -862,7 +834,7 @@ class IconBar(Set):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not ((param1 signal:) & 0x0004)):
-			if (IsObject highlightedIcon):
+			if kernel.IsObject(highlightedIcon):
 				(highlightedIcon highlight: 0)
 			#endif
 			highlightedIcon = param1
@@ -903,7 +875,7 @@ class IconBar(Set):
 			if (temp1 > (1 + size)):
 				return
 			else:
-				temp1++
+				temp1.post('++')
 			#endif
 		#end:loop
 		curIcon = temp0
@@ -921,11 +893,11 @@ class IconBar(Set):
 			#end:case
 			case 
 				(and
-					(curIcon != temp0 = (NodeValue (self first:)))
+					(curIcon != temp0 = kernel.NodeValue((self first:)))
 					(not ((temp0 signal:) & 0x0004))
 				):
 				prevIcon = curIcon
-				curIcon = (NodeValue (self first:))
+				curIcon = kernel.NodeValue((self first:))
 			#end:case
 			case (prevIcon and (not ((prevIcon signal:) & 0x0004))):
 				curIcon = prevIcon

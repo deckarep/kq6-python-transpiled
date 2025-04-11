@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 241
 import sci_sh
+import kernel
 import Main
 import n913
 import Polygon
@@ -39,27 +40,27 @@ class lampSeller(Actor):
 
 		match param1
 			case 43:
-				(self setScript: (ScriptID 11 2))
+				(self setScript: kernel.ScriptID(11, 2))
 			#end:case
 			case 2:
 				(cond
-					case ((ScriptID 10 0) isSet: 16):
-						(self setScript: (ScriptID 11 3) 0 24)
+					case (kernel.ScriptID(10, 0) isSet: 16):
+						(self setScript: kernel.ScriptID(11, 3) 0 24)
 					#end:case
-					case (not ((ScriptID 10 0) isSet: 8)):
-						((ScriptID 10 0) setIt: 8)
-						(self setScript: (ScriptID 11 3) 0 22)
+					case (not (kernel.ScriptID(10, 0) isSet: 8)):
+						(kernel.ScriptID(10, 0) setIt: 8)
+						(self setScript: kernel.ScriptID(11, 3) 0 22)
 					#end:case
-					case ((ScriptID 10 0) isSet: 8):
-						(self setScript: (ScriptID 11 3) 0 23)
+					case (kernel.ScriptID(10, 0) isSet: 8):
+						(self setScript: kernel.ScriptID(11, 3) 0 23)
 					#end:case
 				)
 			#end:case
 			else:
-				if (proc999_5 param1 1 5):
+				if proc999_5(param1, 1, 5):
 					(global91 say: noun param1 0 0 0 240)
 				else:
-					(self setScript: (ScriptID 11 3) 0 -1)
+					(self setScript: kernel.ScriptID(11, 3) 0 -1)
 				#endif
 			#end:else
 		#end:match
@@ -96,25 +97,25 @@ class lampSellerScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 241 0) loop: 0 cel: 0 setCycle: 0 setSpeed: 6)
+				(kernel.ScriptID(241, 0) loop: 0 cel: 0 setCycle: 0 setSpeed: 6)
 				if register:
 					register = 0
 				else:
 					register = 1
 					(= state
-						match (Random 0 2)
+						match kernel.Random(0, 2)
 							case 0: 4#end:case
 							case 1: 5#end:case
 							case 2: 6#end:case
 						#end:match
 					)
-					state--
+					state.post('--')
 				#endif
-				seconds = (Random 5 8)
+				seconds = kernel.Random(5, 8)
 			#end:case
 			case 1:
 				if (not (global2 script:)):
-					((ScriptID 241 0) loop: 2 cel: 0 setCycle: End)
+					(kernel.ScriptID(241, 0) loop: 2 cel: 0 setCycle: End)
 					if (global90 & 0x0002):
 						if ((global0 y:) <= 130):
 							cycles = 1
@@ -129,7 +130,7 @@ class lampSellerScr(Script):
 				#endif
 			#end:case
 			case 2:
-				(proc913_1 59)
+				proc913_1(59)
 				if (not (global90 & 0x0002)):
 					(global91 say: 1 0 19 1 self 240)
 				else:
@@ -137,12 +138,12 @@ class lampSellerScr(Script):
 				#endif
 			#end:case
 			case 3:
-				(proc913_2 59)
+				proc913_2(59)
 				state = -1
 				(self cue:)
 			#end:case
 			case 4:
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					loop: 0
 					cel: 0
 					cycleSpeed: 10
@@ -151,16 +152,16 @@ class lampSellerScr(Script):
 				state = -1
 			#end:case
 			case 5:
-				((ScriptID 241 0) loop: 3 cel: 0)
-				seconds = (Random 2 4)
+				(kernel.ScriptID(241, 0) loop: 3 cel: 0)
+				seconds = kernel.Random(2, 4)
 				state = -1
 			#end:case
 			case 6:
-				((ScriptID 241 0) loop: 4 cel: 0)
+				(kernel.ScriptID(241, 0) loop: 4 cel: 0)
 				ticks = 45
 			#end:case
 			case 7:
-				((ScriptID 241 0) loop: 5 cel: 0 setCycle: End self)
+				(kernel.ScriptID(241, 0) loop: 5 cel: 0 setCycle: End self)
 				state = -1
 			#end:case
 		#end:match
@@ -171,7 +172,7 @@ class lampSellerScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 59)
+		proc913_2(59)
 		register = 0
 		(super dispose:)
 	#end:method

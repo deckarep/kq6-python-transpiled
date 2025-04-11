@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 938
 import sci_sh
+import kernel
 import Motion
 
 class ROsc(Cycle):
@@ -46,7 +47,7 @@ class ROsc(Cycle):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((temp0 = (self nextCel:) > lastC) or (temp0 < firstC)):
-			cycleDir = (- cycleDir)
+			cycleDir = -cycleDir
 			(self cycleDone:)
 		else:
 			(client cel: temp0)
@@ -61,7 +62,7 @@ class ROsc(Cycle):
 		if cycles:
 			(client cel: (self nextCel:))
 			if (cycles > 0):
-				cycles--
+				cycles.post('--')
 			#endif
 		else:
 			completed = 1

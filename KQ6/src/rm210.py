@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 210
 import sci_sh
+import kernel
 import Main
 import rgCrown
 import walkEgoInScr
@@ -53,7 +54,7 @@ def localproc_0(param1 = None):
 
 	if (singSing script:):
 		local29 = param1
-		if (proc999_5 (singSingScr state:) 3 9):
+		if proc999_5((singSingScr state:), 3, 9):
 			(singSing setScript: 0)
 		#endif
 	else:
@@ -105,8 +106,8 @@ class rm210(KQ6Room):
 		(super init: &rest)
 		(global0 init: setScale: Scaler 100 84 134 81)
 		(global32 add: genericFeatures tree holeInTree eachElementDo: #init)
-		((ScriptID 10 4) onMeCheck: 2 setOnMeCheck: 1 2 init:)
-		(proc958_0 132 214 215 216)
+		(kernel.ScriptID(10, 4) onMeCheck: 2 setOnMeCheck: 1 2 init:)
+		proc958_0(132, 214, 215, 216)
 		match global12
 			case 220:
 				(global2 setScript: enterFromCastleScr 0 global0)
@@ -123,15 +124,15 @@ class rm210(KQ6Room):
 			#end:case
 			else:
 				if (global12 != 200):
-					((ScriptID 10 0) setIt: 2)
+					(kernel.ScriptID(10, 0) setIt: 2)
 				#endif
 				local34 = 1
-				(proc12_1 91 185 30)
+				proc12_1(91, 185, 30)
 			#end:else
 		#end:match
 		temp2 = ((global9 at: 39) owner:)
 		temp3 = ((global9 at: 38) owner:)
-		if ((proc913_0 94) and (temp3 != 140)):
+		if (proc913_0(94) and (temp3 != 140)):
 			temp3 = global11
 		#endif
 		temp1 = ((global9 at: 47) owner:)
@@ -153,14 +154,14 @@ class rm210(KQ6Room):
 		(= temp0
 			(not
 				(and
-					(proc999_5 temp1 global11 140)
-					(proc999_5 temp2 global11 140)
-					(proc999_5 temp3 global11 140)
+					proc999_5(temp1, global11, 140)
+					proc999_5(temp2, global11, 140)
+					proc999_5(temp3, global11, 140)
 				)
 			)
 		)
-		if ((ScriptID 10 0) isSet: 2):
-			((ScriptID 10 0) clrIt: 2)
+		if (kernel.ScriptID(10, 0) isSet: 2):
+			(kernel.ScriptID(10, 0) clrIt: 2)
 			(clown init:)
 		#endif
 		(cond
@@ -170,7 +171,7 @@ class rm210(KQ6Room):
 					(temp3 == 140)
 					(not ((temp1 == global11) and (temp2 == global11)))
 				):
-				(proc10_2 returnToBranch 18)
+				proc10_2(returnToBranch, 18)
 			#end:case
 			case 
 				(and
@@ -179,10 +180,10 @@ class rm210(KQ6Room):
 					(temp1 == global11)
 					(temp2 == global11)
 				):
-				(proc10_2 notReturnScr 20)
+				proc10_2(notReturnScr, 20)
 			#end:case
 			case (and (global12 == 140) (temp1 == 140) (temp2 != global11)):
-				(proc10_2 returnToBranch 12)
+				proc10_2(returnToBranch, 12)
 			#end:case
 			case 
 				(and
@@ -190,17 +191,17 @@ class rm210(KQ6Room):
 					((temp2 == 140) or ((temp1 == 140) and (temp2 == global11)))
 				):
 				local32 = 1
-				(proc10_2 deliveryScr 13)
+				proc10_2(deliveryScr, 13)
 			#end:case
-			case (proc913_0 62):
-				(proc10_2 deliveryScr 5)
+			case proc913_0(62):
+				proc10_2(deliveryScr, 5)
 			#end:case
-			case (proc913_0 63):
-				(proc10_2 deliveryScr 6)
+			case proc913_0(63):
+				proc10_2(deliveryScr, 6)
 			#end:case
 			else:
 				if ((global0 has: 0) and temp0):
-					if (proc913_0 21):
+					if proc913_0(21):
 						(singSing init: 0)
 					else:
 						(singSing init: 1)
@@ -208,17 +209,13 @@ class rm210(KQ6Room):
 					(global103 number: 210 loop: -1 play:)
 					(musicScr client: musicScr cue:)
 				#endif
-				(proc913_2 62)
-				(proc913_2 63)
+				proc913_2(62)
+				proc913_2(63)
 			#end:else
 		)
 		(= temp5
 			(or
-				(proc999_5
-					(global2 script:)
-					enterFromCastleScr
-					enterFromVillageScr
-				)
+				proc999_5((global2 script:), enterFromCastleScr, enterFromVillageScr)
 				local34
 			)
 		)
@@ -247,7 +244,7 @@ class rm210(KQ6Room):
 			case script: 0#end:case
 			case (temp0 & 0x4000):
 				(global0 setSpeed: 6)
-				(global2 setScript: (Clone exitToCastleScr) 0 global0)
+				(global2 setScript: kernel.Clone(exitToCastleScr) 0 global0)
 			#end:case
 			case (temp0 & 0x2000):
 				(global2 setScript: exitToVillageScr)
@@ -262,7 +259,7 @@ class rm210(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((param1 == 220) and (global5 contains: clown)):
-			((ScriptID 10 0) setIt: 2)
+			(kernel.ScriptID(10, 0) setIt: 2)
 		#endif
 		if (global5 contains: singSing):
 			(global103 fade:)
@@ -306,7 +303,7 @@ class rm210(KQ6Room):
 
 		(cond
 			case (param1 == 3):
-				(proc12_0 param1 30)
+				proc12_0(param1, 30)
 				return 0
 			#end:case
 			case argc:
@@ -325,8 +322,8 @@ class rm210(KQ6Room):
 
 		(global102 fade:)
 		(super dispose:)
-		(DisposeScript 983)
-		(DisposeScript 964)
+		kernel.DisposeScript(983)
+		kernel.DisposeScript(964)
 	#end:method
 
 #end:class or instance
@@ -364,7 +361,7 @@ class musicScr(Script):
 				register = 1
 				(global78 add: self)
 				while True: #repeat
-					(breakif (register = (Random 0 2) != local33))
+					(breakif (register = kernel.Random(0, 2) != local33))
 				#end:loop
 				(global104
 					number:
@@ -379,7 +376,7 @@ class musicScr(Script):
 			#end:case
 			case 1:
 				state = -1
-				ticks = (Random 60 300)
+				ticks = kernel.Random(60, 300)
 			#end:case
 		#end:match
 	#end:method
@@ -417,7 +414,7 @@ class fluteScr(Script):
 					(musicScr dispose:)
 				#endif
 				(global102 fade:)
-				(self setScript: (ScriptID 85) self)
+				(self setScript: kernel.ScriptID(85) self)
 			#end:case
 			case 2:
 				(global91 say: 14 31 9 0 self)
@@ -597,7 +594,7 @@ class exitToCastleScr(Script):
 					setScale: Scaler 30 5 75 15
 					posn: 300 79
 				)
-				(register setMotion: (Clone exitPath) self)
+				(register setMotion: kernel.Clone(exitPath) self)
 			#end:case
 			case 3:
 				cycles = 2
@@ -633,7 +630,7 @@ class clownScr(Script):
 				(clown view: 717 setLoop: -1 setMotion: PolyPath 261 85 self)
 			#end:case
 			case 3:
-				(self setScript: (Clone exitToCastleScr) self clown)
+				(self setScript: kernel.Clone(exitToCastleScr) self clown)
 			#end:case
 			case 4:
 				(clown hide:)
@@ -688,8 +685,8 @@ class returnToBranch(Script):
 			case 5:
 				(global103 number: 210 loop: -1 play:)
 				(musicScr client: musicScr cue:)
-				(proc913_2 62)
-				(proc913_2 63)
+				proc913_2(62)
+				proc913_2(63)
 				(singSing setScript: singSingScr)
 				(global1 handsOn:)
 				(self dispose:)
@@ -715,8 +712,8 @@ class notReturnScr(Script):
 				(global91 say: 1 0 register 0 self)
 			#end:case
 			case 2:
-				(proc913_2 62)
-				(proc913_2 63)
+				proc913_2(62)
+				proc913_2(63)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -735,7 +732,7 @@ class deliveryScr(Script):
 
 		match state = param1
 			case 0:
-				if (proc999_5 register 5 6):
+				if proc999_5(register, 5, 6):
 					(singSing init: 0)
 					(cond
 						case (clown script:):
@@ -769,10 +766,10 @@ class deliveryScr(Script):
 			case 3:
 				(singSing
 					view: 214
-					setLoop: (0 if (proc913_0 62) else 1)
+					setLoop: (0 if proc913_0(62) else 1)
 					setCycle: Fwd
 				)
-				if (proc999_5 register 5 6):
+				if proc999_5(register, 5, 6):
 					state = 4
 				#endif
 				(self cue:)
@@ -782,14 +779,14 @@ class deliveryScr(Script):
 			#end:case
 			case 5:
 				(singSing setScale: 0 setStep: 4 3)
-				if (proc913_0 62):
+				if proc913_0(62):
 					(singSing setMotion: MoveTo 156 79 self)
 				else:
 					(singSing setMotion: MoveTo 111 81 self)
 				#endif
 			#end:case
 			case 6:
-				if (proc913_0 62):
+				if proc913_0(62):
 					(theRibbon init:)
 				else:
 					(letter init:)
@@ -806,7 +803,7 @@ class deliveryScr(Script):
 						setMotion: MoveTo -10 79 self
 					)
 				else:
-					state++
+					state.post('++')
 					(self cue:)
 				#endif
 			#end:case
@@ -816,7 +813,7 @@ class deliveryScr(Script):
 				state = 10
 			#end:case
 			case 8:
-				if (proc913_0 62):
+				if proc913_0(62):
 					(singSing posn: 156 79)
 				else:
 					(singSing posn: 111 81)
@@ -824,7 +821,7 @@ class deliveryScr(Script):
 				(singSing view: 213 setLoop: 5 cel: 0 setCycle: End self)
 			#end:case
 			case 9:
-				if (proc913_0 62):
+				if proc913_0(62):
 					(singSing posn: 185 69)
 				else:
 					(singSing posn: 141 72)
@@ -864,8 +861,8 @@ class deliveryScr(Script):
 				if local32:
 					(global1 handsOn:)
 				#endif
-				(proc913_2 62)
-				(proc913_2 63)
+				proc913_2(62)
+				proc913_2(63)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -910,7 +907,7 @@ class giveItemToBirdScr(Script):
 						(global5 contains: genieSnake)
 						(((genieSnake script:) state:) <= 0)
 					)
-					state--
+					state.post('--')
 					ticks = 15
 				else:
 					(self cue:)
@@ -937,7 +934,7 @@ class giveItemToBirdScr(Script):
 					(global103 stop:)
 				#endif
 				(global105 number: 212 play:)
-				if (proc913_0 10):
+				if proc913_0(10):
 					(global105 hold: 10)
 				#endif
 				(singSing setLoop: 5 cel: 0 setCycle: End self)
@@ -1017,11 +1014,11 @@ class givePoemScr(CartoonScript):
 								(((global9 at: 47) owner:) != global11)
 							):
 							local31 = 1
-							(25 if (proc913_0 10) else 26)
+							(25 if proc913_0(10) else 26)
 						#end:case
 						case ((temp0 != global11) and (temp1 == global11)): 32#end:case
 						case (temp0 == global11):
-							(proc913_1 63)
+							proc913_1(63)
 							14
 						#end:case
 					)
@@ -1029,7 +1026,7 @@ class givePoemScr(CartoonScript):
 				(self setScript: giveItemToBirdScr self 2)
 			#end:case
 			case 1:
-				if (proc999_5 register 14 32 25):
+				if proc999_5(register, 14, 32, 25):
 					(KQ6Print posn: -1 80)
 				else:
 					(KQ6Print posn: -1 100)
@@ -1041,7 +1038,7 @@ class givePoemScr(CartoonScript):
 				)
 			#end:case
 			case 2:
-				if (proc999_5 register 25 26):
+				if proc999_5(register, 25, 26):
 					(KQ6Print
 						font: global22
 						posn: -1 100
@@ -1063,7 +1060,7 @@ class givePoemScr(CartoonScript):
 						4
 						32
 						register
-						(3 if (proc999_5 register 25 26) else 2)
+						(3 if proc999_5(register, 25, 26) else 2)
 					init:
 				)
 				(giveItemToBirdScr cue:)
@@ -1073,22 +1070,22 @@ class givePoemScr(CartoonScript):
 					if (global90 & 0x0002):
 						(self cue:)
 					else:
-						state++
+						state.post('++')
 						(KQ6Print caller: self)
 					#endif
 				else:
-					state++
+					state.post('++')
 					(self cue:)
 				#endif
 			#end:case
 			case 5:
-				if (not ((DoAudio 6) == -1)):
-					state--
+				if (not (kernel.DoAudio(6) == -1)):
+					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
 			case 6:
-				if (proc913_0 10):
+				if proc913_0(10):
 					(global2 newRoom: 140)
 				else:
 					(global1 handsOn:)
@@ -1112,12 +1109,12 @@ class giveRingScr(CartoonScript):
 			case 0:
 				(global0 put: 39 140)
 				(global1 handsOff:)
-				if (proc913_0 10):
+				if proc913_0(10):
 					(global1 givePoints: 3)
 				else:
 					(global1 givePoints: 1)
 				#endif
-				(proc913_1 62)
+				proc913_1(62)
 				temp0 = ((global9 at: 47) owner:)
 				temp1 = ((global9 at: 38) owner:)
 				(= register
@@ -1129,15 +1126,13 @@ class giveRingScr(CartoonScript):
 								(((global9 at: 39) owner:) != global11)
 							):
 							local31 = 1
-							(25 if (proc913_0 10) else 26)
+							(25 if proc913_0(10) else 26)
 						#end:case
 						case ((temp0 == global11) and (temp1 != global11)): 36#end:case
 						case ((temp0 == global11) and (temp1 == global11)): 38#end:case
 						case ((temp1 == global11) and (temp0 != global11)): 34#end:case
 						else:
-							(proc921_0
-								r"""Problem! In else state of giveRoseScr conditional."""
-							)
+							proc921_0(r"""Problem! In else state of giveRoseScr conditional.""")
 						#end:else
 					)
 				)
@@ -1148,7 +1143,7 @@ class giveRingScr(CartoonScript):
 					case (register == 25):
 						(KQ6Print posn: -1 100)
 					#end:case
-					case (proc999_5 register 36 34):
+					case proc999_5(register, 36, 34):
 						(KQ6Print posn: -1 100)
 					#end:case
 					case (register == 38):
@@ -1165,7 +1160,7 @@ class giveRingScr(CartoonScript):
 				)
 			#end:case
 			case 2:
-				if (proc999_5 register 25 26):
+				if proc999_5(register, 25, 26):
 					(KQ6Print
 						font: global22
 						posn: -1 100
@@ -1177,7 +1172,7 @@ class giveRingScr(CartoonScript):
 				#endif
 			#end:case
 			case 3:
-				if (proc999_5 register 36 38):
+				if proc999_5(register, 36, 38):
 					register = 34
 				#endif
 				(KQ6Print
@@ -1190,7 +1185,7 @@ class giveRingScr(CartoonScript):
 						4
 						70
 						register
-						(3 if (proc999_5 register 25 26) else 2)
+						(3 if proc999_5(register, 25, 26) else 2)
 					init:
 				)
 				(giveItemToBirdScr cue:)
@@ -1200,22 +1195,22 @@ class giveRingScr(CartoonScript):
 					if (global90 & 0x0002):
 						(self cue:)
 					else:
-						state++
+						state.post('++')
 						(KQ6Print caller: self)
 					#endif
 				else:
-					state++
+					state.post('++')
 					(self cue:)
 				#endif
 			#end:case
 			case 5:
-				if (not ((DoAudio 6) == -1)):
-					state--
+				if (not (kernel.DoAudio(6) == -1)):
+					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
 			case 6:
-				if (proc913_0 10):
+				if proc913_0(10):
 					(global2 newRoom: 140)
 				else:
 					(global1 handsOn:)
@@ -1253,15 +1248,13 @@ class giveRoseScr(CartoonScript):
 								(((global9 at: 38) owner:) != global11)
 							):
 							local31 = 1
-							(25 if (proc913_0 10) else 26)
+							(25 if proc913_0(10) else 26)
 						#end:case
 						case ((temp0 != global11) and (temp1 == global11)): 41#end:case
 						case ((temp0 == global11) and (temp1 != global11)): 23#end:case
 						case ((temp0 == global11) and (temp1 == global11)): 24#end:case
 						else:
-							(proc921_0
-								r"""Problem! In else state of giveRoseScr conditional."""
-							)
+							proc921_0(r"""Problem! In else state of giveRoseScr conditional.""")
 						#end:else
 					)
 				)
@@ -1272,7 +1265,7 @@ class giveRoseScr(CartoonScript):
 					case (register == 25):
 						(KQ6Print posn: -1 80)
 					#end:case
-					case (proc999_5 register 23 41):
+					case proc999_5(register, 23, 41):
 						(KQ6Print posn: -1 80)
 					#end:case
 					else:
@@ -1286,7 +1279,7 @@ class giveRoseScr(CartoonScript):
 				)
 			#end:case
 			case 2:
-				if (proc999_5 register 25 26):
+				if proc999_5(register, 25, 26):
 					(KQ6Print
 						font: global22
 						posn: -1 100
@@ -1298,7 +1291,7 @@ class giveRoseScr(CartoonScript):
 				#endif
 			#end:case
 			case 3:
-				if (proc999_5 register 41):
+				if proc999_5(register, 41):
 					register = 23
 				#endif
 				(KQ6Print
@@ -1311,7 +1304,7 @@ class giveRoseScr(CartoonScript):
 						4
 						71
 						register
-						(3 if (proc999_5 register 25 26) else 2)
+						(3 if proc999_5(register, 25, 26) else 2)
 					init:
 				)
 				(giveItemToBirdScr cue:)
@@ -1321,22 +1314,22 @@ class giveRoseScr(CartoonScript):
 					if (global90 & 0x0002):
 						(self cue:)
 					else:
-						state++
+						state.post('++')
 						(KQ6Print caller: self)
 					#endif
 				else:
-					state++
+					state.post('++')
 					(self cue:)
 				#endif
 			#end:case
 			case 5:
-				if (not ((DoAudio 6) == -1)):
-					state--
+				if (not (kernel.DoAudio(6) == -1)):
+					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
 			case 6:
-				if (proc913_0 10):
+				if proc913_0(10):
 					(global2 newRoom: 140)
 				else:
 					(global1 handsOn:)
@@ -1525,7 +1518,7 @@ class befriendSSScr(Script):
 				(global103 play: 0 fade: 127 25 10 0)
 				(musicScr state: -1 client: musicScr cue:)
 				(global0 reset: 0 posn: 120 141 setScale: Scaler 100 84 134 81)
-				(proc913_1 21)
+				proc913_1(21)
 				(singSing setScript: singSingScr)
 				(global1 handsOn:)
 				(self dispose:)
@@ -1551,16 +1544,16 @@ class snakeScr(Script):
 				(client loop: 1 cel: 0 setCycle: End self)
 			#end:case
 			case 2:
-				if (local35++ < 2):
+				if (local35.post('++') < 2):
 					(global104 number: 211 loop: 1 play:)
 				#endif
-				if ((not (Random 0 1)) and (not local30)):
+				if ((not kernel.Random(0, 1)) and (not local30)):
 					local30 = 1
 					state = 5
 					(self cue:)
 				else:
 					state = 0
-					ticks = (Random 60 150)
+					ticks = kernel.Random(60, 150)
 				#endif
 			#end:case
 			case 3:
@@ -1641,7 +1634,7 @@ class showItemScr(Script):
 				(global91 say: 4 0 11 1 self)
 			#end:case
 			case 4:
-				if (proc913_0 21):
+				if proc913_0(21):
 					(global91 say: 4 register 10 1 self)
 				else:
 					(global91 say: 4 register 11 2 self)
@@ -1676,21 +1669,21 @@ class singSingScr(Script):
 
 		match state = param1
 			case 0:
-				register = (proc913_0 21)
+				register = proc913_0(21)
 				cycles = 1
 			#end:case
 			case 1:
 				(= state
-					match (Random 0 1)
+					match kernel.Random(0, 1)
 						case 0: 4#end:case
 						case 1: 10#end:case
 					#end:match
 				)
-				state--
+				state.post('--')
 				if local29:
 					(self dispose:)
 				else:
-					seconds = (Random 3 12)
+					seconds = kernel.Random(3, 12)
 				#endif
 			#end:case
 			case 2:
@@ -1775,8 +1768,8 @@ class getRibbonScr(Script):
 				(global0 get: 35 setHeading: 90 self)
 			#end:case
 			case 2:
-				if (not (proc913_0 112)):
-					(proc913_1 93)
+				if (not proc913_0(112)):
+					proc913_1(93)
 				#endif
 				cycles = 2
 			#end:case
@@ -1809,8 +1802,8 @@ class getRibbonScr(Script):
 				cycles = 2
 			#end:case
 			case 9:
-				(UnLoad 128 215)
-				(global91 say: 6 5 (22 if (proc913_0 10) else 21) 0 self)
+				kernel.UnLoad(128, 215)
+				(global91 say: 6 5 (22 if proc913_0(10) else 21) 0 self)
 			#end:case
 			case 10:
 				(global1 handsOn:)
@@ -1874,13 +1867,13 @@ class getLetterScr(Script):
 					(global103 fade: 0 15 20 1)
 					(musicScr dispose:)
 				else:
-					state++
+					state.post('++')
 				#endif
 				(global91 say: 5 5 0 1 self)
 			#end:case
 			case 10:
 				if ((global103 prevSignal:) != -1):
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
@@ -1971,14 +1964,14 @@ class singSing(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 1 5):
-				(global91 say: noun param1 (10 if (proc913_0 21) else 11))
+			case proc999_5(param1, 1, 5):
+				(global91 say: noun param1 (10 if proc913_0(21) else 11))
 			#end:case
-			case ((proc999_5 param1 29 46 44 66) and (proc913_0 21)):
+			case (proc999_5(param1, 29, 46, 44, 66) and proc913_0(21)):
 				(global91 say: noun 29 10)
 			#end:case
 			case (param1 == 37):
-				if (proc913_0 21):
+				if proc913_0(21):
 					(global2 setScript: windUpBirdScr)
 				else:
 					(global2 setScript: befriendSSScr)
@@ -1990,7 +1983,7 @@ class singSing(Actor):
 						noun
 						param1
 						(cond
-							case (not (proc913_0 21)): 11#end:case
+							case (not proc913_0(21)): 11#end:case
 							case (global0 has: 32): 19#end:case
 							else: 43#end:else
 						)
@@ -1999,36 +1992,36 @@ class singSing(Actor):
 			case (param1 == 31):
 				(global2 setScript: fluteScr)
 			#end:case
-			case (not (proc913_0 21)):
+			case (not proc913_0(21)):
 				(global2 setScript: showItemScr 0 0)
 			#end:case
-			case (proc999_5 param1 15 18):
+			case proc999_5(param1, 15, 18):
 				(global91 say: noun 15 10)
 			#end:case
 			case (param1 == 32):
 				(global2 setScript: givePoemScr)
 			#end:case
 			case (param1 == 71):
-				if (proc913_0 94):
+				if proc913_0(94):
 					(global91 say: noun param1 27)
 				else:
-					(proc913_1 94)
+					proc913_1(94)
 					(global2 setScript: giveRoseScr)
 				#endif
 			#end:case
 			case (param1 == 70):
 				(global2 setScript: giveRingScr)
 			#end:case
-			case (proc999_5 param1 42 27 28 45 8):
+			case proc999_5(param1, 42, 27, 28, 45, 8):
 				(global91 say: noun 42 10)
 			#end:case
-			case (proc999_5 param1 33 65):
+			case proc999_5(param1, 33, 65):
 				(global91 say: noun 33)
 			#end:case
-			case (proc999_5 param1 63 67):
+			case proc999_5(param1, 63, 67):
 				(global2 setScript: showItemScr 0 63)
 			#end:case
-			case (proc999_5 param1 35 47 68 72):
+			case proc999_5(param1, 35, 47, 68, 72):
 				(global2 setScript: showItemScr 0 param1)
 			#end:case
 			else:
@@ -2244,7 +2237,7 @@ class tree(Feature):
 							case 
 								(and
 									(global5 contains: singSing)
-									(proc913_0 21)
+									proc913_0(21)
 								):
 								10
 							#end:case
@@ -2293,13 +2286,13 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match temp0 = (OnControl 4 (param1 x:) (param1 y:))
+				match temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 4: 8#end:case
 					case 8: 9#end:case
 					case 16: 10#end:case
 					case 64: 13#end:case
 					else:
-						(13 if (proc999_5 temp0 64 16384) else 0)
+						(13 if proc999_5(temp0, 64, 16384) else 0)
 					#end:else
 				#end:match
 			)

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 84
 import sci_sh
+import kernel
 import Main
 import Kq6Sound
 import KQ6Print
@@ -67,7 +68,7 @@ class egoBeastScript(Script):
 				(global0 setLoop: 1 setCel: 0 cycleSpeed: 10 setCycle: End self)
 			#end:case
 			case 8:
-				(proc913_1 59)
+				proc913_1(59)
 				(KQ6Print
 					say: 0 3 0 7 5 0 0 0
 					posn: 10 30
@@ -89,9 +90,9 @@ class egoBeastScript(Script):
 				(localMusic flags: 1 number: 970 loop: 1 play:)
 				(global5 eachElementDo: #hide)
 				(global2 drawPic: 98 10)
-				(Message 0 916 0 0 2 1 @temp1)
-				(Display @temp1 100 30 11 106 260 102 16 105 global22 101 1)
-				(Display @temp1 100 29 10 106 260 102 47 105 global22 101 1)
+				kernel.Message(0, 916, 0, 0, 2, 1, @temp1)
+				kernel.Display(@temp1, 100, 30, 11, 106, 260, 102, 16, 105, global22, 101, 1)
+				kernel.Display(@temp1, 100, 29, 10, 106, 260, 102, 47, 105, global22, 101, 1)
 				(global0
 					view: 910
 					loop: 1
@@ -108,7 +109,7 @@ class egoBeastScript(Script):
 			#end:case
 			case 11:
 				if (global90 & 0x0002):
-					(DoAudio 2 916 0 0 2 1)
+					kernel.DoAudio(2, 916, 0, 0, 2, 1)
 				#endif
 				(global1 setCursor: global20)
 				while True: #repeat

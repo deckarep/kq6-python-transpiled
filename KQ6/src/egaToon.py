@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 106
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import System
@@ -55,7 +56,7 @@ class egaToon(KQ6Room):
 		(global74 addToFront: self)
 		(global72 addToFront: self)
 		(global73 addToFront: self)
-		(Palette 1 999)
+		kernel.Palette(1, 999)
 	#end:method
 
 	@classmethod
@@ -81,7 +82,7 @@ class findSize(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(TextSize @local404 param1 3110 315)
+		kernel.TextSize(@local404, param1, 3110, 315)
 		return ((180 - (local404[2] - local404[0])) / 2)
 	#end:method
 
@@ -100,91 +101,35 @@ class openingScript(Script):
 				cycles = 15
 			#end:case
 			case 1:
-				(Display 106 0 108 local400)
-				temp1 = (Message 1 0)
+				kernel.Display(106, 0, 108, local400)
+				temp1 = kernel.Message(1, 0)
 				if local403:
-					(Message 0 105 2 0 2 local402 @local0)
-					local408 = (Message 2 105 2 0 2 local402)
+					kernel.Message(0, 105, 2, 0, 2, local402, @local0)
+					local408 = kernel.Message(2, 105, 2, 0, 2, local402)
 				else:
-					(Message 0 105 2 0 0 local402 @local0)
-					local408 = (Message 2 105 2 0 0 local402)
+					kernel.Message(0, 105, 2, 0, 0, local402, @local0)
+					local408 = kernel.Message(2, 105, 2, 0, 0, local402)
 				#endif
 				temp2 = (findSize doit: @local0)
 				match temp1
 					case 12:
 						(= local400
-							(Display
-								@local0
-								100
-								12
-								temp2
-								106
-								300
-								102
-								6
-								105
-								3110
-								101
-								1
-								107
-							)
+							kernel.Display(@local0, 100, 12, temp2, 106, 300, 102, 6, 105, 3110, 101, 1, 107)
 						)
 					#end:case
 					case 2:
 						(= local400
-							(Display
-								@local0
-								100
-								12
-								temp2
-								106
-								300
-								102
-								20
-								105
-								3110
-								101
-								1
-								107
-							)
+							kernel.Display(@local0, 100, 12, temp2, 106, 300, 102, 20, 105, 3110, 101, 1, 107)
 						)
 					#end:case
 					case 28:
 						(= local400
-							(Display
-								@local0
-								100
-								12
-								temp2
-								106
-								300
-								102
-								30
-								105
-								3110
-								101
-								1
-								107
-							)
+							kernel.Display(@local0, 100, 12, temp2, 106, 300, 102, 30, 105, 3110, 101, 1, 107)
 						)
 					#end:case
 					else:
 						(= local400
-							(Display
-								@local0
-								100
-								12
-								temp2
-								106
-								300
-								102
-								40
-								105
-								3110
-								101
-								1
-								107
-							)
+							kernel.Display(@local0, 100, 12, temp2, 106, 300, 102, 40, 105, 3110, 101, 1, 107)
 						)
 					#end:else
 				#end:match
@@ -193,12 +138,12 @@ class openingScript(Script):
 			case 2:
 				match local403
 					case 0:
-						if (proc999_5 local402 17 19 26):
+						if proc999_5(local402, 17, 19, 26):
 							(playMusic cue:)
 						#endif
 					#end:case
 					case 1:
-						if (proc999_5 local402 3 9):
+						if proc999_5(local402, 3, 9):
 							(playMusic cue:)
 						#endif
 					#end:case
@@ -214,8 +159,8 @@ class openingScript(Script):
 			#end:case
 			case 4:
 				(cond
-					case ((temp0 = local402++ == 12) and local403):
-						(Display 106 0 108 local400)
+					case ((temp0 = local402.post('++') == 12) and local403):
+						kernel.Display(106, 0, 108, local400)
 						cycles = 2
 					#end:case
 					case ((not local403) and (temp0 == 28)):
@@ -229,7 +174,7 @@ class openingScript(Script):
 				)
 			#end:case
 			case 5:
-				(self setScript: (ScriptID 107 0) self)
+				(self setScript: kernel.ScriptID(107, 0) self)
 			#end:case
 			case 6:
 				(global2 newRoom: 200)

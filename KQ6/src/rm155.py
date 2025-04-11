@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 155
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import Motion
@@ -60,13 +61,13 @@ class backgroundScr(Script):
 		match state = param1
 			case 0:
 				if (global12 > 500):
-					(Palette 1 1551)
+					kernel.Palette(1, 1551)
 					local0 = 155
 				else:
 					(moonEnd init:)
 				#endif
 				(global2 drawPic: 136 100)
-				(SetCursor 0)
+				kernel.SetCursor(0)
 				(mane1 init: setCycle: Fwd)
 				(mane2 init: setCycle: Fwd)
 				(mane3 init: setCycle: Fwd)
@@ -97,7 +98,7 @@ class backgroundScr(Script):
 				ticks = 120
 			#end:case
 			case 2:
-				(PalVary 0 local0 4 64 1)
+				kernel.PalVary(0, local0, 4, 64, 1)
 				ticks = 60
 			#end:case
 			case 3:
@@ -116,7 +117,7 @@ class backgroundScr(Script):
 				(isle2 setCycle: End setMotion: MoveTo 256 177 self)
 			#end:case
 			case 7:
-				(PalVary 3)
+				kernel.PalVary(3)
 				if (global12 == 340):
 					(global2 newRoom: 600)
 				else:

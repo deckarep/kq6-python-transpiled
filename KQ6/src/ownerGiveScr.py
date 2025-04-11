@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 286
 import sci_sh
+import kernel
 import Main
 import rm280
 import Scaler
@@ -39,7 +40,7 @@ class ownerGiveScr(Script):
 		match state = param1
 			case 0:
 				if register:
-					((ScriptID 280 2) view: 286 loop: 1 cel: 0)
+					(kernel.ScriptID(280, 2) view: 286 loop: 1 cel: 0)
 					cycles = 2
 				else:
 					(state += 4)
@@ -47,23 +48,23 @@ class ownerGiveScr(Script):
 				#endif
 			#end:case
 			case 1:
-				((ScriptID 280 2) setCycle: CT 2 1 self)
+				(kernel.ScriptID(280, 2) setCycle: CT 2 1 self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				((ScriptID 280 2) setCycle: Beg self)
+				(kernel.ScriptID(280, 2) setCycle: Beg self)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				((ScriptID 280 2) view: 284 loop: 2 cel: 0)
+				(kernel.ScriptID(280, 2) view: 284 loop: 2 cel: 0)
 				cycles = 2
 			#end:case
 			case 6:
-				((ScriptID 280 2) setCycle: CT 1 1 self)
+				(kernel.ScriptID(280, 2) setCycle: CT 1 1 self)
 			#end:case
 			case 7:
 				cycles = 2
@@ -87,16 +88,16 @@ class ownerGiveScr(Script):
 				cycles = 2
 			#end:case
 			case 11:
-				((ScriptID 280 2) setCycle: Beg self)
+				(kernel.ScriptID(280, 2) setCycle: Beg self)
 				(global0 setCycle: End self)
 			#end:case
 			case 12: 0#end:case
 			case 13:
-				((ScriptID 280 2) view: 2841 loop: 0 cel: 0)
+				(kernel.ScriptID(280, 2) view: 2841 loop: 0 cel: 0)
 				(global0
 					posn:
-						((ScriptID 280 2) approachX:)
-						((ScriptID 280 2) approachY:)
+						(kernel.ScriptID(280, 2) approachX:)
+						(kernel.ScriptID(280, 2) approachY:)
 					view: 280
 					loop: 7
 					cel: 0
@@ -116,7 +117,7 @@ class ownerGiveScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 286)
+		kernel.DisposeScript(286)
 	#end:method
 
 #end:class or instance
@@ -221,8 +222,8 @@ class alexShowScr(Script):
 			case 7:
 				(global0
 					posn:
-						((ScriptID 280 2) approachX:)
-						((ScriptID 280 2) approachY:)
+						(kernel.ScriptID(280, 2) approachX:)
+						(kernel.ScriptID(280, 2) approachY:)
 					view: 280
 					loop: 7
 					cel: 0
@@ -238,14 +239,14 @@ class alexShowScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc999_5 client fullMsgShowScr genericShowScr)):
+		if (not proc999_5(client, fullMsgShowScr, genericShowScr)):
 			temp0 = 1
 		else:
 			temp0 = 0
 		#endif
 		(super dispose:)
 		if temp0:
-			(DisposeScript 286)
+			kernel.DisposeScript(286)
 		#endif
 	#end:method
 
@@ -282,11 +283,11 @@ class alexGiveScr(Script):
 				(client cue:)
 			#end:case
 			case 4:
-				((ScriptID 280 2) view: 284 loop: 2 cel: 0)
+				(kernel.ScriptID(280, 2) view: 284 loop: 2 cel: 0)
 				cycles = 2
 			#end:case
 			case 5:
-				((ScriptID 280 2) setCycle: CT 1 1 self)
+				(kernel.ScriptID(280, 2) setCycle: CT 1 1 self)
 			#end:case
 			case 6:
 				cycles = 2
@@ -294,7 +295,7 @@ class alexGiveScr(Script):
 			case 7:
 				(global0 setCycle: End self)
 				if (register & 0x4000):
-					((ScriptID 280 2) setCycle: End self)
+					(kernel.ScriptID(280, 2) setCycle: End self)
 				else:
 					(state += 3)
 					(self cue:)
@@ -308,7 +309,7 @@ class alexGiveScr(Script):
 				(client cue:)
 			#end:case
 			case 11:
-				((ScriptID 280 2) setCycle: Beg self)
+				(kernel.ScriptID(280, 2) setCycle: Beg self)
 			#end:case
 			case 12:
 				if (not (register & 0x4000)):
@@ -322,7 +323,7 @@ class alexGiveScr(Script):
 			#end:case
 			case 14:
 				if (register & 0x8000):
-					((ScriptID 280 2)
+					(kernel.ScriptID(280, 2)
 						view: 286
 						loop: 1
 						cel: 1
@@ -337,7 +338,7 @@ class alexGiveScr(Script):
 				cycles = 2
 			#end:case
 			case 16:
-				((ScriptID 280 2) setCycle: Beg self)
+				(kernel.ScriptID(280, 2) setCycle: Beg self)
 			#end:case
 			case 17:
 				cycles = 2
@@ -345,14 +346,14 @@ class alexGiveScr(Script):
 			case 18:
 				(global0
 					posn:
-						((ScriptID 280 2) approachX:)
-						((ScriptID 280 2) approachY:)
+						(kernel.ScriptID(280, 2) approachX:)
+						(kernel.ScriptID(280, 2) approachY:)
 					view: 280
 					loop: 7
 					cel: 0
 					setScale: Scaler 105 90 139 121
 				)
-				((ScriptID 280 2) view: 280 loop: 8 cel: 0)
+				(kernel.ScriptID(280, 2) view: 280 loop: 8 cel: 0)
 				cycles = 2
 			#end:case
 			case 19:
@@ -367,7 +368,7 @@ class alexGiveScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 286)
+		kernel.DisposeScript(286)
 	#end:method
 
 #end:class or instance
@@ -405,9 +406,9 @@ class alexTakeMapScr(Script):
 			#end:case
 			case 3:
 				if register:
-					((ScriptID 280 1) init:)
+					(kernel.ScriptID(280, 1) init:)
 				else:
-					((ScriptID 280 1) dispose:)
+					(kernel.ScriptID(280, 1) dispose:)
 				#endif
 				cycles = 2
 			#end:case
@@ -424,8 +425,8 @@ class alexTakeMapScr(Script):
 			case 6:
 				(global0
 					posn:
-						((ScriptID 280 2) approachX:)
-						((ScriptID 280 2) approachY:)
+						(kernel.ScriptID(280, 2) approachX:)
+						(kernel.ScriptID(280, 2) approachY:)
 					view: 280
 					loop: 7
 					cel: 0
@@ -448,7 +449,7 @@ class alexTakeMapScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 286)
+		kernel.DisposeScript(286)
 	#end:method
 
 #end:class or instance
@@ -464,12 +465,12 @@ class fullMsgShowScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(self setScript: alexShowScr self)
@@ -482,7 +483,7 @@ class fullMsgShowScr(Script):
 			#end:case
 			case 5:
 				(global0 reset: 0)
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -495,7 +496,7 @@ class fullMsgShowScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 286)
+		kernel.DisposeScript(286)
 	#end:method
 
 #end:class or instance
@@ -511,12 +512,12 @@ class genericShowScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(self setScript: alexShowScr self)
@@ -531,7 +532,7 @@ class genericShowScr(Script):
 				(global91 say: 4 register 0 (2 if (register == 0) else 1) self)
 			#end:case
 			case 5:
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global0 reset: 0)
 				(global1 handsOn:)
 				(self dispose:)
@@ -545,7 +546,7 @@ class genericShowScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 286)
+		kernel.DisposeScript(286)
 	#end:method
 
 #end:class or instance

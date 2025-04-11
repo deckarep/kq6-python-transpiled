@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 953
 import sci_sh
+import kernel
 import Motion
 
 class Approach(Motion):

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1039
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -25,7 +26,7 @@ class BabyTears(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(self loop: 7 x: 0 y: 135 textX: 10 textY: -125)
 			(super init: tWimpBust 0 tWimpMouth &rest)
 		else:

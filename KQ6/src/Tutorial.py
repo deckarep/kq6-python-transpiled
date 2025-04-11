@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 980
 import sci_sh
+import kernel
 import Main
 import Print
 import System
@@ -24,7 +25,7 @@ class Tutorial(Script):
 		nextAction = param2
 		(cond
 			case (argc == 3):
-				(proc921_0 param3)
+				proc921_0(param3)
 			#end:case
 			case (argc > 3):
 				(global91 say: param3 param4 param5 param6 param7)

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 744
 import sci_sh
+import kernel
 import Main
 import n913
 import PolyPath
@@ -80,7 +81,7 @@ class genieCastSpell(Script):
 				(global91 say: 1 0 6 1 self)
 			#end:case
 			case 2:
-				(self setScript: (ScriptID 742 4) self)
+				(self setScript: kernel.ScriptID(742, 4) self)
 			#end:case
 			case 3:
 				(global91 say: 1 0 6 2 self)
@@ -98,21 +99,21 @@ class genieCastSpell(Script):
 				(global91 say: 1 0 6 6 self)
 			#end:case
 			case 8:
-				(proc958_0 0 1004 1063 1029 1001 1026)
-				(UnLoad 128 892)
-				(UnLoad 128 899)
-				(UnLoad 128 8921)
-				(UnLoad 128 8992)
-				(UnLoad 128 891)
-				(UnLoad 128 890)
-				(self setScript: (ScriptID 740 23) self)
+				proc958_0(0, 1004, 1063, 1029, 1001, 1026)
+				kernel.UnLoad(128, 892)
+				kernel.UnLoad(128, 899)
+				kernel.UnLoad(128, 8921)
+				kernel.UnLoad(128, 8992)
+				kernel.UnLoad(128, 891)
+				kernel.UnLoad(128, 890)
+				(self setScript: kernel.ScriptID(740, 23) self)
 			#end:case
 			case 9:
 				(global0 put: 24)
 				(global1 handsOn:)
-				((ScriptID 740 3) setScript: (ScriptID 742 5))
+				(kernel.ScriptID(740, 3) setScript: kernel.ScriptID(742, 5))
 				(self dispose:)
-				(DisposeScript 744)
+				kernel.DisposeScript(744)
 			#end:case
 		#end:match
 	#end:method
@@ -134,55 +135,55 @@ class saladinKillEgo(Script):
 			#end:case
 			case 1:
 				(global69 enable:)
-				if (proc913_0 156):
+				if proc913_0(156):
 					register = 999
-					((ScriptID 740 2) view: 7415 setLoop: 0 cel: 3 setPri: 9)
+					(kernel.ScriptID(740, 2) view: 7415 setLoop: 0 cel: 3 setPri: 9)
 				else:
 					state = 11
 				#endif
 				cycles = 2
 			#end:case
 			case 2:
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 1 0 38 1 self)
 			#end:case
 			case 3:
-				(proc913_2 59)
+				proc913_2(59)
 				(global91 say: 1 0 38 2 self)
 			#end:case
 			case 4:
-				((ScriptID 740 2) setCycle: CT 5 1 self)
+				(kernel.ScriptID(740, 2) setCycle: CT 5 1 self)
 			#end:case
 			case 5:
 				ticks = 90
 			#end:case
 			case 6:
-				((ScriptID 740 2) setCycle: CT 10 1 self)
+				(kernel.ScriptID(740, 2) setCycle: CT 10 1 self)
 			#end:case
 			case 7:
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 1 0 38 3 self)
 			#end:case
 			case 8:
-				(proc913_2 59)
+				proc913_2(59)
 				(global91 say: 1 0 38 4 self)
 			#end:case
 			case 9:
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 1 0 38 5 self)
 			#end:case
 			case 10:
-				((ScriptID 740 2) setCycle: End self)
+				(kernel.ScriptID(740, 2) setCycle: End self)
 			#end:case
 			case 11:
-				(proc913_2 59)
+				proc913_2(59)
 				(global91 say: 1 0 38 6 self)
 			#end:case
 			case 12:
 				(global102 number: 0 stop:)
 				(global102 number: 705 setLoop: 1 play:)
-				((ScriptID 740 5) view: 736 cycleSpeed: 3 moveSpeed: 3)
-				(proc913_4 (ScriptID 740 5) global0 self)
+				(kernel.ScriptID(740, 5) view: 736 cycleSpeed: 3 moveSpeed: 3)
+				proc913_4(kernel.ScriptID(740, 5), global0, self)
 			#end:case
 			case 13:
 				if (not register):
@@ -193,7 +194,7 @@ class saladinKillEgo(Script):
 			#end:case
 			case 14:
 				(global0 setHeading: 180)
-				((ScriptID 740 5)
+				(kernel.ScriptID(740, 5)
 					setMotion:
 						PolyPath
 						((global0 x:) - 24)
@@ -202,11 +203,11 @@ class saladinKillEgo(Script):
 				)
 			#end:case
 			case 15:
-				((ScriptID 740 5) setHeading: 0 self)
+				(kernel.ScriptID(740, 5) setHeading: 0 self)
 			#end:case
 			case 16:
 				(global0 hide:)
-				((ScriptID 740 5)
+				(kernel.ScriptID(740, 5)
 					view: 738
 					setLoop: 2
 					cel: 0
@@ -223,7 +224,7 @@ class saladinKillEgo(Script):
 			case 18:
 				(global103 number: 0 stop:)
 				(global103 number: 652 setLoop: 1 play:)
-				((ScriptID 740 5) setCycle: End self)
+				(kernel.ScriptID(740, 5) setCycle: End self)
 			#end:case
 			case 19:
 				match register
@@ -247,8 +248,8 @@ class saladinKillEgo(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(proc0_1 33)
-		(DisposeScript 744)
+		proc0_1(33)
+		kernel.DisposeScript(744)
 	#end:method
 
 #end:class or instance

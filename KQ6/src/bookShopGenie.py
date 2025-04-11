@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 271
 import sci_sh
+import kernel
 import Main
 import Motion
 import Actor
@@ -46,7 +47,7 @@ class genieKickingItScr(Script):
 				(client loop: 0 cel: 0 setCycle: End self)
 			#end:case
 			case 1:
-				seconds = (Random 5 10)
+				seconds = kernel.Random(5, 10)
 			#end:case
 			case 2:
 				(client loop: 1 cel: 0 setCycle: End self)
@@ -55,7 +56,7 @@ class genieKickingItScr(Script):
 				ticks = 60
 			#end:case
 			case 4:
-				if ((not ((Random 0 2) - 1)) or (not local1)):
+				if ((not (kernel.Random(0, 2) - 1)) or (not local1)):
 					local1 = 1
 					(genieEye init: cel: 0 setCycle: End self)
 				else:
@@ -71,14 +72,14 @@ class genieKickingItScr(Script):
 				cycles = 2
 			#end:case
 			case 7:
-				ticks = (Random 60 120)
+				ticks = kernel.Random(60, 120)
 			#end:case
 			case 8:
 				(client setCycle: Beg self)
 			#end:case
 			case 9:
 				state = -1
-				seconds = (Random 10 15)
+				seconds = kernel.Random(10, 15)
 			#end:case
 		#end:match
 	#end:method
@@ -117,7 +118,7 @@ class bookShopGenie(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		if (param1 == 63):
-			(global2 setScript: (ScriptID 278))
+			(global2 setScript: kernel.ScriptID(278))
 		else:
 			(super doVerb: param1 &rest)
 		#endif

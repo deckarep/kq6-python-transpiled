@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 404
 import sci_sh
+import kernel
 import Main
 import n913
 import PolyPath
@@ -41,8 +42,8 @@ def proc404_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 30 0) holeIsUp: 1)
-	match ((ScriptID 30 0) holeWall:)
+	(kernel.ScriptID(30, 0) holeIsUp: 1)
+	match (kernel.ScriptID(30, 0) holeWall:)
 		case 2:
 			(aHole posn: 281 222 setPri: 13 init:)
 		#end:case
@@ -63,7 +64,7 @@ def proc404_2():
 	if (global5 contains: aHole):
 		(aHole dispose: delete:)
 	#endif
-	(DisposeScript 404)
+	kernel.DisposeScript(404)
 #end:procedure
 
 @SCI.instance
@@ -191,11 +192,11 @@ class holeOnWall(Script):
 			case 0:
 				(global0 put: 18 global11)
 				(global1 handsOff:)
-				((ScriptID 30 0) holeIsUp: 1 holeWall: register)
+				(kernel.ScriptID(30, 0) holeIsUp: 1 holeWall: register)
 				if (global11 == 400):
-					((ScriptID 30 0) holeCoords: ((ScriptID 30 0) labCoords:))
+					(kernel.ScriptID(30, 0) holeCoords: (kernel.ScriptID(30, 0) labCoords:))
 				else:
-					((ScriptID 30 0) holeCoords: global11)
+					(kernel.ScriptID(30, 0) holeCoords: global11)
 				#endif
 				match register
 					case 2:
@@ -284,7 +285,7 @@ class holeOnWall(Script):
 				if 
 					(and
 						(global11 == 409)
-						(not (proc913_0 1))
+						(not proc913_0(1))
 						((aHole x:) > 250)
 					)
 					(self cue:)
@@ -333,7 +334,7 @@ class holeOnWall(Script):
 				if 
 					(and
 						(global11 == 409)
-						(not (proc913_0 1))
+						(not proc913_0(1))
 						((aHole x:) > 250)
 					)
 					(global105 number: 483 setLoop: 1 play:)
@@ -350,7 +351,7 @@ class holeOnWall(Script):
 				if 
 					(and
 						(global11 == 409)
-						(not (proc913_0 1))
+						(not proc913_0(1))
 						((aHole x:) > 250)
 					)
 					(global91 say: 19 25 55 2 self 400)
@@ -362,7 +363,7 @@ class holeOnWall(Script):
 				if 
 					(and
 						(global11 == 409)
-						(not (proc913_0 1))
+						(not proc913_0(1))
 						((aHole x:) > 250)
 					)
 					(global91 say: 19 25 55 3 self 400)
@@ -609,8 +610,8 @@ class getHole(Script):
 			case 8:
 				(global1 handsOn:)
 				(global0 setLoop: -1 get: 18)
-				((ScriptID 30 0) holeCoords: 0)
-				((ScriptID 30 0) holeWall: 0)
+				(kernel.ScriptID(30, 0) holeCoords: 0)
+				(kernel.ScriptID(30, 0) holeWall: 0)
 				(self dispose:)
 			#end:case
 		#end:match

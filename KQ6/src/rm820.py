@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 820
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import Print
@@ -56,7 +57,7 @@ class rm820(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 128 825 822)
+		proc958_0(128, 825, 822)
 		(global2
 			addObstacle:
 				((Polygon new:)
@@ -81,8 +82,8 @@ class rm820(CastleRoom):
 					yourself:
 				)
 		)
-		((ScriptID 1015 6) x: 19 y: 41)
-		((ScriptID 1015 7) x: 19 y: 77)
+		(kernel.ScriptID(1015, 6) x: 19 y: 41)
+		(kernel.ScriptID(1015, 7) x: 19 y: 77)
 		(global32 add: bed torch gargoyle eachElementDo: #init)
 		(super init: &rest)
 		(flame setCycle: Fwd init:)
@@ -98,31 +99,31 @@ class rm820(CastleRoom):
 			setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
 		)
 		((global0 scaler:) doit:)
-		if ((ScriptID 80 0) tstFlag: 709 8192):
-			if (global5 contains: (ScriptID 80 5)):
-				((ScriptID 81 0) resetGuard: (ScriptID 80 5) 1)
-				((ScriptID 80 5) dispose:)
+		if (kernel.ScriptID(80, 0) tstFlag: 709 8192):
+			if (global5 contains: kernel.ScriptID(80, 5)):
+				(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
+				(kernel.ScriptID(80, 5) dispose:)
 			#endif
-			if (global5 contains: (ScriptID 80 6)):
-				((ScriptID 81 0) resetGuard: (ScriptID 80 6) 2)
-				((ScriptID 80 6) dispose:)
+			if (global5 contains: kernel.ScriptID(80, 6)):
+				(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
+				(kernel.ScriptID(80, 6) dispose:)
 			#endif
-			((ScriptID 81 0) clrFlag: 709 1 2)
-			(self setScript: (ScriptID 821 0))
+			(kernel.ScriptID(81, 0) clrFlag: 709 1 2)
+			(self setScript: kernel.ScriptID(821, 0))
 			(global102 fadeTo: 824 -1)
 			local0 = 1
 		else:
 			(self setScript: enterDungeon)
 			if 
 				(and
-					(proc999_5 ((ScriptID 80 0) dungeonEntered:) 1 2)
-					(not ((ScriptID 80 0) tstFlag: 709 -32768))
+					proc999_5((kernel.ScriptID(80, 0) dungeonEntered:), 1, 2)
+					(not (kernel.ScriptID(80, 0) tstFlag: 709 -32768))
 				)
 				(global102 fadeTo: 820 -1)
 				if (not (global0 has: 17)):
 					(dungeonDoor approachX: 111)
 				#endif
-				(enterDungeon next: (ScriptID 822 0))
+				(enterDungeon next: kernel.ScriptID(822, 0))
 			else:
 				(global102 fadeTo: 824 -1)
 			#endif
@@ -137,8 +138,8 @@ class rm820(CastleRoom):
 		if 
 			(and
 				(param1 == 2)
-				(proc999_5 ((ScriptID 80 0) dungeonEntered:) 1 2)
-				(not ((ScriptID 80 0) tstFlag: 709 -32768))
+				proc999_5((kernel.ScriptID(80, 0) dungeonEntered:), 1, 2)
+				(not (kernel.ScriptID(80, 0) tstFlag: 709 -32768))
 			)
 			(global91 say: 3 2 20 1)
 		else:
@@ -153,8 +154,8 @@ class rm820(CastleRoom):
 
 		(global0 setPri: -1)
 		(super dispose: &rest)
-		(DisposeScript 991)
-		(DisposeScript 964)
+		kernel.DisposeScript(991)
+		kernel.DisposeScript(964)
 	#end:method
 
 #end:class or instance
@@ -189,29 +190,29 @@ class enterDungeon(Script):
 				(dungeonDoor setPri: -1 stopUpd:)
 				if 
 					(or
-						((ScriptID 81 0) tstFlag: 709 1)
-						((ScriptID 81 0) tstFlag: 709 2)
+						(kernel.ScriptID(81, 0) tstFlag: 709 1)
+						(kernel.ScriptID(81, 0) tstFlag: 709 2)
 					)
 					(global91 say: 1 0 7 1 self)
 				else:
 					cycles = 2
 				#endif
-				if (global5 contains: (ScriptID 80 5)):
-					((ScriptID 81 0) resetGuard: (ScriptID 80 5) 1)
-					((ScriptID 80 5) dispose:)
+				if (global5 contains: kernel.ScriptID(80, 5)):
+					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
+					(kernel.ScriptID(80, 5) dispose:)
 				#endif
-				if (global5 contains: (ScriptID 80 6)):
-					((ScriptID 81 0) resetGuard: (ScriptID 80 6) 2)
-					((ScriptID 80 6) dispose:)
+				if (global5 contains: kernel.ScriptID(80, 6)):
+					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
+					(kernel.ScriptID(80, 6) dispose:)
 				#endif
-				((ScriptID 81 0) clrFlag: 709 1 2)
+				(kernel.ScriptID(81, 0) clrFlag: 709 1 2)
 			#end:case
 			case 4:
 				if (not next):
 					(global1 handsOn:)
 				else:
 					next = 0
-					((ScriptID 822 1) init:)
+					(kernel.ScriptID(822, 1) init:)
 				#endif
 				(global0 reset: 0)
 				(self dispose:)
@@ -299,13 +300,13 @@ class antScript(Script):
 		match state = param1
 			case 0:
 				register = 0
-				(state += ((Random 0 1) * 3))
+				(state += (kernel.Random(0, 1) * 3))
 				(ant hide: setPri: 15 ignoreActors: setCycle: Walk)
-				seconds = (Random 7 25)
+				seconds = kernel.Random(7, 25)
 			#end:case
 			case 1:
 				(ant show:)
-				if register = (Random 0 1):
+				if register = kernel.Random(0, 1):
 					(ant
 						setLoop: 6
 						posn: 220 201 0
@@ -320,7 +321,7 @@ class antScript(Script):
 				#endif
 			#end:case
 			case 2:
-				seconds = (Random 1 10)
+				seconds = kernel.Random(1, 10)
 			#end:case
 			case 3:
 				state = -1
@@ -348,7 +349,7 @@ class antScript(Script):
 				)
 			#end:case
 			case 5:
-				seconds = (Random 2 10)
+				seconds = kernel.Random(2, 10)
 			#end:case
 			case 6:
 				state = -1
@@ -411,9 +412,9 @@ class noWayOut(Script):
 			case 7:
 				(global5 eachElementDo: #hide)
 				(global2 drawPic: 98 10)
-				(Message 1 @temp1)
-				(Display @temp1 100 30 11 106 260 102 16 105 global22 101 1)
-				(Display @temp1 100 29 10 106 260 102 47 105 global22 101 1)
+				kernel.Message(1, @temp1)
+				kernel.Display(@temp1, 100, 30, 11, 106, 260, 102, 16, 105, global22, 101, 1)
+				kernel.Display(@temp1, 100, 29, 10, 106, 260, 102, 47, 105, global22, 101, 1)
 				(global0
 					view: 8901
 					loop: 0
@@ -552,7 +553,7 @@ class unlockDoor(Script):
 				(global104 number: 821 loop: 1 play:)
 			#end:case
 			case 5:
-				((ScriptID 80 0) setFlag: 709 4096)
+				(kernel.ScriptID(80, 0) setFlag: 709 4096)
 				(global2 newRoom: 710)
 			#end:case
 		#end:match
@@ -617,7 +618,7 @@ class extraView(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		match ((ScriptID 80 0) dungeonEntered:)
+		match (kernel.ScriptID(80, 0) dungeonEntered:)
 			case 3:
 				(self cel: 1 x: 211 y: 125 noun: 8)
 			#end:case
@@ -724,8 +725,8 @@ class dungeonDoor(Prop):
 						case (not local0):
 							(global91 say: noun param1 14)
 						#end:case
-						case ((ScriptID 80 0) tstFlag: 709 8192):
-							((ScriptID 80 0) setFlag: 709 4096)
+						case (kernel.ScriptID(80, 0) tstFlag: 709 8192):
+							(kernel.ScriptID(80, 0) setFlag: 709 4096)
 							local0 = 0
 							(global2 setScript: unlockDoor)
 						#end:case
@@ -743,7 +744,7 @@ class dungeonDoor(Prop):
 						say:
 							noun
 							param1
-							(14 + ((ScriptID 80 0) tstFlag: 709 8192))
+							(14 + (kernel.ScriptID(80, 0) tstFlag: 709 8192))
 					)
 				#end:case
 				else:
@@ -752,7 +753,7 @@ class dungeonDoor(Prop):
 							say:
 								noun
 								0
-								(14 + ((ScriptID 80 0) tstFlag: 709 8192))
+								(14 + (kernel.ScriptID(80, 0) tstFlag: 709 8192))
 						)
 					else:
 						(super doVerb: param1)

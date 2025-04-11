@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 482
 import sci_sh
+import kernel
 import Main
 import PolyPath
 import Motion
@@ -29,7 +30,7 @@ def proc482_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: grabForHole)
 #end:procedure
 
@@ -46,7 +47,7 @@ def proc482_2():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: lookThruHole)
 #end:procedure
 
@@ -65,9 +66,9 @@ class getHole(Script):
 				seconds = 2
 			#end:case
 			case 1:
-				if (((ScriptID 480 1) x:) > 280):
+				if ((kernel.ScriptID(480, 1) x:) > 280):
 					(global105 number: 483 setLoop: 1 play:)
-					((ScriptID 480 1)
+					(kernel.ScriptID(480, 1)
 						setLoop: 5
 						setCycle: Walk
 						setMotion: MoveTo 263 47
@@ -84,7 +85,7 @@ class getHole(Script):
 					(self cue:)
 				else:
 					(global105 number: 483 setLoop: 1 play:)
-					((ScriptID 480 1)
+					(kernel.ScriptID(480, 1)
 						setLoop: 5
 						setCycle: Walk
 						setMotion: MoveTo 256 64 self
@@ -94,7 +95,7 @@ class getHole(Script):
 			case 4:
 				if (local0 == 1):
 					local0 = 0
-					((ScriptID 480 1)
+					(kernel.ScriptID(480, 1)
 						setLoop: 4
 						cel: 5
 						posn: 254 50
@@ -114,7 +115,7 @@ class getHole(Script):
 			case 5:
 				(global1 givePoints: 1)
 				(global105 stop:)
-				((ScriptID 480 1) dispose:)
+				(kernel.ScriptID(480, 1) dispose:)
 				(global0 get: 18 setCycle: End self)
 			#end:case
 			case 6:
@@ -134,11 +135,11 @@ class getHole(Script):
 				cycles = 2
 			#end:case
 			case 11:
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global69 enable: 6)
 				(global1 handsOn:)
 				(self dispose:)
-				(DisposeScript 482)
+				kernel.DisposeScript(482)
 			#end:case
 		#end:match
 	#end:method
@@ -168,7 +169,7 @@ class grabForHole(Script):
 				(global91 say: 21 5 8 2 self 480)
 			#end:case
 			case 4:
-				((ScriptID 480 1) hide:)
+				(kernel.ScriptID(480, 1) hide:)
 				(global105 number: 483 setLoop: 1 play:)
 				(global0
 					view: 482
@@ -182,7 +183,7 @@ class grabForHole(Script):
 				)
 			#end:case
 			case 5:
-				((ScriptID 480 1) posn: 238 70 show:)
+				(kernel.ScriptID(480, 1) posn: 238 70 show:)
 				(global0 posn: 294 81 reset: 7)
 				ticks = 6
 			#end:case
@@ -196,7 +197,7 @@ class grabForHole(Script):
 				(global0 setHeading: 135)
 				(global1 handsOn:)
 				(self dispose:)
-				(DisposeScript 482)
+				kernel.DisposeScript(482)
 			#end:case
 		#end:match
 	#end:method
@@ -214,7 +215,7 @@ class lookThruHole(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if ((ScriptID 40 0) holeLooks:):
+				if (kernel.ScriptID(40, 0) holeLooks:):
 					(self cue:)
 				else:
 					(global91 say: 21 1 5 1 self 480)
@@ -228,7 +229,7 @@ class lookThruHole(Script):
 				ticks = 6
 			#end:case
 			case 3:
-				if ((ScriptID 40 0) holeLooks:):
+				if (kernel.ScriptID(40, 0) holeLooks:):
 					(global91 say: 21 1 6 1 self 480)
 				else:
 					(self cue:)
@@ -240,7 +241,7 @@ class lookThruHole(Script):
 			#end:case
 			case 5:
 				(holeInset dispose:)
-				if ((ScriptID 40 0) holeLooks:):
+				if (kernel.ScriptID(40, 0) holeLooks:):
 					(global91 say: 21 1 6 2 self 480)
 				else:
 					(global91 say: 21 1 5 2 self 480)
@@ -253,34 +254,34 @@ class lookThruHole(Script):
 				)
 			#end:case
 			case 7:
-				if ((ScriptID 40 0) holeLooks:):
+				if (kernel.ScriptID(40, 0) holeLooks:):
 					(self cue:)
 				else:
 					(global105 number: 483 setLoop: 1 play:)
-					((ScriptID 480 1)
+					(kernel.ScriptID(480, 1)
 						setMotion:
 							MoveTo
-							(((ScriptID 480 1) x:) - 5)
-							((ScriptID 480 1) y:)
+							((kernel.ScriptID(480, 1) x:) - 5)
+							(kernel.ScriptID(480, 1) y:)
 							self
 					)
 				#endif
 			#end:case
 			case 8:
-				if ((ScriptID 40 0) holeLooks:):
+				if (kernel.ScriptID(40, 0) holeLooks:):
 					(self cue:)
 				else:
-					((ScriptID 480 1)
+					(kernel.ScriptID(480, 1)
 						setMotion:
 							MoveTo
-							(((ScriptID 480 1) x:) + 5)
-							((ScriptID 480 1) y:)
+							((kernel.ScriptID(480, 1) x:) + 5)
+							(kernel.ScriptID(480, 1) y:)
 							self
 					)
 				#endif
 			#end:case
 			case 9:
-				if ((ScriptID 40 0) holeLooks:):
+				if (kernel.ScriptID(40, 0) holeLooks:):
 					(self cue:)
 				else:
 					(global91 say: 21 1 5 3 self 480)
@@ -289,9 +290,9 @@ class lookThruHole(Script):
 			case 10:
 				(global1 handsOn:)
 				(global0 reset: 3)
-				((ScriptID 40 0) holeLooks: 1)
+				(kernel.ScriptID(40, 0) holeLooks: 1)
 				(self dispose:)
-				(DisposeScript 482)
+				kernel.DisposeScript(482)
 			#end:case
 		#end:match
 	#end:method

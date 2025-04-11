@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 992
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -34,7 +35,7 @@ class Cycle(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		(return
-			if ((Abs (global88 - cycleCnt)) < (client cycleSpeed:)):
+			if (kernel.Abs((global88 - cycleCnt)) < (client cycleSpeed:)):
 				(client cel:)
 			else:
 				cycleCnt = global88
@@ -52,7 +53,7 @@ class Cycle(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		(client cycler: 0)
-		if (completed and (IsObject caller)):
+		if (completed and kernel.IsObject(caller)):
 			(caller cue:)
 		#endif
 		(self dispose:)
@@ -190,7 +191,7 @@ class SyncWalk(Fwd):
 
 		if 
 			(and
-				(IsObject temp0 = (client mover:))
+				kernel.IsObject(temp0 = (client mover:))
 				(((client x:) != xLast) or ((client y:) != yLast))
 			)
 			xLast = (client x:)
@@ -250,10 +251,10 @@ class Motion(Obj):
 		if temp3 = (client cycler:):
 			(temp3 cycleCnt: b-moveCnt)
 		#endif
-		if (GetDistance temp2 = (client x:) temp3 = (client y:) x y):
-			(client setHeading: (GetAngle temp2 temp3 x y))
+		if kernel.GetDistance(temp2 = (client x:), temp3 = (client y:), x, y):
+			(client setHeading: kernel.GetAngle(temp2, temp3, x, y))
 		#endif
-		(InitBresen self)
+		kernel.InitBresen(self)
 	#end:method
 
 	@classmethod
@@ -280,9 +281,9 @@ class Motion(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((Abs (global88 - b-moveCnt)) >= (client moveSpeed:)):
+		if (kernel.Abs((global88 - b-moveCnt)) >= (client moveSpeed:)):
 			b-moveCnt = global88
-			(DoBresen self)
+			kernel.DoBresen(self)
 		#endif
 	#end:method
 
@@ -305,7 +306,7 @@ class Motion(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		(client mover: 0)
-		if (completed and (IsObject caller)):
+		if (completed and kernel.IsObject(caller)):
 			(caller cue:)
 		#endif
 		(self dispose:)
@@ -322,8 +323,8 @@ class MoveTo(Motion):
 
 		(return
 			(and
-				((Abs ((client x:) - x)) <= (client xStep:))
-				((Abs ((client y:) - y)) <= (client yStep:))
+				(kernel.Abs(((client x:) - x)) <= (client xStep:))
+				(kernel.Abs(((client y:) - y)) <= (client yStep:))
 			)
 		)
 	#end:method

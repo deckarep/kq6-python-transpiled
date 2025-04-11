@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 971
 import sci_sh
+import kernel
 import Motion
 
 class Follow(Motion):
@@ -69,14 +70,14 @@ class Follow(Motion):
 			yLast = (client y:)
 			if 
 				(!=
-					temp0 = (GetAngle xLast yLast (who x:) (who y:))
+					temp0 = kernel.GetAngle(xLast, yLast, (who x:), (who y:))
 					(client heading:)
 				)
 				(client heading: temp0)
 				if (client looper:):
 					((client looper:) doit: client temp0)
 				else:
-					(DirLoop client temp0)
+					kernel.DirLoop(client, temp0)
 				#endif
 			#endif
 		#endif

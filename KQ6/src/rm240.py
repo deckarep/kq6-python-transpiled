@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 240
 import sci_sh
+import kernel
 import Main
 import rgCrown
 import walkEgoInScr
@@ -62,8 +63,8 @@ class rm240(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 128 240 241)
-		(Load 143 picture)
+		proc958_0(128, 240, 241)
+		kernel.Load(143, picture)
 		(super init: &rest)
 		(global0
 			init:
@@ -81,12 +82,12 @@ class rm240(KQ6Room):
 		(doorBell2 init:)
 		(genericFeatures init:)
 		(randomVillagers init: setScript: villagersScr)
-		if ((ScriptID 10 0) isSet: 2):
-			((ScriptID 10 0) clrIt: 2)
+		if (kernel.ScriptID(10, 0) isSet: 2):
+			(kernel.ScriptID(10, 0) clrIt: 2)
 			(clown init:)
 		#endif
 		(cond
-			case (proc999_5 global12 280 270):
+			case proc999_5(global12, 280, 270):
 				if (global12 == 280):
 					(pshopDoor cel: 5)
 				else:
@@ -98,7 +99,7 @@ class rm240(KQ6Room):
 				(self setScript: enterFromVillage2Scr)
 			#end:case
 			else:
-				(proc12_1 191 185 -45)
+				proc12_1(191, 185, -45)
 			#end:else
 		)
 		(pshopDoor init:)
@@ -106,25 +107,25 @@ class rm240(KQ6Room):
 		(bush1 init:)
 		(bush2 init:)
 		if ((global1 _detailLevel:) >= 2):
-			(bush1 setScript: (Clone (ScriptID 13 0)))
-			(bush2 setScript: (ScriptID 13 0))
+			(bush1 setScript: kernel.Clone(kernel.ScriptID(13, 0)))
+			(bush2 setScript: kernel.ScriptID(13, 0))
 		#endif
-		if (not ((ScriptID 10 0) isSet: 512)):
+		if (not (kernel.ScriptID(10, 0) isSet: 512)):
 			(global102 number: 240 loop: -1 play:)
 		else:
-			((ScriptID 10 0) clrIt: 512)
+			(kernel.ScriptID(10, 0) clrIt: 512)
 		#endif
 		if 
 			(and
-				(not (proc999_5 global12 270 280))
+				(not proc999_5(global12, 270, 280))
 				(global0 has: 0)
-				(not (proc913_0 110))
+				(not proc913_0(110))
 			)
-			(proc913_1 110)
-			(proc10_2 dumpTrashScr)
+			proc913_1(110)
+			proc10_2(dumpTrashScr)
 		#endif
-		if ((proc999_5 global153 1 5) and (not (proc913_0 12))):
-			((ScriptID 241 0) init:)
+		if (proc999_5(global153, 1, 5) and (not proc913_0(12))):
+			(kernel.ScriptID(241, 0) init:)
 			(localproc_0 1)
 		else:
 			(localproc_0 0)
@@ -154,7 +155,7 @@ class rm240(KQ6Room):
 
 		if (param1 == 3):
 			(global102 fade: 0 10 10 0)
-			(proc12_0 param1 -45)
+			proc12_0(param1, -45)
 			return 0
 		else:
 			(super edgeToRoom: param1 &rest)
@@ -167,11 +168,11 @@ class rm240(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		if ((param1 == 210) and (global5 contains: clown)):
-			((ScriptID 10 0) setIt: 2)
+			(kernel.ScriptID(10, 0) setIt: 2)
 		#endif
-		if ((proc913_0 53) and (not (param1 == 270))):
-			(proc913_1 54)
-			(proc913_2 53)
+		if (proc913_0(53) and (not (param1 == 270))):
+			proc913_1(54)
+			proc913_2(53)
 		#endif
 		(super newRoom: param1 &rest)
 	#end:method
@@ -190,16 +191,16 @@ class rm240(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 global13 270 280):
+		if proc999_5(global13, 270, 280):
 			(global102 fade: 70 10 15 0)
 		#endif
-		(DisposeScript 11)
-		(DisposeScript 923)
-		(DisposeScript 927)
-		(DisposeScript 964)
-		(DisposeScript 930)
-		(DisposeScript 13)
-		(DisposeScript 241)
+		kernel.DisposeScript(11)
+		kernel.DisposeScript(923)
+		kernel.DisposeScript(927)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(930)
+		kernel.DisposeScript(13)
+		kernel.DisposeScript(241)
 		(super dispose:)
 	#end:method
 
@@ -419,7 +420,7 @@ class dumpTrashScr(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 110)
+				proc913_1(110)
 				seconds = 2
 			#end:case
 			case 1:
@@ -479,7 +480,7 @@ class searchUrnScr(Script):
 			#end:case
 			case 2:
 				(global104 number: 241 loop: -1 play:)
-				(global0 setCycle: (ScriptID 231 0) 3)
+				(global0 setCycle: kernel.ScriptID(231, 0) 3)
 				ticks = 120
 			#end:case
 			case 3:
@@ -489,13 +490,13 @@ class searchUrnScr(Script):
 						26
 						5
 						(cond
-							case ((proc913_0 110) and (not (proc913_0 111))):
+							case (proc913_0(110) and (not proc913_0(111))):
 								register = 1
 								(global0 get: 51)
-								(proc913_1 111)
+								proc913_1(111)
 								38
 							#end:case
-							case (proc913_0 110): 39#end:case
+							case proc913_0(110): 39#end:case
 							else: 37#end:else
 						)
 						0
@@ -531,7 +532,7 @@ class searchUrnScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DisposeScript 231)
+		kernel.DisposeScript(231)
 		(super dispose:)
 		register = 0
 	#end:method
@@ -550,13 +551,13 @@ class villagersScr(Script):
 			case 0:
 				(client hide:)
 				(= state
-					match (Random 0 2)
+					match kernel.Random(0, 2)
 						case 0: 0#end:case
 						case 1: 8#end:case
 						case 2: 17#end:case
 					#end:match
 				)
-				seconds = (Random 45 60)
+				seconds = kernel.Random(45, 60)
 			#end:case
 			case 1:
 				(client
@@ -601,25 +602,25 @@ class villagersScr(Script):
 			#end:case
 			case 10:
 				(client loop: 4 cel: 0)
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 11:
 				(client loop: 6 cel: 0 setCycle: End self)
 			#end:case
 			case 12:
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 13:
 				(client loop: 6 cel: 0 setCycle: Beg self)
 			#end:case
 			case 14:
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 15:
 				(client loop: 6 cel: 0 setCycle: End self)
 			#end:case
 			case 16:
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 17:
 				(client loop: 7 cel: 0 setCycle: End self)
@@ -636,19 +637,19 @@ class villagersScr(Script):
 			#end:case
 			case 19:
 				(client loop: 8 cel: 0)
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 20:
 				(client loop: 12 cel: 0 setCycle: End self)
 			#end:case
 			case 21:
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 22:
 				(client setCycle: Beg self)
 			#end:case
 			case 23:
-				ticks = (Random 45 120)
+				ticks = kernel.Random(45, 120)
 			#end:case
 			case 24:
 				(client loop: 10 cel: 0 setCycle: End self)
@@ -704,8 +705,8 @@ class lookAtProcScr(Script):
 			case 0:
 				(global1 handsOff:)
 				register = 0
-				if (not (proc913_1 71)):
-					if ((proc913_0 72) or (proc913_0 52)):
+				if (not proc913_1(71)):
+					if (proc913_0(72) or proc913_0(52)):
 						register = 30
 					else:
 						register = 31
@@ -877,7 +878,7 @@ class randomVillagers(Prop):
 			param1 = 5
 		#endif
 		if (param1 == 2):
-			(global91 say: noun param1 (Random 27 28))
+			(global91 say: noun param1 kernel.Random(27, 28))
 		else:
 			(super doVerb: param1 &rest)
 		#endif
@@ -967,7 +968,7 @@ class proclamation(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 1 5):
+		if proc999_5(param1, 1, 5):
 			(global2 setScript: lookAtProcScr)
 		else:
 			(super doVerb: param1 &rest)
@@ -993,7 +994,7 @@ class pot(Feature):
 
 		if 
 			(and
-				((OnControl 4 (param1 x:) (param1 y:)) == onMeCheck)
+				(kernel.OnControl(4, (param1 x:), (param1 y:)) == onMeCheck)
 				((param1 x:) < 235)
 			)
 			return 1
@@ -1042,7 +1043,7 @@ class genericFeatures(Feature):
 		y = (param1 y:)
 		(return
 			(= noun
-				match (OnControl 4 (param1 x:) (param1 y:))
+				match kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 2:
 						if ((param1 y:) < 100):
 							y = 154
@@ -1132,14 +1133,14 @@ class genericFeatures(Feature):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case ((param1 == 5) and (proc999_5 noun 11 26 24)):
+			case ((param1 == 5) and proc999_5(noun, 11, 26, 24)):
 				(global91 say: 24 param1)
 			#end:case
 			case 
 				(or
 					(and
 						(or
-							(proc999_5 param1 5 2)
+							proc999_5(param1, 5, 2)
 							((global66 doit: param1) == -32768)
 						)
 						(noun == 14)

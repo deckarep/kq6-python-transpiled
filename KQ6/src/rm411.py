@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 411
 import sci_sh
+import kernel
 import Main
 import rLab
 import n401
@@ -39,22 +40,22 @@ class rm411(LabRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init:)
-		if (proc913_0 1):
-			match ((ScriptID 30 0) prevEdgeHit:)
+		if proc913_0(1):
+			match (kernel.ScriptID(30, 0) prevEdgeHit:)
 				case 1:
-					(proc401_1)
+					proc401_1()
 				#end:case
 				case 3:
-					(proc401_0)
+					proc401_0()
 				#end:case
 				case 4:
-					(proc401_3)
+					proc401_3()
 				#end:case
 				case 2:
-					(proc401_2)
+					proc401_2()
 				#end:case
 			#end:match
-			(global2 setScript: (ScriptID 30 1))
+			(global2 setScript: kernel.ScriptID(30, 1))
 		else:
 			(global102 number: 409 setLoop: -1 play:)
 			(westHalfTrapFloor init: stopUpd:)
@@ -64,26 +65,26 @@ class rm411(LabRoom):
 			(northTrapLedge init: stopUpd:)
 			(global2 setScript: dieAlready)
 		#endif
-		match ((ScriptID 30 0) prevEdgeHit:)
+		match (kernel.ScriptID(30, 0) prevEdgeHit:)
 			case 1:
-				((ScriptID 30 0) initCrypt: 1)
+				(kernel.ScriptID(30, 0) initCrypt: 1)
 			#end:case
 			case 3:
-				((ScriptID 30 0) initCrypt: 4)
-				((ScriptID 30 7) addToPic:)
-				((ScriptID 30 8) addToPic:)
+				(kernel.ScriptID(30, 0) initCrypt: 4)
+				(kernel.ScriptID(30, 7) addToPic:)
+				(kernel.ScriptID(30, 8) addToPic:)
 			#end:case
 			case 4:
-				((ScriptID 30 0) initCrypt: 4)
-				((ScriptID 30 6) addToPic:)
-				((ScriptID 30 10) addToPic:)
-				((ScriptID 30 8) addToPic:)
+				(kernel.ScriptID(30, 0) initCrypt: 4)
+				(kernel.ScriptID(30, 6) addToPic:)
+				(kernel.ScriptID(30, 10) addToPic:)
+				(kernel.ScriptID(30, 8) addToPic:)
 			#end:case
 			case 2:
-				((ScriptID 30 0) initCrypt: 2)
-				((ScriptID 30 5) addToPic:)
-				((ScriptID 30 9) addToPic:)
-				((ScriptID 30 8) addToPic:)
+				(kernel.ScriptID(30, 0) initCrypt: 2)
+				(kernel.ScriptID(30, 5) addToPic:)
+				(kernel.ScriptID(30, 9) addToPic:)
+				(kernel.ScriptID(30, 8) addToPic:)
 			#end:case
 		#end:match
 	#end:method
@@ -102,7 +103,7 @@ class dieAlready(Script):
 			case 0:
 				(global1 handsOff:)
 				(global69 disable:)
-				match ((ScriptID 30 0) prevEdgeHit:)
+				match (kernel.ScriptID(30, 0) prevEdgeHit:)
 					case 4:
 						(global0 posn: 282 164 loop: 1 init:)
 					#end:case
@@ -122,8 +123,8 @@ class dieAlready(Script):
 				if 
 					(and
 						(global12 == 425)
-						(not (proc913_0 1))
-						(((ScriptID 30 0) timesGenieHasAppeared:) < 4)
+						(not proc913_0(1))
+						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) < 4)
 					)
 					(self cue:)
 				else:
@@ -131,7 +132,7 @@ class dieAlready(Script):
 				#endif
 			#end:case
 			case 2:
-				match ((ScriptID 30 0) prevEdgeHit:)
+				match (kernel.ScriptID(30, 0) prevEdgeHit:)
 					case 4:
 						(global0 setMotion: PolyPath 215 164 self)
 					#end:case
@@ -150,8 +151,8 @@ class dieAlready(Script):
 				if 
 					(and
 						(global12 == 425)
-						(not (proc913_0 1))
-						(((ScriptID 30 0) timesGenieHasAppeared:) < 4)
+						(not proc913_0(1))
+						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) < 4)
 					)
 					local0 = 1
 					(global91 say: 1 0 3 1 self 400)
@@ -160,7 +161,7 @@ class dieAlready(Script):
 				#endif
 			#end:case
 			case 4:
-				match ((ScriptID 30 0) prevEdgeHit:)
+				match (kernel.ScriptID(30, 0) prevEdgeHit:)
 					case 1:
 						temp0 = 3
 						temp1 = 0
@@ -197,7 +198,7 @@ class dieAlready(Script):
 			#end:case
 			case 6:
 				if local0:
-					(proc913_1 59)
+					proc913_1(59)
 					(global91 say: 1 0 3 2 self 400)
 				else:
 					(global91 say: 1 0 58 2 self 400)
@@ -207,9 +208,9 @@ class dieAlready(Script):
 				(global102 number: 432 setLoop: 1 play: self)
 			#end:case
 			case 8:
-				(proc913_2 59)
+				proc913_2(59)
 				(global102 number: 307 setLoop: 1 play:)
-				(ShakeScreen 2 2)
+				kernel.ShakeScreen(2, 2)
 				ticks = 4
 			#end:case
 			case 9:
@@ -218,7 +219,7 @@ class dieAlready(Script):
 				cycles = 4
 			#end:case
 			case 10:
-				(proc0_1 7)
+				proc0_1(7)
 			#end:case
 		#end:match
 	#end:method

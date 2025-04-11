@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 278
 import sci_sh
+import kernel
 import Main
 import Motion
 import System
@@ -26,26 +27,26 @@ class genieLookScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 271 0) setScript: 0)
-				if (((ScriptID 271 0) loop:) and (((ScriptID 271 0) cel:) > 3)):
-					state++
-					((ScriptID 271 0) setCycle: End self)
+				(kernel.ScriptID(271, 0) setScript: 0)
+				if ((kernel.ScriptID(271, 0) loop:) and ((kernel.ScriptID(271, 0) cel:) > 3)):
+					state.post('++')
+					(kernel.ScriptID(271, 0) setCycle: End self)
 				else:
-					((ScriptID 271 0) loop: 1 cel: 0)
+					(kernel.ScriptID(271, 0) loop: 1 cel: 0)
 					ticks = 10
 				#endif
 			#end:case
 			case 1:
-				((ScriptID 271 0) cel: 4 setCycle: End self)
+				(kernel.ScriptID(271, 0) cel: 4 setCycle: End self)
 			#end:case
 			case 2:
 				(client cue:)
 			#end:case
 			case 3:
-				((ScriptID 271 0) setCycle: Beg self)
+				(kernel.ScriptID(271, 0) setCycle: Beg self)
 			#end:case
 			case 4:
-				((ScriptID 271 0) setScript: (ScriptID 271 1))
+				(kernel.ScriptID(271, 0) setScript: kernel.ScriptID(271, 1))
 				if caller:
 					(caller cycles: 2)
 					caller = 0
@@ -67,31 +68,31 @@ class genieSpyScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 271 0)
+				(kernel.ScriptID(271, 0)
 					setScript: 0
 					setMotion:
 						MoveTo
-						(((ScriptID 271 0) x:) + 10)
-						((ScriptID 271 0) y:)
+						((kernel.ScriptID(271, 0) x:) + 10)
+						(kernel.ScriptID(271, 0) y:)
 						self
 				)
 			#end:case
 			case 1:
-				((ScriptID 271 0) loop: 1 cel: 0)
+				(kernel.ScriptID(271, 0) loop: 1 cel: 0)
 				start = 2
 				(self dispose:)
 			#end:case
 			case 2:
-				((ScriptID 271 0)
+				(kernel.ScriptID(271, 0)
 					setMotion:
 						MoveTo
-						(((ScriptID 271 0) x:) - 10)
-						((ScriptID 271 0) y:)
+						((kernel.ScriptID(271, 0) x:) - 10)
+						(kernel.ScriptID(271, 0) y:)
 						self
 				)
 			#end:case
 			case 3:
-				((ScriptID 271 0) loop: 1 cel: 0 setScript: (ScriptID 271 1))
+				(kernel.ScriptID(271, 0) loop: 1 cel: 0 setScript: kernel.ScriptID(271, 1))
 				start = 0
 				(self dispose:)
 			#end:case
@@ -105,7 +106,7 @@ class genieSpyScr(Script):
 
 		(super dispose:)
 		if (start == 0):
-			(DisposeScript 278)
+			kernel.DisposeScript(278)
 		#endif
 	#end:method
 
@@ -144,7 +145,7 @@ class giveMintScr(Script):
 				ticks = 15
 			#end:case
 			case 5:
-				((ScriptID 271 0)
+				(kernel.ScriptID(271, 0)
 					view: 2834
 					loop: 0
 					cel: 0
@@ -163,7 +164,7 @@ class giveMintScr(Script):
 			#end:case
 			case 9:
 				(global0 reset: 7)
-				((ScriptID 271 0)
+				(kernel.ScriptID(271, 0)
 					loop: 1
 					cel: 0
 					posn: 185 118
@@ -175,19 +176,19 @@ class giveMintScr(Script):
 				ticks = 15
 			#end:case
 			case 11:
-				((ScriptID 271 0) cel: 0 setCycle: End self)
+				(kernel.ScriptID(271, 0) cel: 0 setCycle: End self)
 			#end:case
 			case 12:
 				ticks = 15
 			#end:case
 			case 13:
-				((ScriptID 271 0) setCycle: Beg self)
+				(kernel.ScriptID(271, 0) setCycle: Beg self)
 			#end:case
 			case 14:
 				ticks = 15
 			#end:case
 			case 15:
-				((ScriptID 271 0) setCycle: Beg self)
+				(kernel.ScriptID(271, 0) setCycle: Beg self)
 			#end:case
 			case 16:
 				ticks = 45
@@ -196,7 +197,7 @@ class giveMintScr(Script):
 				(global91 say: 9 63 0 4 self 270)
 			#end:case
 			case 18:
-				((ScriptID 271 0) view: 275 loop: 1 cel: 0 posn: 179 117)
+				(kernel.ScriptID(271, 0) view: 275 loop: 1 cel: 0 posn: 179 117)
 				(script cue:)
 			#end:case
 			case 19:
@@ -212,7 +213,7 @@ class giveMintScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 278)
+		kernel.DisposeScript(278)
 	#end:method
 
 #end:class or instance
@@ -249,7 +250,7 @@ class offerItemScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 278)
+		kernel.DisposeScript(278)
 	#end:method
 
 #end:class or instance

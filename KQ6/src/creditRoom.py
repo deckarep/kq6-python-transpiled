@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 94
 import sci_sh
+import kernel
 import Main
 import rm100
 import KQ6Print
@@ -70,7 +71,7 @@ class creditsScript(Script):
 
 		match state = param1
 			case 0:
-				(DrawPic local276[local302] 9)
+				kernel.DrawPic(local276[local302], 9)
 				if (local276[local302] == 98):
 					cycles = 2
 				else:
@@ -93,118 +94,40 @@ class creditsScript(Script):
 			#end:case
 			case 3:
 				if local304:
-					(Message 0 94 1 0 0 local303 @local0)
-					(Message 0 94 1 0 0 local303++ @local50)
+					kernel.Message(0, 94, 1, 0, 0, local303, @local0)
+					kernel.Message(0, 94, 1, 0, 0, local303.post('++'), @local50)
 				else:
-					(Message 0 94 0 0 0 local303 @local0)
-					(Message 0 94 0 0 0 local303++ @local50)
+					kernel.Message(0, 94, 0, 0, 0, local303, @local0)
+					kernel.Message(0, 94, 0, 0, 0, local303.post('++'), @local50)
 				#endif
-				if (local303++ >= 32):
+				if (local303.post('++') >= 32):
 					local304 = 1
 					local303 = 1
 				#endif
 				match local250[local302]
 					case 1:
-						(Display @local0 102 0 100 64 11 106 200 105 3110 101 1)
-						(Display @local50 102 0 100 64 31 106 200 105 2207 101 1)
-						(Display @local0 102 7 100 63 10 106 200 105 3110 101 1)
-						(Display @local50 102 7 100 63 30 106 200 105 2207 101 1)
+						kernel.Display(@local0, 102, 0, 100, 64, 11, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 0, 100, 64, 31, 106, 200, 105, 2207, 101, 1)
+						kernel.Display(@local0, 102, 7, 100, 63, 10, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 7, 100, 63, 30, 106, 200, 105, 2207, 101, 1)
 					#end:case
 					case 2:
-						(Display @local0 102 0 100 194 11 106 200 105 3110 101 1)
-						(Display
-							@local50
-							102
-							0
-							100
-							194
-							31
-							106
-							200
-							105
-							2207
-							101
-							1
-						)
-						(Display @local0 102 7 100 194 10 106 200 105 3110 101 1)
-						(Display
-							@local50
-							102
-							7
-							100
-							194
-							30
-							106
-							200
-							105
-							2207
-							101
-							1
-						)
+						kernel.Display(@local0, 102, 0, 100, 194, 11, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 0, 100, 194, 31, 106, 200, 105, 2207, 101, 1)
+						kernel.Display(@local0, 102, 7, 100, 194, 10, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 7, 100, 194, 30, 106, 200, 105, 2207, 101, 1)
 					#end:case
 					case 3:
-						(Display @local0 102 0 100 136 88 106 200 105 3110 101 1)
-						(Display
-							@local50
-							102
-							0
-							100
-							136
-							118
-							106
-							200
-							105
-							2207
-							101
-							1
-						)
-						(Display @local0 102 7 100 135 87 106 200 105 3110 101 1)
-						(Display
-							@local50
-							102
-							7
-							100
-							135
-							117
-							106
-							200
-							105
-							2207
-							101
-							1
-						)
+						kernel.Display(@local0, 102, 0, 100, 136, 88, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 0, 100, 136, 118, 106, 200, 105, 2207, 101, 1)
+						kernel.Display(@local0, 102, 7, 100, 135, 87, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 7, 100, 135, 117, 106, 200, 105, 2207, 101, 1)
 					#end:case
 					case 4:
-						(Display @local0 102 0 100 11 98 106 200 105 3110 101 1)
-						(Display
-							@local50
-							102
-							0
-							100
-							11
-							128
-							106
-							200
-							105
-							2207
-							101
-							1
-						)
-						(Display @local0 102 7 100 10 97 106 200 105 3110 101 1)
-						(Display
-							@local50
-							102
-							7
-							100
-							10
-							127
-							106
-							200
-							105
-							2207
-							101
-							1
-						)
+						kernel.Display(@local0, 102, 0, 100, 11, 98, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 0, 100, 11, 128, 106, 200, 105, 2207, 101, 1)
+						kernel.Display(@local0, 102, 7, 100, 10, 97, 106, 200, 105, 3110, 101, 1)
+						kernel.Display(@local50, 102, 7, 100, 10, 127, 106, 200, 105, 2207, 101, 1)
 					#end:case
 				#end:match
 				if (not local305):
@@ -214,7 +137,7 @@ class creditsScript(Script):
 				#endif
 			#end:case
 			case 4:
-				if (local276[local302++] == -1):
+				if (local276[local302.post('++')] == -1):
 					local302 = 0
 					local303 = 1
 					local304 = 0

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 60
 import sci_sh
+import kernel
 import Main
 import n913
 import Game
@@ -25,7 +26,7 @@ class rMist(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		keep = (proc999_5 param1 550 560 570 580)
+		keep = proc999_5(param1, 550, 560, 570, 580)
 		initialized = 0
 		(super newRoom: param1 &rest)
 	#end:method
@@ -36,7 +37,7 @@ class rMist(Rgn):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		if (((global11 == 550) or (global11 == 560)) and (not (proc913_0 14))):
+		if (((global11 == 550) or (global11 == 560)) and (not proc913_0(14))):
 			if (not musicPlaying):
 				(global102 number: 551 loop: -1 play:)
 				musicPlaying = 1
@@ -54,7 +55,7 @@ class rMist(Rgn):
 		argc = sum(v is not None for v in locals().values())
 
 		(global102 stop:)
-		(proc913_1 25)
+		proc913_1(25)
 		(super dispose:)
 	#end:method
 
@@ -74,7 +75,7 @@ class hintDrums(Script):
 			#end:case
 			case 1:
 				(cond
-					case (proc913_0 74):
+					case proc913_0(74):
 						(self dispose:)
 					#end:case
 					case (global2 script:):

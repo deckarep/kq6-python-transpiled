@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 970
 import sci_sh
+import kernel
 import Motion
 
 class Wander(Motion):
@@ -31,8 +32,8 @@ class Wander(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		x = ((client x:) + (distance - (Random 0 temp0 = (distance * 2))))
-		y = ((client y:) + (distance - (Random 0 temp0)))
+		x = ((client x:) + (distance - kernel.Random(0, temp0 = (distance * 2))))
+		y = ((client y:) + (distance - kernel.Random(0, temp0)))
 	#end:method
 
 	@classmethod

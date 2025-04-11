@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 987
 import sci_sh
+import kernel
 import Main
 import Interface
 import Dialog
@@ -98,12 +99,12 @@ class Gauge(Dialog):
 			(cond
 				case (temp0 = (super doit: local4) == local1):
 					if (temp1 < maximum):
-						temp1++
+						temp1.post('++')
 					#endif
 				#end:case
 				case (temp0 == local2):
 					if (temp1 > minimum):
-						temp1--
+						temp1.post('--')
 					#endif
 				#end:case
 				case (temp0 == local4):
@@ -130,9 +131,9 @@ class Gauge(Dialog):
 		temp1 = (maximum - minimum)
 		temp0 = 0
 		while (temp0 < temp1): # inline for
-			(StrAt @local7 temp0 (6 if (temp0 < param1) else 7))
+			kernel.StrAt(@local7, temp0, (6 if (temp0 < param1) else 7))
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 

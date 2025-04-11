@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 430
 import sci_sh
+import kernel
 import Main
 import rLab
 import n401
@@ -28,17 +29,17 @@ class rm430(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc401_3)
+		proc401_3()
 		(super init: &rest)
 		(theCorpseNorth init: stopUpd:)
 		if (((global9 at: 7) owner:) == global11):
 			(theGlint init:)
 		#endif
-		(global2 setScript: (ScriptID 30 1))
-		((ScriptID 30 0) initCrypt: 4)
-		((ScriptID 30 6) addToPic:)
-		((ScriptID 30 10) addToPic:)
-		((ScriptID 30 8) addToPic:)
+		(global2 setScript: kernel.ScriptID(30, 1))
+		(kernel.ScriptID(30, 0) initCrypt: 4)
+		(kernel.ScriptID(30, 6) addToPic:)
+		(kernel.ScriptID(30, 10) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
 	#end:method
 
 	@classmethod
@@ -46,10 +47,10 @@ class rm430(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 30 6) addToPic:)
-		((ScriptID 30 10) addToPic:)
-		((ScriptID 30 8) addToPic:)
-		((ScriptID 30 3) show:)
+		(kernel.ScriptID(30, 6) addToPic:)
+		(kernel.ScriptID(30, 10) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
+		(kernel.ScriptID(30, 3) show:)
 	#end:method
 
 #end:class or instance
@@ -85,7 +86,7 @@ class theGlint(Prop):
 				(global0 setScript: getCoins)
 			#end:case
 			else:
-				((ScriptID 30 4) doVerb: param1 &rest)
+				(kernel.ScriptID(30, 4) doVerb: param1 &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -119,7 +120,7 @@ class theDeadMansCoin(Prop):
 				(global91 say: 13 1 0 0 0 400)
 			#end:case
 			else:
-				((ScriptID 30 4) doVerb: param1 &rest)
+				(kernel.ScriptID(30, 4) doVerb: param1 &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -166,14 +167,14 @@ class theCorpseNorth(View):
 				if (global5 contains: theDeadMansCoin):
 					(global0 setScript: getCoins)
 				else:
-					(global2 setScript: (ScriptID 30 11) 0 self)
+					(global2 setScript: kernel.ScriptID(30, 11) 0 self)
 				#endif
 			#end:case
 			else:
 				if (global5 contains: theDeadMansCoin):
 					(theDeadMansCoin doVerb: param1 &rest)
 				else:
-					((ScriptID 30 4) doVerb: param1 &rest)
+					(kernel.ScriptID(30, 4) doVerb: param1 &rest)
 				#endif
 			#end:else
 		#end:match

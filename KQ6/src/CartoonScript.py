@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 910
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -42,7 +43,7 @@ class CartoonScript(Script):
 		if global25:
 			(global80 canInput: 1)
 			if (countDown > 0):
-				countDown--
+				countDown.post('--')
 			#endif
 		#endif
 		(super doit:)

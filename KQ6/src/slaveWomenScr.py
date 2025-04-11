@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 223
 import sci_sh
+import kernel
 import Main
 import Scaler
 import Rev
@@ -162,7 +163,7 @@ class slaveWomenScr(Script):
 							(self if (temp0 == 3) else 0)
 					)
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 			#end:case
 			case 3:
@@ -174,14 +175,14 @@ class slaveWomenScr(Script):
 			#end:case
 			case 4:
 				if (global153 == 3):
-					((ScriptID 220 4)
+					(kernel.ScriptID(220, 4)
 						view: 725
 						setLoop: 1
 						setCycle: Rev
 						setMotion:
 							MoveTo
-							(((ScriptID 220 4) x:) + 10)
-							((ScriptID 220 4) y:)
+							((kernel.ScriptID(220, 4) x:) + 10)
+							(kernel.ScriptID(220, 4) y:)
 							self
 					)
 				else:
@@ -190,20 +191,20 @@ class slaveWomenScr(Script):
 			#end:case
 			case 5:
 				if (global153 == 3):
-					((ScriptID 220 4) setCycle: 0 setLoop: -1)
-					(self setScript: (ScriptID 220 1) self 1)
+					(kernel.ScriptID(220, 4) setCycle: 0 setLoop: -1)
+					(self setScript: kernel.ScriptID(220, 1) self 1)
 				else:
-					(self setScript: (ScriptID 220 7) self)
+					(self setScript: kernel.ScriptID(220, 7) self)
 				#endif
 			#end:case
 			case 6:
-				((ScriptID 220 3) setPri: 7)
-				((ScriptID 220 4) setPri: 4)
+				(kernel.ScriptID(220, 3) setPri: 7)
+				(kernel.ScriptID(220, 4) setPri: 4)
 				temp0 = 0
 				while (temp0 < 4): # inline for
 					(local0[temp0] setPri: 5)
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				(global91 say: 1 0 local4 (2 if (global153 == 3) else 3) self)
 			#end:case
@@ -211,7 +212,7 @@ class slaveWomenScr(Script):
 				(global91 say: 1 0 local4 (3 if (global153 == 3) else 4) self)
 			#end:case
 			case 8:
-				((ScriptID 220 4) stopUpd:)
+				(kernel.ScriptID(220, 4) stopUpd:)
 				(local0[0] setMotion: MoveTo 104 94 self)
 				(local0[1]
 					setMotion: MoveTo (local0[0] x:) (local0[0] y:) self
@@ -275,21 +276,21 @@ class slaveWomenScr(Script):
 			#end:case
 			case 20:
 				if (global153 == 3):
-					((ScriptID 220 4)
+					(kernel.ScriptID(220, 4)
 						setCycle: Walk
 						setMotion:
 							MoveTo
-							(((ScriptID 220 4) x:) - 10)
-							((ScriptID 220 4) y:)
+							((kernel.ScriptID(220, 4) x:) - 10)
+							(kernel.ScriptID(220, 4) y:)
 					)
 				#endif
-				((ScriptID 220 3) setPri: -1)
-				((ScriptID 220 4) setPri: -1)
+				(kernel.ScriptID(220, 3) setPri: -1)
+				(kernel.ScriptID(220, 4) setPri: -1)
 				(script cue:)
 			#end:case
 			case 21:
 				if (global153 == 3):
-					((ScriptID 220 4)
+					(kernel.ScriptID(220, 4)
 						view: 224
 						setLoop: -1
 						loop: 1
@@ -312,9 +313,9 @@ class slaveWomenScr(Script):
 				(global91 say: 1 0 local4 5 self)
 			#end:case
 			case 24:
-				((ScriptID 220 3) stopUpd:)
-				((ScriptID 220 4) stopUpd:)
-				((ScriptID 220 5) stopUpd:)
+				(kernel.ScriptID(220, 3) stopUpd:)
+				(kernel.ScriptID(220, 4) stopUpd:)
+				(kernel.ScriptID(220, 5) stopUpd:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -326,7 +327,7 @@ class slaveWomenScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 223)
+		kernel.DisposeScript(223)
 	#end:method
 
 #end:class or instance

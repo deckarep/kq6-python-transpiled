@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 732
 import sci_sh
+import kernel
 import Main
 import Conversation
 import Motion
@@ -25,12 +26,12 @@ class enterFromBasement(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(global1 handsOff:)
-		register = ((ScriptID 80 0) tstFlag: 709 2)
+		register = (kernel.ScriptID(80, 0) tstFlag: 709 2)
 		if (not register):
-			((ScriptID 1015 6) talkWidth: 150 x: 15 y: 20)
-			((ScriptID 1015 7) talkWidth: 135 x: 160 y: 20)
-			((ScriptID 80 5) loop: 3 cel: 0 posn: 151 154 init:)
-			((ScriptID 80 6) loop: 0 cel: 0 posn: 133 146 init:)
+			(kernel.ScriptID(1015, 6) talkWidth: 150 x: 15 y: 20)
+			(kernel.ScriptID(1015, 7) talkWidth: 135 x: 160 y: 20)
+			(kernel.ScriptID(80, 5) loop: 3 cel: 0 posn: 151 154 init:)
+			(kernel.ScriptID(80, 6) loop: 0 cel: 0 posn: 133 146 init:)
 			(global102 fadeTo: 700 -1)
 		else:
 			(global102 fade: 127 5 10 0)
@@ -44,7 +45,7 @@ class enterFromBasement(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 732)
+		kernel.DisposeScript(732)
 	#end:method
 
 	@classmethod
@@ -61,7 +62,7 @@ class enterFromBasement(Script):
 				if (not register):
 					state = 4
 				#endif
-				((ScriptID 730 2) setCycle: CT 3 1 self)
+				(kernel.ScriptID(730, 2) setCycle: CT 3 1 self)
 			#end:case
 			case 2:
 				(EgoHead init:)
@@ -75,18 +76,18 @@ class enterFromBasement(Script):
 				seconds = 2
 			#end:case
 			case 5:
-				((ScriptID 730 2) setCycle: End self)
+				(kernel.ScriptID(730, 2) setCycle: End self)
 			#end:case
 			case 6:
 				(global105 stop:)
 				(global0 setMotion: MoveTo 233 144 self)
 			#end:case
 			case 7:
-				((ScriptID 730 2) setCycle: Beg self)
+				(kernel.ScriptID(730, 2) setCycle: Beg self)
 			#end:case
 			case 8:
 				(global105 number: 902 loop: 1 play:)
-				((ScriptID 730 2) stopUpd:)
+				(kernel.ScriptID(730, 2) stopUpd:)
 				if (not register):
 					(self setScript: guardsCaptureEgo)
 				else:
@@ -131,14 +132,14 @@ class guardsCaptureEgo(Script):
 			#end:case
 			case 1:
 				(global2 moveOtherGuard: 1)
-				((ScriptID 80 5) setScript: (ScriptID 80 4) self 1)
+				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 2:
 				(global91 say: 1 0 7 4 self oneOnly: 0)
 			#end:case
 			case 3:
 				(global103 fade:)
-				((ScriptID 80 0) setFlag: 709 8192)
+				(kernel.ScriptID(80, 0) setFlag: 709 8192)
 				(global2 newRoom: 820)
 			#end:case
 		#end:match

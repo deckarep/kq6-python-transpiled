@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 946
 import sci_sh
+import kernel
 import System
 
 class Polygon(Obj):
@@ -20,8 +21,8 @@ class Polygon(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		size = (argc / 2)
-		points = (Memory 1 (2 * argc))
-		(StrCpy points @param1 (- (argc * 2)))
+		points = kernel.Memory(1, (2 * argc))
+		kernel.StrCpy(points, @param1, -(argc * 2))
 		dynamic = 1
 	#end:method
 
@@ -31,7 +32,7 @@ class Polygon(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if (dynamic and points):
-			(Memory 3 points)
+			kernel.Memory(3, points)
 		#endif
 		(super dispose:)
 	#end:method

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 280
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -99,7 +100,7 @@ class rm280(KQ6Room):
 		else:
 			(shopDoor init:)
 		#endif
-		if ((global12 == 145) and (proc913_0 41)):
+		if ((global12 == 145) and proc913_0(41)):
 			(global0 posn: 190 138)
 		else:
 			(global0 posn: 51 121)
@@ -119,42 +120,42 @@ class rm280(KQ6Room):
 		if (((global9 at: 14) owner:) == global11):
 			(smFlute init:)
 		#endif
-		if (and (proc913_0 29) (proc913_0 30) (not (global0 has: 0))):
+		if (and proc913_0(29) proc913_0(30) (not (global0 has: 0))):
 			(map init:)
 		#endif
 		(cond
-			case ((global12 == 145) and (proc913_0 41)):
+			case ((global12 == 145) and proc913_0(41)):
 				(global102 number: 240 loop: -1 play: 70)
 				(global1 handsOn:)
 			#end:case
 			case (global12 == 145):
-				(global2 setScript: (ScriptID 282 0))
+				(global2 setScript: kernel.ScriptID(282, 0))
 			#end:case
 			case 
 				(or
-					((proc913_0 17) and (not (global0 has: 0)))
+					(proc913_0(17) and (not (global0 has: 0)))
 					(and
-						(not (proc913_0 82))
-						(not (proc913_0 28))
-						(proc999_5 global153 4 5)
+						(not proc913_0(82))
+						(not proc913_0(28))
+						proc999_5(global153, 4, 5)
 					)
 					(and
-						(not (proc913_0 82))
+						(not proc913_0(82))
 						(global153 == 5)
-						(proc913_0 15)
-						(not (proc913_1 158))
+						proc913_0(15)
+						(not proc913_1(158))
 					)
 				):
-				if (and (not (proc913_0 158)) (global153 == 5) (proc913_0 15)):
-					(proc913_1 158)
+				if (and (not proc913_0(158)) (global153 == 5) proc913_0(15)):
+					proc913_1(158)
 				#endif
-				(proc913_1 28)
-				((ScriptID 281 0) init: 1)
+				proc913_1(28)
+				(kernel.ScriptID(281, 0) init: 1)
 				local66 = 1
 			#end:case
-			case ((not (proc913_0 28)) and (global153 == 3)):
-				(proc913_1 28)
-				((ScriptID 281 0) init: 0)
+			case ((not proc913_0(28)) and (global153 == 3)):
+				proc913_1(28)
+				(kernel.ScriptID(281, 0) init: 0)
 				local66 = 1
 			#end:case
 		)
@@ -178,10 +179,10 @@ class rm280(KQ6Room):
 
 		temp0 = 1
 		if (param1 == 87):
-			if (global5 contains: (ScriptID 281 0)):
-				(global2 setScript: (ScriptID 282 1))
+			if (global5 contains: kernel.ScriptID(281, 0)):
+				(global2 setScript: kernel.ScriptID(282, 1))
 			else:
-				(global2 setScript: (ScriptID 282 5))
+				(global2 setScript: kernel.ScriptID(282, 5))
 			#endif
 			temp0 = 0
 		#endif
@@ -195,16 +196,16 @@ class rm280(KQ6Room):
 
 		if (global13 == 240):
 			(global102 fade: 127 15 15 0)
-			((ScriptID 10 0) setIt: 512)
+			(kernel.ScriptID(10, 0) setIt: 512)
 		else:
 			(global102 fade:)
 		#endif
-		((ScriptID 281 0) dispose:)
-		(DisposeScript 969)
-		(DisposeScript 923)
-		(DisposeScript 283)
-		(DisposeScript 282)
-		(proc913_2 49)
+		(kernel.ScriptID(281, 0) dispose:)
+		kernel.DisposeScript(969)
+		kernel.DisposeScript(923)
+		kernel.DisposeScript(283)
+		kernel.DisposeScript(282)
+		proc913_2(49)
 		(super dispose:)
 	#end:method
 
@@ -288,7 +289,7 @@ class doorScr(Script):
 				cycles = 2
 			#end:case
 			case 5:
-				(UnLoad 132 902)
+				kernel.UnLoad(132, 902)
 			#end:case
 			case 6:
 				(self dispose:)
@@ -352,10 +353,10 @@ class shopOwnerScr(Script):
 					(global91 say: 1 0 (67 if (global153 > 1) else 66))
 				#endif
 				(client stopUpd:)
-				seconds = (Random 10 20)
+				seconds = kernel.Random(10, 20)
 			#end:case
 			case 3:
-				state = ((Random 4 5) - 1)
+				state = (kernel.Random(4, 5) - 1)
 				cycles = 1
 			#end:case
 			case 4:
@@ -405,14 +406,14 @@ class genericTalkScr(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 4 2 register 0 self)
 			#end:case
 			case 3:
 				(global0 reset: 0)
-				((ScriptID 280 2) setScript: (ScriptID 280 9))
+				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -450,19 +451,19 @@ class shopOwner(Actor):
 			case (param1 == 2):
 				(cond
 					case (global153 > 1):
-						(global2 setScript: (ScriptID 284 5))
+						(global2 setScript: kernel.ScriptID(284, 5))
 					#end:case
-					case (not (proc913_1 64)):
+					case (not proc913_1(64)):
 						(global2 setScript: genericTalkScr 0 61)
 					#end:case
-					case ((not (proc913_0 29)) and (not (proc913_1 30))):
+					case ((not proc913_0(29)) and (not proc913_1(30))):
 						(global2 setScript: genericTalkScr 0 11)
 					#end:case
-					case (not (proc913_0 29)):
+					case (not proc913_0(29)):
 						(global2 setScript: genericTalkScr 0 12)
 					#end:case
-					case (not (proc913_1 30)):
-						(global2 setScript: (ScriptID 284 0))
+					case (not proc913_1(30)):
+						(global2 setScript: kernel.ScriptID(284, 0))
 					#end:case
 					else:
 						(global2 setScript: genericTalkScr 0 14)
@@ -472,64 +473,64 @@ class shopOwner(Actor):
 			case (param1 == 70):
 				(cond
 					case ((global153 == 1) and (not (global5 contains: map))):
-						(global2 setScript: (ScriptID 284 1) self)
+						(global2 setScript: kernel.ScriptID(284, 1) self)
 					#end:case
 					case (global153 == 1):
-						(global2 setScript: (ScriptID 284 2))
+						(global2 setScript: kernel.ScriptID(284, 2))
 					#end:case
 					case ((global153 != 1) and (global0 has: 0)):
-						(global2 setScript: (ScriptID 284 3))
+						(global2 setScript: kernel.ScriptID(284, 3))
 					#end:case
 					else:
-						(global2 setScript: (ScriptID 284 4))
+						(global2 setScript: kernel.ScriptID(284, 4))
 					#end:else
 				)
 			#end:case
 			case (param1 == 40):
 				if (global5 contains: map):
-					(global2 setScript: (ScriptID 283 3))
+					(global2 setScript: kernel.ScriptID(283, 3))
 				else:
-					(global2 setScript: (ScriptID 283 1))
+					(global2 setScript: kernel.ScriptID(283, 1))
 				#endif
 			#end:case
-			case (proc999_5 param1 37 20 29 31):
-				(global2 setScript: (ScriptID 283 2) 0 param1)
+			case proc999_5(param1, 37, 20, 29, 31):
+				(global2 setScript: kernel.ScriptID(283, 2) 0 param1)
 			#end:case
 			case (param1 == 66):
 				if (global0 has: 0):
-					(global2 setScript: (ScriptID 285 0) 0 (proc913_0 36))
+					(global2 setScript: kernel.ScriptID(285, 0) 0 proc913_0(36))
 				else:
-					(global2 setScript: (ScriptID 285 1) 0 (proc913_0 36))
+					(global2 setScript: kernel.ScriptID(285, 1) 0 proc913_0(36))
 				#endif
-				(proc913_1 36)
+				proc913_1(36)
 			#end:case
 			case (param1 == 12):
-				(global2 setScript: (ScriptID 285 2))
+				(global2 setScript: kernel.ScriptID(285, 2))
 			#end:case
-			case (proc999_5 param1 13 42 27 28 39 45 7 83):
-				if (proc999_5 param1 27 28):
+			case proc999_5(param1, 13, 42, 27, 28, 39, 45, 7, 83):
+				if proc999_5(param1, 27, 28):
 					param1 = 42
 				#endif
-				(global2 setScript: (ScriptID 286 5) 0 param1)
+				(global2 setScript: kernel.ScriptID(286, 5) 0 param1)
 			#end:case
 			case 
 				(or
-					(proc999_5 param1 8 30 47 48 52 68 38 16)
-					(proc999_5 param1 85 17 35 51 32)
+					proc999_5(param1, 8, 30, 47, 48, 52, 68, 38, 16)
+					proc999_5(param1, 85, 17, 35, 51, 32)
 					(and
-						(proc999_5 param1 92 43 57 58 59 60 96 56)
+						proc999_5(param1, 92, 43, 57, 58, 59, 60, 96, 56)
 						param1 = 92
 					)
 				):
 				if (param1 == 17):
 					param1 = 48
 				#endif
-				(global2 setScript: (ScriptID 286 4) 0 param1)
+				(global2 setScript: kernel.ScriptID(286, 4) 0 param1)
 			#end:case
 			case 
 				(or
-					(proc999_5 param1 5 1 49 15 18 50 54)
-					(proc999_5 param1 63 65 33 69 25 94 34 24)
+					proc999_5(param1, 5, 1, 49, 15, 18, 50, 54)
+					proc999_5(param1, 63, 65, 33, 69, 25, 94, 34, 24)
 				):
 				if (param1 == 50):
 					param1 = 49
@@ -540,7 +541,7 @@ class shopOwner(Actor):
 				(super doVerb: param1)
 			#end:case
 			else:
-				(global2 setScript: (ScriptID 286 4))
+				(global2 setScript: kernel.ScriptID(286, 4))
 			#end:else
 		)
 	#end:method
@@ -570,8 +571,8 @@ class SmallItem(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 1):
-			(global2 setScript: (ScriptID 283 4))
+		if proc999_5(param1, 5, 1):
+			(global2 setScript: kernel.ScriptID(283, 4))
 		else:
 			(super doVerb: param1 &rest)
 		#endif
@@ -678,7 +679,7 @@ class takeMintScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not (proc913_1 90)):
+				if (not proc913_1(90)):
 					(global1 givePoints: 1)
 				#endif
 				(global0
@@ -699,7 +700,7 @@ class takeMintScr(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(UnLoad 128 2813)
+				kernel.UnLoad(128, 2813)
 				(global91 say: 7 5 34 1 self)
 			#end:case
 			case 4:
@@ -825,7 +826,7 @@ class northShelf(Feature):
 						say:
 							noun
 							param1
-							match local1++
+							match local1.post('++')
 								case 0: 0#end:case
 								case 1: 50#end:case
 								case 2: 51#end:case
@@ -908,7 +909,7 @@ class eastShelf(Feature):
 						say:
 							noun
 							param1
-							match local2++
+							match local2.post('++')
 								case 0: 50#end:case
 								case 1: 51#end:case
 								case 2: 52#end:case
@@ -966,7 +967,7 @@ class genericFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		(self x: (param1 x:) y: (param1 y:))
 		local3 = 0
 		(= noun

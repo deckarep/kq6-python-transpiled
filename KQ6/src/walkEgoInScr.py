@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 12
 import sci_sh
+import kernel
 import Main
 import PolyPath
 import System
@@ -59,7 +60,7 @@ def proc12_1(param1 = None, param2 = None, param3 = None):
 		local1 = param2
 		(global2 setScript: walkEgoInScr)
 	else:
-		(DisposeScript 12)
+		kernel.DisposeScript(12)
 	#endif
 #end:procedure
 
@@ -104,12 +105,12 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = temp2 = (Memory 5 param1)
-	temp1 = (Memory 5 param2)
-	temp0 = ((CosMult param3 temp0) - (SinMult param3 temp1))
-	temp1 = ((SinMult param3 temp2) + (CosMult param3 temp1))
-	(Memory 6 param1 temp0)
-	(Memory 6 param2 temp1)
+	temp0 = temp2 = kernel.Memory(5, param1)
+	temp1 = kernel.Memory(5, param2)
+	temp0 = (kernel.CosMult(param3, temp0) - kernel.SinMult(param3, temp1))
+	temp1 = (kernel.SinMult(param3, temp2) + kernel.CosMult(param3, temp1))
+	kernel.Memory(6, param1, temp0)
+	kernel.Memory(6, param2, temp1)
 #end:procedure
 
 @SCI.procedure
@@ -118,7 +119,7 @@ def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	temp3 = 0
-	if (IsObject param2):
+	if kernel.IsObject(param2):
 		temp1 = (param2 x:)
 		temp2 = (param2 y:)
 		if (argc == 3):
@@ -131,9 +132,9 @@ def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None):
 			temp3 = param4
 		#endif
 	#endif
-	temp0 = (GetAngle (param1 x:) (param1 y:) temp1 temp2)
-	(param1 setHeading: temp0 ((IsObject temp3) and temp3))
-	(DisposeScript 12)
+	temp0 = kernel.GetAngle((param1 x:), (param1 y:), temp1, temp2)
+	(param1 setHeading: temp0 (kernel.IsObject(temp3) and temp3))
+	kernel.DisposeScript(12)
 #end:procedure
 
 @SCI.instance
@@ -149,13 +150,13 @@ class walkEgoInScr(Script):
 				(global0 reset: setMotion: PolyPath local0 local1 self)
 			#end:case
 			case 1:
-				((ScriptID 10 0) setIt: 4096)
+				(kernel.ScriptID(10, 0) setIt: 4096)
 				if (not script):
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				((ScriptID 10 0) clrIt: 4096)
+				(kernel.ScriptID(10, 0) clrIt: 4096)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -169,7 +170,7 @@ class walkEgoInScr(Script):
 
 		(super dispose:)
 		register = 0
-		(DisposeScript 12)
+		kernel.DisposeScript(12)
 	#end:method
 
 #end:class or instance
@@ -202,7 +203,7 @@ class walkEgoOutScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 12)
+		kernel.DisposeScript(12)
 	#end:method
 
 #end:class or instance

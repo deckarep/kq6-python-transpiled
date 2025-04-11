@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 781
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import KQ6Print
@@ -45,7 +46,7 @@ class rm781(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 128 787 785 786 724 726)
+		proc958_0(128, 787, 785, 786, 724, 726)
 		(global0 init: setPri: 13 setScale: Scaler 118 70 190 140)
 		(self
 			addObstacle:
@@ -214,8 +215,8 @@ class hallDoorEntrance(Script):
 			case 2:
 				(global105 number: 902 loop: 1 play:)
 				(door stopUpd:)
-				if ((ScriptID 80 0) tstFlag: 709 1):
-					((ScriptID 80 0) clrFlag: 709 1)
+				if (kernel.ScriptID(80, 0) tstFlag: 709 1):
+					(kernel.ScriptID(80, 0) clrFlag: 709 1)
 					cycles = 10
 				else:
 					(global1 handsOn:)
@@ -243,8 +244,8 @@ class openTrunk(Script):
 				(global1 handsOff:)
 				if 
 					(and
-						(not ((ScriptID 80 0) tstFlag: 711 4096))
-						(proc999_5 register 64 35)
+						(not (kernel.ScriptID(80, 0) tstFlag: 711 4096))
+						proc999_5(register, 64, 35)
 					)
 					(global1 givePoints: 1)
 				#endif
@@ -262,15 +263,15 @@ class openTrunk(Script):
 				)
 			#end:case
 			case 1:
-				if ((ScriptID 80 0) tstFlag: 711 4096):
-					if (proc999_5 register 64 35):
+				if (kernel.ScriptID(80, 0) tstFlag: 711 4096):
+					if proc999_5(register, 64, 35):
 						state = 4
 						(global91 say: 4 35 14 0 self)
 					else:
 						(global91 say: 4 5 14 0 self)
 					#endif
 				else:
-					if (not (proc999_5 register 64 35)):
+					if (not proc999_5(register, 64, 35)):
 						state = 4
 					else:
 						(global105 number: 781 loop: 1 play:)
@@ -279,7 +280,7 @@ class openTrunk(Script):
 				#endif
 			#end:case
 			case 2:
-				((ScriptID 80 0) setFlag: 711 4096)
+				(kernel.ScriptID(80, 0) setFlag: 711 4096)
 				(trunkLid hide:)
 				(global105 number: 904 loop: 1 play:)
 				(global0 cel: 4 setCycle: End self)
@@ -425,7 +426,7 @@ class they_reBack(Script):
 				(global91 say: 1 0 3 1 self)
 			#end:case
 			case 1:
-				(proc913_4 global0 door self)
+				proc913_4(global0, door, self)
 			#end:case
 			case 2:
 				(global105 number: 901 loop: 1 play:)
@@ -441,9 +442,9 @@ class they_reBack(Script):
 			#end:case
 			case 5:
 				(global105 stop:)
-				((ScriptID 80 5) init: posn: 307 158 loop: 1)
-				((ScriptID 80 0) setupGuards:)
-				((ScriptID 80 5) setMotion: MoveTo 283 158 self)
+				(kernel.ScriptID(80, 5) init: posn: 307 158 loop: 1)
+				(kernel.ScriptID(80, 0) setupGuards:)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 283 158 self)
 			#end:case
 			case 6:
 				(global102 number: 710 loop: -1 play:)
@@ -451,7 +452,7 @@ class they_reBack(Script):
 			#end:case
 			case 7:
 				(global102 fade:)
-				((ScriptID 80 0) setFlag: 709 8192)
+				(kernel.ScriptID(80, 0) setFlag: 709 8192)
 				(global2 newRoom: 820)
 			#end:case
 		#end:match
@@ -565,9 +566,9 @@ class door(Prop):
 			case 1:
 				if local0:
 					(global91 say: noun param1 12)
-					(global2 setScript: (ScriptID 82) 0 hallScr)
+					(global2 setScript: kernel.ScriptID(82) 0 hallScr)
 				else:
-					local0++
+					local0.post('++')
 					(_approachVerbs |= (global66 doit: 1))
 					(global91 say: noun param1 11)
 				#endif
@@ -584,7 +585,7 @@ class door(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(global105 stop:)
-		(proc80_2 2)
+		proc80_2(2)
 	#end:method
 
 #end:class or instance
@@ -597,9 +598,9 @@ class hallScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if register = (not ((ScriptID 80 0) tstFlag: 709 128)):
+		if register = (not (kernel.ScriptID(80, 0) tstFlag: 709 128)):
 			(tempGuard1
-				view: ((ScriptID 80 6) view:)
+				view: (kernel.ScriptID(80, 6) view:)
 				posn: 192 126
 				setSpeed: (3 if (global87 < 2) else 5)
 				init:
@@ -612,7 +613,7 @@ class hallScr(Script):
 		#endif
 		(super init: &rest)
 		(client caller: self)
-		((ScriptID 82 1) noun: 26 actions: keyHoleDoVerb init: 786 0 0 91 59)
+		(kernel.ScriptID(82, 1) noun: 26 actions: keyHoleDoVerb init: 786 0 0 91 59)
 	#end:method
 
 	@classmethod
@@ -651,7 +652,7 @@ class hallScr(Script):
 						(tempGuard1 setMotion: MoveTo 192 126 self)
 						(tempGuard2 setMotion: MoveTo 200 128)
 					else:
-						((ScriptID 80 0) setFlag: 711 128)
+						(kernel.ScriptID(80, 0) setFlag: 711 128)
 						(tempGuard1 setMotion: MoveTo 128 126 self)
 						(tempGuard2 setMotion: MoveTo 120 128)
 					#endif
@@ -669,7 +670,7 @@ class hallScr(Script):
 				#endif
 			#end:case
 			case 2:
-				((ScriptID 80 0) clrFlag: 711 128)
+				(kernel.ScriptID(80, 0) clrFlag: 711 128)
 				(self changeState: 0)
 			#end:case
 		#end:match
@@ -688,7 +689,7 @@ class keyHoleDoVerb(Actions):
 		temp0 = 1
 		match param1
 			case 1:
-				if ((ScriptID 80 0) tstFlag: 709 128):
+				if (kernel.ScriptID(80, 0) tstFlag: 709 128):
 					(global91 say: 26 1 8)
 				else:
 					(global91 say: 26 1 9)
@@ -1027,7 +1028,7 @@ class trunk(Feature):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 5 35 64):
+			case proc999_5(param1, 5, 35, 64):
 				(global2 setScript: openTrunk 0 param1)
 			#end:case
 			case ((global66 doit: param1) == -32768):
@@ -1036,7 +1037,7 @@ class trunk(Feature):
 						(super doVerb: param1)
 					#end:case
 					else:
-						if ((ScriptID 80 0) tstFlag: 711 4096):
+						if (kernel.ScriptID(80, 0) tstFlag: 711 4096):
 							(global91 say: noun 0 14)
 						else:
 							(global91 say: noun 0 13)
@@ -1125,8 +1126,8 @@ class chestInset(Inset):
 
 		(global69 disable: 6)
 		(global0 setPri: 0 stopUpd:)
-		x = (160 - ((CelWide view loop cel) / 2))
-		y = (90 - ((CelHigh view loop cel) / 2))
+		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
+		y = (90 - (kernel.CelHigh(view, loop, cel) / 2))
 		(super init: &rest)
 		(papers_ChestInset init: self)
 		(books_ChestInset init: self)
@@ -1163,8 +1164,8 @@ class ebonyBoxInset(Inset):
 
 		(global69 disable: 6)
 		(global0 stopUpd:)
-		x = (160 - ((CelWide view loop cel) / 2))
-		y = (90 - ((CelHigh view loop cel) / 2))
+		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
+		y = (90 - (kernel.CelHigh(view, loop, cel) / 2))
 		(super init: &rest)
 		(global105 number: 904 play:)
 		(paper_BoxInset init: self)
@@ -1242,8 +1243,8 @@ class letterInset(Inset):
 		argc = sum(v is not None for v in locals().values())
 
 		(global69 disable: 6)
-		x = (160 - ((CelWide view loop cel) / 2))
-		y = (100 - ((CelHigh view loop cel) / 2))
+		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
+		y = (100 - (kernel.CelHigh(view, loop, cel) / 2))
 		(super init: &rest)
 	#end:method
 
@@ -1470,10 +1471,10 @@ class paper_BoxInset(InsetView):
 		argc = sum(v is not None for v in locals().values())
 
 		if (param1 == 1):
-			if (not ((ScriptID 80 0) tstFlag: 709 64)):
+			if (not (kernel.ScriptID(80, 0) tstFlag: 709 64)):
 				(global1 givePoints: 1)
 			#endif
-			((ScriptID 80 0) setFlag: 709 64)
+			(kernel.ScriptID(80, 0) setFlag: 709 64)
 			(KQ6Print posn: -1 10 say: 1 noun param1 0 1 init:)
 		else:
 			(super doVerb: param1 &rest)
@@ -1540,8 +1541,8 @@ class lid_BoxInset(InsetView):
 				(self startUpd:)
 				cel = 0
 				(global105 number: 905 play:)
-				(Animate (global5 elements:) 0)
-				(Animate (global5 elements:) 0)
+				kernel.Animate((global5 elements:), 0)
+				kernel.Animate((global5 elements:), 0)
 				(ebonyBoxInset dispose:)
 			#end:case
 			else:

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 907
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import Kq6Window
@@ -47,20 +48,12 @@ class Kq6InvItem(InvI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawCel
-			view
-			loop
-			cel
-			nsLeft
-			nsTop
-			-1
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1, 0, if 
+			(and global169 kernel.Platform(6) (not kernel.Platform(5)))
+			(global9 empty:)
+		else:
 			0
-			if (and global169 (Platform 6) (not (Platform 5))):
-				(global9 empty:)
-			else:
-				0
-			#endif
-		)
+		#endif)
 	#end:method
 
 	@classmethod
@@ -78,7 +71,7 @@ class Kq6InvItem(InvI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((not global169) or (Platform 5)):
+		if ((not global169) or kernel.Platform(5)):
 			(super highlight: &rest)
 		#endif
 	#end:method
@@ -92,8 +85,8 @@ class Kq6InvItem(InvI):
 			return 0
 		#endif
 		(= temp0
-			if (global169 and (Platform 6)):
-				(not (Platform 5))
+			if (global169 and kernel.Platform(6)):
+				(not kernel.Platform(5))
 			else:
 				0
 			#endif
@@ -147,7 +140,7 @@ class Kq6InvItem(InvI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 28 13 12):
+		if proc999_5(param1, 28, 13, 12):
 			(global91 say: 0 param1 0 0 0 modNum)
 		else:
 			if hideInv:
@@ -160,8 +153,8 @@ class Kq6InvItem(InvI):
 				case 
 					(and
 						global90
-						(Message 0 modNum noun param1 0 1)
-						((global91 findTalker: (Message 1 0)) != -1)
+						kernel.Message(0, modNum, noun, param1, 0, 1)
+						((global91 findTalker: kernel.Message(1, 0)) != -1)
 					):
 					if hideInv:
 						(global91 say: noun param1 0 0 self modNum)
@@ -174,7 +167,7 @@ class Kq6InvItem(InvI):
 						(global9 curIcon:)
 						((global9 curIcon:) != self)
 						((global9 curIcon:) isKindOf: InvI)
-						temp0 = (Message 0 modNum noun param1 0 1)
+						temp0 = kernel.Message(0, modNum, noun, param1, 0, 1)
 						((global91 findTalker: temp0) != -1)
 					):
 					((global9 curIcon:) doVerb: message)
@@ -209,7 +202,7 @@ class Kq6InvItem(InvI):
 				temp0 = 53
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		(global9 hide:)
 		if temp1:
@@ -267,12 +260,12 @@ class pageCode(Code):
 		while (temp0 < 52): # inline for
 			if ((temp1 = (global9 at: temp0) owner:) == local1):
 				(temp1 realOwner: (temp1 owner:) owner: 0)
-				if (local0++ < 13):
+				if (local0.post('++') < 13):
 					(temp1 owner: local1)
 				#endif
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		if local0:
 			(global9 addAfter: invTalk invMore)
@@ -383,7 +376,7 @@ class KqInv(Inv):
 			window = 0
 		#endif
 		if (not okButton):
-			okButton = (NodeValue (self first:))
+			okButton = kernel.NodeValue((self first:))
 		#endif
 		if (not (state & 0x2000)):
 			curIcon = 0
@@ -405,13 +398,13 @@ class KqInv(Inv):
 			(global8 pause: 0)
 			(state &= 0xffdf)
 		#endif
-		if (and global169 (Platform 6) (not (Platform 5)) empty):
-			(Graph 8 empty)
+		if (and global169 kernel.Platform(6) (not kernel.Platform(5)) empty):
+			kernel.Graph(8, empty)
 		#endif
 		if window:
 			(window dispose:)
 		#endif
-		if ((IsObject curIcon) and (curIcon isKindOf: InvI)):
+		if (kernel.IsObject(curIcon) and (curIcon isKindOf: InvI)):
 			if (not (global69 curInvIcon:)):
 				(global69 enable: (global69 useIconItem:))
 			#endif
@@ -431,7 +424,7 @@ class KqInv(Inv):
 				(global1 setCursor: temp2)
 			#endif
 		else:
-			if (IsObject temp3 = (global69 curInvIcon:)):
+			if kernel.IsObject(temp3 = (global69 curInvIcon:)):
 				(genericCursor
 					view: (temp3 cursorView:)
 					loop: (temp3 cursorLoop:)
@@ -454,7 +447,7 @@ class KqInv(Inv):
 					(temp1 realOwner: 0)
 				#endif
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 			(self delete: invMore invPrevious)
 		#endif
@@ -466,14 +459,14 @@ class KqInv(Inv):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not ((param1 signal:) & 0x0004)):
-			if (IsObject highlightedIcon):
+			if kernel.IsObject(highlightedIcon):
 				(highlightedIcon highlight: 0)
 			#endif
 			(highlightedIcon = param1 highlight: 1)
 		#endif
 		(= temp1
-			if (global169 and (Platform 6)):
-				(not (Platform 5))
+			if (global169 and kernel.Platform(6)):
+				(not kernel.Platform(5))
 			else:
 				0
 			#endif
@@ -537,15 +530,15 @@ class KqInv(Inv):
 
 		temp0 = temp1 = temp2 = temp3 = temp4 = temp5 = 0
 		(= temp72
-			if (global169 and (Platform 6)):
-				(not (Platform 5))
+			if (global169 and kernel.Platform(6)):
+				(not kernel.Platform(5))
 			else:
 				0
 			#endif
 		)
 		temp8 = (self first:)
 		while temp8: # inline for
-			if (temp9 = (NodeValue temp8) isKindOf: InvI):
+			if (temp9 = kernel.NodeValue(temp8) isKindOf: InvI):
 				if (temp9 ownedBy: param1):
 					if temp72:
 						(temp9 view: 972)
@@ -553,9 +546,9 @@ class KqInv(Inv):
 						(temp9 view: 970)
 					#endif
 					(temp9 signal: ((temp9 signal:) & 0xfffb))
-					temp0++
-					temp6 = (CelWide (temp9 view:) (temp9 loop:) (temp9 cel:))
-					temp7 = (CelHigh (temp9 view:) (temp9 loop:) (temp9 cel:))
+					temp0.post('++')
+					temp6 = kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:))
+					temp7 = kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
 					if (temp6 > temp2):
 						temp2 = temp6
 					#endif
@@ -571,12 +564,12 @@ class KqInv(Inv):
 				else:
 					(temp9 view: 901)
 				#endif
-				temp3++
-				(temp5 += (CelWide (temp9 view:) (temp9 loop:) (temp9 cel:)))
+				temp3.post('++')
+				(temp5 += kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:)))
 				if 
 					(>
 						(= temp7
-							(CelHigh (temp9 view:) (temp9 loop:) (temp9 cel:))
+							kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
 						)
 						temp4
 					)
@@ -596,7 +589,7 @@ class KqInv(Inv):
 		#endif
 		if temp72:
 			if ((local2 = (temp5 / temp2) * temp2) > temp5):
-				local2--
+				local2.post('--')
 			#endif
 			(cond
 				case (temp0 <= local2):
@@ -604,23 +597,23 @@ class KqInv(Inv):
 					local2 = temp0
 				#end:case
 				case ((local2 * temp16 = (temp0 / local2)) < temp0):
-					temp16++
+					temp16.post('++')
 				#end:case
 			)
-			(/= temp2 2)
-			(/= temp1 2)
-			temp10 = (4 + (/= temp5 2))
+			(temp2 /= 2)
+			(temp1 /= 2)
+			temp10 = (4 + (temp5 /= 2))
 		else:
-			if ((temp16 = (Sqrt temp0) * temp16) > temp0):
-				temp16--
+			if ((temp16 = kernel.Sqrt(temp0) * temp16) > temp0):
+				temp16.post('--')
 			#endif
 			if (temp16 > 3):
 				temp16 = 3
 			#endif
 			if ((temp16 * local2 = (temp0 / temp16)) < temp0):
-				local2++
+				local2.post('++')
 			#endif
-			temp10 = (proc999_3 (4 + temp5) (local2 * (4 + temp2)))
+			temp10 = proc999_3((4 + temp5), (local2 * (4 + temp2)))
 		#endif
 		temp12 = ((190 - temp11 = ((temp16 * temp1) + 4)) / 2)
 		temp13 = ((320 - temp10) / 2)
@@ -630,22 +623,19 @@ class KqInv(Inv):
 			(temp21 top: temp12 left: temp13 right: temp15 bottom: temp14 open:)
 			if temp72:
 				(= empty
-					(Graph
-						15
-						((temp21 top:) + 10)
-						(temp21 left:)
-						((temp21 bottom:) + 10)
-						(temp21 right:)
-					)
+					kernel.Graph(15, ((temp21 top:) + 10), (temp21 left:), (+
+						(temp21 bottom:)
+						10
+					), (temp21 right:))
 				)
 			else:
 				empty = 0
 			#endif
 		#endif
 		if temp72:
-			(*= temp2 2)
-			(*= temp1 2)
-			(*= temp5 2)
+			(temp2 *= 2)
+			(temp1 *= 2)
+			(temp5 *= 2)
 		#endif
 		temp20 = local2
 		if temp0:
@@ -675,7 +665,7 @@ class KqInv(Inv):
 			while temp8: # inline for
 				if 
 					(and
-						(not ((temp9 = (NodeValue temp8) signal:) & 0x0004))
+						(not ((temp9 = kernel.NodeValue(temp8) signal:) & 0x0004))
 						(temp9 isKindOf: InvI)
 					)
 					if (not ((temp9 signal:) & 0x0080)):
@@ -687,11 +677,9 @@ class KqInv(Inv):
 										(-
 											temp2
 											(= temp6
-												(CelWide
-													(temp9 view:)
-													(temp9 loop:)
-													(temp9 cel:)
-												)
+												kernel.CelWide((temp9 view:), (temp9
+													loop:
+												), (temp9 cel:))
 											)
 										)
 										2
@@ -704,11 +692,9 @@ class KqInv(Inv):
 										(-
 											temp1
 											(= temp7
-												(CelHigh
-													(temp9 view:)
-													(temp9 loop:)
-													(temp9 cel:)
-												)
+												kernel.CelHigh((temp9 view:), (temp9
+													loop:
+												), (temp9 cel:))
 											)
 										)
 										2
@@ -719,7 +705,7 @@ class KqInv(Inv):
 							nsRight: ((temp9 nsLeft:) + temp6)
 							nsBottom: ((temp9 nsTop:) + temp7)
 						)
-						if temp20--:
+						if temp20.post('--'):
 							(temp17 += temp2)
 						else:
 							temp20 = local2
@@ -749,10 +735,10 @@ class KqInv(Inv):
 		temp18 = 32767
 		temp8 = (self first:)
 		while temp8: # inline for
-			if (not (temp9 = (NodeValue temp8) isKindOf: InvI)):
+			if (not (temp9 = kernel.NodeValue(temp8) isKindOf: InvI)):
 				(temp9 nsTop: 0)
-				temp6 = (CelWide (temp9 view:) (temp9 loop:) (temp9 cel:))
-				temp7 = (CelHigh (temp9 view:) (temp9 loop:) (temp9 cel:))
+				temp6 = kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:))
+				temp7 = kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
 				if (not ((temp9 signal:) & 0x0080)):
 					if (temp18 == 32767):
 						temp18 = (temp11 - temp7)
@@ -787,7 +773,7 @@ class invWin(Kq6Window):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(top -= temp0 = ((CelHigh 901 3 0) / 2))
+		(top -= temp0 = (kernel.CelHigh(901, 3, 0) / 2))
 		(bottom += temp0)
 		(super open: &rest)
 	#end:method
@@ -887,7 +873,7 @@ class brush(Kq6InvItem):
 
 		loop = 3
 		cel = 13
-		state++
+		state.post('++')
 	#end:method
 
 #end:class or instance
@@ -932,7 +918,7 @@ class clothes(Kq6InvItem):
 
 		match param1
 			case 1:
-				if ((not (global0 has: 4)) and (not (proc913_0 93))):
+				if ((not (global0 has: 4)) and (not proc913_0(93))):
 					(KQ6Print
 						font: global22
 						say: 0 noun param1 0 0 0 0 modNum
@@ -952,15 +938,15 @@ class clothes(Kq6InvItem):
 			case 5:
 				if 
 					(or
-						(proc913_0 143)
+						proc913_0(143)
 						(global0 has: 4)
 						(global0 has: 16)
-						(proc913_0 93)
+						proc913_0(93)
 					)
 					(global91 say: noun param1 34 0 0 modNum)
 				else:
 					(global9 hide:)
-					(proc913_1 143)
+					proc913_1(143)
 					(global0 get: 4)
 					(global1 givePoints: 1)
 					(KQ6Print
@@ -1477,7 +1463,7 @@ class huntersLamp(Kq6InvItem):
 			#end:case
 			case 28:
 				(cond
-					case (not (proc913_0 77)):
+					case (not proc913_0(77)):
 						(global91 say: noun param1 15 0 0 modNum)
 					#end:case
 					case (global161 == 15):
@@ -1510,16 +1496,16 @@ class huntersLamp(Kq6InvItem):
 			#end:case
 			case 24:
 				(cond
-					case (not (proc913_0 77)):
+					case (not proc913_0(77)):
 						(global91 say: noun param1 15 0 0 modNum)
 					#end:case
-					case ((proc913_0 77) and (global161 == 1)):
+					case (proc913_0(77) and (global161 == 1)):
 						(global91 say: noun param1 18 0 0 modNum)
 					#end:case
-					case ((proc913_0 77) and (global161 == 5)):
+					case (proc913_0(77) and (global161 == 5)):
 						(global91 say: noun param1 19 0 0 modNum)
 					#end:case
-					case ((proc913_0 77) and (global161 == 0)):
+					case (proc913_0(77) and (global161 == 0)):
 						(global9 hide:)
 						(global0 put: 40)
 						(global1 givePoints: 1)
@@ -1534,7 +1520,7 @@ class huntersLamp(Kq6InvItem):
 						(global69 disable: 4)
 						(pageCode init: local1)
 					#end:case
-					case ((proc913_0 77) and (global161 == 4)):
+					case (proc913_0(77) and (global161 == 4)):
 						(global9 hide:)
 						(global0 put: 40)
 						(global1 givePoints: 1)
@@ -1611,8 +1597,8 @@ class lettuce(Kq6InvItem):
 					(genericCursor view: 990 loop: cursorLoop cel: cursorCel)
 					(global1 setCursor: genericCursor)
 				#endif
-				((ScriptID 0 7) setReal: (global9 at: 21) 30 2)
-				state++
+				(kernel.ScriptID(0, 7) setReal: (global9 at: 21) 30 2)
+				state.post('++')
 			#end:case
 			case 1:
 				noun = 22
@@ -1626,11 +1612,11 @@ class lettuce(Kq6InvItem):
 					(genericCursor view: 990 loop: cursorLoop cel: cursorCel)
 					(global1 setCursor: genericCursor)
 				#endif
-				((ScriptID 0 7) setReal: (global9 at: 21) 30 2)
-				state++
+				(kernel.ScriptID(0, 7) setReal: (global9 at: 21) 30 2)
+				state.post('++')
 			#end:case
 			case 2:
-				((ScriptID 0 7) dispose:)
+				(kernel.ScriptID(0, 7) dispose:)
 				noun = 20
 				message = 52
 				(self setCursor: 990 1 cel = 4)
@@ -1657,7 +1643,7 @@ class map(Kq6InvItem):
 		argc = sum(v is not None for v in locals().values())
 
 		if (param1 == 5):
-			if (proc999_5 global11 200 300 260 500 550 450):
+			if proc999_5(global11, 200, 300, 260, 500, 550, 450):
 				(global9 hide:)
 				(self cue:)
 			else:
@@ -1742,7 +1728,7 @@ class newLamp(Kq6InvItem):
 			#end:case
 			case 24:
 				(self hideInv: 0)
-				if (proc913_0 77):
+				if proc913_0(77):
 					(global91 say: noun param1 21 0 0 modNum)
 				else:
 					(global91 say: 57 param1 15 0 0 modNum)
@@ -1804,29 +1790,23 @@ class participle(Kq6InvItem):
 
 		(super doVerb: param1 &rest)
 		temp2 = (view == 972)
-		if (not (proc999_5 param1 1 94 28 13 12)):
+		if (not proc999_5(param1, 1, 94, 28, 13, 12)):
 			if (global90 == 1):
 				temp0 = 0
 				while (temp0 < 20): # inline for
 					temp1 = 0
 					while (temp1 < 7000): # inline for
 					#end:loop
-					(DrawCel
-						view
-						5
-						(Random 0 ((14 if (not temp2) else 9) - 1))
-						nsLeft
-						nsTop
-						15
+					kernel.DrawCel(view, 5, kernel.Random(0, (-
+						(14 if (not temp2) else 9)
+						1
+					)), nsLeft, nsTop, 15, 0, if temp2:
+						(global9 empty:)
+					else:
 						0
-						if temp2:
-							(global9 empty:)
-						else:
-							0
-						#endif
-					)
+					#endif)
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 			else:
 				temp0 = 0
@@ -1834,42 +1814,27 @@ class participle(Kq6InvItem):
 					temp1 = 0
 					while (temp1 < 7000): # inline for
 					#end:loop
-					(DrawCel
-						view
-						5
-						(Random 0 ((14 if (not temp2) else 9) - 1))
-						nsLeft
-						nsTop
-						15
+					kernel.DrawCel(view, 5, kernel.Random(0, (-
+						(14 if (not temp2) else 9)
+						1
+					)), nsLeft, nsTop, 15, 0, if temp2:
+						(global9 empty:)
+					else:
 						0
-						if temp2:
-							(global9 empty:)
-						else:
-							0
-						#endif
-					)
-					if ((DoAudio 6) == -1):
+					#endif)
+					if (kernel.DoAudio(6) == -1):
 						(break)
 					#endif
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 			#endif
 		#endif
-		(DrawCel
-			view
-			5
+		kernel.DrawCel(view, 5, 0, nsLeft, nsTop, 15, 0, if temp2:
+			(global9 empty:)
+		else:
 			0
-			nsLeft
-			nsTop
-			15
-			0
-			if temp2:
-				(global9 empty:)
-			else:
-				0
-			#endif
-		)
+		#endif)
 	#end:method
 
 #end:class or instance
@@ -1961,7 +1926,7 @@ class ribbon(Kq6InvItem):
 
 		match param1
 			case 1:
-				if (or (global0 has: 4) (global0 has: 16) (proc913_0 112)):
+				if (or (global0 has: 4) (global0 has: 16) proc913_0(112)):
 					(global91 say: noun param1 0 0 0 modNum)
 				else:
 					(KQ6Print
@@ -1981,15 +1946,15 @@ class ribbon(Kq6InvItem):
 			case 5:
 				if 
 					(or
-						(proc913_0 143)
+						proc913_0(143)
 						(global0 has: 4)
 						(global0 has: 16)
-						(proc913_0 112)
+						proc913_0(112)
 					)
 					(global91 say: noun param1 34 0 0 modNum)
 				else:
 					(global9 hide:)
-					(proc913_1 143)
+					proc913_1(143)
 					(global0 get: 16)
 					(global1 givePoints: 1)
 					(KQ6Print
@@ -2052,12 +2017,12 @@ class ring(Kq6InvItem):
 			(and
 				((global0 view:) == 900)
 				(User canControl:)
-				(not (proc999_5 global11 580 390 320 300 270 490))
+				(not proc999_5(global11, 580, 390, 320, 300, 270, 490))
 				(not (global2 script:))
 			)
-			(global2 setScript: (ScriptID 84 0))
+			(global2 setScript: kernel.ScriptID(84, 0))
 		else:
-			((ScriptID 0 5) setReal: self 10 0 0)
+			(kernel.ScriptID(0, 5) setReal: self 10 0 0)
 		#endif
 	#end:method
 
@@ -2103,7 +2068,7 @@ class sacredWater(Kq6InvItem):
 			case (param1 == 43):
 				(huntersLamp doVerb: message)
 			#end:case
-			case (proc999_5 57 58 59 60 96 56):
+			case proc999_5(57, 58, 59, 60, 96, 56):
 				(newLamp doVerb: message)
 			#end:case
 			else:
@@ -2220,7 +2185,7 @@ class teaCup(Kq6InvItem):
 					init:
 				)
 				(cond
-					case (proc913_0 23):
+					case proc913_0(23):
 						(KQ6Print
 							font: global22
 							say: 0 noun param1 32 0 0 0 modNum
@@ -2228,7 +2193,7 @@ class teaCup(Kq6InvItem):
 							init:
 						)
 					#end:case
-					case (proc913_0 22):
+					case proc913_0(22):
 						(KQ6Print
 							font: global22
 							say: 0 noun param1 31 0 0 0 modNum
@@ -2238,9 +2203,9 @@ class teaCup(Kq6InvItem):
 					#end:case
 					case 
 						(and
-							(not (proc913_0 68))
-							(not (proc913_0 58))
-							(not (proc913_0 22))
+							(not proc913_0(68))
+							(not proc913_0(58))
+							(not proc913_0(22))
 						):
 						(KQ6Print
 							font: global22
@@ -2251,9 +2216,9 @@ class teaCup(Kq6InvItem):
 					#end:case
 					case 
 						(and
-							(proc913_0 68)
-							(not (proc913_0 58))
-							(not (proc913_0 22))
+							proc913_0(68)
+							(not proc913_0(58))
+							(not proc913_0(22))
 						):
 						(KQ6Print
 							font: global22
@@ -2263,7 +2228,7 @@ class teaCup(Kq6InvItem):
 						)
 					#end:case
 					case 
-						(and (proc913_0 68) (proc913_0 58) (not (proc913_0 22))):
+						(and proc913_0(68) proc913_0(58) (not proc913_0(22))):
 						(KQ6Print
 							font: global22
 							say: 0 noun param1 30 0 0 0 modNum
@@ -2273,9 +2238,9 @@ class teaCup(Kq6InvItem):
 					#end:case
 					case 
 						(and
-							(not (proc913_0 68))
-							(proc913_0 58)
-							(not (proc913_0 22))
+							(not proc913_0(68))
+							proc913_0(58)
+							(not proc913_0(22))
 						):
 						(KQ6Print
 							font: global22
@@ -2288,33 +2253,33 @@ class teaCup(Kq6InvItem):
 			#end:case
 			case 28:
 				(cond
-					case (proc913_0 23):
+					case proc913_0(23):
 						(global91 say: noun param1 32 0 0 modNum)
 					#end:case
-					case (proc913_0 22):
+					case proc913_0(22):
 						(global91 say: noun param1 31 0 0 modNum)
 					#end:case
 					case 
 						(or
 							(and
-								(not (proc913_0 68))
-								(not (proc913_0 58))
-								(not (proc913_0 22))
+								(not proc913_0(68))
+								(not proc913_0(58))
+								(not proc913_0(22))
 							)
 							(and
-								(proc913_0 68)
-								(not (proc913_0 58))
-								(not (proc913_0 22))
+								proc913_0(68)
+								(not proc913_0(58))
+								(not proc913_0(22))
 							)
 							(and
-								(proc913_0 68)
-								(proc913_0 58)
-								(not (proc913_0 22))
+								proc913_0(68)
+								proc913_0(58)
+								(not proc913_0(22))
 							)
 							(and
-								(not (proc913_0 68))
-								(proc913_0 58)
-								(not (proc913_0 22))
+								(not proc913_0(68))
+								proc913_0(58)
+								(not proc913_0(22))
 							)
 						):
 						(global91 say: noun param1 28 0 0 modNum)
@@ -2323,36 +2288,36 @@ class teaCup(Kq6InvItem):
 			#end:case
 			case 29:
 				(cond
-					case (proc913_0 23):
+					case proc913_0(23):
 						(global91 say: noun param1 32 0 0 modNum)
 					#end:case
-					case (proc913_0 22):
+					case proc913_0(22):
 						(global91 say: noun param1 31 0 0 modNum)
 					#end:case
 					case 
 						(and
-							(not (proc913_0 68))
-							(not (proc913_0 58))
-							(not (proc913_0 22))
+							(not proc913_0(68))
+							(not proc913_0(58))
+							(not proc913_0(22))
 						):
 						(global91 say: noun param1 27 0 0 modNum)
 					#end:case
 					case 
 						(or
 							(and
-								(proc913_0 68)
-								(not (proc913_0 58))
-								(not (proc913_0 22))
+								proc913_0(68)
+								(not proc913_0(58))
+								(not proc913_0(22))
 							)
 							(and
-								(proc913_0 68)
-								(proc913_0 58)
-								(not (proc913_0 22))
+								proc913_0(68)
+								proc913_0(58)
+								(not proc913_0(22))
 							)
 							(and
-								(not (proc913_0 68))
-								(proc913_0 58)
-								(not (proc913_0 22))
+								(not proc913_0(68))
+								proc913_0(58)
+								(not proc913_0(22))
 							)
 						):
 						(global91 say: noun param1 28 0 0 modNum)
@@ -2363,29 +2328,29 @@ class teaCup(Kq6InvItem):
 				(cond
 					case 
 						(and
-							(not (proc913_0 68))
-							(not (proc913_0 58))
-							(not (proc913_0 22))
+							(not proc913_0(68))
+							(not proc913_0(58))
+							(not proc913_0(22))
 						):
 						(global91 say: noun param1 27 0 0 modNum)
 					#end:case
 					case 
 						(or
 							(and
-								(proc913_0 68)
-								(not (proc913_0 58))
-								(not (proc913_0 22))
+								proc913_0(68)
+								(not proc913_0(58))
+								(not proc913_0(22))
 							)
 							(and
-								(not (proc913_0 68))
-								(proc913_0 58)
-								(not (proc913_0 22))
+								(not proc913_0(68))
+								proc913_0(58)
+								(not proc913_0(22))
 							)
 						):
 						(global91 say: noun param1 28 0 0 modNum)
 					#end:case
 					case 
-						(and (proc913_0 68) (proc913_0 58) (not (proc913_0 22))):
+						(and proc913_0(68) proc913_0(58) (not proc913_0(22))):
 						if 
 							(and
 								((global0 view:) == 900)
@@ -2457,36 +2422,30 @@ class tomato(Kq6InvItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc999_5 param1 1 34)):
+		if (not proc999_5(param1, 1, 34)):
 			temp2 = (view == 972)
 			if (param1 == 2):
-				(global91 say: noun param1 (Random 45 48) 0 0 907)
+				(global91 say: noun param1 kernel.Random(45, 48) 0 0 907)
 			else:
 				(super doVerb: param1 &rest)
 			#endif
-			if (not (proc999_5 param1 28 13 12)):
+			if (not proc999_5(param1, 28, 13, 12)):
 				if (global90 == 1):
 					temp0 = 0
 					while (temp0 < 25): # inline for
 						temp1 = 0
 						while (temp1 < 7000): # inline for
 						#end:loop
-						(DrawCel
-							view
-							4
-							(Random 0 ((14 if (not temp2) else 9) - 1))
-							nsLeft
-							nsTop
-							15
+						kernel.DrawCel(view, 4, kernel.Random(0, (-
+							(14 if (not temp2) else 9)
+							1
+						)), nsLeft, nsTop, 15, 0, if temp2:
+							(global9 empty:)
+						else:
 							0
-							if temp2:
-								(global9 empty:)
-							else:
-								0
-							#endif
-						)
+						#endif)
 						# for:reinit
-						temp0++
+						temp0.post('++')
 					#end:loop
 				else:
 					temp0 = 0
@@ -2494,45 +2453,30 @@ class tomato(Kq6InvItem):
 						temp1 = 0
 						while (temp1 < 7000): # inline for
 						#end:loop
-						(DrawCel
-							view
-							4
-							(Random 0 ((14 if (not temp2) else 9) - 1))
-							nsLeft
-							nsTop
-							15
+						kernel.DrawCel(view, 4, kernel.Random(0, (-
+							(14 if (not temp2) else 9)
+							1
+						)), nsLeft, nsTop, 15, 0, if temp2:
+							(global9 empty:)
+						else:
 							0
-							if temp2:
-								(global9 empty:)
-							else:
-								0
-							#endif
-						)
-						if ((DoAudio 6) == -1):
+						#endif)
+						if (kernel.DoAudio(6) == -1):
 							(break)
 						#endif
 						# for:reinit
-						temp0++
+						temp0.post('++')
 					#end:loop
 				#endif
 			#endif
 		else:
 			(super doVerb: param1 &rest)
 		#endif
-		(DrawCel
-			view
-			4
+		kernel.DrawCel(view, 4, 0, nsLeft, nsTop, 15, 0, if temp2:
+			(global9 empty:)
+		else:
 			0
-			nsLeft
-			nsTop
-			15
-			0
-			if temp2:
-				(global9 empty:)
-			else:
-				0
-			#endif
-		)
+		#endif)
 	#end:method
 
 #end:class or instance
@@ -2562,8 +2506,8 @@ class ink(Kq6InvItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 1 5):
-			if (proc913_0 116):
+		if proc999_5(param1, 1, 5):
+			if proc913_0(116):
 				(global91 say: noun param1 50 0 0 907)
 			else:
 				(global91 say: noun param1 0 0 0 907)
@@ -2584,26 +2528,18 @@ class InvIconItem(IconI):
 
 		(signal |= 0x0020)
 		if argc:
-			nsRight = (nsLeft = param1 + (CelWide view loop cel))
-			nsBottom = (nsTop = param2 + (CelHigh view loop cel))
+			nsRight = (nsLeft = param1 + kernel.CelWide(view, loop, cel))
+			nsBottom = (nsTop = param2 + kernel.CelHigh(view, loop, cel))
 		else:
-			nsRight = (nsLeft + (CelWide view loop cel))
-			nsBottom = (nsTop + (CelHigh view loop cel))
+			nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
+			nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 		#endif
-		(DrawCel
-			view
-			loop
-			cel
-			nsLeft
-			nsTop
-			-1
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1, 0, if 
+			(and global169 kernel.Platform(6) (not kernel.Platform(5)))
+			(global9 empty:)
+		else:
 			0
-			if (and global169 (Platform 6) (not (Platform 5))):
-				(global9 empty:)
-			else:
-				0
-			#endif
-		)
+		#endif)
 		if (global77 and (global77 respondsTo: #stop)):
 			(global77 stop:)
 		#endif
@@ -2614,7 +2550,7 @@ class InvIconItem(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (and global169 (Platform 6) (not (Platform 5)) (global9 empty:)):
+		if (and global169 kernel.Platform(6) (not kernel.Platform(5)) (global9 empty:)):
 			temp3 = (global9 empty:)
 		else:
 			temp3 = 0
@@ -2623,55 +2559,29 @@ class InvIconItem(IconI):
 			(cond
 				case (signal & 0x0004): 0#end:case
 				case (and argc param1 (signal & 0x0001)):
-					(DrawCel view loop temp1 = 1 nsLeft nsTop -1 0 temp3)
-					(Graph 12 nsTop nsLeft nsBottom nsRight 1 temp3)
+					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
+					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					while ((temp0 = (Event new:) type:) != 2):
 
 						(temp0 localize:)
 						(cond
 							case (self onMe: temp0):
 								if (not temp1):
-									(DrawCel
-										view
-										loop
-										temp1 = 1
-										nsLeft
-										nsTop
-										-1
-										0
-										temp3
-									)
-									(Graph
-										12
-										nsTop
-										nsLeft
-										nsBottom
-										nsRight
-										1
-										temp3
-									)
+									kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
+									kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 								#endif
 							#end:case
 							case temp1:
-								(DrawCel
-									view
-									loop
-									temp1 = 0
-									nsLeft
-									nsTop
-									-1
-									0
-									temp3
-								)
-								(Graph 12 nsTop nsLeft nsBottom nsRight 1 temp3)
+								kernel.DrawCel(view, loop, temp1 = 0, nsLeft, nsTop, -1, 0, temp3)
+								kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 							#end:case
 						)
 						(temp0 dispose:)
 					#end:loop
 					(temp0 dispose:)
 					if (temp1 == 1):
-						(DrawCel view loop 0 nsLeft nsTop -1 0 temp3)
-						(Graph 12 nsTop nsLeft nsBottom nsRight 1 temp3)
+						kernel.DrawCel(view, loop, 0, nsLeft, nsTop, -1, 0, temp3)
+						kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					#endif
 					if 
 						(and
@@ -2731,14 +2641,14 @@ class InvIconItem(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((not global169) or (Platform 5)):
-			nsLeft--
-			nsTop--
+		if ((not global169) or kernel.Platform(5)):
+			nsLeft.post('--')
+			nsTop.post('--')
 			(nsRight += 2)
 			(super highlight: &rest)
 			(nsRight -= 2)
-			nsTop++
-			nsLeft++
+			nsTop.post('++')
+			nsLeft.post('++')
 		#endif
 	#end:method
 
@@ -2748,8 +2658,8 @@ class InvIconItem(IconI):
 		argc = sum(v is not None for v in locals().values())
 
 		(= temp0
-			if (global169 and (Platform 6)):
-				(not (Platform 5))
+			if (global169 and kernel.Platform(6)):
+				(not kernel.Platform(5))
 			else:
 				0
 			#endif
@@ -2933,7 +2843,7 @@ class invMore(InvIconItem):
 						#endif
 					#endif
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				(global9 state: (| (global9 state:) 0x2000))
 				(global9
@@ -2979,7 +2889,7 @@ class invPrevious(InvIconItem):
 					#endif
 				#endif
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 			(global9 state: (| (global9 state:) 0x2000))
 			(global9

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 341
 import sci_sh
+import kernel
 import Main
 import rSacred
 import n913
@@ -297,7 +298,7 @@ class genieAsMintJunkie(Script):
 			case 12:
 				(global1 handsOn:)
 				(self dispose:)
-				(DisposeScript 341)
+				kernel.DisposeScript(341)
 			#end:case
 		#end:match
 	#end:method
@@ -314,7 +315,7 @@ class genieTrap(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 4)
+				proc913_1(4)
 				seconds = 2
 				(global0 setHeading: 30)
 			#end:case
@@ -480,7 +481,7 @@ class genieTrap(Script):
 			case 40:
 				(global1 handsOff:)
 				if (not (global2 script:)):
-					(proc913_4 global0 genie)
+					proc913_4(global0, genie)
 				#endif
 				(global105 number: 943 setLoop: 1 play:)
 				(genie setLoop: 2 cel: 0 setCycle: End self)

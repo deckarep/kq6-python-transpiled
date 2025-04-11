@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 913
 import sci_sh
+import kernel
 import Main
 
 # Public Export Declarations
@@ -49,7 +50,7 @@ def proc913_3():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	global153++
+	global153.post('++')
 	(proc913_2 27)
 	(proc913_2 28)
 	(proc913_2 18)
@@ -61,7 +62,7 @@ def proc913_4(param1 = None, param2 = None, param3 = None, param4 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	temp3 = 0
-	if (IsObject param2):
+	if kernel.IsObject(param2):
 		temp1 = (param2 x:)
 		temp2 = (param2 y:)
 		if (argc == 3):
@@ -74,7 +75,7 @@ def proc913_4(param1 = None, param2 = None, param3 = None, param4 = None):
 			temp3 = param4
 		#endif
 	#endif
-	temp0 = (GetAngle (param1 x:) (param1 y:) temp1 temp2)
-	(param1 setHeading: temp0 ((IsObject temp3) and temp3))
+	temp0 = kernel.GetAngle((param1 x:), (param1 y:), temp1, temp2)
+	(param1 setHeading: temp0 (kernel.IsObject(temp3) and temp3))
 #end:procedure
 

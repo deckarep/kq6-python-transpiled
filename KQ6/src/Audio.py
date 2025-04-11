@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 95
 import sci_sh
+import kernel
 import System
 
 # script local declarations
@@ -28,14 +29,14 @@ class Audio(Obj):
 
 		local0 = 0
 		(cond
-			case (DoAudio 2 number):
+			case kernel.DoAudio(2, number):
 				stopped = 0
-				if (IsObject param1):
+				if kernel.IsObject(param1):
 					local0 = param1
 				#endif
 				(self check:)
 			#end:case
-			case ((IsObject param1) and (local0 = param1 != 0)):
+			case (kernel.IsObject(param1) and (local0 = param1 != 0)):
 				(local0 cue:)
 			#end:case
 		)
@@ -47,7 +48,7 @@ class Audio(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		stopped = 1
-		(DoAudio 3)
+		kernel.DoAudio(3)
 	#end:method
 
 	@classmethod
@@ -56,7 +57,7 @@ class Audio(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not paused):
-			(DoAudio 4)
+			kernel.DoAudio(4)
 			(self paused: 1)
 		#endif
 	#end:method
@@ -67,7 +68,7 @@ class Audio(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if paused:
-			(DoAudio 5)
+			kernel.DoAudio(5)
 			(self paused: 0)
 		#endif
 	#end:method
@@ -86,7 +87,7 @@ class Audio(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if argc:
-			(DoAudio 7 param1)
+			kernel.DoAudio(7, param1)
 		#endif
 	#end:method
 
@@ -95,7 +96,7 @@ class Audio(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (and (not stopped) ((DoAudio 6) == -1) (loop == 1)):
+		if (and (not stopped) (kernel.DoAudio(6) == -1) (loop == 1)):
 			doNotStop = 0
 			stopped = 1
 			if (local0 != 0):
@@ -104,7 +105,7 @@ class Audio(Obj):
 				(temp0 cue:)
 			#endif
 		#endif
-		if (and (not stopped) ((DoAudio 6) == -1) ((loop > 1) or (loop == -1))):
+		if (and (not stopped) (kernel.DoAudio(6) == -1) ((loop > 1) or (loop == -1))):
 			(self play:)
 		#endif
 	#end:method

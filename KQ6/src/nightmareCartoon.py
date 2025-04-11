@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 202
 import sci_sh
+import kernel
 import Main
 import Scaler
 import Motion
@@ -104,10 +105,10 @@ class nightmareCartoon(Script):
 					(nightmare
 						view: 2031
 						loop: 1
-						cel: register++
-						posn: local0[local21++] local0[local21++]
+						cel: register.post('++')
+						posn: local0[local21.post('++')] local0[local21.post('++')]
 					)
-					state--
+					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
@@ -130,7 +131,7 @@ class nightmareCartoon(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 202)
+		kernel.DisposeScript(202)
 	#end:method
 
 #end:class or instance

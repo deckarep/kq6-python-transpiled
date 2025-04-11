@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 800
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import Conversation
@@ -149,8 +150,8 @@ class rm800(CastleRoom):
 				(stoneDoor posn: 110 189)
 				(self setScript: secretDoorMove)
 				(global0 reset: 3 posn: 183 184)
-				if (not ((ScriptID 80 0) tstFlag: 709 32)):
-					((ScriptID 80 0) setFlag: 711 4)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
+					(kernel.ScriptID(80, 0) setFlag: 711 4)
 					if (not script):
 						(self setScript: firstEntry)
 					else:
@@ -250,11 +251,11 @@ class firstTimeOnSecondLevel(Script):
 				cycles = 10
 			#end:case
 			case 1:
-				if (not ((ScriptID 80 0) tstFlag: 711 8)):
-					((ScriptID 80 0) setFlag: 711 8)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 8)):
+					(kernel.ScriptID(80, 0) setFlag: 711 8)
 					(roomConv add: -1 1 0 3)
 				#endif
-				if (not ((ScriptID 80 0) tstFlag: 710 256)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
 					(roomConv add: -1 1 0 6)
 				#endif
 				if (roomConv size:):
@@ -343,7 +344,7 @@ class changeLandings(Script):
 			#end:case
 			case 3:
 				if (local0 != 3):
-					if (not ((ScriptID 80 0) tstFlag: 709 32)):
+					if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
 						(global91 say: 1 0 1 0 self)
 					else:
 						cycles = 1
@@ -461,16 +462,16 @@ class climbStairs(Script):
 					register = (2 + ((((global0 y:) <= 77) * 2) - 1))
 				#endif
 				(cond
-					case (proc999_5 (param1 message:) 1 5):
+					case proc999_5((param1 message:), 1, 5):
 						match (param1 message:)
 							case 1:
 								if (register < 3):
-									register++
+									register.post('++')
 								#endif
 							#end:case
 							case 5:
 								if (register > 1):
-									register--
+									register.post('--')
 								#endif
 							#end:case
 						#end:match
@@ -481,7 +482,7 @@ class climbStairs(Script):
 								local117[((register * 2) + 1)]
 						)
 					#end:case
-					case (not (proc999_5 (param1 message:) 8 2 6 4)):
+					case (not proc999_5((param1 message:), 8, 2, 6, 4)):
 						(param1 claimed: 0)
 					#end:case
 				)
@@ -545,7 +546,7 @@ class secretDoorMove(Script):
 			#end:case
 			case 2:
 				if (<= 0 (local131 += register) 2):
-					state--
+					state.post('--')
 					local132 = local125[(local131 * 2)]
 					local133 = local125[((local131 * 2) + 1)]
 					(stoneDoor
@@ -701,13 +702,13 @@ class chink(View):
 			case (((global66 doit: param1) == -32768) and (not param1 = 0)):
 				(global91 say: 7 param1)
 			#end:case
-			case (proc999_5 param1 5 1):
+			case proc999_5(param1, 5, 1):
 				match noun
 					case 4:
-						(global2 setScript: (ScriptID 801))
+						(global2 setScript: kernel.ScriptID(801))
 					#end:case
 					else:
-						(global2 setScript: (ScriptID 802))
+						(global2 setScript: kernel.ScriptID(802))
 					#end:else
 				#end:match
 			#end:case
@@ -732,7 +733,7 @@ class beam(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		cel = ((NumCels self) - 1)
+		cel = (kernel.NumCels(self) - 1)
 		(super init: &rest)
 	#end:method
 
@@ -750,7 +751,7 @@ class beam(View):
 				cel = (((x - (global0 x:)) / 7) - 1)
 				priority = ((global0 priority:) - 1)
 			else:
-				priority = (CoordPri y)
+				priority = kernel.CoordPri(y)
 				cel = local116
 			#endif
 		#endif
@@ -767,10 +768,10 @@ class beam(View):
 		else:
 			(self posn: 258 122 0 loop: 6)
 		#endif
-		cel = ((NumCels self) - 1)
+		cel = (kernel.NumCels(self) - 1)
 		local116 = cel
-		priority = (CoordPri y)
-		(SetNowSeen self)
+		priority = kernel.CoordPri(y)
+		kernel.SetNowSeen(self)
 		local115 = nsLeft
 		temp0 = y
 		y = (nsBottom - 2)

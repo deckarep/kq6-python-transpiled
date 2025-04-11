@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 982
 import sci_sh
+import kernel
 import Main
 
 # Public Export Declarations
@@ -60,14 +61,12 @@ def proc982_1(param1 = None, param2 = None, param3 = None, param4 = None):
 			(or
 				(<
 					(temp1 / 2)
-					(Abs
-						(proc982_2
-							(GetAngle temp5 temp6 temp3 temp4)
-							(temp0 heading:)
-						)
-					)
+					kernel.Abs((proc982_2
+						kernel.GetAngle(temp5, temp6, temp3, temp4)
+						(temp0 heading:)
+					))
 				)
-				(temp2 < (GetDistance temp5 temp6 temp3 temp4 global31))
+				(temp2 < kernel.GetDistance(temp5, temp6, temp3, temp4, global31))
 			)
 		)
 	)

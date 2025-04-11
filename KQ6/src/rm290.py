@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 290
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -97,7 +98,7 @@ class rm290(KQ6Room):
 				)
 		)
 		(super init: &rest)
-		(Load 128 291)
+		kernel.Load(128, 291)
 		(global0 init: reset: 2 posn: 151 119 setScale: 0)
 		(global93 addToFront: self)
 		(ferryman init:)
@@ -133,7 +134,7 @@ class rm290(KQ6Room):
 
 		(global102 fade:)
 		(super dispose: &rest)
-		(proc913_1 17)
+		proc913_1(17)
 	#end:method
 
 	@classmethod
@@ -157,7 +158,7 @@ class enterScr(Script):
 
 		match state = param1
 			case 0:
-				if (not (proc913_0 17)):
+				if (not proc913_0(17)):
 					(global1 givePoints: 2)
 				#endif
 				(ferryman setMotion: PolyPath 138 137 self)
@@ -190,7 +191,7 @@ class enterScr(Script):
 			#end:case
 			case 5:
 				(global0 stopUpd:)
-				(global91 say: 1 0 (9 if (proc913_0 17) else 8) 0 self)
+				(global91 say: 1 0 (9 if proc913_0(17) else 8) 0 self)
 			#end:case
 			case 6:
 				(global1 handsOn:)
@@ -224,7 +225,7 @@ class leaveScr(Script):
 				)
 			#end:case
 			case 1:
-				(global91 say: 6 5 (13 if (proc913_0 17) else 12) 0 self)
+				(global91 say: 6 5 (13 if proc913_0(17) else 12) 0 self)
 			#end:case
 			case 2:
 				cycles = 2
@@ -305,14 +306,14 @@ class ferrymanTalkScr(Script):
 			case 0:
 				(global1 handsOff:)
 				if (global158 < 5):
-					global158++
+					global158.post('++')
 				#endif
 				match global158
 					case 0: 0#end:case
 					case 1:
 						register = 2
-						(proc913_2 30)
-						(proc913_1 29)
+						proc913_2(30)
+						proc913_1(29)
 					#end:case
 					case 2:
 						register = 3
@@ -324,7 +325,7 @@ class ferrymanTalkScr(Script):
 						register = 5
 					#end:case
 					case 5:
-						if (global166++ > 5):
+						if (global166.post('++') > 5):
 							global166 = 1
 						#endif
 						(= register
@@ -485,7 +486,7 @@ class table(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 1):
+		if proc999_5(param1, 5, 1):
 			(global91
 				say: noun param1 (21 if (global5 contains: rabbitsFoot) else 11)
 			)
@@ -506,7 +507,7 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match temp0 = (OnControl 4 (param1 x:) (param1 y:))
+				match temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 2: 15#end:case
 					case 8: 7#end:case
 					case 16: 8#end:case

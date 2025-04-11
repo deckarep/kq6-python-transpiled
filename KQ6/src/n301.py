@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 301
 import sci_sh
+import kernel
 import Main
 import Motion
 import Actor
@@ -80,10 +81,10 @@ class flyIn(Script):
 			#end:case
 			case 1:
 				(dummyEgo view: 3512 cel: 0 posn: 195 91 setCycle: End self)
-				(UnLoad 128 3511)
+				kernel.UnLoad(128, 3511)
 			#end:case
 			case 2:
-				(UnLoad 128 3512)
+				kernel.UnLoad(128, 3512)
 				(guard1 view: 3013 loop: 0 cel: 1 posn: 169 128 init: stopUpd:)
 				(guard2
 					view: 3013
@@ -134,14 +135,14 @@ class flyIn(Script):
 			#end:case
 			case 6:
 				(global0 view: 3013 loop: 0 cel: 2)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 				cycles = 8
 			#end:case
 			case 7:
 				(guard1 view: 349 loop: 0 cel: 0 setCycle: End)
-				(UnLoad 128 344)
+				kernel.UnLoad(128, 344)
 				(guard2 view: 348 loop: 0 cel: 0 setCycle: End self)
-				(UnLoad 128 343)
+				kernel.UnLoad(128, 343)
 			#end:case
 			case 8:
 				(guard1
@@ -154,7 +155,7 @@ class flyIn(Script):
 					cycleSpeed: 3
 					setMotion: MoveTo 345 -15 self
 				)
-				(UnLoad 128 349)
+				kernel.UnLoad(128, 349)
 				(guard2
 					view: 3481
 					loop: 0
@@ -165,7 +166,7 @@ class flyIn(Script):
 					cycleSpeed: 3
 					setMotion: MoveTo 375 -15
 				)
-				(UnLoad 128 348)
+				kernel.UnLoad(128, 348)
 			#end:case
 			case 9:
 				if (not (global12 == 380)):

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 966
 import sci_sh
+import kernel
 import System
 
 # Public Export Declarations
@@ -18,15 +19,15 @@ def proc966_0(param1 = None, param2 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	temp3 = (List new:)
-	while temp1 = (FirstNode (param1 elements:)):
+	while temp1 = kernel.FirstNode((param1 elements:)):
 
-		temp2 = (NodeValue temp1)
+		temp2 = kernel.NodeValue(temp1)
 		while temp1:
 
-			if (param2 doit: temp0 = (NodeValue temp1) temp2 &rest):
+			if (param2 doit: temp0 = kernel.NodeValue(temp1) temp2 &rest):
 				temp2 = temp0
 			#endif
-			temp1 = (NextNode temp1)
+			temp1 = kernel.NextNode(temp1)
 		#end:loop
 		(TE doit: temp2 param1 temp3)
 	#end:loop

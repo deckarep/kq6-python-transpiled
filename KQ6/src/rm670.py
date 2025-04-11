@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 670
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room
@@ -112,7 +113,7 @@ class rm670(KQ6Room):
 				)
 		)
 		(super init:)
-		(Lock 143 670 0)
+		kernel.Lock(143, 670, 0)
 		(global0 init: reset: posn: 49 230 setScale: Scaler 90 80 250 50)
 		(self setScript: enterRoomScript)
 		(torch1 setCycle: Fwd ignoreActors: 1 init:)
@@ -181,7 +182,7 @@ class rm670(KQ6Room):
 		if global25:
 			(global25 dispose:)
 		#endif
-		(DrawPic (global2 picture:))
+		kernel.DrawPic((global2 picture:))
 		(global0 reset:)
 		(gate view: 677)
 		(shimmer1 view: 670 loop: 1)
@@ -203,7 +204,7 @@ class rm670(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(proc958_0 0 916)
+		proc958_0(0, 916)
 	#end:method
 
 #end:class or instance
@@ -310,7 +311,7 @@ class river(Feature):
 				(global2 setScript: walkInWater)
 			#end:case
 			case 44:
-				if (proc913_0 58):
+				if proc913_0(58):
 					(global91 say: noun param1 14)
 				else:
 					(global91 say: noun param1 15)
@@ -383,7 +384,7 @@ class gate(Actor):
 					(global91 say: noun param1 4)
 				#endif
 			#end:case
-			case (proc999_5 param1 48 35 28 16 13):
+			case proc999_5(param1, 48, 35, 28, 16, 13):
 				if local0:
 					(global91 say: noun param1 3 0)
 				else:
@@ -506,12 +507,9 @@ class talkGate(Script):
 			case 0:
 				if 
 					(>
-						(GetDistance
-							(global0 x:)
-							(global0 y:)
-							(gate x:)
-							(gate y:)
-						)
+						kernel.GetDistance((global0 x:), (global0 y:), (gate x:), (gate
+							y:
+						))
 						50
 					)
 					(global0
@@ -522,7 +520,7 @@ class talkGate(Script):
 							self
 					)
 				else:
-					(proc913_4 global0 gate self)
+					proc913_4(global0, gate, self)
 				#endif
 			#end:case
 			case 1:
@@ -545,8 +543,8 @@ class talkGate(Script):
 			case 2:
 				(User canInput: 1 canControl: 1)
 				(global5 eachElementDo: #hide)
-				(proc913_1 49)
-				(DrawPic 98)
+				proc913_1(49)
+				kernel.DrawPic(98)
 				cycles = 2
 			#end:case
 			case 3:
@@ -558,7 +556,7 @@ class talkGate(Script):
 				cycles = 2
 			#end:case
 			case 5:
-				(proc913_2 49)
+				proc913_2(49)
 				(global91 say: 1 5 1 0 self)
 			#end:case
 			case 6:
@@ -656,7 +654,7 @@ class killAlexScript(Script):
 				(global91 say: 1 5 2 3 self)
 			#end:case
 			case 8:
-				(proc0_1 17)
+				proc0_1(17)
 			#end:case
 		#end:match
 	#end:method
@@ -717,7 +715,7 @@ class handGateDead(Script):
 				cycles = 2
 			#end:case
 			case 8:
-				(proc0_1 16)
+				proc0_1(16)
 			#end:case
 		#end:match
 	#end:method
@@ -785,7 +783,7 @@ class randomMsg(Script):
 				seconds = 30
 			#end:case
 			case 1:
-				match temp0 = (Random 1 3)
+				match temp0 = kernel.Random(1, 3)
 					case 1:
 						(global91 say: 6 0 10 0 self)
 					#end:case
@@ -848,7 +846,7 @@ class walkCloseToGate(Script):
 				cycles = 2
 			#end:case
 			case 7:
-				(proc0_1 16)
+				proc0_1(16)
 			#end:case
 		#end:match
 	#end:method
@@ -876,7 +874,7 @@ class walkInWater(Script):
 				(global0 setMotion: PolyPath 138 103 self)
 			#end:case
 			case 1:
-				(Load 128 674)
+				kernel.Load(128, 674)
 				cycles = 2
 			#end:case
 			case 2:
@@ -921,7 +919,7 @@ class walkInWater(Script):
 				#endif
 			#end:case
 			case 8:
-				(proc0_1 31)
+				proc0_1(31)
 			#end:case
 		#end:match
 	#end:method
@@ -969,7 +967,7 @@ class docoProtect(GatePanel):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = 0
-		if (not (proc999_5 value 26 27 29 30)):
+		if (not proc999_5(value, 26, 27, 29, 30)):
 			if (not (local27[(value / 16)] & (0x8000 >> (mod value 16)))):
 				(local27[(value / 16)] |= (0x8000 >> (mod value 16)))
 				temp0 = (super drawButton: &rest)

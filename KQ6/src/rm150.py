@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 150
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import Conversation
@@ -88,10 +89,10 @@ class genieHeadScr(Script):
 			#end:case
 			case 2:
 				(genie hide:)
-				if (((Random 0 3) - 1) and (not local1)):
+				if ((kernel.Random(0, 3) - 1) and (not local1)):
 					local1 = 1
 					local2 = 1
-					if (Random 0 1):
+					if kernel.Random(0, 1):
 						(eye1 init: cel: 0 setCycle: End self)
 						local0 = 1
 					else:
@@ -238,7 +239,7 @@ class roomScr(Script):
 					#endif
 					(eye1 init: cel: 0 setCycle: End self)
 				else:
-					state++
+					state.post('++')
 					cycles = 1
 				#endif
 			#end:case

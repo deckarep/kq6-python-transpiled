@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 103
 import sci_sh
+import kernel
 import Main
 import Grooper
 
@@ -25,7 +26,7 @@ class EgoGroop(Grooper):
 
 		if 
 			(and
-				((global0 loop:) == ((NumLoops global0) - 1))
+				((global0 loop:) == (kernel.NumLoops(global0) - 1))
 				(not ((global0 signal:) & 0x0800))
 			)
 			(global0 loop: (global0 cel:))

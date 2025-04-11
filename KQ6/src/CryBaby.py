@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 481
 import sci_sh
+import kernel
 import Main
 import Kq6Sound
 import n913
@@ -39,8 +40,8 @@ def proc481_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
-	(global0 setScript: takeBottleAway 0 (ScriptID 480 6))
+	(kernel.ScriptID(480, 5) register: 1)
+	(global0 setScript: takeBottleAway 0 kernel.ScriptID(480, 6))
 #end:procedure
 
 @SCI.procedure
@@ -48,34 +49,34 @@ def proc481_1(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
-	if (not (proc913_0 118)):
-		(proc913_1 118)
+	(kernel.ScriptID(480, 5) register: 1)
+	if (not proc913_0(118)):
+		proc913_1(118)
 		(global1 givePoints: 2)
 	#endif
 	match param1
 		case 1:
 			local2 = 0
 			local3 = 12
-			((ScriptID 40 0) bottleSucker: 1)
+			(kernel.ScriptID(40, 0) bottleSucker: 1)
 			(global0 setScript: giveBabyBottle 0 babyFace1)
 		#end:case
 		case 2:
 			local2 = 1
 			local3 = 11
-			((ScriptID 40 0) bottleSucker: 2)
+			(kernel.ScriptID(40, 0) bottleSucker: 2)
 			(global0 setScript: giveBabyBottle 0 babyFace2)
 		#end:case
 		case 3:
 			local2 = 0
 			local3 = 9
-			((ScriptID 40 0) bottleSucker: 3)
+			(kernel.ScriptID(40, 0) bottleSucker: 3)
 			(global0 setScript: giveBabyBottle 0 babyFace3)
 		#end:case
 		case 4:
 			local2 = 0
 			local3 = 7
-			((ScriptID 40 0) bottleSucker: 4)
+			(kernel.ScriptID(40, 0) bottleSucker: 4)
 			(global2 setScript: giveBabyBottle 0 babyFace4)
 		#end:case
 	#end:match
@@ -86,7 +87,7 @@ def proc481_3(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	match param1
 		case 1:
 			(global0 setScript: getBabyTears 0 babyFace1)
@@ -122,7 +123,7 @@ def proc481_6():
 	if (global5 contains: babyFace4):
 		(babyFace4 setCycle: 0 dispose: delete:)
 	#endif
-	(DisposeScript 481)
+	kernel.DisposeScript(481)
 #end:procedure
 
 @SCI.procedure
@@ -130,16 +131,16 @@ def proc481_7():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	if ((babyFace1 bottleNum:) != ((ScriptID 40 0) bottleSucker:)):
+	if ((babyFace1 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
 		(babyFace1 init: setCycle: Fwd)
 	#endif
-	if ((babyFace2 bottleNum:) != ((ScriptID 40 0) bottleSucker:)):
+	if ((babyFace2 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
 		(babyFace2 init: setCycle: Fwd)
 	#endif
-	if ((babyFace3 bottleNum:) != ((ScriptID 40 0) bottleSucker:)):
+	if ((babyFace3 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
 		(babyFace3 init: setCycle: Fwd)
 	#endif
-	if ((babyFace4 bottleNum:) != ((ScriptID 40 0) bottleSucker:)):
+	if ((babyFace4 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
 		(babyFace4 init: setCycle: Fwd)
 	#endif
 	(cryMusic setLoop: -1 play:)
@@ -169,11 +170,11 @@ class CryBaby(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 57 58 59 60 96):
-			if (((ScriptID 40 0) bottleSucker:) == (self bottleNum:)):
+		if proc999_5(param1, 57, 58, 59, 60, 96):
+			if ((kernel.ScriptID(40, 0) bottleSucker:) == (self bottleNum:)):
 				(global91 say: 9 56 17 0 0 480)
 			else:
-				(global91 say: 9 56 ((ScriptID 40 0) lampMsg:) 0 0 480)
+				(global91 say: 9 56 (kernel.ScriptID(40, 0) lampMsg:) 0 0 480)
 			#endif
 		else:
 			match param1
@@ -184,14 +185,14 @@ class CryBaby(Prop):
 					(cond
 						case 
 							(==
-								((ScriptID 40 0) bottleSucker:)
+								(kernel.ScriptID(40, 0) bottleSucker:)
 								(self bottleNum:)
 							):
 							(global2
-								setScript: takeBottleAway 0 (ScriptID 480 6)
+								setScript: takeBottleAway 0 kernel.ScriptID(480, 6)
 							)
 						#end:case
-						case (((ScriptID 40 0) lampMsg:) == 15):
+						case ((kernel.ScriptID(40, 0) lampMsg:) == 15):
 							(global91 say: 9 5 15 1 0 480)
 						#end:case
 						else:
@@ -203,15 +204,15 @@ class CryBaby(Prop):
 					(cond
 						case 
 							(==
-								((ScriptID 40 0) bottleSucker:)
+								(kernel.ScriptID(40, 0) bottleSucker:)
 								(self bottleNum:)
 							):
 							(global91 say: 9 43 17 1 0 480)
 						#end:case
-						case (not (proc913_0 77)):
+						case (not proc913_0(77)):
 							(global91 say: 9 43 21 1 0 480)
 						#end:case
-						case ((global161 & 0x0004) or (proc913_0 144)):
+						case ((global161 & 0x0004) or proc913_0(144)):
 							(global91 say: 9 43 20 1 0 480)
 						#end:case
 						case (global161 & 0x0001):
@@ -220,7 +221,7 @@ class CryBaby(Prop):
 						case (global161 & 0x0002):
 							(global2 setScript: getBabyTears 0 self)
 						#end:case
-						case (((ScriptID 40 0) lampMsg:) == 15):
+						case ((kernel.ScriptID(40, 0) lampMsg:) == 15):
 							(global91 say: 9 43 15 1 0 480)
 						#end:case
 						else:
@@ -229,15 +230,15 @@ class CryBaby(Prop):
 					)
 				#end:case
 				case 1:
-					if (((ScriptID 40 0) lampMsg:) == 15):
-						(global91 say: 9 1 ((ScriptID 40 0) lampMsg:) 1 0 480)
+					if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
+						(global91 say: 9 1 (kernel.ScriptID(40, 0) lampMsg:) 1 0 480)
 					else:
 						(global91 say: 9 1 16 1 0 480)
 					#endif
 				#end:case
 				case 2:
-					if (((ScriptID 40 0) lampMsg:) == 15):
-						(global91 say: 9 2 ((ScriptID 40 0) lampMsg:) 0 0 480)
+					if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
+						(global91 say: 9 2 (kernel.ScriptID(40, 0) lampMsg:) 0 0 480)
 					else:
 						(global91 say: 9 2 16 1 0 480)
 					#endif
@@ -246,12 +247,12 @@ class CryBaby(Prop):
 					(cond
 						case 
 							(==
-								((ScriptID 40 0) bottleSucker:)
+								(kernel.ScriptID(40, 0) bottleSucker:)
 								(self bottleNum:)
 							):
 							(global91 say: 9 44 17 1 0 480)
 						#end:case
-						case (not (proc913_0 77)):
+						case (not proc913_0(77)):
 							(global91 say: 9 44 21 1 0 480)
 						#end:case
 						else:
@@ -260,7 +261,7 @@ class CryBaby(Prop):
 					)
 				#end:case
 				case 24:
-					if (((ScriptID 40 0) lampMsg:) == 15):
+					if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
 						(global91 say: 9 24 15 1 0 480)
 					else:
 						(global91 say: 9 24 16 1 0 480)
@@ -296,12 +297,9 @@ class inventOnBaby(Script):
 			#end:case
 			case 1:
 				(= temp0
-					(GetAngle
-						(global0 x:)
-						(global0 y:)
-						(register x:)
-						(register y:)
-					)
+					kernel.GetAngle((global0 x:), (global0 y:), (register x:), (register
+						y:
+					))
 				)
 				(global0 setHeading: temp0 self)
 			#end:case
@@ -406,7 +404,7 @@ class cryMusic(Kq6Sound):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (and local0 (DoAudio 4) ((DoAudio 6) == -1) (not global84)):
+		if (and local0 kernel.DoAudio(4) (kernel.DoAudio(6) == -1) (not global84)):
 			(self play:)
 		#endif
 		(super check:)
@@ -452,7 +450,7 @@ class giveBabyBottle(Script):
 			case 0:
 				(global1 handsOff:)
 				if (register != babyFace2):
-					(proc913_1 59)
+					proc913_1(59)
 				#endif
 				(global0
 					setMotion:
@@ -472,7 +470,7 @@ class giveBabyBottle(Script):
 					cycleSpeed: 12
 					setCycle: End self
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 9 62 0 1 self 480)
@@ -480,7 +478,7 @@ class giveBabyBottle(Script):
 			case 3:
 				(cryMusic setLoop: -1 play:)
 				(suckMusic setLoop: -1 play:)
-				((ScriptID 480 6)
+				(kernel.ScriptID(480, 6)
 					setLoop:
 						if ((register == babyFace1) or (register == babyFace2)):
 							1
@@ -493,10 +491,10 @@ class giveBabyBottle(Script):
 					setPri: local3
 					init:
 				)
-				if (proc913_0 77):
-					((ScriptID 40 0) lampMsg: 22)
+				if proc913_0(77):
+					(kernel.ScriptID(40, 0) lampMsg: 22)
 				else:
-					((ScriptID 40 0) lampMsg: 21)
+					(kernel.ScriptID(40, 0) lampMsg: 21)
 				#endif
 				if (register != babyFace1):
 					(babyFace1 init: setCycle: Fwd)
@@ -511,7 +509,7 @@ class giveBabyBottle(Script):
 					(babyFace4 init: setCycle: Fwd)
 				#endif
 				(global0 setLoop: 3 cycleSpeed: 3 setCycle: Beg self)
-				(UnLoad 128 4811)
+				kernel.UnLoad(128, 4811)
 			#end:case
 			case 4:
 				(global0 posn: (register walkToX:) (register walkToY:) reset: 1)
@@ -529,7 +527,7 @@ class giveBabyBottle(Script):
 			case 8:
 				(cryMusic setLoop: -1 play:)
 				(global1 handsOn:)
-				(proc913_2 59)
+				proc913_2(59)
 				(register hide:)
 				(self dispose:)
 			#end:case
@@ -567,7 +565,7 @@ class getBabyTears(Script):
 					cycleSpeed: 6
 					setCycle: End self
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				cycles = 2
@@ -579,7 +577,7 @@ class getBabyTears(Script):
 				(global161 |= 0x0004)
 				(global1 givePoints: 1)
 				(global0 reset: 1 posn: (register walkToX:) (register walkToY:))
-				(UnLoad 128 4811)
+				kernel.UnLoad(128, 4811)
 				ticks = 8
 			#end:case
 			case 5:
@@ -615,8 +613,8 @@ class takeBottleAway(Script):
 				(global0
 					setMotion:
 						PolyPath
-						(((ScriptID 480 6) x:) + 45)
-						(((ScriptID 480 6) y:) + 1)
+						((kernel.ScriptID(480, 6) x:) + 45)
+						((kernel.ScriptID(480, 6) y:) + 1)
 						self
 				)
 			#end:case
@@ -628,17 +626,17 @@ class takeBottleAway(Script):
 						if local2:
 							-1
 						else:
-							(((ScriptID 480 6) priority:) + 1)
+							((kernel.ScriptID(480, 6) priority:) + 1)
 						#endif
 					cel: 0
 					posn:
-						(((ScriptID 480 6) x:) + 21)
-						(((ScriptID 480 6) y:) + 6)
+						((kernel.ScriptID(480, 6) x:) + 21)
+						((kernel.ScriptID(480, 6) y:) + 6)
 					normal: 0
 					cycleSpeed: 12
 					setCycle: End self
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global91 say: 9 5 17 1 self 480)
@@ -647,7 +645,7 @@ class takeBottleAway(Script):
 				(global0 setCycle: Beg self)
 			#end:case
 			case 4:
-				if (((ScriptID 40 0) bottleSucker:) == 3):
+				if ((kernel.ScriptID(40, 0) bottleSucker:) == 3):
 					temp0 = 10
 				else:
 					temp0 = 1
@@ -656,11 +654,11 @@ class takeBottleAway(Script):
 					reset: 1
 					setPri: 15
 					posn:
-						(((ScriptID 480 6) x:) + 45)
-						(((ScriptID 480 6) y:) + temp0)
+						((kernel.ScriptID(480, 6) x:) + 45)
+						((kernel.ScriptID(480, 6) y:) + temp0)
 					setMotion: PolyPath 135 170 self
 				)
-				(UnLoad 128 4811)
+				kernel.UnLoad(128, 4811)
 			#end:case
 			case 5:
 				(global1 handsOn:)

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 755
 import sci_sh
+import kernel
 import Main
 import rm750
 import ArrayScript
@@ -51,14 +52,14 @@ class startFight(Script):
 				#endif
 			#end:case
 			case 1:
-				((ScriptID 750 1)
+				(kernel.ScriptID(750, 1)
 					add: -1 6 23 15 1
 					add: -1 6 23 15 2
 					init: self
 				)
 			#end:case
 			case 2:
-				((ScriptID 750 3) dispose:)
+				(kernel.ScriptID(750, 3) dispose:)
 				if register:
 					(global69 disable: 6)
 					(global2
@@ -118,7 +119,7 @@ class cassimaHasDagger(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 750 6)
+				(kernel.ScriptID(750, 6)
 					view: 753
 					setLoop: 2
 					setCycle: Walk
@@ -129,7 +130,7 @@ class cassimaHasDagger(Script):
 			#end:case
 			case 1:
 				if (global2 script:):
-					state--
+					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
@@ -146,7 +147,7 @@ class cassimaHasDagger(Script):
 				(global91 say: 6 23 15 8 self)
 			#end:case
 			case 4:
-				((ScriptID 750 6)
+				(kernel.ScriptID(750, 6)
 					view: 753
 					loop: 1
 					cel: 0
@@ -160,7 +161,7 @@ class cassimaHasDagger(Script):
 				ticks = 3
 			#end:case
 			case 6:
-				((ScriptID 750 1)
+				(kernel.ScriptID(750, 1)
 					add: -1 6 23 15 9
 					add: -1 6 23 15 10
 					init: self
@@ -168,7 +169,7 @@ class cassimaHasDagger(Script):
 			#end:case
 			case 7:
 				(global0 setCycle: End self)
-				((ScriptID 750 6) setCycle: End (ScriptID 750 6))
+				(kernel.ScriptID(750, 6) setCycle: End kernel.ScriptID(750, 6))
 			#end:case
 			case 8:
 				(global91 say: 6 23 15 11 self)
@@ -178,15 +179,15 @@ class cassimaHasDagger(Script):
 				cycles = 4
 			#end:case
 			case 11:
-				(proc750_5)
-				if ((not global87) or (not (HaveMouse))):
+				proc750_5()
+				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
 					seconds = 8
 				#endif
 			#end:case
 			case 12:
-				(proc750_5 1)
+				proc750_5(1)
 				cycles = 1
 			#end:case
 			case 13:
@@ -204,7 +205,7 @@ class cassimaHasDagger(Script):
 				(self dispose:)
 			#end:case
 			case 26:
-				(proc750_5 1)
+				proc750_5(1)
 				(global1 givePoints: 5)
 				cycles = 1
 			#end:case
@@ -235,7 +236,7 @@ class cassimaHasDagger(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 32:
-				((ScriptID 750 3)
+				(kernel.ScriptID(750, 3)
 					init:
 					view: 7514
 					setLoop: 2
@@ -243,7 +244,7 @@ class cassimaHasDagger(Script):
 					ignoreActors: 1
 					addToPic:
 				)
-				((ScriptID 750 2) dispose:)
+				(kernel.ScriptID(750, 2) dispose:)
 				(global0
 					oldScaleSignal: 0
 					view: 900
@@ -275,8 +276,8 @@ class cassimaHasDagger(Script):
 					setLoop: 5
 					setMotion:
 						MoveTo
-						((ScriptID 750 6) x:)
-						(((ScriptID 750 6) y:) - 2)
+						(kernel.ScriptID(750, 6) x:)
+						((kernel.ScriptID(750, 6) y:) - 2)
 						self
 				)
 			#end:case
@@ -289,14 +290,14 @@ class cassimaHasDagger(Script):
 					view: 758
 					setLoop: 0
 					cel: 0
-					posn: ((ScriptID 750 6) x:) ((ScriptID 750 6) y:)
+					posn: (kernel.ScriptID(750, 6) x:) (kernel.ScriptID(750, 6) y:)
 					normal: 0
 				)
-				((ScriptID 750 6) hide:)
+				(kernel.ScriptID(750, 6) hide:)
 				ticks = 30
 			#end:case
 			case 37:
-				((ScriptID 750 1)
+				(kernel.ScriptID(750, 1)
 					add: -1 6 23 10 4
 					add: -1 6 23 10 5
 					add: -1 6 23 10 6
@@ -308,7 +309,7 @@ class cassimaHasDagger(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 39:
-				((ScriptID 750 1)
+				(kernel.ScriptID(750, 1)
 					add: -1 6 23 10 8
 					add: -1 6 23 10 9
 					add: -1 6 23 10 10
@@ -390,7 +391,7 @@ class fightPart1(SwordArrayScript):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 0 751 7511 7512 7515 7516 7517)
+		proc958_0(0, 751, 7511, 7512, 7515, 7516, 7517)
 		return local25[param1]
 	#end:method
 
@@ -428,7 +429,7 @@ class noDagger(Script):
 
 		match state = param1
 			case 0:
-				(proc750_5 1)
+				proc750_5(1)
 				(global102 number: 0 stop:)
 				(global102 number: 705 setLoop: 1 play:)
 				cycles = 1
@@ -469,7 +470,7 @@ class noDagger(Script):
 			#end:case
 			case 6:
 				if (not register):
-					((ScriptID 750 1)
+					(kernel.ScriptID(750, 1)
 						add: -1 6 23 16 2
 						add: -1 6 23 16 3
 						init: self
@@ -513,9 +514,9 @@ class noDagger(Script):
 			#end:case
 			case 12:
 				if (((global9 at: 8) owner:) == 870):
-					(proc0_1 41)
+					proc0_1(41)
 				else:
-					(proc0_1 40)
+					proc0_1(40)
 				#endif
 			#end:case
 		#end:match

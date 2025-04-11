@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 580
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -166,11 +167,11 @@ class rm580(KQ6Room):
 					yourself:
 				)
 		)
-		if ((not (proc913_0 25)) and (not (proc913_0 74))):
+		if ((not proc913_0(25)) and (not proc913_0(74))):
 			local0 = 1
 		#endif
-		if (and (proc913_0 25) (not (proc913_0 14)) (not (proc913_0 74))):
-			(proc913_1 14)
+		if (and proc913_0(25) (not proc913_0(14)) (not proc913_0(74))):
+			proc913_1(14)
 			local0 = 2
 		#endif
 		if local0:
@@ -236,8 +237,8 @@ class rm580(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 939)
-		(Palette 4 0 255 100)
+		kernel.DisposeScript(939)
+		kernel.Palette(4, 0, 255, 100)
 	#end:method
 
 #end:class or instance
@@ -329,7 +330,7 @@ class getEmbers(Script):
 				cycles = 2
 			#end:case
 			case 4:
-				if (not (proc913_1 140)):
+				if (not proc913_1(140)):
 					(global1 givePoints: 1)
 				#endif
 				(cond
@@ -356,7 +357,7 @@ class getEmbers(Script):
 			case 5:
 				(global0 reset: 2)
 				temp0 = (global9 at: 11)
-				((ScriptID 0 4) setReal: temp0 0 5 0)
+				(kernel.ScriptID(0, 4) setReal: temp0 0 5 0)
 				(temp0
 					setCursor: 990 0 9
 					loop: 0
@@ -382,7 +383,7 @@ class meetDruidsOne(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 14)
+				proc913_1(14)
 				(global91 say: 1 0 1 1 self)
 			#end:case
 			case 1:
@@ -468,7 +469,7 @@ class meetDruidsTwo(Script):
 					illegalBits: 0
 					hide:
 				)
-				(proc913_1 14)
+				proc913_1(14)
 				cycles = 2
 			#end:case
 			case 1:
@@ -515,7 +516,7 @@ class continueDruids(Script):
 				(global0 setMotion: MoveTo 177 158 self)
 			#end:case
 			case 5:
-				(UnLoad 128 554)
+				kernel.UnLoad(128, 554)
 				(global0
 					view: 588
 					setLoop: 0
@@ -533,8 +534,8 @@ class continueDruids(Script):
 				(cage view: 5807 setLoop: 0 cel: 0 posn: 146 124 setPri: 14)
 				(cageRope view: 5807 setLoop: 1 cel: 0 setPri: 14)
 				(global0 view: 553 hide:)
-				(UnLoad 128 580)
-				(UnLoad 128 581)
+				kernel.UnLoad(128, 580)
+				kernel.UnLoad(128, 581)
 				(druid
 					show:
 					posn: ((global0 x:) - 12) ((global0 y:) - 4)
@@ -628,7 +629,7 @@ class continueDruids(Script):
 			#end:case
 			case 19:
 				(fx0 stop:)
-				(UnLoad 128 5807)
+				kernel.UnLoad(128, 5807)
 				(cage cel: 0 setCycle: End self)
 			#end:case
 			case 20:
@@ -640,7 +641,7 @@ class continueDruids(Script):
 			#end:case
 			case 22:
 				(cage view: 5802 setLoop: 0 setCel: 0)
-				(UnLoad 128 5801)
+				kernel.UnLoad(128, 5801)
 				cycles = 2
 			#end:case
 			case 23:
@@ -701,7 +702,7 @@ class inTheCage(Script):
 				if (not global161):
 					(global91 say: 1 0 4 0 self)
 				else:
-					state++
+					state.post('++')
 					(global91 say: 1 0 7 0 self)
 				#endif
 			#end:case
@@ -715,7 +716,7 @@ class inTheCage(Script):
 			case 11:
 				temp0 = 100
 				while (temp0 >= 0): # inline for
-					(Palette 4 0 255 temp0)
+					kernel.Palette(4, 0, 255, temp0)
 					# for:reinit
 					(temp0 -= 10)
 				#end:loop
@@ -731,13 +732,13 @@ class inTheCage(Script):
 				cycles = 2
 			#end:case
 			case 14:
-				(Palette 4 0 255 100)
+				kernel.Palette(4, 0, 255, 100)
 				(global69 height: 0 activateHeight: 0 enable: 6)
 				(Cursor showCursor: 1)
 				if (global153 == 5):
-					(proc0_1 11)
+					proc0_1(11)
 				else:
-					(proc0_1 10)
+					proc0_1(10)
 				#endif
 			#end:case
 		#end:match
@@ -808,7 +809,7 @@ class makeRain(Script):
 			#end:case
 			case 11:
 				(global0 put: 5 580)
-				if ((proc913_0 112) and (not (global0 has: 4))):
+				if (proc913_0(112) and (not (global0 has: 4))):
 					(global91 say: 1 0 15 1 self)
 					(global1 givePoints: 1)
 					(global0 get: 4)
@@ -818,7 +819,7 @@ class makeRain(Script):
 			#end:case
 			case 12:
 				(inEgo view: 583 setLoop: 0 cel: 2 setCycle: 0)
-				(UnLoad 128 585)
+				kernel.UnLoad(128, 585)
 				cycles = 2
 			#end:case
 			case 13:
@@ -899,7 +900,7 @@ class makeRain(Script):
 				seconds = 3
 			#end:case
 			case 34:
-				(Palette 1 580)
+				kernel.Palette(1, 580)
 				cycles = 3
 			#end:case
 			case 35:
@@ -907,25 +908,25 @@ class makeRain(Script):
 				(fx1 stop:)
 				(global102 fade:)
 				(fx2 number: 566 loop: 1 play:)
-				(Palette 1 5801)
+				kernel.Palette(1, 5801)
 				seconds = 2
 			#end:case
 			case 36:
 				(fx2 play:)
-				(Palette 1 580)
+				kernel.Palette(1, 580)
 				cycles = 3
 			#end:case
 			case 37:
-				(Palette 1 5801)
+				kernel.Palette(1, 5801)
 				cycles = 10
 			#end:case
 			case 38:
 				(fx2 play:)
-				(Palette 1 580)
+				kernel.Palette(1, 580)
 				cycles = 3
 			#end:case
 			case 39:
-				(Palette 1 5801)
+				kernel.Palette(1, 5801)
 				cycles = 30
 			#end:case
 			case 40:
@@ -939,9 +940,9 @@ class makeRain(Script):
 			case 42:
 				temp0 = 100
 				while (temp0 >= 0): # inline for
-					(Palette 4 0 255 temp0)
+					kernel.Palette(4, 0, 255, temp0)
 					# for:reinit
-					temp0--
+					temp0.post('--')
 				#end:loop
 				cycles = 1
 			#end:case
@@ -960,7 +961,7 @@ class makeRain(Script):
 				cycles = 2
 			#end:case
 			case 44:
-				(Palette 4 0 255 100)
+				kernel.Palette(4, 0, 255, 100)
 				seconds = 3
 			#end:case
 			case 45:
@@ -970,15 +971,15 @@ class makeRain(Script):
 			case 46:
 				(rainSound play:)
 				(global91 say: 1 0 9 10 self)
-				(proc913_1 74)
+				proc913_1(74)
 			#end:case
 			case 47:
 				seconds = 3
 			#end:case
 			case 48:
 				(global2 drawPic: 98 12)
-				(Message 0 580 1 0 9 11 @temp1)
-				(Display @temp1 100 82 85 102 14 105 0)
+				kernel.Message(0, 580, 1, 0, 9, 11, @temp1)
+				kernel.Display(@temp1, 100, 82, 85, 102, 14, 105, 0)
 				cycles = 1
 			#end:case
 			case 49:
@@ -1226,7 +1227,7 @@ class bonfire(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 57 58 59 60 96):
+		if proc999_5(param1, 57, 58, 59, 60, 96):
 			(global91 say: noun 56 0)
 		else:
 			match param1
@@ -1296,13 +1297,14 @@ class cageInset(Inset):
 
 		if (picture > 0):
 			if global169:
-				(DrawPic picture 15 (0 if anOverlay else 1))
+				kernel.DrawPic(picture, 15, (0 if anOverlay else 1))
 			else:
-				(DrawPic
-					picture
-					(100 if anOverlay else style)
-					(0 if anOverlay else 1)
-				)
+				kernel.DrawPic(picture, (100 if anOverlay else style), if 
+					anOverlay
+					0
+				else:
+					1
+				#endif)
 			#endif
 		#endif
 		if view:

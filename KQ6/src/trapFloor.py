@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 435
 import sci_sh
+import kernel
 import Main
 import rLab
 import n401
@@ -30,12 +31,12 @@ class trapFloor(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc401_2)
+		proc401_2()
 		(super init: &rest)
-		((ScriptID 30 0) initCrypt: 2)
-		((ScriptID 30 5) addToPic:)
-		((ScriptID 30 9) addToPic:)
-		((ScriptID 30 8) addToPic:)
+		(kernel.ScriptID(30, 0) initCrypt: 2)
+		(kernel.ScriptID(30, 5) addToPic:)
+		(kernel.ScriptID(30, 9) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
 		(self setScript: fallTrapFloor)
 	#end:method
 
@@ -75,7 +76,7 @@ class fallTrapFloor(Script):
 				cycles = 4
 			#end:case
 			case 5:
-				if (proc913_0 1):
+				if proc913_0(1):
 					(global91 say: 1 0 30 0 self 400)
 				else:
 					(global91 say: 1 0 29 1 self 400)

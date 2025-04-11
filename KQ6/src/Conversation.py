@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 925
 import sci_sh
+import kernel
 import Main
 import Print
 import System
@@ -31,18 +32,15 @@ class MessageObj(Obj):
 		(= whoSays
 			(global91
 				findTalker:
-					(Message
-						0
-						modNum
-						noun
-						verb
-						case
-						(sequence if sequence else 1)
-					)
+					kernel.Message(0, modNum, noun, verb, case, if sequence:
+						sequence
+					else:
+						1
+					#endif)
 			)
 		)
 		if (whoSays != -1):
-			if (not (IsObject whoSays)):
+			if (not kernel.IsObject(whoSays)):
 				(Print
 					addTextF:
 						r"""<MessageObj> Message not found: %d - %d, %d, %d, %d"""
@@ -82,7 +80,7 @@ class Conversation(List):
 		argc = sum(v is not None for v in locals().values())
 
 		curItem = -1
-		if (argc and (IsObject param1)):
+		if (argc and kernel.IsObject(param1)):
 			caller = param1
 		#endif
 		(global78 add: self)
@@ -125,7 +123,7 @@ class Conversation(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((argc and param1) or (curItem++ == size)):
+		if ((argc and param1) or (curItem.post('++') == size)):
 			(self dispose:)
 		else:
 			temp0 = (self at: curItem)
@@ -136,7 +134,7 @@ class Conversation(List):
 				case (temp0 isKindOf: Script):
 					(self setScript: temp0 self)
 				#end:case
-				case (IsObject temp0):
+				case kernel.IsObject(temp0):
 					(temp0 doit: self)
 				#end:case
 				else:
@@ -151,7 +149,7 @@ class Conversation(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		if param1:
@@ -164,14 +162,14 @@ class Conversation(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (proc999_6 param1 0)
-		temp1 = (proc999_6 param1 1)
-		temp2 = (proc999_6 param1 2)
-		temp3 = (proc999_6 param1 3)
-		temp4 = (proc999_6 param1 4)
-		temp5 = (proc999_6 param1 5)
-		temp6 = (proc999_6 param1 6)
-		temp7 = (proc999_6 param1 7)
+		temp0 = proc999_6(param1, 0)
+		temp1 = proc999_6(param1, 1)
+		temp2 = proc999_6(param1, 2)
+		temp3 = proc999_6(param1, 3)
+		temp4 = proc999_6(param1, 4)
+		temp5 = proc999_6(param1, 5)
+		temp6 = proc999_6(param1, 6)
+		temp7 = proc999_6(param1, 7)
 		temp8 = 7
 		while temp0:
 
@@ -179,14 +177,14 @@ class Conversation(List):
 				temp0 = global11
 			#endif
 			(self add: temp0 temp1 temp2 temp3 temp4 temp5 temp6 temp7)
-			temp0 = (proc999_6 param1 temp8++)
-			temp1 = (proc999_6 param1 temp8++)
-			temp2 = (proc999_6 param1 temp8++)
-			temp3 = (proc999_6 param1 temp8++)
-			temp4 = (proc999_6 param1 temp8++)
-			temp5 = (proc999_6 param1 temp8++)
-			temp6 = (proc999_6 param1 temp8++)
-			temp7 = (proc999_6 param1 temp8++)
+			temp0 = proc999_6(param1, temp8.post('++'))
+			temp1 = proc999_6(param1, temp8.post('++'))
+			temp2 = proc999_6(param1, temp8.post('++'))
+			temp3 = proc999_6(param1, temp8.post('++'))
+			temp4 = proc999_6(param1, temp8.post('++'))
+			temp5 = proc999_6(param1, temp8.post('++'))
+			temp6 = proc999_6(param1, temp8.post('++'))
+			temp7 = proc999_6(param1, temp8.post('++'))
 		#end:loop
 	#end:method
 
@@ -197,7 +195,7 @@ class Conversation(List):
 
 		temp0 = temp1 = temp2 = temp3 = temp4 = 0
 		temp5 = temp6 = temp7 = 0
-		if (argc and (not (IsObject param1[0]))):
+		if (argc and (not kernel.IsObject(param1[0]))):
 			if (temp0 = param1[0] == -1):
 				temp0 = global11
 			#endif
@@ -222,7 +220,7 @@ class Conversation(List):
 					#endif
 				#endif
 			#endif
-			if (not (IsObject param1[0])):
+			if (not kernel.IsObject(param1[0])):
 				(super
 					add:
 						((MessageObj new:)
@@ -259,7 +257,7 @@ class cleanCode(Code):
 		if 
 			(and
 				(param1 isKindOf: MessageObj)
-				(IsObject temp0 = (param1 whoSays:))
+				kernel.IsObject(temp0 = (param1 whoSays:))
 				(temp0 underBits:)
 			)
 			(temp0 dispose: 1)

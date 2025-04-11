@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 10
 import sci_sh
+import kernel
 import Main
 import Feature
 import Game
@@ -80,7 +81,7 @@ class rgCrown(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		keep = (proc999_5 param1 200 210 220 230 240 250 260 270 280 290)
+		keep = proc999_5(param1, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290)
 		initialized = 0
 		(super newRoom: param1 &rest)
 	#end:method
@@ -105,7 +106,7 @@ class rocks(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 1 5 2):
+		if proc999_5(param1, 1, 5, 2):
 			(global91 say: noun param1 (1 if (param1 == 1) else 0) 0 0 0)
 		else:
 			(global91 say: noun 0 0 0 0 0)

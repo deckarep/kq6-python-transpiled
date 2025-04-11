@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 914
 import sci_sh
+import kernel
 import Main
 import EgoGroop
 import Scaler
@@ -53,10 +54,10 @@ class Body(Ego):
 			case (self isStopped:):
 				if 
 					(and
-						(temp0 = loop != temp1 = ((NumLoops self) - 1))
+						(temp0 = loop != temp1 = (kernel.NumLoops(self) - 1))
 						(global5 contains: self)
 						(((global0 view:) == 900) or ((global0 view:) == 308))
-						(IsObject cycler)
+						kernel.IsObject(cycler)
 						(not (cycler isKindOf: Grycler))
 						normal
 					)
@@ -66,7 +67,7 @@ class Body(Ego):
 			case 
 				(and
 					normal
-					(loop == ((NumLoops self) - 1))
+					(loop == (kernel.NumLoops(self) - 1))
 					(not (signal & 0x0800))
 				):
 				(self loop: cel)
@@ -110,7 +111,7 @@ class Body(Ego):
 						(super setLoop:)
 						0
 					#end:case
-					case (not (IsObject param1)):
+					case (not kernel.IsObject(param1)):
 						(super setLoop: param1 &rest)
 						0
 					#end:case
@@ -197,14 +198,14 @@ class Body(Ego):
 			#end:case
 			case 
 				(and
-					(IsObject (global0 looper:))
+					kernel.IsObject((global0 looper:))
 					((global0 looper:) isKindOf: EgoGroop)
 					(not (looper dontHead:))
 				):
 				(looper doit: self heading ((argc >= 2) and param1[1]))
 			#end:case
 			else:
-				if (IsObject (global0 looper:)):
+				if kernel.IsObject((global0 looper:)):
 					if (not ((global0 looper:) isKindOf: EgoGroop)):
 						temp0 = 1
 					else:
@@ -214,9 +215,9 @@ class Body(Ego):
 					temp0 = 1
 				#endif
 				if temp0:
-					(DirLoop self heading)
+					kernel.DirLoop(self, heading)
 				#endif
-				if ((argc >= 2) and (IsObject param1[1])):
+				if ((argc >= 2) and kernel.IsObject(param1[1])):
 					(param1[1] cue: &rest)
 				#endif
 			#end:else

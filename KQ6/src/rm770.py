@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 770
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -35,13 +36,13 @@ def localproc_0():
 
 	if 
 		(and
-			((ScriptID 80 0) tstFlag: 710 4096)
-			((ScriptID 80 0) tstFlag: 710 8192)
-			((ScriptID 80 0) tstFlag: 710 16384)
-			((ScriptID 80 0) tstFlag: 710 -32768)
-			(not ((ScriptID 80 0) tstFlag: 710 16))
+			(kernel.ScriptID(80, 0) tstFlag: 710 4096)
+			(kernel.ScriptID(80, 0) tstFlag: 710 8192)
+			(kernel.ScriptID(80, 0) tstFlag: 710 16384)
+			(kernel.ScriptID(80, 0) tstFlag: 710 -32768)
+			(not (kernel.ScriptID(80, 0) tstFlag: 710 16))
 		)
-		((ScriptID 80 0) setFlag: 710 16)
+		(kernel.ScriptID(80, 0) setFlag: 710 16)
 		return 1
 	else:
 		return 0
@@ -75,9 +76,9 @@ class StolenItem(Feature):
 						-1
 						noun
 						param1
-						(look1stSeq + ((ScriptID 80 0) tstFlag: 710 flagNum))
+						(look1stSeq + (kernel.ScriptID(80, 0) tstFlag: 710 flagNum))
 				)
-				((ScriptID 80 0) setFlag: 710 flagNum)
+				(kernel.ScriptID(80, 0) setFlag: 710 flagNum)
 				if (localproc_0):
 					(global1 givePoints: 2)
 					(roomConv add: -1 1 0 1)
@@ -91,7 +92,7 @@ class StolenItem(Feature):
 						param1
 						(+
 							handLookedMsg
-							(not ((ScriptID 80 0) tstFlag: 710 flagNum))
+							(not (kernel.ScriptID(80, 0) tstFlag: 710 flagNum))
 						)
 				)
 			#end:case
@@ -123,13 +124,13 @@ class rm770(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		(proc958_0 128 771 770)
-		((ScriptID 81 0) clrFlag: 709 1 2)
-		if (global5 contains: (ScriptID 80 5)):
-			((ScriptID 80 5) dispose:)
+		proc958_0(128, 771, 770)
+		(kernel.ScriptID(81, 0) clrFlag: 709 1 2)
+		if (global5 contains: kernel.ScriptID(80, 5)):
+			(kernel.ScriptID(80, 5) dispose:)
 		#endif
-		if (global5 contains: (ScriptID 80 6)):
-			((ScriptID 80 6) dispose:)
+		if (global5 contains: kernel.ScriptID(80, 6)):
+			(kernel.ScriptID(80, 6) dispose:)
 		#endif
 		(self
 			addObstacle:
@@ -195,10 +196,10 @@ class rm770(CastleRoom):
 				skyLight
 			eachElementDo: #init
 		)
-		if ((ScriptID 80 0) tstFlag: 711 512):
-			((ScriptID 80 0) weddingRemind: 0)
+		if (kernel.ScriptID(80, 0) tstFlag: 711 512):
+			(kernel.ScriptID(80, 0) weddingRemind: 0)
 		#endif
-		if (not ((ScriptID 80 0) tstFlag: 709 8)):
+		if (not (kernel.ScriptID(80, 0) tstFlag: 709 8)):
 			(drape cel: 0 posn: 136 145 14 init: stopUpd:)
 		else:
 			(drape cel: 1 posn: 95 141 0 init: stopUpd:)
@@ -209,7 +210,7 @@ class rm770(CastleRoom):
 			setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
 		)
 		((global0 scaler:) doit:)
-		if (not (proc913_1 85)):
+		if (not proc913_1(85)):
 			(global1 givePoints: 2)
 		#endif
 		(global102 fadeTo: 770 -1)
@@ -221,8 +222,8 @@ class rm770(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((ScriptID 80 0) tstFlag: 711 512):
-			((ScriptID 80 0) weddingRemind: 1)
+		if (kernel.ScriptID(80, 0) tstFlag: 711 512):
+			(kernel.ScriptID(80, 0) weddingRemind: 1)
 		#endif
 		(super dispose:)
 	#end:method
@@ -240,8 +241,8 @@ class removeDrape(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not ((ScriptID 80 0) tstFlag: 710 1024)):
-					((ScriptID 80 0) setFlag: 710 1024)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 710 1024)):
+					(kernel.ScriptID(80, 0) setFlag: 710 1024)
 					(global91 say: 4 5 6 0 self)
 				else:
 					cycles = 1
@@ -278,7 +279,7 @@ class removeDrape(Script):
 			#end:case
 			case 7:
 				(global0 posn: (drape approachX:) (drape approachY:) reset: 6)
-				((ScriptID 80 0) setFlag: 709 8)
+				(kernel.ScriptID(80, 0) setFlag: 709 8)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -298,7 +299,7 @@ class replaceDrape(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 0) clrFlag: 709 8)
+				(kernel.ScriptID(80, 0) clrFlag: 709 8)
 				(drape hide: posn: 136 145 14 cel: 0)
 				(global0
 					normal: 0
@@ -351,19 +352,19 @@ class drape(Prop):
 
 		match param1
 			case 1:
-				if (not ((ScriptID 80 0) tstFlag: 709 8)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 8)):
 					(roomConv add: -1 noun param1 2)
 				else:
 					(roomConv add: -1 noun param1 3)
 				#endif
-				if (not ((ScriptID 80 0) tstFlag: 709 256)):
-					((ScriptID 80 0) setFlag: 709 256)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 256)):
+					(kernel.ScriptID(80, 0) setFlag: 709 256)
 					(roomConv add: -1 noun param1 4)
 				#endif
 				(roomConv init:)
 			#end:case
 			case 5:
-				if (not ((ScriptID 80 0) tstFlag: 709 8)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 8)):
 					(global2 setScript: removeDrape)
 				else:
 					(global2 setScript: replaceDrape)
@@ -461,7 +462,7 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		x = (param1 x:)
 		(return
 			(or

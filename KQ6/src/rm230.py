@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 230
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room
@@ -119,11 +120,11 @@ class rm230(KQ6Room):
 		(vine init:)
 		(bush init:)
 		if ((global1 _detailLevel:) >= 2):
-			(bush setScript: (ScriptID 13 0))
+			(bush setScript: kernel.ScriptID(13, 0))
 		#endif
-		if (proc913_0 23):
+		if proc913_0(23):
 			(magicDoor init:)
-			if (proc913_0 24):
+			if proc913_0(24):
 				(magicDoor view: 233 loop: 8 cel: 0)
 			#endif
 		#endif
@@ -131,7 +132,7 @@ class rm230(KQ6Room):
 			(holeOnWall init:)
 		#endif
 		(genericFeatures init:)
-		((ScriptID 10 4) onMeCheck: 136 init:)
+		(kernel.ScriptID(10, 4) onMeCheck: 136 init:)
 		(global103 number: 917 loop: -1 play:)
 	#end:method
 
@@ -186,9 +187,9 @@ class rm230(KQ6Room):
 
 		(global103 fade:)
 		(super dispose:)
-		(DisposeScript 964)
-		(DisposeScript 13)
-		(DisposeScript 231)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(13)
+		kernel.DisposeScript(231)
 	#end:method
 
 #end:class or instance
@@ -397,7 +398,7 @@ class paintWallScr(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 7:
-				if (not register--):
+				if (not register.post('--')):
 					(global0 cel: 2)
 					(state -= 3)
 				#endif
@@ -417,7 +418,7 @@ class paintWallScr(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 11:
-				if (not register--):
+				if (not register.post('--')):
 					(global0 cel: 4)
 					(state -= 3)
 				#endif
@@ -446,7 +447,7 @@ class paintWallScr(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 18:
-				if (not register--):
+				if (not register.post('--')):
 					(global0 cel: 2)
 					(state -= 3)
 				#endif
@@ -468,7 +469,7 @@ class paintWallScr(Script):
 				(global91 say: 4 44 8 2 self)
 			#end:case
 			case 23:
-				(proc913_1 23)
+				proc913_1(23)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -532,7 +533,7 @@ class enchantDoorScr(CartoonScript):
 			case 7:
 				(global0 cel: 0 loop: 1 setCycle: End self)
 				(register -= 15)
-				if (local1++ != 4):
+				if (local1.post('++') != 4):
 					(state -= 2)
 				#endif
 			#end:case
@@ -578,7 +579,7 @@ class enchantDoorScr(CartoonScript):
 				(global91 say: 1 0 13 3 self)
 			#end:case
 			case 19:
-				(proc913_1 24)
+				proc913_1(24)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -789,7 +790,7 @@ class guardWalkByScr(Script):
 		match state = param1
 			case 0:
 				register = 1
-				seconds = (Random 5 15)
+				seconds = kernel.Random(5, 15)
 			#end:case
 			case 1:
 				(guardDog init: setMotion: MoveTo 190 137 self)
@@ -847,8 +848,8 @@ class magicDoor(Prop):
 			(and
 				temp0 = (super onMe: param1)
 				(or
-					(((param1 message:) == 5) and (proc913_0 24))
-					(((param1 message:) == 28) and (not (proc913_0 24)))
+					(((param1 message:) == 5) and proc913_0(24))
+					(((param1 message:) == 28) and (not proc913_0(24)))
 				)
 			)
 			_approachVerbs = (global66 doit: (param1 message:))
@@ -863,21 +864,21 @@ class magicDoor(Prop):
 
 		(cond
 			case (param1 == 5):
-				if (proc913_0 24):
+				if proc913_0(24):
 					(global2 setScript: openDoorScr)
 				else:
 					(global91 say: noun 5 10)
 				#endif
 			#end:case
-			case (proc999_5 param1 1 2):
-				(global91 say: noun param1 (11 if (proc913_0 24) else 10))
+			case proc999_5(param1, 1, 2):
+				(global91 say: noun param1 (11 if proc913_0(24) else 10))
 			#end:case
 			case (param1 == 28):
-				if (proc913_0 24):
+				if proc913_0(24):
 					(global91 say: noun param1 11)
 				else:
 					(KQ6Print say: 0 6 28 10 1 init:)
-					(global2 setScript: (ScriptID 190))
+					(global2 setScript: kernel.ScriptID(190))
 				#endif
 			#end:case
 			case (param1 == 29):
@@ -887,7 +888,7 @@ class magicDoor(Prop):
 				(global91 say: noun param1)
 			#end:case
 			else:
-				(global91 say: noun 0 (11 if (proc913_0 24) else 10))
+				(global91 say: noun 0 (11 if proc913_0(24) else 10))
 			#end:else
 		)
 	#end:method
@@ -1014,8 +1015,8 @@ class castleWall(Feature):
 				(or
 					((param1 message:) == 25)
 					(and
-						(proc999_5 (param1 message:) 44 29)
-						(proc913_0 22)
+						proc999_5((param1 message:), 44, 29)
+						proc913_0(22)
 						(global0 has: 3)
 						(global0 has: 46)
 					)
@@ -1049,11 +1050,11 @@ class castleWall(Feature):
 		match param1
 			case 44:
 				(cond
-					case (proc913_0 23):
+					case proc913_0(23):
 						(global91 say: noun param1 5)
 					#end:case
-					case (not (proc913_0 22)):
-						if ((proc913_0 58) or (proc913_0 68)):
+					case (not proc913_0(22)):
+						if (proc913_0(58) or proc913_0(68)):
 							(global91 say: noun param1 6)
 						else:
 							(global91 say: noun param1 9)
@@ -1069,10 +1070,10 @@ class castleWall(Feature):
 			#end:case
 			case 29:
 				(cond
-					case (proc913_0 23):
+					case proc913_0(23):
 						(global91 say: noun param1 5)
 					#end:case
-					case (proc913_0 22):
+					case proc913_0(22):
 						(self doVerb: 44 &rest)
 					#end:case
 					else:
@@ -1089,14 +1090,14 @@ class castleWall(Feature):
 						noun
 						param1
 						(cond
-							case (not (proc913_0 23)): 0#end:case
-							case (proc913_0 24): 11#end:case
+							case (not proc913_0(23)): 0#end:case
+							case proc913_0(24): 11#end:case
 							else: 10#end:else
 						)
 				)
 			#end:case
 			case 28:
-				if (not (proc913_0 23)):
+				if (not proc913_0(23)):
 					(global91 say: noun param1 4)
 				else:
 					(magicDoor doVerb: param1)
@@ -1120,7 +1121,7 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match (OnControl 4 (param1 x:) (param1 y:))
+				match kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 4: 9#end:case
 					case 16: 8#end:case
 					case 32: 11#end:case

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 450
 import sci_sh
+import kernel
 import Main
 import n451
 import KQ6Room
@@ -72,19 +73,19 @@ def localproc_1(param1 = None):
 
 	match local5
 		case 1:
-			((ScriptID 455 0) doVerb: param1)
+			(kernel.ScriptID(455, 0) doVerb: param1)
 		#end:case
 		case 2:
-			((ScriptID 456 0) doVerb: param1)
+			(kernel.ScriptID(456, 0) doVerb: param1)
 		#end:case
 		case 3:
-			((ScriptID 4561 0) doVerb: param1)
+			(kernel.ScriptID(4561, 0) doVerb: param1)
 		#end:case
 		case 4:
-			((ScriptID 457 0) doVerb: param1)
+			(kernel.ScriptID(457, 0) doVerb: param1)
 		#end:case
 		case 5:
-			((ScriptID 458 0) doVerb: param1)
+			(kernel.ScriptID(458, 0) doVerb: param1)
 		#end:case
 	#end:match
 #end:procedure
@@ -103,7 +104,7 @@ def proc450_8(param1 = None):
 	else:
 		(snoreSong play:)
 		(snooze1 view: 450 loop: 3 checkDetail:)
-		if ((ScriptID 40 0) oysterDozing:):
+		if (kernel.ScriptID(40, 0) oysterDozing:):
 			(snooze4 view: 450 loop: 5 init: setCycle: Fwd checkDetail:)
 		#endif
 		(shimmer1 init:)
@@ -144,7 +145,7 @@ class rm450(KQ6Room):
 			#end:case
 			else:
 				if (global2 script:):
-					((ScriptID 130) next: resetGnomes)
+					(kernel.ScriptID(130) next: resetGnomes)
 				#endif
 				(global2 setScript: 130)
 			#end:else
@@ -232,7 +233,7 @@ class rm450(KQ6Room):
 		if 
 			(or
 				(((global9 at: 30) owner:) != global11)
-				((ScriptID 40 0) oysterDozing:)
+				(kernel.ScriptID(40, 0) oysterDozing:)
 			)
 			(oyster setCel: 2)
 			(snooze4 init: setCycle: Fwd)
@@ -245,7 +246,7 @@ class rm450(KQ6Room):
 				setScript: oyBlinkScript
 			)
 		#endif
-		(Lock 143 450 0)
+		kernel.Lock(143, 450, 0)
 		(global105 number: 916 setLoop: -1 play:)
 		(global32
 			add:
@@ -270,7 +271,7 @@ class rm450(KQ6Room):
 		#endif
 		(global102 number: 915 setLoop: -1 play:)
 		(global0 setScale: Scaler 100 30 126 70 actions: egoDoVerb)
-		if (proc999_5 global12 470 460):
+		if proc999_5(global12, 470, 460):
 			(global2 setScript: egoEnters)
 		#endif
 	#end:method
@@ -280,12 +281,12 @@ class rm450(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 59)
-		(proc958_0 0 455 456 4561 457 458)
+		proc913_2(59)
+		proc958_0(0, 455, 456, 4561, 457, 458)
 		if (((global9 at: 30) owner:) != global11):
-			((ScriptID 40 0) oysterDozing: 0)
+			(kernel.ScriptID(40, 0) oysterDozing: 0)
 		#endif
-		((ScriptID 40 0) setScript: 0)
+		(kernel.ScriptID(40, 0) setScript: 0)
 		if (global5 contains: mySentence):
 			(mySentence setMotion: 0)
 		#endif
@@ -359,10 +360,10 @@ class rm450(KQ6Room):
 			#end:case
 			case 
 				(and
-					(proc999_5 (global0 onControl: 1) 64 128)
-					(not (proc913_0 42))
+					proc999_5((global0 onControl: 1), 64, 128)
+					(not proc913_0(42))
 				):
-				(proc913_1 81)
+				proc913_1(81)
 				(global103 number: 451 setLoop: -1 play:)
 				(self setScript: mainGnomeScript)
 			#end:case
@@ -520,7 +521,7 @@ class oyster(Prop):
 					case (((global9 at: 30) owner:) != global11):
 						(global91 say: 1 1 7 1)
 					#end:case
-					case ((ScriptID 40 0) oysterDozing:):
+					case (kernel.ScriptID(40, 0) oysterDozing:):
 						(global91 say: 1 1 8 1)
 					#end:case
 					else:
@@ -533,11 +534,11 @@ class oyster(Prop):
 					case 
 						(or
 							(((global9 at: 30) owner:) != global11)
-							((ScriptID 40 0) oysterDozing:)
+							(kernel.ScriptID(40, 0) oysterDozing:)
 						):
 						(global91 say: 1 5 2 1)
 					#end:case
-					case (proc913_0 107):
+					case proc913_0(107):
 						(global91 say: 1 5 3 0)
 					#end:case
 					else:
@@ -566,7 +567,7 @@ class oyster(Prop):
 				if 
 					(or
 						(((global9 at: 30) owner:) != global11)
-						((ScriptID 40 0) oysterDozing:)
+						(kernel.ScriptID(40, 0) oysterDozing:)
 					)
 					(global91 say: 1 30 2 1)
 				else:
@@ -585,11 +586,11 @@ class oyster(Prop):
 					case 
 						(or
 							(((global9 at: 30) owner:) != global11)
-							((ScriptID 40 0) oysterDozing:)
+							(kernel.ScriptID(40, 0) oysterDozing:)
 						):
 						(global91 say: 1 5 2 1)
 					#end:case
-					case (proc913_0 107):
+					case proc913_0(107):
 						(global91 say: 1 0 3 1 self)
 					#end:case
 					else:
@@ -623,7 +624,7 @@ class oyBlinkScript(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 3 8)
+				seconds = kernel.Random(3, 8)
 			#end:case
 			case 1:
 				(client show:)
@@ -654,7 +655,7 @@ class oyFluteScript(Script):
 				if 
 					(or
 						(((global9 at: 30) owner:) != global11)
-						((ScriptID 40 0) oysterDozing:)
+						(kernel.ScriptID(40, 0) oysterDozing:)
 					)
 					(global91 say: 1 31 2 1 self)
 				else:
@@ -741,7 +742,7 @@ class oysterMessages(Script):
 					(and
 						(register == 2)
 						(((global9 at: 30) owner:) == global11)
-						(not (proc913_0 107))
+						(not proc913_0(107))
 					)
 					(global91 say: 1 2 10 1 self)
 				else:
@@ -765,15 +766,15 @@ class oysterMessages(Script):
 							case 
 								(or
 									(((global9 at: 30) owner:) != global11)
-									((ScriptID 40 0) oysterDozing:)
+									(kernel.ScriptID(40, 0) oysterDozing:)
 								):
 								(global91 say: 1 5 2 1 self)
 							#end:case
-							case (proc913_0 107):
+							case proc913_0(107):
 								(global91 say: 1 2 11 0 self)
 							#end:case
 							else:
-								(proc913_1 107)
+								proc913_1(107)
 								(global91 say: 1 2 10 2 self)
 							#end:else
 						)
@@ -783,26 +784,26 @@ class oysterMessages(Script):
 							case (((global9 at: 30) owner:) != global11):
 								(global91 say: 1 42 7 1 self)
 							#end:case
-							case (not (proc913_0 107)):
+							case (not proc913_0(107)):
 								(global91 say: 1 42 4 1 self)
 							#end:case
-							case ((ScriptID 40 0) oysterDozing:):
+							case (kernel.ScriptID(40, 0) oysterDozing:):
 								(global91 say: 1 42 8 1 self)
 							#end:case
-							case (proc913_0 108):
+							case proc913_0(108):
 								(mySentence y: ((mySentence y:) - 100) z: -100)
 								(oyBlink dispose:)
 								(proc450_8 1)
-								(proc451_0 1)
+								proc451_0(1)
 								(self dispose:)
 							#end:case
 							else:
-								(proc913_1 108)
+								proc913_1(108)
 								(global1 givePoints: 2)
 								(mySentence y: ((mySentence y:) - 100) z: -100)
 								(oyBlink dispose:)
 								(proc450_8 1)
-								(proc451_0 0)
+								proc451_0(0)
 								(self dispose:)
 							#end:else
 						)
@@ -1088,7 +1089,7 @@ class gnomeGroup(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject scaler):
+		if kernel.IsObject(scaler):
 			(scaler dispose:)
 		#endif
 		scaler = 0
@@ -1100,7 +1101,7 @@ class gnomeGroup(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject scaler):
+		if kernel.IsObject(scaler):
 			(scaler dispose:)
 		#endif
 		scaler = 0
@@ -1163,11 +1164,11 @@ class mainGnomeScript(Script):
 					posn: 146 128
 					setCycle: End self
 				)
-				(UnLoad 128 454)
+				kernel.UnLoad(128, 454)
 			#end:case
 			case 7:
 				local5 = 1
-				((ScriptID 455 0) init:)
+				(kernel.ScriptID(455, 0) init:)
 				(gnomeGroup
 					view: 459
 					loop: -1
@@ -1175,32 +1176,32 @@ class mainGnomeScript(Script):
 					x: 155
 					y: 126
 					stopUpd:
-					setScript: riddleAlex 0 (ScriptID 455 0)
+					setScript: riddleAlex 0 kernel.ScriptID(455, 0)
 				)
-				(UnLoad 128 4541)
+				kernel.UnLoad(128, 4541)
 				cycles = 2
 			#end:case
 			case 8:#end:case
 			case 9:
-				(localproc_0 (ScriptID 455 0))
-				((ScriptID 455 0) dispose:)
+				(localproc_0 kernel.ScriptID(455, 0))
+				(kernel.ScriptID(455, 0) dispose:)
 				cycles = 2
 			#end:case
 			case 10:
-				(DisposeScript 455)
-				(UnLoad 128 455)
+				kernel.DisposeScript(455)
+				kernel.UnLoad(128, 455)
 				cycles = 2
 			#end:case
 			case 11:
 				local5 = 2
-				((ScriptID 456 0) init:)
+				(kernel.ScriptID(456, 0) init:)
 				(gnomeGroup
 					view: 4591
 					loop: -1
-					setScript: riddleAlex 0 (ScriptID 456 0)
+					setScript: riddleAlex 0 kernel.ScriptID(456, 0)
 				)
 				(tmpGnome view: 2002 hide:)
-				(UnLoad 128 459)
+				kernel.UnLoad(128, 459)
 				cycles = 2
 			#end:case
 			case 12:#end:case
@@ -1211,25 +1212,25 @@ class mainGnomeScript(Script):
 				cycles = 2
 			#end:case
 			case 15:
-				(localproc_0 (ScriptID 456 0))
-				((ScriptID 456 0) dispose:)
+				(localproc_0 kernel.ScriptID(456, 0))
+				(kernel.ScriptID(456, 0) dispose:)
 				cycles = 2
 			#end:case
 			case 16:
-				(DisposeScript 456)
-				(UnLoad 128 456)
+				kernel.DisposeScript(456)
+				kernel.UnLoad(128, 456)
 				cycles = 2
 			#end:case
 			case 17:
 				local5 = 3
-				((ScriptID 4561 0) init:)
+				(kernel.ScriptID(4561, 0) init:)
 				(gnomeGroup
 					view: 4592
 					loop: -1
-					setScript: riddleAlex 0 (ScriptID 4561 0)
+					setScript: riddleAlex 0 kernel.ScriptID(4561, 0)
 				)
 				(tmpGnome view: 2002 hide:)
-				(UnLoad 128 4591)
+				kernel.UnLoad(128, 4591)
 				cycles = 2
 			#end:case
 			case 18:#end:case
@@ -1240,26 +1241,26 @@ class mainGnomeScript(Script):
 				cycles = 2
 			#end:case
 			case 21:
-				(localproc_0 (ScriptID 4561 0))
-				((ScriptID 4561 0) dispose:)
+				(localproc_0 kernel.ScriptID(4561, 0))
+				(kernel.ScriptID(4561, 0) dispose:)
 				cycles = 2
 			#end:case
 			case 22:
-				(DisposeScript 4561)
-				(UnLoad 128 4561)
-				(UnLoad 128 8933)
+				kernel.DisposeScript(4561)
+				kernel.UnLoad(128, 4561)
+				kernel.UnLoad(128, 8933)
 				cycles = 2
 			#end:case
 			case 23:
 				local5 = 4
-				((ScriptID 457 0) init:)
+				(kernel.ScriptID(457, 0) init:)
 				(gnomeGroup
 					view: 4593
 					loop: -1
-					setScript: riddleAlex 0 (ScriptID 457 0)
+					setScript: riddleAlex 0 kernel.ScriptID(457, 0)
 				)
 				(tmpGnome view: 2002 hide:)
-				(UnLoad 128 4592)
+				kernel.UnLoad(128, 4592)
 				cycles = 2
 			#end:case
 			case 24:#end:case
@@ -1267,36 +1268,36 @@ class mainGnomeScript(Script):
 				cycles = 4
 			#end:case
 			case 26:
-				(localproc_0 (ScriptID 457 0))
-				((ScriptID 457 0) dispose:)
+				(localproc_0 kernel.ScriptID(457, 0))
+				(kernel.ScriptID(457, 0) dispose:)
 				cycles = 2
 			#end:case
 			case 27:
-				(DisposeScript 457)
-				(UnLoad 128 457)
+				kernel.DisposeScript(457)
+				kernel.UnLoad(128, 457)
 				cycles = 2
 			#end:case
 			case 28:
 				local5 = 5
-				((ScriptID 458 0) init:)
+				(kernel.ScriptID(458, 0) init:)
 				(gnomeGroup
 					view: 4594
 					loop: -1
-					setScript: riddleAlex 0 (ScriptID 458 0)
+					setScript: riddleAlex 0 kernel.ScriptID(458, 0)
 				)
 				(tmpGnome view: 2002 hide:)
-				(UnLoad 128 4593)
+				kernel.UnLoad(128, 4593)
 				cycles = 2
 			#end:case
 			case 29:#end:case
 			case 30:
-				(localproc_0 (ScriptID 458 0))
-				((ScriptID 458 0) dispose:)
+				(localproc_0 kernel.ScriptID(458, 0))
+				(kernel.ScriptID(458, 0) dispose:)
 				cycles = 2
 			#end:case
 			case 31:
-				(DisposeScript 458)
-				(UnLoad 128 458)
+				kernel.DisposeScript(458)
+				kernel.UnLoad(128, 458)
 				local5 = 0
 				(gnomeGroup
 					view: 4544
@@ -1306,7 +1307,7 @@ class mainGnomeScript(Script):
 					setCycle: End self
 				)
 				(tmpGnome dispose:)
-				(UnLoad 128 4593)
+				kernel.UnLoad(128, 4593)
 			#end:case
 			case 32:
 				(gnomeGroup
@@ -1318,7 +1319,7 @@ class mainGnomeScript(Script):
 					setCycle: Walk
 					setMotion: MoveTo 131 70 self
 				)
-				(UnLoad 128 4544)
+				kernel.UnLoad(128, 4544)
 			#end:case
 			case 33:
 				(gnomeGroup dispose:)
@@ -1329,12 +1330,12 @@ class mainGnomeScript(Script):
 					cycleSpeed: 6
 					setCycle: End self
 				)
-				((ScriptID 40 0) alexInvisible: 0)
+				(kernel.ScriptID(40, 0) alexInvisible: 0)
 			#end:case
 			case 34:
-				if ((ScriptID 40 0) alexX:):
-					temp0 = ((ScriptID 40 0) alexX:)
-					temp1 = ((ScriptID 40 0) alexY:)
+				if (kernel.ScriptID(40, 0) alexX:):
+					temp0 = (kernel.ScriptID(40, 0) alexX:)
+					temp1 = (kernel.ScriptID(40, 0) alexY:)
 				else:
 					temp0 = (global0 x:)
 					temp1 = (global0 y:)
@@ -1350,15 +1351,15 @@ class mainGnomeScript(Script):
 				(global1 handsOn:)
 				(snoreSong play:)
 				(snooze1 init: setCycle: Fwd checkDetail:)
-				if ((ScriptID 40 0) oysterDozing:):
+				if (kernel.ScriptID(40, 0) oysterDozing:):
 					(snooze4 init: setCycle: Fwd checkDetail:)
 				#endif
-				(proc913_3)
-				(proc913_1 42)
+				proc913_3()
+				proc913_1(42)
 				(global91 say: 2 83 14 3)
 				(self dispose:)
 				(global103 fade: 0 10 10)
-				(DisposeScript 1037)
+				kernel.DisposeScript(1037)
 			#end:case
 		#end:match
 	#end:method
@@ -1402,7 +1403,7 @@ class riddleAlex(Script):
 					0
 				else:
 					(global1 handsOff:)
-					(proc913_1 59)
+					proc913_1(59)
 					cycles = 6
 				#endif
 			#end:case
@@ -1428,8 +1429,8 @@ class giveItemScript(Script):
 				(global1 handsOff:)
 				temp2 = (global0 x:)
 				temp3 = (global0 y:)
-				((ScriptID 40 0) alexX: (global0 x:))
-				((ScriptID 40 0) alexY: (global0 y:))
+				(kernel.ScriptID(40, 0) alexX: (global0 x:))
+				(kernel.ScriptID(40, 0) alexY: (global0 y:))
 				match register
 					case 37:
 						(self setScript: giveGnomeBird self register)
@@ -1469,7 +1470,7 @@ class giveItemScript(Script):
 							cycleSpeed: 0
 							setCycle: CT temp4 1 self
 						)
-						(UnLoad 128 900)
+						kernel.UnLoad(128, 900)
 					#end:else
 				#end:match
 			#end:case
@@ -1494,34 +1495,34 @@ class rightInvItem(Script):
 				(global1 handsOff:)
 				match local5
 					case 1:
-						if (not (proc913_1 145)):
+						if (not proc913_1(145)):
 							(global1 givePoints: 2)
 						#endif
-						(UnLoad 128 8931)
+						kernel.UnLoad(128, 8931)
 					#end:case
 					case 2:
-						if (not (proc913_1 146)):
+						if (not proc913_1(146)):
 							(global1 givePoints: 2)
 						#endif
-						(UnLoad 128 8932)
+						kernel.UnLoad(128, 8932)
 					#end:case
 					case 3:
-						if (not (proc913_1 147)):
+						if (not proc913_1(147)):
 							(global1 givePoints: 2)
 						#endif
-						(UnLoad 128 8933)
+						kernel.UnLoad(128, 8933)
 					#end:case
 					case 4:
-						if (not (proc913_1 148)):
+						if (not proc913_1(148)):
 							(global1 givePoints: 2)
 						#endif
-						(UnLoad 128 8934)
+						kernel.UnLoad(128, 8934)
 					#end:case
 					case 5:
-						if (not (proc913_1 149)):
+						if (not proc913_1(149)):
 							(global1 givePoints: 2)
 						#endif
-						(UnLoad 128 8935)
+						kernel.UnLoad(128, 8935)
 					#end:case
 				#end:match
 				(global103 number: 451 setLoop: -1 play:)
@@ -1569,17 +1570,17 @@ class wrongInvItem(Script):
 
 		match state = param1
 			case 0:
-				if ((ScriptID 40 0) alexInvisible:):
+				if (kernel.ScriptID(40, 0) alexInvisible:):
 					(global0 view: 452 setLoop: 1 cel: 0 setCycle: End self)
-					((ScriptID 40 0) alexInvisible: 0)
+					(kernel.ScriptID(40, 0) alexInvisible: 0)
 				else:
 					(self cue:)
 				#endif
 			#end:case
 			case 1:
-				if ((ScriptID 40 0) alexX:):
-					temp0 = ((ScriptID 40 0) alexX:)
-					temp1 = ((ScriptID 40 0) alexY:)
+				if (kernel.ScriptID(40, 0) alexX:):
+					temp0 = (kernel.ScriptID(40, 0) alexX:)
+					temp1 = (kernel.ScriptID(40, 0) alexY:)
 				else:
 					temp0 = (global0 x:)
 					temp1 = (global0 y:)
@@ -1607,7 +1608,7 @@ class toTheSea(Script):
 
 		match state = param1
 			case 0:
-				(proc913_2 59)
+				proc913_2(59)
 				(global2 drawPic: 450 -32758)
 				if (global5 contains: mySentence):
 					(mySentence setCycle: 0 setMotion: 0 setScript: 0)
@@ -1641,19 +1642,19 @@ class toTheSea(Script):
 				(global2 style: 7)
 				match local5
 					case 1:
-						(DisposeScript 455)
+						kernel.DisposeScript(455)
 					#end:case
 					case 2:
-						(DisposeScript 456)
+						kernel.DisposeScript(456)
 					#end:case
 					case 3:
-						(DisposeScript 4561)
+						kernel.DisposeScript(4561)
 					#end:case
 					case 4:
-						(DisposeScript 457)
+						kernel.DisposeScript(457)
 					#end:case
 					case 5:
-						(DisposeScript 458)
+						kernel.DisposeScript(458)
 					#end:case
 				#end:match
 				global160 = 35
@@ -1684,7 +1685,7 @@ class giveGnomeBird(Script):
 					loop: 0
 					cycleSpeed: 50
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 				cycles = 6
 			#end:case
 			case 1:
@@ -1693,17 +1694,17 @@ class giveGnomeBird(Script):
 			#end:case
 			case 2:
 				if (local4 < 4):
-					local4++
+					local4.post('++')
 					(state -= 2)
 				#endif
 				(self cue:)
 			#end:case
 			case 3:
 				(global104 number: 931 setLoop: 1 play: self)
-				(UnLoad 132 930)
+				kernel.UnLoad(132, 930)
 				(global0 setLoop: 6 cel: 0 cycleSpeed: 0 setCycle: Fwd)
 				if (local5 == 2):
-					((ScriptID 456 0) setLoop: 1 setCycle: Fwd)
+					(kernel.ScriptID(456, 0) setLoop: 1 setCycle: Fwd)
 				#endif
 			#end:case
 			case 4:
@@ -1712,7 +1713,7 @@ class giveGnomeBird(Script):
 			#end:case
 			case 5:
 				(global104 number: 0)
-				(UnLoad 132 931)
+				kernel.UnLoad(132, 931)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1743,7 +1744,7 @@ class inkOutAlex(Script):
 					cycleSpeed: 2
 					setCycle: End self
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
 				(global0 setLoop: 6 cel: 0 setCycle: End self)
@@ -1751,7 +1752,7 @@ class inkOutAlex(Script):
 			case 3:
 				(global0 put: 51 450)
 				(global69 curIcon: (global69 at: 0))
-				((ScriptID 40 0) alexInvisible: 1)
+				(kernel.ScriptID(40, 0) alexInvisible: 1)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1777,7 +1778,7 @@ class blowFlute(Script):
 					cel: 0
 					cycleSpeed: 6
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 				cycles = 4
 			#end:case
 			case 1:
@@ -1785,9 +1786,9 @@ class blowFlute(Script):
 				(global0 setCycle: Fwd)
 			#end:case
 			case 2:
-				if ((ScriptID 40 0) alexX:):
-					temp0 = ((ScriptID 40 0) alexX:)
-					temp1 = ((ScriptID 40 0) alexY:)
+				if (kernel.ScriptID(40, 0) alexX:):
+					temp0 = (kernel.ScriptID(40, 0) alexX:)
+					temp1 = (kernel.ScriptID(40, 0) alexY:)
 				else:
 					temp0 = (global0 x:)
 					temp1 = (global0 y:)
@@ -1796,7 +1797,7 @@ class blowFlute(Script):
 				cycles = 4
 			#end:case
 			case 3:
-				(UnLoad 132 942)
+				kernel.UnLoad(132, 942)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -2239,7 +2240,7 @@ class egoDoVerb(Actions):
 						((global0 onControl: 1) == 64)
 					)
 					if (global2 script:):
-						((ScriptID 130) next: resetGnomes)
+						(kernel.ScriptID(130) next: resetGnomes)
 					#endif
 					(global2 setScript: 130)
 					return 1

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 975
 import sci_sh
+import kernel
 import Main
 import Scaler
 
@@ -27,12 +28,12 @@ class ScaleTo(Scaler):
 			if (argc >= 2):
 				endScale = param2
 				if (argc >= 3):
-					if (IsObject param3):
+					if kernel.IsObject(param3):
 						caller = param3
 					else:
 						step = param3
 						if (argc >= 4):
-							if (IsObject param4):
+							if kernel.IsObject(param4):
 								caller = param4
 							else:
 								waitCount = param4

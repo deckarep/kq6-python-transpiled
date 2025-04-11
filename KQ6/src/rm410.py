@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 410
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -100,7 +101,7 @@ def localproc_1():
 			init:
 		)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -113,7 +114,7 @@ def localproc_2():
 	while (temp0 < 20): # inline for
 		(local101[temp0] dispose:)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -122,7 +123,7 @@ def localproc_3():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	(proc913_1 95)
+	proc913_1(95)
 	(global1 givePoints: 3)
 #end:procedure
 
@@ -206,20 +207,20 @@ class rm410(KQ6Room):
 		)
 		(global1 handsOn:)
 		(super init: &rest)
-		if (((ScriptID 30 0) prevEdgeHit:) == 2):
+		if ((kernel.ScriptID(30, 0) prevEdgeHit:) == 2):
 			local404 = 10
 			local403 = 10
 		else:
 			local404 = 14
 			local403 = 2
 		#endif
-		((ScriptID 30 0) cue:)
-		if (not (proc913_0 1)):
+		(kernel.ScriptID(30, 0) cue:)
+		if (not proc913_0(1)):
 			(global72 addToFront: self)
 			(global73 addToFront: self)
 		#endif
 		(localproc_1)
-		((ScriptID 30 3) init:)
+		(kernel.ScriptID(30, 3) init:)
 		(door init:)
 		(backOfDoors init:)
 		(hall init:)
@@ -231,7 +232,7 @@ class rm410(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 delete: self)
 			(global73 delete: self)
 		#endif
@@ -278,16 +279,16 @@ class rm410(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 1):
+		if proc913_0(1):
 			(cond
 				case (global2 script:):#end:case
 				case ((global0 onControl: 1) == 8192):
-					((ScriptID 30 0) prevEdgeHit: 2)
-					(global2 setScript: (ScriptID 30 2))
+					(kernel.ScriptID(30, 0) prevEdgeHit: 2)
+					(global2 setScript: kernel.ScriptID(30, 2))
 				#end:case
 				case ((global0 onControl: 1) == 16384):
-					((ScriptID 30 0) prevEdgeHit: 4)
-					(global2 setScript: (ScriptID 30 2))
+					(kernel.ScriptID(30, 0) prevEdgeHit: 4)
+					(global2 setScript: kernel.ScriptID(30, 2))
 				#end:case
 			)
 		#endif
@@ -342,7 +343,7 @@ class FloorTile(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		if param1:
@@ -356,7 +357,7 @@ class FloorTile(Feature):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 addToFront: self)
 			(global73 addToFront: self)
 		#endif
@@ -367,7 +368,7 @@ class FloorTile(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 delete: self)
 			(global73 delete: self)
 		#endif
@@ -472,9 +473,9 @@ class goToTile(Script):
 			case 1:
 				if (not (local404 == local405)):
 					if ((register tileCheck:) == (local403 - 1)):
-						local403--
+						local403.post('--')
 					else:
-						local403++
+						local403.post('++')
 					#endif
 				#endif
 				if 
@@ -522,7 +523,7 @@ class backOfDoors(Feature):
 
 		(self setOnMeCheck: 1 2 4)
 		(super init: &rest)
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 addToFront: self)
 			(global73 addToFront: self)
 		#endif
@@ -533,7 +534,7 @@ class backOfDoors(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 delete: self)
 			(global73 delete: self)
 		#endif
@@ -559,25 +560,25 @@ class backOfDoors(Feature):
 					(param1 claimed: 1)
 					if 
 						(and
-							(not (proc913_0 95))
-							(((ScriptID 30 0) prevEdgeHit:) == 4)
+							(not proc913_0(95))
+							((kernel.ScriptID(30, 0) prevEdgeHit:) == 4)
 						)
 						(localproc_3)
 					#endif
-					((ScriptID 30 0) prevEdgeHit: 4)
-					(global2 setScript: (ScriptID 30 2))
+					(kernel.ScriptID(30, 0) prevEdgeHit: 4)
+					(global2 setScript: kernel.ScriptID(30, 2))
 				#end:case
 				case ((global0 inRect: 229 142 261 151) and (global70 > 165)):
 					(param1 claimed: 1)
 					if 
 						(and
-							(not (proc913_0 95))
-							(((ScriptID 30 0) prevEdgeHit:) == 2)
+							(not proc913_0(95))
+							((kernel.ScriptID(30, 0) prevEdgeHit:) == 2)
 						)
 						(localproc_3)
 					#endif
-					((ScriptID 30 0) prevEdgeHit: 2)
-					(global2 setScript: (ScriptID 30 2))
+					(kernel.ScriptID(30, 0) prevEdgeHit: 2)
+					(global2 setScript: kernel.ScriptID(30, 2))
 				#end:case
 				case 
 					(and
@@ -620,7 +621,7 @@ class door(Feature):
 
 		(self setOnMeCheck: 1 8 16384 128 8192)
 		(super init: &rest)
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 addToFront: self)
 			(global73 addToFront: self)
 		#endif
@@ -631,7 +632,7 @@ class door(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc913_0 1)):
+		if (not proc913_0(1)):
 			(global72 delete: self)
 			(global73 delete: self)
 		#endif
@@ -657,25 +658,25 @@ class door(Feature):
 					(param1 claimed: 1)
 					if 
 						(and
-							(not (proc913_0 95))
-							(((ScriptID 30 0) prevEdgeHit:) == 4)
+							(not proc913_0(95))
+							((kernel.ScriptID(30, 0) prevEdgeHit:) == 4)
 						)
 						(localproc_3)
 					#endif
-					((ScriptID 30 0) prevEdgeHit: 4)
-					(global2 setScript: (ScriptID 30 2))
+					(kernel.ScriptID(30, 0) prevEdgeHit: 4)
+					(global2 setScript: kernel.ScriptID(30, 2))
 				#end:case
 				case ((global0 inRect: 229 142 261 151) and (global70 > 165)):
 					(param1 claimed: 1)
 					if 
 						(and
-							(not (proc913_0 95))
-							(((ScriptID 30 0) prevEdgeHit:) == 2)
+							(not proc913_0(95))
+							((kernel.ScriptID(30, 0) prevEdgeHit:) == 2)
 						)
 						(localproc_3)
 					#endif
-					((ScriptID 30 0) prevEdgeHit: 2)
-					(global2 setScript: (ScriptID 30 2))
+					(kernel.ScriptID(30, 0) prevEdgeHit: 2)
+					(global2 setScript: kernel.ScriptID(30, 2))
 				#end:case
 				case 
 					(and
@@ -726,7 +727,7 @@ class egoEnters(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (((ScriptID 30 0) prevEdgeHit:) == 2):
+				if ((kernel.ScriptID(30, 0) prevEdgeHit:) == 2):
 					(global0
 						posn: 10 146
 						init:
@@ -749,7 +750,7 @@ class egoEnters(Script):
 				#endif
 			#end:case
 			case 1:
-				if (((ScriptID 30 0) prevEdgeHit:) == 2):
+				if ((kernel.ScriptID(30, 0) prevEdgeHit:) == 2):
 					(global0 setHeading: 90)
 				else:
 					(global0 setHeading: 270)
@@ -787,7 +788,7 @@ class doorDeathMsgPause(Script):
 						#endif
 					#endif
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				(cond
 					case ((register == 2) and (local404 == 9)):
@@ -869,20 +870,20 @@ class fireAllSpikes(Script):
 						#end:else
 					#end:match
 				#endif
-				(Memory 6 (local535 + 24) (register y:))
-				(Memory 6 (local535 + 26) (register x:))
+				kernel.Memory(6, (local535 + 24), (register y:))
+				kernel.Memory(6, (local535 + 26), (register x:))
 				((aSandBlast new:)
-					x: (proc999_6 local535 4)
-					y: (proc999_6 local535 0)
-					setLoop: (proc999_6 local535 1)
+					x: proc999_6(local535, 4)
+					y: proc999_6(local535, 0)
+					setLoop: proc999_6(local535, 1)
 					cel: 1
 					init:
 					setScript: (aSpikeScript new:) 0 local535
 				)
-				ticks = (Random 2 6)
+				ticks = kernel.Random(2, 6)
 			#end:case
 			case 1:
-				if (local540++ < 4):
+				if (local540.post('++') < 4):
 					(state -= 2)
 				#endif
 				(self cue:)
@@ -913,19 +914,19 @@ class aSpikeScript(Script):
 				(client cel: 2)
 				if 
 					(localproc_0
-						(proc999_6 register 12)
-						(proc999_6 register 13)
-						(proc999_6 register 3)
-						(proc999_6 register 5)
+						proc999_6(register, 12)
+						proc999_6(register, 13)
+						proc999_6(register, 3)
+						proc999_6(register, 5)
 					)
 					(global2 setScript: killEgo)
 					(client setCycle: End client)
 				else:
-					(local536[(proc999_6 register 11)] = (aSpike new:)
-						x: (proc999_6 register 5)
-						y: (proc999_6 register 3)
-						cel: (proc999_6 register 2)
-						setPri: (proc999_6 register 14)
+					(local536[proc999_6(register, 11)] = (aSpike new:)
+						x: proc999_6(register, 5)
+						y: proc999_6(register, 3)
+						cel: proc999_6(register, 2)
+						setPri: proc999_6(register, 14)
 						setLoop: 4
 						init:
 					)
@@ -936,30 +937,30 @@ class aSpikeScript(Script):
 				(client cel: ((client cel:) + 1))
 				if 
 					(localproc_0
-						(proc999_6 register 12)
-						(proc999_6 register 13)
-						(proc999_6 register 3)
-						(proc999_6 register (proc999_6 register 15))
+						proc999_6(register, 12)
+						proc999_6(register, 13)
+						proc999_6(register, 3)
+						proc999_6(register, proc999_6(register, 15))
 					)
 					(global2 setScript: killEgo)
-					(local536[(proc999_6 register 11)] dispose:)
+					(local536[proc999_6(register, 11)] dispose:)
 					(client setCycle: End client)
 				else:
-					(local536[(proc999_6 register 11)]
-						x: (proc999_6 register (proc999_6 register 15))
+					(local536[proc999_6(register, 11)]
+						x: proc999_6(register, proc999_6(register, 15))
 					)
 					ticks = 4
 				#endif
 			#end:case
 			case 3:
-				(Memory 6 (register + 30) ((proc999_6 register 15) + 1))
-				if ((proc999_6 register 15) < 9):
+				kernel.Memory(6, (register + 30), (proc999_6(register, 15) + 1))
+				if (proc999_6(register, 15) < 9):
 					(state -= 2)
 				#endif
 				(self cue:)
 			#end:case
 			case 4:
-				(local536[(proc999_6 register 11)] x: (proc999_6 register 10))
+				(local536[proc999_6(register, 11)] x: proc999_6(register, 10))
 				ticks = 4
 			#end:case
 			case 5:
@@ -1025,7 +1026,7 @@ class killEgo(Script):
 				seconds = 2
 			#end:case
 			case 3:
-				(proc0_1 37)
+				proc0_1(37)
 				(self dispose:)
 			#end:case
 		#end:match

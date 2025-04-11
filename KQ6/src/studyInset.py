@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 811
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import rm810
@@ -31,7 +32,7 @@ class studyInset(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 811)
+		kernel.DisposeScript(811)
 	#end:method
 
 	@classmethod
@@ -42,14 +43,14 @@ class studyInset(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not ((ScriptID 80 0) tstFlag: 711 16)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 16)):
 					(global1 givePoints: 1)
 				#endif
 				(self setScript: convScript self)
 			#end:case
 			case 1:
-				if (not ((ScriptID 80 0) tstFlag: 711 16)):
-					((ScriptID 80 0) setFlag: 711 16)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 16)):
+					(kernel.ScriptID(80, 0) setFlag: 711 16)
 					(convScript start: ((convScript state:) + 1))
 					register = 1
 					(global102 fadeTo: 150 -1)
@@ -70,7 +71,7 @@ class studyInset(Script):
 				(desk dispose:)
 				(door dispose:)
 				(background dispose:)
-				(proc810_1)
+				proc810_1()
 				cycles = 5
 			#end:case
 			case 4:
@@ -100,8 +101,8 @@ class writeLetter(CartoonScript):
 
 		match state = param1
 			case 0:
-				(proc913_1 59)
-				((ScriptID 810 3) setScript: 0 1)
+				proc913_1(59)
+				(kernel.ScriptID(810, 3) setScript: 0 1)
 				(self setScript: inkUp self)
 			#end:case
 			case 1:
@@ -186,7 +187,7 @@ class writeLetter(CartoonScript):
 				cycles = 10
 			#end:case
 			case 12:
-				if ((ScriptID 80 0) tstFlag: 710 256):
+				if (kernel.ScriptID(80, 0) tstFlag: 710 256):
 					(KQ6Print
 						font: global22
 						posn: -1 10
@@ -211,7 +212,7 @@ class writeLetter(CartoonScript):
 				(self setScript: convScript self)
 			#end:case
 			case 14:
-				(proc913_2 59)
+				proc913_2(59)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -232,7 +233,7 @@ class inkUp(Script):
 				(vizier setLoop: 2 cel: 0 cycleSpeed: 8 setCycle: End self)
 			#end:case
 			case 1:
-				seconds = (Random 3 5)
+				seconds = kernel.Random(3, 5)
 			#end:case
 			case 2:
 				(vizier setCycle: Beg self)
@@ -294,7 +295,7 @@ class convScript(Script):
 			case 1:
 				(KQ6Print
 					font: global22
-					say: 0 4 1 (8 + (not ((ScriptID 80 0) tstFlag: 711 16))) 1
+					say: 0 4 1 (8 + (not (kernel.ScriptID(80, 0) tstFlag: 711 16))) 1
 					init: self
 				)
 				cycles = 10
@@ -310,7 +311,7 @@ class convScript(Script):
 				(door init:)
 				(desk addToPic:)
 				(background addToPic:)
-				if (not ((ScriptID 80 0) tstFlag: 711 16)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 16)):
 					(feet init:)
 					(vizier init:)
 					cycles = 1

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 926
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -32,7 +33,7 @@ def proc926_0(param1 = None):
 		#end:else
 	)
 	(temp0 eachElementDo: #perform flipPoly)
-	(DisposeScript 926)
+	kernel.DisposeScript(926)
 #end:procedure
 
 @SCI.procedure
@@ -51,10 +52,10 @@ def proc926_1(param1 = None):
 				(param1[temp0] perform: flipFeature)
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#endif
-	(DisposeScript 926)
+	kernel.DisposeScript(926)
 #end:procedure
 
 @SCI.instance
@@ -65,33 +66,25 @@ class flipPoly(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp1 = (Memory 1 (4 * temp2 = (param1 size:)))
+		temp1 = kernel.Memory(1, (4 * temp2 = (param1 size:)))
 		temp0 = 0
 		while (temp0 < temp2): # inline for
-			(Memory
-				6
-				(temp1 + (4 * temp0))
-				(-
-					320
-					(Memory
-						5
-						(((param1 points:) + (4 * temp2)) - (4 + (4 * temp0)))
-					)
-				)
-			)
-			(Memory
-				6
-				(+ temp1 (4 * temp0) 2)
-				(Memory
-					5
-					(((param1 points:) + (4 * temp2)) - (2 + (4 * temp0)))
-				)
-			)
+			kernel.Memory(6, (temp1 + (4 * temp0)), (-
+				320
+				kernel.Memory(5, (-
+					((param1 points:) + (4 * temp2))
+					(4 + (4 * temp0))
+				))
+			))
+			kernel.Memory(6, (+ temp1 (4 * temp0) 2), kernel.Memory(5, (-
+				((param1 points:) + (4 * temp2))
+				(2 + (4 * temp0))
+			)))
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		if (param1 dynamic:):
-			(Memory 3 (param1 points:))
+			kernel.Memory(3, (param1 points:))
 		#endif
 		(param1 points: temp1 dynamic: 1)
 	#end:method
@@ -106,7 +99,7 @@ class flipFeature(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject (param1 onMeCheck:)):
+		if kernel.IsObject((param1 onMeCheck:)):
 			(proc926_0 (param1 onMeCheck:))
 		else:
 			temp0 = (param1 nsLeft:)

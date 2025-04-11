@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1011
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -29,7 +30,7 @@ class Genie(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			cel = 1
 			(super init: 0 0 0 &rest)
 		else:

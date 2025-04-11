@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 205
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room
@@ -100,7 +101,7 @@ class restartCode(Code):
 		if temp0:
 			(global102 fade:)
 			(global103 fade:)
-			(DrawPic 98)
+			kernel.DrawPic(98)
 			(global73 delete: global2)
 			(global72 delete: global2)
 			(global1 restart: 1)
@@ -224,7 +225,7 @@ class helpScript(Script):
 				cycles = 2
 			#end:case
 			case 5:
-				if (FileIO 10 r"""g"""):
+				if kernel.FileIO(10, r"""g"""):
 					(ourCursor hide:)
 					(Cursor showCursor: 1)
 					temp1 = 0
@@ -266,7 +267,7 @@ class helpScript(Script):
 						)
 					#end:loop
 					if temp1:
-						temp0 = (ReadNumber @temp1)
+						temp0 = kernel.ReadNumber(@temp1)
 					#endif
 					match temp0
 						case 1:
@@ -896,7 +897,7 @@ class inventoryScript(Script):
 				cycles = 2
 			#end:case
 			case 43:
-				(DrawPic (global2 picture:) 9)
+				kernel.DrawPic((global2 picture:), 9)
 				(ourCursor setMotion: MoveTo 202 23 self)
 			#end:case
 			case 44:
@@ -1238,7 +1239,7 @@ class objectGlitter(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 5 10)
+				seconds = kernel.Random(5, 10)
 			#end:case
 			case 1:
 				state = -1
@@ -1431,7 +1432,7 @@ class royalRing(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(self cel: 0 setCycle: End setScript: (Clone objectGlitter))
+		(self cel: 0 setCycle: End setScript: kernel.Clone(objectGlitter))
 		(super init: &rest)
 	#end:method
 
@@ -1461,7 +1462,7 @@ class theControlPanel(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DrawPic (global2 picture:))
+		kernel.DrawPic((global2 picture:))
 	#end:method
 
 #end:class or instance

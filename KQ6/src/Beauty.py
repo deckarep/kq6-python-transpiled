@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1003
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -31,12 +32,12 @@ class Beauty(Kq6Talker):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc913_0 59):
+			case proc913_0(59):
 				(tBust cel: 1)
 				cel = 1
 				(super init: tBust 0 0 &rest)
 			#end:case
-			case (proc913_0 43):
+			case proc913_0(43):
 				view = 8951
 				(tBust view: 8951)
 				(tMouth view: 8951 nsTop: 33 nsLeft: 28)

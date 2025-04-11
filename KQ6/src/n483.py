@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 483
 import sci_sh
+import kernel
 import Main
 import n913
 import Conversation
@@ -26,7 +27,7 @@ def proc483_0(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: getBottle 0 param1)
 #end:procedure
 
@@ -35,7 +36,7 @@ def proc483_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: getGrapes)
 #end:procedure
 
@@ -44,7 +45,7 @@ def proc483_2(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: getTomato 0 param1)
 #end:procedure
 
@@ -53,7 +54,7 @@ def proc483_3(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: pickLettuce 0 param1)
 #end:procedure
 
@@ -62,7 +63,7 @@ def proc483_4(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	((ScriptID 480 5) register: 1)
+	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: chokeDie 0 param1)
 #end:procedure
 
@@ -98,7 +99,7 @@ class getGrapes(Script):
 				(global1 handsOn:)
 				(global0 setHeading: 180)
 				(self dispose:)
-				(DisposeScript 483)
+				kernel.DisposeScript(483)
 			#end:case
 		#end:match
 	#end:method
@@ -139,11 +140,11 @@ class getTomato(Script):
 			case 4:
 				(register dispose:)
 				if global169:
-					(DrawPic 480 15)
+					kernel.DrawPic(480, 15)
 				else:
-					(DrawPic 480)
+					kernel.DrawPic(480)
 				#endif
-				((ScriptID 480 7) cel: 0 init: addToPic:)
+				(kernel.ScriptID(480, 7) cel: 0 init: addToPic:)
 				(global0 setCycle: End self)
 			#end:case
 			case 5:
@@ -153,7 +154,7 @@ class getTomato(Script):
 				(global1 handsOn:)
 				(global0 posn: 154 157 reset: 7)
 				(self dispose:)
-				(DisposeScript 483)
+				kernel.DisposeScript(483)
 			#end:case
 		#end:match
 	#end:method
@@ -171,8 +172,8 @@ class pickLettuce(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not (proc913_0 119)):
-					(proc913_1 119)
+				if (not proc913_0(119)):
+					proc913_1(119)
 					(global1 givePoints: 1)
 				#endif
 				if (global0 has: 21):
@@ -213,9 +214,9 @@ class pickLettuce(Script):
 					cel: 4
 					setCursor: 990 1 4
 				)
-				((ScriptID 0 7) setReal: (global9 at: 21) 30 2)
+				(kernel.ScriptID(0, 7) setReal: (global9 at: 21) 30 2)
 				(self dispose:)
-				(DisposeScript 483)
+				kernel.DisposeScript(483)
 			#end:case
 		#end:match
 	#end:method
@@ -287,7 +288,7 @@ class chokeDie(Script):
 				(global91 say: 13 5 0 9 self 480)
 			#end:case
 			case 12:
-				(proc0_1 22)
+				proc0_1(22)
 			#end:case
 		#end:match
 	#end:method
@@ -344,9 +345,9 @@ class getBottle(Script):
 			#end:case
 			case 2:
 				if (not register):
-					((ScriptID 480 3) dispose:)
+					(kernel.ScriptID(480, 3) dispose:)
 				else:
-					((ScriptID 480 4) dispose:)
+					(kernel.ScriptID(480, 4) dispose:)
 				#endif
 				(global0 setCycle: End self)
 			#end:case
@@ -372,7 +373,7 @@ class getBottle(Script):
 			case 5:
 				(global1 handsOn:)
 				(self dispose:)
-				(DisposeScript 483)
+				kernel.DisposeScript(483)
 			#end:case
 		#end:match
 	#end:method

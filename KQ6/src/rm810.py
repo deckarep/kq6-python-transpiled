@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 810
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import Scaler
@@ -179,8 +180,8 @@ class rm810(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 951)
-		(DisposeScript 969)
+		kernel.DisposeScript(951)
+		kernel.DisposeScript(969)
 	#end:method
 
 #end:class or instance
@@ -210,14 +211,14 @@ class changeHallways(Script):
 				(beam setScript: 0)
 				if ((global0 heading:) == 180):
 					(global0 posn: 200 133)
-					local0++
+					local0.post('++')
 				else:
 					(global0 posn: 200 188 setHeading: 0)
-					local0--
+					local0.post('--')
 				#endif
-				state++
+				state.post('++')
 				if register = (local0 == 3):
-					state--
+					state.post('--')
 					(global0 posn: 156 135 hide: normal: 0)
 				#endif
 				(localproc_0)
@@ -245,7 +246,7 @@ class changeHallways(Script):
 				ticks = 30
 			#end:case
 			case 5:
-				if ((local0 == 2) and (not ((ScriptID 80 0) tstFlag: 711 16))):
+				if ((local0 == 2) and (not (kernel.ScriptID(80, 0) tstFlag: 711 16))):
 					(global91 say: 1 0 4 0 self)
 				else:
 					cycles = 2
@@ -290,15 +291,15 @@ class enterBedroom(Script):
 					posn: 193 134
 				)
 				if local53:
-					state++
+					state.post('++')
 					(global0 cel: 9 setCycle: Beg self)
 				else:
 					(global0 cel: 0 setCycle: End self)
 				#endif
 			#end:case
 			case 2:
-				if (not ((ScriptID 80 0) tstFlag: 711 1024)):
-					((ScriptID 80 0) setFlag: 711 1024)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 1024)):
+					(kernel.ScriptID(80, 0) setFlag: 711 1024)
 					(global91 say: 6 5 13 0 self)
 				else:
 					cycles = 1
@@ -339,8 +340,8 @@ class walls(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		local54 = ((proc999_4 142 64 157 156 param1) and (local0 == 2))
-		return (not (0x0002 & (OnControl 4 (param1 x:) (param1 y:))))
+		local54 = (proc999_4(142, 64, 157, 156, param1) and (local0 == 2))
+		return (not (0x0002 & kernel.OnControl(4, (param1 x:), (param1 y:))))
 	#end:method
 
 	@classmethod
@@ -424,10 +425,10 @@ class chink(View):
 
 		match param1
 			case 1:
-				(global2 setScript: (ScriptID 811))
+				(global2 setScript: kernel.ScriptID(811))
 			#end:case
 			case 5:
-				(global2 setScript: (ScriptID 811))
+				(global2 setScript: kernel.ScriptID(811))
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -459,7 +460,7 @@ class beam(Prop):
 				cel = ((((global0 x:) - x) / 7) - 1)
 				priority = ((global0 priority:) - 1)
 			else:
-				priority = (CoordPri y)
+				priority = kernel.CoordPri(y)
 				cel = 8
 			#endif
 		#endif

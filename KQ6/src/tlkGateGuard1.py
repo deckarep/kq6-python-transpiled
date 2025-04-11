@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1009
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import Kq6Window
@@ -49,14 +50,14 @@ class tlkGateGuard1(Kq6Talker):
 				textY = 10
 				(super init: 0 0 0 &rest)
 			#end:case
-			case ((global11 == 220) and (((ScriptID 220 3) y:) == 97)):
+			case ((global11 == 220) and ((kernel.ScriptID(220, 3) y:) == 97)):
 				textY = 0
 				(gd1Mouth loop: 6)
 				x = 91
 				y = 58
 				(super init: 0 0 gd1Mouth &rest)
 			#end:case
-			case ((global11 == 220) and (((ScriptID 220 3) y:) == 119)):
+			case ((global11 == 220) and ((kernel.ScriptID(220, 3) y:) == 119)):
 				textY = 0
 				(gd1Mouth loop: 6)
 				x = 102
@@ -66,8 +67,8 @@ class tlkGateGuard1(Kq6Talker):
 			case 
 				(and
 					(global11 == 220)
-					(((ScriptID 220 3) loop:) == 0)
-					(((ScriptID 220 3) cel:) == 0)
+					((kernel.ScriptID(220, 3) loop:) == 0)
+					((kernel.ScriptID(220, 3) cel:) == 0)
 				):
 				textY = 0
 				(gd1Mouth loop: 6)
@@ -75,7 +76,7 @@ class tlkGateGuard1(Kq6Talker):
 				y = 71
 				(super init: 0 0 gd1Mouth &rest)
 			#end:case
-			case (proc913_0 162):
+			case proc913_0(162):
 				textY = 0
 				(gd1Mouth loop: 6)
 				x = 100
@@ -123,7 +124,7 @@ class tlkGateGuard2(Kq6Talker):
 		keepWindow = 1
 		color = (Kq6Window color:)
 		back = (Kq6Window back:)
-		if ((global90 == 1) or (proc913_0 162)):
+		if ((global90 == 1) or proc913_0(162)):
 			textY = 10
 			(super init: 0 0 0 &rest)
 		else:

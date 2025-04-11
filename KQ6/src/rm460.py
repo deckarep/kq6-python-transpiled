@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 460
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -47,7 +48,7 @@ def localproc_0():
 			init:
 		)
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -226,21 +227,21 @@ class rm460(KQ6Room):
 		(super init: &rest)
 		(localproc_0)
 		(widow init:)
-		(Lock 143 modNum 0)
+		kernel.Lock(143, modNum, 0)
 		if (global12 == 461):
 			(global0 posn: 74 182 loop: 2 setScale: Scaler 100 40 135 0 init:)
 			(cond
-				case ((ScriptID 40 0) spiderBit:):
+				case (kernel.ScriptID(40, 0) spiderBit:):
 					(global0 posn: 65 187)
 					(global2 setScript: widowKillsAlex 0 801)
 				#end:case
-				case ((ScriptID 40 0) parchmentBit:):
+				case (kernel.ScriptID(40, 0) parchmentBit:):
 					(global0 posn: 65 187)
 					(global2 setScript: widowKillsAlex 0 802)
 				#end:case
-				case ((ScriptID 40 0) gotParchment:):
+				case (kernel.ScriptID(40, 0) gotParchment:):
 					(global0 posn: 59 172)
-					((ScriptID 40 0) gotParchment: 0)
+					(kernel.ScriptID(40, 0) gotParchment: 0)
 					(global2 setScript: lookAtParchment)
 				#end:case
 				else:
@@ -259,7 +260,7 @@ class rm460(KQ6Room):
 			(global2 setScript: egoEnters)
 			(global102 number: 460 setLoop: -1 play:)
 		#endif
-		if (not (proc913_0 136)):
+		if (not proc913_0(136)):
 			(scrapOfPaper init: stopUpd:)
 		#endif
 		(global32
@@ -405,7 +406,7 @@ class ScriptFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		if param1:
@@ -440,14 +441,14 @@ class ScriptFeature(Feature):
 					case (((global9 at: 29) owner:) == global11):
 						(global91 say: 5 5 6 1)
 					#end:case
-					case (not (proc913_0 40)):
+					case (not proc913_0(40)):
 						(global91 say: 5 2 7 1)
 					#end:case
-					case (proc913_0 7):
+					case proc913_0(7):
 						(global2 setScript: callBooks 0 0)
 					#end:case
 					else:
-						(proc913_1 60)
+						proc913_1(60)
 						(global2 setScript: callBooks 0 1)
 					#end:else
 				)
@@ -607,10 +608,10 @@ class rummage(Script):
 			#end:case
 			case 4:
 				(cond
-					case (not (proc913_0 7)):
+					case (not proc913_0(7)):
 						(global2 setScript: handsOffTheGoods 0 register)
 					#end:case
-					case (not (proc913_0 61)):
+					case (not proc913_0(61)):
 						(global2 setScript: askForParti 0 register)
 					#end:case
 					case (((global9 at: 36) owner:) == global11):
@@ -637,7 +638,7 @@ class handsOffTheGoods(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 40)
+				proc913_1(40)
 				if (register == bookWormBookPile):
 					(self cue:)
 				else:
@@ -669,7 +670,7 @@ class handsOffTheGoods(Script):
 			case 6:
 				(global1 handsOn:)
 				(bookworm dispose:)
-				(proc958_0 0 1044 1046 1045 1007)
+				proc958_0(0, 1044, 1046, 1045, 1007)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -688,8 +689,8 @@ class askForParti(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 40)
-				(proc913_1 61)
+				proc913_1(40)
+				proc913_1(61)
 				(cond
 					case (register == callBooks):
 						(wormOut play:)
@@ -814,7 +815,7 @@ class askForParti(Script):
 			case 28:
 				(global1 handsOn:)
 				(bookworm dispose:)
-				(proc958_0 0 1044 1046 1045 1007)
+				proc958_0(0, 1044, 1046, 1045, 1007)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -869,11 +870,11 @@ class anythingYet(Script):
 				cycles = 4
 			#end:case
 			case 6:
-				if (proc913_0 120):
-					temp0 = (Random 1 5)
+				if proc913_0(120):
+					temp0 = kernel.Random(1, 5)
 					(global91 say: 5 5 18 temp0 self)
 				else:
-					(proc913_1 120)
+					proc913_1(120)
 					(self setScript: stupidOxyScript self)
 				#endif
 			#end:case
@@ -961,7 +962,7 @@ class waitForAnswer(Script):
 			#end:case
 			case 5:
 				(bookworm dispose:)
-				(proc958_0 0 1044 1046 1045 1007)
+				proc958_0(0, 1044, 1046, 1045, 1007)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -987,7 +988,7 @@ class callBooks(Script):
 				cycles = 10
 			#end:case
 			case 2:
-				if (proc913_0 61):
+				if proc913_0(61):
 					(global91 say: 5 2 5 1 self)
 				else:
 					(global91 say: 5 2 8 1 self)
@@ -998,10 +999,10 @@ class callBooks(Script):
 					case (register == 1):
 						(global2 setScript: talkGoAway)
 					#end:case
-					case (proc913_0 61):
+					case proc913_0(61):
 						(global2 setScript: anythingYet 0 self)
 					#end:case
-					case (proc913_0 7):
+					case proc913_0(7):
 						(global2 setScript: askForParti 0 self)
 					#end:case
 				)
@@ -1062,7 +1063,7 @@ class inventOnBooks(Script):
 			#end:case
 			case 1:
 				(= temp0
-					(GetAngle (global0 x:) (global0 y:) (client x:) (client y:))
+					kernel.GetAngle((global0 x:), (global0 y:), (client x:), (client y:))
 				)
 				(global0 setHeading: temp0 self)
 			#end:case
@@ -1087,7 +1088,7 @@ class inventOnWorm(Script):
 
 		match state = param1
 			case 0:
-				if (proc999_5 register 25 12 66 85 34):
+				if proc999_5(register, 25, 12, 66, 85, 34):
 					(global91 say: 4 register 0 0 self)
 				else:
 					(global91 say: 4 0 0 0 self)
@@ -1249,7 +1250,7 @@ class participle4U(Script):
 			case 26:
 				(global1 handsOn:)
 				(global0 posn: 109 154 get: 36 put: 29 global11 reset: 6)
-				(proc958_0 0 1044 1046 1045 1007)
+				proc958_0(0, 1044, 1046, 1045, 1007)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1436,7 +1437,7 @@ class lookAtParchment(Script):
 				(global105 number: 468 setLoop: 1 play:)
 				(scrapOfPaper dispose:)
 				(global0 setCycle: End self)
-				(proc913_1 136)
+				proc913_1(136)
 			#end:case
 			case 4:
 				(loveInset init:)
@@ -1468,7 +1469,7 @@ class lookAtParchment(Script):
 			case 8:
 				(global0 posn: 59 172 reset: 2)
 				(global1 handsOn:)
-				(proc913_1 57)
+				proc913_1(57)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1623,12 +1624,12 @@ class widowKillsAlex(Script):
 			#end:case
 			case 13:
 				(global1 handsOn:)
-				((ScriptID 40 0) spiderBit: 0)
-				((ScriptID 40 0) parchmentBit: 0)
+				(kernel.ScriptID(40, 0) spiderBit: 0)
+				(kernel.ScriptID(40, 0) parchmentBit: 0)
 				if (register == 3):
-					(proc0_1 4)
+					proc0_1(4)
 				else:
-					(proc0_1 3)
+					proc0_1(3)
 				#endif
 			#end:case
 		#end:match
@@ -1668,7 +1669,7 @@ class beeLine(Script):
 			case 0:
 				(client
 					setCycle: Fwd
-					setMotion: MoveTo (Random 5 50) (Random 5 60) self
+					setMotion: MoveTo kernel.Random(5, 50) kernel.Random(5, 60) self
 				)
 			#end:case
 			case 1:
@@ -1688,7 +1689,7 @@ class beeLine(Script):
 				ticks = 2
 			#end:case
 			case 3:
-				(client setMotion: MoveTo (Random 260 310) (Random 5 60) self)
+				(client setMotion: MoveTo kernel.Random(260, 310) kernel.Random(5, 60) self)
 			#end:case
 			case 4:
 				(client
@@ -1707,7 +1708,7 @@ class beeLine(Script):
 				ticks = 2
 			#end:case
 			case 6:
-				(client setMotion: MoveTo (Random 5 50) (Random 5 60) self)
+				(client setMotion: MoveTo kernel.Random(5, 50) kernel.Random(5, 60) self)
 			#end:case
 			case 7:
 				(state -= 6)

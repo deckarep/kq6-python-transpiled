@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 963
 import sci_sh
+import kernel
 import DPath
 
 class RelDPath(DPath):
@@ -16,8 +17,8 @@ class RelDPath(DPath):
 
 		if ((points at: value) != -32768):
 			(x += (points at: value))
-			(y += (points at: value++))
-			value++
+			(y += (points at: value.post('++')))
+			value.post('++')
 		#endif
 	#end:method
 

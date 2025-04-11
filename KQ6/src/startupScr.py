@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 201
 import sci_sh
+import kernel
 import Main
 import Scaler
 import Motion
@@ -73,7 +74,7 @@ class startupScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 201)
+		kernel.DisposeScript(201)
 	#end:method
 
 #end:class or instance

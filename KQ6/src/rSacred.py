@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 20
 import sci_sh
+import kernel
 import Game
 import System
 
@@ -23,7 +24,7 @@ class rSacred(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		keep = (proc999_5 param1 300 310 320 330 340 350 370 380 390)
+		keep = proc999_5(param1, 300, 310, 320, 330, 340, 350, 370, 380, 390)
 		initialized = 0
 		(super newRoom: param1 &rest)
 	#end:method

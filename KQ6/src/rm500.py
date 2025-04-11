@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 500
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -54,7 +55,7 @@ class rm500(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Load 128 308)
+		kernel.Load(128, 308)
 		(global2
 			addObstacle:
 				((Polygon new:)
@@ -119,7 +120,7 @@ class rm500(KQ6Room):
 		(stump init:)
 		(rocks init:)
 		(branch init:)
-		if ((proc913_0 61) and (not (proc913_0 45))):
+		if (proc913_0(61) and (not proc913_0(45))):
 			(dangle init: setScript: dangleScript approachVerbs: 5 2 85)
 			(global105 number: 500 flags: 1 loop: -1 play:)
 		#endif
@@ -128,7 +129,7 @@ class rm500(KQ6Room):
 			(global1 handsOn:)
 		#endif
 		(global0 actions: egoDoVerb)
-		if (<= temp0 (Random 1 1000) 500):
+		if (<= temp0 kernel.Random(1, 1000) 500):
 			(deer init: setScript: deerScript)
 		else:
 			(raccoon init: setLoop: 14 setCycle: End raccoon)
@@ -436,7 +437,7 @@ class rocks(Feature):
 			case (param1 == 1):
 				(global91 say: noun param1 2 0 0 0)
 			#end:case
-			case (proc999_5 param1 1 2 5):
+			case proc999_5(param1, 1, 2, 5):
 				(global91 say: noun param1 0 0 0 0)
 			#end:case
 			else:
@@ -471,7 +472,7 @@ class partKludgeScript(Script):
 								add: -1 7 2 12 4
 								init: self
 							)
-							global162++
+							global162.post('++')
 						#end:case
 						case 1:
 							(myConv
@@ -482,7 +483,7 @@ class partKludgeScript(Script):
 								add: -1 7 2 13 5
 								init: self
 							)
-							global162++
+							global162.post('++')
 						#end:case
 						case 2:
 							(myConv
@@ -490,7 +491,7 @@ class partKludgeScript(Script):
 								add: -1 7 2 14 2
 								init: self
 							)
-							global162++
+							global162.post('++')
 						#end:case
 						else:
 							(global91 say: 7 2 15 0 self)
@@ -565,7 +566,7 @@ class getDangPartScript(Script):
 				(global0 put: 50 500 get: 29 reset: 4 show:)
 				(global105 fade:)
 				(global1 givePoints: 2)
-				(proc913_1 45)
+				proc913_1(45)
 				cycles = 2
 			#end:case
 			case 7:
@@ -628,7 +629,7 @@ class dangleScript(Script):
 				seconds = 2
 			#end:case
 			case 1:
-				(dangle setLoop: (Random 1 3) setCycle: End self)
+				(dangle setLoop: kernel.Random(1, 3) setCycle: End self)
 			#end:case
 			case 2:
 				(dangle setCycle: End self)
@@ -651,7 +652,7 @@ class deerScript(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 2 5)
+				seconds = kernel.Random(2, 5)
 			#end:case
 			case 1:
 				(deer setCycle: End self)

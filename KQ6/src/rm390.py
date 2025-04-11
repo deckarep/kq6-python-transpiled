@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 390
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import KQ6Room
@@ -47,9 +48,9 @@ class rm390(KQ6Room):
 
 		local0 = 10
 		(global2 addObstacle: (roomPoly points: @local2 yourself:))
-		(Palette 4 64 223 60)
+		kernel.Palette(4, 64, 223, 60)
 		(super init: &rest)
-		(proc958_0 128 3931 390 3903 3904 391 392 393)
+		proc958_0(128, 3931, 390, 3903, 3904, 391, 392, 393)
 		(global32
 			add: opening floor westEnd eastEnd mintHole
 			eachElementDo: #init
@@ -108,7 +109,7 @@ class rm390(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Wait 3)
+		kernel.Wait(3)
 		(super doit: &rest)
 	#end:method
 
@@ -117,9 +118,9 @@ class rm390(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Palette 4 64 223 100)
+		kernel.Palette(4, 64, 223, 100)
 		(global103 fade: 0 10 10)
-		(DisposeScript 968)
+		kernel.DisposeScript(968)
 		(super dispose:)
 	#end:method
 
@@ -448,8 +449,8 @@ class myHeadingCode(Code):
 			((global0 looper:) doit: global0 param1 ((argc >= 2) and param2))
 		else:
 			(global0 heading: param1)
-			(DirLoop global0 param1)
-			if ((argc >= 2) and (IsObject param2)):
+			kernel.DirLoop(global0, param1)
+			if ((argc >= 2) and kernel.IsObject(param2)):
 				(param2 cue: &rest)
 			#endif
 		#endif
@@ -537,8 +538,8 @@ class enterScr(Script):
 			#end:case
 			case 5:
 				(global0 looper: 0)
-				if (not (proc913_0 96)):
-					(proc913_1 96)
+				if (not proc913_0(96)):
+					proc913_1(96)
 					(global1 givePoints: 1)
 				#endif
 				(global91 say: 1 0 9 1 self)
@@ -569,7 +570,7 @@ class leaveHere(Script):
 				(global91 say: 11 5 13 1 self)
 			#end:case
 			case 2:
-				if (proc999_5 (global0 view:) 392 393):
+				if proc999_5((global0 view:), 392, 393):
 					(global0
 						view: 391
 						loop: 3
@@ -577,7 +578,7 @@ class leaveHere(Script):
 						setSpeed: 6
 						setCycle: Beg self
 					)
-					(Palette 4 64 223 60)
+					kernel.Palette(4, 64, 223, 60)
 				else:
 					(self cue:)
 				#endif
@@ -635,7 +636,7 @@ class crawl2Cave2(Script):
 					looper: 0
 					setCycle: Beg self
 				)
-				(Palette 4 64 223 60)
+				kernel.Palette(4, 64, 223, 60)
 			#end:case
 			case 3:
 				(global0 view: 390 loop: 5 cel: 0 setCycle: End self)
@@ -673,7 +674,7 @@ class crawl2Cave2(Script):
 				cycles = 2
 			#end:case
 			case 7:
-				(Load 143 390)
+				kernel.Load(143, 390)
 				(global0
 					show:
 					posn: 49 138
@@ -753,7 +754,7 @@ class crawl2Cave1(Script):
 					drawPic: 390 100
 					addObstacle: (roomPoly points: @local2 yourself:)
 				)
-				(Palette 4 64 223 60)
+				kernel.Palette(4, 64, 223, 60)
 				(opening init:)
 				(mintHole init:)
 				cycles = 2
@@ -813,13 +814,13 @@ class lightItUp(Script):
 					cycleSpeed: 21
 					setCycle: End self
 				)
-				if (proc913_0 48):
+				if proc913_0(48):
 					(global0 setScript: cyclePalette 0 0)
 				#endif
 			#end:case
 			case 2:
-				if (not (proc913_0 97)):
-					(proc913_1 97)
+				if (not proc913_0(97)):
+					proc913_1(97)
 					(global1 givePoints: 2)
 				#endif
 				(global0
@@ -848,7 +849,7 @@ class getLeaf(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not (proc913_1 138)):
+				if (not proc913_1(138)):
 					(global1 givePoints: 1)
 				#endif
 				(global0
@@ -935,7 +936,7 @@ class cyclePalette(Script):
 
 		match state = param1
 			case 0:
-				(Palette 4 64 223 100)
+				kernel.Palette(4, 64, 223, 100)
 				ticks = 2
 			#end:case
 			case 1:

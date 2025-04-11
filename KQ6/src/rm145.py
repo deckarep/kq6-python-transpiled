@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 145
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -47,8 +48,8 @@ class rm145(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(global69 enable:)
-		(proc913_2 133)
-		(DisposeScript 960)
+		proc913_2(133)
+		kernel.DisposeScript(960)
 		(super dispose:)
 	#end:method
 
@@ -151,23 +152,23 @@ class seqScr(Script):
 				(global2
 					drawPic: 98 (9 if ((global87 == 0) or global169) else 12)
 				)
-				if (proc913_0 41):
+				if proc913_0(41):
 					(global102 number: 150)
 					local0 = 1
 					register = 3
-					(proc913_2 41)
+					proc913_2(41)
 				else:
 					(global102 number: 145)
-					if (proc913_0 72):
+					if proc913_0(72):
 						register = 1
 					else:
 						register = 2
 					#endif
-					(proc913_1 41)
+					proc913_1(41)
 				#endif
 				(global102 loop: -1 play:)
-				(Message 0 145 1 0 4 1 @temp1)
-				(Display @temp1 100 82 85 102 14 105 0)
+				kernel.Message(0, 145, 1, 0, 4, 1, @temp1)
+				kernel.Display(@temp1, 100, 82, 85, 102, 14, 105, 0)
 				seconds = 5
 			#end:case
 			case 2:
@@ -207,7 +208,7 @@ class seqScr(Script):
 							add: genieBottleScr
 							init: self
 						)
-						state++
+						state.post('++')
 					#end:case
 					case (register == 1):
 						(roomConv
@@ -226,7 +227,7 @@ class seqScr(Script):
 							add: -1 1 0 1 7
 							init: self
 						)
-						state++
+						state.post('++')
 					#end:case
 					else:
 						(roomConv
@@ -319,8 +320,8 @@ class genieFallScr(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 133)
-				(DisposeScript 1013)
+				proc913_1(133)
+				kernel.DisposeScript(1013)
 				(genie
 					view: 1461
 					loop: 1
@@ -339,7 +340,7 @@ class genieFallScr(Script):
 				(global103 number: 960 loop: 1 play:)
 				(genie hide:)
 				(vizier setCycle: Beg)
-				(ScriptID 1013)
+				kernel.ScriptID(1013)
 				seconds = 3
 			#end:case
 			case 3:
@@ -410,12 +411,12 @@ class eyeGlintScr(Script):
 
 		match state = param1
 			case 0:
-				if ((Random 0 1) and (global5 contains: genie)):
+				if (kernel.Random(0, 1) and (global5 contains: genie)):
 					(cond
-						case (proc913_0 133):
+						case proc913_0(133):
 							(lowEye init: self)
 						#end:case
-						case (Random 0 1):
+						case kernel.Random(0, 1):
 							(hiEye1 init: self)
 						#end:case
 						else:

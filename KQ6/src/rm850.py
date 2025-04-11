@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 850
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import NewFeature
@@ -126,7 +127,7 @@ class rm850(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 128 881 883 850)
+		proc958_0(128, 881, 883, 850)
 		(self
 			addObstacle:
 				((Polygon new:)
@@ -205,15 +206,15 @@ class rm850(CastleRoom):
 			(and
 				(global0 has: 20)
 				(((global9 at: 8) owner:) == 870)
-				(not ((ScriptID 80 0) tstFlag: 711 512))
-				(((ScriptID 80 0) guardTimer:) > 30)
+				(not (kernel.ScriptID(80, 0) tstFlag: 711 512))
+				((kernel.ScriptID(80, 0) guardTimer:) > 30)
 			)
-			((ScriptID 80 0) setFlag: 711 512 guardTimer: 30)
+			(kernel.ScriptID(80, 0) setFlag: 711 512 guardTimer: 30)
 		#endif
 		(portrait init: setPri: 0)
 		(super init: &rest)
-		((ScriptID 1015 6) talkWidth: 150 x: 15 y: 20)
-		((ScriptID 1015 7) talkWidth: 135 x: 160 y: 20)
+		(kernel.ScriptID(1015, 6) talkWidth: 150 x: 15 y: 20)
+		(kernel.ScriptID(1015, 7) talkWidth: 135 x: 160 y: 20)
 		if (((global9 at: 27) owner:) == 850):
 			(bird init:)
 		#endif
@@ -244,44 +245,44 @@ class rm850(CastleRoom):
 				local6 = 1
 				if 
 					(or
-						(not ((ScriptID 80 0) tstFlag: 709 512))
-						((ScriptID 80 0) tstFlag: 710 1)
-						(not ((ScriptID 80 0) tstFlag: 709 128))
+						(not (kernel.ScriptID(80, 0) tstFlag: 709 512))
+						(kernel.ScriptID(80, 0) tstFlag: 710 1)
+						(not (kernel.ScriptID(80, 0) tstFlag: 709 128))
 					)
 					(global0 posn: 230 185)
 				else:
 					(global0 posn: 160 185)
 				#endif
-				((ScriptID 80 0) setFlag: 709 128)
+				(kernel.ScriptID(80, 0) setFlag: 709 128)
 			#end:else
 		#end:match
-		((ScriptID 80 0) guard1Code: guardsCode guard2Code: guardsCode)
+		(kernel.ScriptID(80, 0) guard1Code: guardsCode guard2Code: guardsCode)
 		spotEgoScr = captureEgo
 		if 
 			(or
-				(not ((ScriptID 80 0) tstFlag: 709 512))
+				(not (kernel.ScriptID(80, 0) tstFlag: 709 512))
 				(and
-					((ScriptID 80 0) tstFlag: 710 1)
-					(not ((ScriptID 80 0) tstFlag: 711 256))
+					(kernel.ScriptID(80, 0) tstFlag: 710 1)
+					(not (kernel.ScriptID(80, 0) tstFlag: 711 256))
 				)
-				(not ((ScriptID 80 0) tstFlag: 709 128))
+				(not (kernel.ScriptID(80, 0) tstFlag: 709 128))
 			)
-			((ScriptID 80 5)
+			(kernel.ScriptID(80, 5)
 				init:
 				noun: 6
 				loop: 3
 				actions: guardDoVerb
 				okToCheck: okToCheckCode
 			)
-			((ScriptID 80 5) signal: (((ScriptID 80 5) signal:) & 0xefff))
-			((ScriptID 80 6)
+			(kernel.ScriptID(80, 5) signal: ((kernel.ScriptID(80, 5) signal:) & 0xefff))
+			(kernel.ScriptID(80, 6)
 				init:
 				noun: 6
 				loop: 3
 				actions: guardDoVerb
 				okToCheck: okToCheckCode
 			)
-			((ScriptID 80 6) signal: (((ScriptID 80 6) signal:) & 0xefff))
+			(kernel.ScriptID(80, 6) signal: ((kernel.ScriptID(80, 6) signal:) & 0xefff))
 			local1 = 1
 		#endif
 		(vizierDoor cel: ((global12 == 781) * 3) init:)
@@ -297,55 +298,55 @@ class rm850(CastleRoom):
 			eachElementDo: #init
 		)
 		(cond
-			case (local1 and ((ScriptID 80 0) tstFlag: 711 128)):
-				((ScriptID 80 5) loop: 2 posn: 118 116 okToCheck: 0)
-				((ScriptID 80 6) loop: 2 posn: 133 117 okToCheck: 0)
+			case (local1 and (kernel.ScriptID(80, 0) tstFlag: 711 128)):
+				(kernel.ScriptID(80, 5) loop: 2 posn: 118 116 okToCheck: 0)
+				(kernel.ScriptID(80, 6) loop: 2 posn: 133 117 okToCheck: 0)
 				(self setScript: walkOutAtWrongTime)
 			#end:case
-			case (not ((ScriptID 80 0) tstFlag: 709 128)):
-				((ScriptID 80 5) posn: 105 149)
-				((ScriptID 80 6) posn: 143 150)
+			case (not (kernel.ScriptID(80, 0) tstFlag: 709 128)):
+				(kernel.ScriptID(80, 5) posn: 105 149)
+				(kernel.ScriptID(80, 6) posn: 143 150)
 				(self setScript: shouldNotHaveComeOut)
 			#end:case
 			case 
 				(and
-					((ScriptID 80 0) tstFlag: 710 1)
-					(not ((ScriptID 80 0) tstFlag: 711 256))
+					(kernel.ScriptID(80, 0) tstFlag: 710 1)
+					(not (kernel.ScriptID(80, 0) tstFlag: 711 256))
 				):
-				((ScriptID 80 5) okToCheck: 0 posn: 126 231)
-				((ScriptID 80 6) okToCheck: 0 posn: 163 233)
+				(kernel.ScriptID(80, 5) okToCheck: 0 posn: 126 231)
+				(kernel.ScriptID(80, 6) okToCheck: 0 posn: 163 233)
 				(self setScript: walkGuardsOnScreen)
 			#end:case
 			case (local6 and local1):
 				(global1 handsOff:)
 				(global0 setSpeed: 8)
 				(hideFeature doVerb: 5)
-				((ScriptID 80 5) sightAngle: 180 posn: 105 149)
-				((ScriptID 80 6) sightAngle: 180 posn: 143 150)
-				if (not ((ScriptID 80 0) tstFlag: 709 8)):
-					((ScriptID 80 0) setFlag: 709 8)
+				(kernel.ScriptID(80, 5) sightAngle: 180 posn: 105 149)
+				(kernel.ScriptID(80, 6) sightAngle: 180 posn: 143 150)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 8)):
+					(kernel.ScriptID(80, 0) setFlag: 709 8)
 					(startGuardScr next: watchGuardsTalk)
 					(watchGuardsTalk next: guardPatrol)
 				else:
 					(startGuardScr next: guardPatrol)
 				#endif
-				((ScriptID 80 5) setScript: startGuardScr)
+				(kernel.ScriptID(80, 5) setScript: startGuardScr)
 			#end:case
 			else:
 				(cond
-					case ((ScriptID 80 0) tstFlag: 709 2):
-						((ScriptID 80 5) posn: 118 116)
-						((ScriptID 80 6) posn: 133 117)
+					case (kernel.ScriptID(80, 0) tstFlag: 709 2):
+						(kernel.ScriptID(80, 5) posn: 118 116)
+						(kernel.ScriptID(80, 6) posn: 133 117)
 					#end:case
-					case ((ScriptID 80 0) tstFlag: 711 256):
+					case (kernel.ScriptID(80, 0) tstFlag: 711 256):
 						spotEgoScr = walkGuardsOnScreen
-						((ScriptID 80 0) clrFlag: 710 1 guardTimer: 2)
+						(kernel.ScriptID(80, 0) clrFlag: 710 1 guardTimer: 2)
 					#end:case
 					case local1:
-						((ScriptID 80 5) posn: 118 126)
-						((ScriptID 80 6) posn: 133 126)
+						(kernel.ScriptID(80, 5) posn: 118 126)
+						(kernel.ScriptID(80, 6) posn: 133 126)
 						(startGuardScr next: guardPatrol)
-						((ScriptID 80 5) setScript: startGuardScr)
+						(kernel.ScriptID(80, 5) setScript: startGuardScr)
 					#end:case
 				)
 				(global1 handsOn:)
@@ -357,7 +358,7 @@ class rm850(CastleRoom):
 		if (global0 scaler:):
 			((global0 scaler:) doit:)
 		#endif
-		((ScriptID 80 0) setupGuards:)
+		(kernel.ScriptID(80, 0) setupGuards:)
 		if local1:
 			(global105 number: 702 loop: 1 play:)
 		#endif
@@ -374,11 +375,11 @@ class rm850(CastleRoom):
 			case 
 				(and
 					((User alterEgo:) edgeHit:)
-					((ScriptID 80 0) tstFlag: 709 2)
+					(kernel.ScriptID(80, 0) tstFlag: 709 2)
 				):
 				(self setScript: weddingStarts)
 			#end:case
-			case (proc999_4 158 0 320 115 global0):
+			case proc999_4(158, 0, 320, 115, global0):
 				(global2 newRoom: 870)
 			#end:case
 			case (local0 & 0x2000):
@@ -388,8 +389,8 @@ class rm850(CastleRoom):
 				(global2 newRoom: 880)
 			#end:case
 		)
-		if ((not ((ScriptID 80 0) tstFlag: 710 2)) and ((global0 y:) < 117)):
-			((ScriptID 80 0) setFlag: 710 2)
+		if ((not (kernel.ScriptID(80, 0) tstFlag: 710 2)) and ((global0 y:) < 117)):
+			(kernel.ScriptID(80, 0) setFlag: 710 2)
 			(global91 say: 3 3 17 0)
 		#endif
 		(super doit: &rest)
@@ -437,14 +438,14 @@ class rm850(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((ScriptID 80 5) script:):
-			((ScriptID 80 5) setScript: 0)
+		if (kernel.ScriptID(80, 5) script:):
+			(kernel.ScriptID(80, 5) setScript: 0)
 		#endif
 		if (param1 != 730):
-			((ScriptID 80 0) clrFlag: 711 16384)
+			(kernel.ScriptID(80, 0) clrFlag: 711 16384)
 		#endif
-		if ((ScriptID 80 0) tstFlag: 711 256):
-			((ScriptID 80 0) guardTimer: 0)
+		if (kernel.ScriptID(80, 0) tstFlag: 711 256):
+			(kernel.ScriptID(80, 0) guardTimer: 0)
 		#endif
 		(super newRoom: param1 &rest)
 	#end:method
@@ -461,7 +462,7 @@ class rm850(CastleRoom):
 			case 2:
 				(global91 say: 1 0 24 0)
 				spotEgoScr = walkGuardsOnScreen
-				((ScriptID 80 0) setFlag: 711 256 guardTimer: 5)
+				(kernel.ScriptID(80, 0) setFlag: 711 256 guardTimer: 5)
 			#end:case
 			else:
 				(super warnUser: param1 &rest)
@@ -481,7 +482,7 @@ class hideEgo(Script):
 
 		(global73 addToFront: self)
 		(global72 addToFront: self)
-		register = ((ScriptID 80 0) tstFlag: 709 8)
+		register = (kernel.ScriptID(80, 0) tstFlag: 709 8)
 		(super init: &rest)
 	#end:method
 
@@ -514,16 +515,16 @@ class hideEgo(Script):
 					((global69 curIcon:) == (global69 at: 3))
 					local1
 					(or
-						((ScriptID 80 5) onMe: param1)
-						((ScriptID 80 6) onMe: param1)
+						(kernel.ScriptID(80, 5) onMe: param1)
+						(kernel.ScriptID(80, 6) onMe: param1)
 					)
 				)
 				(global1 handsOff:)
 				local8 = 1
-				(CueObj state: 0 cycles: 0 client: (ScriptID 80 5) theVerb: 2)
+				(CueObj state: 0 cycles: 0 client: kernel.ScriptID(80, 5) theVerb: 2)
 				((CueObj client:) approachX: 218 approachY: 178)
-				((ScriptID 80 5) okToCheck: 0)
-				((ScriptID 80 6) okToCheck: 0)
+				(kernel.ScriptID(80, 5) okToCheck: 0)
+				(kernel.ScriptID(80, 6) okToCheck: 0)
 				(global91 say: 6 2 0 1 self)
 				next = talkToGuards
 			else:
@@ -574,8 +575,8 @@ class hideEgo(Script):
 			case 4:
 				(global73 delete: self)
 				(global72 delete: self)
-				((ScriptID 80 5) sightAngle: 40)
-				((ScriptID 80 6) sightAngle: 40)
+				(kernel.ScriptID(80, 5) sightAngle: 40)
+				(kernel.ScriptID(80, 6) sightAngle: 40)
 				(global0 setCycle: Beg self)
 			#end:case
 			case 5:
@@ -666,7 +667,7 @@ class putDownBird(Script):
 				(global0 put: 27 850)
 				(global0 reset: 1)
 				(global1 givePoints: 4)
-				((ScriptID 80 0) setFlag: 711 16384)
+				(kernel.ScriptID(80, 0) setFlag: 711 16384)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -693,22 +694,22 @@ class timerScr(Script):
 			case 2:
 				if (local0 & (floor onMeCheck:)):
 					(global1 handsOff:)
-					(global2 spotEgo: (proc80_7))
+					(global2 spotEgo: proc80_7())
 					(self dispose:)
 				else:
-					((ScriptID 80 6)
+					(kernel.ScriptID(80, 6)
 						setMotion: MoveTo (bird x:) ((bird y:) - 2)
 					)
-					((ScriptID 80 5)
+					(kernel.ScriptID(80, 5)
 						setMotion: MoveTo ((bird x:) - 30) (bird y:) self
 					)
 				#endif
 			#end:case
 			case 3:
-				((ScriptID 80 5) setMotion: MoveTo 129 144 self)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 129 144 self)
 			#end:case
 			case 4:
-				((ScriptID 80 5) setHeading: 90 self)
+				(kernel.ScriptID(80, 5) setHeading: 90 self)
 			#end:case
 			case 5:
 				cycles = 4
@@ -717,12 +718,12 @@ class timerScr(Script):
 				(roomConv add: 880 1 0 2 2 add: 880 1 0 2 3 init: self)
 			#end:case
 			case 7:
-				((ScriptID 80 5) view: 884 loop: 1 cel: 0 setCycle: CT 4 1 self)
+				(kernel.ScriptID(80, 5) view: 884 loop: 1 cel: 0 setCycle: CT 4 1 self)
 				(global102 fadeTo: 700 -1)
 			#end:case
 			case 8:
 				(bird hide:)
-				((ScriptID 80 5) setCycle: End self)
+				(kernel.ScriptID(80, 5) setCycle: End self)
 			#end:case
 			case 9:
 				(roomConv
@@ -739,7 +740,7 @@ class timerScr(Script):
 				)
 			#end:case
 			case 10:
-				((ScriptID 80 5) view: 724 loop: 4 cel: 0 setCycle: StopWalk -1)
+				(kernel.ScriptID(80, 5) view: 724 loop: 4 cel: 0 setCycle: StopWalk -1)
 				(self setScript: walkGuardsOffScreen self)
 			#end:case
 			case 11:
@@ -760,7 +761,7 @@ class timerScr(Script):
 				#endif
 			#end:case
 			case 13:
-				(global2 spotEgo: (proc80_7))
+				(global2 spotEgo: proc80_7())
 				(self dispose:)
 			#end:case
 		#end:match
@@ -778,12 +779,12 @@ class walkGuardsOffScreen(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 5) setMotion: MoveTo 126 176 self)
-				((ScriptID 80 6) setMotion: MoveTo 163 176)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 126 176 self)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo 163 176)
 			#end:case
 			case 1:
 				if register:
-					(global2 spotEgo: (proc80_7))
+					(global2 spotEgo: proc80_7())
 				#endif
 				(self dispose:)
 			#end:case
@@ -811,20 +812,20 @@ class captureEgo(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 5) setScript: 0 setMotion: 0 okToCheck: 0)
-				((ScriptID 80 6) setScript: 0 setMotion: 0 okToCheck: 0)
-				(proc913_4 register global0 self)
+				(kernel.ScriptID(80, 5) setScript: 0 setMotion: 0 okToCheck: 0)
+				(kernel.ScriptID(80, 6) setScript: 0 setMotion: 0 okToCheck: 0)
+				proc913_4(register, global0, self)
 			#end:case
 			case 1:
 				(global91 say: 1 0 9 1 self)
 			#end:case
 			case 2:
 				(cond
-					case (not (global0 facingMe: (ScriptID 80 5))):
-						(proc913_4 (ScriptID 80 5) global0 self)
+					case (not (global0 facingMe: kernel.ScriptID(80, 5))):
+						proc913_4(kernel.ScriptID(80, 5), global0, self)
 					#end:case
-					case (not (global0 facingMe: (ScriptID 80 6))):
-						(proc913_4 (ScriptID 80 6) global0 self)
+					case (not (global0 facingMe: kernel.ScriptID(80, 6))):
+						proc913_4(kernel.ScriptID(80, 6), global0, self)
 					#end:case
 					else:
 						cycles = 1
@@ -832,13 +833,13 @@ class captureEgo(Script):
 				)
 			#end:case
 			case 3:
-				(proc913_4 global0 register self)
+				proc913_4(global0, register, self)
 			#end:case
 			case 4:
 				(roomConv add: -1 1 0 9 2 add: -1 1 0 9 3 init: self)
 			#end:case
 			case 5:
-				((proc80_7) setScript: (ScriptID 80 4) self 1)
+				(proc80_7() setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 6:
 				(roomConv
@@ -876,14 +877,14 @@ class walkGuardsOnScreen(Script):
 		match state = param1
 			case 0:
 				local1 = 1
-				((ScriptID 80 0) clrFlag: 710 1)
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 0) clrFlag: 710 1)
+				(kernel.ScriptID(80, 5)
 					init:
 					posn: 126 231
 					setMotion: MoveTo 126 188 self
 				)
-				((ScriptID 80 6) init: posn: 163 233 setMotion: MoveTo 163 188)
-				((ScriptID 80 0) setupGuards:)
+				(kernel.ScriptID(80, 6) init: posn: 163 233 setMotion: MoveTo 163 188)
+				(kernel.ScriptID(80, 0) setupGuards:)
 			#end:case
 			case 1:
 				(global91 say: 1 0 11 0 self)
@@ -905,9 +906,9 @@ class walkGuardsOnScreen(Script):
 			case 3:
 				if (not (vizierDoor cel:)):
 					(global2 spotEgoScr: captureEgo)
-					(global2 spotEgo: (proc80_7))
+					(global2 spotEgo: proc80_7())
 				else:
-					((ScriptID 80 0) setFlag: 709 1)
+					(kernel.ScriptID(80, 0) setFlag: 709 1)
 				#endif
 			#end:case
 		#end:match
@@ -934,15 +935,15 @@ class shouldNotHaveComeOut(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 5) okToCheck: 0)
-				((ScriptID 80 6) okToCheck: 0)
+				(kernel.ScriptID(80, 5) okToCheck: 0)
+				(kernel.ScriptID(80, 6) okToCheck: 0)
 				cycles = 4
 			#end:case
 			case 1:
 				(global91 say: 1 0 3 0 self)
 			#end:case
 			case 2:
-				(global2 spotEgo: (proc80_7))
+				(global2 spotEgo: proc80_7())
 			#end:case
 		#end:match
 	#end:method
@@ -969,9 +970,9 @@ class talkToGuards(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 5) okToCheck: 0)
-				((ScriptID 80 6) okToCheck: 0)
-				((ScriptID 80 5) approachX: 0 approachY: 0)
+				(kernel.ScriptID(80, 5) okToCheck: 0)
+				(kernel.ScriptID(80, 6) okToCheck: 0)
+				(kernel.ScriptID(80, 5) approachX: 0 approachY: 0)
 				if (not local8):
 					(global91 say: 6 2 0 1 self)
 				else:
@@ -986,8 +987,8 @@ class talkToGuards(Script):
 				#endif
 			#end:case
 			case 2:
-				if (not (global0 facingMe: (ScriptID 80 5))):
-					(proc913_4 global0 (ScriptID 80 5) self)
+				if (not (global0 facingMe: kernel.ScriptID(80, 5))):
+					proc913_4(global0, kernel.ScriptID(80, 5), self)
 				else:
 					cycles = 1
 				#endif
@@ -999,7 +1000,7 @@ class talkToGuards(Script):
 				(global91 say: 6 2 0 2 self oneOnly: 0)
 			#end:case
 			case 5:
-				(global2 spotEgo: (proc80_7))
+				(global2 spotEgo: proc80_7())
 				(self dispose:)
 			#end:case
 		#end:match
@@ -1017,8 +1018,8 @@ class startGuardScr(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 5) ignoreActors: 1 setMotion: MoveTo 118 116 self)
-				((ScriptID 80 6) setMotion: MoveTo 133 117)
+				(kernel.ScriptID(80, 5) ignoreActors: 1 setMotion: MoveTo 118 116 self)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo 133 117)
 			#end:case
 			case 1:
 				(self dispose:)
@@ -1062,23 +1063,23 @@ class guardPatrol(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 3 6)
+				seconds = kernel.Random(3, 6)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
 				if (not local7):
-					((ScriptID 80 5) setMotion: MoveTo 102 145 self)
-					((ScriptID 80 6) setMotion: MoveTo 143 145)
+					(kernel.ScriptID(80, 5) setMotion: MoveTo 102 145 self)
+					(kernel.ScriptID(80, 6) setMotion: MoveTo 143 145)
 				else:
 					(self dispose:)
 				#endif
 			#end:case
 			case 3:
 				state = -1
-				((ScriptID 80 5) setMotion: MoveTo 115 114 self)
-				((ScriptID 80 6) setMotion: MoveTo 130 114)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 115 114 self)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo 130 114)
 			#end:case
 		#end:match
 	#end:method
@@ -1124,14 +1125,14 @@ class weddingStartsNow(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 0) setFlag: 711 16384)
+				(kernel.ScriptID(80, 0) setFlag: 711 16384)
 				cycles = 1
 			#end:case
 			case 1:
 				(global91 say: 1 0 8 0 self)
 			#end:case
 			case 2:
-				((ScriptID 80 5) setScript: walkGuardsOffScreen 0 1)
+				(kernel.ScriptID(80, 5) setScript: walkGuardsOffScreen 0 1)
 				(global1 handsOn:)
 				(self dispose:)
 			#end:case
@@ -1160,7 +1161,7 @@ class walkOutAtWrongTime(Script):
 				#endif
 			#end:case
 			case 2:
-				(global2 spotEgo: (proc80_7))
+				(global2 spotEgo: proc80_7())
 			#end:case
 		#end:match
 	#end:method
@@ -1183,7 +1184,7 @@ class lookThruKeyhole(Script):
 						case studyDoor: 798#end:case
 					#end:match
 				)
-				((ScriptID 82 1)
+				(kernel.ScriptID(82, 1)
 					noun: ((CueObj client:) noun:)
 					actions: keyHoleActions
 					init: temp0 0 0 92 54
@@ -1234,7 +1235,7 @@ class portrait(View):
 		argc = sum(v is not None for v in locals().values())
 
 		(= y
-			(112 if (proc999_5 ((global9 at: 26) owner:) 880 global0) else 100)
+			(112 if proc999_5(((global9 at: 26) owner:), 880, global0) else 100)
 		)
 		(super init: &rest)
 	#end:method
@@ -1263,7 +1264,7 @@ class vizierDoor(NewProp):
 		#endif
 		(super init: &rest)
 		if local1:
-			if (not ((ScriptID 80 0) tstFlag: 709 2)):
+			if (not (kernel.ScriptID(80, 0) tstFlag: 709 2)):
 				(self approachVerbs: 5)
 				normal = 0
 			#endif
@@ -1295,19 +1296,19 @@ class vizierDoor(NewProp):
 		if (not local1):
 			match param1
 				case 5:
-					if (not ((ScriptID 80 0) tstFlag: 711 1024)):
-						((ScriptID 80 0) setFlag: 711 1024)
+					if (not (kernel.ScriptID(80, 0) tstFlag: 711 1024)):
+						(kernel.ScriptID(80, 0) setFlag: 711 1024)
 						(global91 say: noun param1 31 1)
 					#endif
 					(global2 setScript: openVizDoor)
 				#end:case
 				case 1:
 					if (not local2):
-						local2++
+						local2.post('++')
 						(_approachVerbs |= (global66 doit: 1))
 						(global91 say: 10 param1 27)
 					else:
-						(global2 setScript: (ScriptID 82) 0 lookThruKeyhole)
+						(global2 setScript: kernel.ScriptID(82) 0 lookThruKeyhole)
 					#endif
 				#end:case
 				case 2:
@@ -1325,14 +1326,14 @@ class vizierDoor(NewProp):
 			match param1
 				case 1:
 					if (not local2):
-						local2++
+						local2.post('++')
 						(global91 say: 10 param1 27)
 					else:
 						(global91 say: 10 1 28)
 					#endif
 				#end:case
 				case 5:
-					if ((ScriptID 80 0) tstFlag: 709 2):
+					if (kernel.ScriptID(80, 0) tstFlag: 709 2):
 						(global91 say: 9 param1 25)
 					else:
 						(global91 say: noun param1 21)
@@ -1345,7 +1346,7 @@ class vizierDoor(NewProp):
 					if ((global66 doit: param1) == -32768):
 						(global91 say: 9 0)
 					else:
-						(global2 spotEgo: (proc80_7))
+						(global2 spotEgo: proc80_7())
 					#endif
 				#end:else
 			#end:match
@@ -1359,7 +1360,7 @@ class vizierDoor(NewProp):
 
 		(global105 flags: 1 stop:)
 		if cel:
-			(proc80_2 4)
+			proc80_2(4)
 		else:
 			(self setPri: -1 stopUpd:)
 		#endif
@@ -1425,7 +1426,7 @@ class closeMe(Script):
 			#end:case
 			case 2:
 				(global105 number: 902 loop: 1 play:)
-				if ((ScriptID 80 0) tstFlag: 709 128):
+				if (kernel.ScriptID(80, 0) tstFlag: 709 128):
 					(global1 handsOn:)
 				#endif
 				(self dispose:)
@@ -1457,7 +1458,7 @@ class studyDoor(NewFeature):
 
 		(super init: &rest)
 		if local1:
-			if (not ((ScriptID 80 0) tstFlag: 709 2)):
+			if (not (kernel.ScriptID(80, 0) tstFlag: 709 2)):
 				(self approachVerbs: 5)
 				normal = 0
 			#endif
@@ -1497,7 +1498,7 @@ class studyDoor(NewFeature):
 			case 1:
 				(cond
 					case (not local3):
-						local3++
+						local3.post('++')
 						(global91 say: noun param1 27)
 						if (not local1):
 							(_approachVerbs |= (global66 doit: 1))
@@ -1507,7 +1508,7 @@ class studyDoor(NewFeature):
 						(global91 say: noun param1 28)
 					#end:case
 					else:
-						(global2 setScript: (ScriptID 82) 0 lookThruKeyhole)
+						(global2 setScript: kernel.ScriptID(82) 0 lookThruKeyhole)
 					#end:else
 				)
 			#end:case
@@ -1515,12 +1516,12 @@ class studyDoor(NewFeature):
 				if local1:
 					(global91 say: 9 2 21 0)
 				else:
-					(proc913_1 59)
+					proc913_1(59)
 					(global91 say: noun param1 22 0 self)
 				#endif
 			#end:case
 			case 5:
-				if ((ScriptID 80 0) tstFlag: 709 2):
+				if (kernel.ScriptID(80, 0) tstFlag: 709 2):
 					(global91 say: 9 param1 25)
 				else:
 					(global91 say: noun param1 22)
@@ -1544,7 +1545,7 @@ class studyDoor(NewFeature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 59)
+		proc913_2(59)
 	#end:method
 
 	@classmethod
@@ -1612,7 +1613,7 @@ class floor(NewFeature):
 
 		match param1
 			case 37:
-				((ScriptID 80 0) setFlag: 709 256)
+				(kernel.ScriptID(80, 0) setFlag: 709 256)
 				local7 = 1
 				(global2 setScript: putDownBird)
 			#end:case
@@ -1697,8 +1698,8 @@ class pillar(Feature):
 					sightAngle = 45
 				)
 				(or
-					(proc999_4 175 71 206 135 param1)
-					(proc999_4 191 135 206 144 param1)
+					proc999_4(175, 71, 206, 135, param1)
+					proc999_4(191, 135, 206, 144, param1)
 				)
 			)
 		)
@@ -1788,7 +1789,7 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		(return
 			(or
 				((0x0004 & temp0) and noun = 16)
@@ -1850,9 +1851,9 @@ class guardDoVerb(Actions):
 			case (param1 == 2):
 				(global2 setScript: talkToGuards)
 			#end:case
-			case ((ScriptID 80 0) tstFlag: 709 2):
+			case (kernel.ScriptID(80, 0) tstFlag: 709 2):
 				(cond
-					case (proc999_5 param1 5 1):
+					case proc999_5(param1, 5, 1):
 						(global91 say: 6 param1 25)
 					#end:case
 					case ((global66 doit: param1) == -32768):

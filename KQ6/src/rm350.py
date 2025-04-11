@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 350
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -84,14 +85,14 @@ class rm350(KQ6Room):
 					yourself:
 				)
 		)
-		if (not (proc913_0 2)):
-			(proc958_0 128 343 344 348 3481 349 3491)
+		if (not proc913_0(2)):
+			proc958_0(128, 343, 344, 348, 3481, 349, 3491)
 		#endif
 		(global32 add: nests palace oracleMtn gate eachElementDo: #init)
 		(leftGuard init:)
 		(riteGuard init:)
 		(global0 reset: 3 posn: 160 188 init:)
-		if (not (proc913_0 2)):
+		if (not proc913_0(2)):
 			(global69
 				enable:
 				disable: 0 1 2 3 4 5 6
@@ -334,7 +335,7 @@ class egoEnters(Script):
 				(riteGuard dispose:)
 				(global0 hide:)
 				(dummyEgo view: 351 posn: 160 164 init: setCycle: End self)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 9:
 				(dummyEgo
@@ -345,7 +346,7 @@ class egoEnters(Script):
 					posn: 160 164
 					setCycle: End self
 				)
-				(UnLoad 128 351)
+				kernel.UnLoad(128, 351)
 			#end:case
 			case 10:
 				(dummyEgo
@@ -356,7 +357,7 @@ class egoEnters(Script):
 					setStep: 15 12
 					setMotion: MoveTo (global0 x:) -50 self
 				)
-				(UnLoad 128 352)
+				kernel.UnLoad(128, 352)
 			#end:case
 			case 11:
 				(dummyEgo
@@ -432,10 +433,10 @@ class leftGuard(Actor):
 
 		match param1
 			case 2:
-				if (proc913_0 101):
+				if proc913_0(101):
 					(global2 setScript: talkToGuards)
 				else:
-					(proc913_1 101)
+					proc913_1(101)
 					(super doVerb: param1 &rest)
 				#endif
 			#end:case
@@ -477,10 +478,10 @@ class riteGuard(Actor):
 
 		match param1
 			case 2:
-				if (proc913_0 101):
+				if proc913_0(101):
 					(global2 setScript: talkToGuards)
 				else:
-					(proc913_1 101)
+					proc913_1(101)
 					(super doVerb: param1 &rest)
 				#endif
 			#end:case

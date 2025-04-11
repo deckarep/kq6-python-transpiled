@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 988
 import sci_sh
+import kernel
 import Main
 import PolyPath
 import Motion
@@ -60,7 +61,7 @@ class Ego(Actor):
 		while (temp0 < argc): # inline for
 			((global9 at: param1[temp0]) moveTo: self)
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -110,7 +111,7 @@ class Ego(Actor):
 					(and
 						(temp1 & 0x0004)
 						(temp0 == (global80 prevDir:))
-						(IsObject mover)
+						kernel.IsObject(mover)
 					)
 					temp0 = 0
 				#endif

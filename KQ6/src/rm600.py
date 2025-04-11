@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 600
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -76,9 +77,9 @@ class rm600(KQ6Room):
 				((Polygon new:) type: 2 init: 319 163 319 189 224 189 yourself:)
 		)
 		(super init: &rest)
-		(proc913_1 91)
+		proc913_1(91)
 		(global1 handsOff:)
-		(proc913_1 15)
+		proc913_1(15)
 		match global12
 			case 630:
 				(global1 handsOn:)
@@ -112,7 +113,7 @@ class rm600(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(proc958_0 0 964 942)
+		proc958_0(0, 964, 942)
 	#end:method
 
 #end:class or instance
@@ -278,7 +279,7 @@ class deadOneScript(Script):
 				#endif
 			#end:case
 			case 2:
-				while (register = ((Random 0 4) + 600) == (deadGuy2 view:)):
+				while (register = (kernel.Random(0, 4) + 600) == (deadGuy2 view:)):
 
 					0
 				#end:loop
@@ -320,7 +321,7 @@ class deadTwoScript(Script):
 				#endif
 			#end:case
 			case 2:
-				while (register = ((Random 0 4) + 600) == (deadGuy view:)):
+				while (register = (kernel.Random(0, 4) + 600) == (deadGuy view:)):
 
 					0
 				#end:loop
@@ -533,7 +534,7 @@ class egoIsDead(Script):
 				)
 			#end:case
 			case 4:
-				(proc0_1 38)
+				proc0_1(38)
 			#end:case
 		#end:match
 	#end:method
@@ -557,7 +558,7 @@ class horseToon(Script):
 					setCycle: End self
 				)
 				if (global12 == 155):
-					(SetCursor 1)
+					kernel.SetCursor(1)
 				else:
 					(global1 setCursor: global19)
 				#endif

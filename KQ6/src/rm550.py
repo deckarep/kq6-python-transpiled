@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 550
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -307,12 +308,12 @@ class rm550(KQ6Room):
 		(nePath init:)
 		(nwPath init:)
 		(global0 actions: egoDoVerb setScale: Scaler 100 70 190 53 setPri: -1)
-		if ((proc913_0 25) and (not (proc913_0 14))):
+		if (proc913_0(25) and (not proc913_0(14))):
 			(druid1 init: setScale: -1 global0)
 			(druid2 init: setScale: -1 global0 setScript: waitForCapture)
 			local5 = 1
 		#endif
-		if (proc999_5 global12 560 580):
+		if proc999_5(global12, 560, 580):
 			(self setScript: egoEnters)
 		#endif
 	#end:method
@@ -404,7 +405,7 @@ class rm550(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc999_5 param1 560 580)):
+		if (not proc999_5(param1, 560, 580)):
 			(global103 stop: number: 0)
 		#endif
 		(super newRoom: param1)
@@ -417,7 +418,7 @@ class rm550(KQ6Room):
 
 		global91 = local6
 		(super dispose:)
-		(DisposeScript 939)
+		kernel.DisposeScript(939)
 	#end:method
 
 #end:class or instance
@@ -474,7 +475,7 @@ class rocks(Feature):
 			case (param1 == 1):
 				(global91 say: noun param1 10 0 0 0)
 			#end:case
-			case (proc999_5 param1 2 5):
+			case proc999_5(param1, 2, 5):
 				(global91 say: noun param1 0 0 0 0)
 			#end:case
 			else:

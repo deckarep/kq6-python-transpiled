@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 276
 import sci_sh
+import kernel
 import Main
 import rm270
 import n913
@@ -29,8 +30,8 @@ class giveRareBookScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 77)
-				(proc270_7 self)
+				proc913_1(77)
+				proc270_7(self)
 			#end:case
 			case 1:
 				(global91 say: 18 27 0 1 self)
@@ -48,7 +49,7 @@ class giveRareBookScr(Script):
 					posn: 264 151
 					setCycle: End
 				)
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					view: 2771
 					loop: 5
 					cel: 0
@@ -63,7 +64,7 @@ class giveRareBookScr(Script):
 				(global91 say: 18 27 0 2 self)
 			#end:case
 			case 5:
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					loop: 0
 					cel: 0
 					posn: 300 161
@@ -71,17 +72,17 @@ class giveRareBookScr(Script):
 				)
 			#end:case
 			case 6:
-				((ScriptID 270 6) dispose:)
+				(kernel.ScriptID(270, 6) dispose:)
 				cycles = 2
 			#end:case
 			case 7:
-				((ScriptID 270 2) setCycle: CT 7 1 self)
+				(kernel.ScriptID(270, 2) setCycle: CT 7 1 self)
 			#end:case
 			case 8:
 				(global0 loop: 3 cel: 0 setCycle: CT 2 1 self)
 			#end:case
 			case 9:
-				((ScriptID 270 2) setCycle: End self)
+				(kernel.ScriptID(270, 2) setCycle: End self)
 				(global0 setCycle: End self)
 			#end:case
 			case 10: 0#end:case
@@ -92,10 +93,10 @@ class giveRareBookScr(Script):
 				(global0
 					reset: 0
 					posn:
-						((ScriptID 270 2) approachX:)
-						((ScriptID 270 2) approachY:)
+						(kernel.ScriptID(270, 2) approachX:)
+						(kernel.ScriptID(270, 2) approachY:)
 				)
-				((ScriptID 270 2)
+				(kernel.ScriptID(270, 2)
 					view: 277
 					loop: 2
 					cel: 0
@@ -124,7 +125,7 @@ class giveRareBookScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 276)
+		kernel.DisposeScript(276)
 	#end:method
 
 #end:class or instance
@@ -140,22 +141,22 @@ class talkOwnerScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc270_7 self)
+				proc270_7(self)
 			#end:case
 			case 1:
 				if 
 					(and
-						(global5 contains: (ScriptID 271 0))
-						((ScriptID 10 0) isSet: -32768)
+						(global5 contains: kernel.ScriptID(271, 0))
+						(kernel.ScriptID(10, 0) isSet: -32768)
 					)
-					(self setScript: (ScriptID 278 1) self)
+					(self setScript: kernel.ScriptID(278, 1) self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				if (not (proc913_0 16)):
-					(proc913_1 16)
+				if (not proc913_0(16)):
+					proc913_1(16)
 					(global1 givePoints: 1)
 					(global91 say: 18 2 22 0 self)
 				else:
@@ -165,11 +166,11 @@ class talkOwnerScr(Script):
 			case 3:
 				if 
 					(and
-						(global5 contains: (ScriptID 271 0))
-						((ScriptID 10 0) isSet: -32768)
+						(global5 contains: kernel.ScriptID(271, 0))
+						(kernel.ScriptID(10, 0) isSet: -32768)
 					)
-					((ScriptID 10 0) setIt: -32768)
-					(self setScript: (ScriptID 278 1) self)
+					(kernel.ScriptID(10, 0) setIt: -32768)
+					(self setScript: kernel.ScriptID(278, 1) self)
 				else:
 					cycles = 1
 				#endif
@@ -187,7 +188,7 @@ class talkOwnerScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 276)
+		kernel.DisposeScript(276)
 	#end:method
 
 #end:class or instance
@@ -203,15 +204,15 @@ class talkAfterLLoc(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc270_7 self)
+				proc270_7(self)
 			#end:case
 			case 1:
 				if 
 					(and
-						(global5 contains: (ScriptID 271 0))
-						((ScriptID 10 0) isSet: -32768)
+						(global5 contains: kernel.ScriptID(271, 0))
+						(kernel.ScriptID(10, 0) isSet: -32768)
 					)
-					(self setScript: (ScriptID 278 1) self)
+					(self setScript: kernel.ScriptID(278, 1) self)
 				else:
 					cycles = 1
 				#endif
@@ -235,7 +236,7 @@ class talkAfterLLoc(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 276)
+		kernel.DisposeScript(276)
 	#end:method
 
 #end:class or instance

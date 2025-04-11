@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1037
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -42,7 +43,7 @@ class GnomeTalker(Kq6Talker):
 				#endif
 			#endif
 		#endif
-		if (and (global90 == 2) argc (IsObject param1)):
+		if (and (global90 == 2) argc kernel.IsObject(param1)):
 			(self x: 59 y: 15)
 		#endif
 		(self setSize:)
@@ -55,14 +56,10 @@ class GnomeTalker(Kq6Talker):
 		argc = sum(v is not None for v in locals().values())
 
 		if (raving and extra):
-			(DrawCel
-				(extra view:)
-				(extra loop:)
-				(extra cel:)
-				((extra nsLeft:) + nsLeft)
-				((extra nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((extra view:), (extra loop:), (extra cel:), (+
+				(extra nsLeft:)
+				nsLeft
+			), ((extra nsTop:) + nsTop), -1)
 		#endif
 		(super doit:)
 	#end:method
@@ -77,81 +74,69 @@ class GnomeTalker(Kq6Talker):
 		(= nsRight
 			(+
 				nsLeft
-				(proc999_3
-					if view:
-						(CelWide view loop cel)
-					else:
-						0
-					#endif
-					(and
-						(IsObject bust)
-						(+
-							(bust nsLeft:)
-							(CelWide (bust view:) (bust loop:) (bust cel:))
-						)
+				proc999_3(if view:
+					kernel.CelWide(view, loop, cel)
+				else:
+					0
+				#endif, (and
+					kernel.IsObject(bust)
+					(+
+						(bust nsLeft:)
+						kernel.CelWide((bust view:), (bust loop:), (bust cel:))
 					)
-					(and
-						(IsObject eyes)
-						(+
-							(eyes nsLeft:)
-							(CelWide (eyes view:) (eyes loop:) (eyes cel:))
-						)
+				), (and
+					kernel.IsObject(eyes)
+					(+
+						(eyes nsLeft:)
+						kernel.CelWide((eyes view:), (eyes loop:), (eyes cel:))
 					)
-					(and
-						(IsObject mouth)
-						(+
-							(mouth nsLeft:)
-							(CelWide (mouth view:) (mouth loop:) (mouth cel:))
-						)
+				), (and
+					kernel.IsObject(mouth)
+					(+
+						(mouth nsLeft:)
+						kernel.CelWide((mouth view:), (mouth loop:), (mouth cel:))
 					)
-					(and
-						(IsObject extra)
-						(+
-							(extra nsLeft:)
-							(CelWide (extra view:) (extra loop:) (extra cel:))
-						)
+				), (and
+					kernel.IsObject(extra)
+					(+
+						(extra nsLeft:)
+						kernel.CelWide((extra view:), (extra loop:), (extra cel:))
 					)
-				)
+				))
 			)
 		)
 		(= nsBottom
 			(+
 				nsTop
-				(proc999_3
-					if view:
-						(CelHigh view loop cel)
-					else:
-						0
-					#endif
-					(and
-						(IsObject bust)
-						(+
-							(bust nsTop:)
-							(CelHigh (bust view:) (bust loop:) (bust cel:))
-						)
+				proc999_3(if view:
+					kernel.CelHigh(view, loop, cel)
+				else:
+					0
+				#endif, (and
+					kernel.IsObject(bust)
+					(+
+						(bust nsTop:)
+						kernel.CelHigh((bust view:), (bust loop:), (bust cel:))
 					)
-					(and
-						(IsObject eyes)
-						(+
-							(eyes nsTop:)
-							(CelHigh (eyes view:) (eyes loop:) (eyes cel:))
-						)
+				), (and
+					kernel.IsObject(eyes)
+					(+
+						(eyes nsTop:)
+						kernel.CelHigh((eyes view:), (eyes loop:), (eyes cel:))
 					)
-					(and
-						(IsObject mouth)
-						(+
-							(mouth nsTop:)
-							(CelHigh (mouth view:) (mouth loop:) (mouth cel:))
-						)
+				), (and
+					kernel.IsObject(mouth)
+					(+
+						(mouth nsTop:)
+						kernel.CelHigh((mouth view:), (mouth loop:), (mouth cel:))
 					)
-					(and
-						(IsObject extra)
-						(+
-							(extra nsTop:)
-							(CelHigh (extra view:) (extra loop:) (extra cel:))
-						)
+				), (and
+					kernel.IsObject(extra)
+					(+
+						(extra nsTop:)
+						kernel.CelHigh((extra view:), (extra loop:), (extra cel:))
 					)
-				)
+				))
 			)
 		)
 	#end:method
@@ -162,53 +147,37 @@ class GnomeTalker(Kq6Talker):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not underBits):
-			underBits = (Graph 7 nsTop nsLeft nsBottom nsRight 1)
+			underBits = kernel.Graph(7, nsTop, nsLeft, nsBottom, nsRight, 1)
 		#endif
-		temp0 = (PicNotValid)
-		(PicNotValid 1)
+		temp0 = kernel.PicNotValid()
+		kernel.PicNotValid(1)
 		if bust:
-			(DrawCel
-				(bust view:)
-				(bust loop:)
-				(bust cel:)
-				((bust nsLeft:) + nsLeft)
-				((bust nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((bust view:), (bust loop:), (bust cel:), (+
+				(bust nsLeft:)
+				nsLeft
+			), ((bust nsTop:) + nsTop), -1)
 		#endif
 		if eyes:
-			(DrawCel
-				(eyes view:)
-				(eyes loop:)
-				(eyes cel:)
-				((eyes nsLeft:) + nsLeft)
-				((eyes nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((eyes view:), (eyes loop:), (eyes cel:), (+
+				(eyes nsLeft:)
+				nsLeft
+			), ((eyes nsTop:) + nsTop), -1)
 		#endif
 		if mouth:
-			(DrawCel
-				(mouth view:)
-				(mouth loop:)
-				(mouth cel:)
-				((mouth nsLeft:) + nsLeft)
-				((mouth nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((mouth view:), (mouth loop:), (mouth cel:), (+
+				(mouth nsLeft:)
+				nsLeft
+			), ((mouth nsTop:) + nsTop), -1)
 		#endif
-		(DrawCel view loop cel nsLeft nsTop -1)
+		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 		if (extra and raving):
-			(DrawCel
-				(extra view:)
-				(extra loop:)
-				(extra cel:)
-				((extra nsLeft:) + nsLeft)
-				((extra nsTop:) + nsTop)
-				-1
-			)
+			kernel.DrawCel((extra view:), (extra loop:), (extra cel:), (+
+				(extra nsLeft:)
+				nsLeft
+			), ((extra nsTop:) + nsTop), -1)
 		#endif
-		(Graph 12 nsTop nsLeft nsBottom nsRight 1)
-		(PicNotValid temp0)
+		kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
+		kernel.PicNotValid(temp0)
 	#end:method
 
 #end:class or instance
@@ -250,7 +219,7 @@ class GSmell(GnomeTalker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(super init: tSmellBust 0 tSmellMouth &rest)
 		else:
 			(super init: tSmellBust 0 tSmellMouth tSmellPin &rest)
@@ -275,7 +244,7 @@ class GSound(GnomeTalker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(super init: tSoundBust 0 tSoundMouth &rest)
 		else:
 			(super init: tSoundBust 0 tSoundMouth tSoundMuffs &rest)
@@ -321,7 +290,7 @@ class GTouch(GnomeTalker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(super init: tTouchBust 0 tTouchMouth &rest)
 		else:
 			(super init: tTouchBust 0 tTouchMouth tTouchGloves &rest)
@@ -346,7 +315,7 @@ class GSight(GnomeTalker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(super init: tSightBust tSightEyes tSightMouth 0 &rest)
 		else:
 			(super init: tSightBust tSightLids tSightMouth 0 &rest)

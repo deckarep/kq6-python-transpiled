@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 935
 import sci_sh
+import kernel
 import Print
 import System
 
@@ -33,7 +34,7 @@ class Scaler(Code):
 		#endif
 		slopeNum = (frontSize - backSize)
 		if (not slopeDen = (frontY - backY)):
-			(proc921_0 r"""<Scaler> frontY cannot be equal to backY""")
+			proc921_0(r"""<Scaler> frontY cannot be equal to backY""")
 			return 0
 		#endif
 		const = (backSize - ((slopeNum * backY) / slopeDen))

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 344
 import sci_sh
+import kernel
 import Main
 import rSacred
 import KQ6Print
@@ -100,7 +101,7 @@ class nightMare(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 59)
+		proc913_2(59)
 		(super dispose:)
 	#end:method
 
@@ -436,7 +437,7 @@ class blowinIt(Script):
 			#end:case
 			case 1:
 				(nightMare setCycle: Beg)
-				(self setScript: (ScriptID 85 0) self)
+				(self setScript: kernel.ScriptID(85, 0) self)
 			#end:case
 			case 2:
 				(global105 number: 346 setLoop: 1 play:)
@@ -814,7 +815,7 @@ class catchNiteMare(Script):
 				ticks = 4
 			#end:case
 			case 25:
-				local0++
+				local0.post('++')
 				(nightMare cel: ((nightMare cel:) + 1))
 				(global0 cel: ((global0 cel:) + 1))
 				ticks = 14

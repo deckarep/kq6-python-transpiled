@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 510
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -51,7 +52,7 @@ class rm510(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 8):
+		if proc913_0(8):
 			(self
 				addObstacle:
 					(poly1After type: 2 points: @local38 size: 12 yourself:)
@@ -75,7 +76,7 @@ class rm510(KQ6Room):
 			(brick init:)
 		#endif
 		(archer init: ignoreActors: 1 setPri: 10)
-		if (proc913_0 8):
+		if proc913_0(8):
 			(archer setLoop: 6 ignoreActors: 1 addToPic:)
 		#endif
 		(statue2 init:)
@@ -88,13 +89,13 @@ class rm510(KQ6Room):
 		(rocks init:)
 		(global0 setScale: Scaler 100 67 190 86 actions: egoUseShieldCode)
 		(roses init: setPri: 5)
-		if (proc913_0 9):
+		if proc913_0(9):
 			(roses setLoop: 0 cel: 7 noun: 16 ignoreActors: 1 addToPic:)
 		else:
 			(roses setLoop: 2 cel: 0)
 		#endif
-		if (not (proc913_0 98)):
-			(proc913_1 98)
+		if (not proc913_0(98)):
+			proc913_1(98)
 			(genie init: setScript: genieSummoning)
 			(glint1 init: hide:)
 			(glint2 init: hide:)
@@ -112,7 +113,7 @@ class rm510(KQ6Room):
 		(cond
 			case 
 				(and
-					(not (proc913_0 8))
+					(not proc913_0(8))
 					((global0 onControl: 1) == 2)
 					(script != walkPastArcher)
 					(script != walkPastArcherGenie)
@@ -236,7 +237,7 @@ class genie(Actor):
 				else:
 					(global1 handsOff:)
 					(global2 setScript: interruptGenieScript 0 1)
-					local0++
+					local0.post('++')
 				#endif
 			#end:case
 			case 5:
@@ -270,8 +271,8 @@ class archer(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 1 5 2):
-				if (proc913_0 8):
+			case proc999_5(param1, 1, 5, 2):
+				if proc913_0(8):
 					(global91 say: noun param1 13 0)
 				else:
 					(global91 say: noun param1 14 0)
@@ -284,7 +285,7 @@ class archer(Prop):
 			case (param1 == 39):
 				(global91 say: noun param1 0 0)
 			#end:case
-			case (proc913_0 8):
+			case proc913_0(8):
 				(global91 say: noun 0 13 0)
 			#end:case
 			else:
@@ -304,7 +305,7 @@ class archer(Prop):
 				cel:
 					(-
 						8
-						(((GetAngle x y (global0 x:) (global0 y:)) - 105) / 17)
+						((kernel.GetAngle(x, y, (global0 x:), (global0 y:)) - 105) / 17)
 					)
 			)
 			if (cel != local3):
@@ -356,7 +357,7 @@ class wall(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 1 5 2):
+		if proc999_5(param1, 1, 5, 2):
 			(super doVerb: param1)
 		else:
 			(global91 say: 4 0 0 1)
@@ -400,7 +401,7 @@ class roses(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 1 2 5):
+			case proc999_5(param1, 1, 2, 5):
 				(cond
 					case 
 						(not
@@ -419,7 +420,7 @@ class roses(Prop):
 					#end:else
 				)
 			#end:case
-			case (proc999_5 param1 28 39 8 30 25 12 94 70 71 26 20 34):
+			case proc999_5(param1, 28, 39, 8, 30, 25, 12, 94, 70, 71, 26, 20, 34):
 				(cond
 					case 
 						(not
@@ -499,7 +500,7 @@ class roseFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 8):
+		if proc913_0(8):
 			(self approachVerbs: 1 5)
 		#endif
 		return (super onMe: &rest)
@@ -516,7 +517,7 @@ class roseFeature(Feature):
 					case (global0 has: 38):
 						(global91 say: noun param1 20)
 					#end:case
-					case (proc913_0 8):
+					case proc913_0(8):
 						(global1 handsOff:)
 						(global2 setScript: pickRoseScript)
 					#end:case
@@ -536,10 +537,10 @@ class roseFeature(Feature):
 					(global91 say: noun param1 18)
 				#endif
 			#end:case
-			case (proc999_5 param1 1 71 2):
+			case proc999_5(param1, 1, 71, 2):
 				(super doVerb: param1 &rest)
 			#end:case
-			case (not (proc913_0 8)):
+			case (not proc913_0(8)):
 				(global91 say: noun 0 14)
 			#end:case
 			case (((roses loop:) == 2) and ((roses cel:) == (roses lastCel:))):
@@ -566,7 +567,7 @@ class garden(Feature):
 
 		match param1
 			case 5:
-				if (proc913_0 8):
+				if proc913_0(8):
 					(global91 say: noun param1 13)
 				else:
 					(global91 say: noun param1 14)
@@ -586,7 +587,7 @@ class garden(Feature):
 				(global91 say: noun param1 0)
 			#end:case
 			else:
-				if (proc913_0 8):
+				if proc913_0(8):
 					(global91 say: noun 0 13)
 				else:
 					(global91 say: noun 0 14)
@@ -620,7 +621,7 @@ class rocks(Feature):
 			case (param1 == 1):
 				(global91 say: noun param1 2 0 0 0)
 			#end:case
-			case (proc999_5 param1 1 2 5):
+			case proc999_5(param1, 1, 2, 5):
 				(global91 say: noun param1 0 0 0 0)
 			#end:case
 			else:
@@ -924,7 +925,7 @@ class walkPastArcher(Script):
 			case 8:
 				if register:
 					(global1 givePoints: 3)
-					(proc913_1 8)
+					proc913_1(8)
 					(global0 put: 43 510)
 					(archer view: 510 setLoop: 6 setCel: 0)
 					cycles = 1
@@ -947,7 +948,7 @@ class walkPastArcher(Script):
 					)
 				else:
 					(global1 handsOn:)
-					(proc0_1 1)
+					proc0_1(1)
 				#endif
 			#end:case
 			case 9:
@@ -969,7 +970,7 @@ class walkPastArcherGenie(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 163)
+				proc913_1(163)
 				(genie x: ((genie x:) - 9) y: ((genie y:) + 12) setLoop: 6)
 				(global0
 					view: 511
@@ -1059,7 +1060,7 @@ class walkPastArcherGenie(Script):
 			#end:case
 			case 22:
 				(global1 handsOn:)
-				(proc0_1 1)
+				proc0_1(1)
 			#end:case
 		#end:match
 	#end:method
@@ -1133,7 +1134,7 @@ class genieEatsPeppermint(Script):
 				(fx number: 943 loop: 1 play:)
 			#end:case
 			case 12:
-				(proc913_4 global0 genie self)
+				proc913_4(global0, genie, self)
 			#end:case
 			case 13:
 				(global0 normal: 0 view: 514 setLoop: 11 cel: 0)
@@ -1356,9 +1357,9 @@ class cutEmBaby(Script):
 		(super doit:)
 		if 
 			(and
-				(proc999_5 state 2 4 5 7 8)
+				proc999_5(state, 2, 4, 5, 7, 8)
 				(register != (global0 cel:))
-				(proc999_5 (global0 cel:) 0 2 4 6)
+				proc999_5((global0 cel:), 0, 2, 4, 6)
 			)
 			register = (global0 cel:)
 			(fx play:)
@@ -1417,7 +1418,7 @@ class cutEmBaby(Script):
 			#end:case
 			case 11:
 				(global0 reset: 3)
-				(proc913_1 9)
+				proc913_1(9)
 				cycles = 1
 			#end:case
 			case 12:
@@ -1465,7 +1466,7 @@ class pickRoseScript(Script):
 				cycles = 1
 			#end:case
 			case 2:
-				if (not (proc913_1 137)):
+				if (not proc913_1(137)):
 					(global1 givePoints: 1)
 				#endif
 				(global1 handsOn:)

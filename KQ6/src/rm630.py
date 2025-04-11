@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 630
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import Conversation
@@ -179,7 +180,7 @@ class rm630(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(proc958_0 0 942 964)
+		proc958_0(0, 942, 964)
 	#end:method
 
 #end:class or instance
@@ -260,12 +261,7 @@ class downToMidScr(Script):
 				if local74:
 					if 
 						(>
-							(GetDistance
-								(global0 x:)
-								(global0 y:)
-								local74
-								local75
-							)
+							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
 							15
 						)
 						(global0 setMotion: PolyPath local74 local75 local76)
@@ -328,12 +324,7 @@ class downToBottomScr(Script):
 				if local74:
 					if 
 						(>
-							(GetDistance
-								(global0 x:)
-								(global0 y:)
-								local74
-								local75
-							)
+							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
 							10
 						)
 						(global0 setMotion: PolyPath local74 local75 local76)
@@ -399,12 +390,7 @@ class upToTopScr(Script):
 				if local74:
 					if 
 						(>
-							(GetDistance
-								(global0 x:)
-								(global0 y:)
-								local74
-								local75
-							)
+							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
 							20
 						)
 						(global0 setMotion: PolyPath local74 local75 local76)
@@ -474,12 +460,7 @@ class upToMidScr(Script):
 				if local74:
 					if 
 						(>
-							(GetDistance
-								(global0 x:)
-								(global0 y:)
-								local74
-								local75
-							)
+							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
 							15
 						)
 						(global0 setMotion: PolyPath local74 local75 local76)
@@ -607,7 +588,7 @@ class zombieScript(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 20 30)
+				seconds = kernel.Random(20, 30)
 			#end:case
 			case 1:
 				(client
@@ -627,7 +608,7 @@ class zombieScript(Script):
 						242
 						self
 				)
-				register++
+				register.post('++')
 				if (register == 602):
 					register = 603
 				#endif
@@ -706,7 +687,7 @@ class egoDeadScript(Script):
 				)
 			#end:case
 			case 4:
-				(proc0_1 38)
+				proc0_1(38)
 			#end:case
 		#end:match
 	#end:method
@@ -727,7 +708,7 @@ class ghoul1Scr(Script):
 			#end:case
 			case 1:
 				(client hide:)
-				seconds = (Random 20 30)
+				seconds = kernel.Random(20, 30)
 			#end:case
 			case 2:
 				(self init:)
@@ -907,7 +888,7 @@ class motherGhostScript(Script):
 		match state = param1
 			case 0:
 				(client loop: 0 posn: 109 82 cycleSpeed: 20 setCycle: Fwd)
-				seconds = (Random 5 15)
+				seconds = kernel.Random(5, 15)
 			#end:case
 			case 1:
 				(global91 say: 9 0 4 1 self)

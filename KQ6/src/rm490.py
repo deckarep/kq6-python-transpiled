@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 490
 import sci_sh
+import kernel
 import Main
 import Kq6Sound
 import KQ6Room
@@ -68,7 +69,7 @@ class rm490(KQ6Room):
 		(global32 add: theSky thePath theSteps eachElementDo: #init)
 		(redKnight addToPic:)
 		(whiteKnight addToPic:)
-		if ((proc913_0 39) and (((global9 at: 41) owner:) == global11)):
+		if (proc913_0(39) and (((global9 at: 41) owner:) == global11)):
 			(redScarf init:)
 		#endif
 		(global2 setScript: egoEnters)
@@ -79,7 +80,7 @@ class rm490(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		match local3++
+		match local3.post('++')
 			case 1:
 				(global1 handsOff:)
 				(global91 say: 1 0 10 0 self)
@@ -223,7 +224,7 @@ class redKnight(Actor):
 					(global2 setScript: knightBlock 0 param1)
 				#end:case
 				case 1:
-					if ((not local53--) and (global12 == 99)):
+					if ((not local53.post('--')) and (global12 == 99)):
 						(global0 get: 6)
 					#endif
 					(super doVerb: param1 &rest)
@@ -470,10 +471,10 @@ class knightBlock(Script):
 						(global91 say: 3 3 5 0 self)
 					#end:case
 					case 2:
-						if ((proc913_0 39) and (proc913_0 69)):
+						if (proc913_0(39) and proc913_0(69)):
 							(global91 say: 7 2 9 0 self)
 						else:
-							(proc913_1 69)
+							proc913_1(69)
 							(global91 say: 7 2 7 0 self)
 						#endif
 					#end:case
@@ -522,8 +523,8 @@ class queensEnter(Script):
 					addToPic:
 				)
 				(redKnight signal: 18432 view: 4900 setLoop: 0 cel: 1 addToPic:)
-				(UnLoad 128 492)
-				(UnLoad 128 493)
+				kernel.UnLoad(128, 492)
+				kernel.UnLoad(128, 493)
 				cycles = 2
 			#end:case
 			case 1:
@@ -571,8 +572,8 @@ class queensEnter(Script):
 			case 9:
 				(whiteKnight view: 4900 setLoop: 2 cel: 0 addToPic:)
 				(redKnight view: 4900 setLoop: 2 cel: 1 addToPic:)
-				(UnLoad 128 492)
-				(UnLoad 128 493)
+				kernel.UnLoad(128, 492)
+				kernel.UnLoad(128, 493)
 				cycles = 2
 			#end:case
 			case 10:
@@ -603,19 +604,19 @@ class queensEnter(Script):
 					init:
 					setCycle: Beg self
 				)
-				(UnLoad 128 492)
-				(UnLoad 128 493)
+				kernel.UnLoad(128, 492)
+				kernel.UnLoad(128, 493)
 			#end:case
 			case 14:#end:case
 			case 15:
 				(whiteKnight view: 4900 setLoop: 1 cel: 0 addToPic:)
 				(redKnight view: 4900 setLoop: 1 cel: 1 addToPic:)
-				(UnLoad 128 492)
-				(UnLoad 128 493)
+				kernel.UnLoad(128, 492)
+				kernel.UnLoad(128, 493)
 				cycles = 2
 			#end:case
 			case 16:
-				if ((proc913_0 39) and (global0 has: 6)):
+				if (proc913_0(39) and (global0 has: 6)):
 					(global2 setScript: coalQueenTalk)
 				else:
 					(global2 setScript: firstQueenTalk)
@@ -636,7 +637,7 @@ class firstQueenTalk(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 59)
+				proc913_1(59)
 				(myConv
 					add: -1 1 0 2 1
 					add: -1 1 0 2 2
@@ -651,7 +652,7 @@ class firstQueenTalk(Script):
 				seconds = 2
 			#end:case
 			case 2:
-				(proc913_2 59)
+				proc913_2(59)
 				(redQueen view: 495 setLoop: 2 cel: 0 setCycle: End self)
 			#end:case
 			case 3:
@@ -668,7 +669,7 @@ class firstQueenTalk(Script):
 				(myConv add: -1 1 0 2 7 add: -1 1 0 2 8 init: self)
 			#end:case
 			case 7:
-				(proc913_1 59)
+				proc913_1(59)
 				(redQueen view: 495 setLoop: 1 cel: 0 setCycle: End self)
 				if (not (global105 handle:)):
 					(global105 number: 493 setLoop: 1 play:)
@@ -698,7 +699,7 @@ class firstQueenTalk(Script):
 				)
 			#end:case
 			case 13:
-				(proc913_2 59)
+				proc913_2(59)
 				(global91 say: 1 0 2 10 self)
 			#end:case
 			case 14:
@@ -714,7 +715,7 @@ class firstQueenTalk(Script):
 			#end:case
 			case 17:#end:case
 			case 18:
-				(proc913_1 59)
+				proc913_1(59)
 				(redQueen view: 494 setLoop: 0 cel: 1)
 				(whiteQueen view: 496 setLoop: 0 cel: 0)
 				ticks = 30
@@ -723,7 +724,7 @@ class firstQueenTalk(Script):
 				(myConv add: -1 1 0 2 13 add: -1 1 0 2 14 init: self)
 			#end:case
 			case 20:
-				(proc913_1 39)
+				proc913_1(39)
 				local50 = 1
 				(global2 setScript: queensLeave 0 1)
 			#end:case
@@ -742,8 +743,8 @@ class coalQueenTalk(Script):
 
 		match state = param1
 			case 0:
-				(proc913_1 59)
-				if (proc913_0 89):
+				proc913_1(59)
+				if proc913_0(89):
 					(myConv
 						add: -1 1 0 4 1
 						add: -1 1 0 4 2
@@ -769,22 +770,22 @@ class coalQueenTalk(Script):
 			case 1:
 				(redQueen view: 4951 setLoop: 1 cel: 3 setCycle: Beg self)
 				(whiteQueen view: 497 setLoop: 1 cel: 3 setCycle: Beg self)
-				(UnLoad 128 494)
-				(UnLoad 128 496)
+				kernel.UnLoad(128, 494)
+				kernel.UnLoad(128, 496)
 			#end:case
 			case 2:#end:case
 			case 3:
 				(redQueen view: 4951 setLoop: 0 cel: 0)
 				(whiteQueen view: 496 setLoop: 0 cel: 2)
-				(UnLoad 128 497)
+				kernel.UnLoad(128, 497)
 				cycles = 4
 			#end:case
 			case 4:
-				(proc913_2 59)
-				if (proc913_0 89):
+				proc913_2(59)
+				if proc913_0(89):
 					(global91 say: 1 0 4 7 self)
 				else:
-					(proc913_1 89)
+					proc913_1(89)
 					(global91 say: 1 0 3 8 self)
 				#endif
 			#end:case
@@ -875,7 +876,7 @@ class egoEnters(Script):
 				)
 			#end:case
 			case 1:
-				if ((proc913_0 39) and (global0 has: 6)):
+				if (proc913_0(39) and (global0 has: 6)):
 					cycles = 2
 				else:
 					(global1 handsOn:)
@@ -889,7 +890,7 @@ class egoEnters(Script):
 					(global2 setScript: queensEnter)
 					(self dispose:)
 				else:
-					state--
+					state.post('--')
 					cycles = 1
 				#endif
 			#end:case
@@ -1317,8 +1318,8 @@ class knightBoundForward(Script):
 			case 4:
 				(redKnight cel: register posn: local34[register] 124)
 				(whiteKnight cel: register posn: local41[register] 124)
-				if (register++ <= 6):
-					state--
+				if (register.post('++') <= 6):
+					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
@@ -1351,8 +1352,8 @@ class knightBoundBack(Script):
 			case 1:
 				(redKnight cel: register posn: local34[register] 124)
 				(whiteKnight cel: register posn: local41[register] 124)
-				if (register-- >= 0):
-					state--
+				if (register.post('--') >= 0):
+					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
@@ -1362,12 +1363,12 @@ class knightBoundBack(Script):
 			case 3:
 				(whiteKnight view: 4900 setLoop: 0 cel: 0 addToPic:)
 				(redKnight view: 4900 setLoop: 0 cel: 1 addToPic:)
-				(UnLoad 128 492)
-				(UnLoad 128 493)
+				kernel.UnLoad(128, 492)
+				kernel.UnLoad(128, 493)
 				cycles = 2
 			#end:case
 			case 4:
-				if (not (proc913_0 39)):
+				if (not proc913_0(39)):
 					(global69 disable: 6)
 					(global2 setScript: queensEnter)
 				else:
@@ -1509,7 +1510,7 @@ class Red_Queen(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(cond
 				case (((redQueen loop:) == 0) and ((redQueen view:) == 494)):
 					(self view: 495 loop: 4 x: 173 y: 82 textX: -89 textY: -72)
@@ -1579,7 +1580,7 @@ class White_Queen(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			if 
 				(and
 					(not (whiteQueen cel:))
@@ -1665,7 +1666,7 @@ class coalToQueen(Script):
 				(whiteQueen view: 497 setLoop: 1 cel: 0 setCycle: End self)
 			#end:case
 			case 9:
-				(proc913_1 59)
+				proc913_1(59)
 				(whiteQueen view: 496 setLoop: 0 cel: 0)
 				cycles = 4
 			#end:case
@@ -1691,7 +1692,7 @@ class coalToQueen(Script):
 			#end:case
 			case 15:#end:case
 			case 16:
-				(proc913_2 59)
+				proc913_2(59)
 				(redQueen view: 4951 setLoop: 0 cel: 0)
 				(whiteQueen view: 497 setLoop: 0 cel: 0)
 				cycles = 4
@@ -1724,7 +1725,7 @@ class coalToQueen(Script):
 				(global91 say: 6 46 0 6 self)
 			#end:case
 			case 24:
-				(proc913_1 59)
+				proc913_1(59)
 				(global2 setScript: queensLeave 0 46)
 			#end:case
 		#end:match
@@ -1839,7 +1840,7 @@ class queensLeave(Script):
 			case 13:
 				(global103 number: 0 stop:)
 				(global102 pause: 0)
-				(proc913_2 59)
+				proc913_2(59)
 				local52 = 0
 				(global1 handsOn:)
 				(self dispose:)

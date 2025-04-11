@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 99
 import sci_sh
+import kernel
 import Main
 import Motion
 import Game
@@ -34,13 +35,13 @@ class speedRoom(Rm):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init:)
-		temp0 = (FileIO 0 r"""version""" 1)
-		(FileIO 5 global27 10 temp0)
-		(FileIO 1 temp0)
+		temp0 = kernel.FileIO(0, r"""version""", 1)
+		kernel.FileIO(5, global27, 10, temp0)
+		kernel.FileIO(1, temp0)
 		if global100:
 			(global69 enable:)
 			(global1 handsOn:)
-			(proc911_1)
+			proc911_1()
 			(global1 handsOff:)
 		else:
 			(self setScript: speedTest)
@@ -75,11 +76,11 @@ class speedTest(Script):
 
 		match state = param1
 			case 0:
-				(Load 128 99)
+				kernel.Load(128, 99)
 				cycles = 1
 			#end:case
 			case 1:
-				local1 = (GetTime)
+				local1 = kernel.GetTime()
 				(fred
 					view: 99
 					setLoop: 0
@@ -93,12 +94,12 @@ class speedTest(Script):
 				)
 			#end:case
 			case 2:
-				local0 = ((GetTime) - local1)
+				local0 = (kernel.GetTime() - local1)
 				cycles = 1
 			#end:case
 			case 3:
-				(Message 0 99 0 0 0 1 @temp0)
-				(Display @temp0 100 10 80 106 300 102 6 105 3110 101 1)
+				kernel.Message(0, 99, 0, 0, 0, 1, @temp0)
+				kernel.Display(@temp0, 100, 10, 80, 106, 300, 102, 6, 105, 3110, 101, 1)
 				seconds = 5
 			#end:case
 			case 4:

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 952
 import sci_sh
+import kernel
 import Main
 import Print
 import PolyPath
@@ -26,53 +27,45 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	(Format @temp0 952 0 param2)
-	(FileIO 6 local0 @temp0)
+	kernel.Format(@temp0, 952, 0, param2)
+	kernel.FileIO(6, local0, @temp0)
 	temp0 = 0
 	match param1
 		case 1:
-			(StrCpy @temp0 (param3 if param3 else r""""""))
+			kernel.StrCpy(@temp0, (param3 if param3 else r""""""))
 		#end:case
 		case 2:
-			(Format @temp0 952 1 param3)
+			kernel.Format(@temp0, 952, 1, param3)
 		#end:case
 		case 3:
-			(Format @temp0 952 2 param3)
+			kernel.Format(@temp0, 952, 2, param3)
 		#end:case
 		case 4:
-			(Format @temp0 952 3 param3)
+			kernel.Format(@temp0, 952, 3, param3)
 		#end:case
 		case 5:
 			if param3:
-				(proc921_2 @temp0 66 param3 999)
+				proc921_2(@temp0, 66, param3, 999)
 			#endif
-			temp41 = (StrLen @temp0)
+			temp41 = kernel.StrLen(@temp0)
 		#end:case
 		case 6:
-			temp40 = (GetTime 2)
-			(Format
-				@temp0
-				952
-				4
-				(temp40 >> 0x000b)
-				((temp40 >> 0x0005) & 0x003f)
-				((temp40 & 0x001f) * 2)
-			)
+			temp40 = kernel.GetTime(2)
+			kernel.Format(@temp0, 952, 4, (temp40 >> 0x000b), (&
+				(temp40 >> 0x0005)
+				0x003f
+			), ((temp40 & 0x001f) * 2))
 		#end:case
 		case 7:
-			temp40 = (GetTime 3)
-			(Format
-				@temp0
-				952
-				5
-				((temp40 >> 0x0005) & 0x000f)
-				(temp40 & 0x001f)
-				(80 + (temp40 >> 0x0009))
-			)
+			temp40 = kernel.GetTime(3)
+			kernel.Format(@temp0, 952, 5, ((temp40 >> 0x0005) & 0x000f), (&
+				temp40
+				0x001f
+			), (80 + (temp40 >> 0x0009)))
 		#end:case
 	#end:match
-	(StrCat @temp0 r"""\0d\n""")
-	(FileIO 6 local0 @temp0)
+	kernel.StrCat(@temp0, r"""\0d\n""")
+	kernel.FileIO(6, local0, @temp0)
 	return temp41
 #end:procedure
 
@@ -97,8 +90,8 @@ class sysLogger(Code):
 				)
 			)
 		)
-		if temp4 = (0 == (StrLen @global42)):
-			while (not (< 0 (StrLen @temp78) 19)):
+		if temp4 = (0 == kernel.StrLen(@global42)):
+			while (not (< 0 kernel.StrLen(@temp78) 19)):
 
 				(Print
 					font: 999
@@ -108,16 +101,16 @@ class sysLogger(Code):
 					init:
 				)
 			#end:loop
-			(StrCpy @global42 @temp78 40)
+			kernel.StrCpy(@global42, @temp78, 40)
 		#endif
-		(Format @temp78 952 6 @global42)
-		if (-1 != local0 = (FileIO 0 @temp78 1)):
-			(FileIO 5 @temp138 80 local0)
-			(FileIO 5 @temp48 80 local0)
-			(FileIO 1 local0)
+		kernel.Format(@temp78, 952, 6, @global42)
+		if (-1 != local0 = kernel.FileIO(0, @temp78, 1)):
+			kernel.FileIO(5, @temp138, 80, local0)
+			kernel.FileIO(5, @temp48, 80, local0)
+			kernel.FileIO(1, local0)
 		else:
 			temp138 = 0
-			(StrCpy @temp48 r"""resource.cfg""")
+			kernel.StrCpy(@temp48, r"""resource.cfg""")
 		#endif
 		if temp4:
 			(Print
@@ -126,7 +119,7 @@ class sysLogger(Code):
 				addEdit: @temp138 12 0 20
 				init:
 			)
-			(StrAt @temp138 8 0)
+			kernel.StrAt(@temp138, 8, 0)
 		#endif
 		while
 			(and
@@ -140,80 +133,80 @@ class sysLogger(Code):
 						init:
 					)
 				)
-				(-1 == local0 = (FileIO 0 @temp48 1))
-				(StrAt @temp48 0)
+				(-1 == local0 = kernel.FileIO(0, @temp48, 1))
+				kernel.StrAt(@temp48, 0)
 			):
 
-			(StrAt @temp48 0 0)
+			kernel.StrAt(@temp48, 0, 0)
 		#end:loop
 		if (-1 != local0):
-			while (FileIO 5 @temp8 80 local0):
+			while kernel.FileIO(5, @temp8, 80, local0):
 
 				
 					(temp0 = 0)
-					(temp3 = (StrAt @temp8 temp0) and (proc999_5 temp3 9 32))
-					(temp0++)
+					(temp3 = kernel.StrAt(@temp8, temp0) and proc999_5(temp3, 9, 32))
+					(temp0.post('++'))
 				#end:loop
 				
 					(temp1 = 0)
 					(and
-						temp3 = (StrAt @temp8 temp0)
-						(not (proc999_5 temp3 61 58 9 32))
+						temp3 = kernel.StrAt(@temp8, temp0)
+						(not proc999_5(temp3, 61, 58, 9, 32))
 					)
-					(temp1++)
+					(temp1.post('++'))
 					
-					(StrAt @temp108 temp1 temp3)
-					temp0++
+					kernel.StrAt(@temp108, temp1, temp3)
+					temp0.post('++')
 					# for:reinit
-					temp1++
+					temp1.post('++')
 				#end:loop
-				(StrAt @temp108 temp1 0)
+				kernel.StrAt(@temp108, temp1, 0)
 				if 
 					(= temp5
 						(cond
-							case (0 == (StrCmp @temp108 r"""kbdDrv""")): @temp158#end:case
-							case (0 == (StrCmp @temp108 r"""joyDrv""")): @temp198#end:case
-							case (0 == (StrCmp @temp108 r"""videoDrv""")): @temp238#end:case
-							case (0 == (StrCmp @temp108 r"""soundDrv""")): @temp278#end:case
-							case (0 == (StrCmp @temp108 r"""mouseDrv""")): @temp318#end:case
-							case (0 == (StrCmp @temp108 r"""audioDrv""")): @temp358#end:case
+							case (0 == kernel.StrCmp(@temp108, r"""kbdDrv""")): @temp158#end:case
+							case (0 == kernel.StrCmp(@temp108, r"""joyDrv""")): @temp198#end:case
+							case (0 == kernel.StrCmp(@temp108, r"""videoDrv""")): @temp238#end:case
+							case (0 == kernel.StrCmp(@temp108, r"""soundDrv""")): @temp278#end:case
+							case (0 == kernel.StrCmp(@temp108, r"""mouseDrv""")): @temp318#end:case
+							case (0 == kernel.StrCmp(@temp108, r"""audioDrv""")): @temp358#end:case
 						)
 					)
 					while
 						(and
-							temp3 = (StrAt @temp8 temp0)
-							(proc999_5 temp3 61 58 9 32)
+							temp3 = kernel.StrAt(@temp8, temp0)
+							proc999_5(temp3, 61, 58, 9, 32)
 						):
 
-						temp0++
+						temp0.post('++')
 					#end:loop
 					temp1 = temp0
 					temp2 = 0
-					while temp3 = (StrAt @temp8 temp1):
+					while temp3 = kernel.StrAt(@temp8, temp1):
 
-						if (proc999_5 temp3 58 92 47):
+						if proc999_5(temp3, 58, 92, 47):
 							temp0 = (temp1 + 1)
 						#endif
 						if (temp3 == 46):
 							temp2 = (temp1 - temp0)
 						#endif
-						temp1++
+						temp1.post('++')
 					#end:loop
 					if (temp2 == 0):
 						temp2 = (temp1 - temp0)
 					#endif
-					(StrCpy temp5 (@temp8 + temp0) temp2)
+					kernel.StrCpy(temp5, (@temp8 + temp0), temp2)
 				#endif
 			#end:loop
-			(FileIO 1 local0)
+			kernel.FileIO(1, local0)
 		#endif
-		(Format @temp78 952 7 @global42)
+		kernel.Format(@temp78, 952, 7, @global42)
 		if 
 			(and
 				temp4
 				(or
-					(-1 == local0 = (FileIO 0 @temp78 1))
-					((Format @temp8 952 8 @temp78) and 0)
+					(-1 == local0 = kernel.FileIO(0, @temp78, 1))
+					(kernel.Format(@temp8, 952, 8, @temp78) and 0)
 					(Print
 						font: 999
 						addText: @temp8
@@ -224,10 +217,10 @@ class sysLogger(Code):
 					)
 				)
 			)
-			(FileIO 1 local0)
-			local0 = (FileIO 0 @temp78 2)
+			kernel.FileIO(1, local0)
+			local0 = kernel.FileIO(0, @temp78, 2)
 		else:
-			local0 = (FileIO 0 @temp78 0)
+			local0 = kernel.FileIO(0, @temp78, 0)
 		#endif
 		if (-1 == local0):
 			(Print
@@ -257,14 +250,14 @@ class sysLogger(Code):
 			temp6 = 1
 			while (temp0 <= 10):
 
-				(Format @temp108 952 9 temp0)
-				(Format @temp8 952 10 temp0 10)
+				kernel.Format(@temp108, 952, 9, temp0)
+				kernel.Format(@temp8, 952, 10, temp0, 10)
 				if temp6:
 					temp6 = (localproc_0 5 @temp108 @temp8)
 				else:
 					(localproc_0 1 @temp108 0)
 				#endif
-				temp0++
+				temp0.post('++')
 			#end:loop
 			(localproc_0
 				1
@@ -345,19 +338,19 @@ class sysLogger(Code):
 			(localproc_0 1 r"""KEYBOARD-DRV""" @temp158)
 			(localproc_0 1 r"""JOY-DRV""" @temp198)
 			(localproc_0 1 r"""MOUSE""" @temp318)
-			(localproc_0 3 r"""LARGEST-HEAP""" (MemoryInfo 0))
-			(localproc_0 3 r"""FREE-HEAP""" (MemoryInfo 1))
-			(localproc_0 3 r"""TOTAL-HUNK""" ((MemoryInfo 4) >> 0x0006))
-			(localproc_0 3 r"""LARGEST-HUNK""" (MemoryInfo 2))
-			(localproc_0 3 r"""FREE-HUNK""" ((MemoryInfo 3) >> 0x0006))
-			(FileIO 6 local0 r"""**********************************\0d\n""")
-			(FileIO 1 local0)
+			(localproc_0 3 r"""LARGEST-HEAP""" kernel.MemoryInfo(0))
+			(localproc_0 3 r"""FREE-HEAP""" kernel.MemoryInfo(1))
+			(localproc_0 3 r"""TOTAL-HUNK""" (kernel.MemoryInfo(4) >> 0x0006))
+			(localproc_0 3 r"""LARGEST-HUNK""" kernel.MemoryInfo(2))
+			(localproc_0 3 r"""FREE-HUNK""" (kernel.MemoryInfo(3) >> 0x0006))
+			kernel.FileIO(6, local0, r"""**********************************\0d\n""")
+			kernel.FileIO(1, local0)
 		#endif
-		(Format @temp78 952 6 @global42)
+		kernel.Format(@temp78, 952, 6, @global42)
 		if 
 			(and
-				(-1 == local0 = (FileIO 0 @temp78 2))
-				(-1 == local0 = (FileIO 0 @temp78 0))
+				(-1 == local0 = kernel.FileIO(0, @temp78, 2))
+				(-1 == local0 = kernel.FileIO(0, @temp78, 0))
 			)
 			(Print
 				font: 999
@@ -365,14 +358,14 @@ class sysLogger(Code):
 				init:
 			)
 		else:
-			(FileIO 6 local0 @temp138)
-			(FileIO 6 local0 r"""\n""")
-			(FileIO 6 local0 @temp48)
-			(FileIO 6 local0 r"""\n""")
-			(FileIO 1 local0)
+			kernel.FileIO(6, local0, @temp138)
+			kernel.FileIO(6, local0, r"""\n""")
+			kernel.FileIO(6, local0, @temp48)
+			kernel.FileIO(6, local0, r"""\n""")
+			kernel.FileIO(1, local0)
 		#endif
 		global85 = temp7
-		(DisposeScript 952)
+		kernel.DisposeScript(952)
 	#end:method
 
 #end:class or instance

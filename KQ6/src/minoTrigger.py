@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 441
 import sci_sh
+import kernel
 import Main
 import n913
 import Print
@@ -41,7 +42,7 @@ def proc441_0(param1 = None):
 
 	(global1 handsOff:)
 	local0 = 9
-	((ScriptID 30 0) setScript: 0)
+	(kernel.ScriptID(30, 0) setScript: 0)
 	if (not local2):
 		local2 = 1
 		(global2 setScript: minoTrigger 0 param1)
@@ -89,7 +90,7 @@ class minotaur(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not ((ScriptID 30 0) seenByMino:)):
+		if (not (kernel.ScriptID(30, 0) seenByMino:)):
 			(proc441_0 0)
 		#endif
 	#end:method
@@ -104,7 +105,7 @@ class minotaur(Actor):
 				(global91 say: 4 2 local0 0 self 440)
 			#end:case
 			case 5:
-				if ((ScriptID 30 0) seenByMino:):
+				if (kernel.ScriptID(30, 0) seenByMino:):
 					(global2 setScript: minotaurCharging 0 5)
 				else:
 					(global2 setScript: handToHand)
@@ -112,9 +113,9 @@ class minotaur(Actor):
 			#end:case
 			case 72:
 				if ((global2 script:) == minoTrigger):
-					((ScriptID 30 0) scarfOnMino: 1)
+					(kernel.ScriptID(30, 0) scarfOnMino: 1)
 					(global0 view: 441 normal: 0 setLoop: 0 cel: 0)
-					(UnLoad 128 900)
+					kernel.UnLoad(128, 900)
 					(minotaur cycleSpeed: 6 setCycle: Fwd)
 					(minoTrigger state: 19 register: 72 cue:)
 					(global1 handsOff:)
@@ -127,7 +128,7 @@ class minotaur(Actor):
 				(global91 say: 4 1 0 1 0 440)
 			#end:case
 			else:
-				if (not ((ScriptID 30 0) seenByMino:)):
+				if (not (kernel.ScriptID(30, 0) seenByMino:)):
 					(global91 say: 4 0 8 1 self 440)
 				else:
 					(global91 say: 4 0 9 1 self 440)
@@ -170,7 +171,7 @@ class celeste(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not ((ScriptID 30 0) seenByMino:)):
+		if (not (kernel.ScriptID(30, 0) seenByMino:)):
 			(proc441_0 0)
 		#endif
 	#end:method
@@ -260,9 +261,9 @@ class minoTrigger(Script):
 				(global91 say: 1 0 3 1 self 440)
 			#end:case
 			case 3:
-				((ScriptID 30 0) seenByMino: 1)
+				(kernel.ScriptID(30, 0) seenByMino: 1)
 				(minotaur view: 443 setCycle: 0 setLoop: 1 cel: 0 posn: 110 148)
-				(UnLoad 128 444)
+				kernel.UnLoad(128, 444)
 				cycles = 2
 			#end:case
 			case 4:
@@ -299,7 +300,7 @@ class minoTrigger(Script):
 			#end:case
 			case 11:
 				(minotaur view: 4441)
-				(UnLoad 128 443)
+				kernel.UnLoad(128, 443)
 				ticks = 5
 			#end:case
 			case 12:#end:case
@@ -322,7 +323,7 @@ class minoTrigger(Script):
 					y: ((global0 y:) + 5)
 					cel: 0
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 				ticks = 6
 			#end:case
 			case 17:
@@ -330,7 +331,7 @@ class minoTrigger(Script):
 				ticks = 8
 			#end:case
 			case 18:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(self cue:)
 				else:
 					(global91 say: 1 0 3 7 self 440)
@@ -345,7 +346,7 @@ class minoTrigger(Script):
 				cycles = 8
 			#end:case
 			case 21:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(global91 say: 4 38 11 1 self 440)
 				else:
 					(self cue:)
@@ -356,7 +357,7 @@ class minoTrigger(Script):
 					case (register == 5):
 						(global91 say: 4 5 9 1 self 440)
 					#end:case
-					case ((ScriptID 30 0) scarfOnMino:):
+					case (kernel.ScriptID(30, 0) scarfOnMino:):
 						(global91 say: 4 38 11 2 self 440)
 					#end:case
 					else:
@@ -368,7 +369,7 @@ class minoTrigger(Script):
 				seconds = 2
 			#end:case
 			case 24:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(global91 say: 4 38 11 3 self 440)
 				else:
 					(self cue:)
@@ -381,7 +382,7 @@ class minoTrigger(Script):
 				(global105 number: 433 setLoop: 1 play: self)
 			#end:case
 			case 27:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(global91 say: 4 38 11 4 self 440)
 				else:
 					ticks = 8
@@ -414,9 +415,9 @@ class minotaurCharging(Script):
 				cycles = 12
 			#end:case
 			case 1:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(global0 view: 441 setLoop: 0)
-					(UnLoad 128 900)
+					kernel.UnLoad(128, 900)
 				#endif
 				if (register == 5):
 					(global91 say: 4 5 9 1 self 440)
@@ -435,7 +436,7 @@ class minotaurCharging(Script):
 					cel: 1
 					posn: ((minotaur x:) + 7) ((minotaur y:) - 6)
 				)
-				(UnLoad 128 4441)
+				kernel.UnLoad(128, 4441)
 				ticks = 2
 			#end:case
 			case 4:
@@ -455,7 +456,7 @@ class minotaurCharging(Script):
 				ticks = 2
 			#end:case
 			case 8:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(global0 cel: 0 setScript: 0 setCycle: End)
 					(minotaur cel: 6 posn: ((minotaur x:) + 14) (minotaur y:))
 					ticks = 2
@@ -473,7 +474,7 @@ class minotaurCharging(Script):
 					posn: ((minotaur x:) + 22) ((minotaur y:) + 1)
 					setCycle: End self
 				)
-				(UnLoad 128 4442)
+				kernel.UnLoad(128, 4442)
 				cycles = 2
 			#end:case
 			case 10:
@@ -486,7 +487,7 @@ class minotaurCharging(Script):
 				ticks = 6
 			#end:case
 			case 13:
-				if ((ScriptID 30 0) scarfOnMino:):
+				if (kernel.ScriptID(30, 0) scarfOnMino:):
 					(global91 say: 4 38 11 5 self 440)
 				else:
 					(self cue:)
@@ -552,7 +553,7 @@ class minotaurCharging(Script):
 						)
 				)
 				local1 = 7
-				(proc913_1 1)
+				proc913_1(1)
 				(minotaur dispose:)
 				(global2 setScript: freeCeleste)
 			#end:case
@@ -584,7 +585,7 @@ class hornSwaggled(Script):
 					setCycle: 0
 					posn: ((minotaur x:) + 10) ((minotaur y:) + 3)
 				)
-				(UnLoad 128 4442)
+				kernel.UnLoad(128, 4442)
 				(global102 number: 402 setLoop: 1 play:)
 			#end:case
 			case 1:
@@ -612,13 +613,13 @@ class hornSwaggled(Script):
 				#endif
 				(global105 number: 442 setLoop: 1 play: self)
 				(minotaur view: 443 setLoop: 0 cel: 0)
-				(UnLoad 128 4443)
+				kernel.UnLoad(128, 4443)
 			#end:case
 			case 6:
 				if global25:
 					(global25 dispose:)
 				#endif
-				(proc0_1 25)
+				proc0_1(25)
 			#end:case
 		#end:match
 	#end:method
@@ -751,7 +752,7 @@ class freeCeleste(Script):
 			case 5:
 				(global105 number: 445 setLoop: -1 play:)
 				(global0 setLoop: 3 setCycle: Fwd)
-				(proc913_2 161)
+				proc913_2(161)
 				seconds = 5
 			#end:case
 			case 6:
@@ -800,7 +801,7 @@ class freeCeleste(Script):
 					posn: (celeste x:) ((celeste y:) + 20)
 					setMotion: MoveTo 105 154 self
 				)
-				(UnLoad 128 4421)
+				kernel.UnLoad(128, 4421)
 			#end:case
 			case 11:
 				(celeste setLoop: 0 setMotion: PolyPath 165 165 self)
@@ -815,7 +816,7 @@ class freeCeleste(Script):
 			#end:case
 			case 14:#end:case
 			case 15:
-				(proc913_3)
+				proc913_3()
 				(global0 put: 41 440)
 				(global69 curIcon: (global69 at: 0))
 				(global2 newRoom: 340)

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 93
 import sci_sh
+import kernel
 import Main
 import LoadMany
 import Sound
@@ -44,7 +45,7 @@ class nightScript(Script):
 					ignoreHorizon: 1
 					cycleSpeed: 10
 				)
-				if (proc999_5 (global0 cel:) 0 2 4 6):
+				if proc999_5((global0 cel:), 0, 2, 4, 6):
 					local0 = 1
 					(global0 setLoop: 1)
 				else:
@@ -75,7 +76,7 @@ class nightScript(Script):
 			#end:case
 			case 5:
 				(self dispose:)
-				(proc958_0 0 93)
+				proc958_0(0, 93)
 			#end:case
 		#end:match
 	#end:method

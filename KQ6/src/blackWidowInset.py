@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 461
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -48,10 +49,10 @@ class blackWidowInset(KQ6Room):
 		(global102 fade: 0 10 10)
 		(global103 number: 465 setLoop: -1 setVol: 0 play: fade: 127 10 10)
 		(global32 add: roomAtLarge web eachElementDo: #init)
-		if (not (proc913_0 160)):
+		if (not proc913_0(160)):
 			(looseThread init:)
 		#endif
-		if (not (proc913_0 136)):
+		if (not proc913_0(136)):
 			(parchment init:)
 		#endif
 		(spider init:)
@@ -72,7 +73,7 @@ class blackWidowInset(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc913_2 59)
+		proc913_2(59)
 		(super dispose:)
 	#end:method
 
@@ -98,7 +99,7 @@ class looseThread(Prop):
 
 		match param1
 			case 5:
-				if (not (proc913_0 160)):
+				if (not proc913_0(160)):
 					(global1 handsOff:)
 					(global2 setScript: unravelWeb)
 				else:
@@ -134,7 +135,7 @@ class parchment(Prop):
 			case 5:
 				if local0:
 					(global1 handsOff:)
-					((ScriptID 40 0) gotParchment: 1)
+					(kernel.ScriptID(40, 0) gotParchment: 1)
 					(global2 newRoom: 460)
 				else:
 					(global2 setScript: bitParchment)
@@ -269,7 +270,7 @@ class spiderRush(Script):
 				(global91 say: 9 5 0 1 self 460)
 			#end:case
 			case 1:
-				((ScriptID 40 0) spiderBit: 1)
+				(kernel.ScriptID(40, 0) spiderBit: 1)
 				(global1 handsOn:)
 				(global2 newRoom: 460)
 			#end:case
@@ -291,7 +292,7 @@ class bitParchment(Script):
 				(global91 say: 12 5 11 1 self 460)
 			#end:case
 			case 1:
-				((ScriptID 40 0) parchmentBit: 1)
+				(kernel.ScriptID(40, 0) parchmentBit: 1)
 				(global2 newRoom: 460)
 			#end:case
 		#end:match
@@ -312,7 +313,7 @@ class touchSpider(Script):
 				(global91 say: 11 5 0 1 self 460)
 			#end:case
 			case 1:
-				((ScriptID 40 0) spiderBit: 1)
+				(kernel.ScriptID(40, 0) spiderBit: 1)
 				(global1 handsOn:)
 				(global2 newRoom: 460)
 			#end:case
@@ -332,7 +333,7 @@ class unravelWeb(Script):
 		match state = param1
 			case 0:
 				(global1 givePoints: 1)
-				(proc913_1 160)
+				proc913_1(160)
 				local0 = 1
 				(global91 say: 13 5 0 1 self 460)
 			#end:case
@@ -386,7 +387,7 @@ class helloScript(Script):
 				)
 			#end:case
 			case 1:
-				if (proc913_0 56):
+				if proc913_0(56):
 					(global91 say: 8 1 10 1 self 460)
 				else:
 					(myConv
@@ -399,7 +400,7 @@ class helloScript(Script):
 				#endif
 			#end:case
 			case 2:
-				if (proc913_0 56):
+				if proc913_0(56):
 					(self cue:)
 				else:
 					(myConv
@@ -411,7 +412,7 @@ class helloScript(Script):
 				#endif
 			#end:case
 			case 3:
-				(proc913_1 56)
+				proc913_1(56)
 				(global1 handsOn:)
 				(global69 disable: 0)
 				(self dispose:)

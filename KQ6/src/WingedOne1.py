@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1030
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import Actor

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 135
 import sci_sh
+import kernel
 import Main
 import Kq6Sound
 import KQ6Room
@@ -47,7 +48,7 @@ class rm135(KQ6Room):
 		(super init: &rest)
 		(global69 disable:)
 		(Seagull init:)
-		(proc913_1 59)
+		proc913_1(59)
 		(water init: setCycle: Fwd)
 		(water2 init: setCycle: Fwd)
 		(water3 init: setCycle: Fwd)
@@ -55,7 +56,7 @@ class rm135(KQ6Room):
 			(global102 number: 921 setLoop: 1 play:)
 			(self setScript: gnomesDeath)
 		else:
-			if (proc913_0 79):
+			if proc913_0(79):
 				local0 = 1
 			#endif
 			(localMusic number: 920 setLoop: 1 play:)
@@ -171,9 +172,9 @@ class gnomesDeath(Script):
 				cycles = 2
 			#end:case
 			case 20:
-				(proc958_0 0 942)
+				proc958_0(0, 942)
 				(Sounds eachElementDo: #stop)
-				(proc0_1 global160)
+				proc0_1(global160)
 			#end:case
 		#end:match
 	#end:method
@@ -262,11 +263,11 @@ class egoDrowns(Script):
 				cycles = 2
 			#end:case
 			case 11:
-				(proc958_0 0 942)
+				proc958_0(0, 942)
 				if local0:
-					(proc0_1 21)
+					proc0_1(21)
 				else:
-					(proc0_1 34)
+					proc0_1(34)
 				#endif
 			#end:case
 		#end:match
@@ -293,7 +294,7 @@ class Seagull(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		match (Random 1 4)
+		match kernel.Random(1, 4)
 			case 1:
 				if (local1 == 1):
 					(self cue:)

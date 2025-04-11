@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 998
 import sci_sh
+import kernel
 import Main
 import Print
 import PolyPath
@@ -45,13 +46,13 @@ class View(Feature):
 			lsRight = lsBottom = lsLeft = lsTop = 0
 			(signal &= 0xff77)
 		#endif
-		(BaseSetter self)
+		kernel.BaseSetter(self)
 		(temp0 add: self)
 		if (temp0 == global10):
 			if (not (signal & 0x0010)):
-				priority = (CoordPri y)
+				priority = kernel.CoordPri(y)
 			#endif
-			(SetNowSeen self)
+			kernel.SetNowSeen(self)
 			(temp0 doit:)
 		#endif
 		(self initialize: checkDetail:)
@@ -71,7 +72,7 @@ class View(Feature):
 				#endif
 			#endif
 		#endif
-		(BaseSetter self)
+		kernel.BaseSetter(self)
 		(self forceUpd:)
 	#end:method
 
@@ -122,11 +123,11 @@ class View(Feature):
 				#end:else
 			)
 			if underBits:
-				(UnLoad 133 underBits)
+				kernel.UnLoad(133, underBits)
 				underBits = 0
 			#endif
 			(super dispose:)
-			if (IsObject actions):
+			if kernel.IsObject(actions):
 				(actions dispose:)
 			#endif
 			actions = 0
@@ -250,7 +251,7 @@ class View(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		return ((NumCels self) - 1)
+		return (kernel.NumCels(self) - 1)
 	#end:method
 
 	@classmethod
@@ -280,7 +281,7 @@ class View(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			temp0 = (param1 x:)
 			temp1 = (param1 y:)
 		else:
@@ -290,7 +291,7 @@ class View(Feature):
 		(return
 			(cond
 				case (signal & 0x0080): 0#end:case
-				case ((not (IsObject onMeCheck)) and (signal & 0x1000)):
+				case ((not kernel.IsObject(onMeCheck)) and (signal & 0x1000)):
 					if 
 						(or
 							(not (or nsLeft nsRight nsTop nsBottom))
@@ -300,13 +301,10 @@ class View(Feature):
 							)
 						)
 						(not
-							(IsItSkip
-								view
-								loop
-								cel
-								(temp1 - nsTop)
-								(temp0 - nsLeft)
-							)
+							kernel.IsItSkip(view, loop, cel, (temp1 - nsTop), (-
+								temp0
+								nsLeft
+							))
 						)
 					#endif
 				#end:case
@@ -331,10 +329,7 @@ class View(Feature):
 				(scaleSignal &= 0xfffc)
 			#end:case
 			case (param1 < (global2 vanishingY:)):
-				(proc921_1
-					r"""<%s setScale:> y value less than vanishingY"""
-					name
-				)
+				proc921_1(r"""<%s setScale:> y value less than vanishingY""", name)
 			#end:case
 			else:
 				temp0 = (param1 - (global2 vanishingY:))
@@ -423,7 +418,7 @@ class Prop(View):
 			if timer:
 				(timer dispose:)
 			#endif
-			if (IsObject scaler):
+			if kernel.IsObject(scaler):
 				(scaler dispose:)
 				scaler = 0
 			#endif
@@ -446,7 +441,7 @@ class Prop(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		if param1:
@@ -501,7 +496,7 @@ class Prop(View):
 			case (not argc):
 				(super setScale:)
 			#end:case
-			case (IsObject param1):
+			case kernel.IsObject(param1):
 				(scaleSignal |= 0x0001)
 				(scaleSignal &= 0xfffd)
 				(= scaler
@@ -517,7 +512,7 @@ class Prop(View):
 				if (param2 scaleSignal:):
 					scaleSignal = (param2 scaleSignal:)
 					maxScale = (param2 maxScale:)
-					if (IsObject (param2 scaler:)):
+					if kernel.IsObject((param2 scaler:)):
 						(scaler = ((param2 scaler:) new:) client: self)
 					#endif
 				#endif
@@ -603,7 +598,7 @@ class Actor(Prop):
 			if baseSetter:
 				(baseSetter doit: self)
 			else:
-				(BaseSetter self)
+				kernel.BaseSetter(self)
 			#endif
 		#endif
 		xLast = x
@@ -652,7 +647,7 @@ class Actor(Prop):
 			(avoider dispose:)
 		#endif
 		(= avoider
-			if ((IsObject param1) and ((param1 -info-:) & 0x8000)):
+			if (kernel.IsObject(param1) and ((param1 -info-:) & 0x8000)):
 				(param1 new:)
 			else:
 				param1
@@ -670,7 +665,7 @@ class Actor(Prop):
 
 		(return
 			(or
-				(not (IsObject mover))
+				(not kernel.IsObject(mover))
 				((x == (mover xLast:)) and (y == (mover yLast:)))
 			)
 		)
@@ -714,7 +709,7 @@ class Actor(Prop):
 				(code dispose:)
 				code = 0
 			#endif
-			if (IsObject actions):
+			if kernel.IsObject(actions):
 				(actions dispose:)
 				actions = 0
 			#endif
@@ -743,7 +738,7 @@ class Actor(Prop):
 		while (temp0 < argc): # inline for
 			(illegalBits |= param1[temp0])
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -756,7 +751,7 @@ class Actor(Prop):
 		while (temp0 < argc): # inline for
 			(illegalBits &= (~ param1[temp0]))
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 	#end:method
 
@@ -790,7 +785,7 @@ class Actor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(GetDistance x y (param1 x:) (param1 y:) global31)
+		kernel.GetDistance(x, y, (param1 x:), (param1 y:), global31)
 	#end:method
 
 	@classmethod
@@ -801,15 +796,15 @@ class Actor(Prop):
 		if baseSetter:
 			(baseSetter doit: self)
 		else:
-			(BaseSetter self)
+			kernel.BaseSetter(self)
 		#endif
 		(= temp0
 			(cond
-				case (CantBeHere self (global5 elements:)):#end:case
+				case kernel.CantBeHere(self, (global5 elements:)):#end:case
 				case 
 					(and
 						(not (signal & 0x2000))
-						(IsObject global2)
+						kernel.IsObject(global2)
 						(y < (global2 horizon:))
 					):
 					-1
@@ -833,9 +828,9 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		if (argc and param1):
-			(OnControl 4 x y)
+			kernel.OnControl(4, x, y)
 		else:
-			(OnControl 4 brLeft brTop brRight brBottom)
+			kernel.OnControl(4, brLeft, brTop, brRight, brBottom)
 		#endif
 	#end:method
 
@@ -859,7 +854,7 @@ class Actor(Prop):
 		yStep = temp1
 		if 
 			(and
-				(IsObject mover)
+				kernel.IsObject(mover)
 				((mover isMemberOf: MoveTo) or (mover isMemberOf: PolyPath))
 			)
 			(mover init:)
@@ -881,7 +876,7 @@ class Actor(Prop):
 		if ((xStep == 0) and (yStep == 0)):
 			return
 		#endif
-		temp5 = (32000 / (proc999_3 xStep yStep))
+		temp5 = (32000 / proc999_3(xStep, yStep))
 		match param1
 			case 0:
 				(self setMotion: 0)
@@ -900,39 +895,33 @@ class Actor(Prop):
 				temp3 = 0
 			#end:case
 			case 7:
-				temp2 = (- temp5)
+				temp2 = -temp5
 				temp3 = 0
 			#end:case
 			else:
-				if (180 < temp4 = (GetAngle x y temp0 temp1)):
+				if (180 < temp4 = kernel.GetAngle(x, y, temp0, temp1)):
 					(temp4 -= 360)
 				#endif
 				temp4 = (((temp4 + 90) / 2) + (45 * (param1 - 2)))
-				temp2 = (SinMult temp4 100)
-				temp3 = (- (CosMult temp4 100))
+				temp2 = kernel.SinMult(temp4, 100)
+				temp3 = -kernel.CosMult(temp4, 100)
 			#end:else
 		#end:match
-		(/= temp5 5)
-		while (((Abs temp3) < temp5) and ((Abs temp2) < temp5)):
+		(temp5 /= 5)
+		while ((kernel.Abs(temp3) < temp5) and (kernel.Abs(temp2) < temp5)):
 
-			(*= temp2 5)
-			(*= temp3 5)
+			(temp2 *= 5)
+			(temp3 *= 5)
 		#end:loop
 		if (temp7 = (global2 obstacles:) and global67):
 			(= temp6
-				(AvoidPath
-					x
-					y
-					(x + temp2)
-					(y + temp3)
-					(temp7 elements:)
-					(temp7 size:)
-					0
-				)
+				kernel.AvoidPath(x, y, (x + temp2), (y + temp3), (temp7
+					elements:
+				), (temp7 size:), 0)
 			)
-			temp2 = ((proc999_6 temp6 2) - x)
-			temp3 = ((proc999_6 temp6 3) - y)
-			(Memory 3 temp6)
+			temp2 = (proc999_6(temp6, 2) - x)
+			temp3 = (proc999_6(temp6, 3) - y)
+			kernel.Memory(3, temp6)
 		#endif
 		(cond
 			case (temp2 or temp3):
@@ -970,7 +959,7 @@ class Actor(Prop):
 						(super setLoop:)
 						0
 					#end:case
-					case (not (IsObject param1)):
+					case (not kernel.IsObject(param1)):
 						(super setLoop: param1 &rest)
 						0
 					#end:case
@@ -1022,8 +1011,8 @@ class Actor(Prop):
 		if looper:
 			(looper doit: self heading ((argc >= 2) and param2))
 		else:
-			(DirLoop self heading)
-			if ((argc >= 2) and (IsObject param2)):
+			kernel.DirLoop(self, heading)
+			if ((argc >= 2) and kernel.IsObject(param2)):
 				(param2 cue: &rest)
 			#endif
 		#endif

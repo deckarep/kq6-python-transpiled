@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 922
 import sci_sh
+import kernel
 import Main
 import Interface
 import System
@@ -21,8 +22,8 @@ class DIcon(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		nsRight = (nsLeft + (CelWide view loop cel))
-		nsBottom = (nsTop + (CelHigh view loop cel))
+		nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
+		nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 	#end:method
 
 #end:class or instance
@@ -40,7 +41,7 @@ class DButton(Class_255_0):
 		argc = sum(v is not None for v in locals().values())
 
 		if (text and ((not argc) or (not param1))):
-			(Memory 3 (self text:))
+			kernel.Memory(3, (self text:))
 		#endif
 		(super dispose:)
 	#end:method
@@ -50,7 +51,7 @@ class DButton(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(TextSize @temp0[0] text font 0 0)
+		kernel.TextSize(@temp0[0], text, font, 0, 0)
 		(temp0[2] += 2)
 		(temp0[3] += 2)
 		nsBottom = (nsTop + temp0[2])
@@ -74,7 +75,7 @@ class DEdit(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(EditControl self param1)
+		kernel.EditControl(self, param1)
 		return self
 	#end:method
 
@@ -84,10 +85,10 @@ class DEdit(Class_255_0):
 		argc = sum(v is not None for v in locals().values())
 
 		font = global85
-		(TextSize @temp0[0] r"""M""" font 0 0)
+		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (nsTop + temp0[2])
 		nsRight = (nsLeft + ((* temp0[3] max 3) / 4))
-		cursor = (StrLen text)
+		cursor = kernel.StrLen(text)
 	#end:method
 
 #end:class or instance
@@ -111,15 +112,15 @@ class DSelector(Class_255_0):
 		temp0 = text
 		temp1 = 0
 		while (temp1 < 300): # inline for
-			if (0 == (StrLen temp0)):
+			if (0 == kernel.StrLen(temp0)):
 				return -1
 			#endif
-			if (not (StrCmp param1 temp0)):
+			if (not kernel.StrCmp(param1, temp0)):
 				return temp1
 			#endif
 			(temp0 += x)
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 	#end:method
 
@@ -136,7 +137,7 @@ class DSelector(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(TextSize @temp0[0] r"""M""" font 0 0)
+		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (+ nsTop 20 (temp0[2] * y))
 		nsRight = (nsLeft + ((* temp0[3] x 3) / 4))
 		topString = cursor = text
@@ -155,14 +156,14 @@ class DSelector(Class_255_0):
 				temp0 = 1
 				(cursor -= x)
 				if mark:
-					mark--
+					mark.post('--')
 				else:
 					(topString -= x)
 				#endif
 			else:
 				(break)
 			#endif
-			param1--
+			param1.post('--')
 		#end:loop
 		(return
 			if temp0:
@@ -177,24 +178,24 @@ class DSelector(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (StrAt cursor 0)):
+		if (not kernel.StrAt(cursor, 0)):
 			return
 		#endif
 		temp0 = 0
 		while param1:
 
-			if (StrAt cursor x):
+			if kernel.StrAt(cursor, x):
 				temp0 = 1
 				(cursor += x)
 				if ((mark + 1) < y):
-					mark++
+					mark.post('++')
 				else:
 					(topString += x)
 				#endif
 			else:
 				(break)
 			#endif
-			param1--
+			param1.post('--')
 		#end:loop
 		(return
 			if temp0:
@@ -247,17 +248,17 @@ class DSelector(Class_255_0):
 						case ((param1 y:) < (nsTop + 10)):
 							while True: #repeat
 								(self retreat: 1)
-								(breakif (not (proc255_0)))
+								(breakif (not proc255_0()))
 							#end:loop
 						#end:case
 						case ((param1 y:) > (nsBottom - 10)):
 							while True: #repeat
 								(self advance: 1)
-								(breakif (not (proc255_0)))
+								(breakif (not proc255_0()))
 							#end:loop
 						#end:case
 						else:
-							(TextSize @temp5[0] r"""M""" font 0 0)
+							kernel.TextSize(@temp5[0], r"""M""", font, 0, 0)
 							if 
 								(>
 									(= temp4

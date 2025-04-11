@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 96
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -22,7 +23,7 @@ class readNote(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 96)
+		kernel.DisposeScript(96)
 	#end:method
 
 	@classmethod

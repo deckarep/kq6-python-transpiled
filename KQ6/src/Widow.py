@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1047
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 
@@ -26,7 +27,7 @@ class Widow(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(self x: 81 y: 13)
 		else:
 			(self x: 80 y: 100)

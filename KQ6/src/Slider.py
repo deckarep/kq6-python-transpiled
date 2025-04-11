@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 934
 import sci_sh
+import kernel
 import IconBar
 import System
 
@@ -34,12 +35,12 @@ class Slider(IconI):
 		if (not sRight):
 			sLeft = nsLeft
 			sRight = nsRight
-			maxY = (nsBottom - (CelHigh sliderView sliderLoop sliderCel))
+			maxY = (nsBottom - kernel.CelHigh(sliderView, sliderLoop, sliderCel))
 			minY = nsTop
 		#endif
 		sTop = (self valueToPosn:)
-		(DrawCel sliderView sliderLoop sliderCel sLeft sTop -1)
-		(Graph 12 (nsTop - 1) (nsLeft - 1) (2 + nsBottom) (2 + nsRight) 1)
+		kernel.DrawCel(sliderView, sliderLoop, sliderCel, sLeft, sTop, -1)
+		kernel.Graph(12, (nsTop - 1), (nsLeft - 1), (2 + nsBottom), (2 + nsRight), 1)
 	#end:method
 
 	@classmethod
@@ -56,7 +57,7 @@ class Slider(IconI):
 						(self move: yStep (not (signal & 0x0200)))
 					#end:case
 					case ((temp0 y:) > (sTop + yStep)):
-						(self move: (- yStep) (not (signal & 0x0200)))
+						(self move: -yStep (not (signal & 0x0200)))
 					#end:case
 				)
 				(temp0 dispose:)
@@ -79,11 +80,11 @@ class Slider(IconI):
 		argc = sum(v is not None for v in locals().values())
 
 		temp7 = ((not argc) or param2)
-		temp5 = (proc999_0 param1)
+		temp5 = proc999_0(param1)
 		temp4 = param1
-		while (yStep <= (Abs temp4)): # inline for
+		while (yStep <= kernel.Abs(temp4)): # inline for
 			temp0 = (sTop - (temp5 * yStep))
-			temp1 = (CelHigh sliderView sliderLoop sliderCel)
+			temp1 = kernel.CelHigh(sliderView, sliderLoop, sliderCel)
 			(= sTop
 				(cond
 					case (temp0 < minY): minY#end:case
@@ -91,12 +92,12 @@ class Slider(IconI):
 					else: temp0#end:else
 				)
 			)
-			temp2 = (PicNotValid)
-			(PicNotValid 1)
-			(DrawCel view loop cel nsLeft nsTop -1)
-			(DrawCel sliderView sliderLoop sliderCel sLeft sTop -1)
-			(Graph 12 (nsTop - 1) (nsLeft - 1) (2 + nsBottom) (2 + nsRight) 1)
-			(PicNotValid temp2)
+			temp2 = kernel.PicNotValid()
+			kernel.PicNotValid(1)
+			kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
+			kernel.DrawCel(sliderView, sliderLoop, sliderCel, sLeft, sTop, -1)
+			kernel.Graph(12, (nsTop - 1), (nsLeft - 1), (2 + nsBottom), (2 + nsRight), 1)
+			kernel.PicNotValid(temp2)
 			temp3 = (self posnToValue: sTop)
 			(= temp6
 				if temp7:
@@ -117,7 +118,7 @@ class Slider(IconI):
 		argc = sum(v is not None for v in locals().values())
 
 		if theObj:
-			(proc999_7 theObj selector &rest)
+			proc999_7(theObj, selector, &rest)
 		#endif
 	#end:method
 
@@ -164,8 +165,8 @@ class Slider(IconI):
 					(+
 						minY
 						(/
-							((Abs (topValue - temp0)) * (maxY - minY))
-							(Abs (topValue - bottomValue))
+							(kernel.Abs((topValue - temp0)) * (maxY - minY))
+							kernel.Abs((topValue - bottomValue))
 						)
 					)
 				#end:else
@@ -180,19 +181,16 @@ class Slider(IconI):
 
 		(self
 			move:
-				(proc999_3
-					yStep
-					(-
-						sTop
-						(self
-							valueToPosn:
-								(+
-									(self doit:)
-									(proc999_0 (topValue - bottomValue))
-								)
-						)
+				proc999_3(yStep, (-
+					sTop
+					(self
+						valueToPosn:
+							(+
+								(self doit:)
+								proc999_0((topValue - bottomValue))
+							)
 					)
-				)
+				))
 				(not (signal & 0x0200))
 		)
 		if (signal & 0x0200):
@@ -207,19 +205,16 @@ class Slider(IconI):
 
 		(self
 			move:
-				(proc999_2
-					(- yStep)
-					(-
-						sTop
-						(self
-							valueToPosn:
-								(-
-									(self doit:)
-									(proc999_0 (topValue - bottomValue))
-								)
-						)
+				proc999_2(-yStep, (-
+					sTop
+					(self
+						valueToPosn:
+							(-
+								(self doit:)
+								proc999_0((topValue - bottomValue))
+							)
 					)
-				)
+				))
 				(not (signal & 0x0200))
 		)
 		if (signal & 0x0200):

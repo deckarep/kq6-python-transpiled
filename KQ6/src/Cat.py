@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 976
 import sci_sh
+import kernel
 import Main
 import Interface
 import Actor
@@ -50,14 +51,14 @@ class Cat(Actor):
 			case (active and ((param1 type:) == 2)):
 				active = 0
 				(param1 claimed: 1)
-				(LocalToGlobal param1)
+				kernel.LocalToGlobal(param1)
 				(self posn: ((param1 x:) + dx) ((param1 y:) + dy) z)
-				(GlobalToLocal param1)
+				kernel.GlobalToLocal(param1)
 				if caller:
 					(caller cue: self)
 				#endif
 			#end:case
-			case (proc255_2 self param1):
+			case proc255_2(self, param1):
 				(param1 claimed: 1)
 				(self track: param1)
 			#end:case
@@ -69,7 +70,7 @@ class Cat(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(LocalToGlobal param1)
+		kernel.LocalToGlobal(param1)
 		dx = (x - (param1 x:))
 		dy = (y - (param1 y:))
 		if doCast:
@@ -79,18 +80,18 @@ class Cat(Actor):
 			while
 				(and
 					(2 != (param1 type:))
-					(outOfTouch or (proc255_2 self (param1 type: 1 yourself:)))
+					(outOfTouch or proc255_2(self, (param1 type: 1 yourself:)))
 				):
 
 				(self posn: ((param1 x:) + dx) ((param1 y:) + dy) z)
-				(Animate (temp0 elements:) 1)
-				(GetEvent 32767 param1)
+				kernel.Animate((temp0 elements:), 1)
+				kernel.GetEvent(32767, param1)
 			#end:loop
 			(temp0 release: dispose:)
 			if caller:
 				(caller cue: self)
 			#endif
-			(GlobalToLocal param1)
+			kernel.GlobalToLocal(param1)
 		#endif
 	#end:method
 
@@ -125,9 +126,9 @@ class Cat(Actor):
 				#endif
 			#endif
 		#endif
-		temp0 = (proc999_0 diagonal)
+		temp0 = proc999_0(diagonal)
 		if (not (== -1 top bottom left right)):
-			match (Abs diagonal)
+			match kernel.Abs(diagonal)
 				case 1:
 					(= y
 						(+
@@ -151,8 +152,8 @@ class Cat(Actor):
 					)
 				#end:case
 			#end:match
-			x = (proc999_3 left (proc999_2 right x))
-			y = (proc999_3 top (proc999_2 bottom y))
+			x = proc999_3(left, proc999_2(right, x))
+			y = proc999_3(top, proc999_2(bottom, y))
 		#endif
 		(super posn: x y z)
 	#end:method

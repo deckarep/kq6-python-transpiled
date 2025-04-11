@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 730
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -70,7 +71,7 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	temp0 = param3
-	while (param1 & (OnControl 4 param2 temp0)): # inline for
+	while (param1 & kernel.OnControl(4, param2, temp0)): # inline for
 	#end:loop
 	return temp0
 #end:procedure
@@ -88,11 +89,11 @@ class rm730(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Load 128 730)
-		if ((ScriptID 80 0) tstFlag: 709 2):
+		kernel.Load(128, 730)
+		if (kernel.ScriptID(80, 0) tstFlag: 709 2):
 			0
 		else:
-			(proc958_0 128 794 736)
+			proc958_0(128, 794, 736)
 		#endif
 		(self
 			addObstacle:
@@ -158,8 +159,8 @@ class rm730(CastleRoom):
 			add: urns chandelier balconyFtr pillarsFtr stairs
 			eachElementDo: #init
 		)
-		((ScriptID 80 5) noun: 4)
-		((ScriptID 80 6) noun: 4)
+		(kernel.ScriptID(80, 5) noun: 4)
+		(kernel.ScriptID(80, 6) noun: 4)
 		(super init: &rest)
 		(global0 init:)
 		(candles setCycle: Fwd init:)
@@ -175,9 +176,9 @@ class rm730(CastleRoom):
 				local0 = 1
 				(global0 posn: 52 84)
 				(cond
-					case ((ScriptID 80 0) tstFlag: 711 16384):
-						((ScriptID 80 0) clrFlag: 711 16384)
-						((ScriptID 80 5)
+					case (kernel.ScriptID(80, 0) tstFlag: 711 16384):
+						(kernel.ScriptID(80, 0) clrFlag: 711 16384)
+						(kernel.ScriptID(80, 5)
 							init:
 							loop: 0
 							posn: 107 68
@@ -185,7 +186,7 @@ class rm730(CastleRoom):
 							ignoreActors:
 							setScale: Scaler 35 64 107 59 1
 						)
-						((ScriptID 80 6)
+						(kernel.ScriptID(80, 6)
 							init:
 							loop: 3
 							posn: 111 68
@@ -197,20 +198,20 @@ class rm730(CastleRoom):
 						(global102 fade: 80 25 10 0)
 						(self setScript: followEgoIn)
 					#end:case
-					case local2 = ((ScriptID 80 0) tstFlag: 709 512):
-						((ScriptID 80 5) init: loop: 0 posn: 82 165)
-						((ScriptID 80 6) init: loop: 3 posn: 103 176)
-						((ScriptID 80 6)
-							signal: (((ScriptID 80 6) signal:) & 0xefff)
+					case local2 = (kernel.ScriptID(80, 0) tstFlag: 709 512):
+						(kernel.ScriptID(80, 5) init: loop: 0 posn: 82 165)
+						(kernel.ScriptID(80, 6) init: loop: 3 posn: 103 176)
+						(kernel.ScriptID(80, 6)
+							signal: ((kernel.ScriptID(80, 6) signal:) & 0xefff)
 						)
 						(saladin init: loop: 4 cel: 1 stopUpd:)
 						(cond
-							case ((ScriptID 80 0) tstFlag: 710 1):
-								((ScriptID 80 5) posn: 9 113)
-								((ScriptID 80 6) posn: 18 128)
-								(self spotEgo: (ScriptID 80 5))
+							case (kernel.ScriptID(80, 0) tstFlag: 710 1):
+								(kernel.ScriptID(80, 5) posn: 9 113)
+								(kernel.ScriptID(80, 6) posn: 18 128)
+								(self spotEgo: kernel.ScriptID(80, 5))
 							#end:case
-							case (not ((ScriptID 80 0) tstFlag: 709 2048)):
+							case (not (kernel.ScriptID(80, 0) tstFlag: 709 2048)):
 								(global0 posn: 51 83)
 								(self setScript: overseeGuards)
 							#end:case
@@ -223,13 +224,13 @@ class rm730(CastleRoom):
 			#end:case
 			case 840:
 				(global0 setSpeed: 8 posn: 261 144)
-				(self setScript: (ScriptID 732 0))
+				(self setScript: kernel.ScriptID(732, 0))
 			#end:case
 			else:
 				(global102 fadeTo: 700 -1)
 				(global0 reset: 3 733 posn: 229 181)
-				((ScriptID 80 0) setFlag: 709 128)
-				(self setScript: (ScriptID 731 0))
+				(kernel.ScriptID(80, 0) setFlag: 709 128)
+				(self setScript: kernel.ScriptID(731, 0))
 			#end:else
 		#end:match
 		(kitchenDoor init: stopUpd: ignoreActors:)
@@ -237,11 +238,11 @@ class rm730(CastleRoom):
 			init:
 			ignoreActors:
 			setPri: 1
-			cel: ((ScriptID 80 0) tstFlag: 709 2)
+			cel: (kernel.ScriptID(80, 0) tstFlag: 709 2)
 			stopUpd:
 		)
 		(basementDoor init: stopUpd: ignoreActors:)
-		if ((ScriptID 80 0) tstFlag: 709 2):
+		if (kernel.ScriptID(80, 0) tstFlag: 709 2):
 			if script:
 				(script next: saladinEnters)
 			else:
@@ -249,7 +250,7 @@ class rm730(CastleRoom):
 			#endif
 		#endif
 		(proc730_3)
-		((ScriptID 80 0) setupGuards:)
+		(kernel.ScriptID(80, 0) setupGuards:)
 		if (global5 contains: saladin):
 			(saladin
 				setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
@@ -359,8 +360,8 @@ class doKitchen(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				if (not ((ScriptID 80 0) tstFlag: 711 -32768)):
-					((ScriptID 80 0) setFlag: 711 -32768)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 -32768)):
+					(kernel.ScriptID(80, 0) setFlag: 711 -32768)
 					(global91 say: 8 5 0 1 self)
 				else:
 					cycles = 1
@@ -412,7 +413,7 @@ class overseeGuards(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 80 0) setFlag: 709 2048)
+		(kernel.ScriptID(80, 0) setFlag: 709 2048)
 		(super dispose:)
 	#end:method
 
@@ -424,8 +425,8 @@ class overseeGuards(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 1015 6) talkWidth: 150 x: 15 y: 20)
-				((ScriptID 1015 7) talkWidth: 135 x: 160 y: 20)
+				(kernel.ScriptID(1015, 6) talkWidth: 150 x: 15 y: 20)
+				(kernel.ScriptID(1015, 7) talkWidth: 135 x: 160 y: 20)
 				cycles = 10
 			#end:case
 			case 1:
@@ -436,7 +437,7 @@ class overseeGuards(Script):
 			#end:case
 			case 3:
 				(global102 number: 710 loop: -1 play:)
-				if (proc913_0 72):
+				if proc913_0(72):
 					register = 5
 				else:
 					register = 4
@@ -444,7 +445,7 @@ class overseeGuards(Script):
 				(global91 say: 1 0 register 1 self)
 			#end:case
 			case 4:
-				((ScriptID 80 5) setScript: (ScriptID 80 4) self 1)
+				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 5:
 				(global0
@@ -455,13 +456,13 @@ class overseeGuards(Script):
 				seconds = 3
 			#end:case
 			case 6:
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					setSpeed: 8
 					ignoreActors:
 					setMotion:
 						PolyPath
 						((saladin x:) - 45)
-						((ScriptID 80 6) y:)
+						(kernel.ScriptID(80, 6) y:)
 						self
 				)
 			#end:case
@@ -493,17 +494,17 @@ class tooManyTimes(Script):
 				cycles = 4
 			#end:case
 			case 1:
-				register = (5 if (proc913_0 72) else 4)
+				register = (5 if proc913_0(72) else 4)
 				(global91 say: 1 0 register 1 self)
 			#end:case
 			case 2:
-				((ScriptID 80 5) setScript: (ScriptID 80 4) self 1)
+				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 3:
 				(global91 say: 1 0 register 2 self oneOnly: 0)
 			#end:case
 			case 4:
-				((ScriptID 80 0) setFlag: 709 8192)
+				(kernel.ScriptID(80, 0) setFlag: 709 8192)
 				(global2 newRoom: 820)
 			#end:case
 		#end:match
@@ -561,7 +562,7 @@ class saladinEnters(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 0) weddingRemind: 0)
+				(kernel.ScriptID(80, 0) weddingRemind: 0)
 				if (global12 == 840):
 					(self setScript: exitBaseScr self)
 				else:
@@ -600,7 +601,7 @@ class saladinEnters(Script):
 				(saladin setCycle: CT 2 1 self)
 			#end:case
 			case 6:
-				(DisposeScript 969)
+				kernel.DisposeScript(969)
 				(global105 number: 901 loop: 1 play:)
 				(saladin setCycle: End self)
 				(throneDoor setCycle: End)
@@ -615,12 +616,12 @@ class saladinEnters(Script):
 				(throneDoor setCycle: Beg throneDoor)
 			#end:case
 			case 9:
-				register = (11 if (proc913_0 72) else 10)
+				register = (11 if proc913_0(72) else 10)
 				(global91 say: 1 0 register 0 self)
 			#end:case
 			case 10:
 				(global1 handsOn:)
-				if (HaveMouse):
+				if kernel.HaveMouse():
 					seconds = 11
 				else:
 					seconds = 21
@@ -628,7 +629,7 @@ class saladinEnters(Script):
 			#end:case
 			case 11:
 				(global1 handsOff:)
-				register = (13 if (proc913_0 72) else 12)
+				register = (13 if proc913_0(72) else 12)
 				(global91 say: 1 0 register 0 self)
 			#end:case
 			case 12:
@@ -683,7 +684,7 @@ class saladinEnters(Script):
 				(global0 cycleSpeed: 8 setCycle: End self)
 			#end:case
 			case 20:
-				(proc0_1 32)
+				proc0_1(32)
 			#end:case
 		#end:match
 	#end:method
@@ -807,7 +808,7 @@ class showLetter(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 0) setFlag: 709 1024)
+				(kernel.ScriptID(80, 0) setFlag: 709 1024)
 				(global1 givePoints: 3)
 				(roomConv add: -1 6 61 21 1 add: -1 6 61 21 2 init: self)
 			#end:case
@@ -848,7 +849,7 @@ class showLetter(Script):
 			#end:case
 			case 8:
 				(roomConv add: -1 6 61 21 8 add: -1 6 61 21 9)
-				if (proc913_0 72):
+				if proc913_0(72):
 					(roomConv add: -1 6 61 20 1)
 				else:
 					(roomConv add: -1 6 61 21 10)
@@ -936,7 +937,7 @@ class enterThroneRoom(Script):
 			#end:case
 			case 1:
 				(global105 stop:)
-				(proc80_2 1)
+				proc80_2(1)
 			#end:case
 		#end:match
 	#end:method
@@ -961,8 +962,8 @@ class followEgoIn(Script):
 				cycles = 10
 			#end:case
 			case 2:
-				((ScriptID 80 5) setMotion: MoveTo 59 68 self)
-				((ScriptID 80 6) setMotion: MoveTo 69 68 self)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 59 68 self)
+				(kernel.ScriptID(80, 6) setMotion: MoveTo 69 68 self)
 			#end:case
 			case 3: 0#end:case
 			case 4:
@@ -974,7 +975,7 @@ class followEgoIn(Script):
 			#end:case
 			case 6:
 				(global2 moveOtherGuard: 1)
-				((ScriptID 80 5) setScript: (ScriptID 80 4) self 1)
+				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 7:
 				(global91 say: 1 0 2 3 self oneOnly: 0)
@@ -1046,7 +1047,7 @@ class throneDoor(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		if ((not local2) and (not ((ScriptID 80 0) tstFlag: 709 2))):
+		if ((not local2) and (not (kernel.ScriptID(80, 0) tstFlag: 709 2))):
 			(self approachVerbs: 5)
 		#endif
 	#end:method
@@ -1067,20 +1068,20 @@ class throneDoor(Prop):
 		match param1
 			case 1:
 				if ((not local3) or local2):
-					local3++
+					local3.post('++')
 					if 
 						(and
 							(not local2)
-							(not ((ScriptID 80 0) tstFlag: 709 2))
+							(not (kernel.ScriptID(80, 0) tstFlag: 709 2))
 						)
 						(_approachVerbs |= (global66 doit: 1))
 					#endif
 					(global91 say: 9 1 25)
 				else:
-					(global91 say: noun param1 26 1 (ScriptID 82))
+					(global91 say: noun param1 26 1 kernel.ScriptID(82))
 					(global2
 						setScript:
-							((ScriptID 82) start: -1 yourself:)
+							(kernel.ScriptID(82) start: -1 yourself:)
 							0
 							lookIntoThroneRoom
 					)
@@ -1129,9 +1130,9 @@ class lookIntoThroneRoom(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 82 1) noun: 5 init: 794)
+				(kernel.ScriptID(82, 1) noun: 5 init: 794)
 				(tempGuard1 init: stopUpd:)
-				(tempGuard2 view: ((ScriptID 80 6) view:) init: stopUpd:)
+				(tempGuard2 view: (kernel.ScriptID(80, 6) view:) init: stopUpd:)
 				cycles = 4
 			#end:case
 			case 1:
@@ -1189,7 +1190,7 @@ class kitchenDoor(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		if ((not local2) and (not ((ScriptID 80 0) tstFlag: 709 2))):
+		if ((not local2) and (not (kernel.ScriptID(80, 0) tstFlag: 709 2))):
 			(self approachVerbs: 5)
 		#endif
 	#end:method
@@ -1232,7 +1233,7 @@ class basementDoor(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		if ((not local2) and (not ((ScriptID 80 0) tstFlag: 709 2))):
+		if ((not local2) and (not (kernel.ScriptID(80, 0) tstFlag: 709 2))):
 			(self approachVerbs: 5)
 		#endif
 	#end:method
@@ -1289,7 +1290,7 @@ class saladin(Actor):
 		(cond
 			case local2:
 				if (param1 == 1):
-					if (proc913_0 72):
+					if proc913_0(72):
 						(global91 say: noun param1 18)
 					else:
 						(global91 say: noun param1 19)
@@ -1301,14 +1302,14 @@ class saladin(Actor):
 			case (param1 == 61):
 				(global2 setScript: showLetter)
 			#end:case
-			case (proc999_5 param1 1 2):
-				if (proc913_0 72):
+			case proc999_5(param1, 1, 2):
+				if proc913_0(72):
 					(global91 say: noun param1 20)
 				else:
 					(global91 say: noun param1 21)
 				#endif
 			#end:case
-			case (proc999_5 param1 5 8 18 65 33 16):
+			case proc999_5(param1, 5, 8, 18, 65, 33, 16):
 				(global91 say: noun param1 23)
 			#end:case
 			else:
@@ -1376,8 +1377,8 @@ class pillarsFtr(Feature):
 			(and
 				(or
 					(super onMe: param1)
-					(proc999_4 50 59 66 70 param1)
-					(proc999_4 254 62 271 70 param1)
+					proc999_4(50, 59, 66, 70, param1)
+					proc999_4(254, 62, 271, 70, param1)
 				)
 				y = (localproc_0 256 x 116)
 			)

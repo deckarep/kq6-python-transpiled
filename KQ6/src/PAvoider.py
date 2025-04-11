@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 927
 import sci_sh
+import kernel
 import PolyPath
 import Polygon
 import System
@@ -17,11 +18,11 @@ def localproc_0(param1 = None):
 	temp3 = -100
 	temp0 = 0
 	while (temp3 != 30583): # inline for
-		temp3 = (proc999_6 param1 (2 * temp0))
+		temp3 = proc999_6(param1, (2 * temp0))
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
-	temp0--
+	temp0.post('--')
 #end:procedure
 
 @SCI.procedure
@@ -37,7 +38,7 @@ def localproc_1(param1 = None):
 			(temp1 type: (temp2 - 16))
 		#endif
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 #end:procedure
 
@@ -64,7 +65,7 @@ class PAvoider(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject oldBlockerMover):
+		if kernel.IsObject(oldBlockerMover):
 			(oldBlockerMover dispose:)
 		#endif
 		(super dispose:)
@@ -86,7 +87,7 @@ class PAvoider(Code):
 			if 
 				(and
 					temp9
-					(IsObject (temp9 obstacles:))
+					kernel.IsObject((temp9 obstacles:))
 					((temp9 obstacles:) isEmpty:)
 				)
 				((temp9 obstacles:) dispose:)
@@ -96,7 +97,7 @@ class PAvoider(Code):
 		if 
 			(and
 				temp9 = (client mover:)
-				(IsObject temp4 = (temp9 doit:))
+				kernel.IsObject(temp4 = (temp9 doit:))
 				(not (temp9 completed:))
 				(temp9 isKindOf: PolyPath)
 			)
@@ -119,17 +120,16 @@ class PAvoider(Code):
 						(+
 							(2 * (client xStep:))
 							(/
-								(proc999_3
-									(CelWide (client view:) 2 0)
-									(CelWide (client view:) 0 0)
-								)
+								proc999_3(kernel.CelWide((client view:), 2, 0), kernel.CelWide((client
+									view:
+								), 0, 0))
 								2
 							)
 						)
 					)
 				)
 			)
-			temp6 = (CoordPri 1 (CoordPri (temp4 y:)))
+			temp6 = kernel.CoordPri(1, kernel.CoordPri((temp4 y:)))
 			temp3 = (2 * (temp4 yStep:))
 			temp7 = ((temp4 brRight:) + temp2)
 			if ((temp8 = (+ (temp4 y:) temp3 2) - temp6) <= 3):
@@ -240,11 +240,9 @@ class PAvoider(Code):
 			#endif
 			if 
 				(= temp16
-					(MergePoly
-						(temp17 points:)
-						((temp9 obstacles:) elements:)
-						((temp9 obstacles:) size:)
-					)
+					kernel.MergePoly((temp17 points:), ((temp9 obstacles:)
+						elements:
+					), ((temp9 obstacles:) size:))
 				)
 				(temp15 = (Polygon new:)
 					points: temp16
@@ -257,7 +255,7 @@ class PAvoider(Code):
 			(temp9 value: 2 init: client (temp9 finalX:) (temp9 finalY:))
 			((temp9 obstacles:) delete: temp15)
 			((temp9 obstacles:) delete: temp17)
-			if (IsObject (temp9 obstacles:)):
+			if kernel.IsObject((temp9 obstacles:)):
 				(localproc_1 (temp9 obstacles:))
 			#endif
 			(temp17 dispose:)

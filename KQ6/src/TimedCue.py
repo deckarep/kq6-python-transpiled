@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 960
 import sci_sh
+import kernel
 import System
 
 class TimedCue(Script):
@@ -28,7 +29,7 @@ class TimedCue(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if state++:
+		if state.post('++'):
 			(self dispose:)
 		#endif
 	#end:method

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 924
 import sci_sh
+import kernel
 import Main
 import Print
 import Game
@@ -79,7 +80,7 @@ class Messager(Obj):
 			oldIconBarState = (global69 state:)
 		#endif
 		if (temp0 = param1[0] == -1):
-			if ((argc > 1) and (IsObject param1[1])):
+			if ((argc > 1) and kernel.IsObject(param1[1])):
 				caller = param1[1]
 			#endif
 			(self sayNext:)
@@ -101,10 +102,10 @@ class Messager(Obj):
 				(and
 					(argc > 4)
 					param1[temp24]
-					(not (IsObject param1[temp24]))
+					(not kernel.IsObject(param1[temp24]))
 				)
 				lastSequence = param1[temp24]
-				temp24++
+				temp24.post('++')
 				oneOnly = 0
 			else:
 				lastSequence = 0
@@ -114,8 +115,8 @@ class Messager(Obj):
 			else:
 				caller = 0
 			#endif
-			temp3 = (param1[temp24] if (argc > temp24++) else global11)
-			if (global90 and (Message 0 temp3 temp0 temp1 temp2 curSequence)):
+			temp3 = (param1[temp24] if (argc > temp24.post('++')) else global11)
+			if (global90 and kernel.Message(0, temp3, temp0, temp1, temp2, curSequence)):
 				(self sayNext: temp3 temp0 temp1 temp2 curSequence)
 			else:
 				(Print
@@ -142,15 +143,15 @@ class Messager(Obj):
 			oldIconBarState = (global69 state:)
 		#endif
 		temp2 = (self findTalker: param1)
-		temp0 = (proc921_3 param2 param3 &rest)
-		if (IsObject param3[(argc - 2)]):
+		temp0 = proc921_3(param2, param3, &rest)
+		if kernel.IsObject(param3[(argc - 2)]):
 			caller = param3[(argc - 2)]
 		#endif
 		oneOnly = 1
-		temp1 = (Memory 1 temp0)
-		(Format temp1 param2 param3 &rest)
+		temp1 = kernel.Memory(1, temp0)
+		kernel.Format(temp1, param2, param3, &rest)
 		(temp2 say: temp1 self)
-		(Memory 3 temp1)
+		kernel.Memory(3, temp1)
 	#end:method
 
 	@classmethod
@@ -159,13 +160,13 @@ class Messager(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if argc:
-			temp0 = (Message 0 param1 param2 param3 param4 param5 @temp1)
+			temp0 = kernel.Message(0, param1, param2, param3, param4, param5, @temp1)
 		else:
-			temp0 = (Message 1 @temp1)
+			temp0 = kernel.Message(1, @temp1)
 		#endif
 		if (global90 & 0x0002):
-			temp201 = (Memory 1 12)
-			(Message 8 temp201)
+			temp201 = kernel.Memory(1, 12)
+			kernel.Message(8, temp201)
 		#endif
 		if 
 			(and
@@ -189,7 +190,7 @@ class Messager(Obj):
 						say: @temp1 self param1 param2 param3 param4 param5
 					)
 				#endif
-				curSequence++
+				curSequence.post('++')
 			else:
 				if global84:
 					(global84 release: dispose:)
@@ -205,7 +206,7 @@ class Messager(Obj):
 			(self dispose:)
 		#endif
 		if (global90 & 0x0002):
-			(Memory 3 temp201)
+			kernel.Memory(3, temp201)
 		#endif
 	#end:method
 

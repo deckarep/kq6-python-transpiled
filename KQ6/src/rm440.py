@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 440
 import sci_sh
+import kernel
 import Main
 import minoTrigger
 import KQ6Room
@@ -50,8 +51,8 @@ class rm440(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((not (proc913_0 1)) and (not ((ScriptID 30 0) seenByMino:))):
-			(proc441_0)
+		if ((not proc913_0(1)) and (not (kernel.ScriptID(30, 0) seenByMino:))):
+			proc441_0()
 		#endif
 	#end:method
 
@@ -60,7 +61,7 @@ class rm440(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 1):
+		if proc913_0(1):
 			(global2
 				addObstacle:
 					((Polygon new:)
@@ -119,7 +120,7 @@ class rm440(KQ6Room):
 					)
 			)
 		else:
-			(Load 130 441)
+			kernel.Load(130, 441)
 			(global2
 				addObstacle:
 					((Polygon new:)
@@ -135,16 +136,16 @@ class rm440(KQ6Room):
 			)
 		#endif
 		(super init: &rest)
-		((ScriptID 30 0) cue:)
+		(kernel.ScriptID(30, 0) cue:)
 		(flames setCycle: RandCycle init:)
 		(global32
 			add: alter toLabExit exitSkull alterSkulls toCliffsExit
 			eachElementDo: #init
 		)
-		if (proc913_0 1):
+		if proc913_0(1):
 			local0 = 7
 		else:
-			(proc441_1)
+			proc441_1()
 			local2 = 8
 			local0 = 6
 		#endif
@@ -158,7 +159,7 @@ class rm440(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(actTimer dispose:)
-		(DisposeScript 441)
+		kernel.DisposeScript(441)
 		(super dispose:)
 	#end:method
 
@@ -171,11 +172,11 @@ class rm440(KQ6Room):
 			case (self script:):#end:case
 			case 
 				(and
-					(not ((ScriptID 30 0) seenByMino:))
-					(not (proc913_0 1))
+					(not (kernel.ScriptID(30, 0) seenByMino:))
+					(not proc913_0(1))
 					((global0 onControl: 1) == 4)
 				):
-				(proc441_2)
+				proc441_2()
 			#end:case
 			case ((global0 onControl: 1) == 256):
 				(self setScript: fallInPit)
@@ -184,7 +185,7 @@ class rm440(KQ6Room):
 				(global2 setScript: walkOut 0 0)
 			#end:case
 			case ((global0 onControl: 1) == 8192):
-				if (proc913_0 1):
+				if proc913_0(1):
 					(global2 setScript: walkOut 0 1)
 				else:
 					(global0 setMotion: 0 posn: ((global0 x:) + 2) (global0 y:))
@@ -212,10 +213,10 @@ class rm440(KQ6Room):
 				#end:case
 				case 2:
 					(cond
-						case (proc913_0 1):
+						case proc913_0(1):
 							(global91 say: 2 2 7 1)
 						#end:case
-						case ((ScriptID 30 0) seenByMino:):
+						case (kernel.ScriptID(30, 0) seenByMino:):
 							(global91 say: 2 2 9 1)
 						#end:case
 						else:
@@ -331,19 +332,19 @@ class walkIn(Script):
 				#endif
 			#end:case
 			case 1:
-				if (proc913_0 1):
+				if proc913_0(1):
 					(self cue:)
 				else:
 					(global102 number: 440 setLoop: -1 play:)
 					(global0 setHeading: 0)
-					(proc913_1 161)
+					proc913_1(161)
 					(global105 number: 433 setLoop: 1 play:)
 					cycles = 10
 				#endif
 			#end:case
 			case 2:
-				if (not (proc913_0 1)):
-					if (proc913_0 142):
+				if (not proc913_0(1)):
+					if proc913_0(142):
 						(global91 say: 1 0 19 0 self 440)
 					else:
 						(global91 say: 1 0 1 0 self 440)
@@ -354,8 +355,8 @@ class walkIn(Script):
 			#end:case
 			case 3:
 				(global1 handsOn:)
-				if (not (proc913_0 1)):
-					((ScriptID 30 0) setScript: actTimer)
+				if (not proc913_0(1)):
+					(kernel.ScriptID(30, 0) setScript: actTimer)
 				#endif
 				(self dispose:)
 			#end:case
@@ -386,7 +387,7 @@ class walkOut(Script):
 				if register:
 					(global2 newRoom: 340)
 				else:
-					((ScriptID 30 0) prevEdgeHit: 4)
+					(kernel.ScriptID(30, 0) prevEdgeHit: 4)
 					(global2 newRoom: 409)
 				#endif
 			#end:case
@@ -437,7 +438,7 @@ class fallInPit(Script):
 				seconds = 2
 			#end:case
 			case 6:
-				(proc0_1 15)
+				proc0_1(15)
 			#end:case
 		#end:match
 	#end:method
@@ -460,7 +461,7 @@ class actTimer(Script):
 				(global91 say: 1 0 18 1 self)
 			#end:case
 			case 2:
-				(proc441_0)
+				proc441_0()
 				(self dispose:)
 			#end:case
 		#end:match
@@ -487,7 +488,7 @@ class egoDoMinotaurCode(Actions):
 				return 0
 			#end:case
 			case 17:
-				if (proc913_0 1):
+				if proc913_0(1):
 					(global91 say: 3 17 7 1)
 				else:
 					(global91 say: 3 17 6 1)
@@ -495,18 +496,18 @@ class egoDoMinotaurCode(Actions):
 				return 1
 			#end:case
 			case 72:
-				if ((global2 script:) == (ScriptID 441 3)):
-					((ScriptID 30 0) scarfOnMino: 1)
+				if ((global2 script:) == kernel.ScriptID(441, 3)):
+					(kernel.ScriptID(30, 0) scarfOnMino: 1)
 					(global0 view: 441 normal: 0 setLoop: 0 cel: 0)
-					(UnLoad 128 900)
-					((ScriptID 441 4) cycleSpeed: 6 setCycle: Fwd)
-					((ScriptID 441 3) state: 19 register: 72 cue:)
+					kernel.UnLoad(128, 900)
+					(kernel.ScriptID(441, 4) cycleSpeed: 6 setCycle: Fwd)
+					(kernel.ScriptID(441, 3) state: 19 register: 72 cue:)
 					(global1 handsOff:)
 					(global1 givePoints: 3)
 				#endif
 			#end:case
 			else:
-				if (not (proc913_0 1)):
+				if (not proc913_0(1)):
 					(global91 say: 3 0 6 1)
 					return 1
 				else:

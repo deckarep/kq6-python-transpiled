@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 180
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import Motion
@@ -75,7 +76,7 @@ class sKissStuff(Script):
 				ticks = 30
 			#end:case
 			case 6:
-				((ScriptID 1015 6) talkWidth: 100 x: 170 y: 140)
+				(kernel.ScriptID(1015, 6) talkWidth: 100 x: 170 y: 140)
 				seconds = 5
 			#end:case
 			case 7:
@@ -83,7 +84,7 @@ class sKissStuff(Script):
 			#end:case
 			case 8:
 				(global0 setCycle: Beg self)
-				((ScriptID 1015 6) talkWidth: 150 x: 70 y: 40)
+				(kernel.ScriptID(1015, 6) talkWidth: 150 x: 70 y: 40)
 			#end:case
 			case 9:
 				seconds = 2
@@ -235,9 +236,9 @@ class sKissStuff(Script):
 				seconds = 4
 			#end:case
 			case 37:
-				(Message 0 180 1 0 2 5 @local0)
+				kernel.Message(0, 180, 1, 0, 2, 5, @local0)
 				(global2 drawPic: 98 12)
-				(Display @local0 100 85 85 102 14 105 0)
+				kernel.Display(@local0, 100, 85, 85, 102, 14, 105, 0)
 				(global102 number: 743 setLoop: -1 play:)
 				seconds = 3
 			#end:case

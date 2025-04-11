@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 905
 import sci_sh
+import kernel
 import Main
 import Print
 import LoadMany
@@ -41,8 +42,8 @@ class aboutCode(Script):
 					local2 = 1
 					global90 = 1
 				#endif
-				(Format @temp1 905 0)
-				if (FileIO 10 @temp1):
+				kernel.Format(@temp1, 905, 0)
+				if kernel.FileIO(10, @temp1):
 					local0 = 1
 				#endif
 				match
@@ -124,7 +125,7 @@ class oneThroughFive(Script):
 				if local2:
 					global90 = 2
 				#endif
-				(proc958_0 0 905)
+				proc958_0(0, 905)
 			#end:case
 		#end:match
 	#end:method
@@ -141,9 +142,7 @@ class sixScript(Script):
 
 		match state = param1
 			case 0:
-				(proc921_1
-					r"""King's Quest VI\nVersion: 1.000.00G\nThis entire work is Copyright 1992-93\nSierra On-Line, Inc. All rights reserved."""
-				)
+				proc921_1(r"""King's Quest VI\nVersion: 1.000.00G\nThis entire work is Copyright 1992-93\nSierra On-Line, Inc. All rights reserved.""")
 				cycles = 1
 			#end:case
 			case 1:
@@ -154,7 +153,7 @@ class sixScript(Script):
 				if local2:
 					global90 = 2
 				#endif
-				(proc958_0 0 905)
+				proc958_0(0, 905)
 			#end:case
 		#end:match
 	#end:method
@@ -178,7 +177,7 @@ class tips(Script):
 				if local2:
 					global90 = 2
 				#endif
-				(proc958_0 0 905)
+				proc958_0(0, 905)
 			#end:case
 		#end:match
 	#end:method
@@ -202,7 +201,7 @@ class walkThrough(Script):
 				if local2:
 					global90 = 2
 				#endif
-				(proc958_0 0 905)
+				proc958_0(0, 905)
 			#end:case
 		#end:match
 	#end:method
@@ -223,21 +222,21 @@ class damnedAd(Script):
 					local1 = 1
 				#endif
 				(global1 handsOff: killSound: 1)
-				if (DoSound 4):
+				if kernel.DoSound(4):
 					cycles = 1
 				else:
 					(global91 say: 0 0 21 1 self 908)
 				#endif
 			#end:case
 			case 1:
-				if (DoSound 4):
+				if kernel.DoSound(4):
 					(localMusic number: 11 init: play: self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				if (DoSound 4):
+				if kernel.DoSound(4):
 					(global91 say: 0 0 20 1 self 908)
 				else:
 					cycles = 1
@@ -252,7 +251,7 @@ class damnedAd(Script):
 				if local2:
 					global90 = 2
 				#endif
-				(proc958_0 0 905)
+				proc958_0(0, 905)
 			#end:case
 		#end:match
 	#end:method

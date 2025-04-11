@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 456
 import sci_sh
+import kernel
 import Main
 import rm450
 import n913
@@ -43,7 +44,7 @@ class soundGnome(Gnome):
 		if (param1 == 1):
 			(global91 say: noun param1 22 1 0 450)
 		else:
-			((ScriptID 450 6) setScript: soundScript 0 param1)
+			(kernel.ScriptID(450, 6) setScript: soundScript 0 param1)
 		#endif
 	#end:method
 
@@ -65,7 +66,7 @@ class soundInit(Script):
 				(global91 say: 15 0 12 1 self 450)
 			#end:case
 			case 2:
-				(((ScriptID 450 6) script:) cue:)
+				((kernel.ScriptID(450, 6) script:) cue:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -91,7 +92,7 @@ class soundScript(Script):
 						(self cue:)
 					#end:case
 					case 31:
-						(proc913_1 59)
+						proc913_1(59)
 						(global91 say: 15 31 12 1 self 450)
 					#end:case
 					else:
@@ -100,7 +101,7 @@ class soundScript(Script):
 				#end:match
 			#end:case
 			case 1:
-				(self setScript: (ScriptID 450 2) self register)
+				(self setScript: kernel.ScriptID(450, 2) self register)
 			#end:case
 			case 2:
 				if (register == 37):
@@ -118,9 +119,9 @@ class soundScript(Script):
 				(global0 setCycle: End self)
 			#end:case
 			case 5:
-				if ((ScriptID 40 0) alexX:):
+				if (kernel.ScriptID(40, 0) alexX:):
 					(global0
-						posn: ((ScriptID 40 0) alexX:) ((ScriptID 40 0) alexY:)
+						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
 					)
 				#endif
 				if ((global0 view:) != 900):
@@ -132,7 +133,7 @@ class soundScript(Script):
 				(global91 say: 15 37 12 2 self 450)
 			#end:case
 			case 7:
-				((ScriptID 450 6) setScript: (ScriptID 450 3) 0 soundGnome)
+				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 3) 0 soundGnome)
 			#end:case
 		#end:match
 	#end:method
@@ -150,7 +151,7 @@ class failScript(Script):
 		match state = param1
 			case 0:
 				(cond
-					case (((ScriptID 40 0) alexInvisible:) or (register == 31)):
+					case ((kernel.ScriptID(40, 0) alexInvisible:) or (register == 31)):
 						(self state: (state + 1) cue:)
 					#end:case
 					case register:
@@ -162,9 +163,9 @@ class failScript(Script):
 				)
 			#end:case
 			case 1:
-				if ((ScriptID 40 0) alexX:):
+				if (kernel.ScriptID(40, 0) alexX:):
 					(global0
-						posn: ((ScriptID 40 0) alexX:) ((ScriptID 40 0) alexY:)
+						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
 					)
 				#endif
 				if ((global0 view:) != 900):
@@ -179,7 +180,7 @@ class failScript(Script):
 				(soundGnome setCycle: Beg self)
 			#end:case
 			case 4:
-				(proc913_1 59)
+				proc913_1(59)
 				(cond
 					case (not register):
 						(global91 say: 16 0 34 1 self 450)
@@ -195,10 +196,10 @@ class failScript(Script):
 			case 5:
 				(soundGnome setLoop: 3 cycleSpeed: 6)
 				(soundGnome cel: (soundGnome lastCel:) setCycle: Beg self)
-				(proc913_2 59)
+				proc913_2(59)
 			#end:case
 			case 6:
-				(self setScript: (ScriptID 450 4) self register)
+				(self setScript: kernel.ScriptID(450, 4) self register)
 			#end:case
 			case 7:
 				(global91 say: 16 0 30 1 self 450)
@@ -208,7 +209,7 @@ class failScript(Script):
 				cycles = 10
 			#end:case
 			case 9:
-				((ScriptID 450 6) setScript: (ScriptID 450 5))
+				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 5))
 			#end:case
 		#end:match
 	#end:method

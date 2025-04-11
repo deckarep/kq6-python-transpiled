@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1026
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -40,7 +41,7 @@ class Saladin(Kq6Talker):
 				(self cel: 1 x: 288 y: 16 textX: -240 textY: -10 keepWindow: 0)
 				(super init: 0 tEyesA tMouthA &rest)
 			#end:case
-			case (proc913_0 99):
+			case proc913_0(99):
 				(self cel: 1 x: 10 y: 24 textX: 5 textY: 88)
 				(super init: 0 0 wedMouth &rest)
 			#end:case

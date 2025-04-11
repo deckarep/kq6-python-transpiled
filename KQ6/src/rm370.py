@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 370
 import sci_sh
+import kernel
 import Main
 import AnimatePrint
 import KQ6Room
@@ -58,7 +59,7 @@ class rm370(KQ6Room):
 		(candle1 init: setCycle: Fwd)
 		(candle2 init: setCycle: Fwd)
 		(cond
-			case ((proc913_0 1) and (not (proc913_0 3))):
+			case (proc913_0(1) and (not proc913_0(3))):
 				if (global90 == 2):
 					(global2 setScript: savedCelesteCD)
 				else:
@@ -96,7 +97,7 @@ class rm370(KQ6Room):
 		(global69 enable: 6)
 		(global1 setCursor: global21)
 		(global72 delete: self)
-		(DisposeScript 371)
+		kernel.DisposeScript(371)
 		(super dispose:)
 	#end:method
 
@@ -217,7 +218,7 @@ class eyeScr(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 2 4)
+				seconds = kernel.Random(2, 4)
 			#end:case
 			case 1:
 				(client show: setCycle: End self)
@@ -361,7 +362,7 @@ class caughtAtGateCD(Script):
 				)
 			#end:case
 			case 2:
-				(proc913_1 2)
+				proc913_1(2)
 				(cond
 					case 
 						(and
@@ -465,7 +466,7 @@ class caughtAtGateTXT(CartoonScript):
 			#end:case
 			case 20:
 				(kingarm setCycle: Beg)
-				(proc913_1 2)
+				proc913_1(2)
 				(cond
 					case 
 						(and

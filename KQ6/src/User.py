@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 996
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -17,7 +18,7 @@ class uEvt(Event):
 		argc = sum(v is not None for v in locals().values())
 
 		type = message = modifiers = y = x = claimed = port = 0
-		(GetEvent 32767 self)
+		kernel.GetEvent(32767, self)
 		return self
 	#end:method
 
@@ -74,7 +75,7 @@ class User(Obj):
 		if temp0:
 			global24 = param1
 			if mapKeyToDir:
-				(MapKeyToDir param1)
+				kernel.MapKeyToDir(param1)
 			#endif
 			if (temp0 == 256):
 				temp0 = 4

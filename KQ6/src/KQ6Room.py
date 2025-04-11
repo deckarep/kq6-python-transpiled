@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 900
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import n913
@@ -75,7 +76,7 @@ class KQ6Room(Rm):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (not (proc999_5 param1 3 1 4 2)):
+		if (not proc999_5(param1, 3, 1, 4, 2)):
 			return 0
 		else:
 			return 0
@@ -93,13 +94,13 @@ class KQ6Room(Rm):
 			if (modNum == -1):
 				modNum = global11
 			#endif
-			(Load 143 modNum)
-			(Lock 143 modNum 1)
+			kernel.Load(143, modNum)
+			kernel.Lock(143, modNum, 1)
 		#endif
-		if (proc913_0 103):
+		if proc913_0(103):
 			(global1 handsOff:)
-			(proc913_2 103)
-			(self setScript: (ScriptID 89 0))
+			proc913_2(103)
+			(self setScript: kernel.ScriptID(89, 0))
 		#endif
 	#end:method
 
@@ -152,7 +153,7 @@ class KQ6Room(Rm):
 		#endif
 		if (not local0):
 			(global1 handsOff:)
-			(Lock 143 modNum 0)
+			kernel.Lock(143, modNum, 0)
 			if global25:
 				(global25 dispose:)
 			#endif
@@ -192,7 +193,7 @@ class KQ6Room(Rm):
 			if 
 				(and
 					((global66 doit: param1) == -32768)
-					(Message 0 modNum noun 0 0 1)
+					kernel.Message(0, modNum, noun, 0, 0, 1)
 				)
 				(global91 say: noun 0 0 0 0 modNum)
 				1
@@ -208,7 +209,7 @@ class KQ6Room(Rm):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (IsObject param1):
+			case kernel.IsObject(param1):
 				(super setScript: param1 &rest)
 			#end:case
 			case ((global0 view:) != 900):
@@ -232,44 +233,13 @@ class KQ6Room(Rm):
 					init:
 				)
 			#end:case
-			case (proc999_5 param1 87 85 88 90 190 915 92 93 97 96 905):
+			case proc999_5(param1, 87, 85, 88, 90, 190, 915, 92, 93, 97, 96, 905):
 				(cond
 					case 
-						(proc999_5
-							global11
-							160
-							290
-							320
-							390
-							410
-							420
-							440
-							600
-							630
-							640
-							650
-							660
-							670
-							680
-							690
-							740
-							750
-							790
-							461
-						):
+						proc999_5(global11, 160, 290, 320, 390, 410, 420, 440, 600, 630, 640, 650, 660, 670, 680, 690, 740, 750, 790, 461):
 						(cond
 							case 
-								(proc999_5
-									global11
-									600
-									630
-									640
-									650
-									660
-									670
-									680
-									690
-								):
+								proc999_5(global11, 600, 630, 640, 650, 660, 670, 680, 690):
 								(KQ6Print
 									font: global22
 									posn: -1 10
@@ -296,12 +266,12 @@ class KQ6Room(Rm):
 						)
 					#end:case
 					case (self scriptCheck: param1):
-						(super setScript: (ScriptID param1) &rest)
+						(super setScript: kernel.ScriptID(param1) &rest)
 					#end:case
 				)
 			#end:case
 			else:
-				(super setScript: (ScriptID param1) &rest)
+				(super setScript: kernel.ScriptID(param1) &rest)
 			#end:else
 		)
 	#end:method

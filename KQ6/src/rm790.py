@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 790
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -294,7 +295,7 @@ class rm790(CastleRoom):
 		)
 		match global12
 			case 750:
-				(proc926_0)
+				proc926_0()
 				(global0 posn: 256 19)
 				local2 = 1
 				local0 = 2
@@ -311,10 +312,10 @@ class rm790(CastleRoom):
 				(global0 loop: 2 posn: 159 125)
 				(vizier init:)
 				local0 = 1
-				if ((not global87) or (not (HaveMouse))):
-					((ScriptID 80 0) loiterTimer: 242)
+				if ((not global87) or (not kernel.HaveMouse())):
+					(kernel.ScriptID(80, 0) loiterTimer: 242)
 				else:
-					((ScriptID 80 0) loiterTimer: 122)
+					(kernel.ScriptID(80, 0) loiterTimer: 122)
 				#endif
 			#end:else
 		#end:match
@@ -383,7 +384,7 @@ class rm790(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 752)
+		kernel.DisposeScript(752)
 	#end:method
 
 	@classmethod
@@ -418,7 +419,7 @@ class changeTowerRooms(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 0) loiterTimer: 0)
+				(kernel.ScriptID(80, 0) loiterTimer: 0)
 				cycles = 2
 			#end:case
 			case 1:
@@ -496,10 +497,10 @@ class changeTowerRooms(Script):
 				if (not local2):
 					(global0 reset:)
 					(global1 handsOn:)
-					if ((not global87) or (not (HaveMouse))):
-						((ScriptID 80 0) loiterTimer: 61)
+					if ((not global87) or (not kernel.HaveMouse())):
+						(kernel.ScriptID(80, 0) loiterTimer: 61)
 					else:
-						((ScriptID 80 0) loiterTimer: 31)
+						(kernel.ScriptID(80, 0) loiterTimer: 31)
 					#endif
 					(self dispose:)
 				else:
@@ -565,10 +566,10 @@ class castSpell(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(self setScript: (ScriptID 752 1) self genie)
+				(self setScript: kernel.ScriptID(752, 1) self genie)
 			#end:case
 			case 2:
-				(proc913_4 global0 genie self)
+				proc913_4(global0, genie, self)
 			#end:case
 			case 3:
 				cycles = 5
@@ -589,7 +590,7 @@ class castSpell(Script):
 			case 5:
 				global106 = global0
 				global156 = getEgo
-				(self setScript: (ScriptID 752 0) 0 genie)
+				(self setScript: kernel.ScriptID(752, 0) 0 genie)
 			#end:case
 		#end:match
 	#end:method
@@ -644,7 +645,7 @@ class getEgo(Script):
 				if register:
 					(self dispose:)
 				else:
-					(proc0_1 18)
+					proc0_1(18)
 				#endif
 			#end:case
 		#end:match
@@ -693,7 +694,7 @@ class vizier(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		local1++
+		local1.post('++')
 		(self dispose:)
 	#end:method
 
@@ -800,7 +801,7 @@ class rglow(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		(rTimer setCycle: self (Random 10 30))
+		(rTimer setCycle: self kernel.Random(10, 30))
 	#end:method
 
 	@classmethod
@@ -808,9 +809,9 @@ class rglow(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(self cel: (Random 0 2))
-		(rflame cycleSpeed: (Random 4 8))
-		(rTimer setCycle: self (Random 2 20))
+		(self cel: kernel.Random(0, 2))
+		(rflame cycleSpeed: kernel.Random(4, 8))
+		(rTimer setCycle: self kernel.Random(2, 20))
 	#end:method
 
 #end:class or instance
@@ -828,7 +829,7 @@ class lglow(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: &rest)
-		(lTimer setCycle: self (Random 10 30))
+		(lTimer setCycle: self kernel.Random(10, 30))
 	#end:method
 
 	@classmethod
@@ -836,9 +837,9 @@ class lglow(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(self cel: (Random 0 2))
-		(lflame cycleSpeed: (Random 4 8))
-		(lTimer setCycle: self (Random 2 20))
+		(self cel: kernel.Random(0, 2))
+		(lflame cycleSpeed: kernel.Random(4, 8))
+		(lTimer setCycle: self kernel.Random(2, 20))
 	#end:method
 
 #end:class or instance

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 90
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -47,8 +48,8 @@ class beginScript(Script):
 			case 0:
 				(global1 handsOff:)
 				(global69 disable: 6)
-				if (not (proc913_0 129)):
-					(proc913_1 129)
+				if (not proc913_0(129)):
+					proc913_1(129)
 					(global1 givePoints: 1)
 				#endif
 				(global91 say: 1 27 0 1 self 0)
@@ -74,7 +75,7 @@ class beginScript(Script):
 				seconds = 4
 			#end:case
 			case 5:
-				(client setScript: (ScriptID 90 1))
+				(client setScript: kernel.ScriptID(90, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -111,7 +112,7 @@ class riddleBookScript(Script):
 			(global9 hide:)
 			register = 0
 		#endif
-		(DrawPic 98)
+		kernel.DrawPic(98)
 		(super init: &rest)
 	#end:method
 
@@ -165,8 +166,8 @@ class riddleBookScript(Script):
 				global74 = local5
 				global93 = local6
 				global10 = local2
-				(UnLoad 128 904)
-				(DrawPic (global2 picture:) 100)
+				kernel.UnLoad(128, 904)
+				kernel.DrawPic((global2 picture:), 100)
 				if global10:
 					(global10 doit:)
 				#endif
@@ -181,7 +182,7 @@ class riddleBookScript(Script):
 				(global1 handsOn:)
 				(self dispose:)
 				global91 = local9
-				(DisposeScript 90)
+				kernel.DisposeScript(90)
 			#end:case
 		#end:match
 	#end:method

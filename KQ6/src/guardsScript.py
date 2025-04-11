@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 802
 import sci_sh
+import kernel
 import Main
 import rm800
 import Print
@@ -34,7 +35,7 @@ class guardsScript(Script):
 
 		(global1 handsOn:)
 		(super dispose:)
-		(DisposeScript 802)
+		kernel.DisposeScript(802)
 	#end:method
 
 	@classmethod
@@ -46,7 +47,7 @@ class guardsScript(Script):
 			case 0:
 				(global1 handsOff:)
 				(global91
-					say: 6 1 (24 + ((ScriptID 80 0) tstFlag: 709 32)) 1 self
+					say: 6 1 (24 + (kernel.ScriptID(80, 0) tstFlag: 709 32)) 1 self
 				)
 			#end:case
 			case 1:
@@ -76,7 +77,7 @@ class guardsScript(Script):
 				(background addToPic:)
 				(guard1 init: stopUpd:)
 				(guard2 init: stopUpd:)
-				if (not ((ScriptID 80 0) tstFlag: 709 32)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
 					(global1 givePoints: 2)
 					(saladin init: stopUpd:)
 				#endif
@@ -84,7 +85,7 @@ class guardsScript(Script):
 			#end:case
 			case 4:
 				(global69 enable:)
-				if (not ((ScriptID 80 0) tstFlag: 709 32)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
 					(self setScript: overHearGuards self)
 				else:
 					(self setScript: guardsNotHere self)
@@ -95,7 +96,7 @@ class guardsScript(Script):
 				(guard1 dispose: delete:)
 				(guard2 dispose: delete:)
 				(saladin dispose: delete:)
-				(proc800_1)
+				proc800_1()
 				(global0 setCycle: Beg self)
 			#end:case
 			case 6:
@@ -121,7 +122,7 @@ class overHearGuards(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 0) setFlag: 709 32)
+				(kernel.ScriptID(80, 0) setFlag: 709 32)
 				cycles = 3
 			#end:case
 			case 1:

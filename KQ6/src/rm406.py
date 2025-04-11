@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 406
 import sci_sh
+import kernel
 import Main
 import rLab
 import n402
@@ -41,14 +42,14 @@ class rm406(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 30 0) labCoords: 152)
-		if ((global12 == 435) and (not (proc913_0 1))):
-			(proc958_0 128 391 392 393 432)
-			(Load 139 400)
+		(kernel.ScriptID(30, 0) labCoords: 152)
+		if ((global12 == 435) and (not proc913_0(1))):
+			proc958_0(128, 391, 392, 393, 432)
+			kernel.Load(139, 400)
 			(global2 picture: 98)
 			(global102 stop:)
 			(super init:)
-			((ScriptID 30 0) cue:)
+			(kernel.ScriptID(30, 0) cue:)
 			(global0
 				normal: 0
 				view: 433
@@ -58,20 +59,20 @@ class rm406(LabRoom):
 				actions: egoDoTinderBoxCode
 				init:
 			)
-			(UnLoad 128 900)
+			kernel.UnLoad(128, 900)
 			(global2 setScript: timerMinotaurKillEgo)
 		else:
 			(global2 picture: 400)
-			(proc402_4)
+			proc402_4()
 			(super init:)
-			((ScriptID 30 3) init:)
-			((ScriptID 30 5) addToPic:)
-			((ScriptID 30 9) addToPic:)
-			((ScriptID 30 0) initCrypt: 1)
+			(kernel.ScriptID(30, 3) init:)
+			(kernel.ScriptID(30, 5) addToPic:)
+			(kernel.ScriptID(30, 9) addToPic:)
+			(kernel.ScriptID(30, 0) initCrypt: 1)
 			if (global12 == 435):
 				(global2 setScript: fallDownInLight)
 			else:
-				(global2 setScript: (ScriptID 30 1))
+				(global2 setScript: kernel.ScriptID(30, 1))
 			#endif
 		#endif
 	#end:method
@@ -81,9 +82,9 @@ class rm406(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 30 5) addToPic:)
-		((ScriptID 30 9) addToPic:)
-		((ScriptID 30 3) init: show:)
+		(kernel.ScriptID(30, 5) addToPic:)
+		(kernel.ScriptID(30, 9) addToPic:)
+		(kernel.ScriptID(30, 3) init: show:)
 	#end:method
 
 	@classmethod
@@ -94,7 +95,7 @@ class rm406(LabRoom):
 		(return
 			match param1
 				case 20:
-					if ((ScriptID 30 0) darkRoomLit:):
+					if (kernel.ScriptID(30, 0) darkRoomLit:):
 						(global91 say: 3 20 37 1 0 400)
 						1
 					else:
@@ -103,7 +104,7 @@ class rm406(LabRoom):
 					#endif
 				#end:case
 				case 1:
-					if ((ScriptID 30 0) darkRoomLit:):
+					if (kernel.ScriptID(30, 0) darkRoomLit:):
 						(super doVerb: param1 &rest)
 						1
 					else:
@@ -112,7 +113,7 @@ class rm406(LabRoom):
 					#endif
 				#end:case
 				case 2:
-					if ((ScriptID 30 0) darkRoomLit:):
+					if (kernel.ScriptID(30, 0) darkRoomLit:):
 						(super doVerb: param1 &rest)
 						1
 					else:
@@ -121,7 +122,7 @@ class rm406(LabRoom):
 					#endif
 				#end:case
 				case 5:
-					if ((ScriptID 30 0) darkRoomLit:):
+					if (kernel.ScriptID(30, 0) darkRoomLit:):
 						(super doVerb: param1 &rest)
 						1
 					else:
@@ -191,7 +192,7 @@ class fallDownInLight(Script):
 			#end:case
 			case 2:
 				(global0 posn: 181 157 reset: 5)
-				(UnLoad 128 307)
+				kernel.UnLoad(128, 307)
 				cycles = 6
 			#end:case
 			case 3:
@@ -234,7 +235,7 @@ class lightItUp(Script):
 			#end:case
 			case 2:
 				(global1 givePoints: 2)
-				(proc402_4)
+				proc402_4()
 				(global0
 					view: 3931
 					setLoop: 6
@@ -242,7 +243,7 @@ class lightItUp(Script):
 					cycleSpeed: 4
 					setCycle: End self
 				)
-				(UnLoad 128 391)
+				kernel.UnLoad(128, 391)
 			#end:case
 			case 3:
 				(global0
@@ -262,7 +263,7 @@ class lightItUp(Script):
 					setMotion: PolyPath 125 142 self
 				)
 				0
-				(UnLoad 128 3931)
+				kernel.UnLoad(128, 3931)
 			#end:case
 			case 5:
 				(global91 say: 3 20 36 2 self 400)
@@ -283,7 +284,7 @@ class lightItUp(Script):
 					cycleSpeed: 6
 					setCycle: End
 				)
-				(UnLoad 128 392)
+				kernel.UnLoad(128, 392)
 				(self setScript: shiftThePalette self)
 			#end:case
 			case 7:
@@ -308,17 +309,17 @@ class shiftThePalette(Script):
 
 		match state = param1
 			case 0:
-				(Palette 1 400)
+				kernel.Palette(1, 400)
 				(global2 picture: 400)
 				(global2 drawPic: 400 (15 if global169 else 100))
-				(Palette 4 77 255 local1)
+				kernel.Palette(4, 77, 255, local1)
 				ticks = 4
 			#end:case
 			case 1:
-				((ScriptID 30 5) addToPic:)
-				((ScriptID 30 9) addToPic:)
-				((ScriptID 30 3) init:)
-				((ScriptID 30 0) darkRoomLit: 1 notify:)
+				(kernel.ScriptID(30, 5) addToPic:)
+				(kernel.ScriptID(30, 9) addToPic:)
+				(kernel.ScriptID(30, 3) init:)
+				(kernel.ScriptID(30, 0) darkRoomLit: 1 notify:)
 				ticks = 2
 			#end:case
 			case 2:
@@ -335,9 +336,9 @@ class shiftThePalette(Script):
 						posn: ((global0 x:) + 4) ((global0 y:) - 2)
 						reset: 1
 					)
-					(UnLoad 128 432)
+					kernel.UnLoad(128, 432)
 				#endif
-				(Palette 4 77 255 local1)
+				kernel.Palette(4, 77, 255, local1)
 				ticks = 2
 			#end:case
 			case 4:
@@ -371,7 +372,7 @@ class timerMinotaurKillEgo(Script):
 				(global102 stop:)
 				(global103 number: 405 setLoop: -1 play:)
 				(global0 hide:)
-				(ShakeScreen 4 (Random 0 2))
+				kernel.ShakeScreen(4, kernel.Random(0, 2))
 				seconds = 1
 			#end:case
 			case 2:
@@ -397,7 +398,7 @@ class timerMinotaurKillEgo(Script):
 			#end:case
 			case 4:
 				(cond
-					case (proc913_0 1):
+					case proc913_0(1):
 						(global91 say: 1 0 34 1 self 400)
 					#end:case
 					case (global12 == 400):
@@ -409,7 +410,7 @@ class timerMinotaurKillEgo(Script):
 				)
 			#end:case
 			case 5:
-				if ((global12 == 400) and (not (proc913_0 1))):
+				if ((global12 == 400) and (not proc913_0(1))):
 					(global91 say: 1 0 33 1 self 400)
 				else:
 					(self cue:)
@@ -421,7 +422,7 @@ class timerMinotaurKillEgo(Script):
 			#end:case
 			case 7:
 				(global1 handsOn:)
-				if (proc913_0 1):
+				if proc913_0(1):
 					(self dispose:)
 				else:
 					(self setScript: lookAround self)
@@ -451,7 +452,7 @@ class timerMinotaurKillEgo(Script):
 			#end:case
 			case 14:
 				(bigEyes dispose:)
-				(UnLoad 128 433)
+				kernel.UnLoad(128, 433)
 				(global91 say: 1 0 32 3 self 400)
 			#end:case
 			case 15:
@@ -489,7 +490,7 @@ class timerMinotaurKillEgo(Script):
 				(global0 setLoop: 7 cel: 0 cycleSpeed: 30 setCycle: End self)
 			#end:case
 			case 24:
-				(proc0_1 26)
+				proc0_1(26)
 			#end:case
 		#end:match
 	#end:method
@@ -509,7 +510,7 @@ class lookAround(Script):
 				if (global87 == 0):
 					seconds = 8
 				else:
-					seconds = (Random 2 4)
+					seconds = kernel.Random(2, 4)
 				#endif
 			#end:case
 			case 1:
@@ -518,7 +519,7 @@ class lookAround(Script):
 			case 2:
 				(global0 setLoop: 2 cel: 0 cycleSpeed: 48 setCycle: Fwd)
 				if (local0 < 4):
-					local0++
+					local0.post('++')
 					(state -= 3)
 				#endif
 				(self cue:)
@@ -542,7 +543,7 @@ class egoDoTinderBoxCode(Actions):
 		temp0 = 1
 		match param1
 			case 20:
-				if ((ScriptID 30 0) darkRoomLit:):
+				if (kernel.ScriptID(30, 0) darkRoomLit:):
 					(global91 say: 3 20 37 1 0 400)
 				else:
 					(global2 setScript: lightItUp)

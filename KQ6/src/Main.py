@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 0
 import sci_sh
+import kernel
 import Kq6IconBar
 import Kq6Sound
 import EgoGroop
@@ -260,7 +261,7 @@ def proc0_1(param1 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	global160 = param1
-	(proc913_1 44)
+	proc913_1(44)
 	(global2 newRoom: 640)
 #end:procedure
 
@@ -339,7 +340,7 @@ class ego(Body):
 				(global2 setScript: 908)
 			#end:case
 			case 14:
-				if ((global11 != 280) and (proc913_0 153)):
+				if ((global11 != 280) and proc913_0(153)):
 					(global91 say: 1 14 18 0 0 0)
 				else:
 					(global2 setScript: 87)
@@ -355,7 +356,7 @@ class ego(Body):
 				(global2 setScript: 90)
 			#end:case
 			case 83:
-				if (proc913_0 151):
+				if proc913_0(151):
 					(global91 say: 1 83 17 0 0 0)
 				else:
 					(global2 setScript: 92)
@@ -516,7 +517,7 @@ class Kq6(Game):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(ScriptID 982)
+		kernel.ScriptID(982)
 		DText
 		DButton
 		Polygon
@@ -535,13 +536,13 @@ class Kq6(Game):
 				(CharonTimer client: CharonTimer yourself:)
 				(lettuceTimer client: lettuceTimer yourself:)
 		)
-		if ((FileIO 10 r"""KQ6CD""") and (DoAudio 9)):
+		if (kernel.FileIO(10, r"""KQ6CD""") and kernel.DoAudio(9)):
 			global90 = 2
-			(DoAudio 7 22050)
+			kernel.DoAudio(7, 22050)
 		else:
 			global90 = 1
 		#endif
-		global107 = (Graph 2)
+		global107 = kernel.Graph(2)
 		global38 = Kq6Window
 		global19 = theGameCursor
 		global21 = theWaitCursor
@@ -550,11 +551,11 @@ class Kq6(Game):
 		(self setCursor: (global21 posn: 300 180 yourself:))
 		global89 = Kq6Narrator
 		global91 = Kq6Messager
-		((ScriptID 902) init:)
-		(DisposeScript 902)
+		(kernel.ScriptID(902) init:)
+		kernel.DisposeScript(902)
 		global151 = EgoGroop
 		global34 = 1
-		(StrCpy @global42 r"""""")
+		kernel.StrCpy(@global42, r"""""")
 		global65 = kq6DoVerbCode
 		global64 = kq6FtrInit
 		global66 = kq6ApproachCode
@@ -571,17 +572,17 @@ class Kq6(Game):
 		(global105 = globalSound4 owner: self init:)
 		global16 = 231
 		global27 = r"""x.yyy.zzz"""
-		(Format @temp0 0 0 911)
-		if (FileIO 10 @temp0):
+		kernel.Format(@temp0, 0, 0, 911)
+		if kernel.FileIO(10, @temp0):
 			global100 = 1
 		else:
 			global100 = 0
 		#endif
-		if (((Platform 4) == 2) and (global107 == 256)):
+		if ((kernel.Platform(4) == 2) and (global107 == 256)):
 			global169 = 1
 		#endif
 		(global0 setSpeed: 6 currentSpeed: 6)
-		global108 = (DoSound 3)
+		global108 = kernel.DoSound(3)
 		(global69 = Kq6IconBar
 			add:
 				(icon0 cursor: cIcon0 yourself:)
@@ -600,12 +601,12 @@ class Kq6(Game):
 			disable: icon4
 			disable:
 		)
-		(icon5 message: (3840 if (HaveMouse) else 9))
-		((ScriptID 907) init:)
-		global136 = (200 if (GameIsRestarting) else 100)
+		(icon5 message: (3840 if kernel.HaveMouse() else 9))
+		(kernel.ScriptID(907) init:)
+		global136 = (200 if kernel.GameIsRestarting() else 100)
 		global79 = 2
-		(Load 128 998)
-		(Lock 128 998 1)
+		kernel.Load(128, 998)
+		kernel.Lock(128, 998, 1)
 		(self newRoom: 99)
 	#end:method
 
@@ -619,15 +620,15 @@ class Kq6(Game):
 		if (argc > 2):
 			temp1 = (0 if (param3 < 0) else param3)
 			temp2 = (0 if (param4 < 0) else param4)
-			(SetCursor temp1 temp2)
+			kernel.SetCursor(temp1, temp2)
 		#endif
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			if argc:
 				(global19 = param1 init:)
 			#endif
 			(param1 init:)
 		else:
-			(SetCursor param1 0 0)
+			kernel.SetCursor(param1, 0, 0)
 		#endif
 		return temp0
 	#end:method
@@ -637,7 +638,7 @@ class Kq6(Game):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((not (proc913_0 49)) and ((MemoryInfo 0) >= 1500)):
+		if ((not proc913_0(49)) and (kernel.MemoryInfo(0) >= 1500)):
 			(super save: &rest)
 			(self
 				setCursor:
@@ -657,7 +658,7 @@ class Kq6(Game):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((not (proc913_0 49)) or ((MemoryInfo 0) >= 1500)):
+		if ((not proc913_0(49)) or (kernel.MemoryInfo(0) >= 1500)):
 			(super restore: &rest)
 			(self
 				setCursor:
@@ -665,7 +666,7 @@ class Kq6(Game):
 						case ((global80 canControl:) or (global80 canInput:)):
 							((global69 curIcon:) cursor:)
 						#end:case
-						case (proc913_0 44): global20#end:case
+						case proc913_0(44): global20#end:case
 						else: global21#end:else
 					)
 			)
@@ -680,7 +681,7 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values())
 
 		if (User canInput:):
-			temp0 = (Random 1 3)
+			temp0 = kernel.Random(1, 3)
 			if ((global66 doit: param1) == -32768):
 				param1 = 0
 			#endif
@@ -695,7 +696,7 @@ class Kq6(Game):
 
 		if (param1 and argc):
 			if (global84 and (not ((global9 state:) & 0x0020))):
-				(Animate (global5 elements:) 0)
+				kernel.Animate((global5 elements:), 0)
 			#endif
 		else:
 			global170 = 1
@@ -712,10 +713,10 @@ class Kq6(Game):
 		#endif
 		if 
 			(or
-				((global11 == 640) and (proc913_0 44))
+				((global11 == 640) and proc913_0(44))
 				(and (global11 == 740) (global90 == 2) (global12 == 180))
 			)
-			(DoAudio 10 3)
+			kernel.DoAudio(10, 3)
 			global4 = 1
 		else:
 			temp0 = (global1 setCursor: global20)
@@ -776,22 +777,22 @@ class Kq6(Game):
 
 		(= temp0
 			if global169:
-				(Platform 6)
+				kernel.Platform(6)
 			#endif
 		)
 		if global77:
 			(global77 stop:)
 		#endif
-		((ScriptID 919) doit: param1)
+		(kernel.ScriptID(919) doit: param1)
 		if temp0:
-			(Portrait 2 0)
+			kernel.Portrait(2, 0)
 		#endif
 		if 
 			(and
 				global100
-				(not (proc913_0 38))
-				(u> (MemoryInfo 1) (10 + (MemoryInfo 0)))
-				(((MemoryInfo 1) - 2) != (MemoryInfo 0))
+				(not proc913_0(38))
+				(u> kernel.MemoryInfo(1) (10 + kernel.MemoryInfo(0)))
+				((kernel.MemoryInfo(1) - 2) != kernel.MemoryInfo(0))
 				match
 					(Print
 						font: global22
@@ -801,98 +802,59 @@ class Kq6(Game):
 						init:
 					)
 					case 0:
-						(proc913_1 38)
+						proc913_1(38)
 					#end:case
 					case 1:
-						(SetDebug)
+						kernel.SetDebug()
 					#end:case
 				#end:match
 			)
 		#endif
 		if global14:
-			(SetDebug)
+			kernel.SetDebug()
 		#endif
 		(cond
-			case (proc999_5 param1 200 210 220 230 240 250 260 270 280 290):
-				(ScriptID 10)
-				((ScriptID param1) setRegions: 10)
+			case proc999_5(param1, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290):
+				kernel.ScriptID(10)
+				(kernel.ScriptID(param1) setRegions: 10)
 			#end:case
-			case (proc999_5 param1 300 310 320 330 340 350 370 380 390):
-				(ScriptID 20)
-				if (proc999_5 param1 300 320):
-					(ScriptID 21)
-					((ScriptID param1) setRegions: 21)
+			case proc999_5(param1, 300, 310, 320, 330, 340, 350, 370, 380, 390):
+				kernel.ScriptID(20)
+				if proc999_5(param1, 300, 320):
+					kernel.ScriptID(21)
+					(kernel.ScriptID(param1) setRegions: 21)
 				#endif
-				((ScriptID param1) setRegions: 20)
+				(kernel.ScriptID(param1) setRegions: 20)
 			#end:case
 			case 
-				(proc999_5
-					param1
-					400
-					405
-					410
-					415
-					420
-					425
-					430
-					435
-					440
-					406
-					407
-					408
-					409
-					411
-				):
-				(ScriptID 30)
-				((ScriptID param1) setRegions: 30)
+				proc999_5(param1, 400, 405, 410, 415, 420, 425, 430, 435, 440, 406, 407, 408, 409, 411):
+				kernel.ScriptID(30)
+				(kernel.ScriptID(param1) setRegions: 30)
 			#end:case
-			case (proc999_5 param1 450 460 461 470 475 480 490):
-				(ScriptID 40)
-				((ScriptID param1) setRegions: 40)
+			case proc999_5(param1, 450, 460, 461, 470, 475, 480, 490):
+				kernel.ScriptID(40)
+				(kernel.ScriptID(param1) setRegions: 40)
 			#end:case
-			case (proc999_5 param1 500 510 520 530 540):
-				(ScriptID 50)
-				((ScriptID param1) setRegions: 50)
+			case proc999_5(param1, 500, 510, 520, 530, 540):
+				kernel.ScriptID(50)
+				(kernel.ScriptID(param1) setRegions: 50)
 			#end:case
-			case (proc999_5 param1 550 560 570 580):
-				(ScriptID 60)
-				((ScriptID param1) setRegions: 60)
+			case proc999_5(param1, 550, 560, 570, 580):
+				kernel.ScriptID(60)
+				(kernel.ScriptID(param1) setRegions: 60)
 			#end:case
-			case (proc999_5 param1 600 605 615 620 630 640 650 660 670 680 690):
-				(ScriptID 70)
-				((ScriptID param1) setRegions: 70)
+			case proc999_5(param1, 600, 605, 615, 620, 630, 640, 650, 660, 670, 680, 690):
+				kernel.ScriptID(70)
+				(kernel.ScriptID(param1) setRegions: 70)
 			#end:case
 			case 
-				(proc999_5
-					param1
-					700
-					710
-					720
-					730
-					740
-					750
-					760
-					770
-					780
-					781
-					790
-					800
-					810
-					820
-					840
-					850
-					860
-					870
-					880
-					180
-					743
-				):
-				(ScriptID 80)
-				if (proc999_5 param1 840 710 720 770 820 780):
-					(ScriptID 81)
-					((ScriptID param1) setRegions: 81)
+				proc999_5(param1, 700, 710, 720, 730, 740, 750, 760, 770, 780, 781, 790, 800, 810, 820, 840, 850, 860, 870, 880, 180, 743):
+				kernel.ScriptID(80)
+				if proc999_5(param1, 840, 710, 720, 770, 820, 780):
+					kernel.ScriptID(81)
+					(kernel.ScriptID(param1) setRegions: 81)
 				#endif
-				((ScriptID param1) setRegions: 80)
+				(kernel.ScriptID(param1) setRegions: 80)
 			#end:case
 			else: 0#end:else
 		)
@@ -902,7 +864,7 @@ class Kq6(Game):
 			(global0 setLoop: EgoGroop)
 		#endif
 		if temp0:
-			((ScriptID 109 0) doit: param1)
+			(kernel.ScriptID(109, 0) doit: param1)
 		#endif
 	#end:method
 
@@ -930,7 +892,7 @@ class Kq6(Game):
 				case ((global0 oldScaleSignal:) & 0x0002):
 					(global0 oldMaxScale: (global0 maxScale:))
 				#end:case
-				case (IsObject (global0 scaler:)):
+				case kernel.IsObject((global0 scaler:)):
 					(global0
 						oldMaxScale: ((global0 scaler:) frontSize:)
 						oldBackSize: ((global0 scaler:) backSize:)
@@ -955,7 +917,7 @@ class Kq6(Game):
 
 		isHandsOn = 1
 		(User canControl: 1 canInput: 1)
-		if (IsObject oldCurIcon):
+		if kernel.IsObject(oldCurIcon):
 			(global69 curIcon: oldCurIcon)
 		#endif
 		oldCurIcon = 0
@@ -981,7 +943,7 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values())
 
 		global1 = self
-		global29 = (GetSaveDir)
+		global29 = kernel.GetSaveDir()
 		(self init:)
 		while (not global4):
 
@@ -1003,13 +965,13 @@ class Kq6(Game):
 					match (param1 message:)
 						case 9:
 							if (not ((icon5 signal:) & 0x0004)):
-								((ScriptID 907 1) init: global0)
+								(kernel.ScriptID(907, 1) init: global0)
 								(param1 claimed: 1)
 							#endif
 						#end:case
 						case 3840:
 							if (not ((icon5 signal:) & 0x0004)):
-								((ScriptID 907 1) init: global0)
+								(kernel.ScriptID(907, 1) init: global0)
 								(param1 claimed: 1)
 							#endif
 						#end:case
@@ -1049,25 +1011,13 @@ class Kq6(Game):
 								(and
 									global100
 									(not
-										(proc999_5
-											global11
-											440
-											450
-											480
-											270
-											280
-											470
-											490
-											670
-											750
-											740
-										)
+										proc999_5(global11, 440, 450, 480, 270, 280, 470, 490, 670, 750, 740)
 									)
 								)
 								(param1 claimed: 0)
-								((ScriptID 911) handleEvent: param1)
-								((ScriptID 911) dispose:)
-								(DisposeScript 911)
+								(kernel.ScriptID(911) handleEvent: param1)
+								(kernel.ScriptID(911) dispose:)
+								kernel.DisposeScript(911)
 							#endif
 						#end:else
 					#end:match
@@ -1119,261 +1069,261 @@ class Kq6Messager(Messager):
 			(= temp0
 				match param1
 					case 21:
-						(ScriptID 1000 21)
+						kernel.ScriptID(1000, 21)
 					#end:case
 					case 2:
-						(ScriptID 1001 2)
+						kernel.ScriptID(1001, 2)
 					#end:case
 					case 87: global89#end:case
 					case 62:
-						(ScriptID 1063 62)
+						kernel.ScriptID(1063, 62)
 					#end:case
 					case 20:
-						(ScriptID 1002 20)
+						kernel.ScriptID(1002, 20)
 					#end:case
 					case 56:
-						(ScriptID 1057 56)
+						kernel.ScriptID(1057, 56)
 					#end:case
 					case 17:
-						(ScriptID 1003 17)
+						kernel.ScriptID(1003, 17)
 					#end:case
 					case 33:
-						(ScriptID 1034 33)
+						kernel.ScriptID(1034, 33)
 					#end:case
 					case 43:
-						(ScriptID 1044 43)
+						kernel.ScriptID(1044, 43)
 					#end:case
 					case 77:
-						(ScriptID 1050 77)
+						kernel.ScriptID(1050, 77)
 					#end:case
 					case 82:
-						(ScriptID 1015 6)
+						kernel.ScriptID(1015, 6)
 					#end:case
 					case 88:
-						(ScriptID 1039 71)
+						kernel.ScriptID(1039, 71)
 					#end:case
 					case 71:
-						(ScriptID 1039 71)
+						kernel.ScriptID(1039, 71)
 					#end:case
 					case 48:
-						(ScriptID 1049 48)
+						kernel.ScriptID(1049, 48)
 					#end:case
 					case 46:
-						(ScriptID 1047 46)
+						kernel.ScriptID(1047, 46)
 					#end:case
 					case 11:
-						(ScriptID 1004 11)
+						kernel.ScriptID(1004, 11)
 					#end:case
 					case 28:
-						(ScriptID 1005 28)
+						kernel.ScriptID(1005, 28)
 					#end:case
 					case 93: global89#end:case
 					case 4:
-						(ScriptID 1006 4)
+						kernel.ScriptID(1006, 4)
 					#end:case
 					case 57:
-						(ScriptID 1010 57)
+						kernel.ScriptID(1010, 57)
 					#end:case
 					case 73:
-						(ScriptID 1040 73)
+						kernel.ScriptID(1040, 73)
 					#end:case
 					case 9:
-						(ScriptID 1007 9)
+						kernel.ScriptID(1007, 9)
 					#end:case
 					case 79:
-						(ScriptID 1025 79)
+						kernel.ScriptID(1025, 79)
 					#end:case
 					case 45:
-						(ScriptID 1046 45)
+						kernel.ScriptID(1046, 45)
 					#end:case
 					case 69:
-						(ScriptID 1016 69)
+						kernel.ScriptID(1016, 69)
 					#end:case
 					case 83:
-						(ScriptID 1060 83)
+						kernel.ScriptID(1060, 83)
 					#end:case
 					case 59:
-						(ScriptID 1033 59)
+						kernel.ScriptID(1033, 59)
 					#end:case
 					case 60:
-						(ScriptID 1033 60)
+						kernel.ScriptID(1033, 60)
 					#end:case
 					case 23:
-						(ScriptID 1008 23)
+						kernel.ScriptID(1008, 23)
 					#end:case
 					case 58:
-						(ScriptID 1061 58)
+						kernel.ScriptID(1061, 58)
 					#end:case
 					case 14:
-						(ScriptID 1009 14)
+						kernel.ScriptID(1009, 14)
 					#end:case
 					case 15:
-						(ScriptID 1009 15)
+						kernel.ScriptID(1009, 15)
 					#end:case
 					case 27:
-						(ScriptID 1011 27)
+						kernel.ScriptID(1011, 27)
 					#end:case
 					case 32:
-						(ScriptID 1012 32)
+						kernel.ScriptID(1012, 32)
 					#end:case
 					case 55:
-						(ScriptID 1056 55)
+						kernel.ScriptID(1056, 55)
 					#end:case
 					case 29:
-						(ScriptID 1013 29)
+						kernel.ScriptID(1013, 29)
 					#end:case
 					case 34:
-						(ScriptID 1035 34)
+						kernel.ScriptID(1035, 34)
 					#end:case
 					case 30:
-						(ScriptID 1014 30)
+						kernel.ScriptID(1014, 30)
 					#end:case
 					case 36:
-						(ScriptID 1037 36)
+						kernel.ScriptID(1037, 36)
 					#end:case
 					case 94:
-						(ScriptID 1065 94)
+						kernel.ScriptID(1065, 94)
 					#end:case
 					case 8:
-						(ScriptID 1015 8)
+						kernel.ScriptID(1015, 8)
 					#end:case
 					case 6:
-						(ScriptID 1015 6)
+						kernel.ScriptID(1015, 6)
 					#end:case
 					case 7:
-						(ScriptID 1015 7)
+						kernel.ScriptID(1015, 7)
 					#end:case
 					case 1:
-						(ScriptID 1018 1)
+						kernel.ScriptID(1018, 1)
 					#end:case
 					case 22:
-						(ScriptID 1019 22)
+						kernel.ScriptID(1019, 22)
 					#end:case
 					case 26:
-						(ScriptID 1033 26)
+						kernel.ScriptID(1033, 26)
 					#end:case
 					case 38:
-						(ScriptID 1041 38)
+						kernel.ScriptID(1041, 38)
 					#end:case
 					case 5:
-						(ScriptID 1020 5)
+						kernel.ScriptID(1020, 5)
 					#end:case
 					case 16:
-						(ScriptID 1021 16)
+						kernel.ScriptID(1021, 16)
 					#end:case
 					case 78:
-						(ScriptID 1024 78)
+						kernel.ScriptID(1024, 78)
 					#end:case
 					case 3:
-						(ScriptID 1022 3)
+						kernel.ScriptID(1022, 3)
 					#end:case
 					case 40:
-						(ScriptID 1064 40)
+						kernel.ScriptID(1064, 40)
 					#end:case
 					case 99: global89#end:case
 					case 80:
-						(ScriptID 1062 80)
+						kernel.ScriptID(1062, 80)
 					#end:case
 					case 19:
-						(ScriptID 1023 19)
+						kernel.ScriptID(1023, 19)
 					#end:case
 					case 44:
-						(ScriptID 1045 44)
+						kernel.ScriptID(1045, 44)
 					#end:case
 					case 35:
-						(ScriptID 1036 35)
+						kernel.ScriptID(1036, 35)
 					#end:case
 					case 97: -1#end:case
 					case 42:
-						(ScriptID 1017 42)
+						kernel.ScriptID(1017, 42)
 					#end:case
 					case 13:
-						(ScriptID 1026 13)
+						kernel.ScriptID(1026, 13)
 					#end:case
 					case 10:
-						(ScriptID 1027 10)
+						kernel.ScriptID(1027, 10)
 					#end:case
 					case 75:
-						(ScriptID 1055 75)
+						kernel.ScriptID(1055, 75)
 					#end:case
 					case 95:
-						(ScriptID 1067 95)
+						kernel.ScriptID(1067, 95)
 					#end:case
 					case 53:
-						(ScriptID 490 53)
+						kernel.ScriptID(490, 53)
 					#end:case
 					case 50:
-						(ScriptID 1051 50)
+						kernel.ScriptID(1051, 50)
 					#end:case
 					case 92: global89#end:case
 					case 81:
-						(ScriptID 1015 7)
+						kernel.ScriptID(1015, 7)
 					#end:case
 					case 74:
-						(ScriptID 1031 74)
+						kernel.ScriptID(1031, 74)
 					#end:case
 					case 86:
-						(ScriptID 1028 86)
+						kernel.ScriptID(1028, 86)
 					#end:case
 					case 68:
-						(ScriptID 1037 68)
+						kernel.ScriptID(1037, 68)
 					#end:case
 					case 65:
-						(ScriptID 1037 65)
+						kernel.ScriptID(1037, 65)
 					#end:case
 					case 72:
-						(ScriptID 1042 72)
+						kernel.ScriptID(1042, 72)
 					#end:case
 					case 61:
-						(ScriptID 1037 61)
+						kernel.ScriptID(1037, 61)
 					#end:case
 					case 47:
-						(ScriptID 1048 47)
+						kernel.ScriptID(1048, 47)
 					#end:case
 					case 25:
-						(ScriptID 1059 25)
+						kernel.ScriptID(1059, 25)
 					#end:case
 					case 37:
-						(ScriptID 1038 37)
+						kernel.ScriptID(1038, 37)
 					#end:case
 					case 66:
-						(ScriptID 1037 66)
+						kernel.ScriptID(1037, 66)
 					#end:case
 					case 70:
-						(ScriptID 1051 50)
+						kernel.ScriptID(1051, 50)
 					#end:case
 					case 67:
-						(ScriptID 1037 67)
+						kernel.ScriptID(1037, 67)
 					#end:case
 					case 51:
-						(ScriptID 1052 51)
+						kernel.ScriptID(1052, 51)
 					#end:case
 					case 41: global89#end:case
 					case 12:
-						(ScriptID 1066 12)
+						kernel.ScriptID(1066, 12)
 					#end:case
 					case 24:
-						(ScriptID 1029 24)
+						kernel.ScriptID(1029, 24)
 					#end:case
 					case 91: global89#end:case
 					case 49:
-						(ScriptID 1058 49)
+						kernel.ScriptID(1058, 49)
 					#end:case
 					case 90: global89#end:case
 					case 39:
-						(ScriptID 1043 39)
+						kernel.ScriptID(1043, 39)
 					#end:case
 					case 76:
-						(ScriptID 1055 76)
+						kernel.ScriptID(1055, 76)
 					#end:case
 					case 18:
-						(ScriptID 1030 18)
+						kernel.ScriptID(1030, 18)
 					#end:case
 					case 31:
-						(ScriptID 1030 31)
+						kernel.ScriptID(1030, 31)
 					#end:case
 					case 52:
-						(ScriptID 490 52)
+						kernel.ScriptID(490, 52)
 					#end:case
 				#end:match
 			)
@@ -1397,7 +1347,7 @@ class kq6DoVerbCode(Code):
 			case 
 				(and
 					((kq6ApproachCode doit: param1) == -32768)
-					(Message 0 (param2 modNum:) (param2 noun:) 0 0 1)
+					kernel.Message(0, (param2 modNum:), (param2 noun:), 0, 0, 1)
 				):
 				(global91 say: (param2 noun:) 0 0 0 0 (param2 modNum:))
 			#end:case
@@ -1426,7 +1376,7 @@ class kq6FtrInit(Code):
 		if 
 			(and
 				((param1 onMeCheck:) != 26505)
-				(not (IsObject (param1 onMeCheck:)))
+				(not kernel.IsObject((param1 onMeCheck:)))
 			)
 			(param1 state: (| (param1 state:) 0x0004))
 		#endif
@@ -1603,7 +1553,7 @@ class icon5(Kq6IconItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 907 1) init: global0)
+		(kernel.ScriptID(907, 1) init: global0)
 	#end:method
 
 #end:class or instance
@@ -1632,8 +1582,8 @@ class icon6(Kq6IconItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((Cursor hidden:) and ((MemoryInfo 0) >= 1500)):
-			((ScriptID 903) init: show: dispose:)
+		if ((Cursor hidden:) and (kernel.MemoryInfo(0) >= 1500)):
+			(kernel.ScriptID(903) init: show: dispose:)
 		else:
 			(global91 say: 7 0 15 0 0 0)
 		#endif

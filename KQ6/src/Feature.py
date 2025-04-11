@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 950
 import sci_sh
+import kernel
 import Main
 import PolyPath
 import System
@@ -22,12 +23,9 @@ class CueObj(Script):
 			case 1:
 				(global0
 					setHeading:
-						(GetAngle
-							(global0 x:)
-							(global0 y:)
-							(client x:)
-							(client y:)
-						)
+						kernel.GetAngle((global0 x:), (global0 y:), (client x:), (client
+							y:
+						))
 						self
 				)
 				(global78 add: self)
@@ -40,8 +38,8 @@ class CueObj(Script):
 				if 
 					(not
 						(and
-							(IsObject client)
-							(IsObject (client actions:))
+							kernel.IsObject(client)
+							kernel.IsObject((client actions:))
 							((client actions:) doVerb: theVerb)
 						)
 					)
@@ -115,7 +113,7 @@ class Feature(Obj):
 				temp1 = (global66 doit: param1[temp0])
 				(self _approachVerbs: (| (self _approachVerbs:) temp1))
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		#endif
 	#end:method
@@ -147,12 +145,7 @@ class Feature(Obj):
 						(global80 canControl:)
 						((global0 state:) & 0x0002)
 						(>
-							(GetDistance
-								(global0 x:)
-								(global0 y:)
-								approachX
-								approachY
-							)
+							kernel.GetDistance((global0 x:), (global0 y:), approachX, approachY)
 							approachDist
 						)
 						global66
@@ -194,7 +187,7 @@ class Feature(Obj):
 		if (modNum == -1):
 			modNum = global11
 		#endif
-		if (global90 and (Message 0 modNum noun param1 0 1)):
+		if (global90 and kernel.Message(0, modNum, noun, param1, 0, 1)):
 			(global91 say: noun param1 0 0 0 modNum)
 		else:
 			(temp0 doit: param1 self)
@@ -220,12 +213,10 @@ class Feature(Obj):
 		if 
 			(>
 				(= temp1
-					(Abs
-						(-
-							(GetAngle (temp0 x:) (temp0 y:) x y)
-							(temp0 heading:)
-						)
-					)
+					kernel.Abs((-
+						kernel.GetAngle((temp0 x:), (temp0 y:), x, y)
+						(temp0 heading:)
+					))
 				)
 				180
 			)
@@ -254,7 +245,7 @@ class Feature(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject param1):
+		if kernel.IsObject(param1):
 			temp0 = (param1 x:)
 			temp1 = (param1 y:)
 		else:
@@ -272,13 +263,13 @@ class Feature(Obj):
 								(<= nsTop temp1 nsBottom)
 							)
 						)
-						(onMeCheck & (OnControl 4 temp0 temp1))
+						(onMeCheck & kernel.OnControl(4, temp0, temp1))
 					else:
 						0
 					#endif
 				#end:case
-				case (IsObject onMeCheck):
-					(AvoidPath temp0 temp1 onMeCheck)
+				case kernel.IsObject(onMeCheck):
+					kernel.AvoidPath(temp0, temp1, onMeCheck)
 				#end:case
 				case 
 					(or
@@ -301,8 +292,8 @@ class Feature(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		(state |= 0x0001)
-		name = (Memory 1 ((StrLen param1) + 1))
-		(StrCpy name param1)
+		name = kernel.Memory(1, (kernel.StrLen(param1) + 1))
+		kernel.StrCpy(name, param1)
 	#end:method
 
 	@classmethod
@@ -324,7 +315,7 @@ class Feature(Obj):
 				while (temp0 < (argc - 1)): # inline for
 					(onMeCheck |= param2[temp0])
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				(state |= 0x0004)
 			#end:case
@@ -340,13 +331,13 @@ class Feature(Obj):
 			(actions dispose:)
 			actions = 0
 		#endif
-		if ((IsObject onMeCheck) and (not (state & 0x0004))):
+		if (kernel.IsObject(onMeCheck) and (not (state & 0x0004))):
 			(onMeCheck dispose:)
 			onMeCheck = 0
 		#endif
 		(global32 delete: self)
 		if (state & 0x0001):
-			(Memory 3 name)
+			kernel.Memory(3, name)
 			name = 0
 		#endif
 		(super dispose:)

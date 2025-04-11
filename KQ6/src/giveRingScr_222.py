@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 222
 import sci_sh
+import kernel
 import Main
 import n913
 import Scaler
@@ -50,17 +51,17 @@ class giveRingScr(Script):
 				(global91 say: 5 70 register 2 self)
 			#end:case
 			case 5:
-				((ScriptID 220 3) setCycle: Beg self)
+				(kernel.ScriptID(220, 3) setCycle: Beg self)
 			#end:case
 			case 6:
-				((ScriptID 220 3)
+				(kernel.ScriptID(220, 3)
 					view: 725
 					setCycle: Walk
 					setMotion: MoveTo 99 119 self
 				)
 			#end:case
 			case 7:
-				((ScriptID 220 3) setHeading: 90 self)
+				(kernel.ScriptID(220, 3) setHeading: 90 self)
 			#end:case
 			case 8:
 				cycles = 2
@@ -83,12 +84,12 @@ class giveRingScr(Script):
 			#end:case
 			case 13:
 				(global0 reset: 7)
-				((ScriptID 220 4) setCycle: Beg)
-				((ScriptID 220 3) setHeading: 0 self)
+				(kernel.ScriptID(220, 4) setCycle: Beg)
+				(kernel.ScriptID(220, 3) setHeading: 0 self)
 			#end:case
 			case 14:
 				(global0 loop: 3)
-				(self setScript: (ScriptID 220 1) self 0)
+				(self setScript: kernel.ScriptID(220, 1) self 0)
 			#end:case
 			case 15:
 				seconds = 4
@@ -97,18 +98,18 @@ class giveRingScr(Script):
 				(script cue:)
 			#end:case
 			case 17:
-				((ScriptID 220 6) init: setMotion: MoveTo 105 94 self)
+				(kernel.ScriptID(220, 6) init: setMotion: MoveTo 105 94 self)
 			#end:case
 			case 18:
-				((ScriptID 220 6)
+				(kernel.ScriptID(220, 6)
 					setPri: -1
 					setScale: Scaler 100 94 189 95
 					setMotion: MoveTo 117 111 self
 				)
 			#end:case
 			case 19:
-				if (not (((ScriptID 220 6) loop:) == 2)):
-					((ScriptID 220 6) setHeading: 0 self)
+				if (not ((kernel.ScriptID(220, 6) loop:) == 2)):
+					(kernel.ScriptID(220, 6) setHeading: 0 self)
 				else:
 					(self cue:)
 				#endif
@@ -126,10 +127,10 @@ class giveRingScr(Script):
 				(global91 say: 5 70 14 8 self)
 			#end:case
 			case 24:
-				((ScriptID 220 6) setMotion: MoveTo 109 93 self)
+				(kernel.ScriptID(220, 6) setMotion: MoveTo 109 93 self)
 			#end:case
 			case 25:
-				((ScriptID 220 6) cue:)
+				(kernel.ScriptID(220, 6) cue:)
 				(global0
 					setSpeed: 10
 					ignoreActors:
@@ -145,11 +146,11 @@ class giveRingScr(Script):
 				)
 			#end:case
 			case 27:
-				(self setScript: (ScriptID 220 2) self)
+				(self setScript: kernel.ScriptID(220, 2) self)
 			#end:case
 			case 28:
 				(global1 handsOn:)
-				(proc913_1 72)
+				proc913_1(72)
 				(global2 newRoom: 150)
 			#end:case
 		#end:match
@@ -161,7 +162,7 @@ class giveRingScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 222)
+		kernel.DisposeScript(222)
 	#end:method
 
 #end:class or instance

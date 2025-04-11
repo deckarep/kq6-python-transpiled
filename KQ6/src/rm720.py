@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 720
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -82,16 +83,16 @@ class rm720(CastleRoom):
 			add: statue ceiling theWindows floorOrCeiling
 			eachElementDo: #init
 		)
-		((ScriptID 80 5) noun: 5)
-		((ScriptID 80 6) noun: 5)
-		((ScriptID 81 0)
+		(kernel.ScriptID(80, 5) noun: 5)
+		(kernel.ScriptID(80, 6) noun: 5)
+		(kernel.ScriptID(81, 0)
 			guard1Code: path1Code
 			guard2Code: path1Code
 			setupGuards:
 		)
-		if ((ScriptID 81 0) tstFlag: 709 4):
-			((ScriptID 80 0) weddingRemind: 0)
-			((ScriptID 80 5)
+		if (kernel.ScriptID(81, 0) tstFlag: 709 4):
+			(kernel.ScriptID(80, 0) weddingRemind: 0)
+			(kernel.ScriptID(80, 5)
 				setMotion: 0
 				posn: 131 154 0
 				loop: 3
@@ -99,7 +100,7 @@ class rm720(CastleRoom):
 				init:
 				setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
 			)
-			((ScriptID 80 6)
+			(kernel.ScriptID(80, 6)
 				setMotion: 0
 				posn: 140 146 0
 				loop: 2
@@ -126,9 +127,9 @@ class rm720(CastleRoom):
 				(hiddenDoor startUpd: cel: 7 stopUpd:)
 				(global0 posn: 48 144)
 				(self setScript: closeDoor)
-				if ((ScriptID 80 0) tstFlag: 710 256):
-					((ScriptID 80 0) setFlag: 711 512)
-					((ScriptID 80 0) weddingRemind: 121)
+				if (kernel.ScriptID(80, 0) tstFlag: 710 256):
+					(kernel.ScriptID(80, 0) setFlag: 711 512)
+					(kernel.ScriptID(80, 0) weddingRemind: 121)
 				#endif
 			#end:case
 			case 840:
@@ -140,25 +141,25 @@ class rm720(CastleRoom):
 		#end:match
 		if 
 			(and
-				(global5 contains: (ScriptID 80 6))
-				(IsObject ((ScriptID 80 6) regPathID:))
-				((ScriptID 80 6) mover:)
-				((((ScriptID 80 6) regPathID:) value:) < 6)
+				(global5 contains: kernel.ScriptID(80, 6))
+				kernel.IsObject((kernel.ScriptID(80, 6) regPathID:))
+				(kernel.ScriptID(80, 6) mover:)
+				(((kernel.ScriptID(80, 6) regPathID:) value:) < 6)
 			)
 			(guardDoor cel: 4)
-			((ScriptID 80 6) posn: 108 142)
-			(((ScriptID 80 6) regPathID:) value: 6 moveDone:)
+			(kernel.ScriptID(80, 6) posn: 108 142)
+			((kernel.ScriptID(80, 6) regPathID:) value: 6 moveDone:)
 		#endif
 		((global0 scaler:) doit:)
 		if 
 			(and
 				local1
-				(not ((ScriptID 81 0) tstFlag: 709 4))
-				(not ((ScriptID 81 0) tstFlag: 709 1))
-				(not ((ScriptID 81 0) tstFlag: 709 2))
-				(not (Random 0 5))
+				(not (kernel.ScriptID(81, 0) tstFlag: 709 4))
+				(not (kernel.ScriptID(81, 0) tstFlag: 709 1))
+				(not (kernel.ScriptID(81, 0) tstFlag: 709 2))
+				(not kernel.Random(0, 5))
 			)
-			((ScriptID 81 0) setFlag: 709 1 loiterTimer: 1)
+			(kernel.ScriptID(81, 0) setFlag: 709 1 loiterTimer: 1)
 		#endif
 		if (not script):
 			(global1 handsOn:)
@@ -181,7 +182,7 @@ class rm720(CastleRoom):
 				#endif
 			#end:case
 			case 6:
-				if (not ((ScriptID 81 0) tstFlag: 709 4)):
+				if (not (kernel.ScriptID(81, 0) tstFlag: 709 4)):
 					if (param2 == 7):
 						(global91 say: 10 0 22)
 					else:
@@ -191,28 +192,28 @@ class rm720(CastleRoom):
 			#end:case
 			case 1:
 				(cond
-					case (((ScriptID 80 0) weddingMusicCount:) >= 3):
-						if (((ScriptID 80 0) weddingMusicCount:) >= 4):
+					case ((kernel.ScriptID(80, 0) weddingMusicCount:) >= 3):
+						if ((kernel.ScriptID(80, 0) weddingMusicCount:) >= 4):
 							(global1 handsOff:)
-							((ScriptID 81 0) setFlag: 709 2)
+							(kernel.ScriptID(81, 0) setFlag: 709 2)
 						else:
 							temp1 = 33
-							((ScriptID 80 0) weddingRemind: 15)
+							(kernel.ScriptID(80, 0) weddingRemind: 15)
 						#endif
 					#end:case
-					case (not ((ScriptID 80 0) weddingMusicCount:)):
+					case (not (kernel.ScriptID(80, 0) weddingMusicCount:)):
 						temp1 = 28
 					#end:case
 					else:
 						temp1 = 29
 					#end:else
 				)
-				((ScriptID 81 0) warnUser: param1 10 0 temp1)
+				(kernel.ScriptID(81, 0) warnUser: param1 10 0 temp1)
 			#end:case
 			case 4:
-				if (not ((ScriptID 81 0) tstFlag: 709 4)):
-					((ScriptID 81 0) clrFlag: 709 2)
-					((ScriptID 80 6) dispose:)
+				if (not (kernel.ScriptID(81, 0) tstFlag: 709 4)):
+					(kernel.ScriptID(81, 0) clrFlag: 709 2)
+					(kernel.ScriptID(80, 6) dispose:)
 					(global91 say: 10 0 23)
 				#endif
 			#end:case
@@ -230,12 +231,12 @@ class rm720(CastleRoom):
 		if 
 			(and
 				(param1 == 840)
-				(((ScriptID 80 0) weddingMusicCount:) >= 3)
-				(not ((ScriptID 81 0) tstFlag: 709 2))
+				((kernel.ScriptID(80, 0) weddingMusicCount:) >= 3)
+				(not (kernel.ScriptID(81, 0) tstFlag: 709 2))
 			)
-			((ScriptID 81 0) setFlag: 709 2)
-			((ScriptID 80 0)
-				weddingRemind: (((ScriptID 80 0) weddingRemind:) + 9)
+			(kernel.ScriptID(81, 0) setFlag: 709 2)
+			(kernel.ScriptID(80, 0)
+				weddingRemind: ((kernel.ScriptID(80, 0) weddingRemind:) + 9)
 			)
 		#endif
 		(super newRoom: param1)
@@ -247,7 +248,7 @@ class rm720(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 964)
+		kernel.DisposeScript(964)
 	#end:method
 
 	@classmethod
@@ -256,12 +257,12 @@ class rm720(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 87 908):
+			case proc999_5(param1, 87, 908):
 				if 
 					(or
-						((ScriptID 81 0) tstFlag: 709 1)
-						((ScriptID 81 0) tstFlag: 709 2)
-						((ScriptID 81 0) tstFlag: 709 4)
+						(kernel.ScriptID(81, 0) tstFlag: 709 1)
+						(kernel.ScriptID(81, 0) tstFlag: 709 2)
+						(kernel.ScriptID(81, 0) tstFlag: 709 4)
 					)
 					(global91 say: 1 14 1 0 0 899)
 					return 0
@@ -271,8 +272,8 @@ class rm720(CastleRoom):
 			#end:case
 			case 
 				(or
-					((ScriptID 81 0) tstFlag: 709 1)
-					((ScriptID 81 0) tstFlag: 709 2)
+					(kernel.ScriptID(81, 0) tstFlag: 709 1)
+					(kernel.ScriptID(81, 0) tstFlag: 709 2)
 				):
 				(global91 say: 0 0 6 0 0 899)
 				return 0
@@ -296,8 +297,8 @@ class enterGuardDoor(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 81 0) resetGuard: (ScriptID 80 5) 1)
-				((ScriptID 81 0) resetGuard: (ScriptID 80 6) 2)
+				(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
+				(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
 				(global91 say: 4 5 4 1 self)
 			#end:case
 			case 1:
@@ -316,7 +317,7 @@ class enterGuardDoor(Script):
 				ticks = 90
 			#end:case
 			case 5:
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					init:
 					setScale:
 						Scaler
@@ -331,20 +332,20 @@ class enterGuardDoor(Script):
 				)
 			#end:case
 			case 6:
-				((ScriptID 80 5) setMotion: MoveTo 107 140 self)
+				(kernel.ScriptID(80, 5) setMotion: MoveTo 107 140 self)
 			#end:case
 			case 7:
 				(global91 say: 4 5 4 3 self)
 			#end:case
 			case 8:
 				(global1 handsOff:)
-				(proc913_4 global0 (ScriptID 80 5) self)
+				proc913_4(global0, kernel.ScriptID(80, 5), self)
 			#end:case
 			case 9:
 				cycles = 4
 			#end:case
 			case 10:
-				((ScriptID 80 5) setScript: (ScriptID 80 4))
+				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4))
 			#end:case
 		#end:match
 	#end:method
@@ -364,16 +365,16 @@ class captureEgo(Script):
 				(global1 handsOff:)
 				if 
 					(and
-						(global5 contains: (ScriptID 80 5))
-						(global5 contains: (ScriptID 80 6))
-						(IsObject ((ScriptID 80 5) regPathID:))
+						(global5 contains: kernel.ScriptID(80, 5))
+						(global5 contains: kernel.ScriptID(80, 6))
+						kernel.IsObject((kernel.ScriptID(80, 5) regPathID:))
 						(==
-							(((ScriptID 80 5) regPathID:) currentRoom:)
+							((kernel.ScriptID(80, 5) regPathID:) currentRoom:)
 							global11
 						)
-						(IsObject ((ScriptID 80 6) regPathID:))
+						kernel.IsObject((kernel.ScriptID(80, 6) regPathID:))
 						(==
-							(((ScriptID 80 6) regPathID:) currentRoom:)
+							((kernel.ScriptID(80, 6) regPathID:) currentRoom:)
 							global11
 						)
 					)
@@ -385,13 +386,13 @@ class captureEgo(Script):
 				(global91 say: 10 0 16 1 self)
 			#end:case
 			case 2:
-				(proc913_4 register global0 self)
+				proc913_4(register, global0, self)
 			#end:case
 			case 3:
 				(global91 say: 10 0 16 2 self)
 			#end:case
 			case 4:
-				(register setScript: (ScriptID 80 4) self 1)
+				(register setScript: kernel.ScriptID(80, 4) self 1)
 			#end:case
 			case 5:
 				(global91 say: 10 0 16 3 self)
@@ -473,10 +474,10 @@ class arm(View):
 				#end:case
 				case 5:
 					(cond
-						case (not ((ScriptID 80 0) tstFlag: 709 -32768)):
+						case (not (kernel.ScriptID(80, 0) tstFlag: 709 -32768)):
 							(global91 say: noun param1 9)
 						#end:case
-						case ((ScriptID 80 0) tstFlag: 709 2):
+						case (kernel.ScriptID(80, 0) tstFlag: 709 2):
 							(global91 say: noun param1 7)
 						#end:case
 						else:
@@ -531,9 +532,9 @@ class openSecretDoor(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 80 5) okToCheck: 0 setMotion: 0)
-				((ScriptID 80 6) okToCheck: 0 setMotion: 0)
-				if (not ((ScriptID 80 0) tstFlag: 711 2)):
+				(kernel.ScriptID(80, 5) okToCheck: 0 setMotion: 0)
+				(kernel.ScriptID(80, 6) okToCheck: 0 setMotion: 0)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 2)):
 					(global1 givePoints: 2)
 					(global91 say: 8 5 5 1 self)
 				else:
@@ -575,20 +576,20 @@ class openSecretDoor(Script):
 				if 
 					(or
 						(and
-							(global5 contains: (ScriptID 80 5))
+							(global5 contains: kernel.ScriptID(80, 5))
 							(==
-								(((ScriptID 80 5) regPathID:) currentRoom:)
+								((kernel.ScriptID(80, 5) regPathID:) currentRoom:)
 								global11
 							)
-							temp0 = (ScriptID 80 5)
+							temp0 = kernel.ScriptID(80, 5)
 						)
 						(and
-							(global5 contains: (ScriptID 80 6))
+							(global5 contains: kernel.ScriptID(80, 6))
 							(==
-								(((ScriptID 80 6) regPathID:) currentRoom:)
+								((kernel.ScriptID(80, 6) regPathID:) currentRoom:)
 								global11
 							)
-							temp0 = (ScriptID 80 6)
+							temp0 = kernel.ScriptID(80, 6)
 						)
 					)
 					(global2 spotEgo: temp0)
@@ -597,8 +598,8 @@ class openSecretDoor(Script):
 				#endif
 			#end:case
 			case 6:
-				if (not ((ScriptID 80 0) tstFlag: 711 2)):
-					((ScriptID 80 0) setFlag: 711 2)
+				if (not (kernel.ScriptID(80, 0) tstFlag: 711 2)):
+					(kernel.ScriptID(80, 0) setFlag: 711 2)
 					(global91 say: 8 5 5 2 self)
 				else:
 					cycles = 1
@@ -660,7 +661,7 @@ class hiddenDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		return ((super onMe: param1) and ((ScriptID 80 0) tstFlag: 711 2))
+		return ((super onMe: param1) and (kernel.ScriptID(80, 0) tstFlag: 711 2))
 	#end:method
 
 	@classmethod
@@ -702,8 +703,8 @@ class guardDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = ((ScriptID 80 5) onControl: 1)
-		temp1 = ((ScriptID 80 6) onControl: 1)
+		temp0 = (kernel.ScriptID(80, 5) onControl: 1)
+		temp1 = (kernel.ScriptID(80, 6) onControl: 1)
 		(super doit:)
 		if (not cycler):
 			(cond
@@ -712,19 +713,19 @@ class guardDoor(Prop):
 						(not cel)
 						(or
 							(and
-								((ScriptID 81 0) tstFlag: 709 1)
-								(IsObject ((ScriptID 80 5) regPathID:))
+								(kernel.ScriptID(81, 0) tstFlag: 709 1)
+								kernel.IsObject((kernel.ScriptID(80, 5) regPathID:))
 								(==
-									(((ScriptID 80 5) regPathID:) currentRoom:)
+									((kernel.ScriptID(80, 5) regPathID:) currentRoom:)
 									global11
 								)
 								(temp0 & 0x4000)
 							)
 							(and
-								((ScriptID 81 0) tstFlag: 709 2)
-								(IsObject ((ScriptID 80 6) regPathID:))
+								(kernel.ScriptID(81, 0) tstFlag: 709 2)
+								kernel.IsObject((kernel.ScriptID(80, 6) regPathID:))
 								(==
-									(((ScriptID 80 6) regPathID:) currentRoom:)
+									((kernel.ScriptID(80, 6) regPathID:) currentRoom:)
 									global11
 								)
 								(temp1 & 0x4000)
@@ -738,19 +739,19 @@ class guardDoor(Prop):
 						cel
 						(or
 							(and
-								((ScriptID 81 0) tstFlag: 709 1)
-								(IsObject ((ScriptID 80 5) regPathID:))
+								(kernel.ScriptID(81, 0) tstFlag: 709 1)
+								kernel.IsObject((kernel.ScriptID(80, 5) regPathID:))
 								(==
-									(((ScriptID 80 5) regPathID:) currentRoom:)
+									((kernel.ScriptID(80, 5) regPathID:) currentRoom:)
 									global11
 								)
 								(not (temp0 & 0x4000))
 							)
 							(and
-								((ScriptID 81 0) tstFlag: 709 2)
-								(IsObject ((ScriptID 80 6) regPathID:))
+								(kernel.ScriptID(81, 0) tstFlag: 709 2)
+								kernel.IsObject((kernel.ScriptID(80, 6) regPathID:))
 								(==
-									(((ScriptID 80 6) regPathID:) currentRoom:)
+									((kernel.ScriptID(80, 6) regPathID:) currentRoom:)
 									global11
 								)
 								(not (temp1 & 0x4000))
@@ -895,7 +896,7 @@ class path1Code(Code):
 		temp0 = 0
 		if 
 			(or
-				(not (IsObject (param1 regPathID:)))
+				(not kernel.IsObject((param1 regPathID:)))
 				(((param1 regPathID:) currentRoom:) == global11)
 			)
 			temp0 = (>= 320 (param1 x:) 0)

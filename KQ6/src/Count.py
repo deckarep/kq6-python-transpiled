@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 965
 import sci_sh
+import kernel
 
 # Public Export Declarations
 SCI.public_exports(
@@ -16,14 +17,14 @@ def proc965_0(param1 = None, param2 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp1 = (FirstNode (param1 elements:))
+	temp1 = kernel.FirstNode((param1 elements:))
 	temp0 = 0
 	while temp1:
 
-		if (param2 doit: (NodeValue temp1) &rest):
-			temp0++
+		if (param2 doit: kernel.NodeValue(temp1) &rest):
+			temp0.post('++')
 		#endif
-		temp1 = (NextNode temp1)
+		temp1 = kernel.NextNode(temp1)
 	#end:loop
 	return temp0
 #end:procedure

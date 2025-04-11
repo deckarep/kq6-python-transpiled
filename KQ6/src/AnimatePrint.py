@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 371
 import sci_sh
+import kernel
 import Main
 import Print
 
@@ -36,7 +37,7 @@ class AnimatePrint(Print):
 		argc = sum(v is not None for v in locals().values())
 
 		width = 230
-		theLength = ((Message 2 global11 param1 param2 param3 param4) / 12)
+		theLength = (kernel.Message(2, global11, param1, param2, param3, param4) / 12)
 		(super addText: param1 param2 param3 param4 &rest)
 	#end:method
 

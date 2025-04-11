@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 999
 import sci_sh
+import kernel
 import Main
 import Print
 
@@ -113,7 +114,7 @@ def proc999_5(param1 = None, param2 = None):
 			return (param1 or 1)
 		#endif
 		# for:reinit
-		temp0++
+		temp0.post('++')
 	#end:loop
 	return 0
 #end:procedure
@@ -123,7 +124,7 @@ def proc999_6(param1 = None, param2 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	(Memory 5 (param1 + (2 * param2)))
+	kernel.Memory(5, (param1 + (2 * param2)))
 #end:procedure
 
 @SCI.procedure
@@ -141,7 +142,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Clone self)
+		kernel.Clone(self)
 	#end:method
 
 	@classmethod
@@ -160,7 +161,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DisposeClone self)
+		kernel.DisposeClone(self)
 	#end:method
 
 	@classmethod
@@ -168,7 +169,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(StrCpy param1 name)
+		kernel.StrCpy(param1, name)
 	#end:method
 
 	@classmethod
@@ -176,7 +177,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc921_0 (self showStr: @temp0))
+		proc921_0((self showStr: @temp0))
 	#end:method
 
 	@classmethod
@@ -192,7 +193,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(RespondsTo self param1)
+		kernel.RespondsTo(self, param1)
 	#end:method
 
 	@classmethod
@@ -225,7 +226,7 @@ class Obj
 				)
 				(and
 					temp0 = (self -super-:)
-					(IsObject temp0)
+					kernel.IsObject(temp0)
 					(temp0 isKindOf: param1)
 				)
 			)
@@ -267,7 +268,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Format param1 999 0 name size)
+		kernel.Format(param1, 999, 0, name, size)
 	#end:method
 
 	@classmethod
@@ -275,7 +276,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc921_0 (self showStr: @temp0))
+		proc921_0((self showStr: @temp0))
 		(self eachElementDo: #showSelf)
 	#end:method
 
@@ -285,16 +286,16 @@ class Collect(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not elements):
-			elements = (NewList)
+			elements = kernel.NewList()
 		#endif
 		temp1 = 0
 		while (temp1 < argc): # inline for
 			if (not (self isDuplicate: param1[temp1])):
-				(AddToEnd elements (NewNode param1[temp1] param1[temp1]))
-				size++
+				kernel.AddToEnd(elements, kernel.NewNode(param1[temp1], param1[temp1]))
+				size.post('++')
 			#endif
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 		return self
 	#end:method
@@ -306,11 +307,11 @@ class Collect(Obj):
 
 		temp0 = 0
 		while (temp0 < argc): # inline for
-			if (DeleteKey elements param1[temp0]):
-				size--
+			if kernel.DeleteKey(elements, param1[temp0]):
+				size.post('--')
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		return self
 	#end:method
@@ -322,7 +323,7 @@ class Collect(Obj):
 
 		if elements:
 			(self eachElementDo: #dispose)
-			(DisposeList elements)
+			kernel.DisposeList(elements)
 		#endif
 		size = elements = 0
 		(super dispose:)
@@ -333,7 +334,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(FirstNode elements)
+		kernel.FirstNode(elements)
 	#end:method
 
 	@classmethod
@@ -341,7 +342,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(NextNode param1)
+		kernel.NextNode(param1)
 	#end:method
 
 	@classmethod
@@ -349,7 +350,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		return ((elements == 0) or (EmptyList elements))
+		return ((elements == 0) or kernel.EmptyList(elements))
 	#end:method
 
 	@classmethod
@@ -357,7 +358,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(FindKey elements param1)
+		kernel.FindKey(elements, param1)
 	#end:method
 
 	@classmethod
@@ -365,10 +366,10 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (FirstNode elements)
+		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
-			temp1 = (NextNode temp0)
-			if (not (IsObject temp2 = (NodeValue temp0))):
+			temp1 = kernel.NextNode(temp0)
+			if (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))):
 				return
 			#endif
 			(temp2 param1: &rest)
@@ -382,10 +383,10 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (FirstNode elements)
+		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
-			temp1 = (NextNode temp0)
-			temp2 = (NodeValue temp0)
+			temp1 = kernel.NextNode(temp0)
+			temp2 = kernel.NodeValue(temp0)
 			if (temp2 param1: &rest):
 				return temp2
 			#endif
@@ -400,10 +401,10 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (FirstNode elements)
+		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
-			temp1 = (NextNode temp0)
-			temp2 = (NodeValue temp0)
+			temp1 = kernel.NextNode(temp0)
+			temp2 = kernel.NodeValue(temp0)
 			if (not (temp2 param1: &rest)):
 				return 0
 			#endif
@@ -418,10 +419,10 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (FirstNode elements)
+		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
-			temp1 = (NextNode temp0)
-			(self delete: (NodeValue temp0))
+			temp1 = kernel.NextNode(temp0)
+			(self delete: kernel.NodeValue(temp0))
 			# for:reinit
 			temp0 = temp1
 		#end:loop
@@ -444,7 +445,7 @@ class List(Collect):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Format param1 999 1 name size)
+		kernel.Format(param1, 999, 1, name, size)
 	#end:method
 
 	@classmethod
@@ -453,17 +454,17 @@ class List(Collect):
 		argc = sum(v is not None for v in locals().values())
 
 		
-			(temp0 = (FirstNode elements))
+			(temp0 = kernel.FirstNode(elements))
 			(param1 and temp0)
-			(temp0 = (NextNode temp0))
+			(temp0 = kernel.NextNode(temp0))
 			
-			param1--
+			param1.post('--')
 			# for:reinit
-			temp0 = (NextNode temp0)
+			temp0 = kernel.NextNode(temp0)
 		#end:loop
 		(return
 			if temp0:
-				(NodeValue temp0)
+				kernel.NodeValue(temp0)
 			else:
 				0
 			#endif
@@ -475,7 +476,7 @@ class List(Collect):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(LastNode elements)
+		kernel.LastNode(elements)
 	#end:method
 
 	@classmethod
@@ -483,7 +484,7 @@ class List(Collect):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(PrevNode param1)
+		kernel.PrevNode(param1)
 	#end:method
 
 	@classmethod
@@ -492,16 +493,16 @@ class List(Collect):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not elements):
-			elements = (NewList)
+			elements = kernel.NewList()
 		#endif
 		temp0 = (argc - 1)
 		while (0 <= temp0): # inline for
 			if (not (self isDuplicate: param1[temp0])):
-				(AddToFront elements (NewNode param1[temp0] param1[temp0]))
-				size++
+				kernel.AddToFront(elements, kernel.NewNode(param1[temp0], param1[temp0]))
+				size.post('++')
 			#endif
 			# for:reinit
-			temp0--
+			temp0.post('--')
 		#end:loop
 		return self
 	#end:method
@@ -512,16 +513,16 @@ class List(Collect):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not elements):
-			elements = (NewList)
+			elements = kernel.NewList()
 		#endif
 		temp0 = 0
 		while (temp0 < argc): # inline for
 			if (not (self isDuplicate: param1[temp0])):
-				(AddToEnd elements (NewNode param1[temp0] param1[temp0]))
-				size++
+				kernel.AddToEnd(elements, kernel.NewNode(param1[temp0], param1[temp0]))
+				size.post('++')
 			#endif
 			# for:reinit
-			temp0++
+			temp0.post('++')
 		#end:loop
 		return self
 	#end:method
@@ -531,22 +532,20 @@ class List(Collect):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if temp2 = (FindKey elements param1):
-			argc--
+		if temp2 = kernel.FindKey(elements, param1):
+			argc.post('--')
 			temp0 = 0
 			while (temp0 < argc): # inline for
 				if (not (self isDuplicate: param2[temp0])):
 					(= temp2
-						(AddAfter
-							elements
-							temp2
-							(NewNode param2[temp0] param2[temp0])
-						)
+						kernel.AddAfter(elements, temp2, kernel.NewNode([param2
+							temp0
+						], param2[temp0]))
 					)
-					size++
+					size.post('++')
 				#endif
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 		#endif
 		return self
@@ -558,14 +557,14 @@ class List(Collect):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = 0
-		temp1 = (FirstNode elements)
+		temp1 = kernel.FirstNode(elements)
 		while temp1: # inline for
-			if (param1 == (NodeValue temp1)):
+			if (param1 == kernel.NodeValue(temp1)):
 				return temp0
 			#endif
-			temp0++
+			temp0.post('++')
 			# for:reinit
-			temp1 = (NextNode temp1)
+			temp1 = kernel.NextNode(temp1)
 		#end:loop
 		return -1
 	#end:method
@@ -579,7 +578,7 @@ class Set(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Format param1 999 2 name size)
+		kernel.Format(param1, 999, 2, name, size)
 	#end:method
 
 	@classmethod
@@ -599,14 +598,14 @@ class EventHandler(Set):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp3 = (Clone param1)
+		temp3 = kernel.Clone(param1)
 		
-			(temp0 = (FirstNode elements))
+			(temp0 = kernel.FirstNode(elements))
 			(temp0 and (not (temp3 claimed:)))
 			(temp0 = temp1)
 			
-			temp1 = (NextNode temp0)
-			(breakif (not (IsObject temp2 = (NodeValue temp0))))
+			temp1 = kernel.NextNode(temp0)
+			(breakif (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))))
 			(temp2 handleEvent: temp3)
 			# for:reinit
 			temp0 = temp1
@@ -644,20 +643,20 @@ class Script(Obj):
 		#endif
 		(cond
 			case cycles:
-				if (not cycles--):
+				if (not cycles.post('--')):
 					(self cue:)
 				#endif
 			#end:case
 			case seconds:
-				temp0 = (GetTime 1)
+				temp0 = kernel.GetTime(1)
 				if (lastSeconds != temp0):
 					lastSeconds = temp0
-					if (not seconds--):
+					if (not seconds.post('--')):
 						(self cue:)
 					#endif
 				#endif
 			#end:case
-			case (ticks and ((ticks -= (Abs (global88 - lastTicks))) <= 0)):
+			case (ticks and ((ticks -= kernel.Abs((global88 - lastTicks))) <= 0)):
 				ticks = 0
 				(self cue:)
 			#end:case
@@ -689,20 +688,20 @@ class Script(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
-		if (IsObject timer):
+		if kernel.IsObject(timer):
 			(timer dispose:)
 		#endif
-		if (IsObject client):
+		if kernel.IsObject(client):
 			(client
 				script:
 					(= temp0
 						(cond
-							case (IsObject next): next#end:case
+							case kernel.IsObject(next): next#end:case
 							case next:
-								(ScriptID next)
+								kernel.ScriptID(next)
 							#end:case
 						)
 					)
@@ -717,7 +716,7 @@ class Script(Obj):
 				#end:else
 			)
 		#endif
-		if ((IsObject caller) and (global13 == global11)):
+		if (kernel.IsObject(caller) and (global13 == global11)):
 			(caller cue: register)
 		#endif
 		script = timer = client = next = caller = 0
@@ -747,7 +746,7 @@ class Script(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject script):
+		if kernel.IsObject(script):
 			(script dispose:)
 		#endif
 		if param1:
@@ -784,7 +783,7 @@ class Event(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = (super new:)
-		(GetEvent (param1 if argc else 32767) temp0)
+		kernel.GetEvent((param1 if argc else 32767), temp0)
 		return temp0
 	#end:method
 
@@ -794,16 +793,16 @@ class Event(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not (type & 0x4000)):
-			temp0 = (GetPort)
+			temp0 = kernel.GetPort()
 			(cond
 				case (not port):
-					(GlobalToLocal self)
+					kernel.GlobalToLocal(self)
 				#end:case
 				case (port != temp0):
-					(SetPort port)
-					(LocalToGlobal self)
-					(SetPort temp0)
-					(GlobalToLocal self)
+					kernel.SetPort(port)
+					kernel.LocalToGlobal(self)
+					kernel.SetPort(temp0)
+					kernel.GlobalToLocal(self)
 				#end:case
 			)
 			port = temp0
@@ -817,15 +816,15 @@ class Event(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not (type & 0x4000)):
-			temp0 = (GetPort)
+			temp0 = kernel.GetPort()
 			(cond
 				case (port == temp0):
-					(LocalToGlobal self)
+					kernel.LocalToGlobal(self)
 				#end:case
 				case port:
-					(SetPort port)
-					(LocalToGlobal self)
-					(SetPort temp0)
+					kernel.SetPort(port)
+					kernel.LocalToGlobal(self)
+					kernel.SetPort(temp0)
 				#end:case
 			)
 			port = 0
@@ -852,9 +851,9 @@ class Cursor(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if (hotSpotX or hotSpotY):
-			(SetCursor view loop cel hotSpotX hotSpotY)
+			kernel.SetCursor(view, loop, cel, hotSpotX, hotSpotY)
 		else:
-			(SetCursor view loop cel)
+			kernel.SetCursor(view, loop, cel)
 		#endif
 	#end:method
 
@@ -863,7 +862,7 @@ class Cursor(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(SetCursor param1 param2)
+		kernel.SetCursor(param1, param2)
 	#end:method
 
 	@classmethod
@@ -901,7 +900,7 @@ class Cursor(Obj):
 
 		if argc:
 			hidden = param1
-			(SetCursor hidden)
+			kernel.SetCursor(hidden)
 		#endif
 	#end:method
 

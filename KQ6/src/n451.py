@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 451
 import sci_sh
+import kernel
 import Main
 import rm450
 import n913
@@ -53,7 +54,7 @@ class boreTheOyster(Script):
 				(global0 setMotion: PolyPath 132 141 self)
 			#end:case
 			case 3:
-				(proc913_1 59)
+				proc913_1(59)
 				(global0
 					view: 451
 					loop: 0
@@ -78,7 +79,7 @@ class boreTheOyster(Script):
 			#end:case
 			case 6:
 				(OI init:)
-				((ScriptID 450 1) hide: view: 2002)
+				(kernel.ScriptID(450, 1) hide: view: 2002)
 				(global0 dispose:)
 				seconds = 3
 			#end:case
@@ -193,7 +194,7 @@ class boreTheOyster(Script):
 			#end:case
 			case 31:
 				(OI dispose:)
-				((ScriptID 450 1)
+				(kernel.ScriptID(450, 1)
 					view: 4531
 					setLoop: 2
 					show:
@@ -227,19 +228,19 @@ class boreTheOyster(Script):
 			case 34:
 				(global0 reset: 1 posn: 132 141)
 				(global2 notify:)
-				((ScriptID 40 0) oysterDozing: 1)
+				(kernel.ScriptID(40, 0) oysterDozing: 1)
 				cycles = 6
 			#end:case
 			case 35:
-				(proc913_2 59)
+				proc913_2(59)
 				(global1 handsOn:)
-				(DisposeScript 1038)
-				(proc450_8 0)
+				kernel.DisposeScript(1038)
+				proc450_8(0)
 				cycles = 4
 			#end:case
 			case 36:
 				(self dispose:)
-				(DisposeScript 451)
+				kernel.DisposeScript(451)
 			#end:case
 		#end:match
 	#end:method
@@ -281,8 +282,8 @@ class grabPearl(Script):
 			#end:case
 			case 6:
 				(OI dispose:)
-				(proc913_2 59)
-				((ScriptID 450 1)
+				proc913_2(59)
+				(kernel.ScriptID(450, 1)
 					view: 4531
 					setLoop: 2
 					cel: 0
@@ -310,7 +311,7 @@ class grabPearl(Script):
 			case 8:
 				(global104 number: 963 setLoop: 1 play:)
 				(global2 notify:)
-				((ScriptID 40 0) oysterDozing: 1)
+				(kernel.ScriptID(40, 0) oysterDozing: 1)
 				(global0
 					view: 451
 					loop: 0
@@ -330,12 +331,12 @@ class grabPearl(Script):
 			case 11:
 				(global1 handsOn:)
 				(global104 setLoop: 5 play:)
-				(proc450_8 0)
+				proc450_8(0)
 				cycles = 4
 			#end:case
 			case 12:
 				(self dispose:)
-				(proc958_0 0 1038 451)
+				proc958_0(0, 1038, 451)
 			#end:case
 		#end:match
 	#end:method

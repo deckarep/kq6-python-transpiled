@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1029
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -33,11 +34,11 @@ class The_Vizier(Kq6Talker):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc913_0 59):
+			case proc913_0(59):
 				(self cel: 1)
 				(super init: 0 0 0 &rest)
 			#end:case
-			case (proc913_0 99):
+			case proc913_0(99):
 				(self cel: 1 x: 135 y: 43 talkWidth: 150 textX: -44 textY: 53)
 				(super init: 0 0 wedMouth &rest)
 			#end:case
@@ -89,7 +90,7 @@ class tBust(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(self cel: 1)
 		#endif
 		(super init: &rest)
@@ -110,7 +111,7 @@ class tEyes(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 59):
+		if proc913_0(59):
 			(self cel: 1)
 		#endif
 		(super init: &rest)

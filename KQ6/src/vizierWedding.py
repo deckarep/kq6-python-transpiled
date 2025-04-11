@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 742
 import sci_sh
+import kernel
 import Main
 import n913
 import Scaler
@@ -46,7 +47,7 @@ class vizierWedding(Script):
 				((param1 type:) & 0x1040)
 			)
 			if ((param1 y:) < (global0 y:)):
-				((ScriptID 740 7) add: -1 3 3 23 1)
+				(kernel.ScriptID(740, 7) add: -1 3 3 23 1)
 				(client setScript: stopWedding)
 			else:
 				(client setScript: triedToEscape)
@@ -75,9 +76,9 @@ class vizierWedding(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 1005 28) talkWidth: 87 textX: 60 textY: 23)
-				((ScriptID 740 2) init:)
-				((ScriptID 80 5)
+				(kernel.ScriptID(1005, 28) talkWidth: 87 textX: 60 textY: 23)
+				(kernel.ScriptID(740, 2) init:)
+				(kernel.ScriptID(80, 5)
 					view: 7425
 					loop: 0
 					cel: 0
@@ -94,7 +95,7 @@ class vizierWedding(Script):
 					noun: 12
 					stopUpd:
 				)
-				((ScriptID 80 6)
+				(kernel.ScriptID(80, 6)
 					view: 7426
 					loop: 0
 					cel: 0
@@ -111,8 +112,8 @@ class vizierWedding(Script):
 					noun: 12
 					stopUpd:
 				)
-				if (not (proc913_0 10)):
-					((ScriptID 740 4)
+				if (not proc913_0(10)):
+					(kernel.ScriptID(740, 4)
 						view: 746
 						loop: 0
 						cel: 0
@@ -121,26 +122,26 @@ class vizierWedding(Script):
 						stopUpd:
 					)
 				#endif
-				((ScriptID 740 1) init: cel: 4 setCycle: Beg self)
+				(kernel.ScriptID(740, 1) init: cel: 4 setCycle: Beg self)
 			#end:case
 			case 1:
 				(global91 say: 1 0 3 1 self)
 			#end:case
 			case 2:
-				((ScriptID 740 2) setCycle: End self)
+				(kernel.ScriptID(740, 2) setCycle: End self)
 			#end:case
 			case 3:
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 1 0 3 2 self)
 			#end:case
 			case 4:
-				(proc913_2 59)
-				((ScriptID 740 2) cel: 2)
-				((ScriptID 740 1) setScript: preachPriest)
+				proc913_2(59)
+				(kernel.ScriptID(740, 2) cel: 2)
+				(kernel.ScriptID(740, 1) setScript: preachPriest)
 				cycles = 10
 			#end:case
 			case 5:
-				((ScriptID 740 2) stopUpd:)
+				(kernel.ScriptID(740, 2) stopUpd:)
 				(global91 say: 1 0 3 3 self oneOnly: 0)
 			#end:case
 			case 6:
@@ -153,7 +154,7 @@ class vizierWedding(Script):
 			#end:case
 			case 7:
 				(global1 handsOff:)
-				(client setScript: (ScriptID 744 1))
+				(client setScript: kernel.ScriptID(744, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -169,7 +170,7 @@ class stopWedding(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 964)
+		kernel.DisposeScript(964)
 	#end:method
 
 	@classmethod
@@ -180,19 +181,19 @@ class stopWedding(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 740 7) init: self)
+				(kernel.ScriptID(740, 7) init: self)
 			#end:case
 			case 1:
-				((ScriptID 740 1) setScript: 0 setCycle: Beg)
-				((ScriptID 740 2) setCycle: End self)
+				(kernel.ScriptID(740, 1) setScript: 0 setCycle: Beg)
+				(kernel.ScriptID(740, 2) setCycle: End self)
 			#end:case
 			case 2:
 				cycles = 10
 			#end:case
 			case 3:
-				((ScriptID 740 2) setCycle: Beg)
+				(kernel.ScriptID(740, 2) setCycle: Beg)
 				(global0 setSpeed: 8 setStep: 5 3 setMotion: MoveTo 158 146)
-				((ScriptID 740 5)
+				(kernel.ScriptID(740, 5)
 					view: 7361
 					setSpeed: 8
 					setStep: 5 3
@@ -200,12 +201,12 @@ class stopWedding(Script):
 				)
 			#end:case
 			case 4:
-				((ScriptID 740 5) setHeading: 0)
+				(kernel.ScriptID(740, 5) setHeading: 0)
 				cycles = 10
 			#end:case
 			case 5:
 				(global0 reset: 6)
-				(client setScript: (ScriptID 745 0))
+				(client setScript: kernel.ScriptID(745, 0))
 			#end:case
 		#end:match
 	#end:method
@@ -234,10 +235,10 @@ class genieScr(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: (ScriptID 752 2) self (ScriptID 740 3))
+				(self setScript: kernel.ScriptID(752, 2) self kernel.ScriptID(740, 3))
 			#end:case
 			case 1:
-				((ScriptID 740 3)
+				(kernel.ScriptID(740, 3)
 					loop: 8
 					cel: 4
 					x: 109
@@ -249,10 +250,10 @@ class genieScr(Script):
 				seconds = 3
 			#end:case
 			case 2:
-				(self setScript: (ScriptID 752 1) self (ScriptID 740 3))
+				(self setScript: kernel.ScriptID(752, 1) self kernel.ScriptID(740, 3))
 			#end:case
 			case 3:
-				(UnLoad 128 7501)
+				kernel.UnLoad(128, 7501)
 				if (not local0):
 					(global91 say: 1 0 6 8 self)
 				else:
@@ -263,14 +264,14 @@ class genieScr(Script):
 				if (not local0):
 					(= global106
 						match global106
-							case (ScriptID 740 5):
-								((ScriptID 80 5) view: 7421 yourself:)
+							case kernel.ScriptID(740, 5):
+								(kernel.ScriptID(80, 5) view: 7421 yourself:)
 							#end:case
-							case (ScriptID 80 5):
-								((ScriptID 80 6) view: 7422 yourself:)
+							case kernel.ScriptID(80, 5):
+								(kernel.ScriptID(80, 6) view: 7422 yourself:)
 							#end:case
 							else:
-								(ScriptID 740 5)
+								kernel.ScriptID(740, 5)
 							#end:else
 						#end:match
 					)
@@ -285,42 +286,42 @@ class genieScr(Script):
 				(global106 setCycle: End self)
 			#end:case
 			case 5:
-				if (global106 != (ScriptID 740 5)):
+				if (global106 != kernel.ScriptID(740, 5)):
 					(global106
 						setLoop: 1
 						cel: 0
 						setCycle: Walk
 						setMotion:
 							MoveTo
-							((ScriptID 740 3) x:)
-							((ScriptID 740 3) y:)
+							(kernel.ScriptID(740, 3) x:)
+							(kernel.ScriptID(740, 3) y:)
 					)
 				#endif
 				cycles = 1
 			#end:case
 			case 6:
-				(self setScript: (ScriptID 752 0) self (ScriptID 740 3))
+				(self setScript: kernel.ScriptID(752, 0) self kernel.ScriptID(740, 3))
 			#end:case
 			case 7:
 				if (not local0):
-					if (not (proc999_5 global106 (ScriptID 80 6) global0)):
+					if (not proc999_5(global106, kernel.ScriptID(80, 6), global0)):
 						(state -= 4)
 					#endif
-					if (not (HaveMouse)):
+					if (not kernel.HaveMouse()):
 						seconds = 4
 					else:
 						seconds = 2
 					#endif
 				else:
 					if (global106 == global0):
-						state++
+						state.post('++')
 					#endif
 					ticks = 5
 				#endif
 			#end:case
 			case 8:
 				if register:
-					(proc0_1 18)
+					proc0_1(18)
 				else:
 					(global1 handsOff:)
 					(global91 say: 1 0 8 0 self)
@@ -329,7 +330,7 @@ class genieScr(Script):
 			case 9:
 				global106 = global0
 				global156 = 0
-				(self setScript: (ScriptID 752 0) 0 (ScriptID 740 3))
+				(self setScript: kernel.ScriptID(752, 0) 0 kernel.ScriptID(740, 3))
 			#end:case
 		#end:match
 	#end:method
@@ -367,18 +368,18 @@ class genieReappears(Script):
 
 		match state = param1
 			case 0:
-				(UnLoad 128 748)
+				kernel.UnLoad(128, 748)
 				(global105 number: 943 loop: 1 play:)
-				((ScriptID 740 2)
+				(kernel.ScriptID(740, 2)
 					view: 7414
 					setLoop: 0
 					cel: 0
-					setPri: (((ScriptID 740 8) priority:) + 1)
+					setPri: ((kernel.ScriptID(740, 8) priority:) + 1)
 					setCycle: End self
 				)
 			#end:case
 			case 1:
-				((ScriptID 740 2)
+				(kernel.ScriptID(740, 2)
 					view: 7413
 					loop: 0
 					cel: 0
@@ -388,7 +389,7 @@ class genieReappears(Script):
 					cycleSpeed: (4 if (not global87) else 8)
 					stopUpd:
 				)
-				((ScriptID 740 3)
+				(kernel.ScriptID(740, 3)
 					view: 7021
 					loop: 8
 					cel: 4
@@ -406,7 +407,7 @@ class genieReappears(Script):
 				if (client == kingQueenEntry):
 					(king loop: 3 cel: 0 setCycle: End king)
 				#endif
-				((ScriptID 740 1)
+				(kernel.ScriptID(740, 1)
 					view: 7412
 					setLoop: 0
 					cel: 0
@@ -414,26 +415,26 @@ class genieReappears(Script):
 					setPri: 0
 					setCycle: End self
 				)
-				if (not (proc913_0 10)):
-					((ScriptID 740 4)
+				if (not proc913_0(10)):
+					(kernel.ScriptID(740, 4)
 						startUpd:
 						view: 7465
 						setLoop: 0
 						cel: 0
 						cycleSpeed: 6
 						setPri: 13
-						setCycle: End (ScriptID 740 4)
+						setCycle: End kernel.ScriptID(740, 4)
 					)
 				#endif
-				(UnLoad 128 741)
-				(UnLoad 128 746)
-				(UnLoad 128 7414)
+				kernel.UnLoad(128, 741)
+				kernel.UnLoad(128, 746)
+				kernel.UnLoad(128, 7414)
 			#end:case
 			case 2:
 				cycles = 10
 			#end:case
 			case 3:
-				((ScriptID 740 1) addToPic:)
+				(kernel.ScriptID(740, 1) addToPic:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -455,7 +456,7 @@ class giveMint(Script):
 				cycles = 4
 			#end:case
 			case 1:
-				((ScriptID 740 2)
+				(kernel.ScriptID(740, 2)
 					view: 7415
 					setLoop: 0
 					cel: 0
@@ -467,7 +468,7 @@ class giveMint(Script):
 				(global91 say: 4 67 0 0 self 160)
 			#end:case
 			case 3:
-				(client setScript: (ScriptID 744 1))
+				(client setScript: kernel.ScriptID(744, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -488,7 +489,7 @@ class triedToEscape(Script):
 				(global91 say: 3 3 24 0 self)
 			#end:case
 			case 1:
-				(client setScript: (ScriptID 744 1) 0 1)
+				(client setScript: kernel.ScriptID(744, 1) 0 1)
 			#end:case
 		#end:match
 	#end:method
@@ -505,15 +506,15 @@ class preachPriest(Script):
 
 		match state = param1
 			case 0:
-				if (not ((ScriptID 740 1) cel:)):
-					((ScriptID 740 1) setLoop: (Random 0 1) setCycle: End self)
+				if (not (kernel.ScriptID(740, 1) cel:)):
+					(kernel.ScriptID(740, 1) setLoop: kernel.Random(0, 1) setCycle: End self)
 				else:
-					((ScriptID 740 1) setCycle: Beg self)
+					(kernel.ScriptID(740, 1) setCycle: Beg self)
 				#endif
 			#end:case
 			case 1:
 				state = -1
-				cycles = (Random 10 40)
+				cycles = kernel.Random(10, 40)
 			#end:case
 		#end:match
 	#end:method
@@ -575,12 +576,12 @@ class kingQueenEntry(Script):
 					ignoreActors:
 					setScale: Scaler 101 90 189 141
 				)
-				((ScriptID 740 2) view: 7414 setLoop: 0 cel: 0)
+				(kernel.ScriptID(740, 2) view: 7414 setLoop: 0 cel: 0)
 				cycles = 2
 			#end:case
 			case 1:
 				(global69 enable:)
-				(proc913_4 global0 king self)
+				proc913_4(global0, king, self)
 			#end:case
 			case 2:
 				seconds = 3
@@ -602,7 +603,7 @@ class kingQueenEntry(Script):
 					setScale: 0
 					setCycle: End self
 				)
-				(UnLoad 128 7441)
+				kernel.UnLoad(128, 7441)
 			#end:case
 			case 6:
 				(king stopUpd:)
@@ -612,7 +613,7 @@ class kingQueenEntry(Script):
 				(global91 say: 1 0 7 3 self)
 			#end:case
 			case 8:
-				((ScriptID 740 2)
+				(kernel.ScriptID(740, 2)
 					view: 7415
 					setLoop: 0
 					cel: 0
@@ -621,18 +622,18 @@ class kingQueenEntry(Script):
 				)
 			#end:case
 			case 9:
-				((ScriptID 742 7) init: posn: 164 107 cel: 0 setCycle: End self)
+				(kernel.ScriptID(742, 7) init: posn: 164 107 cel: 0 setCycle: End self)
 			#end:case
 			case 10:
-				((ScriptID 742 7) dispose:)
+				(kernel.ScriptID(742, 7) dispose:)
 				cycles = 2
 			#end:case
 			case 11:
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 1 0 7 4 self)
 			#end:case
 			case 12:
-				(proc913_2 59)
+				proc913_2(59)
 				(global91 say: 1 0 7 5 self)
 			#end:case
 			case 13:
@@ -640,11 +641,11 @@ class kingQueenEntry(Script):
 			#end:case
 			case 14:
 				(global1 givePoints: 5)
-				((ScriptID 740 2) view: 7414 cel: 0)
+				(kernel.ScriptID(740, 2) view: 7414 cel: 0)
 				(global91 say: 1 0 7 7 self)
 			#end:case
 			case 15:
-				(self setScript: (ScriptID 742 4) self)
+				(self setScript: kernel.ScriptID(742, 4) self)
 			#end:case
 			case 16:
 				(global91 say: 1 0 7 8 self)
@@ -656,12 +657,12 @@ class kingQueenEntry(Script):
 				(global91 say: 1 0 7 10 self)
 			#end:case
 			case 19:
-				(proc958_0 0 1063 1029 1001)
-				(UnLoad 128 899)
-				(UnLoad 128 8992)
-				(UnLoad 128 891)
-				(UnLoad 128 890)
-				(self setScript: (ScriptID 740 23) self)
+				proc958_0(0, 1063, 1029, 1001)
+				kernel.UnLoad(128, 899)
+				kernel.UnLoad(128, 8992)
+				kernel.UnLoad(128, 891)
+				kernel.UnLoad(128, 890)
+				(self setScript: kernel.ScriptID(740, 23) self)
 			#end:case
 			case 20:
 				(global91 say: 1 0 7 11 self)
@@ -678,17 +679,17 @@ class kingQueenEntry(Script):
 							yourself:
 						)
 				)
-				(proc958_0 0 1004 1026)
-				(UnLoad 128 892)
-				(UnLoad 128 899)
-				(UnLoad 128 8921)
-				(UnLoad 128 8992)
-				(UnLoad 128 891)
-				(UnLoad 128 890)
-				((ScriptID 740 3) setScript: (ScriptID 742 5))
+				proc958_0(0, 1004, 1026)
+				kernel.UnLoad(128, 892)
+				kernel.UnLoad(128, 899)
+				kernel.UnLoad(128, 8921)
+				kernel.UnLoad(128, 8992)
+				kernel.UnLoad(128, 891)
+				kernel.UnLoad(128, 890)
+				(kernel.ScriptID(740, 3) setScript: kernel.ScriptID(742, 5))
 				(global1 handsOn:)
 				(self dispose:)
-				(DisposeScript 744)
+				kernel.DisposeScript(744)
 			#end:case
 		#end:match
 	#end:method

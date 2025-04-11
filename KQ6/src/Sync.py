@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 929
 import sci_sh
+import kernel
 import Main
 import Timer
 import Motion
@@ -22,7 +23,7 @@ class Sync(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DoSync 0 self param1 param2 param3 param4 param5)
+		kernel.DoSync(0, self, param1, param2, param3, param4, param5)
 		if (syncCue != -1):
 			prevCue = syncCue
 			syncTime = 0
@@ -37,14 +38,14 @@ class Sync(Obj):
 		if 
 			(and
 				(syncCue != -1)
-				((u<= syncTime global81) or (syncTime <= (DoAudio 6)))
+				((u<= syncTime global81) or (syncTime <= kernel.DoAudio(6)))
 			)
 			if ((0xfff0 & syncCue) == 0):
 				prevCue = (| (prevCue & 0xfff0) syncCue)
 			else:
 				prevCue = syncCue
 			#endif
-			(DoSync 1 self)
+			kernel.DoSync(1, self)
 		#endif
 	#end:method
 
@@ -54,7 +55,7 @@ class Sync(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		prevCue = -1
-		(DoSync 2)
+		kernel.DoSync(2)
 	#end:method
 
 #end:class or instance
@@ -80,7 +81,7 @@ class ScriptSync(Obj):
 			playing = 1
 			(global6 add: self)
 		#endif
-		(Timer setTicks: self (DoAudio 1 param1 param2 param3 param4 param5))
+		(Timer setTicks: self kernel.DoAudio(1, param1, param2, param3, param4, param5))
 	#end:method
 
 	@classmethod
@@ -108,7 +109,7 @@ class ScriptSync(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Animate (global5 elements:) 0)
+		kernel.Animate((global5 elements:), 0)
 		playing = 0
 		prevSignal = 32767
 		(global6 delete: self)
@@ -128,7 +129,7 @@ class MouthSync(Cycle):
 		argc = sum(v is not None for v in locals().values())
 
 		(super init: param1)
-		if (IsObject global82):
+		if kernel.IsObject(global82):
 			(global82 syncStop: dispose:)
 		#endif
 		(global82 = (Sync new:) syncStart: param2 param3 param4 param5 param6)

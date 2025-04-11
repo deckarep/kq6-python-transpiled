@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 11
 import sci_sh
+import kernel
 import Main
 import n913
 import Inset
@@ -38,9 +39,9 @@ class lampTradeScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 10 0) setIt: 16)
-				if (not ((ScriptID 10 0) isSet: 4)):
-					((ScriptID 10 0) setIt: 4)
+				(kernel.ScriptID(10, 0) setIt: 16)
+				if (not (kernel.ScriptID(10, 0) isSet: 4)):
+					(kernel.ScriptID(10, 0) setIt: 4)
 					register = 22
 				else:
 					register = 23
@@ -48,14 +49,14 @@ class lampTradeScr(Script):
 				(global91 say: 4 43 register 1 self 240)
 			#end:case
 			case 1:
-				((ScriptID 241 0) setPri: -1 loop: 6 cel: 0 setCycle: End self)
+				(kernel.ScriptID(241, 0) setPri: -1 loop: 6 cel: 0 setCycle: End self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
 				(global0 hide:)
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					view: 245
 					loop: 2
 					cel: 0
@@ -74,7 +75,7 @@ class lampTradeScr(Script):
 				cycles = 2
 			#end:case
 			case 6:
-				((ScriptID 241 0) hide:)
+				(kernel.ScriptID(241, 0) hide:)
 				(global0
 					show:
 					normal: 0
@@ -110,7 +111,7 @@ class lampTradeScr(Script):
 					cycles = 1
 				else:
 					(global0 reset: 1 loop: 9 cel: 1)
-					((ScriptID 241 0)
+					(kernel.ScriptID(241, 0)
 						show:
 						setScale: 0
 						view: 2431
@@ -125,7 +126,7 @@ class lampTradeScr(Script):
 			#end:case
 			case 13:
 				(global0 hide:)
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					show:
 					view: 245
 					loop: 1
@@ -140,25 +141,25 @@ class lampTradeScr(Script):
 				if (not local0):
 					(global91 say: 39 0 0 2 self 240)
 				else:
-					state++
+					state.post('++')
 					(self cue:)
 				#endif
 			#end:case
 			case 16:
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					setScale: 0
 					posn: 19 128
 					view: 2431
 					loop: 6
-					cel: ((ScriptID 241 0) lastCel:)
+					cel: (kernel.ScriptID(241, 0) lastCel:)
 					setCycle: Beg self
 				)
 				(global0 reset: 1)
 				(global1 handsOn:)
-				(client setScript: (ScriptID 241 1))
+				(client setScript: kernel.ScriptID(241, 1))
 			#end:case
 			case 17:
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					posn: 19 128
 					view: 243
 					loop: 0
@@ -200,19 +201,19 @@ class sealTheDealScr(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					moveSpeed: 3
 					cycleSpeed: 3
 					setMotion: PolyPath 274 187 self
 				)
-				(proc913_1 12)
+				proc913_1(12)
 			#end:case
 			case 4:
-				((ScriptID 241 0) loop: 0)
+				(kernel.ScriptID(241, 0) loop: 0)
 				cycles = 2
 			#end:case
 			case 5:
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					moveSpeed: 6
 					cycleSpeed: 6
 					view: 254
@@ -222,7 +223,7 @@ class sealTheDealScr(Script):
 				)
 			#end:case
 			case 6:
-				((ScriptID 241 0) loop: 1 cel: 0 setCycle: Fwd self)
+				(kernel.ScriptID(241, 0) loop: 1 cel: 0 setCycle: Fwd self)
 				seconds = 4
 			#end:case
 			case 7:
@@ -232,17 +233,17 @@ class sealTheDealScr(Script):
 				cycles = 3
 			#end:case
 			case 9:
-				((ScriptID 241 0) loop: 0 cel: ((ScriptID 241 0) lastCel:))
+				(kernel.ScriptID(241, 0) loop: 0 cel: (kernel.ScriptID(241, 0) lastCel:))
 				cycles = 2
 			#end:case
 			case 10:
-				((ScriptID 241 0) setCycle: Beg self)
+				(kernel.ScriptID(241, 0) setCycle: Beg self)
 			#end:case
 			case 11:
 				cycles = 2
 			#end:case
 			case 12:
-				((ScriptID 241 0)
+				(kernel.ScriptID(241, 0)
 					moveSpeed: 3
 					cycleSpeed: 3
 					view: 243
@@ -270,7 +271,7 @@ class talkToSellerScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				((ScriptID 241 0) loop: 0 cel: 0 setCycle: 0)
+				(kernel.ScriptID(241, 0) loop: 0 cel: 0 setCycle: 0)
 				if (register == -1):
 					(global0
 						view: 272
@@ -299,7 +300,7 @@ class talkToSellerScr(Script):
 			#end:case
 			case 5:
 				(global1 handsOn:)
-				(client setScript: (ScriptID 241 1))
+				(client setScript: kernel.ScriptID(241, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -319,7 +320,7 @@ class lampSellerInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		return (proc999_4 83 48 232 136 (param1 x:) (param1 y:))
+		return proc999_4(83, 48, 232, 136, (param1 x:), (param1 y:))
 	#end:method
 
 	@classmethod
@@ -377,7 +378,7 @@ class lamps(Feature):
 
 		(return
 			(= noun
-				match (OnControl 4 (param1 x:) (param1 y:))
+				match kernel.OnControl(4, (param1 x:), (param1 y:))
 					case 2:
 						(lampTradeScr register: 0)
 						((global9 at: 25)

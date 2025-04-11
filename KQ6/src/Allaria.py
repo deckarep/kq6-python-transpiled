@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1063
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -31,7 +32,7 @@ class Allaria(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 91):
+		if proc913_0(91):
 			(self view: 8993)
 			(tBust view: 8993)
 			(tEyes view: 8993)

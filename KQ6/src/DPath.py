@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 964
 import sci_sh
+import kernel
 import Motion
 import System
 
@@ -23,9 +24,9 @@ class DPath(Motion):
 			client = param1
 			temp0 = 0
 			while (temp0 <= (argc - 3)): # inline for
-				(points add: param2[temp0] param2[temp0++])
+				(points add: param2[temp0] param2[temp0.post('++')])
 				# for:reinit
-				temp0++
+				temp0.post('++')
 			#end:loop
 			if (temp0 <= (argc - 2)):
 				caller = param2[temp0]
@@ -44,7 +45,7 @@ class DPath(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (IsObject points):
+		if kernel.IsObject(points):
 			(points dispose:)
 		#endif
 		(super dispose:)
@@ -57,8 +58,8 @@ class DPath(Motion):
 
 		if ((points at: value) != -32768):
 			x = (points at: value)
-			y = (points at: value++)
-			value++
+			y = (points at: value.post('++'))
+			value.post('++')
 		#endif
 	#end:method
 

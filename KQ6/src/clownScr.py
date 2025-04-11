@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 224
 import sci_sh
+import kernel
 import Main
 import Scaler
 import PolyPath
@@ -43,7 +44,7 @@ class clownScr(Script):
 				(global91 say: 1 0 2 2 self)
 			#end:case
 			case 5:
-				(self setScript: (ScriptID 220 1) self 1)
+				(self setScript: kernel.ScriptID(220, 1) self 1)
 			#end:case
 			case 6:
 				(clown setMotion: MoveTo 117 109 self)
@@ -59,7 +60,7 @@ class clownScr(Script):
 				)
 			#end:case
 			case 9:
-				((ScriptID 10 0) clrIt: 2)
+				(kernel.ScriptID(10, 0) clrIt: 2)
 				(clown dispose:)
 				(script cue:)
 			#end:case
@@ -76,7 +77,7 @@ class clownScr(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 224)
+		kernel.DisposeScript(224)
 	#end:method
 
 #end:class or instance

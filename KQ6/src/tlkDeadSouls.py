@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1025
 import sci_sh
+import kernel
 import Main
 import Kq6Window
 import Talker
@@ -25,7 +26,7 @@ class tlkDeadSouls(Narrator):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((Random 0 100) > 50):
+		if (kernel.Random(0, 100) > 50):
 			(self x: 10)
 		#endif
 		font = global22

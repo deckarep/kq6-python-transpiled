@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 740
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -85,7 +86,7 @@ def proc740_10():
 		signal: 26624
 		addToPic:
 	)
-	if (proc913_0 15):
+	if proc913_0(15):
 		(caliphimallaria init: stopUpd:)
 		global164 = 105
 		global165 = 155
@@ -108,7 +109,7 @@ def proc740_10():
 		)
 		(grahamvalanice init: stopUpd:)
 		(rosella init: stopUpd:)
-		if ((ScriptID 80 0) tstFlag: 710 16):
+		if (kernel.ScriptID(80, 0) tstFlag: 710 16):
 			(druid1 init: stopUpd:)
 			(druid2 init: stopUpd:)
 			(druid3 init: stopUpd:)
@@ -186,7 +187,7 @@ class rm740(CastleRoom):
 				)
 		)
 		(global32 add: roomFeatures eachElementDo: #init)
-		if (and (global12 == 99) global100 (FileIO 10 r"""g""")):
+		if (and (global12 == 99) global100 kernel.FileIO(10, r"""g""")):
 			match
 				(Print
 					addText: r"""select:"""
@@ -202,10 +203,10 @@ class rm740(CastleRoom):
 							addButton: 0 r"""Yes""" 0 26
 							init:
 						)
-						((ScriptID 80 0) setFlag: 709 128)
+						(kernel.ScriptID(80, 0) setFlag: 709 128)
 					#endif
 					(global102 number: 701 setLoop: -1 play:)
-					((ScriptID 80 0) setFlag: 709 2)
+					(kernel.ScriptID(80, 0) setFlag: 709 2)
 					(global0 get: 24 get: 31)
 					((global9 at: 25) owner: 750)
 					((global9 at: 8) owner: 870)
@@ -217,13 +218,13 @@ class rm740(CastleRoom):
 			#end:match
 		#endif
 		if (global12 == 180):
-			if (and global100 (FileIO 10 r"""g""") (not (global102 handle:))):
+			if (and global100 kernel.FileIO(10, r"""g""") (not (global102 handle:))):
 				(global102 number: 743 setLoop: -1 play:)
 			#endif
 			if 
 				(and
 					global100
-					(FileIO 10 r"""g""")
+					kernel.FileIO(10, r"""g""")
 					(Print
 						addText: r"""Are Cassima's parents alive?"""
 						addButton: 0 r"""No""" 0 12
@@ -231,12 +232,12 @@ class rm740(CastleRoom):
 						init:
 					)
 				)
-				(proc913_1 15)
+				proc913_1(15)
 			#endif
 			if 
 				(and
 					global100
-					(FileIO 10 r"""g""")
+					kernel.FileIO(10, r"""g""")
 					(Print
 						addText: r"""genie status?"""
 						addButton: 0 r"""Killed with peppermint""" 0 12
@@ -249,7 +250,7 @@ class rm740(CastleRoom):
 			if 
 				(and
 					global100
-					(FileIO 10 r"""g""")
+					kernel.FileIO(10, r"""g""")
 					(Print
 						addText: r"""Found missing treasure?"""
 						addButton: 0 r"""No""" 0 12
@@ -257,12 +258,12 @@ class rm740(CastleRoom):
 						init:
 					)
 				)
-				((ScriptID 80 0) setFlag: 710 16)
+				(kernel.ScriptID(80, 0) setFlag: 710 16)
 			#endif
 			if 
 				(and
 					global100
-					(FileIO 10 r"""g""")
+					kernel.FileIO(10, r"""g""")
 					(Print
 						addText: r"""Befriended Court Clown?"""
 						addButton: 0 r"""No""" 0 12
@@ -270,9 +271,9 @@ class rm740(CastleRoom):
 						init:
 					)
 				)
-				(proc913_1 10)
+				proc913_1(10)
 			#endif
-			if (global100 and (FileIO 10 r"""g""")):
+			if (global100 and kernel.FileIO(10, r"""g""")):
 				while True: #repeat
 					match
 						(= temp1
@@ -299,7 +300,7 @@ class rm740(CastleRoom):
 			#endif
 			(super init: &rest)
 			(proc740_10)
-			(self setScript: (ScriptID 743 0))
+			(self setScript: kernel.ScriptID(743, 0))
 		else:
 			(super init: &rest)
 			(global0
@@ -313,7 +314,7 @@ class rm740(CastleRoom):
 					(global0 posn: 222 126)
 				#end:case
 				else:
-					if ((ScriptID 80 0) tstFlag: 709 2):
+					if (kernel.ScriptID(80, 0) tstFlag: 709 2):
 						(global0 posn: 131 180)
 						(saladin
 							posn: 147 187
@@ -322,16 +323,16 @@ class rm740(CastleRoom):
 							setCycle: StopWalk -1
 							setScale: Scaler 110 93 189 141
 						)
-						if (not (proc913_0 10)):
+						if (not proc913_0(10)):
 							(jollo init: stopUpd:)
 						#endif
-						((ScriptID 80 5) actions: guardsActions)
-						((ScriptID 80 6) actions: guardsActions)
+						(kernel.ScriptID(80, 5) actions: guardsActions)
+						(kernel.ScriptID(80, 6) actions: guardsActions)
 						(guard3 actions: guardsActions)
-						(self setScript: (ScriptID 742 0))
+						(self setScript: kernel.ScriptID(742, 0))
 					else:
 						(global0 posn: 128 185)
-						(self setScript: (ScriptID 741 0))
+						(self setScript: kernel.ScriptID(741, 0))
 					#endif
 				#end:else
 			#end:match
@@ -360,8 +361,8 @@ class rm740(CastleRoom):
 				)
 			)
 			(global1 handsOff:)
-			((ScriptID 740 7) add: -1 3 2 21 0)
-			(global2 setScript: (ScriptID 742 1))
+			(kernel.ScriptID(740, 7) add: -1 3 2 21 0)
+			(global2 setScript: kernel.ScriptID(742, 1))
 			(param1 claimed: 1)
 			(param1 claimed:)
 			return
@@ -414,7 +415,7 @@ class rm740(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (22 if ((ScriptID 80 0) tstFlag: 710 2048) else 21)
+		temp0 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
 		(return
 			match param1
 				case 1:
@@ -422,7 +423,7 @@ class rm740(CastleRoom):
 					1
 				#end:case
 				case 2:
-					((ScriptID 80 0) setFlag: 710 2048)
+					(kernel.ScriptID(80, 0) setFlag: 710 2048)
 					(global91 say: noun param1 temp0)
 					1
 				#end:case
@@ -440,12 +441,12 @@ class rm740(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 741)
-		(DisposeScript 742)
-		(DisposeScript 743)
-		(DisposeScript 964)
-		(DisposeScript 939)
-		(DisposeScript 752)
+		kernel.DisposeScript(741)
+		kernel.DisposeScript(742)
+		kernel.DisposeScript(743)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(939)
+		kernel.DisposeScript(752)
 	#end:method
 
 	@classmethod
@@ -454,7 +455,7 @@ class rm740(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		if (global90 == 2):
-			(global2 setScript: (ScriptID 52))
+			(global2 setScript: kernel.ScriptID(52))
 		else:
 			(global2 newRoom: 94)
 		#endif
@@ -497,7 +498,7 @@ class roomFeatures(Feature):
 				(or
 					(and
 						(&
-							temp0 = (OnControl 4 (param1 x:) (param1 y:))
+							temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 							0x0002
 						)
 						noun = 17
@@ -565,9 +566,9 @@ class vizier(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 2):
+		if proc999_5(param1, 5, 2):
 			(roomConv add: -1 noun param1 0 1)
-			(global2 setScript: (ScriptID 742 1))
+			(global2 setScript: kernel.ScriptID(742, 1))
 		else:
 			(super doVerb: param1 &rest)
 		#endif
@@ -610,7 +611,7 @@ class saladin(Actor):
 		if ((global66 doit: param1) == -32768):
 			param1 = 0
 		#endif
-		temp0 = (22 if ((ScriptID 80 0) tstFlag: 710 2048) else 21)
+		temp0 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
 		(global91 say: noun param1 temp0)
 	#end:method
 
@@ -654,14 +655,14 @@ class jollo(Prop):
 				(global91 say: 19 1 0 1)
 			#end:case
 			case 2:
-				if ((ScriptID 80 0) tstFlag: 710 2048):
+				if (kernel.ScriptID(80, 0) tstFlag: 710 2048):
 					(global91 say: 19 2 22 1)
 				else:
 					(global91 say: 19 2 21 1)
 				#endif
 			#end:case
 			case 5:
-				if ((ScriptID 80 0) tstFlag: 710 2048):
+				if (kernel.ScriptID(80, 0) tstFlag: 710 2048):
 					(global91 say: 19 5 22 1)
 				else:
 					(global91 say: 19 5 21 1)
@@ -695,7 +696,7 @@ class door(Prop):
 
 		match param1
 			case 5:
-				if ((ScriptID 80 0) tstFlag: 710 2048):
+				if (kernel.ScriptID(80, 0) tstFlag: 710 2048):
 					0
 				else:
 					(global91 say: noun param1 21)
@@ -731,7 +732,7 @@ class prince(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super cue:)
-		match local1++
+		match local1.post('++')
 			case 1:
 				(pTimer setReal: self 5)
 			#end:case
@@ -763,7 +764,7 @@ class beauty(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super cue:)
-		match local2++
+		match local2.post('++')
 			case 1:
 				(bTimer setCycle: self 5)
 			#end:case
@@ -879,12 +880,12 @@ class caliphimallaria(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super cue:)
-		match local5++
+		match local5.post('++')
 			case 1:
 				(self setCycle: Beg self)
 			#end:case
 			case 2:
-				(cTimer setReal: self (Random 2 4))
+				(cTimer setReal: self kernel.Random(2, 4))
 			#end:case
 			case 3:
 				local5 = 0
@@ -948,23 +949,23 @@ class leftGuard(Prop):
 			local4 = param1
 		#endif
 		param1 = 0
-		match local4++
+		match local4.post('++')
 			case 1:
-				(lgTimer setReal: self (Random 1 2))
+				(lgTimer setReal: self kernel.Random(1, 2))
 			#end:case
 			case 2:
 				(self cel: 2)
-				(lgTimer setReal: self (Random 1 2))
+				(lgTimer setReal: self kernel.Random(1, 2))
 			#end:case
 			case 3:
 				(self cel: 3)
-				(lgTimer setReal: self (Random 1 2))
+				(lgTimer setReal: self kernel.Random(1, 2))
 			#end:case
 			case 4:
 				(self setCycle: Beg self)
 			#end:case
 			case 5:
-				(lgTimer setReal: self (Random 2 3))
+				(lgTimer setReal: self kernel.Random(2, 3))
 			#end:case
 			case 6:
 				local4 = 0
@@ -998,23 +999,23 @@ class rightGuard(Prop):
 			local3 = param1
 		#endif
 		param1 = 0
-		match local3++
+		match local3.post('++')
 			case 1:
-				(rgTimer setReal: self (Random 1 2))
+				(rgTimer setReal: self kernel.Random(1, 2))
 			#end:case
 			case 2:
 				(self cel: 1)
-				(rgTimer setReal: self (Random 1 2))
+				(rgTimer setReal: self kernel.Random(1, 2))
 			#end:case
 			case 3:
 				(self cel: 2)
-				(rgTimer setReal: self (Random 1 2))
+				(rgTimer setReal: self kernel.Random(1, 2))
 			#end:case
 			case 4:
 				(self setCycle: Beg self)
 			#end:case
 			case 5:
-				(rgTimer setReal: self (Random 2 3))
+				(rgTimer setReal: self kernel.Random(2, 3))
 			#end:case
 			case 6:
 				local3 = 0
@@ -1090,7 +1091,7 @@ class guardsActions(Actions):
 		argc = sum(v is not None for v in locals().values())
 
 		temp0 = 1
-		temp1 = (22 if ((ScriptID 80 0) tstFlag: 710 2048) else 21)
+		temp1 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
 		(= temp2
 			if (((CueObj client:) modNum:) == -1):
 				global11
@@ -1098,7 +1099,7 @@ class guardsActions(Actions):
 				((CueObj client:) modNum:)
 			#endif
 		)
-		if (Message 0 temp2 ((CueObj client:) noun:) param1 temp1 1):
+		if kernel.Message(0, temp2, ((CueObj client:) noun:), param1, temp1, 1):
 			(global91 say: ((CueObj client:) noun:) param1 temp1)
 		else:
 			temp0 = 0
@@ -1158,7 +1159,7 @@ class theGreatEscape(Script):
 				cycles = 3
 			#end:case
 			case 3:
-				(UnLoad 128 7413)
+				kernel.UnLoad(128, 7413)
 				(global69 enable: 6)
 				(self dispose:)
 			#end:case

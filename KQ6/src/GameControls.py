@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 978
 import sci_sh
+import kernel
 import Main
 import Print
 import IconBar
@@ -25,7 +26,7 @@ class GameControls(IconBar):
 			(global77 stop:)
 		#endif
 		(state |= 0x0020)
-		if (IsObject window):
+		if kernel.IsObject(window):
 			(window open:)
 		else:
 			(= window
@@ -42,10 +43,10 @@ class GameControls(IconBar):
 		#endif
 		temp0 = 30
 		temp1 = 30
-		temp2 = (FirstNode elements)
+		temp2 = kernel.FirstNode(elements)
 		while temp2: # inline for
-			temp3 = (NextNode temp2)
-			if (not (IsObject temp4 = (NodeValue temp2))):
+			temp3 = kernel.NextNode(temp2)
+			if (not kernel.IsObject(temp4 = kernel.NodeValue(temp2))):
 				return
 			#endif
 			if ((not ((temp4 signal:) & 0x0080)) and ((temp4 nsRight:) <= 0)):
@@ -58,7 +59,7 @@ class GameControls(IconBar):
 			temp2 = temp3
 		#end:loop
 		if (not okButton):
-			okButton = (NodeValue (self first:))
+			okButton = kernel.NodeValue((self first:))
 		#endif
 		if curIcon:
 			(global1
@@ -89,7 +90,7 @@ class GameControls(IconBar):
 						temp1 = (self firstTrue: #onMe param1)
 						(temp1 helpVerb:)
 					)
-					temp2 = (GetPort)
+					temp2 = kernel.GetPort()
 					if (global38 respondsTo: #eraseOnly):
 						temp0 = (global38 eraseOnly:)
 						(global38 eraseOnly: 1)
@@ -122,7 +123,7 @@ class GameControls(IconBar):
 							init:
 						)
 					#endif
-					(SetPort temp2)
+					kernel.SetPort(temp2)
 				#endif
 				if helpIconItem:
 					(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
@@ -136,7 +137,7 @@ class GameControls(IconBar):
 						(cond
 							case 
 								(and
-									(IsObject highlightedIcon)
+									kernel.IsObject(highlightedIcon)
 									(highlightedIcon respondsTo: #retreat)
 								):
 								(highlightedIcon retreat:)
@@ -144,7 +145,7 @@ class GameControls(IconBar):
 							#end:case
 							case 
 								(or
-									(not (IsObject highlightedIcon))
+									(not kernel.IsObject(highlightedIcon))
 									((highlightedIcon signal:) & 0x0100)
 								):
 								(self advance:)
@@ -156,7 +157,7 @@ class GameControls(IconBar):
 						(cond
 							case 
 								(and
-									(IsObject highlightedIcon)
+									kernel.IsObject(highlightedIcon)
 									(highlightedIcon respondsTo: #advance)
 								):
 								(highlightedIcon advance:)
@@ -164,7 +165,7 @@ class GameControls(IconBar):
 							#end:case
 							case 
 								(or
-									(not (IsObject highlightedIcon))
+									(not kernel.IsObject(highlightedIcon))
 									((highlightedIcon signal:) & 0x0100)
 								):
 								(self retreat:)

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1057
 import sci_sh
+import kernel
 import Kq6Talker
 import n913
 import Actor
@@ -31,7 +32,7 @@ class Beast(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 113):
+		if proc913_0(113):
 			view = 8961
 			(tBust view: 8961)
 			(tMouth view: 8961 nsTop: 32 nsLeft: 30)

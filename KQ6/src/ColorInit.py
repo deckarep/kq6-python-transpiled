@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 902
 import sci_sh
+import kernel
 import Main
 import n913
 import System
@@ -22,30 +23,30 @@ class ColorInit(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((Graph 2) > 16):
-			(proc913_1 48)
-			global111 = (Palette 5 31 31 31)
-			global112 = (Palette 5 63 63 63)
-			global113 = (Palette 5 95 95 95)
-			global114 = (Palette 5 127 127 127)
-			global115 = (Palette 5 159 159 159)
-			global116 = (Palette 5 191 191 191)
-			global117 = (Palette 5 223 223 223)
-			global118 = (Palette 5 151 27 27)
-			global119 = (Palette 5 231 103 103)
-			global120 = (Palette 5 235 135 135)
-			global121 = (Palette 5 187 187 35)
-			global122 = (Palette 5 219 219 39)
-			global123 = (Palette 5 223 223 71)
-			global124 = (Palette 5 27 151 27)
-			global125 = (Palette 5 71 223 71)
-			global126 = (Palette 5 135 235 135)
-			global127 = (Palette 5 23 23 119)
-			global128 = (Palette 5 35 35 187)
-			global129 = (Palette 5 71 71 223)
-			global130 = (Palette 5 135 135 235)
-			global131 = (Palette 5 219 39 219)
-			global132 = (Palette 5 27 151 151)
+		if (kernel.Graph(2) > 16):
+			proc913_1(48)
+			global111 = kernel.Palette(5, 31, 31, 31)
+			global112 = kernel.Palette(5, 63, 63, 63)
+			global113 = kernel.Palette(5, 95, 95, 95)
+			global114 = kernel.Palette(5, 127, 127, 127)
+			global115 = kernel.Palette(5, 159, 159, 159)
+			global116 = kernel.Palette(5, 191, 191, 191)
+			global117 = kernel.Palette(5, 223, 223, 223)
+			global118 = kernel.Palette(5, 151, 27, 27)
+			global119 = kernel.Palette(5, 231, 103, 103)
+			global120 = kernel.Palette(5, 235, 135, 135)
+			global121 = kernel.Palette(5, 187, 187, 35)
+			global122 = kernel.Palette(5, 219, 219, 39)
+			global123 = kernel.Palette(5, 223, 223, 71)
+			global124 = kernel.Palette(5, 27, 151, 27)
+			global125 = kernel.Palette(5, 71, 223, 71)
+			global126 = kernel.Palette(5, 135, 235, 135)
+			global127 = kernel.Palette(5, 23, 23, 119)
+			global128 = kernel.Palette(5, 35, 35, 187)
+			global129 = kernel.Palette(5, 71, 71, 223)
+			global130 = kernel.Palette(5, 135, 135, 235)
+			global131 = kernel.Palette(5, 219, 39, 219)
+			global132 = kernel.Palette(5, 27, 151, 151)
 		else:
 			global111 = 0
 			global128 = 1

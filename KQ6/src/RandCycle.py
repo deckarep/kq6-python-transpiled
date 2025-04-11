@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 941
 import sci_sh
+import kernel
 import Main
 import Motion
 
@@ -25,10 +26,10 @@ class RandCycle(Cycle):
 		if reset:
 			(client cel: 0)
 		#endif
-		cycleCnt = (GetTime)
+		cycleCnt = kernel.GetTime()
 		if (argc >= 2):
 			if (param2 != -1):
-				count = ((GetTime) + param2)
+				count = (kernel.GetTime() + param2)
 			else:
 				count = -1
 			#endif
@@ -45,10 +46,10 @@ class RandCycle(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((count > temp0 = (GetTime)) or (count == -1)):
+		if ((count > temp0 = kernel.GetTime()) or (count == -1)):
 			if ((temp0 - cycleCnt) > (client cycleSpeed:)):
 				(client cel: (self nextCel:))
-				cycleCnt = (GetTime)
+				cycleCnt = kernel.GetTime()
 			#endif
 		else:
 			if reset:
@@ -64,8 +65,8 @@ class RandCycle(Cycle):
 		argc = sum(v is not None for v in locals().values())
 
 		(return
-			if ((NumCels client) != 1):
-				while (temp0 = (Random 0 (client lastCel:)) == (client cel:)):
+			if (kernel.NumCels(client) != 1):
+				while (temp0 = kernel.Random(0, (client lastCel:)) == (client cel:)):
 
 				#end:loop
 				temp0

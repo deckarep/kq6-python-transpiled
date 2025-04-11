@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 343
 import sci_sh
+import kernel
 import Main
 import n913
 import Polygon
@@ -19,7 +20,7 @@ def proc343_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	if (proc913_0 1):
+	if proc913_0(1):
 		(global2
 			addObstacle:
 				((Polygon new:)
@@ -362,6 +363,6 @@ def proc343_0():
 				)
 		)
 	#endif
-	(DisposeScript 343)
+	kernel.DisposeScript(343)
 #end:procedure
 

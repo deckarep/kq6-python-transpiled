@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 480
 import sci_sh
+import kernel
 import Main
 import CryBaby
 import n482
@@ -68,8 +69,8 @@ class rm480(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if ((global12 == 99) and (FileIO 10 r"""g""")):
-			(proc913_1 77)
+		if ((global12 == 99) and kernel.FileIO(10, r"""g""")):
+			proc913_1(77)
 			(global0 get: 14)
 			(global0 get: 22)
 			((global9 at: 33) owner: global11)
@@ -197,7 +198,7 @@ class rm480(KQ6Room):
 		)
 		(super init: &rest)
 		(global102 number: 480 setLoop: -1 play:)
-		((ScriptID 40 0) lampMsg: 15)
+		(kernel.ScriptID(40, 0) lampMsg: 15)
 		(global32
 			add:
 				sourGrapes
@@ -231,17 +232,17 @@ class rm480(KQ6Room):
 		(brat2 init:)
 		(brat3 init:)
 		(brat4 init:)
-		if ((proc913_0 77) and (((global9 at: 46) owner:) == global11)):
+		if (proc913_0(77) and (((global9 at: 46) owner:) == global11)):
 			(myTeaCup init: stopUpd:)
 			(glint init: hide:)
-			(glintTimer setReal: glint (Random 3 6))
+			(glintTimer setReal: glint kernel.Random(3, 6))
 		#endif
 		(global0 actions: fluteVerb init:)
 		(global2 setScript: egoEnters)
 		if (((global9 at: 18) owner:) == global11):
 			(hiw init:)
 		#endif
-		(Load 143 480)
+		kernel.Load(143, 480)
 	#end:method
 
 	@classmethod
@@ -258,10 +259,10 @@ class rm480(KQ6Room):
 			case (global0 inRect: 207 120 312 152):
 				(global0 setMotion: 0)
 				if ((global0 loop:) == 3):
-					((ScriptID 480 5) register: 1)
+					(kernel.ScriptID(480, 5) register: 1)
 					(global0 setScript: coverThatButtScr)
 				else:
-					((ScriptID 480 5) register: 1)
+					(kernel.ScriptID(480, 5) register: 1)
 					(global2 setScript: stepOnSnaps)
 				#endif
 			#end:case
@@ -270,15 +271,15 @@ class rm480(KQ6Room):
 					((global0 onControl: 1) == 4096)
 					((global0 onControl: 1) == 8192)
 				):
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: hanging 0 3)
 			#end:case
 			case 
 				(and
 					(global0 inRect: 194 80 300 100)
-					(not ((ScriptID 40 0) flowerDance:))
+					(not (kernel.ScriptID(40, 0) flowerDance:))
 				):
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: shyFlowers)
 			#end:case
 		)
@@ -300,8 +301,8 @@ class rm480(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 0 481 482 483 939 969)
-		((ScriptID 40 0) bottleSucker: 0)
+		proc958_0(0, 481, 482, 483, 939, 969)
+		(kernel.ScriptID(40, 0) bottleSucker: 0)
 		(super dispose:)
 	#end:method
 
@@ -315,7 +316,7 @@ class rm480(KQ6Room):
 				(wallFlowerDance cue:)
 			#end:case
 			case 0:
-				((ScriptID 40 0) flowerDance: 0)
+				(kernel.ScriptID(40, 0) flowerDance: 0)
 				(flower1 setLoop: 0 setCycle: Beg)
 				(flower2 setLoop: 1 setCycle: Beg)
 				(flower3 setLoop: 2 setCycle: Beg)
@@ -341,7 +342,7 @@ class rm480(KQ6Room):
 		(flower2 view: 4851 stopUpd:)
 		(flower3 view: 4851 stopUpd:)
 		(flower4 view: 4851 stopUpd:)
-		(UnLoad 128 4852)
+		kernel.UnLoad(128, 4852)
 		(snap setCycle: 0 stopUpd:)
 	#end:method
 
@@ -368,7 +369,7 @@ class hiw(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc913_0 159):
+		if proc913_0(159):
 			(self
 				setLoop: 4
 				cel: 5
@@ -390,34 +391,34 @@ class hiw(Actor):
 
 		match param1
 			case 1:
-				if (proc913_0 159):
+				if proc913_0(159):
 					(global91 say: 21 1 7 1)
 				else:
 					(wallFlowerDance register: 1)
 					local4 = 1
-					(proc482_2)
+					proc482_2()
 				#endif
 			#end:case
 			case 5:
 				(cond
 					case ((global2 script:) == wallFlowerDance):
-						(proc482_1)
+						proc482_1()
 					#end:case
-					case (proc913_0 159):
-						((ScriptID 40 0) grabAtHidingHole: 1)
+					case proc913_0(159):
+						(kernel.ScriptID(40, 0) grabAtHidingHole: 1)
 						(global0 setScript: walkToHoleScr)
 					#end:case
 					else:
-						(proc913_1 159)
+						proc913_1(159)
 						if (global8 contains: danceMusic):
 							(danceMusic fade: 10 10 0 1)
 						#endif
-						(proc482_0)
+						proc482_0()
 					#end:else
 				)
 			#end:case
 			case 2:
-				if (proc913_0 159):
+				if proc913_0(159):
 					(global91 say: 21 2 7 0)
 				else:
 					(global91 say: 21 2 8 0)
@@ -507,15 +508,15 @@ class snap(Prop):
 				(super doVerb: param1 &rest)
 			#end:case
 			case 5:
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: snappy 0 5)
 			#end:case
 			case 2:
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: talkToSnaps)
 			#end:case
 			else:
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: snappy 0 0)
 			#end:else
 		#end:match
@@ -536,7 +537,7 @@ class myBottle(Prop):
 
 		match param1
 			case 5:
-				(proc481_0)
+				proc481_0()
 			#end:case
 			case 43:
 				(global91 say: 9 43 17 1)
@@ -553,7 +554,7 @@ class myBottle(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(self setCycle: RandCycle)
-		((ScriptID 40 0) babyFed: 1)
+		(kernel.ScriptID(40, 0) babyFed: 1)
 		(super init:)
 	#end:method
 
@@ -590,7 +591,7 @@ class drinkBottle(View):
 		match param1
 			case 5:
 				(global1 givePoints: 1)
-				(proc483_0 0)
+				proc483_0(0)
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -620,7 +621,7 @@ class myTeaCup(View):
 		match param1
 			case 5:
 				(global1 givePoints: 1)
-				(proc483_0 1)
+				proc483_0(1)
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -659,7 +660,7 @@ class rotTomato(View):
 
 		match param1
 			case 1:
-				if ((ScriptID 40 0) tomoTalk:):
+				if (kernel.ScriptID(40, 0) tomoTalk:):
 					(global91 say: 6 1 12 1)
 				else:
 					(myConv
@@ -671,10 +672,10 @@ class rotTomato(View):
 				#endif
 			#end:case
 			case 2:
-				if ((ScriptID 40 0) tomoTalk:):
+				if (kernel.ScriptID(40, 0) tomoTalk:):
 					(global91 say: 6 2 28 1)
 				else:
-					((ScriptID 40 0) tomoTalk: 1)
+					(kernel.ScriptID(40, 0) tomoTalk: 1)
 					(myConv
 						add: -1 6 2 27 1
 						add: -1 6 2 27 2
@@ -688,7 +689,7 @@ class rotTomato(View):
 			#end:case
 			case 5:
 				(global0 get: 49)
-				(proc483_2 self)
+				proc483_2(self)
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -711,26 +712,26 @@ class lettuce(Feature):
 
 		match param1
 			case 1:
-				if (proc913_0 84):
+				if proc913_0(84):
 					(global91 say: 10 1 29 0)
 				else:
-					(proc913_1 84)
+					proc913_1(84)
 					(global91 say: 10 1 30 0)
 				#endif
 			#end:case
 			case 5:
 				(cond
 					case (not (global0 has: 21)):
-						(proc483_3 self)
+						proc483_3(self)
 					#end:case
-					case (((GetTime 1) - global157) < 150):
+					case ((kernel.GetTime(1) - global157) < 150):
 						(global91 say: 10 5 32 1)
 					#end:case
-					case (((GetTime 1) - global157) < 300):
-						(proc483_3 self)
+					case ((kernel.GetTime(1) - global157) < 300):
+						proc483_3(self)
 					#end:case
 					else:
-						(proc483_3 self)
+						proc483_3(self)
 					#end:else
 				)
 			#end:case
@@ -790,7 +791,7 @@ class flower1(Prop):
 
 		match param1
 			case 31:
-				if ((ScriptID 40 0) flowerDance:):
+				if (kernel.ScriptID(40, 0) flowerDance:):
 					(global91 say: 5 5 10 1)
 				else:
 					(global2 setScript: wallFlowerDance)
@@ -803,7 +804,7 @@ class flower1(Prop):
 				(super doVerb: param1 &rest)
 			#end:case
 			case 5:
-				if ((ScriptID 40 0) flowerDance:):
+				if (kernel.ScriptID(40, 0) flowerDance:):
 					(global91 say: 5 5 10 1)
 				else:
 					(super doVerb: param1 &rest)
@@ -981,10 +982,10 @@ class chokers(Feature):
 
 		match param1
 			case 5:
-				(proc483_4 5)
+				proc483_4(5)
 			#end:case
 			case 2:
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: talkToVines 0 self)
 			#end:case
 			else:
@@ -1021,11 +1022,11 @@ class sourGrapes(Feature):
 
 		match param1
 			case 2:
-				((ScriptID 480 5) register: 1)
+				(kernel.ScriptID(480, 5) register: 1)
 				(global0 setScript: talkToVines 0 self)
 			#end:case
 			case 5:
-				(proc483_1 self)
+				proc483_1(self)
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -1123,11 +1124,11 @@ class Brat(Feature):
 			#end:case
 			case 5:
 				(cond
-					case (((ScriptID 40 0) bottleSucker:) == (self bottleNum:)):
-						((ScriptID 480 5) register: 1)
-						(global0 setScript: (ScriptID 481 2) 0 myBottle)
+					case ((kernel.ScriptID(40, 0) bottleSucker:) == (self bottleNum:)):
+						(kernel.ScriptID(480, 5) register: 1)
+						(global0 setScript: kernel.ScriptID(481, 2) 0 myBottle)
 					#end:case
-					case (((ScriptID 40 0) lampMsg:) == 15):
+					case ((kernel.ScriptID(40, 0) lampMsg:) == 15):
 						(global91 say: 9 5 15 1 0 480)
 					#end:case
 					else:
@@ -1137,53 +1138,53 @@ class Brat(Feature):
 			#end:case
 			case 43:
 				(cond
-					case (((ScriptID 40 0) bottleSucker:) == (self bottleNum:)):
+					case ((kernel.ScriptID(40, 0) bottleSucker:) == (self bottleNum:)):
 						(global91 say: 9 43 17 1 0 480)
 					#end:case
-					case (not (proc913_0 77)):
+					case (not proc913_0(77)):
 						(global91 say: 9 43 21 1 0 480)
 					#end:case
-					case ((global161 & 0x0004) or (proc913_0 144)):
+					case ((global161 & 0x0004) or proc913_0(144)):
 						(global91 say: 9 43 20 1 0 480)
 					#end:case
 					case (global161 & 0x0001):
 						(global91 say: 9 43 13 1 0 480)
 					#end:case
 					case (global161 & 0x0002):
-						(proc481_3 (self bottleNum:))
+						proc481_3((self bottleNum:))
 					#end:case
-					case (((ScriptID 40 0) lampMsg:) == 15):
+					case ((kernel.ScriptID(40, 0) lampMsg:) == 15):
 						(global91 say: 9 43 15 1 0 480)
 					#end:case
 					else:
-						(proc481_3 (self bottleNum:))
+						proc481_3((self bottleNum:))
 					#end:else
 				)
 			#end:case
 			case 1:
-				if (((ScriptID 40 0) lampMsg:) == 15):
-					(global91 say: 9 1 ((ScriptID 40 0) lampMsg:) 1 0 480)
+				if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
+					(global91 say: 9 1 (kernel.ScriptID(40, 0) lampMsg:) 1 0 480)
 				else:
 					(global91 say: 9 1 16 1 0 480)
 				#endif
 			#end:case
 			case 2:
-				if (((ScriptID 40 0) lampMsg:) == 15):
-					(global91 say: 9 2 ((ScriptID 40 0) lampMsg:) 0 0 480)
+				if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
+					(global91 say: 9 2 (kernel.ScriptID(40, 0) lampMsg:) 0 0 480)
 				else:
 					(global91 say: 9 2 16 0 0 480)
 				#endif
 			#end:case
 			case 62:
 				(global0 put: 22 480)
-				(proc481_1 (self bottleNum:))
+				proc481_1((self bottleNum:))
 			#end:case
 			case 44:
 				(cond
-					case (((ScriptID 40 0) bottleSucker:) == (self bottleNum:)):
+					case ((kernel.ScriptID(40, 0) bottleSucker:) == (self bottleNum:)):
 						(global91 say: 9 44 17 1 0 480)
 					#end:case
-					case (not (proc913_0 77)):
+					case (not proc913_0(77)):
 						(global91 say: 9 44 21 1 0 480)
 					#end:case
 					else:
@@ -1192,21 +1193,21 @@ class Brat(Feature):
 				)
 			#end:case
 			case 24:
-				if (((ScriptID 40 0) lampMsg:) == 15):
+				if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
 					(global91 say: 9 24 15 1 0 480)
 				else:
 					(global91 say: 9 24 16 1 0 480)
 				#endif
 			#end:case
 			else:
-				if (proc999_5 param1 57 58 59 60 96):
-					if (((ScriptID 40 0) bottleSucker:) == (self bottleNum:)):
+				if proc999_5(param1, 57, 58, 59, 60, 96):
+					if ((kernel.ScriptID(40, 0) bottleSucker:) == (self bottleNum:)):
 						(global91 say: 9 56 17 0 0 480)
 					else:
-						(global91 say: 9 56 ((ScriptID 40 0) lampMsg:) 0 0 480)
+						(global91 say: 9 56 (kernel.ScriptID(40, 0) lampMsg:) 0 0 480)
 					#endif
 				else:
-					((ScriptID 480 5) register: 1)
+					(kernel.ScriptID(480, 5) register: 1)
 					(global0 setScript: inventOnBaby 0 self)
 				#endif
 			#end:else
@@ -1236,12 +1237,9 @@ class inventOnBaby(Script):
 			#end:case
 			case 1:
 				(= temp0
-					(GetAngle
-						(global0 x:)
-						(global0 y:)
-						(register x:)
-						(register y:)
-					)
+					kernel.GetAngle((global0 x:), (global0 y:), (register x:), (register
+						y:
+					))
 				)
 				(global0 setHeading: temp0 self)
 			#end:case
@@ -1249,8 +1247,8 @@ class inventOnBaby(Script):
 				cycles = 6
 			#end:case
 			case 3:
-				if (((ScriptID 40 0) lampMsg:) == 15):
-					(global91 say: 9 0 ((ScriptID 40 0) lampMsg:) 0 self 480)
+				if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
+					(global91 say: 9 0 (kernel.ScriptID(40, 0) lampMsg:) 0 self 480)
 				else:
 					(global91 say: 9 0 16 0 self 480)
 				#endif
@@ -1427,7 +1425,7 @@ class thruGate(Script):
 					cycleSpeed: 8
 					setCycle: CT 1 1 self
 				)
-				(UnLoad 128 900)
+				kernel.UnLoad(128, 900)
 			#end:case
 			case 3:
 				(gates dispose:)
@@ -1469,7 +1467,7 @@ class shyFlowers(Script):
 				(flower4 view: 4852 cel: 2 setCycle: CT 6 1)
 			#end:case
 			case 2:
-				(proc913_4 global0 snap)
+				proc913_4(global0, snap)
 				(snap setCycle: Fwd)
 				(global105 number: 482 setLoop: 2 play: self)
 			#end:case
@@ -1478,8 +1476,8 @@ class shyFlowers(Script):
 				cycles = 4
 			#end:case
 			case 4:
-				if (((ScriptID 40 0) grabAtHidingHole:) == 1):
-					((ScriptID 40 0) grabAtHidingHole: 0)
+				if ((kernel.ScriptID(40, 0) grabAtHidingHole:) == 1):
+					(kernel.ScriptID(40, 0) grabAtHidingHole: 0)
 					(global91 say: 21 5 9 1 self)
 				else:
 					(global91 say: 5 3 0 1 self)
@@ -1491,7 +1489,7 @@ class shyFlowers(Script):
 				(flower2 view: 4851 stopUpd:)
 				(flower3 view: 4851 stopUpd:)
 				(flower4 view: 4851 stopUpd:)
-				(UnLoad 128 4852)
+				kernel.UnLoad(128, 4852)
 				(snap setCycle: Beg)
 			#end:case
 			case 6:
@@ -1518,7 +1516,7 @@ class hanging(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(proc483_4 3)
+				proc483_4(3)
 			#end:case
 		#end:match
 	#end:method
@@ -1537,7 +1535,7 @@ class stepOnSnaps(Script):
 			case 0:
 				(global1 handsOff:)
 				(global0 setMotion: 0)
-				(proc913_4 global0 snap)
+				proc913_4(global0, snap)
 				cycles = 10
 			#end:case
 			case 1:
@@ -1640,16 +1638,16 @@ class talkToVines(Script):
 				#endif
 			#end:case
 			case 1:
-				(proc913_4 global0 register)
+				proc913_4(global0, register)
 				cycles = 8
 			#end:case
 			case 2:
 				match register
 					case chokers:
-						if ((ScriptID 40 0) vineTalk:):
+						if (kernel.ScriptID(40, 0) vineTalk:):
 							(global91 say: 13 2 26 1 self)
 						else:
-							((ScriptID 40 0) vineTalk: 1)
+							(kernel.ScriptID(40, 0) vineTalk: 1)
 							(myConv
 								add: -1 13 2 25 1
 								add: -1 13 2 25 2
@@ -1664,7 +1662,7 @@ class talkToVines(Script):
 						#endif
 					#end:case
 					else:
-						if ((ScriptID 40 0) grapeTalk:):
+						if (kernel.ScriptID(40, 0) grapeTalk:):
 							(global91 say: 12 2 24 1 self)
 						else:
 							(myConv
@@ -1818,18 +1816,18 @@ class glint(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(super cue:)
-		match local2++
+		match local2.post('++')
 			case 1:
 				if (not (global5 contains: myTeaCup)):
 					(self dispose:)
 				else:
-					(self show: cel: 0 setLoop: (Random 0 1) setCycle: End self)
+					(self show: cel: 0 setLoop: kernel.Random(0, 1) setCycle: End self)
 				#endif
 			#end:case
 			case 2:
 				(self hide:)
 				local2 = 0
-				(glintTimer setReal: self (Random 3 6))
+				(glintTimer setReal: self kernel.Random(3, 6))
 			#end:case
 		#end:match
 	#end:method
@@ -1856,8 +1854,8 @@ class wallFlowerDance(Script):
 
 		(super init: &rest)
 		local4 = 0
-		if (not (proc913_0 117)):
-			(proc913_1 117)
+		if (not proc913_0(117)):
+			proc913_1(117)
 			(global1 givePoints: 2)
 		#endif
 		(global93 addToFront: self)
@@ -1874,7 +1872,7 @@ class wallFlowerDance(Script):
 		(global73 delete: self)
 		(global72 delete: self)
 		if local3:
-			(proc481_7)
+			proc481_7()
 			(myBottle setCycle: RandCycle)
 		#endif
 		(global102 number: 480 setLoop: -1 play:)
@@ -1888,7 +1886,7 @@ class wallFlowerDance(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 (param1 type:) 1 2 4 256):
+		if proc999_5((param1 type:), 1, 2, 4, 256):
 			(cond
 				case (state == 9):
 					if global25:
@@ -1972,8 +1970,8 @@ class wallFlowerDance(Script):
 				)
 			#end:case
 			case 1:
-				if ((ScriptID 40 0) bottleSucker:):
-					(proc481_6)
+				if (kernel.ScriptID(40, 0) bottleSucker:):
+					proc481_6()
 					(myBottle setCycle: 0)
 					local3 = 1
 				#endif
@@ -1991,13 +1989,13 @@ class wallFlowerDance(Script):
 				if 
 					(and
 						(global5 contains: hiw)
-						(proc913_0 159)
+						proc913_0(159)
 						((hiw x:) != 283)
 						((hiw y:) != 46)
 					)
 					(hiw setLoop: 1 setCycle: Walk setMotion: MoveTo 238 70)
 				#endif
-				((ScriptID 40 0) flowerDance: 1)
+				(kernel.ScriptID(40, 0) flowerDance: 1)
 				(flower1 view: 4852 cel: 2 setCycle: Fwd)
 				(flower2 view: 4852 cel: 2 setCycle: Fwd)
 				(flower3 view: 4852 cel: 6 setCycle: Fwd)
@@ -2005,7 +2003,7 @@ class wallFlowerDance(Script):
 				if 
 					(and
 						(((global9 at: 18) owner:) == global11)
-						(proc913_0 159)
+						proc913_0(159)
 					)
 					(global105 number: 483 setLoop: 1 play:)
 					(hiw setLoop: 5 setCycle: Walk setMotion: MoveTo 259 49)
@@ -2065,8 +2063,8 @@ class wallFlowerDance(Script):
 				seconds = 3
 			#end:case
 			case 12:
-				((ScriptID 40 0) flowerDance: 0)
-				if (and (global5 contains: hiw) (proc913_0 159) (not local4)):
+				(kernel.ScriptID(40, 0) flowerDance: 0)
+				if (and (global5 contains: hiw) proc913_0(159) (not local4)):
 					(hiw setLoop: 1 setCycle: Walk setMotion: MoveTo 238 70)
 				#endif
 				(self dispose:)

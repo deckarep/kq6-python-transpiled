@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 750
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import Kq6IconBar
@@ -89,7 +90,7 @@ class rm750(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (and global100 (global12 == 99) (FileIO 10 r"""g""")):
+		if (and global100 (global12 == 99) kernel.FileIO(10, r"""g""")):
 			(global102 number: 742 setLoop: -1 play:)
 			(global0 get: 31)
 		#endif
@@ -99,7 +100,7 @@ class rm750(CastleRoom):
 			(and
 				global100
 				(global12 == 99)
-				(FileIO 10 r"""g""")
+				kernel.FileIO(10, r"""g""")
 				(Print
 					addText: r"""Does Jollo have lamp?"""
 					addButton: 0 r"""No""" 0 12
@@ -113,7 +114,7 @@ class rm750(CastleRoom):
 			(and
 				global100
 				(global12 == 99)
-				(FileIO 10 r"""g""")
+				kernel.FileIO(10, r"""g""")
 				(Print
 					addText: r"""Does Cassima have dagger?"""
 					addButton: 0 r"""No""" 0 12
@@ -125,8 +126,8 @@ class rm750(CastleRoom):
 		#endif
 		(global1 setCursor: temp1 1)
 		if (((global9 at: 25) owner:) == 750):
-			(Load 130 751)
-			(proc958_0 128 717 754)
+			kernel.Load(130, 751)
+			proc958_0(128, 717, 754)
 		#endif
 		(self
 			addObstacle:
@@ -171,7 +172,7 @@ class rm750(CastleRoom):
 		(vizier addToPic:)
 		(cassima init: setScript: tiedUpRightNow)
 		(self setScript: enterRoom)
-		(UnLoad 129 750)
+		kernel.UnLoad(129, 750)
 	#end:method
 
 	@classmethod
@@ -195,12 +196,12 @@ class rm750(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 751)
-		(DisposeScript 752)
-		(DisposeScript 753)
-		(DisposeScript 754)
-		(DisposeScript 755)
-		(DisposeScript 759)
+		kernel.DisposeScript(751)
+		kernel.DisposeScript(752)
+		kernel.DisposeScript(753)
+		kernel.DisposeScript(754)
+		kernel.DisposeScript(755)
+		kernel.DisposeScript(759)
 	#end:method
 
 #end:class or instance
@@ -232,7 +233,7 @@ class enterRoom(Script):
 			#end:case
 			case 1:
 				if (local0[(local80 + 3)] != -1):
-					state--
+					state.post('--')
 					(global0
 						cel: local0[local80]
 						x: local0[(local80 + 1)]
@@ -258,7 +259,7 @@ class enterRoom(Script):
 					setCycle: 0
 				)
 				cycles = 2
-				(UnLoad 128 751)
+				kernel.UnLoad(128, 751)
 			#end:case
 			case 3:
 				(global0
@@ -278,11 +279,11 @@ class enterRoom(Script):
 				(self setScript: startScr self)
 			#end:case
 			case 6:
-				(DisposeScript 1005)
+				kernel.DisposeScript(1005)
 				(vizier stopUpd:)
 				if (((global9 at: 25) owner:) == global11):
 					(genie setScript: 0 view: 703 setLoop: 1 cel: 0)
-					(self setScript: (ScriptID 751 0) self)
+					(self setScript: kernel.ScriptID(751, 0) self)
 				else:
 					(genie setScript: continuedWindup)
 					cycles = 2
@@ -293,7 +294,7 @@ class enterRoom(Script):
 					(genie view: 702 setScript: continuedWindup)
 				#endif
 				(proc750_5)
-				if ((not global87) or (not (HaveMouse))):
+				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
 					seconds = 8
@@ -313,13 +314,13 @@ class enterRoom(Script):
 				if ((global103 number:) != 707):
 					(global103 number: 707 setLoop: -1 play:)
 				#endif
-				(self setScript: (ScriptID 752 0) self genie)
+				(self setScript: kernel.ScriptID(752, 0) self genie)
 			#end:case
 			case 11:
 				(global91 say: 1 0 4 2 self oneOnly: 0)
 			#end:case
 			case 12:
-				(proc0_1 18)
+				proc0_1(18)
 			#end:case
 		#end:match
 	#end:method
@@ -355,9 +356,9 @@ class continuedWindup(Script):
 					x: (local31[(local78 + 2)] + local76)
 					y: (local31[(local78 + 3)] + local77)
 				)
-				state--
+				state.post('--')
 				if (local79 and ((genie loop:) == 6)):
-					state++
+					state.post('++')
 				#endif
 				(local78 += 4)
 				cycles = 8
@@ -401,7 +402,7 @@ class startScr(Script):
 				ticks = 60
 			#end:case
 			case 5:
-				(self setScript: (ScriptID 752 1) self genie)
+				(self setScript: kernel.ScriptID(752, 1) self genie)
 			#end:case
 			case 6:
 				(vizHead cel: 1 forceUpd:)
@@ -439,9 +440,9 @@ class startScr(Script):
 				(roomConv add: -1 1 0 1 8 init: self)
 			#end:case
 			case 13:
-				(DisposeScript 1005)
-				(DisposeScript 1029)
-				(DisposeScript 1012)
+				kernel.DisposeScript(1005)
+				kernel.DisposeScript(1029)
+				kernel.DisposeScript(1012)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -556,13 +557,13 @@ class getSword(Script):
 					walkIconItem: swordIcon
 				)
 				(global1 oldCurIcon: swordIcon)
-				(DisposeScript 1005)
-				(DisposeScript 1029)
-				(DisposeScript 1012)
-				(DisposeScript 1020)
-				(DisposeScript 1001)
+				kernel.DisposeScript(1005)
+				kernel.DisposeScript(1029)
+				kernel.DisposeScript(1012)
+				kernel.DisposeScript(1020)
+				kernel.DisposeScript(1001)
 				(proc750_5)
-				if ((not global87) or (not (HaveMouse))):
+				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
 					seconds = 8
@@ -630,7 +631,7 @@ class getSword(Script):
 				(vizier setCycle: End self)
 			#end:case
 			case 21:
-				(proc0_1 41)
+				proc0_1(41)
 			#end:case
 		#end:match
 	#end:method
@@ -653,7 +654,7 @@ class tiedUpRightNow(Script):
 			case 1:
 				while (register == (cassima cel:)):
 
-					register = (Random 0 7)
+					register = kernel.Random(0, 7)
 				#end:loop
 				if (register < (cassima cel:)):
 					(cassima setCycle: CT register -1 self)
@@ -662,17 +663,17 @@ class tiedUpRightNow(Script):
 				#endif
 			#end:case
 			case 2:
-				if (((ScriptID 755 3) state:) < 340):
+				if ((kernel.ScriptID(755, 3) state:) < 340):
 					(state -= 2)
 				#endif
-				cycles = (Random 10 40)
+				cycles = kernel.Random(10, 40)
 			#end:case
 			case 3:
 				if (((global9 at: 8) owner:) == 870):
 					next = untieSelfAndStand
 					(self dispose:)
 				else:
-					((ScriptID 755 3) next: (ScriptID 755 1))
+					(kernel.ScriptID(755, 3) next: kernel.ScriptID(755, 1))
 				#endif
 			#end:case
 		#end:match
@@ -702,12 +703,12 @@ class untieSelfAndStand(Script):
 					setCycle: End self
 				)
 				if (register < 4):
-					state--
-					register++
+					state.post('--')
+					register.post('++')
 				#endif
 			#end:case
 			case 2:
-				next = (ScriptID 755 2)
+				next = kernel.ScriptID(755, 2)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -779,13 +780,13 @@ class vizier(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (and script (script == vizierTimer) (proc999_5 param1 23 1)):
+			case (and script (script == vizierTimer) proc999_5(param1, 23, 1)):
 				match param1
 					case 23: 0#end:case
 					case 1: 0#end:case
 				#end:match
 			#end:case
-			case (proc999_5 param1 28 8 5 14 16 10):
+			case proc999_5(param1, 28, 8, 5, 14, 16, 10):
 				temp0 = (7 if (global5 contains: genie) else 8)
 				(global91 say: noun param1 temp0)
 			#end:case
@@ -799,7 +800,7 @@ class vizier(Actor):
 			case (param1 == 23):
 				(global1 handsOff:)
 				(global1 givePoints: 1)
-				(global2 setScript: (ScriptID 755 0))
+				(global2 setScript: kernel.ScriptID(755, 0))
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -819,7 +820,7 @@ class vizierTimer(Script):
 
 		(super init: &rest)
 		if ((not script) and (not register)):
-			if ((not global87) or (not (HaveMouse))):
+			if ((not global87) or (not kernel.HaveMouse())):
 				register = 12
 			else:
 				register = 6
@@ -887,25 +888,25 @@ class genie(Actor):
 			case 63:
 				(global0 put: 23)
 				(global1 handsOff:)
-				(script caller: (ScriptID 753 0))
+				(script caller: kernel.ScriptID(753, 0))
 				local79 = 1
-				((ScriptID 753 0) start: -1)
-				(global2 setScript: (ScriptID 753 0))
+				(kernel.ScriptID(753, 0) start: -1)
+				(global2 setScript: kernel.ScriptID(753, 0))
 			#end:case
 			case 67:
 				(global0 put: 31)
 				(global1 handsOff:)
-				(script caller: (ScriptID 753 0))
+				(script caller: kernel.ScriptID(753, 0))
 				local79 = 1
-				((ScriptID 753 0) start: -1)
-				(global2 setScript: (ScriptID 753 0))
+				(kernel.ScriptID(753, 0) start: -1)
+				(global2 setScript: kernel.ScriptID(753, 0))
 			#end:case
 			case 92:
 				(global1 handsOff:)
-				(script caller: (ScriptID 754 0))
+				(script caller: kernel.ScriptID(754, 0))
 				local79 = 1
-				((ScriptID 754 0) start: -1)
-				(global2 setScript: (ScriptID 754 0))
+				(kernel.ScriptID(754, 0) start: -1)
+				(global2 setScript: kernel.ScriptID(754, 0))
 			#end:case
 			else:
 				(super doVerb: param1 &rest)
@@ -929,7 +930,7 @@ class cassima(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(super cue:)
-		match local84++
+		match local84.post('++')
 			case 1:
 				(self
 					setLoop: 3
@@ -958,7 +959,7 @@ class cassima(Actor):
 					if local83:
 						(global91 say: noun param1 20)
 					else:
-						local83++
+						local83.post('++')
 						(global91 say: noun param1 19)
 					#endif
 				#end:case
@@ -1035,7 +1036,7 @@ class egoDoVerb(Actions):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 1 2 4):
+		if proc999_5(param1, 1, 2, 4):
 			(super doVerb: param1)
 		else:
 			(global91 say: 1 0 0 0 0 0)
@@ -1072,8 +1073,8 @@ class swordIcon(Kq6IconItem):
 
 		if 
 			(= temp0
-				if (global169 and (not (Platform 5))):
-					(Platform 6)
+				if (global169 and (not kernel.Platform(5))):
+					kernel.Platform(6)
 				#endif
 			)
 			maskView = 7505
@@ -1089,8 +1090,8 @@ class swordIcon(Kq6IconItem):
 		(super dispose: &rest)
 		if 
 			(= temp0
-				if (global169 and (not (Platform 5))):
-					(Platform 6)
+				if (global169 and (not kernel.Platform(5))):
+					kernel.Platform(6)
 				#endif
 			)
 			maskLoop = 1

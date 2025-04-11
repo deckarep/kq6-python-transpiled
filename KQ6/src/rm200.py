@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 200
 import sci_sh
+import kernel
 import Main
 import KQ6Room
 import n913
@@ -42,15 +43,15 @@ def localproc_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	if (proc913_0 11):
-		(proc913_2 11)
+	if proc913_0(11):
+		proc913_2(11)
 	else:
-		(proc913_1 11)
+		proc913_1(11)
 	#endif
 	((global2 obstacles:) delete: plankPoly)
 	(global2
 		addObstacle:
-			if (proc913_0 11):
+			if proc913_0(11):
 				(chest setPri: -1)
 				(plankPoly type: 2 points: @local13 size: 8 yourself:)
 			else:
@@ -139,14 +140,14 @@ class rm200(KQ6Room):
 		(super init: &rest)
 		(global0 ignoreActors: actions: egoDoVerb)
 		(genericFeatures init:)
-		((ScriptID 10 4) onMeCheck: 32 init:)
+		(kernel.ScriptID(10, 4) onMeCheck: 32 init:)
 		if (global2 script:):
 			((global2 script:) caller: self)
 		#endif
-		if (proc999_5 global12 105 106 108 99):
+		if proc999_5(global12, 105, 106, 108, 99):
 			(global0 init:)
-			(Palette 4 0 256 100)
-			(self setScript: (ScriptID 201))
+			kernel.Palette(4, 0, 256, 100)
+			(self setScript: kernel.ScriptID(201))
 			global153 = 1
 		else:
 			match global12
@@ -158,7 +159,7 @@ class rm200(KQ6Room):
 					(global0 init: view: 203)
 					(global69 disable: 6)
 					(global1 setCursor: global19)
-					(self setScript: (ScriptID 202))
+					(self setScript: kernel.ScriptID(202))
 				#end:case
 				case 100:
 					(global0
@@ -181,10 +182,10 @@ class rm200(KQ6Room):
 		if ((global1 _detailLevel:) > 1):
 			(wave setScript: waveScr)
 			if ((global1 _detailLevel:) > 2):
-				(bush1 setScript: (Clone (ScriptID 13 0)))
-				(bush2 setScript: (Clone (ScriptID 13 0)))
-				(shipsails setScript: (Clone (ScriptID 13 0)))
-				(bush3 setScript: (ScriptID 13 0))
+				(bush1 setScript: kernel.Clone(kernel.ScriptID(13, 0)))
+				(bush2 setScript: kernel.Clone(kernel.ScriptID(13, 0)))
+				(shipsails setScript: kernel.Clone(kernel.ScriptID(13, 0)))
+				(bush3 setScript: kernel.ScriptID(13, 0))
 			#endif
 		#endif
 		if (global153 == 0):
@@ -368,10 +369,10 @@ class rm200(KQ6Room):
 		(global93 delete: self)
 		(global74 delete: self)
 		(super dispose:)
-		(DisposeScript 951)
-		(DisposeScript 969)
-		(DisposeScript 923)
-		(DisposeScript 13)
+		kernel.DisposeScript(951)
+		kernel.DisposeScript(969)
+		kernel.DisposeScript(923)
+		kernel.DisposeScript(13)
 	#end:method
 
 #end:class or instance
@@ -460,13 +461,10 @@ class chestInset(Inset):
 		argc = sum(v is not None for v in locals().values())
 
 		if 
-			(proc999_4
-				((insetView nsLeft:) + 5)
-				((insetView nsTop:) + 5)
-				((insetView nsRight:) - 5)
-				((insetView nsBottom:) - 5)
-				param1
-			)
+			proc999_4(((insetView nsLeft:) + 5), ((insetView nsTop:) + 5), (-
+				(insetView nsRight:)
+				5
+			), ((insetView nsBottom:) - 5), param1)
 			return 1
 		else:
 			return 0
@@ -655,7 +653,7 @@ class egoStruggleScr(Script):
 
 		match state = param1
 			case 0:
-				register = (Random 2 4)
+				register = kernel.Random(2, 4)
 				ticks = 30
 			#end:case
 			case 1:
@@ -664,8 +662,8 @@ class egoStruggleScr(Script):
 				else:
 					(global0 setLoop: 2)
 				#endif
-				if (not register--):
-					state--
+				if (not register.post('--')):
+					state.post('--')
 				#endif
 				ticks = 30
 			#end:case
@@ -854,7 +852,7 @@ class displacePlankScr(Script):
 				(global91 say: 4 5 6 0 self)
 			#end:case
 			case 9:
-				if (not (proc913_1 92)):
+				if (not proc913_1(92)):
 					(global1 givePoints: 1)
 				#endif
 				(global1 handsOn:)
@@ -875,7 +873,7 @@ class objectGlitter(Script):
 
 		match state = param1
 			case 0:
-				seconds = (Random 2 7)
+				seconds = kernel.Random(2, 7)
 			#end:case
 			case 1:
 				state = -1
@@ -1078,10 +1076,10 @@ class royalRing(Prop):
 		(self
 			cel: 0
 			setCycle: End
-			setScript: (Clone objectGlitter)
+			setScript: kernel.Clone(objectGlitter)
 			approachVerbs: 5
 		)
-		if (not (proc913_0 48)):
+		if (not proc913_0(48)):
 			loop = 3
 		#endif
 		(super init: &rest)
@@ -1109,7 +1107,7 @@ class coin(Prop):
 		(self
 			cel: 0
 			setCycle: End
-			setScript: (Clone objectGlitter)
+			setScript: kernel.Clone(objectGlitter)
 			sightAngle: 360
 			setPri: 15
 		)
@@ -1209,7 +1207,7 @@ class plank(View):
 
 		match param1
 			case 5:
-				if (proc913_0 11):
+				if proc913_0(11):
 					(global2 setScript: replacePlankScr)
 				else:
 					(global2 setScript: displacePlankScr)
@@ -1230,7 +1228,7 @@ class plank(View):
 		(self
 			approachVerbs: 5
 			cel:
-				if (proc913_0 11):
+				if proc913_0(11):
 					(chest init:)
 					1
 				else:
@@ -1239,7 +1237,7 @@ class plank(View):
 		)
 		(global2
 			addObstacle:
-				if (proc913_0 11):
+				if proc913_0(11):
 					(chest setPri: -1)
 					(plankPoly type: 2 points: @local13 size: 8 yourself:)
 				else:
@@ -1259,7 +1257,7 @@ class genericFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (OnControl 4 (param1 x:) (param1 y:))
+		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
 		(genericFeatures x: (param1 x:) y: (param1 y:))
 		(return
 			(= noun
@@ -1277,8 +1275,8 @@ class genericFeatures(Feature):
 					case ((temp0 == 512) and ((param1 y:) < 130)): 16#end:case
 					case (temp0 == 2048): 17#end:case
 					case (temp0 == 16): 11#end:case
-					case (proc999_5 temp0 8 4 512): 10#end:case
-					case (proc999_5 temp0 1024 16384): 19#end:case
+					case proc999_5(temp0, 8, 4, 512): 10#end:case
+					case proc999_5(temp0, 1024, 16384): 19#end:case
 					else: 0#end:else
 				)
 			)
@@ -1304,7 +1302,7 @@ class waveScr(Script):
 			#end:case
 			case 2:
 				(wave hide:)
-				seconds = (Random 3 8)
+				seconds = kernel.Random(3, 8)
 			#end:case
 			case 3:
 				(wave show:)
@@ -1342,10 +1340,10 @@ class shipWheel(Feature):
 
 		(return
 			(or
-				(proc999_4 145 175 160 181 (param1 x:) (param1 y:))
-				(proc999_4 162 169 175 177 (param1 x:) (param1 y:))
-				(proc999_4 171 164 177 169 (param1 x:) (param1 y:))
-				(proc999_4 156 170 162 175 (param1 x:) (param1 y:))
+				proc999_4(145, 175, 160, 181, (param1 x:), (param1 y:))
+				proc999_4(162, 169, 175, 177, (param1 x:), (param1 y:))
+				proc999_4(171, 164, 177, 169, (param1 x:), (param1 y:))
+				proc999_4(156, 170, 162, 175, (param1 x:), (param1 y:))
 			)
 		)
 	#end:method

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 759
 import sci_sh
+import kernel
 import Main
 import Print
 import Rev
@@ -33,7 +34,7 @@ class ArrayScript(Script):
 
 		temp5 = 0
 		value = (self at: state)
-		state++
+		state.post('++')
 		match value
 			case -4095:
 				temp0 = (self getValue:)
@@ -85,7 +86,7 @@ class ArrayScript(Script):
 			case -16:
 				temp0 = (self getValue:)
 				temp1 = (self getValue:)
-				(UnLoad temp0 temp1)
+				kernel.UnLoad(temp0, temp1)
 				(self cue:)
 			#end:case
 			case -14:
@@ -100,7 +101,7 @@ class ArrayScript(Script):
 				(self dispose:)
 			#end:case
 			else:
-				state--
+				state.post('--')
 				(global0 view: (self getValue:) loop: (self getValue:))
 				if (temp0 = (self getValue:) != -1):
 					(global0 cel: temp0)
@@ -125,7 +126,7 @@ class ArrayScript(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		value = (self at: state)
-		state++
+		state.post('++')
 		return value
 	#end:method
 
@@ -134,7 +135,7 @@ class ArrayScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc921_0 r"""Need play: method""")
+		proc921_0(r"""Need play: method""")
 		cycles = 1
 	#end:method
 
@@ -143,8 +144,8 @@ class ArrayScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc921_0 r"""Need at: method""")
-		(SetDebug)
+		proc921_0(r"""Need at: method""")
+		kernel.SetDebug()
 		global4 = 1
 	#end:method
 

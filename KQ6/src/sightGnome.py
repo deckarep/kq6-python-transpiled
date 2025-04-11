@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 458
 import sci_sh
+import kernel
 import Main
 import rm450
 import n913
@@ -43,7 +44,7 @@ class sightGnome(Gnome):
 		if (param1 == 1):
 			(global91 say: noun param1 22 1 0 450)
 		else:
-			((ScriptID 450 6) setScript: sightScript 0 param1)
+			(kernel.ScriptID(450, 6) setScript: sightScript 0 param1)
 		#endif
 	#end:method
 
@@ -65,9 +66,9 @@ class sightInit(Script):
 				(global91 say: 12 0 14 1 self 450)
 			#end:case
 			case 2:
-				(DisposeScript 1037)
-				(UnLoad 128 8930)
-				(((ScriptID 450 6) script:) cue:)
+				kernel.DisposeScript(1037)
+				kernel.UnLoad(128, 8930)
+				((kernel.ScriptID(450, 6) script:) cue:)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -101,7 +102,7 @@ class sightScript(Script):
 				#end:match
 			#end:case
 			case 1:
-				(self setScript: (ScriptID 450 2) self register)
+				(self setScript: kernel.ScriptID(450, 2) self register)
 			#end:case
 			case 2:
 				(sightGnome setLoop: 1 cel: 0 setCycle: CT 2 1 self)
@@ -130,7 +131,7 @@ class sightScript(Script):
 				(global91 say: 2 83 14 2 self 450)
 			#end:case
 			case 8:
-				((ScriptID 450 6) setScript: (ScriptID 450 3) 0 sightGnome)
+				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 3) 0 sightGnome)
 			#end:case
 		#end:match
 	#end:method
@@ -160,9 +161,9 @@ class failScript(Script):
 				)
 			#end:case
 			case 1:
-				if ((ScriptID 40 0) alexX:):
+				if (kernel.ScriptID(40, 0) alexX:):
 					(global0
-						posn: ((ScriptID 40 0) alexX:) ((ScriptID 40 0) alexY:)
+						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
 					)
 				#endif
 				if ((global0 view:) != 900):
@@ -186,7 +187,7 @@ class failScript(Script):
 				(sightGnome setCycle: End self)
 			#end:case
 			case 6:
-				(proc913_1 59)
+				proc913_1(59)
 				if (not register):
 					(global91 say: 16 0 32 1 self 450)
 				else:
@@ -194,9 +195,9 @@ class failScript(Script):
 				#endif
 			#end:case
 			case 7:
-				(proc913_2 59)
+				proc913_2(59)
 				(sightGnome setLoop: 0 cel: 0)
-				(self setScript: (ScriptID 450 4) self register)
+				(self setScript: kernel.ScriptID(450, 4) self register)
 			#end:case
 			case 8:
 				(global91 say: 16 0 28 1 self 450)
@@ -206,7 +207,7 @@ class failScript(Script):
 				cycles = 10
 			#end:case
 			case 10:
-				((ScriptID 450 6) setScript: (ScriptID 450 5))
+				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 5))
 			#end:case
 		#end:match
 	#end:method

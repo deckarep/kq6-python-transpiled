@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 753
 import sci_sh
+import kernel
 import Main
 import rm750
 import Scaler
@@ -33,12 +34,12 @@ class giveGenieMint(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 752)
-		(UnLoad 128 7501)
-		(UnLoad 128 7503)
-		(UnLoad 128 702)
-		(DisposeScript 1012)
-		(DisposeScript 753)
+		kernel.DisposeScript(752)
+		kernel.UnLoad(128, 7501)
+		kernel.UnLoad(128, 7503)
+		kernel.UnLoad(128, 702)
+		kernel.DisposeScript(1012)
+		kernel.DisposeScript(753)
 	#end:method
 
 	@classmethod
@@ -68,7 +69,7 @@ class giveGenieMint(Script):
 				)
 			#end:case
 			case 2:
-				((ScriptID 750 4)
+				(kernel.ScriptID(750, 4)
 					view: 702
 					loop: 6
 					cel: 0
@@ -77,25 +78,25 @@ class giveGenieMint(Script):
 				)
 			#end:case
 			case 3:
-				((ScriptID 750 4) setCycle: Beg self)
+				(kernel.ScriptID(750, 4) setCycle: Beg self)
 			#end:case
 			case 4:
 				(global91 say: 5 67 0 2 self)
 			#end:case
 			case 5:
-				((ScriptID 750 2) cel: 1 forceUpd:)
+				(kernel.ScriptID(750, 2) cel: 1 forceUpd:)
 				cycles = 4
 			#end:case
 			case 6:
 				(global91 say: 5 67 0 3 self)
 			#end:case
 			case 7:
-				(self setScript: (ScriptID 752 2) self (ScriptID 750 4))
+				(self setScript: kernel.ScriptID(752, 2) self kernel.ScriptID(750, 4))
 			#end:case
 			case 8:
 				(global0 setCel: 255)
-				((ScriptID 750 2) cel: 2 forceUpd:)
-				((ScriptID 750 4)
+				(kernel.ScriptID(750, 2) cel: 2 forceUpd:)
+				(kernel.ScriptID(750, 4)
 					view: 752
 					loop: 1
 					cel: 0
@@ -105,10 +106,10 @@ class giveGenieMint(Script):
 				ticks = 60
 			#end:case
 			case 9:
-				(self setScript: (ScriptID 752 1) self (ScriptID 750 4))
+				(self setScript: kernel.ScriptID(752, 1) self kernel.ScriptID(750, 4))
 			#end:case
 			case 10:
-				((ScriptID 750 4) setCycle: CT 1 1 self)
+				(kernel.ScriptID(750, 4) setCycle: CT 1 1 self)
 			#end:case
 			case 11:
 				cycles = 2
@@ -125,7 +126,7 @@ class giveGenieMint(Script):
 					looper: 0
 					setScale: Scaler 102 76 189 139
 				)
-				((ScriptID 750 4) setCycle: End self)
+				(kernel.ScriptID(750, 4) setCycle: End self)
 			#end:case
 			case 13:
 				(global91 say: 5 67 0 4 self)
@@ -137,7 +138,7 @@ class giveGenieMint(Script):
 				(global91 say: 5 67 0 6 self)
 			#end:case
 			case 16:
-				((ScriptID 750 4)
+				(kernel.ScriptID(750, 4)
 					loop: 2
 					cel: 8
 					cycleSpeed: 4
@@ -148,11 +149,11 @@ class giveGenieMint(Script):
 				cycles = 10
 			#end:case
 			case 18:
-				((ScriptID 750 4) cel: 3)
+				(kernel.ScriptID(750, 4) cel: 3)
 				cycles = 8
 			#end:case
 			case 19:
-				((ScriptID 750 4) setCycle: CT 5 1 self)
+				(kernel.ScriptID(750, 4) setCycle: CT 5 1 self)
 			#end:case
 			case 20:
 				cycles = 10
@@ -164,15 +165,15 @@ class giveGenieMint(Script):
 				(global91 say: 5 67 0 8 self)
 			#end:case
 			case 23:
-				((ScriptID 750 4) cycleSpeed: 6 setCycle: End self)
+				(kernel.ScriptID(750, 4) cycleSpeed: 6 setCycle: End self)
 			#end:case
 			case 24:
 				(global103 number: 707 setLoop: 1 play:)
-				((ScriptID 750 4)
+				(kernel.ScriptID(750, 4)
 					view: 702
 					loop: 7
 					cel: 1
-					x: (((ScriptID 750 4) x:) - 13)
+					x: ((kernel.ScriptID(750, 4) x:) - 13)
 					cycleSpeed: 8
 					setCycle: End self
 				)
@@ -187,7 +188,7 @@ class giveGenieMint(Script):
 			#end:case
 			case 27:
 				if (local0[local18] != -1):
-					state--
+					state.post('--')
 					(dazzleBall
 						loop: local0[local18]
 						setMotion:
@@ -216,21 +217,21 @@ class giveGenieMint(Script):
 				(global103 number: 753 setLoop: 1 play: self)
 			#end:case
 			case 31:
-				((ScriptID 750 4) dispose:)
+				(kernel.ScriptID(750, 4) dispose:)
 				(dazzleBall dispose:)
 			#end:case
 			case 32:
 				(global91 say: 5 67 0 12 self)
 			#end:case
 			case 33:
-				((ScriptID 750 2) dispose:)
+				(kernel.ScriptID(750, 2) dispose:)
 				if global169:
 					(global2 drawPic: 750 15)
 				else:
 					(global2 drawPic: 750 100)
 				#endif
-				((ScriptID 750 9) addToPic:)
-				((ScriptID 750 3)
+				(kernel.ScriptID(750, 9) addToPic:)
+				(kernel.ScriptID(750, 3)
 					view: 751
 					loop: 8
 					cel: 0
@@ -241,7 +242,7 @@ class giveGenieMint(Script):
 			#end:case
 			case 34:
 				(global103 number: 652 setLoop: 1 play:)
-				((ScriptID 750 3) setCycle: End self)
+				(kernel.ScriptID(750, 3) setCycle: End self)
 			#end:case
 			case 35:
 				(global91 say: 5 67 0 13 self)
@@ -250,15 +251,15 @@ class giveGenieMint(Script):
 				(global91 say: 5 67 0 14 self)
 			#end:case
 			case 37:
-				(proc750_5)
-				if ((not global87) or (not (HaveMouse))):
+				proc750_5()
+				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
 					seconds = 8
 				#endif
 			#end:case
 			case 38:
-				(global2 setScript: (ScriptID 754 1))
+				(global2 setScript: kernel.ScriptID(754, 1))
 			#end:case
 		#end:match
 	#end:method

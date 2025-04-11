@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1015
 import sci_sh
+import kernel
 import Main
 import Kq6Window
 import Talker
@@ -56,7 +57,7 @@ class tlkGuardDog1(Narrator):
 				y = 119
 				talkWidth = 190
 			#end:case
-			case (proc999_5 global11 850 880 820 180 860 730): 0#end:case
+			case proc999_5(global11, 850, 880, 820, 180, 860, 730): 0#end:case
 			else:
 				x = -1
 				y = 10
@@ -87,7 +88,7 @@ class tlkGuardDog2(Narrator):
 				y = 65
 				talkWidth = 96
 			#end:case
-			case (proc999_5 global11 850 880 820): 0#end:case
+			case proc999_5(global11, 850, 880, 820): 0#end:case
 			else:
 				x = -1
 				y = 10

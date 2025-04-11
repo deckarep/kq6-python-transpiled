@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 92
 import sci_sh
+import kernel
 import Main
 import n913
 import LoadMany
@@ -27,7 +28,7 @@ class inkScript(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 151)
+				proc913_1(151)
 				cycles = 1
 			#end:case
 			case 1:
@@ -72,11 +73,11 @@ class inkScript(Script):
 				(global91 say: 1 83 0 5 self 0)
 			#end:case
 			case 12:
-				(proc913_1 116)
+				proc913_1(116)
 				(global1 handsOn:)
 				(global0 reset: 2)
 				(self dispose:)
-				(proc958_0 0 92)
+				proc958_0(0, 92)
 			#end:case
 		#end:match
 	#end:method

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 97
 import sci_sh
+import kernel
 import Main
 import System
 
@@ -22,7 +23,7 @@ class readPoem(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 97)
+		kernel.DisposeScript(97)
 	#end:method
 
 	@classmethod

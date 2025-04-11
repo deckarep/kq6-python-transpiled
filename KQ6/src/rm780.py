@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 780
 import sci_sh
+import kernel
 import Main
 import rgCastle
 import n913
@@ -48,7 +49,7 @@ class rm780(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc958_0 128 7881 789 788)
+		proc958_0(128, 7881, 789, 788)
 		(global0 init: posn: 20 157 setScale: Scaler 100 70 190 140)
 		(self
 			addObstacle:
@@ -114,7 +115,7 @@ class rm780(CastleRoom):
 		(fire setCycle: Fwd init:)
 		((global0 scaler:) doit:)
 		(self setScript: enterRoom)
-		if (proc913_0 10):
+		if proc913_0(10):
 			(global102 fadeTo: 780 -1)
 		#endif
 	#end:method
@@ -152,13 +153,13 @@ class rm780(CastleRoom):
 		argc = sum(v is not None for v in locals().values())
 
 		if local3:
-			((ScriptID 80 0) weddingRemind: 1)
+			(kernel.ScriptID(80, 0) weddingRemind: 1)
 		#endif
-		if (not ((ScriptID 80 0) tstFlag: 710 512)):
-			((ScriptID 80 0) setFlag: 710 512)
+		if (not (kernel.ScriptID(80, 0) tstFlag: 710 512)):
+			(kernel.ScriptID(80, 0) setFlag: 710 512)
 		#endif
 		(super dispose:)
-		(DisposeScript 964)
+		kernel.DisposeScript(964)
 	#end:method
 
 #end:class or instance
@@ -173,7 +174,7 @@ class enterRoom(Script):
 
 		match state = param1
 			case 0:
-				if (proc913_0 10):
+				if proc913_0(10):
 					(global0 setMotion: MoveTo 44 157 self)
 				else:
 					(global0 setMotion: MoveTo 64 157 self)
@@ -186,18 +187,18 @@ class enterRoom(Script):
 				(global105 number: 902 setLoop: 1 play:)
 				(door stopUpd:)
 				register = 0
-				if (global5 contains: (ScriptID 80 5)):
-					((ScriptID 81 0) resetGuard: (ScriptID 80 5) 1)
-					((ScriptID 80 5) dispose:)
+				if (global5 contains: kernel.ScriptID(80, 5)):
+					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
+					(kernel.ScriptID(80, 5) dispose:)
 					register = 1
 				#endif
-				if (global5 contains: (ScriptID 80 6)):
-					((ScriptID 81 0) resetGuard: (ScriptID 80 6) 2)
-					((ScriptID 80 6) dispose:)
+				if (global5 contains: kernel.ScriptID(80, 6)):
+					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
+					(kernel.ScriptID(80, 6) dispose:)
 					register = 1
 				#endif
-				if (not (register and (proc913_0 10))):
-					state++
+				if (not (register and proc913_0(10))):
+					state.post('++')
 				#endif
 				cycles = 2
 			#end:case
@@ -206,10 +207,10 @@ class enterRoom(Script):
 			#end:case
 			case 4:
 				(cond
-					case (not (proc913_0 10)):
+					case (not proc913_0(10)):
 						(global2 setScript: callGuards)
 					#end:case
-					case (not ((ScriptID 80 0) tstFlag: 710 512)):
+					case (not (kernel.ScriptID(80, 0) tstFlag: 710 512)):
 						local2 = 1
 						(self setScript: turnClownAround self)
 					#end:case
@@ -232,13 +233,13 @@ class enterRoom(Script):
 				cycles = 10
 			#end:case
 			case 7:
-				if ((ScriptID 80 0) tstFlag: 710 256):
-					if ((ScriptID 80 0) tstFlag: 711 32):
+				if (kernel.ScriptID(80, 0) tstFlag: 710 256):
+					if (kernel.ScriptID(80, 0) tstFlag: 711 32):
 						(roomConv add: -1 1 0 16)
 					else:
 						(roomConv add: -1 1 0 9 1)
 					#endif
-					(proc913_1 155)
+					proc913_1(155)
 					(roomConv
 						add: -1 1 0 9 2
 						add: -1 1 0 9 3
@@ -247,13 +248,13 @@ class enterRoom(Script):
 						add: -1 1 0 9 6
 						add: -1 1 0 9 7
 					)
-					if (proc913_0 52):
+					if proc913_0(52):
 						(roomConv add: -1 1 0 4)
 					else:
 						(roomConv add: -1 1 0 10)
 					#endif
 				else:
-					if ((ScriptID 80 0) tstFlag: 711 32):
+					if (kernel.ScriptID(80, 0) tstFlag: 711 32):
 						(roomConv add: -1 1 0 16)
 					else:
 						(roomConv add: -1 1 0 8 1)
@@ -270,7 +271,7 @@ class enterRoom(Script):
 						add: -1 1 0 8 10
 						add: -1 1 0 8 11
 					)
-					if (proc913_0 52):
+					if proc913_0(52):
 						(roomConv add: -1 1 0 2)
 					else:
 						(roomConv add: -1 1 0 10)
@@ -329,7 +330,7 @@ class callGuards(Script):
 				(self setScript: callGuardsConvScr self)
 			#end:case
 			case 1:
-				if (proc913_0 154):
+				if proc913_0(154):
 					(roomConv add: -1 1 0 18 1 add: -1 1 0 18 2 init: self)
 				else:
 					(roomConv add: -1 1 0 1 1 add: -1 1 0 1 2 init: self)
@@ -339,7 +340,7 @@ class callGuards(Script):
 				(self setScript: callGuardsConvScr self)
 			#end:case
 			case 3:
-				if (proc913_0 154):
+				if proc913_0(154):
 					(roomConv add: -1 1 0 18 3 init: self)
 				else:
 					(roomConv add: -1 1 0 1 3 init: self)
@@ -349,7 +350,7 @@ class callGuards(Script):
 				(self setScript: callGuardsConvScr self)
 			#end:case
 			case 5:
-				if (proc913_0 154):
+				if proc913_0(154):
 					(roomConv
 						add: -1 1 0 18 4
 						add: -1 1 0 18 5
@@ -366,8 +367,8 @@ class callGuards(Script):
 				#endif
 			#end:case
 			case 6:
-				(proc913_1 154)
-				(global2 spotEgo: (ScriptID 80 5))
+				proc913_1(154)
+				(global2 spotEgo: kernel.ScriptID(80, 5))
 			#end:case
 		#end:match
 	#end:method
@@ -438,7 +439,7 @@ class callGuardsConvScr(Script):
 			#end:case
 			case 9:
 				(global105 stop:)
-				((ScriptID 80 5)
+				(kernel.ScriptID(80, 5)
 					setScale:
 					scaleX: 110
 					scaleY: 110
@@ -524,21 +525,21 @@ class showLamp(Script):
 				cycles = (theClown cycleSpeed:)
 			#end:case
 			case 1:
-				if (not ((ScriptID 80 0) tstFlag: 709 16)):
+				if (not (kernel.ScriptID(80, 0) tstFlag: 709 16)):
 					(chair priority: 0)
 					(theClown loop: 5 cel: 0 posn: 225 142 priority: 1)
 				#endif
 				cycles = (theClown cycleSpeed:)
 			#end:case
 			case 2:
-				if ((ScriptID 80 0) tstFlag: 709 16):
-					if (proc999_5 register 43 57):
+				if (kernel.ScriptID(80, 0) tstFlag: 709 16):
+					if proc999_5(register, 43, 57):
 						(roomConv add: -1 4 register 12)
 					else:
 						cycles = 1
 					#endif
 				else:
-					((ScriptID 80 0) setFlag: 709 16)
+					(kernel.ScriptID(80, 0) setFlag: 709 16)
 					match register
 						case 43:
 							(roomConv add: -1 4 register 11 0)
@@ -729,11 +730,11 @@ class followTimer(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 80 0) setFlag: 711 -32768)
+				(kernel.ScriptID(80, 0) setFlag: 711 -32768)
 				seconds = 11
 			#end:case
 			case 1:
-				((ScriptID 80 0) clrFlag: 711 -32768)
+				(kernel.ScriptID(80, 0) clrFlag: 711 -32768)
 				(theClown dispose:)
 			#end:case
 		#end:match
@@ -783,7 +784,7 @@ class lookThruKeyhole(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 82 1)
+				(kernel.ScriptID(82, 1)
 					noun: 5
 					actions: keyHoleActions
 					init: 797 0 0 92 54
@@ -901,11 +902,11 @@ class door(Prop):
 			#end:case
 			case 1:
 				if (not local1):
-					local1++
+					local1.post('++')
 					(_approachVerbs |= (global66 doit: 1))
 					(global91 say: noun param1 13 0)
 				else:
-					(global2 setScript: (ScriptID 82) 0 lookThruKeyhole)
+					(global2 setScript: kernel.ScriptID(82) 0 lookThruKeyhole)
 				#endif
 			#end:case
 			else:
@@ -920,7 +921,7 @@ class door(Prop):
 		argc = sum(v is not None for v in locals().values())
 
 		(global105 stop:)
-		(proc80_2 4)
+		proc80_2(4)
 	#end:method
 
 #end:class or instance
@@ -1021,24 +1022,24 @@ class theClown(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5 param1 1 5):
+			case proc999_5(param1, 1, 5):
 				(super doVerb: param1 &rest)
 			#end:case
 			case ((not script) and (not local2)):
 				(global1 handsOff:)
 				(self setScript: jolloScr 0 param1)
 			#end:case
-			case (proc999_5 param1 43 56 57 58 59 60 96):
-				param1 = (proc999_3 43 (proc999_2 57 param1))
+			case proc999_5(param1, 43, 56, 57, 58, 59, 60, 96):
+				param1 = proc999_3(43, proc999_2(57, param1))
 				(script setScript: showLamp jolloScr param1)
 			#end:case
 			case 
 				(and
-					((ScriptID 80 0) tstFlag: 710 256)
-					(not (proc913_0 155))
+					(kernel.ScriptID(80, 0) tstFlag: 710 256)
+					(not proc913_0(155))
 					(param1 == 2)
 				):
-				(proc913_1 155)
+				proc913_1(155)
 				(global91 say: noun param1 15 0 jolloScr)
 			#end:case
 			else:

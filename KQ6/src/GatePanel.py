@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 916
 import sci_sh
+import kernel
 import Main
 import User
 import Actor
@@ -38,7 +39,7 @@ class GatePanel(View):
 		(global69 curIcon: (global69 at: 1))
 		(global1 setCursor: ((global69 curIcon:) cursor:))
 		(global69 disable:)
-		(SetPort 0)
+		kernel.SetPort(0)
 		(super init:)
 		(global72 addToFront: self)
 		(global73 addToFront: self)
@@ -86,8 +87,8 @@ class GatePanel(View):
 				#end:case
 				case ((param1 type:) & 0x0044):
 					(cond
-						case (proc999_5 (param1 message:) 2 4 6 8 9): 0#end:case
-						case (proc999_5 (param1 message:) 1 5 3 7 0):
+						case proc999_5((param1 message:), 2, 4, 6, 8, 9): 0#end:case
+						case proc999_5((param1 message:), 1, 5, 3, 7, 0):
 							(self moveCursorPosn: param1)
 						#end:case
 						case ((param1 message:) == 13):
@@ -121,9 +122,9 @@ class GatePanel(View):
 		argc = sum(v is not None for v in locals().values())
 
 		(= column
-			(proc999_3 1 (proc999_2 ((((param1 x:) - x) / offsetX) + 1) maxCol))
+			proc999_3(1, proc999_2(((((param1 x:) - x) / offsetX) + 1), maxCol))
 		)
-		row = (proc999_3 0 (proc999_2 (((param1 y:) - y) / offsetY) maxRow))
+		row = proc999_3(0, proc999_2((((param1 y:) - y) / offsetY), maxRow))
 	#end:method
 
 	@classmethod
@@ -134,7 +135,7 @@ class GatePanel(View):
 		temp0 = 0
 		value = 0
 		if strPointer:
-			temp0 = (proc999_6 strPointer charCount)
+			temp0 = proc999_6(strPointer, charCount)
 		#endif
 		(self calcPosn: param1)
 		if 
@@ -143,7 +144,7 @@ class GatePanel(View):
 				(self buttonSetup:)
 			)
 			(self failCheck: temp0)
-			if ((charCount++ == strLen) and (not failed)):
+			if ((charCount.post('++') == strLen) and (not failed)):
 				(global2 notify: (not failed))
 				(self dispose:)
 			#endif
@@ -184,7 +185,7 @@ class GatePanel(View):
 				#endif
 			#end:case
 		#end:match
-		(SetCursor temp0 temp1)
+		kernel.SetCursor(temp0, temp1)
 	#end:method
 
 	@classmethod
@@ -192,7 +193,7 @@ class GatePanel(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 value 26 27 29 30):
+		if proc999_5(value, 26, 27, 29, 30):
 			return 0
 		#endif
 		temp0 = (((value - 1) / 16) + 1)
@@ -217,7 +218,7 @@ class GatePanel(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DrawCel view param1 param2 param3 param4 15)
+		kernel.DrawCel(view, param1, param2, param3, param4, 15)
 		return 1
 	#end:method
 

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 903
 import sci_sh
+import kernel
 import Main
 import EgoGroop
 import KQ6Print
@@ -35,19 +36,19 @@ class kq6Controls(GameControls):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(Load 128 947)
+		kernel.Load(128, 947)
 		global63 = self
 		(self
 			window:
 				(controlWin
-					top: (((200 - ((CelHigh 947 1 1) + 0)) / 2) - 15)
-					left: (((320 - (+ 157 (CelWide 947 0 1) 0)) / 2) - 10)
+					top: (((200 - (kernel.CelHigh(947, 1, 1) + 0)) / 2) - 15)
+					left: (((320 - (+ 157 kernel.CelWide(947, 0, 1) 0)) / 2) - 10)
 					bottom:
 						(-
 							(+
-								(CelHigh 947 1 1)
+								kernel.CelHigh(947, 1, 1)
 								0
-								((200 - ((CelHigh 947 1 1) + 0)) / 2)
+								((200 - (kernel.CelHigh(947, 1, 1) + 0)) / 2)
 								10
 							)
 							5
@@ -55,9 +56,9 @@ class kq6Controls(GameControls):
 					right:
 						(+
 							157
-							(CelWide 947 0 1)
+							kernel.CelWide(947, 0, 1)
 							0
-							((320 - (+ 157 (CelWide 947 0 1) 0)) / 2)
+							((320 - (+ 157 kernel.CelWide(947, 0, 1) 0)) / 2)
 							10
 						)
 					back: 19
@@ -107,8 +108,8 @@ class kq6Controls(GameControls):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose: &rest)
-		(DisposeScript 934)
-		(DisposeScript 903)
+		kernel.DisposeScript(934)
+		kernel.DisposeScript(903)
 	#end:method
 
 #end:class or instance
@@ -123,54 +124,46 @@ class controlWin(Kq6Window):
 
 		(super open: &rest)
 		priority = -1
-		local0 = (PicNotValid)
-		(PicNotValid 1)
+		local0 = kernel.PicNotValid()
+		kernel.PicNotValid(1)
 		if 
 			(not
 				(= temp54
-					if (global169 and (not (Platform 5))):
-						(Platform 6)
+					if (global169 and (not kernel.Platform(5))):
+						kernel.Platform(6)
 					#endif
 				)
 			)
-			(DrawCel
-				947
-				0
-				7
-				(-
-					(+
-						(/
+			kernel.DrawCel(947, 0, 7, (-
+				(+
+					(/
+						(-
 							(-
-								(-
-									(+ 157 (CelWide 947 0 1) 0)
-									(4 + (CelWide 947 1 1))
-								)
-								(CelWide 947 0 5)
+								(+ 157 kernel.CelWide(947, 0, 1) 0)
+								(4 + kernel.CelWide(947, 1, 1))
 							)
-							2
+							kernel.CelWide(947, 0, 5)
 						)
-						4
-						(CelWide 947 1 1)
+						2
 					)
-					35
+					4
+					kernel.CelWide(947, 1, 1)
 				)
-				12
-				-1
-				0
-			)
+				35
+			), 12, -1, 0)
 			local1 = 0
 		#endif
-		(DrawCel 947 1 1 14 11 -1 0)
-		(DrawCel 947 1 0 106 56 -1 0)
-		(DrawCel 947 1 0 149 56 -1 0)
-		(DrawCel 947 1 2 104 (+ 0 (103 if (global107 == 256) else 104) 7) -1 0)
-		(DrawCel 947 0 4 75 ((30 - ((CelHigh 947 0 4) + 0)) + 24) -1 0)
-		(DrawCel 947 0 3 115 ((30 - ((CelHigh 947 0 4) + 0)) + 24) -1 0)
-		(DrawCel 947 0 2 162 ((30 - ((CelHigh 947 0 4) + 0)) + 24) -1 0)
-		(PicNotValid local0)
-		temp0 = (GetPort)
-		(SetPort 0)
-		(Graph 12 top left bottom right 1)
+		kernel.DrawCel(947, 1, 1, 14, 11, -1, 0)
+		kernel.DrawCel(947, 1, 0, 106, 56, -1, 0)
+		kernel.DrawCel(947, 1, 0, 149, 56, -1, 0)
+		kernel.DrawCel(947, 1, 2, 104, (+ 0 (103 if (global107 == 256) else 104) 7), -1, 0)
+		kernel.DrawCel(947, 0, 4, 75, ((30 - (kernel.CelHigh(947, 0, 4) + 0)) + 24), -1, 0)
+		kernel.DrawCel(947, 0, 3, 115, ((30 - (kernel.CelHigh(947, 0, 4) + 0)) + 24), -1, 0)
+		kernel.DrawCel(947, 0, 2, 162, ((30 - (kernel.CelHigh(947, 0, 4) + 0)) + 24), -1, 0)
+		kernel.PicNotValid(local0)
+		temp0 = kernel.GetPort()
+		kernel.SetPort(0)
+		kernel.Graph(12, top, left, bottom, right, 1)
 		if temp54:
 			(= temp55
 				(+
@@ -180,15 +173,15 @@ class controlWin(Kq6Window):
 							(/
 								(-
 									(-
-										(+ 157 (CelWide 947 0 1) 0)
-										(4 + (CelWide 947 1 1))
+										(+ 157 kernel.CelWide(947, 0, 1) 0)
+										(4 + kernel.CelWide(947, 1, 1))
 									)
-									(CelWide 947 0 5)
+									kernel.CelWide(947, 0, 5)
 								)
 								2
 							)
 							4
-							(CelWide 947 1 1)
+							kernel.CelWide(947, 1, 1)
 						)
 						35
 					)
@@ -196,30 +189,19 @@ class controlWin(Kq6Window):
 			)
 			temp56 = (top + 18)
 			(= local1
-				(Graph
-					15
+				kernel.Graph(15, temp56, temp55, (+
+					(kernel.CelHigh(948, 12, 0) / 2)
 					temp56
-					temp55
-					(((CelHigh 948 12 0) / 2) + temp56)
-					(((CelWide 948 12 0) / 2) + temp55)
-				)
+				), ((kernel.CelWide(948, 12, 0) / 2) + temp55))
 			)
-			(DrawCel 948 12 0 0 0 -1 0 local1)
+			kernel.DrawCel(948, 12, 0, 0, 0, -1, 0, local1)
 		#endif
-		(SetPort temp0)
+		kernel.SetPort(temp0)
 		temp53 = global15
-		(DrawCel
-			947
-			10
-			0
-			(+
-				(((+ 157 (CelWide 947 0 1) 0) - (+ 10 (CelWide 947 1 1) 6)) / 2)
-				37
-			)
-			(+ 39 (CelHigh 947 0 1) 3 17)
-			-1
-			0
-		)
+		kernel.DrawCel(947, 10, 0, (+
+			(((+ 157 kernel.CelWide(947, 0, 1) 0) - (+ 10 kernel.CelWide(947, 1, 1) 6)) / 2)
+			37
+		), (+ 39 kernel.CelHigh(947, 0, 1) 3 17), -1, 0)
 		temp51 = 93
 		temp52 = 0
 		while (temp52 < 3): # inline for
@@ -229,67 +211,31 @@ class controlWin(Kq6Window):
 			else:
 				temp50 = (mod temp53 10)
 			#endif
-			(/= temp53 10)
-			(DrawCel
-				947
-				11
-				temp50
-				(+
-					(/
-						(-
-							(+ 157 (CelWide 947 0 1) 0)
-							(+ 10 (CelWide 947 1 1) 6)
-						)
-						2
-					)
-					temp51
-				)
-				(+ 39 (CelHigh 947 0 1) 3 17)
-				-1
-				0
-			)
+			(temp53 /= 10)
+			kernel.DrawCel(947, 11, temp50, (+
+				(((+ 157 kernel.CelWide(947, 0, 1) 0) - (+ 10 kernel.CelWide(947, 1, 1) 6)) / 2)
+				temp51
+			), (+ 39 kernel.CelHigh(947, 0, 1) 3 17), -1, 0)
 			# for:reinit
-			temp52++
+			temp52.post('++')
 		#end:loop
-		(DrawCel
-			947
-			11
-			10
-			(+
-				(((+ 157 (CelWide 947 0 1) 0) - (+ 10 (CelWide 947 1 1) 6)) / 2)
-				93
-			)
-			(+ 39 (CelHigh 947 0 1) 3 17)
-			-1
-			0
-		)
+		kernel.DrawCel(947, 11, 10, (+
+			(((+ 157 kernel.CelWide(947, 0, 1) 0) - (+ 10 kernel.CelWide(947, 1, 1) 6)) / 2)
+			93
+		), (+ 39 kernel.CelHigh(947, 0, 1) 3 17), -1, 0)
 		temp51 = 123
 		temp53 = global16
 		temp52 = 0
 		while (temp52 < 3): # inline for
 			(temp51 -= 7)
 			temp50 = (mod temp53 10)
-			(/= temp53 10)
-			(DrawCel
-				947
-				11
-				temp50
-				(+
-					(/
-						(-
-							(+ 157 (CelWide 947 0 1) 0)
-							(+ 10 (CelWide 947 1 1) 6)
-						)
-						2
-					)
-					temp51
-				)
-				(+ 39 (CelHigh 947 0 1) 3 17)
-				-1
-				0
-			)
+			(temp53 /= 10)
+			kernel.DrawCel(947, 11, temp50, (+
+				(((+ 157 kernel.CelWide(947, 0, 1) 0) - (+ 10 kernel.CelWide(947, 1, 1) 6)) / 2)
+				temp51
+			), (+ 39 kernel.CelHigh(947, 0, 1) 3 17), -1, 0)
 			# for:reinit
-			temp52++
+			temp52.post('++')
 		#end:loop
 		(global1 setCursor: global20)
 	#end:method
@@ -300,7 +246,7 @@ class controlWin(Kq6Window):
 		argc = sum(v is not None for v in locals().values())
 
 		if local1:
-			(Graph 8 local1)
+			kernel.Graph(8, local1)
 		#endif
 		(super dispose:)
 	#end:method
@@ -359,10 +305,10 @@ class volumeSlider(Slider):
 		argc = sum(v is not None for v in locals().values())
 
 		if theObj:
-			if ((proc999_7 theObj selector) != param1):
-				(proc999_7 theObj selector param1 &rest)
+			if (proc999_7(theObj, selector) != param1):
+				proc999_7(theObj, selector, param1, &rest)
 			else:
-				(proc999_7 theObj selector)
+				proc999_7(theObj, selector)
 			#endif
 		#endif
 	#end:method
@@ -532,7 +478,7 @@ class iconTextSwitch(ControlIcon):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (not (FileIO 10 r"""KQ6CD""")):
+			case (not kernel.FileIO(10, r"""KQ6CD""")):
 				(Print
 					font: global22
 					addText:
@@ -540,7 +486,7 @@ class iconTextSwitch(ControlIcon):
 					init:
 				)
 			#end:case
-			case (not (DoAudio 9)):
+			case (not kernel.DoAudio(9)):
 				(Print
 					font: global22
 					addText:

@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 908
 import sci_sh
+import kernel
 import Main
 import LoadMany
 import Motion
@@ -58,7 +59,7 @@ class eggScript(Script):
 				(global0 put: 10 reset: local0)
 				(global1 handsOn:)
 				(self dispose:)
-				(proc958_0 0 908)
+				proc958_0(0, 908)
 			#end:case
 		#end:match
 	#end:method

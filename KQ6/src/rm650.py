@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 650
 import sci_sh
+import kernel
 import Main
 import rgDead
 import KQ6Room
@@ -122,7 +123,7 @@ class rm650(KQ6Room):
 				(global0 posn: 47 172)
 			#end:else
 		#end:match
-		(proc70_1 flames @local0)
+		proc70_1(flames, @local0)
 		(glow1 init: setCycle: RandCycle)
 		(glow2 init: setCycle: RandCycle)
 		(riverStyx init:)
@@ -162,7 +163,7 @@ class rm650(KQ6Room):
 						(not (global0 isStopped:))
 						(or
 							(((global0 mover:) y:) < (global0 y:))
-							(proc999_5 (global0 loop:) 3 6 7)
+							proc999_5((global0 loop:), 3, 6, 7)
 						)
 					)
 					(self setScript: egoNorthOverKnightScr)
@@ -175,7 +176,7 @@ class rm650(KQ6Room):
 						(not (global0 isStopped:))
 						(or
 							(((global0 mover:) y:) > (global0 y:))
-							(proc999_5 (global0 loop:) 2 4 5)
+							proc999_5((global0 loop:), 2, 4, 5)
 						)
 					)
 					(self setScript: egoSouthOverKnightScr)
@@ -197,7 +198,7 @@ class rm650(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 991)
+		kernel.DisposeScript(991)
 	#end:method
 
 #end:class or instance
@@ -242,12 +243,9 @@ class egoNorthOverKnightScr(Script):
 					(and
 						local16
 						(>
-							(GetDistance
-								local16
-								local17
-								(global0 x:)
-								(global0 y:)
-							)
+							kernel.GetDistance(local16, local17, (global0 x:), (global0
+								y:
+							))
 							20
 						)
 					)
@@ -295,12 +293,9 @@ class egoSouthOverKnightScr(Script):
 					(and
 						local16
 						(>
-							(GetDistance
-								local16
-								local17
-								(global0 x:)
-								(global0 y:)
-							)
+							kernel.GetDistance(local16, local17, (global0 x:), (global0
+								y:
+							))
 							20
 						)
 					)
@@ -371,7 +366,7 @@ class egoFallScr(Script):
 				(global91 say: 3 3 3 2 self)
 			#end:case
 			case 6:
-				(proc0_1 31)
+				proc0_1(31)
 			#end:case
 		#end:match
 	#end:method
@@ -600,7 +595,7 @@ class ghostScript(Script):
 
 		match state = param1
 			case 0:
-				cycles = (Random 90 300)
+				cycles = kernel.Random(90, 300)
 			#end:case
 			case 1:
 				(ghost show: setCycle: End self)
@@ -631,7 +626,7 @@ class ghostTormentScr(Script):
 					(global0 setMotion: 0 setHeading: 45)
 				#endif
 				(global102 number: 651 loop: 1 play:)
-				((ScriptID 70 0) setIt: 4)
+				(kernel.ScriptID(70, 0) setIt: 4)
 				(knightGhost init: cycleSpeed: 10 setCycle: End self)
 			#end:case
 			case 1:
@@ -687,7 +682,7 @@ class knightInsetScr(Script):
 				)
 			#end:case
 			case 1:
-				if (not ((ScriptID 70 0) isSet: 4)):
+				if (not (kernel.ScriptID(70, 0) isSet: 4)):
 					(self setScript: ghostTormentScr self)
 				else:
 					cycles = 1
@@ -729,7 +724,7 @@ class knight(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (proc999_5 param1 5 1):
+		if proc999_5(param1, 5, 1):
 			(global1 handsOff:)
 			(global2 setScript: knightInsetScr)
 		else:

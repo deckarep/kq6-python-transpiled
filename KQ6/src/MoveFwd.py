@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 951
 import sci_sh
+import kernel
 import PolyPath
 
 class MoveFwd(PolyPath):
@@ -18,8 +19,8 @@ class MoveFwd(PolyPath):
 			(super
 				init:
 					param1
-					((param1 x:) + (SinMult (param1 heading:) param2))
-					((param1 y:) - (CosMult (param1 heading:) param2))
+					((param1 x:) + kernel.SinMult((param1 heading:), param2))
+					((param1 y:) - kernel.CosMult((param1 heading:), param2))
 					((argc >= 3) and param3)
 			)
 		else:

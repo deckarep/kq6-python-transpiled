@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 751
 import sci_sh
+import kernel
 import Main
 import rm750
 import DPath
@@ -33,11 +34,11 @@ class jolloGivesLamp(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(UnLoad 128 717)
-		(UnLoad 128 754)
-		(DisposeScript 964)
-		(DisposeScript 1020)
-		(DisposeScript 751)
+		kernel.UnLoad(128, 717)
+		kernel.UnLoad(128, 754)
+		kernel.DisposeScript(964)
+		kernel.DisposeScript(1020)
+		kernel.DisposeScript(751)
 	#end:method
 
 	@classmethod
@@ -47,8 +48,8 @@ class jolloGivesLamp(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 750 6) setScript: 0 setCycle: 0 addToPic:)
-				((ScriptID 750 4) addToPic:)
+				(kernel.ScriptID(750, 6) setScript: 0 setCycle: 0 addToPic:)
+				(kernel.ScriptID(750, 4) addToPic:)
 				cycles = 2
 			#end:case
 			case 1:
@@ -96,7 +97,7 @@ class jolloGivesLamp(Script):
 			#end:case
 			case 6:
 				if (local0[register] != -1):
-					state--
+					state.post('--')
 					(jollo
 						cel: local0[register]
 						x: local0[(register + 1)]
@@ -131,7 +132,7 @@ class jolloGivesLamp(Script):
 			#end:case
 			case 10:
 				if (local0[register] != -1):
-					state--
+					state.post('--')
 					(jollo
 						cel: local0[register]
 						x: local0[(register + 1)]
@@ -175,18 +176,18 @@ class jolloGivesLamp(Script):
 				else:
 					(global2 drawPic: 750 100)
 				#endif
-				((ScriptID 750 9) addToPic:)
-				((ScriptID 750 6)
-					setScript: (ScriptID 750 8)
+				(kernel.ScriptID(750, 9) addToPic:)
+				(kernel.ScriptID(750, 6)
+					setScript: kernel.ScriptID(750, 8)
 					signal: 16384
 					init:
 				)
-				((ScriptID 750 3) addToPic:)
-				((ScriptID 750 4) signal: 16384 init:)
+				(kernel.ScriptID(750, 3) addToPic:)
+				(kernel.ScriptID(750, 4) signal: 16384 init:)
 				cycles = 2
 			#end:case
 			case 13:
-				(proc750_5)
+				proc750_5()
 				(self dispose:)
 			#end:case
 		#end:match

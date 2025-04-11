@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 967
 import sci_sh
+import kernel
 import Dialog
 import Motion
 
@@ -52,7 +53,7 @@ class DCIcon(DIcon):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		return ((NumCels self) - 1)
+		return (kernel.NumCels(self) - 1)
 	#end:method
 
 #end:class or instance

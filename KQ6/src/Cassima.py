@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 1005
 import sci_sh
+import kernel
 import Main
 import Kq6Talker
 import n913
@@ -32,12 +33,12 @@ class Cassima(Kq6Talker):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case ((proc913_0 59) and (global11 == 140)):
+			case (proc913_0(59) and (global11 == 140)):
 				cel = 1
 				(self x: 94 y: 87 textX: -60 textY: 30)
 				(super init: 0 0 tMouth140 &rest)
 			#end:case
-			case (proc913_0 59):
+			case proc913_0(59):
 				cel = 1
 				(super init: 0 0 0 &rest)
 			#end:case
@@ -45,11 +46,11 @@ class Cassima(Kq6Talker):
 				(self cel: 1 x: 214 y: 78 textX: -60 textY: 50 talkWidth: 120)
 				(super init: 0 tEyes740 tMouth740 &rest)
 			#end:case
-			case (proc913_0 99):
+			case proc913_0(99):
 				(self cel: 1 x: 172 y: 54 talkWidth: 135 textX: -2 textY: 58)
 				(super init: 0 0 wedMouth &rest)
 			#end:case
-			case (proc913_0 102):
+			case proc913_0(102):
 				(self cel: 1 x: 132 y: 67 textX: -112 textY: -47 talkWidth: 92)
 				(tEyes view: 7832 loop: 10 cel: 0 nsLeft: 0 nsTop: 0)
 				(tMouth view: 7832 loop: 9 cel: 0 nsLeft: -4 nsTop: 3)

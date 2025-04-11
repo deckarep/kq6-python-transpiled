@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 986
 import sci_sh
+import kernel
 import Main
 import Motion
 import System
@@ -55,15 +56,15 @@ class Orbit(Motion):
 			temp0 = 160
 			temp1 = 100
 		#endif
-		temp2 = (SinMult curAngle radius)
-		temp3 = (CosMult (yTilt + global31) (CosMult curAngle radius))
+		temp2 = kernel.SinMult(curAngle, radius)
+		temp3 = kernel.CosMult((yTilt + global31), kernel.CosMult(curAngle, radius))
 		if xTilt:
-			temp2 = (CosMult xTilt temp2)
-			(temp3 += (SinMult xTilt temp2))
+			temp2 = kernel.CosMult(xTilt, temp2)
+			(temp3 += kernel.SinMult(xTilt, temp2))
 		#endif
 		x = (temp0 + temp2)
 		y = (temp1 - temp3)
-		curAngle = (proc999_1 (curAngle + (winding * angleStep)) 360)
+		curAngle = proc999_1((curAngle + (winding * angleStep)), 360)
 		(super init: client x y)
 	#end:method
 

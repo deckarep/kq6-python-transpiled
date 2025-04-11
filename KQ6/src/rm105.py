@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 105
 import sci_sh
+import kernel
 import Main
 import Audio
 import KQ6Room
@@ -61,13 +62,13 @@ class rm105(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(DoAudio 3)
+		kernel.DoAudio(3)
 		if local403:
 			(global1 masterVolume: local403)
 			local403 = 0
 		#endif
-		(DrawPic 98)
-		(SetVideoMode 0)
+		kernel.DrawPic(98)
+		kernel.SetVideoMode(0)
 		(Cursor showCursor: 1)
 		(global1 restart: 1)
 	#end:method
@@ -80,7 +81,7 @@ class rm105(KQ6Room):
 		(global74 delete: self)
 		(global72 delete: self)
 		(global73 delete: self)
-		(proc958_0 0 929)
+		proc958_0(0, 929)
 		(super newRoom: &rest)
 	#end:method
 
@@ -96,73 +97,73 @@ class showMovie(Script):
 
 		match state = param1
 			case 0:
-				(proc958_0 128 1 2 3 1091 4)
-				(proc958_0 129 1 107 10 2 11 141 5 7 6)
+				proc958_0(128, 1, 2, 3, 1091, 4)
+				proc958_0(129, 1, 107, 10, 2, 11, 141, 5, 7, 6)
 				(global69 disable: height: -100 activateHeight: -100)
 				(User controls: 1)
 				(Cursor showCursor: 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(SetVideoMode 1)
-				(Animate 0)
-				(Palette 4 0 256 0)
+				kernel.SetVideoMode(1)
+				kernel.Animate(0)
+				kernel.Palette(4, 0, 256, 0)
 				cycles = 1
 			#end:case
 			case 2:
-				(DrawPic 107)
+				kernel.DrawPic(107)
 				temp0 = 0
 				while (temp0 < 100): # inline for
-					(Palette 4 0 256 temp0)
+					kernel.Palette(4, 0, 256, temp0)
 					temp1 = 0
 					while (temp1 < 30): # inline for
 					#end:loop
 					# for:reinit
-					temp0++
+					temp0.post('++')
 				#end:loop
 				cycles = 1
 			#end:case
 			case 3:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 4:
 				(global102 loop: 1 number: 105 play:)
-				(Message 0 105 1 0 0 1 @local1)
+				kernel.Message(0, 105, 1, 0, 0, 1, @local1)
 				(= local401
-					(Display @local1 100 12 81 106 300 102 98 105 3110 101 1 107)
+					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
 				cycles = 1
 			#end:case
 			case 5:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 6:
 				seconds = 6
 			#end:case
 			case 7:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 8:
-				(Display 105 0 108 local401)
+				kernel.Display(105, 0, 108, local401)
 				seconds = 2
 			#end:case
 			case 9:
-				(DrawPic 10)
+				kernel.DrawPic(10)
 				cycles = 1
 			#end:case
 			case 10:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 11:
 				cycles = 1
 			#end:case
 			case 12:
-				(ShowMovie r"""FS1.SEQ""" 10)
-				(ShowMovie r"""FS2Y.SEQ""" 10)
+				kernel.ShowMovie(r"""FS1.SEQ""", 10)
+				kernel.ShowMovie(r"""FS2Y.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 13:
-				(DrawPic 1)
+				kernel.DrawPic(1)
 				(flames init:)
 				cycles = 1
 			#end:case
@@ -200,69 +201,69 @@ class showMovie(Script):
 			case 22:
 				(alexMouth dispose: delete:)
 				(flames dispose:)
-				(ShowMovie r"""FS2Z.SEQ""" 10)
-				(DrawPic 2)
+				kernel.ShowMovie(r"""FS2Z.SEQ""", 10)
+				kernel.DrawPic(2)
 				seconds = 2
 			#end:case
 			case 23:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 24:
-				(DrawPic 107)
+				kernel.DrawPic(107)
 				cycles = 1
 			#end:case
 			case 25:
 				(global102 loop: -1 number: 120 play:)
-				(Message 0 105 3 0 0 1 @local1)
+				kernel.Message(0, 105, 3, 0, 0, 1, @local1)
 				(= local401
-					(Display @local1 100 12 81 106 300 102 98 105 3110 101 1 107)
+					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
 				cycles = 1
 			#end:case
 			case 26:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 27:
 				seconds = 4
 			#end:case
 			case 28:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 29:
-				(Display 105 0 108 local401)
+				kernel.Display(105, 0, 108, local401)
 				seconds = 2
 			#end:case
 			case 30:
-				(DrawPic 11)
+				kernel.DrawPic(11)
 				cycles = 1
 			#end:case
 			case 31:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 32:
-				(ShowMovie r"""CD1.SEQ""" 10)
+				kernel.ShowMovie(r"""CD1.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 33:
-				(DrawPic 3)
+				kernel.DrawPic(3)
 				seconds = 5
 			#end:case
 			case 34:
 				(global102 stop:)
 				(global102 loop: 1 number: 125 play:)
 				(global102 loop: 1 number: 107 play:)
-				(ShowMovie r"""CD6.SEQ""" 10)
+				kernel.ShowMovie(r"""CD6.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 35:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 36:
-				(DrawPic 141)
+				kernel.DrawPic(141)
 				cycles = 1
 			#end:case
 			case 37:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 38:
 				(cassMouth init: setCycle: MouthSync 105 1 0 0 10)
@@ -270,7 +271,7 @@ class showMovie(Script):
 			#end:case
 			case 39:
 				(cassMouth dispose: delete:)
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 				cycles = 2
 			#end:case
 			case 40:
@@ -278,17 +279,17 @@ class showMovie(Script):
 			#end:case
 			case 41:#end:case
 			case 42:
-				(DrawPic 107)
+				kernel.DrawPic(107)
 				(global102 number: 108 play:)
 				(toonAudio play: 1 0 0 12 self)
 			#end:case
 			case 43:
-				(Palette 4 0 231 100)
-				(ShowMovie r"""FPAN.SEQ""" 10)
+				kernel.Palette(4, 0, 231, 100)
+				kernel.ShowMovie(r"""FPAN.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 44:
-				(DrawPic 5)
+				kernel.DrawPic(5)
 				(flames2 init:)
 				cycles = 1
 			#end:case
@@ -333,152 +334,152 @@ class showMovie(Script):
 			#end:case
 			case 53:
 				(alexMouth2 dispose: delete:)
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 54:
 				(flames2 dispose:)
-				(DrawPic 107)
+				kernel.DrawPic(107)
 				cycles = 2
 			#end:case
 			case 55:
 				(global102 stop: number: 121 play:)
-				(Message 0 105 1 0 0 21 @local1)
+				kernel.Message(0, 105, 1, 0, 0, 21, @local1)
 				(= local401
-					(Display @local1 100 12 81 106 300 102 98 105 3110 101 1 107)
+					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 56:
 				seconds = 3
 			#end:case
 			case 57:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 58:
-				(Display 105 0 108 local401)
+				kernel.Display(105, 0, 108, local401)
 				cycles = 2
 			#end:case
 			case 59:
-				(Palette 4 0 231 100)
+				kernel.Palette(4, 0, 231, 100)
 				cycles = 1
 			#end:case
 			case 60:
-				(ShowMovie r"""CLOUD.SEQ""" 10)
-				(ShowMovie r"""BIRDS.SEQ""" 10)
+				kernel.ShowMovie(r"""CLOUD.SEQ""", 10)
+				kernel.ShowMovie(r"""BIRDS.SEQ""", 10)
 				(global102 stop: number: 122 play:)
-				(ShowMovie r"""OPEN.SEQ""" 10)
-				(ShowMovie r"""OPEN2.SEQ""" 10)
-				(ShowMovie r"""CLOSE.SEQ""" 10)
-				(ShowMovie r"""SCAN.SEQ""" 10)
-				(ShowMovie r"""SCOP.SEQ""" 10)
+				kernel.ShowMovie(r"""OPEN.SEQ""", 10)
+				kernel.ShowMovie(r"""OPEN2.SEQ""", 10)
+				kernel.ShowMovie(r"""CLOSE.SEQ""", 10)
+				kernel.ShowMovie(r"""SCAN.SEQ""", 10)
+				kernel.ShowMovie(r"""SCOP.SEQ""", 10)
 				(toonAudio play: 1 0 0 22 self)
 			#end:case
 			case 61:
-				(ShowMovie r"""LAND.SEQ""" 10)
+				kernel.ShowMovie(r"""LAND.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 62:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 63:
-				(DrawPic 107)
+				kernel.DrawPic(107)
 				cycles = 2
 			#end:case
 			case 64:
-				(Message 0 105 3 0 0 2 @local1)
+				kernel.Message(0, 105, 3, 0, 0, 2, @local1)
 				(= local401
-					(Display @local1 100 12 81 106 300 102 98 105 3110 101 1 107)
+					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 65:
 				seconds = 3
 			#end:case
 			case 66:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 67:
-				(Display 105 0 108 local401)
+				kernel.Display(105, 0, 108, local401)
 				cycles = 2
 			#end:case
 			case 68:
 				(global102 stop: number: 123 play:)
-				(DrawPic 7)
+				kernel.DrawPic(7)
 				cycles = 1
 			#end:case
 			case 69:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 70:
-				(ShowMovie r"""BOAT.SEQ""" 10)
+				kernel.ShowMovie(r"""BOAT.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 71:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 72:
-				(DrawPic 107)
+				kernel.DrawPic(107)
 				(global102 stop: number: 124 loop: 1 play: self)
-				(Message 0 105 1 0 0 23 @local1)
-				(Display 105 0 108 local401)
+				kernel.Message(0, 105, 1, 0, 0, 23, @local1)
+				kernel.Display(105, 0, 108, local401)
 				(= local401
-					(Display @local1 100 12 81 106 300 102 98 105 3110 101 1 107)
+					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
 				cycles = 1
 			#end:case
 			case 73:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 74:
 				seconds = 7
 			#end:case
 			case 75:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 76:
-				(Display 105 0 108 local401)
+				kernel.Display(105, 0, 108, local401)
 				cycles = 2
 			#end:case
 			case 77:
-				(DrawPic 6)
+				kernel.DrawPic(6)
 				cycles = 1
 			#end:case
 			case 78:
-				((ScriptID 107 2) doit: 0 self)
+				(kernel.ScriptID(107, 2) doit: 0 self)
 			#end:case
 			case 79:
 				seconds = 2
 			#end:case
 			case 80:
-				(ShowMovie r"""NSHP.SEQ""" 10)
+				kernel.ShowMovie(r"""NSHP.SEQ""", 10)
 				cycles = 2
 			#end:case
 			case 81:#end:case
 			case 82:
-				((ScriptID 107 2) doit: 1 self)
+				(kernel.ScriptID(107, 2) doit: 1 self)
 			#end:case
 			case 83:
-				(DrawPic 107)
-				(self setScript: (ScriptID 107 0) self)
+				kernel.DrawPic(107)
+				(self setScript: kernel.ScriptID(107, 0) self)
 			#end:case
 			case 84:
 				temp0 = 100
 				while (temp0 > 0): # inline for
-					(Palette 4 0 256 temp0)
+					kernel.Palette(4, 0, 256, temp0)
 					temp1 = 0
 					while (temp1 < 30): # inline for
 					#end:loop
 					# for:reinit
-					temp0--
+					temp0.post('--')
 				#end:loop
 				cycles = 1
 			#end:case
 			case 85:
-				(DrawPic 98)
+				kernel.DrawPic(98)
 				cycles = 1
 			#end:case
 			case 86:
-				(SetVideoMode 0)
+				kernel.SetVideoMode(0)
 				(global69 height: 0 activateHeight: 0)
 				(Cursor showCursor: 1)
 				(global2 newRoom: 200)
@@ -502,14 +503,14 @@ class toonAudio(Audio):
 		#endif
 		local0 = 0
 		(cond
-			case (DoAudio 2 105 param1 param2 param3 param4):
+			case kernel.DoAudio(2, 105, param1, param2, param3, param4):
 				stopped = 0
-				if (IsObject param5):
+				if kernel.IsObject(param5):
 					local0 = param5
 				#endif
 				(self doit:)
 			#end:case
-			case ((IsObject param5) and (local0 = param5 != 0)):
+			case (kernel.IsObject(param5) and (local0 = param5 != 0)):
 				(local0 cue:)
 			#end:case
 		)
@@ -520,7 +521,7 @@ class toonAudio(Audio):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (and (not stopped) ((DoAudio 6) == -1) (loop == 1)):
+		if (and (not stopped) (kernel.DoAudio(6) == -1) (loop == 1)):
 			doNotStop = 0
 			stopped = 1
 			if (local0 != 0):
@@ -532,7 +533,7 @@ class toonAudio(Audio):
 				(temp0 cue:)
 			#endif
 		#endif
-		if (and (not stopped) ((DoAudio 6) == -1) ((loop > 1) or (loop == -1))):
+		if (and (not stopped) (kernel.DoAudio(6) == -1) ((loop > 1) or (loop == -1))):
 			(self play:)
 		#endif
 	#end:method

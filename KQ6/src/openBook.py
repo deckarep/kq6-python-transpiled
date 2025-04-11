@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 190
 import sci_sh
+import kernel
 import Main
 import KQ6Print
 import n913
@@ -70,7 +71,7 @@ class openBook(Script):
 				(global0 cel: 0 setLoop: 0 setCycle: End self)
 			#end:case
 			case 3:
-				(client setScript: (ScriptID 190 1))
+				(client setScript: kernel.ScriptID(190, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -108,7 +109,7 @@ class spellBookScr(Script):
 			register = 0
 		#endif
 		(global69 disable:)
-		(DrawPic 98 10)
+		kernel.DrawPic(98, 10)
 		(super init: &rest)
 	#end:method
 
@@ -126,27 +127,27 @@ class spellBookScr(Script):
 				(and
 					(&
 						(= temp0
-							(OnControl
-								4
-								((User curEvent:) x:)
-								((User curEvent:) y:)
-							)
+							kernel.OnControl(4, ((User curEvent:) x:), ((User
+									curEvent:
+								)
+								y:
+							))
 						)
 						0x0002
 					)
 					(local8 != 2)
 				):
 				local8 = 2
-				(SetCursor 190 0 1)
+				kernel.SetCursor(190, 0, 1)
 			#end:case
 			case ((temp0 & 0x0004) and (local8 != 3)):
 				local8 = 3
-				(SetCursor 190 0 2)
+				kernel.SetCursor(190, 0, 2)
 			#end:case
 			case ((temp0 & 0x0008) and (local8 != 4)):
 				if (local8 != 4):
 					local8 = 4
-					(SetCursor 190 0 0)
+					kernel.SetCursor(190, 0, 0)
 				#endif
 			#end:case
 			case ((temp0 & 0x4000) and (local8 != 1)):
@@ -194,7 +195,7 @@ class spellBookScr(Script):
 				case 2:
 					if (local9 > 0):
 						(global1 handsOff:)
-						local9--
+						local9.post('--')
 						state = -1
 						(self cue:)
 					else:
@@ -204,7 +205,7 @@ class spellBookScr(Script):
 				case 3:
 					if (local9 < 2):
 						(global1 handsOff:)
-						local9++
+						local9.post('++')
 						state = -1
 						(self cue:)
 					else:
@@ -245,7 +246,7 @@ class spellBookScr(Script):
 						register = 18
 					#end:case
 				#end:match
-				(Message 0 190 3 0 register 1 @local16)
+				kernel.Message(0, 190, 3, 0, register, 1, @local16)
 				cycles = 1
 			#end:case
 			case 1:
@@ -263,7 +264,7 @@ class spellBookScr(Script):
 						register = 19
 					#end:case
 				#end:match
-				(Message 0 190 3 0 register 1 @local216)
+				kernel.Message(0, 190, 3, 0, register, 1, @local216)
 				cycles = 1
 			#end:case
 			case 2:
@@ -281,37 +282,37 @@ class spellBookScr(Script):
 						register = 21
 					#end:case
 				#end:match
-				(Message 0 190 3 0 register 1 @local416)
+				kernel.Message(0, 190, 3, 0, register, 1, @local416)
 				register = 0
 				cycles = 1
 			#end:case
 			case 3:
-				(DrawPic 190 10)
+				kernel.DrawPic(190, 10)
 				(self cue:)
 			#end:case
 			case 4:
-				(Display @local416 100 45 30 106 local14 102 98 105 1111)
+				kernel.Display(@local416, 100, 45, 30, 106, local14, 102, 98, 105, 1111)
 				if (local9 == 2):
 					temp1 = 49
 				else:
 					temp1 = 40
 				#endif
-				(Display @local16 100 45 temp1 106 local14 102 98 105 1111)
-				(Display r"""INCANTATION:""" 100 178 27 106 100 102 98 105 1111)
-				(Display @local216 100 178 37 106 100 102 98 105 1111)
+				kernel.Display(@local16, 100, 45, temp1, 106, local14, 102, 98, 105, 1111)
+				kernel.Display(r"""INCANTATION:""", 100, 178, 27, 106, 100, 102, 98, 105, 1111)
+				kernel.Display(@local216, 100, 178, 37, 106, 100, 102, 98, 105, 1111)
 				(User canInput: 1 canControl: 1)
 				local8 = 999
 				local15 = 0
 			#end:case
 			case 5:
-				state--
+				state.post('--')
 				match local9
 					case 0:
 						if 
 							(or
 								(global11 != 230)
-								(not (proc913_0 23))
-								((proc913_0 23) and (proc913_0 24))
+								(not proc913_0(23))
+								(proc913_0(23) and proc913_0(24))
 							)
 							(global91 say: 4 2 5 0 0 190)
 						else:
@@ -324,14 +325,14 @@ class spellBookScr(Script):
 						(cond
 							case 
 								(and
-									(proc999_5 temp0 15 7)
+									proc999_5(temp0, 15, 7)
 									(or
 										(global11 != 340)
 										(and
 											(global11 == 340)
 											(not
 												(local0
-													contains: (ScriptID 344 2)
+													contains: kernel.ScriptID(344, 2)
 												)
 											)
 										)
@@ -341,9 +342,9 @@ class spellBookScr(Script):
 							#end:case
 							case 
 								(and
-									(proc999_5 temp0 15 7)
+									proc999_5(temp0, 15, 7)
 									(global11 == 340)
-									(local0 contains: (ScriptID 344 2))
+									(local0 contains: kernel.ScriptID(344, 2))
 								):
 								register = 1
 								(self dispose:)
@@ -361,7 +362,7 @@ class spellBookScr(Script):
 							case (global161 == 7):
 								(global161 |= 0x0008)
 								register = 4660
-								(proc913_1 31)
+								proc913_1(31)
 								(self dispose:)
 							#end:case
 							else:
@@ -406,7 +407,7 @@ class spellBookScr(Script):
 		if (global11 == 781):
 			(global0 setPri: 13)
 		#endif
-		(DrawPic (global2 picture:) 100)
+		kernel.DrawPic((global2 picture:), 100)
 		if global10:
 			(global10 doit:)
 		#endif
@@ -414,7 +415,7 @@ class spellBookScr(Script):
 		(global1 handsOn:)
 		match register
 			case 1:
-				(Animate (global5 elements:) 1)
+				kernel.Animate((global5 elements:), 1)
 				if 
 					(not
 						(and
@@ -428,12 +429,12 @@ class spellBookScr(Script):
 			#end:case
 			case 4660:
 				(global1 givePoints: 3)
-				(Animate (global5 elements:) 1)
-				(global2 setScript: (ScriptID 190 2))
+				kernel.Animate((global5 elements:), 1)
+				(global2 setScript: kernel.ScriptID(190, 2))
 			#end:case
 		#end:match
 		if ((global2 script:) != makeRainScript):
-			(DisposeScript 190)
+			kernel.DisposeScript(190)
 		#endif
 	#end:method
 
@@ -455,7 +456,7 @@ class makeRainScript(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc913_1 59)
+				proc913_1(59)
 				(global91 say: 3 0 9 1 self 0)
 			#end:case
 			case 1:
@@ -493,7 +494,7 @@ class makeRainScript(Script):
 				(global91 say: 3 0 9 3 self 0)
 			#end:case
 			case 8:
-				(proc913_2 59)
+				proc913_2(59)
 				(global0 reset: local616)
 				if (global11 == 781):
 					(global0 setPri: 13)
@@ -511,7 +512,7 @@ class makeRainScript(Script):
 		argc = sum(v is not None for v in locals().values())
 
 		(super dispose:)
-		(DisposeScript 190)
+		kernel.DisposeScript(190)
 	#end:method
 
 #end:class or instance

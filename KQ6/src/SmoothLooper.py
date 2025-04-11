@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 968
 import sci_sh
+import kernel
 import Motion
 import System
 
@@ -51,12 +52,12 @@ class SmoothLooper(Code):
 		#endif
 		if (((client loop:) > 3) and ((client view:) == vNormal)):
 			if inProgress:
-				if (IsObject oldMover):
+				if kernel.IsObject(oldMover):
 					(oldMover dispose:)
 				#endif
 			else:
 				(client view: vNormal)
-				(DirLoop client param2)
+				kernel.DirLoop(client, param2)
 			#endif
 		#endif
 		match temp0 = (client loop:)
@@ -207,7 +208,7 @@ class SmoothLooper(Code):
 		#endif
 		inProgress = oldMover = newMover = oldCycler = 0
 		(client view: vNormal looper: 0)
-		(DirLoop client (client heading:))
+		kernel.DirLoop(client, (client heading:))
 		(super dispose:)
 	#end:method
 

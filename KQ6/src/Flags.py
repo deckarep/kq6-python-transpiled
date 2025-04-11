@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 985
 import sci_sh
+import kernel
 import System
 
 class Flags(Obj):
@@ -29,15 +30,15 @@ class Flags(Obj):
 
 		temp0 = (param1 / 16)
 		if (mod param1 16):
-			temp0++
+			temp0.post('++')
 		#endif
 		size = (temp0 * 16)
-		array = (Memory 1 (temp0 * 2))
+		array = kernel.Memory(1, (temp0 * 2))
 		temp1 = 0
 		while (temp1 < temp0): # inline for
-			(Memory 6 (array + (temp1 * 2)) 0)
+			kernel.Memory(6, (array + (temp1 * 2)), 0)
 			# for:reinit
-			temp1++
+			temp1.post('++')
 		#end:loop
 	#end:method
 
@@ -47,7 +48,7 @@ class Flags(Obj):
 		argc = sum(v is not None for v in locals().values())
 
 		if array:
-			(Memory 3 array)
+			kernel.Memory(3, array)
 			array = 0
 		#endif
 		(super dispose:)
@@ -60,14 +61,14 @@ class Flags(Obj):
 
 		while argc:
 
-			temp1 = ((param1[argc--] / 16) * 2)
+			temp1 = ((param1[argc.post('--')] / 16) * 2)
 			(= temp0
 				(|
-					temp0 = (Memory 5 (array + temp1))
+					temp0 = kernel.Memory(5, (array + temp1))
 					(0x8000 >> (mod param1[argc] 16))
 				)
 			)
-			(Memory 6 (array + temp1) temp0)
+			kernel.Memory(6, (array + temp1), temp0)
 		#end:loop
 	#end:method
 
@@ -78,14 +79,14 @@ class Flags(Obj):
 
 		while argc:
 
-			temp1 = ((param1[argc--] / 16) * 2)
+			temp1 = ((param1[argc.post('--')] / 16) * 2)
 			(= temp0
 				(&
-					temp0 = (Memory 5 (array + temp1))
+					temp0 = kernel.Memory(5, (array + temp1))
 					(~ (0x8000 >> (mod param1[argc] 16)))
 				)
 			)
-			(Memory 6 (array + temp1) temp0)
+			kernel.Memory(6, (array + temp1), temp0)
 		#end:loop
 	#end:method
 
@@ -96,7 +97,7 @@ class Flags(Obj):
 
 		temp1 = ((param1 / 16) * 2)
 		(return
-			(temp0 = (Memory 5 (array + temp1)) & (0x8000 >> (mod param1 16)))
+			(temp0 = kernel.Memory(5, (array + temp1)) & (0x8000 >> (mod param1 16)))
 		)
 	#end:method
 

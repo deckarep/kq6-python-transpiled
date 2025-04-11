@@ -5,6 +5,7 @@
 ### Transpiled by deckarep (python3.10+)
 # script# 407
 import sci_sh
+import kernel
 import Main
 import rLab
 import n401
@@ -39,19 +40,19 @@ class rm407(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(proc401_2)
+		proc401_2()
 		(super init: &rest)
 		(hiwEastWall init:)
-		if ((not (proc913_0 1)) and (not (rLab seenSecretLatch:))):
+		if ((not proc913_0(1)) and (not (rLab seenSecretLatch:))):
 			(global2 setScript: holeInWallEntry)
 		else:
-			((ScriptID 30 0) cue:)
-			(global2 setScript: (ScriptID 30 1))
+			(kernel.ScriptID(30, 0) cue:)
+			(global2 setScript: kernel.ScriptID(30, 1))
 		#endif
-		((ScriptID 30 0) initCrypt: 1)
-		((ScriptID 30 5) addToPic:)
-		((ScriptID 30 9) addToPic:)
-		((ScriptID 30 8) addToPic:)
+		(kernel.ScriptID(30, 0) initCrypt: 1)
+		(kernel.ScriptID(30, 5) addToPic:)
+		(kernel.ScriptID(30, 9) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
 	#end:method
 
 	@classmethod
@@ -59,10 +60,10 @@ class rm407(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		((ScriptID 30 5) addToPic:)
-		((ScriptID 30 9) addToPic:)
-		((ScriptID 30 8) addToPic:)
-		((ScriptID 30 3) show:)
+		(kernel.ScriptID(30, 5) addToPic:)
+		(kernel.ScriptID(30, 9) addToPic:)
+		(kernel.ScriptID(30, 8) addToPic:)
+		(kernel.ScriptID(30, 3) show:)
 	#end:method
 
 	@classmethod
@@ -262,7 +263,7 @@ class holeInWallEntry(Script):
 				(global0 posn: 36 158 init: setMotion: PolyPath 73 158 self)
 			#end:case
 			case 1:
-				((ScriptID 30 0) cue:)
+				(kernel.ScriptID(30, 0) cue:)
 				(global69 enable: 6)
 				(global105 number: 401 setLoop: 1 play: self)
 			#end:case
@@ -285,7 +286,7 @@ class holeInWallEntry(Script):
 			case 3:
 				if 
 					(and
-						(not ((ScriptID 30 0) holeIsUp:))
+						(not (kernel.ScriptID(30, 0) holeIsUp:))
 						(not (global0 has: 18))
 						(not (rLab seenSecretLatch:))
 					)
@@ -413,9 +414,9 @@ class emptyHandedDeath(Script):
 			#end:case
 			case 22:
 				if (global5 contains: theHole):
-					(proc0_1 28)
+					proc0_1(28)
 				else:
-					(proc0_1 27)
+					proc0_1(27)
 				#endif
 			#end:case
 		#end:match
@@ -449,8 +450,8 @@ class putHoleOnWall(Script):
 			#end:case
 			case 2:
 				(global0 cel: 6)
-				if (not (proc913_0 114)):
-					(proc913_1 114)
+				if (not proc913_0(114)):
+					proc913_1(114)
 					(global1 givePoints: 1)
 				#endif
 				(theHole init:)
@@ -514,8 +515,8 @@ class getTheHole(Script):
 			case 6:
 				(global1 handsOn:)
 				(global0 setLoop: -1 get: 18)
-				((ScriptID 30 0) holeCoords: 0)
-				((ScriptID 30 0) holeWall: 0)
+				(kernel.ScriptID(30, 0) holeCoords: 0)
+				(kernel.ScriptID(30, 0) holeWall: 0)
 				(self dispose:)
 			#end:case
 		#end:match
@@ -607,7 +608,7 @@ class holie(Script):
 
 		match state = param1
 			case 0:
-				((ScriptID 30 3) addToPic:)
+				(kernel.ScriptID(30, 3) addToPic:)
 				seconds = 2
 			#end:case
 			case 1:
@@ -642,11 +643,11 @@ class holie(Script):
 				(minoInset dispose:)
 				(tapeMove dispose:)
 				(global2 drawPic: 400 (15 if global169 else 100))
-				((ScriptID 30 5) addToPic:)
-				((ScriptID 30 9) addToPic:)
-				((ScriptID 30 8) addToPic:)
-				((ScriptID 30 3) init: show:)
-				((ScriptID 30 4) addToPic:)
+				(kernel.ScriptID(30, 5) addToPic:)
+				(kernel.ScriptID(30, 9) addToPic:)
+				(kernel.ScriptID(30, 8) addToPic:)
+				(kernel.ScriptID(30, 3) init: show:)
+				(kernel.ScriptID(30, 4) addToPic:)
 				cycles = 6
 			#end:case
 			case 7:
