@@ -229,23 +229,19 @@ class sysLogger(Code):
 				init:
 			)
 		else:
-			(localproc_0 1 r"""GAME""" (global1 name:))
-			(localproc_0 1 r"""VERSION""" global27)
-			(localproc_0 7 r"""QA-DATE""")
-			(localproc_0 1 r"""ANALYST""" @temp138)
-			(localproc_0
-				1
-				r"""SEVERITY"""
-				(Print
-					font: 999
-					addText: r"""Severity of bug..."""
-					addButton: r"""F""" r"""FATAL""" 0 12
-					addButton: r"""N""" r"""NON-FATAL""" 40 12
-					addButton: r"""S""" r"""SUGGESTION""" 110 12
-					saveCursor: 1
-					init:
-				)
-			)
+			localproc_0(1, r"""GAME""", (global1 name:))
+			localproc_0(1, r"""VERSION""", global27)
+			localproc_0(7, r"""QA-DATE""")
+			localproc_0(1, r"""ANALYST""", @temp138)
+			localproc_0(1, r"""SEVERITY""", (Print
+				font: 999
+				addText: r"""Severity of bug..."""
+				addButton: r"""F""" r"""FATAL""" 0 12
+				addButton: r"""N""" r"""NON-FATAL""" 40 12
+				addButton: r"""S""" r"""SUGGESTION""" 110 12
+				saveCursor: 1
+				init:
+			))
 			temp0 = 1
 			temp6 = 1
 			while (temp0 <= 10):
@@ -253,96 +249,83 @@ class sysLogger(Code):
 				kernel.Format(@temp108, 952, 9, temp0)
 				kernel.Format(@temp8, 952, 10, temp0, 10)
 				if temp6:
-					temp6 = (localproc_0 5 @temp108 @temp8)
+					temp6 = localproc_0(5, @temp108, @temp8)
 				else:
-					(localproc_0 1 @temp108 0)
+					localproc_0(1, @temp108, 0)
 				#endif
 				temp0.post('++')
 			#end:loop
-			(localproc_0
-				1
-				r"""DEPARTMENT"""
-				(Print
-					font: 999
-					addText: r"""Who can fix bug..."""
-					addButton: r"""P""" r"""PROG""" 0 12
-					addButton: r"""A""" r"""ART""" 40 12
-					addButton: r"""D""" r"""DESIGN""" 80 12
-					saveCursor: 1
-					init:
-				)
-			)
-			(localproc_0 2 r"""ROOM""" global11)
+			localproc_0(1, r"""DEPARTMENT""", (Print
+				font: 999
+				addText: r"""Who can fix bug..."""
+				addButton: r"""P""" r"""PROG""" 0 12
+				addButton: r"""A""" r"""ART""" 40 12
+				addButton: r"""D""" r"""DESIGN""" 80 12
+				saveCursor: 1
+				init:
+			))
+			localproc_0(2, r"""ROOM""", global11)
 			temp0 = (global2 script:)
-			(localproc_0 1 r"""ROOM-SCRIPT""" (temp0 and (temp0 name:)))
-			(localproc_0 2 r"""ROOM-STATE""" (temp0 and (temp0 state:)))
-			(localproc_0 2 r"""EGO-X""" (global0 x:))
-			(localproc_0 2 r"""EGO-Y""" (global0 y:))
-			(localproc_0 2 r"""EGO-Z""" (global0 z:))
+			localproc_0(1, r"""ROOM-SCRIPT""", (temp0 and (temp0 name:)))
+			localproc_0(2, r"""ROOM-STATE""", (temp0 and (temp0 state:)))
+			localproc_0(2, r"""EGO-X""", (global0 x:))
+			localproc_0(2, r"""EGO-Y""", (global0 y:))
+			localproc_0(2, r"""EGO-Z""", (global0 z:))
 			temp0 = (global0 script:)
-			(localproc_0 1 r"""EGO-SCRIPT""" (temp0 and (temp0 name:)))
-			(localproc_0 2 r"""EGO-STATE""" (temp0 and (temp0 state:)))
-			(localproc_0 2 r"""EGO-VIEW""" (global0 view:))
-			(localproc_0 2 r"""EGO-LOOP""" (global0 loop:))
-			(localproc_0 2 r"""EGO-CEL""" (global0 cel:))
-			(localproc_0 2 r"""EGO-PRIORITY""" (global0 priority:))
-			(localproc_0 2 r"""EGO-HEADING""" (global0 heading:))
-			(localproc_0
-				1
-				r"""CYCLER"""
-				((global0 cycler:) and ((global0 cycler:) name:))
-			)
+			localproc_0(1, r"""EGO-SCRIPT""", (temp0 and (temp0 name:)))
+			localproc_0(2, r"""EGO-STATE""", (temp0 and (temp0 state:)))
+			localproc_0(2, r"""EGO-VIEW""", (global0 view:))
+			localproc_0(2, r"""EGO-LOOP""", (global0 loop:))
+			localproc_0(2, r"""EGO-CEL""", (global0 cel:))
+			localproc_0(2, r"""EGO-PRIORITY""", (global0 priority:))
+			localproc_0(2, r"""EGO-HEADING""", (global0 heading:))
+			localproc_0(1, r"""CYCLER""", (and
+				(global0 cycler:)
+				((global0 cycler:) name:)
+			))
 			temp0 = (global0 mover:)
-			(localproc_0 1 r"""EGO-MOVER""" (temp0 and (temp0 name:)))
-			(localproc_0
-				2
-				r"""MOVER-X"""
-				(cond
-					case (not temp0): 0#end:case
-					case (temp0 isMemberOf: PolyPath):
-						(temp0 finalX:)
-					#end:case
-					else:
-						(temp0 x:)
-					#end:else
-				)
-			)
-			(localproc_0
-				2
-				r"""MOVER-Y"""
-				(cond
-					case (not temp0): 0#end:case
-					case (temp0 isMemberOf: PolyPath):
-						(temp0 finalY:)
-					#end:case
-					else:
-						(temp0 y:)
-					#end:else
-				)
-			)
-			(localproc_0 2 r"""EGO-MOVESPD""" (global0 moveSpeed:))
-			(localproc_0 4 r"""SIGNAL-BITS""" (global0 signal:))
-			(localproc_0 4 r"""ILLEGAL-BITS""" (global0 illegalBits:))
-			(localproc_0 2 r"""HOWFAST""" global87)
-			(localproc_0 1 r"""ICONBAR""" (global69 and (global69 name:)))
-			(localproc_0
-				1
-				r"""CUR-ICON"""
-				(and global69 (global69 curIcon:) ((global69 curIcon:) name:))
-			)
-			(localproc_0 2 r"""DETAIL-LEVEL""" (global1 detailLevel:))
-			(localproc_0 2 r"""CD-AUDIO""" (global90 & 0x0002))
-			(localproc_0 1 r"""VIDEO-DRV""" @temp238)
-			(localproc_0 1 r"""SOUND-DRV""" @temp278)
-			(localproc_0 1 r"""AUDIO-DRV""" @temp358)
-			(localproc_0 1 r"""KEYBOARD-DRV""" @temp158)
-			(localproc_0 1 r"""JOY-DRV""" @temp198)
-			(localproc_0 1 r"""MOUSE""" @temp318)
-			(localproc_0 3 r"""LARGEST-HEAP""" kernel.MemoryInfo(0))
-			(localproc_0 3 r"""FREE-HEAP""" kernel.MemoryInfo(1))
-			(localproc_0 3 r"""TOTAL-HUNK""" (kernel.MemoryInfo(4) >> 0x0006))
-			(localproc_0 3 r"""LARGEST-HUNK""" kernel.MemoryInfo(2))
-			(localproc_0 3 r"""FREE-HUNK""" (kernel.MemoryInfo(3) >> 0x0006))
+			localproc_0(1, r"""EGO-MOVER""", (temp0 and (temp0 name:)))
+			localproc_0(2, r"""MOVER-X""", (cond
+				case (not temp0): 0#end:case
+				case (temp0 isMemberOf: PolyPath):
+					(temp0 finalX:)
+				#end:case
+				else:
+					(temp0 x:)
+				#end:else
+			))
+			localproc_0(2, r"""MOVER-Y""", (cond
+				case (not temp0): 0#end:case
+				case (temp0 isMemberOf: PolyPath):
+					(temp0 finalY:)
+				#end:case
+				else:
+					(temp0 y:)
+				#end:else
+			))
+			localproc_0(2, r"""EGO-MOVESPD""", (global0 moveSpeed:))
+			localproc_0(4, r"""SIGNAL-BITS""", (global0 signal:))
+			localproc_0(4, r"""ILLEGAL-BITS""", (global0 illegalBits:))
+			localproc_0(2, r"""HOWFAST""", global87)
+			localproc_0(1, r"""ICONBAR""", (global69 and (global69 name:)))
+			localproc_0(1, r"""CUR-ICON""", (and
+				global69
+				(global69 curIcon:)
+				((global69 curIcon:) name:)
+			))
+			localproc_0(2, r"""DETAIL-LEVEL""", (global1 detailLevel:))
+			localproc_0(2, r"""CD-AUDIO""", (global90 & 0x0002))
+			localproc_0(1, r"""VIDEO-DRV""", @temp238)
+			localproc_0(1, r"""SOUND-DRV""", @temp278)
+			localproc_0(1, r"""AUDIO-DRV""", @temp358)
+			localproc_0(1, r"""KEYBOARD-DRV""", @temp158)
+			localproc_0(1, r"""JOY-DRV""", @temp198)
+			localproc_0(1, r"""MOUSE""", @temp318)
+			localproc_0(3, r"""LARGEST-HEAP""", kernel.MemoryInfo(0))
+			localproc_0(3, r"""FREE-HEAP""", kernel.MemoryInfo(1))
+			localproc_0(3, r"""TOTAL-HUNK""", (kernel.MemoryInfo(4) >> 0x0006))
+			localproc_0(3, r"""LARGEST-HUNK""", kernel.MemoryInfo(2))
+			localproc_0(3, r"""FREE-HUNK""", (kernel.MemoryInfo(3) >> 0x0006))
 			kernel.FileIO(6, local0, r"""**********************************\0d\n""")
 			kernel.FileIO(1, local0)
 		#endif

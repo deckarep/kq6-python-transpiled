@@ -169,7 +169,7 @@ class rm280(KQ6Room):
 				setScript: shopOwnerScr 0 (0 if (global12 == 145) else 1)
 			)
 		#endif
-		(proc280_8 local66)
+		proc280_8(local66)
 	#end:method
 
 	@classmethod
@@ -315,7 +315,7 @@ class removeOwnerScr(Script):
 			case 1:
 				client = 0
 				(global78 delete: self)
-				(proc280_10 register)
+				proc280_10(register)
 				state = -1
 			#end:case
 		#end:match
@@ -401,7 +401,7 @@ class genericTalkScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc280_10 self)
+				proc280_10(self)
 				(global0 normal: 0 view: 280 loop: 7 cel: 0)
 				cycles = 2
 			#end:case

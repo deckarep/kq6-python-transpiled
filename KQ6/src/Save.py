@@ -40,7 +40,7 @@ def localproc_0():
 	(return
 		(cond
 			case (self == Restore): 0#end:case
-			case (localproc_1): 1#end:case
+			case localproc_1(): 1#end:case
 			case local2: 2#end:case
 			else: 3#end:else
 		)
@@ -120,7 +120,7 @@ class SRDialog(Dialog):
 		if (local2 = kernel.GetSaveFiles((global1 name:), param2, param3) == -1):
 			return 0
 		#endif
-		if (local4 = (localproc_0) == 1):
+		if (local4 = localproc_0() == 1):
 			(editI
 				text: kernel.StrCpy(param1, param2)
 				font: global23
@@ -238,7 +238,7 @@ class SRDialog(Dialog):
 				(self dispose:)
 				if 
 					(and
-						(proc990_0 global29)
+						proc990_0(global29)
 						(==
 							(= local2
 								kernel.GetSaveFiles((global1 name:), @temp3, @temp364)
@@ -263,7 +263,7 @@ class SRDialog(Dialog):
 				if ((local4 == 1) and ((local1 == okI) or (local1 == editI))):
 					if (kernel.StrLen(param1) == 0):
 						(self dispose:)
-						(localproc_2)
+						localproc_2()
 						(self init: param1 @temp3 @temp364)
 						(continue)
 					#endif
@@ -424,7 +424,7 @@ class GetReplaceName(Dialog):
 		temp0 = (super doit: newName)
 		(self dispose:)
 		if (not kernel.StrLen(param1)):
-			(localproc_2)
+			localproc_2()
 			temp0 = 0
 		#endif
 		return ((temp0 == newName) or (temp0 == button1))

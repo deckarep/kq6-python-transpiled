@@ -230,8 +230,8 @@ class rm470(KQ6Room):
 			add: swamp1 swamp2 farTrees pathage milkers dogTree log
 			eachElementDo: #init
 		)
-		(localproc_0)
-		(localproc_1)
+		localproc_0()
+		localproc_1()
 		(bump init: stopUpd:)
 		(cond
 			case 
@@ -1253,7 +1253,7 @@ class doPussy(Script):
 				#endif
 			#end:case
 			case 7:
-				(localproc_4)
+				localproc_4()
 				if (register == 5):
 					(global0 setHeading: 315)
 				#endif

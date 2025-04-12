@@ -70,19 +70,19 @@ class Timer(Obj):
 		(cond
 			case (cycleCnt != -1):
 				if (not cycleCnt.post('--')):
-					(localproc_0)
+					localproc_0()
 				#endif
 			#end:case
 			case (seconds != -1):
 				if (lastTime != temp0 = kernel.GetTime(1)):
 					lastTime = temp0
 					if (not seconds.post('--')):
-						(localproc_0)
+						localproc_0()
 					#endif
 				#endif
 			#end:case
 			case ((global88 - ticks) > 0):
-				(localproc_0)
+				localproc_0()
 			#end:case
 		)
 	#end:method

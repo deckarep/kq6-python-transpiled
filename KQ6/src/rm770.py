@@ -79,7 +79,7 @@ class StolenItem(Feature):
 						(look1stSeq + (kernel.ScriptID(80, 0) tstFlag: 710 flagNum))
 				)
 				(kernel.ScriptID(80, 0) setFlag: 710 flagNum)
-				if (localproc_0):
+				if localproc_0():
 					(global1 givePoints: 2)
 					(roomConv add: -1 1 0 1)
 				#endif

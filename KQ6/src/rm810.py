@@ -66,7 +66,7 @@ def proc810_1():
 	(global0 init: show:)
 	(beam cel: 0 show:)
 	(chink show:)
-	(localproc_0)
+	localproc_0()
 #end:procedure
 
 @SCI.instance
@@ -94,7 +94,7 @@ class rm810(CastleRoom):
 				local0 = 3
 			#end:else
 		#end:match
-		(localproc_0)
+		localproc_0()
 		(super init: &rest)
 		(walls init:)
 		(global0 init: reset:)
@@ -221,7 +221,7 @@ class changeHallways(Script):
 					state.post('--')
 					(global0 posn: 156 135 hide: normal: 0)
 				#endif
-				(localproc_0)
+				localproc_0()
 				(chink hide:)
 				(beam hide:)
 				(secretDoor startUpd: hide:)

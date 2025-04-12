@@ -107,14 +107,14 @@ class boyGhostScript(Script):
 				(global91 say: 6 2 16 1 self)
 			#end:case
 			case 5:
-				(localproc_1)
+				localproc_1()
 				(cryBaby
 					next: (showNonHanky register: 1 caller: self yourself:)
 				)
 			#end:case
 			case 6:
 				if (local0 or (global0 has: 17)):
-					(localproc_0)
+					localproc_0()
 					state = 7
 					if local0:
 						cycles = 3
@@ -134,7 +134,7 @@ class boyGhostScript(Script):
 				(global91 say: 6 50 0 1 self)
 			#end:case
 			case 9:
-				(localproc_1)
+				localproc_1()
 				if (script == cryBaby):
 					(cryBaby next: (showNonHanky caller: self yourself:))
 				else:
@@ -159,7 +159,7 @@ class boyGhostScript(Script):
 				seconds = 5
 			#end:case
 			case 13:
-				(localproc_0)
+				localproc_0()
 				cycles = 4
 			#end:case
 			case 14:
@@ -171,7 +171,7 @@ class boyGhostScript(Script):
 				)
 			#end:case
 			case 15:
-				(localproc_1)
+				localproc_1()
 				(boyGhost setCycle: Beg self)
 			#end:case
 			case 16:
@@ -221,7 +221,7 @@ class showNonHanky(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(localproc_1)
+				localproc_1()
 				if (((boyGhost loop:) == 1) and (boyGhost cel:)):
 					(boyGhost setCycle: Beg self)
 				else:
@@ -233,7 +233,7 @@ class showNonHanky(Script):
 			#end:case
 			case 2:
 				if register:
-					(localproc_0)
+					localproc_0()
 					cycles = 4
 				else:
 					(self cue:)
@@ -252,7 +252,7 @@ class showNonHanky(Script):
 			#end:case
 			case 4:
 				if register:
-					(localproc_1)
+					localproc_1()
 				#endif
 				if local0:
 					(self dispose:)
@@ -339,7 +339,7 @@ class cryBaby(Script):
 					register = 0
 				#end:case
 				case 2:
-					(localproc_1)
+					localproc_1()
 					if ((not local1) and (local2 == 30)):
 						local2 = 0
 					#endif
@@ -385,7 +385,7 @@ class noHanky(Script):
 				(self setScript: justCryToMama self 2)
 			#end:case
 			case 2:
-				(localproc_0)
+				localproc_0()
 				cycles = 2
 			#end:case
 			case 3:
@@ -396,14 +396,14 @@ class noHanky(Script):
 				)
 			#end:case
 			case 4:
-				(localproc_1)
+				localproc_1()
 				(self setScript: justCryToMama self 5)
 			#end:case
 			case 5:
 				proc913_4(global0, kernel.ScriptID(820, 3), self)
 			#end:case
 			case 6:
-				(localproc_0)
+				localproc_0()
 				cycles = 4
 			#end:case
 			case 7:
@@ -413,7 +413,7 @@ class noHanky(Script):
 				(global91 say: 1 0 5 7 self)
 			#end:case
 			case 9:
-				(localproc_1)
+				localproc_1()
 				(boyGhost setLoop: 0 cel: 7 x: 260 y: 118 setCycle: Beg self)
 			#end:case
 			case 10:
@@ -439,7 +439,7 @@ class noHanky(Script):
 				(kernel.ScriptID(820, 3) setPri: 10 setCycle: End self)
 			#end:case
 			case 13:
-				(localproc_0)
+				localproc_0()
 				(kernel.ScriptID(820, 3) stopUpd:)
 				cycles = 4
 			#end:case
@@ -458,7 +458,7 @@ class noHanky(Script):
 				)
 			#end:case
 			case 16:
-				(localproc_1)
+				localproc_1()
 				(kernel.ScriptID(820, 3) setCycle: Beg self)
 				(global105 number: 822 loop: 1 play:)
 			#end:case
@@ -533,13 +533,13 @@ class boyGhost(Actor):
 					local1 = 1
 					(boyGhostScript cue:)
 				else:
-					(localproc_0)
+					localproc_0()
 					(global91 say: noun param1 17)
-					(localproc_1)
+					localproc_1()
 				#endif
 			#end:case
 			case 50:
-				(localproc_0)
+				localproc_0()
 				local0 = 1
 				(global0 put: 17 820)
 				(global1 givePoints: 3)
@@ -552,7 +552,7 @@ class boyGhost(Actor):
 			#end:case
 			else:
 				if ((global66 doit: param1) == -32768):
-					(localproc_0)
+					localproc_0()
 					(global91 say: noun 0 0 1)
 					local1 = 1
 					if ((script script:) != showNonHanky):

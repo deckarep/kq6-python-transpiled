@@ -479,7 +479,7 @@ class captureEgo(Script):
 				)
 			#end:case
 			case 3:
-				(localproc_0 self)
+				localproc_0(self)
 			#end:case
 			case 4:
 				cycles = 2

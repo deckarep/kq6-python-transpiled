@@ -47,7 +47,7 @@ def localproc_1():
 	argc = sum(v is not None for v in locals().values())
 
 	(return
-		if (localproc_0):
+		if localproc_0():
 			(10 if proc913_0(37) else 12)
 		else:
 			11
@@ -206,7 +206,7 @@ class rm250(KQ6Room):
 			case 85:
 				(cond
 					case 
-						(temp1 = (global5 contains: beauty) and (localproc_0)):
+						(temp1 = (global5 contains: beauty) and localproc_0()):
 						(CueObj state: 0 cycles: 0 client: beauty theVerb: 31)
 						(global0
 							setMotion:
@@ -750,7 +750,7 @@ class useFluteOnBeautyScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				register = (localproc_1)
+				register = localproc_1()
 				if (register != 11):
 					state.post('++')
 				#endif
@@ -798,7 +798,7 @@ class giveAllScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				register = (localproc_1)
+				register = localproc_1()
 				(global91
 					say: 6 0 (10 if (register == 12) else register) 1 self
 				)
@@ -886,22 +886,22 @@ class beauty(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		(cond
-			case (proc999_5(param1, 42, 27, 28, 7, 32, 12, 65, 33) and (localproc_0)):
+			case (proc999_5(param1, 42, 27, 28, 7, 32, 12, 65, 33) and localproc_0()):
 				(global91 say: noun param1 18)
 			#end:case
-			case (proc999_5(param1, 57, 58, 59, 60, 96, 43, 56) and (localproc_0)):
+			case (proc999_5(param1, 57, 58, 59, 60, 96, 43, 56) and localproc_0()):
 				(global91 say: noun 43 (10 if proc913_0(37) else 12))
 			#end:case
-			case (proc999_5(param1, 66, 70) and (localproc_0)):
+			case (proc999_5(param1, 66, 70) and localproc_0()):
 				(global91 say: noun 66 (10 if proc913_0(37) else 12))
 			#end:case
 			case (param1 == 31):
 				(global2 setScript: useFluteOnBeautyScr)
 			#end:case
-			case (proc999_5(param1, 74, 73, 55) and (localproc_0)):
+			case (proc999_5(param1, 74, 73, 55) and localproc_0()):
 				(global91 say: noun 55 18)
 			#end:case
-			case ((param1 == 71) and (localproc_0)):
+			case ((param1 == 71) and localproc_0()):
 				(global2 setScript: rmGiveRoseScr)
 			#end:case
 			case (param1 == 69):
@@ -916,7 +916,7 @@ class beauty(Actor):
 					say:
 						noun
 						param1
-						if (localproc_0):
+						if localproc_0():
 							(cond
 								case proc913_0(37):
 									(+
@@ -950,7 +950,7 @@ class beauty(Actor):
 				)
 			#end:case
 			case (param1 == 5):
-				(global91 say: noun param1 (18 if (localproc_0) else 11))
+				(global91 say: noun param1 (18 if localproc_0() else 11))
 			#end:case
 			else:
 				(global2 setScript: giveAllScr)

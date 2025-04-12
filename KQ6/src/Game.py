@@ -495,7 +495,7 @@ class Game(Obj):
 		kernel.ScriptID(990)
 		temp21 = (self setCursor: global20)
 		(global8 pause: 1)
-		if (localproc_0 1):
+		if localproc_0(1):
 			if global25:
 				(global25 dispose:)
 			#endif
@@ -513,7 +513,7 @@ class Game(Obj):
 				#endif
 				(self setCursor: temp21 kernel.HaveMouse())
 			#endif
-			(localproc_0 0)
+			localproc_0(0)
 		#endif
 		(global8 pause: 0)
 	#end:method
@@ -533,7 +533,7 @@ class Game(Obj):
 		kernel.ScriptID(990)
 		temp21 = (self setCursor: global20)
 		(global8 pause: 1)
-		if (localproc_0 1):
+		if localproc_0(1):
 			if global25:
 				(global25 dispose:)
 			#endif
@@ -553,7 +553,7 @@ class Game(Obj):
 					(self setCursor: temp21 kernel.HaveMouse())
 				#endif
 			#endif
-			(localproc_0 0)
+			localproc_0(0)
 		#endif
 		(global8 pause: 0)
 	#end:method

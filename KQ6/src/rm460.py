@@ -225,7 +225,7 @@ class rm460(KQ6Room):
 				)
 		)
 		(super init: &rest)
-		(localproc_0)
+		localproc_0()
 		(widow init:)
 		kernel.Lock(143, modNum, 0)
 		if (global12 == 461):

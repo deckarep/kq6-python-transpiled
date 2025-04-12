@@ -293,7 +293,7 @@ class enterRoom(Script):
 				if (not (genie script:)):
 					(genie view: 702 setScript: continuedWindup)
 				#endif
-				(proc750_5)
+				proc750_5()
 				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
@@ -562,7 +562,7 @@ class getSword(Script):
 				kernel.DisposeScript(1012)
 				kernel.DisposeScript(1020)
 				kernel.DisposeScript(1001)
-				(proc750_5)
+				proc750_5()
 				if ((not global87) or (not kernel.HaveMouse())):
 					seconds = 15
 				else:
@@ -570,7 +570,7 @@ class getSword(Script):
 				#endif
 			#end:case
 			case 11:
-				(proc750_5 1)
+				proc750_5(1)
 				cycles = 1
 			#end:case
 			case 12:

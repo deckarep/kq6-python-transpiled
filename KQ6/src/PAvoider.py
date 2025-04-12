@@ -246,7 +246,7 @@ class PAvoider(Code):
 				)
 				(temp15 = (Polygon new:)
 					points: temp16
-					size: (localproc_0 temp16)
+					size: localproc_0(temp16)
 					type: 2
 					dynamic: 1
 				)
@@ -256,7 +256,7 @@ class PAvoider(Code):
 			((temp9 obstacles:) delete: temp15)
 			((temp9 obstacles:) delete: temp17)
 			if kernel.IsObject((temp9 obstacles:)):
-				(localproc_1 (temp9 obstacles:))
+				localproc_1((temp9 obstacles:))
 			#endif
 			(temp17 dispose:)
 			(temp15 dispose:)

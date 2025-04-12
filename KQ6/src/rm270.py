@@ -179,7 +179,7 @@ class rm270(KQ6Room):
 		if (not (global2 script:)):
 			(global1 handsOn:)
 		#endif
-		(localproc_0 local132)
+		localproc_0(local132)
 	#end:method
 
 	@classmethod
@@ -345,7 +345,7 @@ class exitShopScr(Script):
 			#end:case
 			case 1:
 				(global0 setHeading: 315 self)
-				(proc270_7 self)
+				proc270_7(self)
 			#end:case
 			case 2: 0#end:case
 			case 3:
@@ -475,7 +475,7 @@ class randomConvScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc270_7 self)
+				proc270_7(self)
 			#end:case
 			case 1:
 				(global91 say: 18 2 23 1 self)
@@ -506,7 +506,7 @@ class boringBookDoScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc270_7 self)
+				proc270_7(self)
 			#end:case
 			case 1:
 				(global91 say: 18 42 0 1 self)
@@ -725,7 +725,7 @@ class genericTalkScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(proc270_7 self)
+				proc270_7(self)
 			#end:case
 			case 1:
 				(global91 say: 18 2 register 0 self)

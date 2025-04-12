@@ -793,7 +793,7 @@ class oysterMessages(Script):
 							case proc913_0(108):
 								(mySentence y: ((mySentence y:) - 100) z: -100)
 								(oyBlink dispose:)
-								(proc450_8 1)
+								proc450_8(1)
 								proc451_0(1)
 								(self dispose:)
 							#end:case
@@ -802,7 +802,7 @@ class oysterMessages(Script):
 								(global1 givePoints: 2)
 								(mySentence y: ((mySentence y:) - 100) z: -100)
 								(oyBlink dispose:)
-								(proc450_8 1)
+								proc450_8(1)
 								proc451_0(0)
 								(self dispose:)
 							#end:else
@@ -1183,7 +1183,7 @@ class mainGnomeScript(Script):
 			#end:case
 			case 8:#end:case
 			case 9:
-				(localproc_0 kernel.ScriptID(455, 0))
+				localproc_0(kernel.ScriptID(455, 0))
 				(kernel.ScriptID(455, 0) dispose:)
 				cycles = 2
 			#end:case
@@ -1212,7 +1212,7 @@ class mainGnomeScript(Script):
 				cycles = 2
 			#end:case
 			case 15:
-				(localproc_0 kernel.ScriptID(456, 0))
+				localproc_0(kernel.ScriptID(456, 0))
 				(kernel.ScriptID(456, 0) dispose:)
 				cycles = 2
 			#end:case
@@ -1241,7 +1241,7 @@ class mainGnomeScript(Script):
 				cycles = 2
 			#end:case
 			case 21:
-				(localproc_0 kernel.ScriptID(4561, 0))
+				localproc_0(kernel.ScriptID(4561, 0))
 				(kernel.ScriptID(4561, 0) dispose:)
 				cycles = 2
 			#end:case
@@ -1268,7 +1268,7 @@ class mainGnomeScript(Script):
 				cycles = 4
 			#end:case
 			case 26:
-				(localproc_0 kernel.ScriptID(457, 0))
+				localproc_0(kernel.ScriptID(457, 0))
 				(kernel.ScriptID(457, 0) dispose:)
 				cycles = 2
 			#end:case
@@ -1291,7 +1291,7 @@ class mainGnomeScript(Script):
 			#end:case
 			case 29:#end:case
 			case 30:
-				(localproc_0 kernel.ScriptID(458, 0))
+				localproc_0(kernel.ScriptID(458, 0))
 				(kernel.ScriptID(458, 0) dispose:)
 				cycles = 2
 			#end:case
@@ -2251,7 +2251,7 @@ class egoDoVerb(Actions):
 			#end:case
 			case 31:
 				if local5:
-					(localproc_1 param1)
+					localproc_1(param1)
 					return 1
 				else:
 					return 0
@@ -2259,7 +2259,7 @@ class egoDoVerb(Actions):
 			#end:case
 			case 37:
 				if local5:
-					(localproc_1 param1)
+					localproc_1(param1)
 					return 1
 				else:
 					return 0
@@ -2267,7 +2267,7 @@ class egoDoVerb(Actions):
 			#end:case
 			case 83:
 				if local5:
-					(localproc_1 param1)
+					localproc_1(param1)
 					return 1
 				else:
 					return 0

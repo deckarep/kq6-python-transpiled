@@ -259,13 +259,13 @@ class Class_948_0
 		proc921_2(@local0, 30, r"""Name?""")
 		local50 = 0
 		proc921_2(@local50, 16, r"""Noun?""")
-		(localproc_0 temp15)
+		localproc_0(temp15)
 		if (local390 == Feature):
-			(localproc_1 temp15)
+			localproc_1(temp15)
 		else:
-			(localproc_2 temp15)
+			localproc_2(temp15)
 		#endif
-		(localproc_3 temp15)
+		localproc_3(temp15)
 		if 
 			(Print
 				addText: r"""Z property"""
@@ -288,7 +288,7 @@ class Class_948_0
 			(temp15 y: (temp16 y:))
 			(temp16 dispose:)
 		#endif
-		(localproc_4)
+		localproc_4()
 		(Class_948_1 doit: temp15)
 		global38 = local392
 	#end:method
@@ -417,27 +417,27 @@ class Class_948_1
 				init:
 			)
 		#endif
-		(localproc_5 @temp0)
+		localproc_5(@temp0)
 		if local391:
 			kernel.Format(@temp0, r""" \t(method (doVerb theVerb)\0d\n\t\t(switch theVerb\0d\n""")
-			(localproc_5 @temp0)
+			localproc_5(@temp0)
 			if local180[0]:
 				kernel.Format(@temp0, r""" \t\t\t(LOOK\0d\n\t\t\t)\0d\n""", @local180)
-				(localproc_5 @temp0)
+				localproc_5(@temp0)
 			#endif
 			if local80[0]:
 				kernel.Format(@temp0, r""" \t\t\t(DO\0d\n\t\t\t)\0d\n""", @local80)
-				(localproc_5 @temp0)
+				localproc_5(@temp0)
 			#endif
 			if local280[0]:
 				kernel.Format(@temp0, r""" \t\t\t(TALK\0d\n\t\t\t)\0d\n""", @local280)
-				(localproc_5 @temp0)
+				localproc_5(@temp0)
 			#endif
 			kernel.Format(@temp0, r""" \t\t\t(else\0d\n\t\t\t\t(super doVerb: theVerb)\0d\n\t\t\t)\0d\n\t\t)\0d\n\t)\0d\n""")
-			(localproc_5 @temp0)
+			localproc_5(@temp0)
 		#endif
 		kernel.StrCpy(@temp0, r""")\0d\n""")
-		(localproc_5 @temp0)
+		localproc_5(@temp0)
 		if (param1 isMemberOf: Feature):
 			(param1 dispose:)
 		else:

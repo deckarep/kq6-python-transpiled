@@ -750,7 +750,7 @@ class replacePlankScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(localproc_0)
+				localproc_0()
 				(global0
 					normal: 0
 					posn: 242 139
@@ -845,7 +845,7 @@ class displacePlankScr(Script):
 					posn: (plank approachX:) (plank approachY:)
 					setScale: Scaler 100 50 112 57
 				)
-				(localproc_0)
+				localproc_0()
 				cycles = 2
 			#end:case
 			case 8:

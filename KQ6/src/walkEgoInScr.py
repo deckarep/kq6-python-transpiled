@@ -52,7 +52,7 @@ def proc12_1(param1 = None, param2 = None, param3 = None):
 	if (argc > 2):
 		temp1 = ((global0 x:) - param1)
 		temp2 = ((global0 y:) - param2)
-		(localproc_0 @temp1 @temp2 param3)
+		localproc_0(@temp1, @temp2, param3)
 		(global0 reset: posn: (param1 + temp1) (param2 + temp2))
 	#endif
 	if (not temp0):
@@ -93,7 +93,7 @@ def proc12_0(param1 = None, param2 = None):
 		#end:case
 	#end:match
 	if (argc > 1):
-		(localproc_0 @temp0 @temp1 param2)
+		localproc_0(@temp0, @temp1, param2)
 	#endif
 	local0 = ((global0 x:) + temp0)
 	local1 = ((global0 y:) + temp1)

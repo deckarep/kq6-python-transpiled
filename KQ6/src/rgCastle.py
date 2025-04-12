@@ -98,8 +98,8 @@ def proc80_7():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = (localproc_1 kernel.ScriptID(80, 5))
-	temp1 = (localproc_1 kernel.ScriptID(80, 6))
+	temp0 = localproc_1(kernel.ScriptID(80, 5))
+	temp1 = localproc_1(kernel.ScriptID(80, 6))
 	if (temp0 <= temp1):
 		kernel.ScriptID(80, 5)
 	else:
@@ -501,7 +501,7 @@ class guardsGetEgo(Script):
 				cycles = 4
 			#end:case
 			case 2:
-				(localproc_0 client 8 5)
+				localproc_0(client, 8, 5)
 				(client
 					setSpeed: 3
 					ignoreHorizon: 1
@@ -517,7 +517,7 @@ class guardsGetEgo(Script):
 							temp0 = guard1
 						#end:case
 					#end:match
-					(localproc_0 temp0 25 0)
+					localproc_0(temp0, 25, 0)
 					(temp0
 						setSpeed: 3
 						ignoreHorizon: 1

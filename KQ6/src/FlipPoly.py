@@ -100,7 +100,7 @@ class flipFeature(Code):
 		argc = sum(v is not None for v in locals().values())
 
 		if kernel.IsObject((param1 onMeCheck:)):
-			(proc926_0 (param1 onMeCheck:))
+			proc926_0((param1 onMeCheck:))
 		else:
 			temp0 = (param1 nsLeft:)
 			(param1 nsLeft: (320 - (param1 nsRight:)) nsRight: (320 - temp0))

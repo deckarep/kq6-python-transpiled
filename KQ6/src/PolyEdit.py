@@ -80,32 +80,26 @@ def localproc_2(param1 = None, param2 = None, param3 = None, param4 = None, para
 		(and
 			(<=
 				0
-				(localproc_1
-					(param3 - param1)
-					(param4 - param2)
-					(param5 - param1)
-					(param6 - param2)
-				)
+				localproc_1((param3 - param1), (param4 - param2), (-
+					param5
+					param1
+				), (param6 - param2))
 			)
 			(<=
 				0
-				(localproc_1
-					(param1 - param3)
-					(param2 - param4)
-					(param5 - param3)
-					(param6 - param4)
-				)
+				localproc_1((param1 - param3), (param2 - param4), (-
+					param5
+					param3
+				), (param6 - param4))
 			)
 		)
 		(return
 			if temp0 = kernel.GetDistance(param1, param2, param3, param4):
 				(/
-					kernel.Abs((localproc_1
-						(param4 - param2)
-						(param1 - param3)
-						(param5 - param1)
-						(param6 - param2)
-					))
+					kernel.Abs(localproc_1((param4 - param2), (param1 - param3), (-
+						param5
+						param1
+					), (param6 - param2)))
 					temp0
 				)
 			else:
@@ -277,7 +271,7 @@ class Class_943_1
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(localproc_0 x y (param1 x:) (param1 y:))
+		localproc_0(x, y, (param1 x:), (param1 y:))
 		if underBits:
 			kernel.UnLoad(133, underBits)
 		#endif
@@ -608,14 +602,9 @@ class _EditablePolygon(List):
 		else:
 			temp4 = curPt
 		#endif
-		(localproc_0
-			(temp4 x:)
-			(temp4 y:)
-			(curPt x:)
-			(curPt y:)
-			(temp3 x:)
-			(temp3 y:)
-		)
+		localproc_0((temp4 x:), (temp4 y:), (curPt x:), (curPt y:), (temp3 x:), (temp3
+			y:
+		))
 		lsTop = local42
 		lsLeft = local43
 		lsBottom = local44
@@ -627,7 +616,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		(localproc_0 (curPt x:) (curPt y:) lsLeft lsTop lsRight lsBottom)
+		localproc_0((curPt x:), (curPt y:), lsLeft, lsTop, lsRight, lsBottom)
 		kernel.Graph(12, local42, local43, local44, local45, local0)
 	#end:method
 
@@ -675,14 +664,9 @@ class _EditablePolygon(List):
 			if 
 				(<
 					(= temp3
-						(localproc_2
-							(temp2 x:)
-							(temp2 y:)
-							(temp5 x:)
-							(temp5 y:)
-							param1
-							param2
-						)
+						localproc_2((temp2 x:), (temp2 y:), (temp5 x:), (temp5
+							y:
+						), param1, param2)
 					)
 					temp4
 				)
@@ -978,16 +962,10 @@ class PolyEdit(List):
 					case 104:
 						match state
 							case 0:
-								(localproc_3
-									r"""___________CREATING POLYGON\0d\n\0d\nClick to create each corner of the polygon, then choose Done from the menu to finish.__You can also press Esc or Ctrl-click to finish.\0d\n\0d\nTo UNDO a corner, choose Undo.\0d\n\0d\nTo change MAP displayed (visual or control), choose Map.\0d\n\0d\nTo EXIT the Polygon Editor, choose eXit or press Ctrl-S."""
-									0
-								)
+								localproc_3(r"""___________CREATING POLYGON\0d\n\0d\nClick to create each corner of the polygon, then choose Done from the menu to finish.__You can also press Esc or Ctrl-click to finish.\0d\n\0d\nTo UNDO a corner, choose Undo.\0d\n\0d\nTo change MAP displayed (visual or control), choose Map.\0d\n\0d\nTo EXIT the Polygon Editor, choose eXit or press Ctrl-S.""", 0)
 							#end:case
 							case 1:
-								(localproc_3
-									r"""_____________EDITING POLYGON\0d\n\0d\nTo MOVE a corner, click on it and drag it to the new position.\0d\nTo INSERT a new corner, Ctrl-click to create it, then drag it to the correct position.\0d\nTo DELETE a corner, Shift-click on it.\0d\nTo UNDO an action, choose Undo from the menu.\0d\nTo CREATE a new polygon, choose Create.\0d\nTo change a polygon's TYPE (Total, Near or Barred), choose Type.\0d\nTo change MAP displayed (visual or control), choose Map.\0d\nTo EXIT the Polygon Editor, choose eXit or press Ctrl-S.\0d\n\0d\nIn addition to using the mouse, you can use Space and BackSpace to select corners and Tab and BackTab to select polygons. """
-									0
-								)
+								localproc_3(r"""_____________EDITING POLYGON\0d\n\0d\nTo MOVE a corner, click on it and drag it to the new position.\0d\nTo INSERT a new corner, Ctrl-click to create it, then drag it to the correct position.\0d\nTo DELETE a corner, Shift-click on it.\0d\nTo UNDO an action, choose Undo from the menu.\0d\nTo CREATE a new polygon, choose Create.\0d\nTo change a polygon's TYPE (Total, Near or Barred), choose Type.\0d\nTo change MAP displayed (visual or control), choose Map.\0d\nTo EXIT the Polygon Editor, choose eXit or press Ctrl-S.\0d\n\0d\nIn addition to using the mouse, you can use Space and BackSpace to select corners and Tab and BackTab to select polygons. """, 0)
 							#end:case
 						#end:match
 					#end:case
@@ -1004,10 +982,7 @@ class PolyEdit(List):
 						(self showMap: 4)
 					#end:case
 					case 97:
-						(localproc_3
-							r""" by\0d\n\0d\nMark Wilden\0d\n\0d\nOriginal program by Chad Bye """
-							1
-						)
+						localproc_3(r""" by\0d\n\0d\nMark Wilden\0d\n\0d\nOriginal program by Chad Bye """, 1)
 					#end:case
 					case 114:
 						if (state == 1):

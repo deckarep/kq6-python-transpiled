@@ -98,7 +98,7 @@ class rm630(KQ6Room):
 			(global0 init: reset: 3 posn: 225 188 setScale: FixedScaler 100)
 			(global1 handsOn:)
 		#endif
-		(localproc_0)
+		localproc_0()
 		(bats
 			init:
 			illegalBits: 0
@@ -247,7 +247,7 @@ class downToMidScr(Script):
 			#end:case
 			case 2:
 				(global0 setLoop: -1 setScale: FixedScaler 65)
-				(localproc_0 1)
+				localproc_0(1)
 				seconds = 2
 			#end:case
 			case 3:
@@ -310,7 +310,7 @@ class downToBottomScr(Script):
 			#end:case
 			case 2:
 				(global0 setLoop: -1 setScale: Scaler 40 20 140 80)
-				(localproc_0 2)
+				localproc_0(2)
 				seconds = 2
 			#end:case
 			case 3:
@@ -368,7 +368,7 @@ class upToTopScr(Script):
 				)
 			#end:case
 			case 2:
-				(localproc_0 0)
+				localproc_0(0)
 				seconds = 2
 			#end:case
 			case 3:
@@ -453,7 +453,7 @@ class upToMidScr(Script):
 			#end:case
 			case 5:
 				local73 = 1
-				(localproc_0)
+				localproc_0()
 				if (not local76):
 					(global1 handsOn:)
 				#endif

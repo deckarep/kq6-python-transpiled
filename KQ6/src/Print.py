@@ -300,7 +300,7 @@ class Print(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		temp0 = (proc921_3 &rest)
+		temp0 = proc921_3(&rest)
 		temp1 = kernel.Memory(1, temp0)
 		kernel.Format(temp1, &rest)
 		(self addText: temp1)

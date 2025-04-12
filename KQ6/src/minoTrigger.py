@@ -91,7 +91,7 @@ class minotaur(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not (kernel.ScriptID(30, 0) seenByMino:)):
-			(proc441_0 0)
+			proc441_0(0)
 		#endif
 	#end:method
 
@@ -172,7 +172,7 @@ class celeste(Actor):
 		argc = sum(v is not None for v in locals().values())
 
 		if (not (kernel.ScriptID(30, 0) seenByMino:)):
-			(proc441_0 0)
+			proc441_0(0)
 		#endif
 	#end:method
 
@@ -213,7 +213,7 @@ class stepInFurther(Script):
 				(myConv add: 440 2 3 8 1 add: 440 2 3 8 2 init: self)
 			#end:case
 			case 1:
-				(proc441_0 0)
+				proc441_0(0)
 			#end:case
 		#end:match
 	#end:method
@@ -234,7 +234,7 @@ class handToHand(Script):
 				(myConv add: 440 4 5 8 1 add: 440 4 5 8 2 init: self)
 			#end:case
 			case 1:
-				(proc441_0 5)
+				proc441_0(5)
 			#end:case
 		#end:match
 	#end:method

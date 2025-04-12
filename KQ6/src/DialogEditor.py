@@ -299,7 +299,7 @@ class DlgWindow(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (localproc_1 self):
+		if localproc_1(self):
 			if title:
 				kernel.Memory(3, title)
 			#endif
@@ -338,7 +338,7 @@ class DlgWindow(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		match (localproc_2 self)
+		match localproc_2(self)
 			case 0:
 				return
 			#end:case
@@ -591,7 +591,7 @@ class _DText(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (localproc_1 self):
+		if localproc_1(self):
 			kernel.Memory(3, text)
 			text = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
 			kernel.Message(0, modNum, noun, verb, case, seq, text)
@@ -604,7 +604,7 @@ class _DText(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		match (localproc_2 self)
+		match localproc_2(self)
 			case 0:
 				return
 			#end:case
@@ -833,7 +833,7 @@ class _DButton(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		if (localproc_1 self):
+		if localproc_1(self):
 			kernel.Memory(3, text)
 			text = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
 			kernel.Message(0, modNum, noun, verb, case, seq, text)
@@ -846,7 +846,7 @@ class _DButton(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		match (localproc_2 self)
+		match localproc_2(self)
 			case 0:
 				return
 			#end:case
@@ -1523,10 +1523,7 @@ class DialogEditor(List):
 										case _DText:
 											kernel.StrCpy(@temp788, r"""Text Item""")
 											kernel.StrCpy(@temp2, (curItem text:))
-											kernel.Format(@temp568, r"""__text:___%s""", (localproc_0
-												@temp2
-												15
-											))
+											kernel.Format(@temp568, r"""__text:___%s""", localproc_0(@temp2, 15))
 											kernel.Format(@temp598, r"""__font:___%d""", (curItem
 												font:
 											))
@@ -1552,10 +1549,7 @@ class DialogEditor(List):
 										case _DButton:
 											kernel.StrCpy(@temp788, r"""Button Item""")
 											kernel.StrCpy(@temp2, (curItem text:))
-											kernel.Format(@temp568, r"""__text:___%s""", (localproc_0
-												@temp2
-												15
-											))
+											kernel.Format(@temp568, r"""__text:___%s""", localproc_0(@temp2, 15))
 											kernel.Format(@temp598, r"""__font:___%d""", (curItem
 												font:
 											))
@@ -1602,10 +1596,7 @@ class DialogEditor(List):
 										case _DEdit:
 											kernel.StrCpy(@temp788, r"""Edit Item""")
 											kernel.StrCpy(@temp2, (curItem text:))
-											kernel.Format(@temp568, r"""__text:___%s""", (localproc_0
-												@temp2
-												15
-											))
+											kernel.Format(@temp568, r"""__text:___%s""", localproc_0(@temp2, 15))
 											kernel.Format(@temp598, r"""__font:___%d""", (curItem
 												font:
 											))

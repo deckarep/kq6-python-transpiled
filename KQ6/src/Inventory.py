@@ -596,11 +596,10 @@ class Inv(IconBar):
 									(and
 										highlightedIcon
 										(= temp0
-											(localproc_0
-												highlightedIcon
-												((highlightedIcon nsTop:) - 1)
-												0
-											)
+											localproc_0(highlightedIcon, (-
+												(highlightedIcon nsTop:)
+												1
+											), 0)
 										)
 									)
 									(self highlight: temp0 1)
@@ -613,14 +612,10 @@ class Inv(IconBar):
 									(and
 										highlightedIcon
 										(= temp0
-											(localproc_0
-												highlightedIcon
-												(+
-													(highlightedIcon nsBottom:)
-													1
-												)
-												(window bottom:)
-											)
+											localproc_0(highlightedIcon, (+
+												(highlightedIcon nsBottom:)
+												1
+											), (window bottom:))
 										)
 									)
 									(self highlight: temp0 1)

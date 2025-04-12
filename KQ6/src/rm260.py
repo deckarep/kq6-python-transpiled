@@ -657,7 +657,7 @@ class toWaterNotFromPierScr(Script):
 			#end:case
 			case 1:
 				(global1 handsOn:)
-				(localproc_0)
+				localproc_0()
 				(self dispose:)
 			#end:case
 		#end:match

@@ -52,7 +52,7 @@ def proc999_2(param1 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	(return
-		if ((argc == 1) or (param1 < temp0 = (proc999_2 &rest))):
+		if ((argc == 1) or (param1 < temp0 = proc999_2(&rest))):
 			param1
 		else:
 			temp0
@@ -66,7 +66,7 @@ def proc999_3(param1 = None):
 	argc = sum(v is not None for v in locals().values())
 
 	(return
-		if ((argc == 1) or (param1 > temp0 = (proc999_3 &rest))):
+		if ((argc == 1) or (param1 > temp0 = proc999_3(&rest))):
 			param1
 		else:
 			temp0

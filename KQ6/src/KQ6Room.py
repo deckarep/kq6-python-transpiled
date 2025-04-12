@@ -255,7 +255,7 @@ class KQ6Room(Rm):
 									init:
 								)
 							#end:case
-							case temp0 = (localproc_0):
+							case temp0 = localproc_0():
 								(KQ6Print
 									font: global22
 									posn: -1 10

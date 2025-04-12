@@ -126,9 +126,9 @@ class rm240(KQ6Room):
 		#endif
 		if (proc999_5(global153, 1, 5) and (not proc913_0(12))):
 			(kernel.ScriptID(241, 0) init:)
-			(localproc_0 1)
+			localproc_0(1)
 		else:
-			(localproc_0 0)
+			localproc_0(0)
 		#endif
 	#end:method
 
@@ -183,7 +183,7 @@ class rm240(KQ6Room):
 		argc = sum(v is not None for v in locals().values())
 
 		((global2 obstacles:) delete: roomPoly)
-		(localproc_0 0)
+		localproc_0(0)
 	#end:method
 
 	@classmethod

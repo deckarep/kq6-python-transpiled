@@ -299,7 +299,7 @@ class rm740(CastleRoom):
 				#end:loop
 			#endif
 			(super init: &rest)
-			(proc740_10)
+			proc740_10()
 			(self setScript: kernel.ScriptID(743, 0))
 		else:
 			(super init: &rest)

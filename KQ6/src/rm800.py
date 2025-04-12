@@ -101,7 +101,7 @@ def proc800_1():
 	(beam show:)
 	(chink show: stopUpd:)
 	(global0 show:)
-	(localproc_0)
+	localproc_0()
 #end:procedure
 
 @SCI.instance
@@ -126,7 +126,7 @@ class rm800(CastleRoom):
 				local0 = 1
 			#end:else
 		#end:match
-		(localproc_0)
+		localproc_0()
 		(walls init:)
 		(super init: &rest)
 		(stoneDoor init:)
@@ -185,7 +185,7 @@ class rm800(CastleRoom):
 			case script: 0#end:case
 			case ((local0 == 1) and (local135 & 0x4000)):
 				(self setScript: getOnStairs 0 1)
-				(localproc_0 2)
+				localproc_0(2)
 			#end:case
 			case (and (local0 == 3) ((global0 y:) <= 149) (local135 & 0x1000)):
 				(self setScript: changeLandings)
@@ -300,11 +300,11 @@ class changeLandings(Script):
 			#end:case
 			case 1:
 				if (local0 == 3):
-					(localproc_0 2)
+					localproc_0(2)
 				else:
 					(backPost dispose:)
 					(chink startUpd:)
-					(localproc_0 3)
+					localproc_0(3)
 				#endif
 				(global10 eachElementDo: #dispose release:)
 				(global2 drawPic: 800 10)
@@ -437,7 +437,7 @@ class climbStairs(Script):
 		(cond
 			case ((local0 == 2) and (local135 & 0x1000)):
 				(client setScript: getOnStairs 0 0)
-				(localproc_0 1)
+				localproc_0(1)
 			#end:case
 			case ((global0 edgeHit:) == 1):
 				(client setScript: changeLandings)

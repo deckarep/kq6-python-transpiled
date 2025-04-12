@@ -406,7 +406,7 @@ class fluteScr(Script):
 		match state = param1
 			case 0:
 				(global1 handsOff:)
-				(localproc_0 self)
+				localproc_0(self)
 			#end:case
 			case 1:
 				if (global5 contains: singSing):
@@ -886,7 +886,7 @@ class giveItemToBirdScr(Script):
 				(global0 setHeading: 90 self)
 			#end:case
 			case 2:
-				(localproc_0 self)
+				localproc_0(self)
 			#end:case
 			case 3:
 				(global0
@@ -1358,7 +1358,7 @@ class windBirdHeader(Script):
 				(global0 setHeading: 90 self)
 			#end:case
 			case 2:
-				(localproc_0 self)
+				localproc_0(self)
 			#end:case
 			case 3:
 				(KQ6Print

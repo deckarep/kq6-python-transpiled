@@ -81,7 +81,7 @@ class FileSelector(DSelector):
 		#end:loop
 		kernel.StrAt(text, (nFiles * 13), 0)
 		if sort:
-			(localproc_0 text nFiles)
+			localproc_0(text, nFiles)
 		#endif
 		return 1
 	#end:method

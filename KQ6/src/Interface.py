@@ -152,7 +152,7 @@ class Class_255_0(Obj):
 					temp1 = temp0
 				#endif
 				(param1 dispose:)
-				(breakif (not (proc255_0)))
+				(breakif (not proc255_0()))
 			#end:loop
 			if temp0:
 				kernel.HiliteControl(self)

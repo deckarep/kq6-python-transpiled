@@ -219,7 +219,7 @@ class rm410(KQ6Room):
 			(global72 addToFront: self)
 			(global73 addToFront: self)
 		#endif
-		(localproc_1)
+		localproc_1()
 		(kernel.ScriptID(30, 3) init:)
 		(door init:)
 		(backOfDoors init:)
@@ -563,7 +563,7 @@ class backOfDoors(Feature):
 							(not proc913_0(95))
 							((kernel.ScriptID(30, 0) prevEdgeHit:) == 4)
 						)
-						(localproc_3)
+						localproc_3()
 					#endif
 					(kernel.ScriptID(30, 0) prevEdgeHit: 4)
 					(global2 setScript: kernel.ScriptID(30, 2))
@@ -575,7 +575,7 @@ class backOfDoors(Feature):
 							(not proc913_0(95))
 							((kernel.ScriptID(30, 0) prevEdgeHit:) == 2)
 						)
-						(localproc_3)
+						localproc_3()
 					#endif
 					(kernel.ScriptID(30, 0) prevEdgeHit: 2)
 					(global2 setScript: kernel.ScriptID(30, 2))
@@ -661,7 +661,7 @@ class door(Feature):
 							(not proc913_0(95))
 							((kernel.ScriptID(30, 0) prevEdgeHit:) == 4)
 						)
-						(localproc_3)
+						localproc_3()
 					#endif
 					(kernel.ScriptID(30, 0) prevEdgeHit: 4)
 					(global2 setScript: kernel.ScriptID(30, 2))
@@ -673,7 +673,7 @@ class door(Feature):
 							(not proc913_0(95))
 							((kernel.ScriptID(30, 0) prevEdgeHit:) == 2)
 						)
-						(localproc_3)
+						localproc_3()
 					#endif
 					(kernel.ScriptID(30, 0) prevEdgeHit: 2)
 					(global2 setScript: kernel.ScriptID(30, 2))
@@ -890,7 +890,7 @@ class fireAllSpikes(Script):
 			#end:case
 			case 2:
 				(global104 number: 410 setLoop: 1 play:)
-				(localproc_2)
+				localproc_2()
 				(self dispose:)
 			#end:case
 		#end:match
@@ -913,12 +913,7 @@ class aSpikeScript(Script):
 			case 1:
 				(client cel: 2)
 				if 
-					(localproc_0
-						proc999_6(register, 12)
-						proc999_6(register, 13)
-						proc999_6(register, 3)
-						proc999_6(register, 5)
-					)
+					localproc_0(proc999_6(register, 12), proc999_6(register, 13), proc999_6(register, 3), proc999_6(register, 5))
 					(global2 setScript: killEgo)
 					(client setCycle: End client)
 				else:
@@ -936,12 +931,7 @@ class aSpikeScript(Script):
 			case 2:
 				(client cel: ((client cel:) + 1))
 				if 
-					(localproc_0
-						proc999_6(register, 12)
-						proc999_6(register, 13)
-						proc999_6(register, 3)
-						proc999_6(register, proc999_6(register, 15))
-					)
+					localproc_0(proc999_6(register, 12), proc999_6(register, 13), proc999_6(register, 3), proc999_6(register, proc999_6(register, 15)))
 					(global2 setScript: killEgo)
 					(local536[proc999_6(register, 11)] dispose:)
 					(client setCycle: End client)

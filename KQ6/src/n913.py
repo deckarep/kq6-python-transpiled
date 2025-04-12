@@ -30,7 +30,7 @@ def proc913_1(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = (proc913_0 param1)
+	temp0 = proc913_0(param1)
 	(global137[(param1 / 16)] |= (0x8000 >> (mod param1 16)))
 	return temp0
 #end:procedure
@@ -40,7 +40,7 @@ def proc913_2(param1 = None):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values())
 
-	temp0 = (proc913_0 param1)
+	temp0 = proc913_0(param1)
 	(global137[(param1 / 16)] &= (~ (0x8000 >> (mod param1 16))))
 	return temp0
 #end:procedure
@@ -51,9 +51,9 @@ def proc913_3():
 	argc = sum(v is not None for v in locals().values())
 
 	global153.post('++')
-	(proc913_2 27)
-	(proc913_2 28)
-	(proc913_2 18)
+	proc913_2(27)
+	proc913_2(28)
+	proc913_2(18)
 #end:procedure
 
 @SCI.procedure

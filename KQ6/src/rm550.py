@@ -332,7 +332,7 @@ class rm550(KQ6Room):
 			#end:case
 			case (temp0 & 0x0010):
 				if ((global0 view:) != 308):
-					temp1 = (localproc_2)
+					temp1 = localproc_2()
 					(global0
 						ignoreActors: 1
 						illegalBits: 0
@@ -358,7 +358,7 @@ class rm550(KQ6Room):
 			#end:case
 			case (temp0 & 0x0040):
 				if ((global0 view:) != 3081):
-					temp1 = (localproc_2)
+					temp1 = localproc_2()
 					(global0
 						ignoreActors: 1
 						illegalBits: 0
@@ -698,19 +698,19 @@ class captured(Script):
 				(global0 setHeading: 315 self)
 			#end:case
 			case 1:
-				(localproc_0 1)
+				localproc_0(1)
 				(global91 say: 1 0 2 1 self)
-				(localproc_0 0)
+				localproc_0(0)
 			#end:case
 			case 2:
-				(localproc_1 1)
+				localproc_1(1)
 				(global91 say: 1 0 2 2 self)
-				(localproc_1 0)
+				localproc_1(0)
 			#end:case
 			case 3:
-				(localproc_0 1)
+				localproc_0(1)
 				(global91 say: 1 0 2 3 self)
-				(localproc_0 0)
+				localproc_0(0)
 			#end:case
 			case 4:
 				(druid1
@@ -746,9 +746,9 @@ class captured(Script):
 				(global91 say: 1 0 2 4 self)
 			#end:case
 			case 7:
-				(localproc_0 1)
+				localproc_0(1)
 				(global91 say: 1 0 2 5 self)
-				(localproc_0 0)
+				localproc_0(0)
 			#end:case
 			case 8:
 				(global0

@@ -106,21 +106,7 @@ class BorderWindow(SysWindow):
 		lsBottom = (+ bottom bevelWid shadowWid)
 		type = 128
 		(super open:)
-		(localproc_0
-			top
-			left
-			bottom
-			right
-			back
-			topBordColor
-			lftBordColor
-			botBordColor
-			rgtBordColor
-			bevelWid
-			shadowWid
-			priority
-			temp1
-		)
+		localproc_0(top, left, bottom, right, back, topBordColor, lftBordColor, botBordColor, rgtBordColor, bevelWid, shadowWid, priority, temp1)
 		temp0 = kernel.GetPort()
 		kernel.SetPort(0)
 		kernel.Graph(12, lsTop, lsLeft, lsBottom, lsRight, 1)
@@ -178,21 +164,7 @@ class InsetWindow(BorderWindow):
 		xOffset = (bevelWid + sideBordWid)
 		yOffset = (bevelWid + topBordHgt)
 		(super open:)
-		(localproc_0
-			temp2
-			temp3
-			temp4
-			temp5
-			insideColor
-			topBordColor2
-			lftBordColor2
-			botBordColor2
-			rgtBordColor2
-			bevWid
-			shadWid
-			priority
-			temp0
-		)
+		localproc_0(temp2, temp3, temp4, temp5, insideColor, topBordColor2, lftBordColor2, botBordColor2, rgtBordColor2, bevWid, shadWid, priority, temp0)
 		temp1 = kernel.GetPort()
 		kernel.SetPort(0)
 		kernel.Graph(12, (temp2 - bevWid), (temp3 - bevWid), (temp4 + bevWid), (+

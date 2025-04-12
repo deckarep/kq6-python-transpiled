@@ -319,7 +319,7 @@ class rm790(CastleRoom):
 				#endif
 			#end:else
 		#end:match
-		(localproc_0)
+		localproc_0()
 		((global0 scaler:) doit:)
 		if (not script):
 			(global1 handsOn:)
@@ -425,7 +425,7 @@ class changeTowerRooms(Script):
 			case 1:
 				(= temp0
 					if register:
-						(localproc_1 64)
+						localproc_1(64)
 					else:
 						49
 					#endif
@@ -446,7 +446,7 @@ class changeTowerRooms(Script):
 					(global0 posn: 64 19)
 				#endif
 				if temp2:
-					(localproc_0 register)
+					localproc_0(register)
 					if (local0 == 1):
 						(global2 style: ((global2 style:) & 0xbfff))
 					else:
@@ -487,7 +487,7 @@ class changeTowerRooms(Script):
 					if register:
 						68
 					else:
-						(localproc_1 42)
+						localproc_1(42)
 					#endif
 				)
 				temp1 = (132 if register else 45)
@@ -551,16 +551,16 @@ class castSpell(Script):
 				(cond
 					case ((global0 x:) >= 160):
 						if (local0 == 2):
-							(genie posn: (localproc_1 257) 162)
+							(genie posn: localproc_1(257) 162)
 						else:
 							(genie posn: 17 137)
 						#endif
 					#end:case
 					case (local0 == 2):
-						(genie posn: (localproc_1 17) 137)
+						(genie posn: localproc_1(17) 137)
 					#end:case
 					else:
-						(genie posn: (localproc_1 257) 162)
+						(genie posn: localproc_1(257) 162)
 					#end:else
 				)
 				cycles = 2
@@ -679,13 +679,13 @@ class vizier(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values())
 
-		x = (localproc_1 20)
+		x = localproc_1(20)
 		y = 39
 		(super init: &rest)
 		(self
 			setCycle: Walk
 			setStep: 8 4
-			setMotion: MoveTo (localproc_1 80) 14 self
+			setMotion: MoveTo localproc_1(80) 14 self
 		)
 	#end:method
 

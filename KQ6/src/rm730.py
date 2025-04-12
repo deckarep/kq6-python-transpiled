@@ -249,7 +249,7 @@ class rm730(CastleRoom):
 				(self setScript: saladinEnters)
 			#endif
 		#endif
-		(proc730_3)
+		proc730_3()
 		(kernel.ScriptID(80, 0) setupGuards:)
 		if (global5 contains: saladin):
 			(saladin
@@ -290,11 +290,11 @@ class rm730(CastleRoom):
 		if ((global0 view:) != 881):
 			if ((local1 & 0x0200) and local0):
 				local0 = 0
-				(proc730_3)
+				proc730_3()
 			#endif
 			if ((local1 & 0x0400) and (not local0)):
 				local0 = 1
-				(proc730_3)
+				proc730_3()
 			#endif
 		#endif
 		if ((not (local1 & 0x0600)) and (vanishingY == -10000)):
@@ -1380,7 +1380,7 @@ class pillarsFtr(Feature):
 					proc999_4(50, 59, 66, 70, param1)
 					proc999_4(254, 62, 271, 70, param1)
 				)
-				y = (localproc_0 256 x 116)
+				y = localproc_0(256, x, 116)
 			)
 		)
 	#end:method
