@@ -41,7 +41,7 @@ def proc913_2(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = proc913_0(param1)
-	(global137[(param1 / 16)] &= (~ (0x8000 >> (mod param1 16))))
+	(global137[(param1 / 16)] &= ~(0x8000 >> (mod param1 16)))
 	return temp0
 #end:procedure
 

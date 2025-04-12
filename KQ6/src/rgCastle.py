@@ -449,7 +449,7 @@ class rgCastle(Rgn):
 		#endif
 		temp1 = 1
 		while (temp1 < argc): # inline for
-			(self temp0: ((self temp0:) & (~ param1[temp1])))
+			(self temp0: ((self temp0:) & ~param1[temp1]))
 			# for:reinit
 			temp1.post('++')
 		#end:loop

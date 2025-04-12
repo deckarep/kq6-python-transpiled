@@ -1255,7 +1255,7 @@ class GateGuardDog(Actor):
 						at: 9
 					))
 				)
-				(self _approachVerbs: ((~ temp1) & (self _approachVerbs:)))
+				(self _approachVerbs: (~temp1 & (self _approachVerbs:)))
 			else:
 				(self _approachVerbs: (| (self _approachVerbs:) temp1))
 			#endif

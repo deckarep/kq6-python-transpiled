@@ -83,7 +83,7 @@ class Flags(Obj):
 			(= temp0
 				(&
 					temp0 = kernel.Memory(5, (array + temp1))
-					(~ (0x8000 >> (mod param1[argc] 16)))
+					~(0x8000 >> (mod param1[argc] 16))
 				)
 			)
 			kernel.Memory(6, (array + temp1), temp0)

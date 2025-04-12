@@ -58,9 +58,9 @@ class rgCrown(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc < 2):
-			(flag1 &= (~ param1))
+			(flag1 &= ~param1)
 		else:
-			(flag2 &= (~ param2))
+			(flag2 &= ~param2)
 		#endif
 	#end:method
 

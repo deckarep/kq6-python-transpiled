@@ -141,7 +141,7 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(rFlag1 &= (~ param2))
+		(rFlag1 &= ~param2)
 		if kernel.IsObject((param1 regPathID:)):
 			((param1 regPathID:) value: 0)
 		#endif

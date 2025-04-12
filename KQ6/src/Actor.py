@@ -749,7 +749,7 @@ class Actor(Prop):
 
 		temp0 = 0
 		while (temp0 < argc): # inline for
-			(illegalBits &= (~ param1[temp0]))
+			(illegalBits &= ~param1[temp0])
 			# for:reinit
 			temp0.post('++')
 		#end:loop
