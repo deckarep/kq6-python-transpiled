@@ -36,9 +36,9 @@ local2 = None
 
 
 @SCI.procedure
-def proc441_0(param1 = None):
+def proc441_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global1 handsOff:)
 	local0 = 9
@@ -52,7 +52,7 @@ def proc441_0(param1 = None):
 @SCI.procedure
 def proc441_1():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(minotaur init:)
 	(celeste init:)
@@ -63,7 +63,7 @@ def proc441_1():
 @SCI.procedure
 def proc441_2():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global2 setScript: stepInFurther)
 #end:procedure
@@ -88,7 +88,7 @@ class minotaur(Actor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not (kernel.ScriptID(30, 0) seenByMino:)):
 			proc441_0(0)
@@ -96,9 +96,9 @@ class minotaur(Actor):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 2:
@@ -140,7 +140,7 @@ class minotaur(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self setCycle: RandCycle)
 		(super init:)
@@ -160,7 +160,7 @@ class celeste(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self setCycle: RandCycle)
 		(super init:)
@@ -169,7 +169,7 @@ class celeste(Actor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not (kernel.ScriptID(30, 0) seenByMino:)):
 			proc441_0(0)
@@ -177,9 +177,9 @@ class celeste(Actor):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -203,9 +203,9 @@ class celeste(Actor):
 class stepInFurther(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -224,9 +224,9 @@ class stepInFurther(Script):
 class handToHand(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -245,9 +245,9 @@ class handToHand(Script):
 class minoTrigger(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -403,9 +403,9 @@ class minoTrigger(Script):
 class minotaurCharging(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -566,9 +566,9 @@ class minotaurCharging(Script):
 class hornSwaggled(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -639,9 +639,9 @@ class egoTwin(Actor):
 class backup(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -715,9 +715,9 @@ class backup(Script):
 class freeCeleste(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

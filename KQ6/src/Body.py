@@ -32,9 +32,9 @@ class Body(Ego):
 	oldYStep = 2
 	
 	@classmethod
-	def setScale(param1 = None):
+	def setScale(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			(super setScale: param1 &rest)
@@ -47,7 +47,7 @@ class Body(Ego):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doit:)
 		(cond
@@ -78,7 +78,7 @@ class Body(Ego):
 	@classmethod
 	def findStep():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (temp2 if temp2 = (scaleX / 15) else 1)
 		temp1 = (temp2 if temp2 = (scaleY / 63) else 1)
@@ -90,7 +90,7 @@ class Body(Ego):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= oldScaleSignal
 			oldMaxScale = oldBackSize = oldFrontY = oldBackY = 0
@@ -100,9 +100,9 @@ class Body(Ego):
 	#end:method
 
 	@classmethod
-	def setLoop(param1 = None):
+	def setLoop(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(= temp0
@@ -126,9 +126,9 @@ class Body(Ego):
 	#end:method
 
 	@classmethod
-	def reset(param1 = None, param2 = None):
+	def reset(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc > 0):
 			(global0 loop: param1)
@@ -155,7 +155,7 @@ class Body(Ego):
 					scaleSignal = oldScaleSignal
 					maxScale = oldMaxScale
 				#end:case
-				case (or oldMaxScale oldBackSize oldFrontY oldBackY):
+				case (oldMaxScale or oldBackSize or oldFrontY or oldBackY):
 					(global0
 						setScale:
 							Scaler
@@ -178,16 +178,16 @@ class Body(Ego):
 	@classmethod
 	def put():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super put: &rest)
 		(global69 curIcon: (global69 walkIconItem:))
 	#end:method
 
 	@classmethod
-	def setHeading(param1 = None):
+	def setHeading(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			heading = param1

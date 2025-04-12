@@ -32,7 +32,7 @@ local1 = None
 @SCI.procedure
 def proc342_0():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(shieldGuard posn: 62 113 loop: 2 init: stopUpd: setCycle: StopWalk -1)
 	(spearGuard posn: 134 108 loop: 2 init: stopUpd: setCycle: StopWalk -1)
@@ -43,7 +43,7 @@ def proc342_0():
 @SCI.procedure
 def proc342_1():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global2 setScript: flyIn)
 #end:procedure
@@ -51,7 +51,7 @@ def proc342_1():
 @SCI.procedure
 def proc342_2():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(shieldGuard
 		posn: 285 155
@@ -134,7 +134,7 @@ class eyeGlint(Prop):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self setPri: 15 cycleSpeed: 6)
 		(super init:)
@@ -156,9 +156,9 @@ class flyer(Actor):
 class glintScript(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -188,7 +188,7 @@ class celesteRescue(Script):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if local0:
 			(shieldGuard x: ((spearGuard x:) - 26) y: ((spearGuard y:) - 10))
@@ -198,9 +198,9 @@ class celesteRescue(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -427,9 +427,9 @@ class celesteRescue(Script):
 class toGehenna(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -515,9 +515,9 @@ class toGehenna(Script):
 class flyIn(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -576,9 +576,9 @@ class flyIn(Script):
 class tossEmIn(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

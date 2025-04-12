@@ -45,9 +45,9 @@ local134 = None
 
 
 @SCI.procedure
-def localproc_0(param1 = None):
+def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if param1:
 		(global2
@@ -61,9 +61,9 @@ def localproc_0(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def proc270_7(param1 = None):
+def proc270_7(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (shopOwner script:):
 		(shopOwnerScr caller: param1)
@@ -85,7 +85,7 @@ class rm270(KQ6Room):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global2
 			addObstacle:
@@ -183,9 +183,9 @@ class rm270(KQ6Room):
 	#end:method
 
 	@classmethod
-	def scriptCheck(param1 = None):
+	def scriptCheck(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 1
 		if (kernel.ScriptID(10, 0) isSet: 2):
@@ -206,7 +206,7 @@ class rm270(KQ6Room):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global102 number:) == 240):
 			(kernel.ScriptID(10, 0) setIt: 512)
@@ -238,7 +238,7 @@ class spider(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init:)
 		(self setCycle: Walk)
@@ -250,9 +250,9 @@ class spider(Actor):
 class spiderScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -334,9 +334,9 @@ class spiderScr(Script):
 class exitShopScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -371,9 +371,9 @@ class exitShopScr(Script):
 class clownChairScr(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -468,9 +468,9 @@ class clownChairScr(CartoonScript):
 class randomConvScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -499,9 +499,9 @@ class randomConvScr(Script):
 class boringBookDoScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -527,9 +527,9 @@ class boringBookDoScr(Script):
 class ownerNotAtCounterScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -567,9 +567,9 @@ class ownerNotAtCounterScr(Script):
 class ownerFromCounterScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -664,9 +664,9 @@ class ownerFromCounterScr(Script):
 class shopOwnerScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -718,9 +718,9 @@ class shopOwnerScr(Script):
 class genericTalkScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -754,9 +754,9 @@ class shopOwner(Actor):
 	signal = 20497
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.ScriptID(10, 0) isSet: 2):
 			(kernel.ScriptID(10, 0) clrIt: 2)
@@ -803,9 +803,9 @@ class shopOwner(Actor):
 	#end:method
 
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 2 27)
@@ -827,7 +827,7 @@ class shopDoor(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self stopUpd:)
 		(global105 number: 902 loop: 1 play:)
@@ -836,16 +836,16 @@ class shopDoor(Prop):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 5)
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -887,9 +887,9 @@ class bookStand(Feature):
 	approachY = 137
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if temp0 = (super onMe: param1 &rest):
 			if ((param1 message:) == 1):
@@ -904,9 +904,9 @@ class bookStand(Feature):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -943,7 +943,7 @@ class bookStand(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 1 5)
@@ -962,9 +962,9 @@ class poemShelf(Feature):
 	approachY = 124
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -986,7 +986,7 @@ class poemShelf(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 5 1)
@@ -1000,9 +1000,9 @@ class shelfFeatures(Feature):
 	sightAngle = 40
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if _approachVerbs:
 			_approachVerbs = 0
@@ -1049,9 +1049,9 @@ class shelfFeatures(Feature):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((param1 == 2) or (not proc999_5(param1, 5, 1))):
 			noun = 4
@@ -1070,9 +1070,9 @@ class genericFeatures(Feature):
 	sightAngle = 40
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(= noun
@@ -1115,9 +1115,9 @@ class frontCounter(Feature):
 	onMeCheck = 2
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
 			(global91
@@ -1142,9 +1142,9 @@ class clownChair(Feature):
 	approachY = 134
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if temp0 = (super onMe: param1 &rest):
 			temp1 = kernel.OnControl(4, (param1 x:), (param1 y:))
@@ -1169,9 +1169,9 @@ class clownChair(Feature):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -1194,7 +1194,7 @@ class clownChair(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 5)
@@ -1217,9 +1217,9 @@ class clownBook(View):
 	signal = 16401
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if temp0 = (super onMe: param1 &rest):
 			if 
@@ -1245,7 +1245,7 @@ class clownBook(View):
 	@classmethod
 	def doVerb():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(readingTable doVerb: &rest)
 	#end:method
@@ -1253,7 +1253,7 @@ class clownBook(View):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 1)
@@ -1272,9 +1272,9 @@ class readingTable(Feature):
 	approachY = 132
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if temp0 = (super onMe: param1 &rest):
 			if 
@@ -1298,9 +1298,9 @@ class readingTable(Feature):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -1319,7 +1319,7 @@ class readingTable(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self approachVerbs: 1)
@@ -1340,9 +1340,9 @@ class spellBook(View):
 	signal = 16400
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -1363,7 +1363,7 @@ class spellBook(View):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(self

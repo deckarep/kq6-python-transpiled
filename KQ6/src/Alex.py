@@ -27,7 +27,7 @@ class Alex(Kq6Talker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (proc913_0(59) and (global11 != 850)):

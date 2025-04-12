@@ -32,9 +32,9 @@ SCI.public_exports(
 class reanimationScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -111,9 +111,9 @@ class reanimationScr(Script):
 class drinkPotionNoGenieScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -245,7 +245,7 @@ class drinkPotionNoGenieScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.DisposeScript(282)
@@ -257,9 +257,9 @@ class drinkPotionNoGenieScr(Script):
 class drinkPotionGenieScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -413,9 +413,9 @@ class drinkPotionGenieScr(Script):
 class genieMirrorScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -483,7 +483,7 @@ class genieMirrorScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.DisposeScript(282)
@@ -495,9 +495,9 @@ class genieMirrorScr(Script):
 class genieExitScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -537,9 +537,9 @@ class genieExitScr(Script):
 class genieTakeMintScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -640,9 +640,9 @@ class genieTakeMintScr(Script):
 class genieBadgerOwnerScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -721,7 +721,7 @@ class genieBadgerOwnerScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.DisposeScript(282)
@@ -733,9 +733,9 @@ class genieBadgerOwnerScr(Script):
 class givePeppermintScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -836,7 +836,7 @@ class givePeppermintScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.DisposeScript(282)

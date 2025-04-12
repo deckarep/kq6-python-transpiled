@@ -19,7 +19,7 @@ class Ego(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init:)
 		if (not cycler):
@@ -30,7 +30,7 @@ class Ego(Actor):
 	@classmethod
 	def facingMe():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 1
 	#end:method
@@ -38,7 +38,7 @@ class Ego(Actor):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doit:)
 		(= edgeHit
@@ -53,9 +53,9 @@ class Ego(Actor):
 	#end:method
 
 	@classmethod
-	def get(param1 = None):
+	def get(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		while (temp0 < argc): # inline for
@@ -66,9 +66,9 @@ class Ego(Actor):
 	#end:method
 
 	@classmethod
-	def put(param1 = None, param2 = None):
+	def put(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (self has: param1):
 			(temp0 = (global9 at: param1)
@@ -84,9 +84,9 @@ class Ego(Actor):
 	#end:method
 
 	@classmethod
-	def has(param1 = None):
+	def has(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if temp0 = (global9 at: param1):
 			(temp0 ownedBy: self)
@@ -94,9 +94,9 @@ class Ego(Actor):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (param1 type:)
 		temp2 = (param1 message:)

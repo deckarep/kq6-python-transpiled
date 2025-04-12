@@ -18,7 +18,7 @@ class AnimatePrint(Print):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		modeless = 1
 		ticks = 120
@@ -32,9 +32,9 @@ class AnimatePrint(Print):
 	#end:method
 
 	@classmethod
-	def addText(param1 = None, param2 = None, param3 = None, param4 = None):
+	def addText(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		width = 230
 		theLength = (kernel.Message(2, global11, param1, param2, param3, param4) / 12)
@@ -44,7 +44,7 @@ class AnimatePrint(Print):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if myMouth:
 			(myMouth dispose:)

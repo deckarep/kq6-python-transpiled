@@ -16,9 +16,9 @@ class Polygon(Obj):
 	dynamic = 0
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		size = (argc / 2)
 		points = kernel.Memory(1, (2 * argc))
@@ -29,7 +29,7 @@ class Polygon(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (dynamic and points):
 			kernel.Memory(3, points)

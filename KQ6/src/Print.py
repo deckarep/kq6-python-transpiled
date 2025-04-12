@@ -22,7 +22,7 @@ SCI.public_exports(
 @SCI.procedure
 def proc921_0():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = (Print new:)
 	(temp0 addText: &rest init:)
@@ -31,16 +31,16 @@ def proc921_0():
 @SCI.procedure
 def proc921_1():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = (Print new:)
 	(temp0 addTextF: &rest init:)
 #end:procedure
 
 @SCI.procedure
-def proc921_2(param1 = None, param2 = None, param3 = None, param4 = None):
+def proc921_2(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if 
 		((Print new:)
@@ -54,9 +54,9 @@ def proc921_2(param1 = None, param2 = None, param3 = None, param4 = None):
 #end:procedure
 
 @SCI.procedure
-def proc921_3(param1 = None, param2 = None):
+def proc921_3(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = temp1 = kernel.StrLen(param1)
 	temp2 = 0
@@ -100,9 +100,9 @@ class Print(Obj):
 	saveCursor = 0
 	
 	@classmethod
-	def addButton(param1 = None, param2 = None):
+	def addButton(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
 			dialog = (Dialog new:)
@@ -162,9 +162,9 @@ class Print(Obj):
 	#end:method
 
 	@classmethod
-	def addEdit(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None):
+	def addEdit(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
 			dialog = (Dialog new:)
@@ -190,9 +190,9 @@ class Print(Obj):
 	#end:method
 
 	@classmethod
-	def addIcon(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None):
+	def addIcon(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
 			dialog = (Dialog new:)
@@ -225,9 +225,9 @@ class Print(Obj):
 	#end:method
 
 	@classmethod
-	def addText(param1 = None):
+	def addText(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
 			dialog = (Dialog new:)
@@ -298,7 +298,7 @@ class Print(Obj):
 	@classmethod
 	def addTextF():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = proc921_3(&rest)
 		temp1 = kernel.Memory(1, temp0)
@@ -308,9 +308,9 @@ class Print(Obj):
 	#end:method
 
 	@classmethod
-	def addTitle(param1 = None):
+	def addTitle(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc > 1):
 			temp0 = param1[0]
@@ -331,7 +331,7 @@ class Print(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global92 and (global92 contains: self)):
 			(global92 delete: self)
@@ -353,7 +353,7 @@ class Print(Obj):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = caller
 		dialog = 0
@@ -367,18 +367,18 @@ class Print(Obj):
 	#end:method
 
 	@classmethod
-	def posn(param1 = None, param2 = None):
+	def posn(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		x = param1
 		y = param2
 	#end:method
 
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		caller = 0
 		if argc:
@@ -399,15 +399,15 @@ class Print(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(dialog eachElementDo: #doit)
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (dialog handleEvent: param1):
 			(dialog dispose:)
@@ -417,7 +417,7 @@ class Print(Obj):
 	@classmethod
 	def showSelf():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if saveCursor:
 			(global1 setCursor: 999)

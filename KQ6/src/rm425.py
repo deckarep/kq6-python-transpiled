@@ -36,7 +36,7 @@ class rm425(LabRoom):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc402_1()
 		(super init: &rest)
@@ -53,7 +53,7 @@ class rm425(LabRoom):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not proc913_0(1)):
 			match (kernel.ScriptID(30, 0) timesGenieHasAppeared:)
@@ -84,7 +84,7 @@ class rm425(LabRoom):
 	@classmethod
 	def notify():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(westDoor addToPic:)
 		(westWing addToPic:)
@@ -97,7 +97,7 @@ class rm425(LabRoom):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(kernel.ScriptID(30, 0) geniePresent: 0)
 		(super dispose:)
@@ -109,9 +109,9 @@ class rm425(LabRoom):
 class genieMeeting(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -308,9 +308,9 @@ class genieMeeting(Script):
 class backOut(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -349,7 +349,7 @@ class glint(Prop):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self
 			posn: ((genie x:) + 3) ((genie y:) - 44)
@@ -362,7 +362,7 @@ class glint(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (cel > 0):
 			(self setCycle: Beg self)
@@ -386,9 +386,9 @@ class exitSouth(View):
 	signal = 16
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -416,7 +416,7 @@ class westDoor(View):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self stopUpd:)
 		(westWing init: stopUpd:)
@@ -424,9 +424,9 @@ class westDoor(View):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -470,9 +470,9 @@ class westWing(View):
 	signal = 16400
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(westDoor doVerb: param1 &rest)
 	#end:method

@@ -24,7 +24,7 @@ class Kq6Window(SysWindow):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 1
 		if (priority != -1):
@@ -49,9 +49,9 @@ class Kq6Window(SysWindow):
 	#end:method
 
 	@classmethod
-	def drawEdgedWindow(param1 = None):
+	def drawEdgedWindow(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Graph(11, top, left, (bottom + 1), (right + 1), param1, back, priority)
 		temp2 = 1

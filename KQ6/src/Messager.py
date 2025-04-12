@@ -25,7 +25,7 @@ class Messager(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(talkerSet dispose:)
 		if global69:
@@ -51,9 +51,9 @@ class Messager(Obj):
 	#end:method
 
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc and param1):
 			killed = 1
@@ -70,9 +70,9 @@ class Messager(Obj):
 	#end:method
 
 	@classmethod
-	def say(param1 = None):
+	def say(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = temp1 = temp2 = curSequence = 0
 		caller = oneOnly = killed = 0
@@ -135,9 +135,9 @@ class Messager(Obj):
 	#end:method
 
 	@classmethod
-	def sayFormat(param1 = None, param2 = None, param3 = None):
+	def sayFormat(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global69 and (not oldIconBarState)):
 			oldIconBarState = (global69 state:)
@@ -155,9 +155,9 @@ class Messager(Obj):
 	#end:method
 
 	@classmethod
-	def sayNext(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None):
+	def sayNext(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			temp0 = kernel.Message(0, param1, param2, param3, param4, param5, @temp1)
@@ -177,7 +177,7 @@ class Messager(Obj):
 				)
 			)
 			temp0 = (self findTalker: temp0)
-			if (and talker (temp0 != talker) ((talker disposeWhenDone:) == 2)):
+			if (talker and (temp0 != talker) and ((talker disposeWhenDone:) == 2)):
 				(talker caller: 0 dispose: 1)
 			#endif
 			if (talker = temp0 != -1):
@@ -213,7 +213,7 @@ class Messager(Obj):
 	@classmethod
 	def findTalker():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(Print
 			width: 200
@@ -232,7 +232,7 @@ class talkerSet(Set):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self
 			eachElementDo: #caller 0

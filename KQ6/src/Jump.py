@@ -23,9 +23,9 @@ class Jump(Motion):
 	waitApogeeY = 1
 	
 	@classmethod
-	def init(param1 = None, param2 = None):
+	def init(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
 		if (argc == 2):
@@ -67,7 +67,7 @@ class Jump(Motion):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.Abs((global88 - b-moveCnt)) >= (client moveSpeed:)):
 			b-moveCnt = global88
@@ -112,7 +112,7 @@ class Jump(Motion):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client illegalBits: illegalBits signal: signal)
 		if caller:
@@ -124,7 +124,7 @@ class Jump(Motion):
 	@classmethod
 	def setTest():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= dx
 			if (((client x:) > x) or (((client x:) == x) and (xStep > 0))):
@@ -145,7 +145,7 @@ class Jump(Motion):
 	@classmethod
 	def motionCue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client mover: 0)
 		if (completed and kernel.IsObject(caller)):
@@ -159,9 +159,9 @@ class Jump(Motion):
 class JumpTo(Jump):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
 		x = param2
@@ -194,7 +194,7 @@ class JumpTo(Jump):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (x != 20000):
 			(client x: x)

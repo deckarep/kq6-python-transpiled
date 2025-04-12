@@ -25,15 +25,15 @@ class Kq6Talker(Talker):
 	winPosn = 1
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global22
 		keepWindow = 1
 		color = (Kq6Window color:)
 		back = (Kq6Window back:)
-		if (and (global90 == 2) argc kernel.IsObject(param1) raveName):
+		if ((global90 == 2) and argc and kernel.IsObject(param1) and raveName):
 			saveX = x
 			saveY = y
 			if (winPosn == 0):
@@ -88,16 +88,16 @@ class Kq6Narrator(Narrator):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self font: global22 color: (Kq6Window color:) back: (Kq6Window back:))
 		(super init: &rest)
 	#end:method
 
 	@classmethod
-	def display(param1 = None):
+	def display(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((x + talkWidth) > 318):
 			temp0 = (318 - x)

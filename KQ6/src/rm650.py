@@ -47,7 +47,7 @@ class rm650(KQ6Room):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global2
 			addObstacle:
@@ -143,7 +143,7 @@ class rm650(KQ6Room):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doit:)
 		temp0 = (global0 onControl: 1)
@@ -185,7 +185,7 @@ class rm650(KQ6Room):
 			case (temp0 & 0x1000):
 				(self newRoom: north)
 			#end:case
-			case (not (or (temp0 & 0x4000) (temp0 & 0x2000) (temp0 & 0x0002))):
+			case (not ((temp0 & 0x4000) or (temp0 & 0x2000) or (temp0 & 0x0002))):
 				(global1 handsOff:)
 				(self setScript: egoFallScr)
 			#end:case
@@ -195,7 +195,7 @@ class rm650(KQ6Room):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.DisposeScript(991)
@@ -207,9 +207,9 @@ class rm650(KQ6Room):
 class egoNorthOverKnightScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -265,9 +265,9 @@ class egoNorthOverKnightScr(Script):
 class egoSouthOverKnightScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -314,9 +314,9 @@ class egoSouthOverKnightScr(Script):
 class egoFallScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -424,9 +424,9 @@ class knightInset(Inset):
 	noun = 8
 	
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (ribbonFeat onMe: param1):
@@ -450,7 +450,7 @@ class knightInset(Inset):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global69 disable: 6)
 		(knightInsetFeat init:)
@@ -466,7 +466,7 @@ class knightInset(Inset):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(ribbonFeat dispose:)
 		(knightFeat dispose:)
@@ -482,9 +482,9 @@ class knightInset(Inset):
 class getGauntletScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -544,9 +544,9 @@ class gauntlet(Prop):
 	signal = 16
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -589,9 +589,9 @@ class ghost(Prop):
 class ghostScript(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -616,9 +616,9 @@ class ghostScript(Script):
 class ghostTormentScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -667,9 +667,9 @@ class ghostTormentScr(Script):
 class knightInsetScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -720,9 +720,9 @@ class knight(Feature):
 	approachY = 147
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 1):
 			(global1 handsOff:)
@@ -740,9 +740,9 @@ class fallFeat(Feature):
 	onMeCheck = 128
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 3):
 			(global1 handsOff:)
@@ -755,7 +755,7 @@ class fallFeat(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init:)
 		(global93 addToFront: self)
@@ -764,7 +764,7 @@ class fallFeat(Feature):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global93 delete: self)
 		(super dispose:)
@@ -779,9 +779,9 @@ class riverStyx(Feature):
 	onMeCheck = 4
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 3):
 			(global1 handsOff:)
@@ -794,7 +794,7 @@ class riverStyx(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init:)
 		(global93 addToFront: self)
@@ -803,7 +803,7 @@ class riverStyx(Feature):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global93 delete: self)
 		(super dispose:)
@@ -815,9 +815,9 @@ class riverStyx(Feature):
 class bSetter(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(param1 brTop: (param1 y:))
 		(param1 brBottom: (param1 y:))
@@ -839,9 +839,9 @@ class path(Feature):
 class cantLeaveSouth(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -869,9 +869,9 @@ class cantLeaveSouth(Script):
 class cantLeaveWest(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -936,7 +936,7 @@ class knightFeat(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= onMeCheck
 			(= local19

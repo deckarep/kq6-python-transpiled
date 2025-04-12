@@ -34,7 +34,7 @@ class kq6Controls(GameControls):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Load(128, 947)
 		global63 = self
@@ -105,7 +105,7 @@ class kq6Controls(GameControls):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose: &rest)
 		kernel.DisposeScript(934)
@@ -120,7 +120,7 @@ class controlWin(Kq6Window):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super open: &rest)
 		priority = -1
@@ -206,7 +206,7 @@ class controlWin(Kq6Window):
 		temp52 = 0
 		while (temp52 < 3): # inline for
 			(temp51 -= 7)
-			if (and (temp52 == 2) ((mod temp53 10) == 0) (not (global15 == 0))):
+			if ((temp52 == 2) and ((mod temp53 10) == 0) and (not (global15 == 0))):
 				temp50 = 11
 			else:
 				temp50 = (mod temp53 10)
@@ -243,7 +243,7 @@ class controlWin(Kq6Window):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if local1:
 			kernel.Graph(8, local1)
@@ -266,7 +266,7 @@ class detailSlider(Slider):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 79
 		nsTop = 55
@@ -289,7 +289,7 @@ class volumeSlider(Slider):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		view = 947
 		nsLeft = 121
@@ -300,9 +300,9 @@ class volumeSlider(Slider):
 	#end:method
 
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if theObj:
 			if (proc999_7(theObj, selector) != param1):
@@ -328,7 +328,7 @@ class speedSlider(Slider):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global0 looper:) and ((global0 looper:) == EgoGroop)):
 			topValue = ((global0 looper:) speedState:)
@@ -344,9 +344,9 @@ class speedSlider(Slider):
 	#end:method
 
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			(global0 currentSpeed: param1)
@@ -369,7 +369,7 @@ class iconSave(ControlIcon):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (3 if (global107 == 256) else 4) 10)
@@ -379,7 +379,7 @@ class iconSave(ControlIcon):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (3 if (global107 == 256) else 4) 10)
@@ -400,7 +400,7 @@ class iconRestore(ControlIcon):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (23 if (global107 == 256) else 24) 10)
@@ -410,7 +410,7 @@ class iconRestore(ControlIcon):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (23 if (global107 == 256) else 24) 10)
@@ -431,7 +431,7 @@ class iconRestart(ControlIcon):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (43 if (global107 == 256) else 44) 10)
@@ -441,7 +441,7 @@ class iconRestart(ControlIcon):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (43 if (global107 == 256) else 44) 10)
@@ -460,7 +460,7 @@ class iconTextSwitch(ControlIcon):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global90 == 2):
 			loop = 8
@@ -475,7 +475,7 @@ class iconTextSwitch(ControlIcon):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (not kernel.FileIO(10, r"""KQ6CD""")):
@@ -523,7 +523,7 @@ class iconQuit(ControlIcon):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (63 if (global107 == 256) else 64) 10)
@@ -533,7 +533,7 @@ class iconQuit(ControlIcon):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (63 if (global107 == 256) else 64) 10)
@@ -554,7 +554,7 @@ class iconAbout(ControlIcon):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (83 if (global107 == 256) else 84) 10)
@@ -564,7 +564,7 @@ class iconAbout(ControlIcon):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (83 if (global107 == 256) else 84) 10)
@@ -574,7 +574,7 @@ class iconAbout(ControlIcon):
 	@classmethod
 	def select():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super select: &rest)
 		(global63 hide:)
@@ -599,7 +599,7 @@ class iconOk(IconI):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = 18
 		nsTop = (+ 0 (103 if (global107 == 256) else 104) 10)

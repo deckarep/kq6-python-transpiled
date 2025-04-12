@@ -27,7 +27,7 @@ class MessageObj(Obj):
 	@classmethod
 	def showSelf():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= whoSays
 			(global91
@@ -75,9 +75,9 @@ class Conversation(List):
 	caller = 0
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		curItem = -1
 		if (argc and kernel.IsObject(param1)):
@@ -90,7 +90,7 @@ class Conversation(List):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self eachElementDo: #perform cleanCode)
 		(global78 delete: self)
@@ -111,7 +111,7 @@ class Conversation(List):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script doit:)
@@ -119,9 +119,9 @@ class Conversation(List):
 	#end:method
 
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((argc and param1) or (curItem.post('++') == size)):
 			(self dispose:)
@@ -145,9 +145,9 @@ class Conversation(List):
 	#end:method
 
 	@classmethod
-	def setScript(param1 = None):
+	def setScript(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
 			(script dispose:)
@@ -158,9 +158,9 @@ class Conversation(List):
 	#end:method
 
 	@classmethod
-	def load(param1 = None):
+	def load(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = proc999_6(param1, 0)
 		temp1 = proc999_6(param1, 1)
@@ -189,9 +189,9 @@ class Conversation(List):
 	#end:method
 
 	@classmethod
-	def add(param1 = None):
+	def add(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = temp1 = temp2 = temp3 = temp4 = 0
 		temp5 = temp6 = temp7 = 0
@@ -247,9 +247,9 @@ class Conversation(List):
 class cleanCode(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 isKindOf: Script):
 			(param1 caller: 0)

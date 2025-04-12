@@ -13,9 +13,9 @@ class Osc(Cycle):
 	howManyCycles = -1
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None):
+	def init(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 2):
 			howManyCycles = param2
@@ -29,7 +29,7 @@ class Osc(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((temp0 = (self nextCel:) > (client lastCel:)) or (temp0 < 0)):
 			cycleDir = -cycleDir
@@ -42,7 +42,7 @@ class Osc(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if howManyCycles:
 			(client cel: (self nextCel:))

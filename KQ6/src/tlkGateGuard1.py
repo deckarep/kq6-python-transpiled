@@ -30,7 +30,7 @@ class tlkGateGuard1(Kq6Talker):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose: &rest)
 		y = x = 10
@@ -39,7 +39,7 @@ class tlkGateGuard1(Kq6Talker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global22
 		keepWindow = 1
@@ -108,7 +108,7 @@ class tlkGateGuard2(Kq6Talker):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose: &rest)
 		x = 20
@@ -118,7 +118,7 @@ class tlkGateGuard2(Kq6Talker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global22
 		keepWindow = 1

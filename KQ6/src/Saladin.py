@@ -30,7 +30,7 @@ class Saladin(Kq6Talker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (((global2 curPic:) == 165) and (global11 == 740)):

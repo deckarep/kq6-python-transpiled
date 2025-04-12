@@ -31,7 +31,7 @@ class keyHoleScr(Script):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc913_1(49)
 		(super init: &rest)
@@ -40,7 +40,7 @@ class keyHoleScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc913_2(49)
 		register = 0
@@ -50,9 +50,9 @@ class keyHoleScr(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -113,7 +113,7 @@ class keyHole(Inset):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global0 stopUpd:)
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
@@ -124,7 +124,7 @@ class keyHole(Inset):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script doit:)
@@ -134,7 +134,7 @@ class keyHole(Inset):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(keyHoleView dispose:)
 		((keyHoleScr script:) dispose:)
@@ -142,9 +142,9 @@ class keyHole(Inset):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(not
@@ -163,9 +163,9 @@ class keyHole(Inset):
 class keyHoleView(View):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		x = ((keyHole x:) + 92)
 		y = ((keyHole y:) + 54)

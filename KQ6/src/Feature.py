@@ -15,9 +15,9 @@ class CueObj(Script):
 	theVerb = 0
 	
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 1:
@@ -74,9 +74,9 @@ class Feature(Obj):
 	_approachVerbs = 0
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self initialize: (param1 if argc else 0))
 		if (self respondsTo: #underBits):
@@ -87,9 +87,9 @@ class Feature(Obj):
 	#end:method
 
 	@classmethod
-	def initialize(param1 = None):
+	def initialize(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (argc and param1):
@@ -102,12 +102,12 @@ class Feature(Obj):
 	#end:method
 
 	@classmethod
-	def approachVerbs(param1 = None):
+	def approachVerbs(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		_approachVerbs = 0
-		if (and argc global66 param1[0]):
+		if (argc and global66 and param1[0]):
 			temp0 = 0
 			while (temp0 < argc): # inline for
 				temp1 = (global66 doit: param1[temp0])
@@ -119,9 +119,9 @@ class Feature(Obj):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (param1 claimed:):
@@ -172,16 +172,16 @@ class Feature(Obj):
 	@classmethod
 	def notFacing():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global0 setMotion: 0)
 		(CueObj client: self state: 0 cycles: 0 cue:)
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (global65 if global65 else dftDoVerb)
 		if (modNum == -1):
@@ -195,9 +195,9 @@ class Feature(Obj):
 	#end:method
 
 	@classmethod
-	def facingMe(param1 = None):
+	def facingMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case argc:
@@ -235,15 +235,15 @@ class Feature(Obj):
 	@classmethod
 	def isNotHidden():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 1
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None, param2 = None):
+	def onMe(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(param1):
 			temp0 = (param1 x:)
@@ -257,7 +257,7 @@ class Feature(Obj):
 				case (state & 0x0004):
 					if 
 						(or
-							(not (or nsLeft nsRight nsTop nsBottom))
+							(not (nsLeft or nsRight or nsTop or nsBottom))
 							(and
 								(<= nsLeft temp0 nsRight)
 								(<= nsTop temp1 nsBottom)
@@ -273,7 +273,7 @@ class Feature(Obj):
 				#end:case
 				case 
 					(or
-						(not (or nsLeft nsRight nsTop nsBottom))
+						(not (nsLeft or nsRight or nsTop or nsBottom))
 						(and
 							(<= nsLeft temp0 nsRight)
 							(<= nsTop temp1 nsBottom)
@@ -287,9 +287,9 @@ class Feature(Obj):
 	#end:method
 
 	@classmethod
-	def setName(param1 = None):
+	def setName(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(state |= 0x0001)
 		name = kernel.Memory(1, (kernel.StrLen(param1) + 1))
@@ -297,9 +297,9 @@ class Feature(Obj):
 	#end:method
 
 	@classmethod
-	def setOnMeCheck(param1 = None, param2 = None):
+	def setOnMeCheck(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 26505:
@@ -325,7 +325,7 @@ class Feature(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if actions:
 			(actions dispose:)
@@ -351,7 +351,7 @@ class dftDoVerb(Code):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 1
 	#end:method
@@ -363,7 +363,7 @@ class Actions(Code):
 	@classmethod
 	def doVerb():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 0
 	#end:method

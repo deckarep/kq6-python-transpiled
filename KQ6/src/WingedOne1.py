@@ -30,7 +30,7 @@ class WingedOne1(Kq6Talker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global11 == 380):
 			winPosn = 0
@@ -81,7 +81,7 @@ class WingedOne2(Kq6Talker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: tBust2 tEyes2 tMouth2 &rest)
 	#end:method

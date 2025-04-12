@@ -17,9 +17,9 @@ class MCyc(Cycle):
 	size = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
 		points = param2
@@ -51,7 +51,7 @@ class MCyc(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.Abs((global88 - cycleCnt)) >= (client cycleSpeed:)):
 			cycleCnt = global88
@@ -62,7 +62,7 @@ class MCyc(Cycle):
 	@classmethod
 	def nextCel():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client
 			loop: proc999_6(points, value)
@@ -83,7 +83,7 @@ class MCyc(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		completed = 1
 		value = 0

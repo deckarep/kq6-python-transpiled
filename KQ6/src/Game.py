@@ -17,9 +17,9 @@ import User
 import System
 
 @SCI.procedure
-def localproc_0(param1 = None):
+def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp81 = kernel.Memory(1, 150)
 	temp0 = 1
@@ -90,9 +90,9 @@ class theDoits(EventHandler):
 class Sounds(EventHandler):
 	#property vars (may be empty)
 	@classmethod
-	def pause(param1 = None):
+	def pause(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self eachElementDo: #perform mayPause (param1 if argc else 1))
 	#end:method
@@ -103,9 +103,9 @@ class Sounds(EventHandler):
 class mayPause(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None, param2 = None):
+	def doit(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not ((param1 flags:) & 0x0001)):
 			(param1 pause: param2)
@@ -125,7 +125,7 @@ class addToPics(EventHandler):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self eachElementDo: #perform aTOC)
 		kernel.AddToPic(elements)
@@ -167,7 +167,7 @@ class Cue(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global18 delete: self)
 		if (global18 isEmpty:):
@@ -184,9 +184,9 @@ class Cue(Obj):
 class aTOC(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not ((param1 signal:) & 0x4000)):
 			temp0 = ((global0 xStep:) + (kernel.CelWide((global0 view:), 2, 0) / 2))
@@ -224,7 +224,7 @@ class Game(Obj):
 	@classmethod
 	def play():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global1 = self
 		global29 = kernel.GetSaveDir()
@@ -237,9 +237,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def quitGame(param1 = None):
+	def quitGame(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not argc) or param1):
 			global4 = 1
@@ -247,9 +247,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def masterVolume(param1 = None):
+	def masterVolume(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			kernel.DoSound(0, param1)
@@ -259,9 +259,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def detailLevel(param1 = None):
+	def detailLevel(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			_detailLevel = param1
@@ -273,7 +273,7 @@ class Game(Obj):
 	@classmethod
 	def replay():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global24:
 			(global24 dispose:)
@@ -319,7 +319,7 @@ class Game(Obj):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		Motion
 		Sound
@@ -346,7 +346,7 @@ class Game(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if panelObj:
 			temp1 = panelObj
@@ -410,9 +410,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global10 eachElementDo: #dispose eachElementDo: #delete release:)
 		(global32 eachElementDo: #perform fDC release:)
@@ -434,9 +434,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def startRoom(param1 = None):
+	def startRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global14:
 			kernel.SetDebug()
@@ -446,9 +446,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (param1 claimed:): 1#end:case
@@ -461,9 +461,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def changeScore(param1 = None):
+	def changeScore(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global15 += param1)
 		(SL doit:)
@@ -472,7 +472,7 @@ class Game(Obj):
 	@classmethod
 	def restart():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
 			(global25 dispose:)
@@ -483,7 +483,7 @@ class Game(Obj):
 	@classmethod
 	def save():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not kernel.ValidPath(global29)):
 			kernel.Message(0, 994, 9, 0, 0, 1, @temp22)
@@ -521,7 +521,7 @@ class Game(Obj):
 	@classmethod
 	def restore():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not kernel.ValidPath(global29)):
 			kernel.Message(0, 994, 9, 0, 0, 1, @temp22)
@@ -559,9 +559,9 @@ class Game(Obj):
 	#end:method
 
 	@classmethod
-	def setCursor(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):
+	def setCursor(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = global19
 		if kernel.IsObject(param1):
@@ -585,7 +585,7 @@ class Game(Obj):
 	@classmethod
 	def showMem():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Format(@temp0, r"""Free Heap: %u Bytes\nLargest ptr: %u Bytes\nFreeHunk: %u KBytes\nLargest hunk: %u Bytes""", kernel.MemoryInfo(1), kernel.MemoryInfo(0), (>>
 			kernel.MemoryInfo(3)
@@ -601,9 +601,9 @@ class Game(Obj):
 	def notify():#end:method
 
 	@classmethod
-	def setScript(param1 = None):
+	def setScript(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script dispose:)
@@ -616,7 +616,7 @@ class Game(Obj):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script cue:)
@@ -626,7 +626,7 @@ class Game(Obj):
 	@classmethod
 	def handsOff():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handsOffCode:
 			(handsOffCode doit: &rest)
@@ -641,7 +641,7 @@ class Game(Obj):
 	@classmethod
 	def handsOn():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handsOnCode:
 			(handsOnCode doit: &rest)
@@ -665,7 +665,7 @@ class Rgn(Obj):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not initialized):
 			initialized = 1
@@ -679,7 +679,7 @@ class Rgn(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script doit:)
@@ -687,9 +687,9 @@ class Rgn(Obj):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (param1 claimed:): 1#end:case
@@ -709,9 +709,9 @@ class Rgn(Obj):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (modNum == -1):
 			modNum = global11
@@ -729,7 +729,7 @@ class Rgn(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global6 delete: self)
 		if kernel.IsObject(script):
@@ -743,9 +743,9 @@ class Rgn(Obj):
 	#end:method
 
 	@classmethod
-	def setScript(param1 = None):
+	def setScript(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
 			(script dispose:)
@@ -758,7 +758,7 @@ class Rgn(Obj):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script cue:)
@@ -793,7 +793,7 @@ class Rm(Rgn):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		number = global11
 		global31 = picAngle
@@ -805,9 +805,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def reflectPosn(param1 = None, param2 = None):
+	def reflectPosn(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param2
 			case 1:
@@ -828,7 +828,7 @@ class Rm(Rgn):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script doit:)
@@ -839,9 +839,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def edgeToRoom(param1 = None):
+	def edgeToRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			match param1
@@ -854,9 +854,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def roomToEdge(param1 = None):
+	def roomToEdge(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			match param1
@@ -871,7 +871,7 @@ class Rm(Rgn):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if obstacles:
 			(obstacles dispose:)
@@ -880,18 +880,18 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		((inset and (inset handleEvent: param1)) or (super handleEvent: param1))
 		(param1 claimed:)
 	#end:method
 
 	@classmethod
-	def setInset(param1 = None, param2 = None, param3 = None):
+	def setInset(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if inset:
 			(inset dispose:)
@@ -907,9 +907,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def setRegions(param1 = None):
+	def setRegions(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		while (temp0 < argc): # inline for
@@ -926,9 +926,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def addObstacle(param1 = None):
+	def addObstacle(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not kernel.IsObject(obstacles)):
 			obstacles = (List new:)
@@ -937,9 +937,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global6 delete: self eachElementDo: #newRoom param1 addToFront: self)
 		global13 = param1
@@ -947,9 +947,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def drawPic(param1 = None, param2 = None):
+	def drawPic(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global10:
 			(global10 eachElementDo: #dispose release:)
@@ -964,9 +964,9 @@ class Rm(Rgn):
 	#end:method
 
 	@classmethod
-	def overlay(param1 = None, param2 = None):
+	def overlay(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global36 = param1
 		kernel.DrawPic(param1, (cond
@@ -986,7 +986,7 @@ class SL(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if code:
 			temp0 = kernel.Memory(1, 150)
@@ -999,7 +999,7 @@ class SL(Obj):
 	@classmethod
 	def enable():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		state = 1
 		(self doit:)
@@ -1008,7 +1008,7 @@ class SL(Obj):
 	@classmethod
 	def disable():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		state = 0
 		(self doit:)
@@ -1020,9 +1020,9 @@ class SL(Obj):
 class RU(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 underBits:):
 			temp0 = (temp0 = (| temp0 = (param1 signal:) 0x0001) & 0xfffb)
@@ -1036,9 +1036,9 @@ class RU(Code):
 class DNKR(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not (param1 keep:)):
 			(param1 dispose:)
@@ -1051,9 +1051,9 @@ class DNKR(Code):
 class fDC(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 respondsTo: #delete):
 			(param1 signal: ((param1 signal:) & 0xffdf) dispose: delete:)

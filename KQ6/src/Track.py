@@ -16,9 +16,9 @@ class Track(Motion):
 	zOffset = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
 		who = param2
@@ -41,7 +41,7 @@ class Track(Motion):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (who heading:)
 		(client

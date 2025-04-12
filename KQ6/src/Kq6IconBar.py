@@ -25,7 +25,7 @@ class Kq6IconBar(IconBar):
 	@classmethod
 	def hide():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
 			(global8 pause: 0)
@@ -65,7 +65,7 @@ class Kq6IconBar(IconBar):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global8 pause:)
 		(state |= 0x0020)
@@ -136,7 +136,7 @@ class Kq6IconBar(IconBar):
 	@classmethod
 	def advance():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 1
 		while (temp1 <= size): # inline for
@@ -156,7 +156,7 @@ class Kq6IconBar(IconBar):
 	@classmethod
 	def retreat():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 1
 		while (temp1 <= size): # inline for
@@ -176,7 +176,7 @@ class Kq6IconBar(IconBar):
 	@classmethod
 	def updateInvIcon():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (curInvIcon and (not ((useIconItem state:) & 0x0004))):
 			(curInvIcon view: (973 if hiRes else 970))
@@ -223,9 +223,9 @@ class Kq6IconBar(IconBar):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(param1 localize:)
 		temp1 = (param1 type:)
@@ -370,11 +370,11 @@ class Kq6IconItem(IconI):
 	hrView = 981
 	
 	@classmethod
-	def highlight(param1 = None):
+	def highlight(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (or (not (signal & 0x0020)) (highlightColor == -1) hiRes):
+		if ((not (signal & 0x0020)) or (highlightColor == -1) or hiRes):
 			return
 		#endif
 		if (argc and param1):
@@ -397,9 +397,9 @@ class Kq6IconItem(IconI):
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(and
@@ -440,9 +440,9 @@ class Kq6IconItem(IconI):
 	#end:method
 
 	@classmethod
-	def select(param1 = None):
+	def select(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if hiRes:
 			temp3 = (global69 underBits:)
@@ -452,7 +452,7 @@ class Kq6IconItem(IconI):
 		(return
 			(cond
 				case (signal & 0x0004): 0#end:case
-				case (and argc param1 (signal & 0x0001)):
+				case (argc and param1 and (signal & 0x0001)):
 					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
 					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					while ((temp0 = (Event new:) type:) != 2):
@@ -533,7 +533,7 @@ class Kq6IconItem(IconI):
 	@classmethod
 	def mask():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DrawCel(maskView, maskLoop, maskCel, (+
 			nsLeft
@@ -555,9 +555,9 @@ class Kq6IconItem(IconI):
 	#end:method
 
 	@classmethod
-	def show(param1 = None, param2 = None):
+	def show(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= hiRes
 			if (global169 and (not kernel.Platform(5))):

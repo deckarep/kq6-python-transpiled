@@ -18,7 +18,7 @@ SCI.public_exports(
 @SCI.procedure
 def proc343_0():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if proc913_0(1):
 		(global2

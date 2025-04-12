@@ -38,7 +38,7 @@ class Door(Prop):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self approachVerbs: openVerb listenVerb)
 		if (forceOpen or (global12 and (global12 == entranceTo))):
@@ -93,9 +93,9 @@ class Door(Prop):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case openVerb:
@@ -117,7 +117,7 @@ class Door(Prop):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if locked:
 			if (modNum == -1):
@@ -142,7 +142,7 @@ class Door(Prop):
 	@classmethod
 	def close():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		state = 3
 		(self setCycle: Beg self)
@@ -157,7 +157,7 @@ class Door(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state
 			case 3:
@@ -263,7 +263,7 @@ class Door(Prop):
 	@classmethod
 	def createPoly():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		doorPoly = ((Polygon new:) type: 2 yourself:)
 		if argc:
@@ -287,7 +287,7 @@ class Door(Prop):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global95 delete: doorPoly)
 		(doorPoly dispose:)

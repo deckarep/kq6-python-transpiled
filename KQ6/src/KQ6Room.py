@@ -27,7 +27,7 @@ local0 = None
 @SCI.procedure
 def localproc_0():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(return
 		match global11
@@ -52,7 +52,7 @@ class NewRoomCue(Cue):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global18 delete: self)
 		if (global18 isEmpty:):
@@ -72,9 +72,9 @@ class KQ6Room(Rm):
 	autoLoad = 1
 	
 	@classmethod
-	def translateVerb(param1 = None):
+	def translateVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not proc999_5(param1, 3, 1, 4, 2)):
 			return 0
@@ -86,7 +86,7 @@ class KQ6Room(Rm):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local0 = 0
 		(super init: &rest)
@@ -107,7 +107,7 @@ class KQ6Room(Rm):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -144,9 +144,9 @@ class KQ6Room(Rm):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
 			(global25 dispose:)
@@ -176,15 +176,15 @@ class KQ6Room(Rm):
 	@classmethod
 	def newRoomCue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super newRoom: &rest)
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (modNum == -1):
 			modNum = global11
@@ -204,9 +204,9 @@ class KQ6Room(Rm):
 	#end:method
 
 	@classmethod
-	def setScript(param1 = None):
+	def setScript(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case kernel.IsObject(param1):
@@ -224,7 +224,7 @@ class KQ6Room(Rm):
 				(or
 					((global0 script:) and (param1 == 905))
 					((self script:) and (param1 == 905))
-					(and (param1 == 905) (global11 == 480) (global0 script:))
+					((param1 == 905) and (global11 == 480) and (global0 script:))
 				):
 				(KQ6Print
 					font: global22
@@ -279,7 +279,7 @@ class KQ6Room(Rm):
 	@classmethod
 	def scriptCheck():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 1
 	#end:method

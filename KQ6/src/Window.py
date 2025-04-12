@@ -33,7 +33,7 @@ class SysWindow(Obj):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= window
 			kernel.NewWindow(top, left, bottom, right, lsTop, lsLeft, lsBottom, lsRight, title, type, priority, color, back)
@@ -43,7 +43,7 @@ class SysWindow(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if window:
 			kernel.DisposeWindow(window, eraseOnly)
@@ -62,7 +62,7 @@ class Window(SysWindow):
 	@classmethod
 	def center():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self
 			moveTo:
@@ -72,9 +72,9 @@ class Window(SysWindow):
 	#end:method
 
 	@classmethod
-	def move(param1 = None, param2 = None):
+	def move(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(left += param1)
 		(right += param2)
@@ -83,17 +83,17 @@ class Window(SysWindow):
 	#end:method
 
 	@classmethod
-	def moveTo(param1 = None, param2 = None):
+	def moveTo(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self move: (param1 - left) (param2 - top))
 	#end:method
 
 	@classmethod
-	def inset(param1 = None, param2 = None):
+	def inset(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(top += param2)
 		(left += param1)
@@ -104,7 +104,7 @@ class Window(SysWindow):
 	@classmethod
 	def setMapSet():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		if (-1 != color):
@@ -119,15 +119,15 @@ class Window(SysWindow):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Graph(12, top, left, bottom, right, (self setMapSet:))
 	#end:method
 
 	@classmethod
-	def draw(param1 = None, param2 = None):
+	def draw(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 1):
 			color = param1
@@ -141,7 +141,7 @@ class Window(SysWindow):
 	@classmethod
 	def save():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		underBits = kernel.Graph(7, top, left, bottom, right, (self setMapSet:))
 	#end:method
@@ -149,7 +149,7 @@ class Window(SysWindow):
 	@classmethod
 	def restore():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if underBits:
 			kernel.Graph(8, underBits)
@@ -162,7 +162,7 @@ class Window(SysWindow):
 	@classmethod
 	def handleEvent():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 0
 	#end:method
@@ -170,7 +170,7 @@ class Window(SysWindow):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self restore:)
 		if window:
@@ -183,7 +183,7 @@ class Window(SysWindow):
 	@classmethod
 	def erase():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self draw: back -1)
 	#end:method

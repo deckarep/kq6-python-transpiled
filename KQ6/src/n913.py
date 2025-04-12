@@ -18,17 +18,17 @@ SCI.public_exports(
 )
 
 @SCI.procedure
-def proc913_0(param1 = None):
+def proc913_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	return (global137[(param1 / 16)] & (0x8000 >> (mod param1 16)))
 #end:procedure
 
 @SCI.procedure
-def proc913_1(param1 = None):
+def proc913_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = proc913_0(param1)
 	(global137[(param1 / 16)] |= (0x8000 >> (mod param1 16)))
@@ -36,9 +36,9 @@ def proc913_1(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def proc913_2(param1 = None):
+def proc913_2(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = proc913_0(param1)
 	(global137[(param1 / 16)] &= (~ (0x8000 >> (mod param1 16))))
@@ -48,7 +48,7 @@ def proc913_2(param1 = None):
 @SCI.procedure
 def proc913_3():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	global153.post('++')
 	proc913_2(27)
@@ -57,9 +57,9 @@ def proc913_3():
 #end:procedure
 
 @SCI.procedure
-def proc913_4(param1 = None, param2 = None, param3 = None, param4 = None):
+def proc913_4(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp3 = 0
 	if kernel.IsObject(param2):

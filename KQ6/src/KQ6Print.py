@@ -29,7 +29,7 @@ class myDialog(Dialog):
 	@classmethod
 	def check():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((super check:) or (kernel.DoAudio(6) == -1)):
 			return 1
@@ -39,7 +39,7 @@ class myDialog(Dialog):
 	@classmethod
 	def handleEvent():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.DoAudio(6) == -1):
 			return -2
@@ -52,7 +52,7 @@ class myDialog(Dialog):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not (kernel.DoAudio(6) == -1)):
 			kernel.DoAudio(3)
@@ -67,9 +67,9 @@ class KQ6Print(Print):
 	repressText = 0
 	
 	@classmethod
-	def say(param1 = None, param2 = None):
+	def say(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global90 & 0x0002):
 			local1 = param2[0]
@@ -99,9 +99,9 @@ class KQ6Print(Print):
 	#end:method
 
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		caller = 0
 		if argc:
@@ -128,7 +128,7 @@ class KQ6Print(Print):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if modeless:
 			(global69 enable: 6)
@@ -141,9 +141,9 @@ class KQ6Print(Print):
 	#end:method
 
 	@classmethod
-	def addText(param1 = None):
+	def addText(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		repressText = 0
 		if (not dialog):
@@ -243,7 +243,7 @@ class KQ6Print(Print):
 	@classmethod
 	def showSelf():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and

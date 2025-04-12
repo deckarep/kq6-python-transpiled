@@ -13,9 +13,9 @@ SCI.public_exports(
 )
 
 @SCI.procedure
-def proc958_0(param1 = None, param2 = None):
+def proc958_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(argc -= 2)
 	temp0 = 0

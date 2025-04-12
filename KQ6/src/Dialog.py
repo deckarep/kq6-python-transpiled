@@ -20,7 +20,7 @@ class DIcon(Class_255_0):
 	@classmethod
 	def setSize():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
 		nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
@@ -36,9 +36,9 @@ class DButton(Class_255_0):
 	font = 0
 	
 	@classmethod
-	def dispose(param1 = None):
+	def dispose(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (text and ((not argc) or (not param1))):
 			kernel.Memory(3, (self text:))
@@ -49,7 +49,7 @@ class DButton(Class_255_0):
 	@classmethod
 	def setSize():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.TextSize(@temp0[0], text, font, 0, 0)
 		(temp0[2] += 2)
@@ -71,9 +71,9 @@ class DEdit(Class_255_0):
 	cursor = 0
 	
 	@classmethod
-	def track(param1 = None):
+	def track(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.EditControl(self, param1)
 		return self
@@ -82,7 +82,7 @@ class DEdit(Class_255_0):
 	@classmethod
 	def setSize():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global85
 		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
@@ -105,9 +105,9 @@ class DSelector(Class_255_0):
 	mark = 0
 	
 	@classmethod
-	def indexOf(param1 = None):
+	def indexOf(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = text
 		temp1 = 0
@@ -125,9 +125,9 @@ class DSelector(Class_255_0):
 	#end:method
 
 	@classmethod
-	def at(param1 = None):
+	def at(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return (text + (x * param1))
 	#end:method
@@ -135,7 +135,7 @@ class DSelector(Class_255_0):
 	@classmethod
 	def setSize():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (+ nsTop 20 (temp0[2] * y))
@@ -145,9 +145,9 @@ class DSelector(Class_255_0):
 	#end:method
 
 	@classmethod
-	def retreat(param1 = None):
+	def retreat(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		while param1:
@@ -174,9 +174,9 @@ class DSelector(Class_255_0):
 	#end:method
 
 	@classmethod
-	def advance(param1 = None):
+	def advance(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not kernel.StrAt(cursor, 0)):
 			return
@@ -206,9 +206,9 @@ class DSelector(Class_255_0):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 claimed:):
 			return 0
@@ -288,16 +288,16 @@ class Controls(List):
 	@classmethod
 	def draw():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self eachElementDo: #setSize)
 		(self eachElementDo: #draw)
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 claimed:):
 			return 0

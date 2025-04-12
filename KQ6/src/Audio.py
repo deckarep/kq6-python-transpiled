@@ -23,9 +23,9 @@ class Audio(Obj):
 	stopped = 1
 	
 	@classmethod
-	def play(param1 = None):
+	def play(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local0 = 0
 		(cond
@@ -45,7 +45,7 @@ class Audio(Obj):
 	@classmethod
 	def stop():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		stopped = 1
 		kernel.DoAudio(3)
@@ -54,7 +54,7 @@ class Audio(Obj):
 	@classmethod
 	def pause():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not paused):
 			kernel.DoAudio(4)
@@ -65,7 +65,7 @@ class Audio(Obj):
 	@classmethod
 	def resume():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if paused:
 			kernel.DoAudio(5)
@@ -74,17 +74,17 @@ class Audio(Obj):
 	#end:method
 
 	@classmethod
-	def setLoop(param1 = None):
+	def setLoop(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self loop: param1)
 	#end:method
 
 	@classmethod
-	def setRate(param1 = None):
+	def setRate(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			kernel.DoAudio(7, param1)
@@ -94,9 +94,9 @@ class Audio(Obj):
 	@classmethod
 	def check():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (and (not stopped) (kernel.DoAudio(6) == -1) (loop == 1)):
+		if ((not stopped) and (kernel.DoAudio(6) == -1) and (loop == 1)):
 			doNotStop = 0
 			stopped = 1
 			if (local0 != 0):
@@ -105,7 +105,7 @@ class Audio(Obj):
 				(temp0 cue:)
 			#endif
 		#endif
-		if (and (not stopped) (kernel.DoAudio(6) == -1) ((loop > 1) or (loop == -1))):
+		if ((not stopped) and (kernel.DoAudio(6) == -1) and ((loop > 1) or (loop == -1))):
 			(self play:)
 		#endif
 	#end:method

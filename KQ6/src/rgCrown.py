@@ -19,9 +19,9 @@ SCI.public_exports(
 )
 
 @SCI.procedure
-def proc10_2(param1 = None, param2 = None):
+def proc10_2(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (global2 script:):
 		((global2 script:)
@@ -39,9 +39,9 @@ class rgCrown(Rgn):
 	singSingHas = 0
 	
 	@classmethod
-	def isSet(param1 = None, param2 = None):
+	def isSet(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if (argc < 2):
@@ -53,9 +53,9 @@ class rgCrown(Rgn):
 	#end:method
 
 	@classmethod
-	def clrIt(param1 = None, param2 = None):
+	def clrIt(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc < 2):
 			(flag1 &= (~ param1))
@@ -65,9 +65,9 @@ class rgCrown(Rgn):
 	#end:method
 
 	@classmethod
-	def setIt(param1 = None, param2 = None):
+	def setIt(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc < 2):
 			(flag1 |= param1)
@@ -77,9 +77,9 @@ class rgCrown(Rgn):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		keep = proc999_5(param1, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290)
 		initialized = 0
@@ -89,7 +89,7 @@ class rgCrown(Rgn):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 	#end:method
@@ -102,9 +102,9 @@ class rocks(Feature):
 	noun = 2
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 1, 5, 2):
 			(global91 say: noun param1 (1 if (param1 == 1) else 0) 0 0 0)
@@ -116,7 +116,7 @@ class rocks(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		sightAngle = 26505

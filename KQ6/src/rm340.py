@@ -55,7 +55,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def notify():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc344_1()
 	#end:method
@@ -63,7 +63,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		kernel.Lock(143, 340, 0)
@@ -88,7 +88,7 @@ class rm340(KQ6Room):
 			#end:case
 			case (global12 == 405):
 				(global1 handsOff:)
-				if (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+				if (proc913_0(14) and proc913_0(4) and (not proc913_0(15))):
 					proc958_0(128, 335, 337, 336)
 					(global103 number: 345 play:)
 					kernel.Load(130, 344)
@@ -114,7 +114,7 @@ class rm340(KQ6Room):
 					proc342_0()
 				else:
 					(global1 handsOff:)
-					if (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+					if (proc913_0(14) and proc913_0(4) and (not proc913_0(15))):
 						proc958_0(128, 335, 337, 336)
 						(global103 number: 345 play:)
 						kernel.Load(130, 344)
@@ -152,7 +152,7 @@ class rm340(KQ6Room):
 						kernel.Load(130, 341)
 						proc341_0()
 					#end:case
-					case (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+					case (proc913_0(14) and proc913_0(4) and (not proc913_0(15))):
 						proc958_0(128, 335, 337, 336)
 						(global103 number: 345 play:)
 						kernel.Load(130, 344)
@@ -177,7 +177,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case ((rSacred geniePresent:) == 1):
@@ -192,7 +192,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc958_0(0, 341, 342, 344)
 		if (not ((global103 number:) == 155)):
@@ -204,9 +204,9 @@ class rm340(KQ6Room):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			match param1
@@ -242,7 +242,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (global2 script:):#end:case
@@ -275,7 +275,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def newRoom():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local3 = 1
 		(super newRoom: &rest)
@@ -284,7 +284,7 @@ class rm340(KQ6Room):
 	@classmethod
 	def scriptCheck():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 1
 		if (rSacred geniePresent:):
@@ -320,7 +320,7 @@ class theDoor(Prop):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(3):
 			(self cel: 4 stopUpd:)
@@ -331,9 +331,9 @@ class theDoor(Prop):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(labDoor doVerb: param1 &rest)
 	#end:method
@@ -351,7 +351,7 @@ class labRock(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(3):
 			(self posn: 0 149 stopUpd:)
@@ -362,9 +362,9 @@ class labRock(Actor):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -396,9 +396,9 @@ class berries(View):
 	signal = 24592
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -422,9 +422,9 @@ class labDoor(Feature):
 	onMeCheck = 16
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -461,9 +461,9 @@ class niteShade(Feature):
 	onMeCheck = 4
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -492,9 +492,9 @@ class minoOpening(Feature):
 	onMeCheck = 64
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
 			(global2 setScript: goToLair)
@@ -514,9 +514,9 @@ class cave(Feature):
 	onMeCheck = 8
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
 			if ((rSacred geniePresent:) == 1):
@@ -565,9 +565,9 @@ class myPath(Feature):
 class egoEnters(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -653,9 +653,9 @@ class egoEnters(Script):
 class fromLab(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -700,9 +700,9 @@ class fromLab(Script):
 class crawlOutOfCave(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -739,9 +739,9 @@ class crawlOutOfCave(Script):
 class crawlIntoCave(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -812,9 +812,9 @@ class crawlIntoCave(Script):
 class goNorth(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -836,9 +836,9 @@ class goNorth(Script):
 class goToLair(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -873,9 +873,9 @@ class goToLair(Script):
 class tryDoor(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -921,9 +921,9 @@ class tryDoor(Script):
 class stepDown(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -990,9 +990,9 @@ class gag_Die(Script):
 	name = r"""gag&Die"""
 	
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -1065,9 +1065,9 @@ class gag_Die(Script):
 class dieHard(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -1118,9 +1118,9 @@ class dieHard(Script):
 class egoDoVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -1133,7 +1133,7 @@ class egoDoVerb(Actions):
 				return 0
 			#end:case
 			case 31:
-				if (and proc913_0(14) proc913_0(4) (not proc913_0(15))):
+				if (proc913_0(14) and proc913_0(4) and (not proc913_0(15))):
 					(global1 handsOff:)
 					(kernel.ScriptID(344, 2) setScript: kernel.ScriptID(344, 3))
 					return 1

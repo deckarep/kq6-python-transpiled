@@ -19,9 +19,9 @@ class Sync(Obj):
 	syncNum = -1
 	
 	@classmethod
-	def syncStart(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None):
+	def syncStart(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DoSync(0, self, param1, param2, param3, param4, param5)
 		if (syncCue != -1):
@@ -33,7 +33,7 @@ class Sync(Obj):
 	@classmethod
 	def syncCheck():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -52,7 +52,7 @@ class Sync(Obj):
 	@classmethod
 	def syncStop():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		prevCue = -1
 		kernel.DoSync(2)
@@ -66,9 +66,9 @@ class ScriptSync(Obj):
 	playing = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global82:
 			(self cue:)
@@ -87,7 +87,7 @@ class ScriptSync(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global82 prevCue:) != -1):
 			while True: #repeat
@@ -107,7 +107,7 @@ class ScriptSync(Obj):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Animate((global5 elements:), 0)
 		playing = 0
@@ -124,9 +124,9 @@ class ScriptSync(Obj):
 class MouthSync(Cycle):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: param1)
 		if kernel.IsObject(global82):
@@ -138,7 +138,7 @@ class MouthSync(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doit:)
 		if ((global82 prevCue:) != -1):
@@ -167,7 +167,7 @@ class MouthSync(Cycle):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		if global82:
@@ -179,7 +179,7 @@ class MouthSync(Cycle):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global82:
 			(global82 syncStop: dispose:)

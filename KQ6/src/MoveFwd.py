@@ -11,9 +11,9 @@ import PolyPath
 class MoveFwd(PolyPath):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None):
+	def init(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			(super

@@ -33,7 +33,7 @@ class sCredits(Script):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not register):
 			(global5 eachElementDo: #addToPic)
@@ -54,9 +54,9 @@ class sCredits(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -112,7 +112,7 @@ class sCredits(Script):
 				if ((not local1) and (local0 == 15)):
 					kernel.Palette(4, 0, 231, 100)
 				#endif
-				if (and local1 (local0 == 1) local6):
+				if (local1 and (local0 == 1) and local6):
 					cycles = 2
 				else:
 					if local1:

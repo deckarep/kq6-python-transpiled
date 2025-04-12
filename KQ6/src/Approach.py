@@ -14,9 +14,9 @@ class Approach(Motion):
 	distance = 20
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 1):
 			client = param1
@@ -36,7 +36,7 @@ class Approach(Motion):
 	@classmethod
 	def onTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return ((client distanceTo: who) <= distance)
 	#end:method
@@ -44,7 +44,7 @@ class Approach(Motion):
 	@classmethod
 	def setTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case argc:
@@ -59,7 +59,7 @@ class Approach(Motion):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (self onTarget:):
 			(self moveDone:)

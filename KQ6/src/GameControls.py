@@ -19,7 +19,7 @@ class GameControls(IconBar):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global8 pause:)
 		if (global77 and (global77 respondsTo: #stop)):
@@ -77,9 +77,9 @@ class GameControls(IconBar):
 	#end:method
 
 	@classmethod
-	def dispatchEvent(param1 = None):
+	def dispatchEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp53 = (param1 type:)
 		temp54 = (param1 message:)
@@ -185,9 +185,9 @@ class GameControls(IconBar):
 	#end:method
 
 	@classmethod
-	def select(param1 = None, param2 = None):
+	def select(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(param1 select: ((argc >= 2) and param2))
 	#end:method
@@ -201,7 +201,7 @@ class GameControls(IconBar):
 	@classmethod
 	def hide():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if window:
 			(window dispose:)
@@ -223,7 +223,7 @@ class ControlIcon(IconI):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if theObj:
 			if (signal & 0x0040):

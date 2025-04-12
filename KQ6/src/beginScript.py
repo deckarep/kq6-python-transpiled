@@ -40,9 +40,9 @@ local9 = None
 class beginScript(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -88,7 +88,7 @@ class riddleBookScript(Script):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local9 = global91
 		global91 = rBookMessager
@@ -117,9 +117,9 @@ class riddleBookScript(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -198,7 +198,7 @@ class background(Feature):
 	@classmethod
 	def doVerb():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(riddleBookScript cue:)
 	#end:method
@@ -213,9 +213,9 @@ class bookView(Prop):
 	view = 904
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
 			(riddleBookScript state: ((riddleBookScript state:) - 3) cue:)
@@ -230,9 +230,9 @@ class bookView(Prop):
 class rBookMessager(Kq6Messager):
 	#property vars (may be empty)
 	@classmethod
-	def findTalker(param1 = None):
+	def findTalker(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 99):
 			temp0 = localNarrator
@@ -252,7 +252,7 @@ class localNarrator(Kq6Narrator):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		talkWidth = 280
 		(super init: &rest)

@@ -28,7 +28,7 @@ class Cat(Actor):
 	@classmethod
 	def canBeHere():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 1
 	#end:method
@@ -36,15 +36,15 @@ class Cat(Actor):
 	@classmethod
 	def findPosn():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 1
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (super handleEvent: param1):#end:case
@@ -66,9 +66,9 @@ class Cat(Actor):
 	#end:method
 
 	@classmethod
-	def track(param1 = None):
+	def track(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.LocalToGlobal(param1)
 		dx = (x - (param1 x:))
@@ -98,7 +98,7 @@ class Cat(Actor):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (not doCast):
@@ -113,9 +113,9 @@ class Cat(Actor):
 	#end:method
 
 	@classmethod
-	def posn(param1 = None, param2 = None, param3 = None):
+	def posn(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			x = param1

@@ -21,9 +21,9 @@ class Orbit(Motion):
 	curAngle = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, param7 = None, param8 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, param7 = None, param8 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 1):
 			client = param1
@@ -71,7 +71,7 @@ class Orbit(Motion):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self init:)
 	#end:method

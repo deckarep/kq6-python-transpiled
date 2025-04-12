@@ -18,9 +18,9 @@ class Cycle(Obj):
 	completed = 0
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			client = param1
@@ -32,7 +32,7 @@ class Cycle(Obj):
 	@classmethod
 	def nextCel():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if (kernel.Abs((global88 - cycleCnt)) < (client cycleSpeed:)):
@@ -50,7 +50,7 @@ class Cycle(Obj):
 	@classmethod
 	def motionCue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client cycler: 0)
 		if (completed and kernel.IsObject(caller)):
@@ -66,7 +66,7 @@ class Fwd(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (temp0 = (self nextCel:) > (client lastCel:)):
 			(self cycleDone:)
@@ -78,7 +78,7 @@ class Fwd(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client cel: 0)
 	#end:method
@@ -90,7 +90,7 @@ class Walk(Fwd):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not (client isStopped:)):
 			(super doit:)
@@ -104,9 +104,9 @@ class CT(Cycle):
 	endCel = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: param1)
 		cycleDir = param3
@@ -120,7 +120,7 @@ class CT(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (client lastCel:)
 		if (endCel > temp1):
@@ -143,7 +143,7 @@ class CT(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		completed = 1
 		if caller:
@@ -158,9 +158,9 @@ class CT(Cycle):
 class End(CT):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None, param2 = None):
+	def init(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: param1 (param1 lastCel:) 1 (param2 if (argc == 2) else 0))
 	#end:method
@@ -170,9 +170,9 @@ class End(CT):
 class Beg(CT):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None, param2 = None):
+	def init(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: param1 0 -1 (param2 if (argc == 2) else 0))
 	#end:method
@@ -187,7 +187,7 @@ class SyncWalk(Fwd):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -203,7 +203,7 @@ class SyncWalk(Fwd):
 	@classmethod
 	def nextCel():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		cycleCnt = (global88 + (client cycleSpeed:))
 		(super nextCel:)
@@ -230,9 +230,9 @@ class Motion(Obj):
 	yLast = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 1):
 			client = param1
@@ -260,15 +260,15 @@ class Motion(Obj):
 	@classmethod
 	def onTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return (((client x:) == x) and ((client y:) == y))
 	#end:method
 
 	@classmethod
-	def setTarget(param1 = None, param2 = None):
+	def setTarget(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			x = param1
@@ -279,7 +279,7 @@ class Motion(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.Abs((global88 - b-moveCnt)) >= (client moveSpeed:)):
 			b-moveCnt = global88
@@ -290,7 +290,7 @@ class Motion(Obj):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		completed = 1
 		if caller:
@@ -303,7 +303,7 @@ class Motion(Obj):
 	@classmethod
 	def motionCue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client mover: 0)
 		if (completed and kernel.IsObject(caller)):
@@ -319,7 +319,7 @@ class MoveTo(Motion):
 	@classmethod
 	def onTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(and

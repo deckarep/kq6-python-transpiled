@@ -46,10 +46,10 @@ class Kq6InvItem(InvI):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1, 0, if 
-			(and global169 kernel.Platform(6) (not kernel.Platform(5)))
+			(global169 and kernel.Platform(6) and (not kernel.Platform(5)))
 			(global9 empty:)
 		else:
 			0
@@ -59,7 +59,7 @@ class Kq6InvItem(InvI):
 	@classmethod
 	def select():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(genericCursor view: cursorView loop: cursorLoop cel: cursorCel)
 		(global1 setCursor: genericCursor)
@@ -69,7 +69,7 @@ class Kq6InvItem(InvI):
 	@classmethod
 	def highlight():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not global169) or kernel.Platform(5)):
 			(super highlight: &rest)
@@ -77,9 +77,9 @@ class Kq6InvItem(InvI):
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (signal & 0x0004):
 			return 0
@@ -136,9 +136,9 @@ class Kq6InvItem(InvI):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 28, 13, 12):
 			(global91 say: 0 param1 0 0 0 modNum)
@@ -192,7 +192,7 @@ class Kq6InvItem(InvI):
 	@classmethod
 	def checkPage():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 0
 		temp0 = 0
@@ -215,9 +215,9 @@ class Kq6InvItem(InvI):
 	#end:method
 
 	@classmethod
-	def setCursor(param1 = None, param2 = None, param3 = None):
+	def setCursor(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		cursorView = param1
 		cursorLoop = param2
@@ -226,9 +226,9 @@ class Kq6InvItem(InvI):
 	#end:method
 
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc and param1):
 			(pageCode init: local1)
@@ -248,9 +248,9 @@ class Kq6InvItem(InvI):
 class pageCode(Code):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local1 = param1
 		(global9 selectIcon: invSelect window: invWin)
@@ -284,7 +284,7 @@ class KqInv(Inv):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global9 = self
 		(self
@@ -357,9 +357,9 @@ class KqInv(Inv):
 	#end:method
 
 	@classmethod
-	def showSelf(param1 = None):
+	def showSelf(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global8 pause:)
 		if (global77 and (global77 respondsTo: #stop)):
@@ -390,15 +390,15 @@ class KqInv(Inv):
 	#end:method
 
 	@classmethod
-	def hide(param1 = None):
+	def hide(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
 			(global8 pause: 0)
 			(state &= 0xffdf)
 		#endif
-		if (and global169 kernel.Platform(6) (not kernel.Platform(5)) empty):
+		if (global169 and kernel.Platform(6) and (not kernel.Platform(5)) and empty):
 			kernel.Graph(8, empty)
 		#endif
 		if window:
@@ -454,9 +454,9 @@ class KqInv(Inv):
 	#end:method
 
 	@classmethod
-	def highlight(param1 = None, param2 = None):
+	def highlight(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not ((param1 signal:) & 0x0004)):
 			if kernel.IsObject(highlightedIcon):
@@ -499,7 +499,7 @@ class KqInv(Inv):
 	@classmethod
 	def advanceCurIcon():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = curIcon
 		while 1:
@@ -524,9 +524,9 @@ class KqInv(Inv):
 	#end:method
 
 	@classmethod
-	def drawInvWindow(param1 = None, param2 = None):
+	def drawInvWindow(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = temp1 = temp2 = temp3 = temp4 = temp5 = 0
 		(= temp72
@@ -771,7 +771,7 @@ class invWin(Kq6Window):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(top -= temp0 = (kernel.CelHigh(901, 3, 0) / 2))
 		(bottom += temp0)
@@ -788,9 +788,9 @@ class boringBook(Kq6InvItem):
 	owner = 270
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -824,9 +824,9 @@ class brush(Kq6InvItem):
 	owner = 280
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -869,7 +869,7 @@ class brush(Kq6InvItem):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		loop = 3
 		cel = 13
@@ -887,9 +887,9 @@ class hair(Kq6InvItem):
 	owner = 530
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 51:
@@ -912,9 +912,9 @@ class clothes(Kq6InvItem):
 	owner = 540
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -1015,9 +1015,9 @@ class egg(Kq6InvItem):
 	owner = 490
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 51:
@@ -1041,9 +1041,9 @@ class skull(Kq6InvItem):
 	owner = 415
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 18):
 			param1 = 15
@@ -1065,7 +1065,7 @@ class skull(Kq6InvItem):
 					case (not state):
 						(global91 say: noun param1 38 0 0 modNum)
 					#end:case
-					case (and (state & 0x0004) (state & 0x0001) (state & 0x0002)):
+					case ((state & 0x0004) and (state & 0x0001) and (state & 0x0002)):
 						if 
 							(and
 								(not (global2 script:))
@@ -1190,7 +1190,7 @@ class skull(Kq6InvItem):
 					case (not state):
 						(global91 say: noun param1 38 0 0 modNum)
 					#end:case
-					case (and (state & 0x0004) (state & 0x0001) (state & 0x0002)):
+					case ((state & 0x0004) and (state & 0x0001) and (state & 0x0002)):
 						(KQ6Print
 							font: global22
 							say: 0 noun param1 42 1 0 0 modNum
@@ -1293,7 +1293,7 @@ class skull(Kq6InvItem):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self loop: 3 cel: 4 setCursor: 990 3 4 state: ((self state:) & 0xfff7))
 		if 
@@ -1317,9 +1317,9 @@ class feather(Kq6InvItem):
 	owner = 300
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 44:
@@ -1372,9 +1372,9 @@ class cassimaHair(Kq6InvItem):
 	owner = 210
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 51:
@@ -1419,9 +1419,9 @@ class huntersLamp(Kq6InvItem):
 	owner = 520
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -1553,9 +1553,9 @@ class letter(Kq6InvItem):
 	owner = 780
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -1582,7 +1582,7 @@ class lettuce(Kq6InvItem):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state
 			case 0:
@@ -1638,9 +1638,9 @@ class map(Kq6InvItem):
 	owner = 280
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
 			if proc999_5(global11, 200, 300, 260, 500, 550, 450):
@@ -1658,7 +1658,7 @@ class map(Kq6InvItem):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global11 == 450):
 			(global2 notify: 1)
@@ -1715,9 +1715,9 @@ class newLamp(Kq6InvItem):
 	owner = 240
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 2:
@@ -1784,9 +1784,9 @@ class participle(Kq6InvItem):
 	owner = 500
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doVerb: param1 &rest)
 		temp2 = (view == 972)
@@ -1871,9 +1871,9 @@ class note(Kq6InvItem):
 	owner = 210
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -1920,13 +1920,13 @@ class ribbon(Kq6InvItem):
 	owner = 210
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
-				if (or (global0 has: 4) (global0 has: 16) proc913_0(112)):
+				if ((global0 has: 4) or (global0 has: 16) or proc913_0(112)):
 					(global91 say: noun param1 0 0 0 modNum)
 				else:
 					(KQ6Print
@@ -1984,9 +1984,9 @@ class riddleBook(Kq6InvItem):
 	owner = 460
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
 			(global9 hide:)
@@ -2011,7 +2011,7 @@ class ring(Kq6InvItem):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -2060,9 +2060,9 @@ class sacredWater(Kq6InvItem):
 	owner = 380
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (param1 == 43):
@@ -2132,9 +2132,9 @@ class spellBook(Kq6InvItem):
 	owner = 270
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -2172,9 +2172,9 @@ class teaCup(Kq6InvItem):
 	owner = 480
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -2228,7 +2228,7 @@ class teaCup(Kq6InvItem):
 						)
 					#end:case
 					case 
-						(and proc913_0(68) proc913_0(58) (not proc913_0(22))):
+						(proc913_0(68) and proc913_0(58) and (not proc913_0(22))):
 						(KQ6Print
 							font: global22
 							say: 0 noun param1 30 0 0 0 modNum
@@ -2350,7 +2350,7 @@ class teaCup(Kq6InvItem):
 						(global91 say: noun param1 28 0 0 modNum)
 					#end:case
 					case 
-						(and proc913_0(68) proc913_0(58) (not proc913_0(22))):
+						(proc913_0(68) and proc913_0(58) and (not proc913_0(22))):
 						if 
 							(and
 								((global0 view:) == 900)
@@ -2381,9 +2381,9 @@ class poem(Kq6InvItem):
 	owner = 270
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -2418,9 +2418,9 @@ class tomato(Kq6InvItem):
 	owner = 480
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not proc999_5(param1, 1, 34)):
 			temp2 = (view == 972)
@@ -2502,9 +2502,9 @@ class ink(Kq6InvItem):
 	owner = 240
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 1, 5):
 			if proc913_0(116):
@@ -2522,9 +2522,9 @@ class ink(Kq6InvItem):
 class InvIconItem(IconI):
 	#property vars (may be empty)
 	@classmethod
-	def show(param1 = None, param2 = None):
+	def show(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(signal |= 0x0020)
 		if argc:
@@ -2535,7 +2535,7 @@ class InvIconItem(IconI):
 			nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 		#endif
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1, 0, if 
-			(and global169 kernel.Platform(6) (not kernel.Platform(5)))
+			(global169 and kernel.Platform(6) and (not kernel.Platform(5)))
 			(global9 empty:)
 		else:
 			0
@@ -2546,11 +2546,11 @@ class InvIconItem(IconI):
 	#end:method
 
 	@classmethod
-	def select(param1 = None):
+	def select(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (and global169 kernel.Platform(6) (not kernel.Platform(5)) (global9 empty:)):
+		if (global169 and kernel.Platform(6) and (not kernel.Platform(5)) and (global9 empty:)):
 			temp3 = (global9 empty:)
 		else:
 			temp3 = 0
@@ -2558,7 +2558,7 @@ class InvIconItem(IconI):
 		(return
 			(cond
 				case (signal & 0x0004): 0#end:case
-				case (and argc param1 (signal & 0x0001)):
+				case (argc and param1 and (signal & 0x0001)):
 					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
 					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					while ((temp0 = (Event new:) type:) != 2):
@@ -2639,7 +2639,7 @@ class InvIconItem(IconI):
 	@classmethod
 	def highlight():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not global169) or kernel.Platform(5)):
 			nsLeft.post('--')
@@ -2653,9 +2653,9 @@ class InvIconItem(IconI):
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp0
 			if (global169 and kernel.Platform(6)):
@@ -2722,7 +2722,7 @@ class ok(InvIconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self highlightColor: 0 lowlightColor: 19)
 		(super init: &rest)
@@ -2741,7 +2741,7 @@ class invLook(InvIconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self highlightColor: 0 lowlightColor: 19)
 		(super init: &rest)
@@ -2760,7 +2760,7 @@ class invHand(InvIconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self highlightColor: 0 lowlightColor: 19)
 		(super init: &rest)
@@ -2778,7 +2778,7 @@ class invSelect(InvIconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self highlightColor: 0 lowlightColor: 19)
 		(super init: &rest)
@@ -2797,7 +2797,7 @@ class invTalk(InvIconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self highlightColor: 0 lowlightColor: 19)
 		(super init: &rest)
@@ -2816,7 +2816,7 @@ class invMore(InvIconItem):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (local0 < 13):
 			loop = 8
@@ -2829,7 +2829,7 @@ class invMore(InvIconItem):
 	@classmethod
 	def select():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (super select: &rest):
 			if (local0 >= 13):
@@ -2876,7 +2876,7 @@ class invPrevious(InvIconItem):
 	@classmethod
 	def select():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (super select: &rest):
 			temp0 = 0

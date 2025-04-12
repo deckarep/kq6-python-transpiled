@@ -28,7 +28,7 @@ local0 = None
 @SCI.procedure
 def proc482_0():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: grabForHole)
@@ -37,7 +37,7 @@ def proc482_0():
 @SCI.procedure
 def proc482_1():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global0 setScript: getHole)
 #end:procedure
@@ -45,7 +45,7 @@ def proc482_1():
 @SCI.procedure
 def proc482_2():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(kernel.ScriptID(480, 5) register: 1)
 	(global0 setScript: lookThruHole)
@@ -55,9 +55,9 @@ def proc482_2():
 class getHole(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -150,9 +150,9 @@ class getHole(Script):
 class grabForHole(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -208,9 +208,9 @@ class grabForHole(Script):
 class lookThruHole(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -311,7 +311,7 @@ class holeInset(View):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(fields init:)
 		(super init:)
@@ -320,7 +320,7 @@ class holeInset(View):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(fields dispose:)
 		(super dispose:)

@@ -20,7 +20,7 @@ SCI.public_exports(
 @SCI.procedure
 def proc403_0():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global2
 		addObstacle:
@@ -64,7 +64,7 @@ def proc403_0():
 @SCI.procedure
 def proc403_1():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global2
 		addObstacle:
@@ -90,7 +90,7 @@ def proc403_1():
 @SCI.procedure
 def proc403_2():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global2
 		addObstacle:
@@ -136,7 +136,7 @@ def proc403_2():
 @SCI.procedure
 def proc403_3():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global2
 		addObstacle:

@@ -27,9 +27,9 @@ class Grooper(Code):
 	caller = 0
 	
 	@classmethod
-	def doit(param1 = None, param2 = None, param3 = None, param4 = None):
+	def doit(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not client):
 			client = param1
@@ -104,7 +104,7 @@ class Grooper(Code):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not kernel.IsObject((client mover:))):
 			(client mover: oldMover)
@@ -122,7 +122,7 @@ class Grooper(Code):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(oldCycler):
 			(oldCycler dispose:)
@@ -146,9 +146,9 @@ class Grycler(Cycle):
 	numOfLoops = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None):
+	def init(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: param1)
 		caller = param2
@@ -170,7 +170,7 @@ class Grycler(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client loop: (self nextCel:))
 		if (self loopIsCorrect:):
@@ -181,7 +181,7 @@ class Grycler(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global37 = completed = 1
 	#end:method
@@ -189,7 +189,7 @@ class Grycler(Cycle):
 	@classmethod
 	def loopIsCorrect():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(<
@@ -202,7 +202,7 @@ class Grycler(Cycle):
 	@classmethod
 	def nextCel():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if 

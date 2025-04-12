@@ -22,9 +22,9 @@ class rMist(Rgn):
 	musicPlaying = 0
 	
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		keep = proc999_5(param1, 550, 560, 570, 580)
 		initialized = 0
@@ -34,7 +34,7 @@ class rMist(Rgn):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		if (((global11 == 550) or (global11 == 560)) and (not proc913_0(14))):
@@ -52,7 +52,7 @@ class rMist(Rgn):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global102 stop:)
 		proc913_1(25)
@@ -65,9 +65,9 @@ class rMist(Rgn):
 class hintDrums(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

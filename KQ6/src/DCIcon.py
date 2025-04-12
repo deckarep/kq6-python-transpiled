@@ -18,7 +18,7 @@ class DCIcon(DIcon):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cycler = (Fwd new:) init: self)
 	#end:method
@@ -26,7 +26,7 @@ class DCIcon(DIcon):
 	@classmethod
 	def cycle():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if cycler:
 			temp0 = cel
@@ -40,7 +40,7 @@ class DCIcon(DIcon):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if cycler:
 			(cycler dispose:)
@@ -51,7 +51,7 @@ class DCIcon(DIcon):
 	@classmethod
 	def lastCel():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return (kernel.NumCels(self) - 1)
 	#end:method

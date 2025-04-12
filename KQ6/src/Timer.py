@@ -19,7 +19,7 @@ class Timer(Obj):
 	
 	(procedure (localproc_0):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = client
 		client = 0
@@ -36,7 +36,7 @@ class Timer(Obj):
 	@classmethod
 	def new():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if (self == Timer):
@@ -48,9 +48,9 @@ class Timer(Obj):
 	#end:method
 
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
 		(global7 add: self)
@@ -65,7 +65,7 @@ class Timer(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (cycleCnt != -1):
@@ -90,7 +90,7 @@ class Timer(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.IsObject(client) and (client respondsTo: #timer)):
 			(client timer: 0)
@@ -101,7 +101,7 @@ class Timer(Obj):
 	@classmethod
 	def delete():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client == 0):
 			(global7 delete: self)
@@ -110,9 +110,9 @@ class Timer(Obj):
 	#end:method
 
 	@classmethod
-	def setCycle(param1 = None, param2 = None):
+	def setCycle(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp0
 			if (-info- & 0x8000):
@@ -126,9 +126,9 @@ class Timer(Obj):
 	#end:method
 
 	@classmethod
-	def set(param1 = None, param2 = None, param3 = None, param4 = None):
+	def set(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (temp2 = 6 == 0):
 			temp2 = 1
@@ -152,9 +152,9 @@ class Timer(Obj):
 	#end:method
 
 	@classmethod
-	def setReal(param1 = None, param2 = None, param3 = None, param4 = None):
+	def setReal(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = param2
 		if (argc > 2):
@@ -175,9 +175,9 @@ class Timer(Obj):
 	#end:method
 
 	@classmethod
-	def setTicks(param1 = None, param2 = None):
+	def setTicks(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp0
 			if (-info- & 0x8000):
@@ -197,9 +197,9 @@ class TO(Obj):
 	timeLeft = 0
 	
 	@classmethod
-	def set(param1 = None):
+	def set(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		timeLeft = param1
 	#end:method
@@ -207,7 +207,7 @@ class TO(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if timeLeft:
 			timeLeft.post('--')

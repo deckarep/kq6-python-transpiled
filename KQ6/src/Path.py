@@ -15,9 +15,9 @@ class Path(MoveTo):
 	value = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None):
+	def init(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			client = param1
@@ -38,7 +38,7 @@ class Path(MoveTo):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (self atEnd:):
 			(super moveDone:)
@@ -54,7 +54,7 @@ class Path(MoveTo):
 	@classmethod
 	def next():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		x = (self at: value.post('++'))
 		y = (self at: value.post('++'))
@@ -63,7 +63,7 @@ class Path(MoveTo):
 	@classmethod
 	def atEnd():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(or
@@ -76,7 +76,7 @@ class Path(MoveTo):
 	@classmethod
 	def at():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(Print addTextF: r"""%s needs an 'at:' method.""" name init:)
 		return 0
@@ -89,7 +89,7 @@ class RelPath(Path):
 	@classmethod
 	def next():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(x += (self at: value.post('++')))
 		(y += (self at: value.post('++')))

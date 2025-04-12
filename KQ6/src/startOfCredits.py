@@ -35,9 +35,9 @@ local429
 class findSize(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.TextSize(@local429, param1, 2207, 315)
 		return (((180 - (local429[2] - local429[0])) / 2) - 10)
@@ -49,9 +49,9 @@ class findSize(Code):
 class startOfCredits(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -108,9 +108,9 @@ class startOfCredits(Script):
 class openingCredits(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -177,9 +177,9 @@ class kq(Actor):
 class fadeThePic(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None, param2 = None):
+	def doit(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
 			temp0 = 100

@@ -42,9 +42,9 @@ local10
 class pullOutMapScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -130,7 +130,7 @@ class MapScr(Script):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local0 = global5
 		local1 = global32
@@ -156,7 +156,7 @@ class MapScr(Script):
 	@classmethod
 	def resetHandlers():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global73 delete: self dispose:)
 		(global72 delete: self dispose:)
@@ -167,9 +167,9 @@ class MapScr(Script):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -201,9 +201,9 @@ class MapScr(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -340,9 +340,9 @@ class HighliteMap(Feature):
 	theMapObj = 0
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local8 = self
 		if (param1 == 5):
@@ -371,7 +371,7 @@ class HighliteMap(Feature):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(theMapObj = (Actor new:)
 			view: view
@@ -401,7 +401,7 @@ class mistsProp(Prop):
 	@classmethod
 	def doVerb():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(mists doVerb: &rest)
 	#end:method
@@ -472,7 +472,7 @@ class mists(HighliteMap):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(3):
 			(mistsLabel init:)
@@ -484,7 +484,7 @@ class mists(HighliteMap):
 	@classmethod
 	def onMe():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(3):
 			noun = 3
@@ -495,16 +495,16 @@ class mists(HighliteMap):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = proc913_0(3)
 		(cond
 			case ((param1 == 5) and temp0):
 				(super doVerb: param1 &rest)
 			#end:case
-			case (and (param1 == 1) temp0 (not proc913_0(80))):
+			case ((param1 == 1) and temp0 and (not proc913_0(80))):
 				proc913_1(80)
 				(global91 say: noun param1 12 0 0 modNum)
 			#end:case
@@ -527,9 +527,9 @@ class northMarker(Feature):
 	onMeCheck = 32
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
 			(global91 say: 6 param1 0 0 0 130)
@@ -548,9 +548,9 @@ class mapTitle(Feature):
 	onMeCheck = 64
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
 			(global91 say: 6 param1 0 0 0 130)
@@ -573,7 +573,7 @@ class mistsLabel(Actor):
 	@classmethod
 	def doVerb():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(mists doVerb: &rest)
 	#end:method
@@ -588,7 +588,7 @@ class exitFeature(Feature):
 	@classmethod
 	def doVerb():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(MapScr resetHandlers: register: 1 cue:)
 	#end:method

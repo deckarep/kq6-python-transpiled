@@ -13,9 +13,9 @@ class File(Obj):
 	handle = 0
 	
 	@classmethod
-	def open(param1 = None):
+	def open(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= handle
 			match argc
@@ -35,9 +35,9 @@ class File(Obj):
 	#end:method
 
 	@classmethod
-	def write(param1 = None, param2 = None):
+	def write(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not handle):
 			(self open:)
@@ -52,9 +52,9 @@ class File(Obj):
 	#end:method
 
 	@classmethod
-	def writeString(param1 = None):
+	def writeString(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not handle):
 			(self open:)
@@ -73,9 +73,9 @@ class File(Obj):
 	#end:method
 
 	@classmethod
-	def read(param1 = None, param2 = None):
+	def read(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc != 2):
 			return 0
@@ -93,9 +93,9 @@ class File(Obj):
 	#end:method
 
 	@classmethod
-	def readString(param1 = None, param2 = None):
+	def readString(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc != 2):
 			return 0
@@ -113,9 +113,9 @@ class File(Obj):
 	#end:method
 
 	@classmethod
-	def rename(param1 = None):
+	def rename(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not temp0 = kernel.FileIO(11, name, param1)):
 			name = param1
@@ -124,9 +124,9 @@ class File(Obj):
 	#end:method
 
 	@classmethod
-	def seek(param1 = None, param2 = None):
+	def seek(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (param2 if (argc >= 2) else 0)
 		if (not handle):
@@ -144,7 +144,7 @@ class File(Obj):
 	@classmethod
 	def close():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handle:
 			kernel.FileIO(1, handle)
@@ -155,7 +155,7 @@ class File(Obj):
 	@classmethod
 	def delete():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handle:
 			(self close:)
@@ -166,16 +166,16 @@ class File(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self close:)
 		(super dispose:)
 	#end:method
 
 	@classmethod
-	def showStr(param1 = None):
+	def showStr(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Format(param1, r"""File: %s""", name)
 	#end:method

@@ -16,7 +16,7 @@ class Flags(Obj):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (size and (not array)):
 			(self setSize: size)
@@ -24,9 +24,9 @@ class Flags(Obj):
 	#end:method
 
 	@classmethod
-	def setSize(param1 = None):
+	def setSize(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (param1 / 16)
 		if (mod param1 16):
@@ -45,7 +45,7 @@ class Flags(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if array:
 			kernel.Memory(3, array)
@@ -55,9 +55,9 @@ class Flags(Obj):
 	#end:method
 
 	@classmethod
-	def set(param1 = None):
+	def set(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		while argc:
 
@@ -73,9 +73,9 @@ class Flags(Obj):
 	#end:method
 
 	@classmethod
-	def clear(param1 = None):
+	def clear(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		while argc:
 
@@ -91,9 +91,9 @@ class Flags(Obj):
 	#end:method
 
 	@classmethod
-	def test(param1 = None):
+	def test(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = ((param1 / 16) * 2)
 		(return

@@ -28,9 +28,9 @@ class SmoothLooper(Code):
 	vChangeDir = 0
 	
 	@classmethod
-	def doit(param1 = None, param2 = None):
+	def doit(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((param1 signal:) & 0x0800):
 			return
@@ -163,7 +163,7 @@ class SmoothLooper(Code):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (nextLoop < 15):
 			(client
@@ -195,7 +195,7 @@ class SmoothLooper(Code):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if oldMover:
 			(oldMover dispose:)

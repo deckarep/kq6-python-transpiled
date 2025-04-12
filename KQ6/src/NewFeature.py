@@ -17,7 +17,7 @@ class NewFeature(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global72 addToFront: self)
 		(global73 addToFront: self)
@@ -27,7 +27,7 @@ class NewFeature(Feature):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global72 delete: self)
 		(global73 delete: self)
@@ -35,9 +35,9 @@ class NewFeature(Feature):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -58,7 +58,7 @@ class NewFeature(Feature):
 	@classmethod
 	def doSpecial():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self cue:)
 	#end:method
@@ -66,7 +66,7 @@ class NewFeature(Feature):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global0 setMotion: PolyPath approachX approachY CueObj)
 	#end:method

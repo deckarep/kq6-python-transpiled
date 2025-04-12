@@ -29,7 +29,7 @@ class Slider(IconI):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super show: &rest)
 		if (not sRight):
@@ -44,9 +44,9 @@ class Slider(IconI):
 	#end:method
 
 	@classmethod
-	def select(param1 = None):
+	def select(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc and param1):
 			while ((temp0 = (Event new:) type:) != 2):
@@ -75,9 +75,9 @@ class Slider(IconI):
 	def highlight():#end:method
 
 	@classmethod
-	def move(param1 = None, param2 = None):
+	def move(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp7 = ((not argc) or param2)
 		temp5 = proc999_0(param1)
@@ -115,7 +115,7 @@ class Slider(IconI):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if theObj:
 			proc999_7(theObj, selector, &rest)
@@ -123,9 +123,9 @@ class Slider(IconI):
 	#end:method
 
 	@classmethod
-	def posnToValue(param1 = None):
+	def posnToValue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(+
@@ -136,9 +136,9 @@ class Slider(IconI):
 	#end:method
 
 	@classmethod
-	def valueToPosn(param1 = None):
+	def valueToPosn(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(cond
@@ -177,7 +177,7 @@ class Slider(IconI):
 	@classmethod
 	def advance():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self
 			move:
@@ -201,7 +201,7 @@ class Slider(IconI):
 	@classmethod
 	def retreat():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self
 			move:

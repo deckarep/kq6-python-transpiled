@@ -30,7 +30,7 @@ class RgBasement(rgCastle):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		if (self tstFlag: 709 1):
@@ -65,7 +65,7 @@ class RgBasement(rgCastle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -80,9 +80,9 @@ class RgBasement(rgCastle):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		keep = proc999_5(param1, 840, 710, 720, 770, 820, 780)
 		initialized = 0
@@ -92,7 +92,7 @@ class RgBasement(rgCastle):
 	@classmethod
 	def doLoiter():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not (rFlag1 & 0x0004)) and (not proc999_5(global11, 820, 780))):
 			if ((not (rFlag1 & 0x0001)) and (not (rFlag1 & 0x0002))):
@@ -115,7 +115,7 @@ class RgBasement(rgCastle):
 	@classmethod
 	def startGuard():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((rFlag1 & 0x0001) and (not (kernel.ScriptID(80, 5) mover:))):
 			(kernel.ScriptID(80, 5)
@@ -137,9 +137,9 @@ class RgBasement(rgCastle):
 	#end:method
 
 	@classmethod
-	def resetGuard(param1 = None, param2 = None):
+	def resetGuard(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(rFlag1 &= (~ param2))
 		if kernel.IsObject((param1 regPathID:)):
@@ -150,7 +150,7 @@ class RgBasement(rgCastle):
 	@classmethod
 	def setupGuards():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global11 != 840) and (rFlag1 & 0x0001)):
 			(kernel.ScriptID(80, 5)
@@ -168,7 +168,7 @@ class RgBasement(rgCastle):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(kernel.ScriptID(80, 5) z: 0 setMotion: 0)
 		(kernel.ScriptID(80, 6) z: 0 setMotion: 0)
@@ -177,9 +177,9 @@ class RgBasement(rgCastle):
 	#end:method
 
 	@classmethod
-	def warnUser(param1 = None, param2 = None, param3 = None, param4 = None):
+	def warnUser(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -210,7 +210,7 @@ class guardPath1(RegionPath):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (RgBasement tstFlag: 709 4):
 			endType = 2
@@ -219,9 +219,9 @@ class guardPath1(RegionPath):
 	#end:method
 
 	@classmethod
-	def at(param1 = None):
+	def at(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return local0[param1]
 	#end:method
@@ -229,7 +229,7 @@ class guardPath1(RegionPath):
 	@classmethod
 	def nextRoom():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (currentRoom == global11)
 		(super nextRoom: &rest)
@@ -257,9 +257,9 @@ class guardPath2(RegionPath):
 	theRegion = 81
 	
 	@classmethod
-	def at(param1 = None):
+	def at(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return local27[param1]
 	#end:method
@@ -267,7 +267,7 @@ class guardPath2(RegionPath):
 	@classmethod
 	def nextRoom():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (currentRoom == global11)
 		if 

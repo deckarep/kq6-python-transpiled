@@ -30,9 +30,9 @@ local3 = None
 
 
 @SCI.procedure
-def proc404_0(param1 = None):
+def proc404_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global0 setScript: holeOnWall 0 param1)
 #end:procedure
@@ -40,7 +40,7 @@ def proc404_0(param1 = None):
 @SCI.procedure
 def proc404_1():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(kernel.ScriptID(30, 0) holeIsUp: 1)
 	match (kernel.ScriptID(30, 0) holeWall:)
@@ -59,7 +59,7 @@ def proc404_1():
 @SCI.procedure
 def proc404_2():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (global5 contains: aHole):
 		(aHole dispose: delete:)
@@ -80,9 +80,9 @@ class aHole(Actor):
 	illegalBits = 0
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -184,9 +184,9 @@ class dirt(Prop):
 class holeOnWall(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -385,9 +385,9 @@ class holeOnWall(Script):
 class lookInHole(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -506,9 +506,9 @@ class lookInHole(Script):
 class getHole(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

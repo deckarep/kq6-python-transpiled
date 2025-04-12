@@ -26,7 +26,7 @@ class tlkGuardDog(Narrator):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global22
 		keepWindow = 1
@@ -45,7 +45,7 @@ class tlkGuardDog1(Narrator):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global22
 		keepWindow = 1
@@ -76,7 +76,7 @@ class tlkGuardDog2(Narrator):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		font = global22
 		keepWindow = 1

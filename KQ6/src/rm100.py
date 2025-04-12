@@ -32,7 +32,7 @@ class rm100(KQ6Room):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		if ((global87 == 0) or (not global169)):
@@ -52,7 +52,7 @@ class rm100(KQ6Room):
 	@classmethod
 	def newRoom():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global69 height: 0 activateHeight: 0)
 		(super newRoom: &rest)
@@ -64,9 +64,9 @@ class rm100(KQ6Room):
 class introScript(Script):
 	#property vars (may be empty)
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (((param1 type:) & 0x0004) and ((param1 message:) == 27)):
 			(param1 claimed: 1)
@@ -77,21 +77,21 @@ class introScript(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global72 delete: self)
 		(super dispose:)
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
 				(global72 add: self)
-				if (and global169 kernel.Platform(7) (global87 > 0)):
+				if (global169 and kernel.Platform(7) and (global87 > 0)):
 					(self setScript: winLogo self)
 				else:
 					(self setScript: dosLogo self)
@@ -144,9 +144,9 @@ class introScript(Script):
 class FadeCode(Code):
 	#property vars (may be empty)
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None):
+	def init(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local3 = 0
 		if (argc >= 1):
@@ -164,7 +164,7 @@ class FadeCode(Code):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (local0 != local2):
 			(local0 += (1 * local1))
@@ -215,7 +215,7 @@ class ButtonActor(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(global72 add: self)
@@ -225,7 +225,7 @@ class ButtonActor(Actor):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global72 delete: self)
 		(global73 delete: self)
@@ -233,9 +233,9 @@ class ButtonActor(Actor):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -257,9 +257,9 @@ class ButtonActor(Actor):
 	#end:method
 
 	@classmethod
-	def flash(param1 = None):
+	def flash(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 0
 		(self startUpd:)
@@ -295,10 +295,10 @@ class openingBut(ButtonActor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (and global169 kernel.Platform(7) kernel.DoSound(4)):
+			case (global169 and kernel.Platform(7) and kernel.DoSound(4)):
 				(global2 newRoom: 108)
 			#end:case
 			case 
@@ -329,7 +329,7 @@ class playBut(ButtonActor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global2 newRoom: 200)
 	#end:method
@@ -347,7 +347,7 @@ class helpBut(ButtonActor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global2 newRoom: 205)
 	#end:method
@@ -365,7 +365,7 @@ class restoreBut(ButtonActor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global1 restore:)
 		(global1 setCursor: global20)
@@ -387,9 +387,9 @@ class six(Prop):
 class dosLogo(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -442,9 +442,9 @@ class dosLogo(Script):
 class winLogo(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

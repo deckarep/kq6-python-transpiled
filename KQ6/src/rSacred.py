@@ -20,9 +20,9 @@ class rSacred(Rgn):
 	marePresent = 0
 	
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		keep = proc999_5(param1, 300, 310, 320, 330, 340, 350, 370, 380, 390)
 		initialized = 0

@@ -26,9 +26,9 @@ local1 = None
 
 
 @SCI.procedure
-def proc12_1(param1 = None, param2 = None, param3 = None):
+def proc12_1(param1 = None, param2 = None, param3 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = 0
 	match global12
@@ -65,9 +65,9 @@ def proc12_1(param1 = None, param2 = None, param3 = None):
 #end:procedure
 
 @SCI.procedure
-def proc12_0(param1 = None, param2 = None):
+def proc12_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global1 handsOff:)
 	match param1
@@ -101,9 +101,9 @@ def proc12_0(param1 = None, param2 = None):
 #end:procedure
 
 @SCI.procedure
-def localproc_0(param1 = None, param2 = None, param3 = None):
+def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = temp2 = kernel.Memory(5, param1)
 	temp1 = kernel.Memory(5, param2)
@@ -114,9 +114,9 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 #end:procedure
 
 @SCI.procedure
-def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None):
+def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp3 = 0
 	if kernel.IsObject(param2):
@@ -141,9 +141,9 @@ def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None):
 class walkEgoInScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -166,7 +166,7 @@ class walkEgoInScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		register = 0
@@ -179,9 +179,9 @@ class walkEgoInScr(Script):
 class walkEgoOutScr(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -200,7 +200,7 @@ class walkEgoOutScr(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose: &rest)
 		kernel.DisposeScript(12)

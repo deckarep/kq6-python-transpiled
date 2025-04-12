@@ -30,9 +30,9 @@ class PanelInset(View):
 	value = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None):
+	def init(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		strPointer = param1
 		strLen = param2
@@ -49,7 +49,7 @@ class PanelInset(View):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		failed = charCount = 0
 		(super dispose:)
@@ -59,9 +59,9 @@ class PanelInset(View):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (User canInput:):
 			(param1 claimed: 1)
@@ -103,9 +103,9 @@ class PanelInset(View):
 	#end:method
 
 	@classmethod
-	def calcPosn(param1 = None):
+	def calcPosn(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= column
 			proc999_3(1, proc999_2(((((param1 x:) - x) / offsetX) + 1), maxCol))
@@ -114,9 +114,9 @@ class PanelInset(View):
 	#end:method
 
 	@classmethod
-	def calcValue(param1 = None):
+	def calcValue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		value = 0
@@ -140,9 +140,9 @@ class PanelInset(View):
 	#end:method
 
 	@classmethod
-	def moveCursorPosn(param1 = None):
+	def moveCursorPosn(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self calcPosn: param1)
 		temp0 = ((x + (column * offsetX)) - (offsetX / 2))
@@ -175,7 +175,7 @@ class PanelInset(View):
 	@classmethod
 	def buttonSetup():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (((value - 1) / 16) + 1)
 		temp1 = (mod (value - 1) 16)
@@ -185,9 +185,9 @@ class PanelInset(View):
 	#end:method
 
 	@classmethod
-	def failCheck(param1 = None):
+	def failCheck(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 and (param1 != value)):
 			failed = 1
@@ -195,9 +195,9 @@ class PanelInset(View):
 	#end:method
 
 	@classmethod
-	def drawButton(param1 = None, param2 = None, param3 = None, param4 = None):
+	def drawButton(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DrawCel(view, param1, param2, param3, param4, 15)
 		return 1
@@ -206,7 +206,7 @@ class PanelInset(View):
 	@classmethod
 	def solveIt():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if strPointer:
 			charCount = 0

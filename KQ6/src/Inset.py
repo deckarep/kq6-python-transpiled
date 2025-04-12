@@ -42,9 +42,9 @@ class Inset(Code):
 	insetView = 0
 	
 	@classmethod
-	def setInset(param1 = None, param2 = None, param3 = None):
+	def setInset(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if inset:
 			(inset dispose:)
@@ -60,9 +60,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None):
+	def init(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		owner = param2
 		(owner inset: self)
@@ -94,7 +94,7 @@ class Inset(Code):
 	@classmethod
 	def drawInset():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (picture > 0):
 			if global169:
@@ -128,7 +128,7 @@ class Inset(Code):
 	@classmethod
 	def restore():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self drawInset:)
 		if inset:
@@ -138,9 +138,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (inset and (inset handleEvent: param1)): 0#end:case
@@ -163,9 +163,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None, param2 = None):
+	def onMe(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(param1):
 			temp0 = (param1 x:)
@@ -182,9 +182,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (modNum == -1):
 			modNum = global11
@@ -197,7 +197,7 @@ class Inset(Code):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
 			(script doit:)
@@ -210,7 +210,7 @@ class Inset(Code):
 	@classmethod
 	def refresh():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case view:
@@ -241,9 +241,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def dispose(param1 = None):
+	def dispose(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global32 delete: self)
 		(global73 delete: self)
@@ -292,9 +292,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def setScript(param1 = None):
+	def setScript(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
 			(script dispose:)
@@ -306,9 +306,9 @@ class Inset(Code):
 	#end:method
 
 	@classmethod
-	def hideCast(param1 = None):
+	def hideCast(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		temp1 = (1000 if param1 else -1000)
@@ -328,7 +328,7 @@ class inView(View):
 	@classmethod
 	def handleEvent():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 0
 	#end:method

@@ -16,9 +16,9 @@ SCI.public_exports(
 )
 
 @SCI.procedure
-def proc926_0(param1 = None):
+def proc926_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(cond
 		case (not argc):
@@ -37,9 +37,9 @@ def proc926_0(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def proc926_1(param1 = None):
+def proc926_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (not argc):
 		(global32 eachElementDo: #perform flipFeature)
@@ -62,9 +62,9 @@ def proc926_1(param1 = None):
 class flipPoly(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = kernel.Memory(1, (4 * temp2 = (param1 size:)))
 		temp0 = 0
@@ -95,9 +95,9 @@ class flipPoly(Code):
 class flipFeature(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject((param1 onMeCheck:)):
 			proc926_0((param1 onMeCheck:))

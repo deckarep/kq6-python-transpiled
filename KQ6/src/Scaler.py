@@ -21,9 +21,9 @@ class Scaler(Code):
 	const = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			client = param1
@@ -44,7 +44,7 @@ class Scaler(Code):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (temp0 = (client y:) < backY):

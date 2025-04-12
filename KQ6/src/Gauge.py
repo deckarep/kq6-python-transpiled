@@ -34,9 +34,9 @@ class Gauge(Dialog):
 	maximum = 15
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		window = SysWindow
 		(self update: param1)
@@ -87,9 +87,9 @@ class Gauge(Dialog):
 	#end:method
 
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self init: param1)
 		temp1 = param1
@@ -124,9 +124,9 @@ class Gauge(Dialog):
 	#end:method
 
 	@classmethod
-	def update(param1 = None):
+	def update(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (maximum - minimum)
 		temp0 = 0
@@ -138,9 +138,9 @@ class Gauge(Dialog):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match (param1 type:)
 			case 4:

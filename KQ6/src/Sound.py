@@ -28,9 +28,9 @@ class Sound(Obj):
 	owner = 0
 	
 	@classmethod
-	def new(param1 = None):
+	def new(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		((super new:) owner: (param1 if argc else 0) yourself:)
 	#end:method
@@ -38,7 +38,7 @@ class Sound(Obj):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		prevSignal = signal = 0
 		(global8 add: self)
@@ -46,9 +46,9 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def play(param1 = None):
+	def play(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = argc
 		if (argc and kernel.IsObject(param1[(argc - 1)])):
@@ -73,7 +73,7 @@ class Sound(Obj):
 	@classmethod
 	def stop():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handle:
 			kernel.DoSound(17, self)
@@ -82,9 +82,9 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def pause(param1 = None):
+	def pause(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not argc):
 			param1 = 1
@@ -93,9 +93,9 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def hold(param1 = None):
+	def hold(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not argc):
 			param1 = 1
@@ -106,15 +106,15 @@ class Sound(Obj):
 	@classmethod
 	def release():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DoSound(12, self, 0)
 	#end:method
 
 	@classmethod
-	def fade(param1 = None, param2 = None, param3 = None, param4 = None):
+	def fade(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = argc
 		if (argc and kernel.IsObject(param1[(argc - 1)])):
@@ -128,9 +128,9 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def mute(param1 = None, param2 = None):
+	def mute(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not argc):
 			temp1 = 1
@@ -150,33 +150,33 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def setVol(param1 = None):
+	def setVol(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DoSound(14, self, param1)
 	#end:method
 
 	@classmethod
-	def setPri(param1 = None):
+	def setPri(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DoSound(15, self, param1)
 	#end:method
 
 	@classmethod
-	def setLoop(param1 = None):
+	def setLoop(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DoSound(16, self, param1)
 	#end:method
 
 	@classmethod
-	def send(param1 = None, param2 = None, param3 = None, param4 = None):
+	def send(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (<= 1 param1 15):
 			if (param2 < 128):
@@ -190,7 +190,7 @@ class Sound(Obj):
 	@classmethod
 	def check():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handle:
 			kernel.DoSound(17, self)
@@ -205,9 +205,9 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def clean(param1 = None):
+	def clean(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not owner) or (owner == param1)):
 			(self dispose:)
@@ -217,7 +217,7 @@ class Sound(Obj):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global8 delete: self)
 		if nodePtr:
@@ -228,9 +228,9 @@ class Sound(Obj):
 	#end:method
 
 	@classmethod
-	def playBed(param1 = None):
+	def playBed(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = argc
 		if (argc and kernel.IsObject(param1[(argc - 1)])):
@@ -253,7 +253,7 @@ class Sound(Obj):
 	@classmethod
 	def changeState():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DoSound(20, self)
 	#end:method

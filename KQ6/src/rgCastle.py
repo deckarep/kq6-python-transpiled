@@ -37,9 +37,9 @@ local2 = None
 
 
 @SCI.procedure
-def proc80_2(param1 = None):
+def proc80_2(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(global1 handsOff:)
 	match param1
@@ -63,9 +63,9 @@ def proc80_2(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def localproc_0(param1 = None, param2 = None, param3 = None):
+def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp2 = ((global0 brLeft:) - param2)
 	temp0 = ((global0 brTop:) - param3)
@@ -96,7 +96,7 @@ def localproc_0(param1 = None, param2 = None, param3 = None):
 @SCI.procedure
 def proc80_7():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = localproc_1(kernel.ScriptID(80, 5))
 	temp1 = localproc_1(kernel.ScriptID(80, 6))
@@ -108,9 +108,9 @@ def proc80_7():
 #end:procedure
 
 @SCI.procedure
-def localproc_1(param1 = None):
+def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (global5 contains: param1):
 		(= temp0
@@ -141,7 +141,7 @@ class CastleRoom(KQ6Room):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		scalerCode = spotEgoScr = 0
 		(super dispose:)
@@ -150,7 +150,7 @@ class CastleRoom(KQ6Room):
 	@classmethod
 	def newRoom():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (((global103 prevSignal:) != -1) and ((global103 number:) == 710)):
 			(global103 fade:)
@@ -159,9 +159,9 @@ class CastleRoom(KQ6Room):
 	#end:method
 
 	@classmethod
-	def spotEgo(param1 = None):
+	def spotEgo(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global102 stop:)
 		(global103 number: 710 loop: -1 play:)
@@ -173,9 +173,9 @@ class CastleRoom(KQ6Room):
 	#end:method
 
 	@classmethod
-	def scriptCheck(param1 = None):
+	def scriptCheck(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		if 
@@ -214,7 +214,7 @@ class GuardDog(Actor):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self setScale:)
 		(super init: &rest)
@@ -232,7 +232,7 @@ class GuardDog(Actor):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doit:)
 		if 
@@ -255,7 +255,7 @@ class GuardDog(Actor):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		regPathID = checkCode = okToCheck = 0
 		if kernel.IsObject(scaler):
@@ -286,7 +286,7 @@ class rgCastle(Rgn):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = kernel.GetTime(1)
 		(cond
@@ -365,9 +365,9 @@ class rgCastle(Rgn):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(kernel.ScriptID(80, 0)
 			keep:
@@ -382,7 +382,7 @@ class rgCastle(Rgn):
 	@classmethod
 	def doLoiter():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		loiterTimer = 0
 		(global2 doLoiter:)
@@ -391,7 +391,7 @@ class rgCastle(Rgn):
 	@classmethod
 	def setupGuards():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global5 contains: guard1):
 			(guard1 checkCode: guard1Code)
@@ -424,9 +424,9 @@ class rgCastle(Rgn):
 	#end:method
 
 	@classmethod
-	def setFlag(param1 = None):
+	def setFlag(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			temp0 = param1[0]
@@ -440,9 +440,9 @@ class rgCastle(Rgn):
 	#end:method
 
 	@classmethod
-	def clrFlag(param1 = None):
+	def clrFlag(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			temp0 = param1[0]
@@ -456,9 +456,9 @@ class rgCastle(Rgn):
 	#end:method
 
 	@classmethod
-	def tstFlag(param1 = None, param2 = None):
+	def tstFlag(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return (1 if ((self param1:) & param2) else 0)
 	#end:method
@@ -471,7 +471,7 @@ class guardsGetEgo(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(rgCastle rFlag1: (| (rgCastle rFlag1:) 0x2000) dungeonEntered: 3)
 		register = 0
@@ -479,9 +479,9 @@ class guardsGetEgo(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -572,7 +572,7 @@ class guard1(GuardDog):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		if ((global6 size:) == 3):
@@ -581,9 +581,9 @@ class guard1(GuardDog):
 	#end:method
 
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case argc:
@@ -612,7 +612,7 @@ class guard2(GuardDog):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		if ((global6 size:) == 3):
@@ -621,9 +621,9 @@ class guard2(GuardDog):
 	#end:method
 
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case argc:

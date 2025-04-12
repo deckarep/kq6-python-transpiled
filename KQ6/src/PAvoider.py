@@ -11,9 +11,9 @@ import Polygon
 import System
 
 @SCI.procedure
-def localproc_0(param1 = None):
+def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp3 = -100
 	temp0 = 0
@@ -26,9 +26,9 @@ def localproc_0(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def localproc_1(param1 = None):
+def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp3 = (param1 size:)
 	temp0 = 0
@@ -51,9 +51,9 @@ class PAvoider(Code):
 	oldMoverY = -99
 	
 	@classmethod
-	def init(param1 = None):
+	def init(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 1):
 			client = param1
@@ -63,7 +63,7 @@ class PAvoider(Code):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(oldBlockerMover):
 			(oldBlockerMover dispose:)
@@ -74,7 +74,7 @@ class PAvoider(Code):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp9 = (client mover:)
 		if (oldBlocker and ((client distanceTo: oldBlocker) >= 20)):

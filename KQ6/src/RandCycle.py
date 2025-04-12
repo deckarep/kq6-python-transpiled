@@ -15,9 +15,9 @@ class RandCycle(Cycle):
 	reset = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: param1)
 		if (argc >= 4):
@@ -44,7 +44,7 @@ class RandCycle(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((count > temp0 = kernel.GetTime()) or (count == -1)):
 			if ((temp0 - cycleCnt) > (client cycleSpeed:)):
@@ -62,7 +62,7 @@ class RandCycle(Cycle):
 	@classmethod
 	def nextCel():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if (kernel.NumCels(client) != 1):
@@ -77,7 +77,7 @@ class RandCycle(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		completed = 1
 		if caller:

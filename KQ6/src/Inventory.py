@@ -34,17 +34,17 @@ class InvI(IconI):
 	value = 0
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return ((super onMe: param1) and (not (signal & 0x0004)))
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (modNum == -1):
 			modNum = global11
@@ -68,9 +68,9 @@ class InvI(IconI):
 	#end:method
 
 	@classmethod
-	def highlight(param1 = None):
+	def highlight(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (highlightColor == -1):
 			return
@@ -90,23 +90,23 @@ class InvI(IconI):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 	#end:method
 
 	@classmethod
-	def ownedBy(param1 = None):
+	def ownedBy(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return (owner == param1)
 	#end:method
 
 	@classmethod
-	def moveTo(param1 = None):
+	def moveTo(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		owner = param1
 		if (value and (param1 == global0)):
@@ -128,9 +128,9 @@ class Inv(IconBar):
 	selectIcon = 0
 	
 	@classmethod
-	def drawInvWindow(param1 = None, param2 = None):
+	def drawInvWindow(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global170 = 0
 		temp0 = temp1 = temp2 = temp3 = temp4 = temp5 = 0
@@ -321,23 +321,23 @@ class Inv(IconBar):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		heading = normalHeading
 	#end:method
 
 	@classmethod
-	def ownedBy(param1 = None):
+	def ownedBy(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self firstTrue: #ownedBy param1)
 	#end:method
 
 	@classmethod
-	def showSelf(param1 = None):
+	def showSelf(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global8 pause:)
 		if (global77 and (global77 respondsTo: #stop)):
@@ -363,9 +363,9 @@ class Inv(IconBar):
 	#end:method
 
 	@classmethod
-	def show(param1 = None):
+	def show(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global1
 			setCursor:
@@ -395,9 +395,9 @@ class Inv(IconBar):
 	#end:method
 
 	@classmethod
-	def advance(param1 = None):
+	def advance(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (param1 if argc else 1)
 		temp2 = (self indexOf: highlightedIcon)
@@ -426,9 +426,9 @@ class Inv(IconBar):
 	#end:method
 
 	@classmethod
-	def retreat(param1 = None):
+	def retreat(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (param1 if argc else 1)
 		temp3 = (temp2 = (self indexOf: highlightedIcon) - temp1)
@@ -446,9 +446,9 @@ class Inv(IconBar):
 		(self highlight: temp0 1)
 	#end:method
 
-	(procedure (localproc_0param1 = None, param2 = None, param3 = None):
+	(procedure (localproc_0param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp2
 			((((param1 nsRight:) - (param1 nsLeft:)) / 2) + (param1 nsLeft:))
@@ -481,7 +481,7 @@ class Inv(IconBar):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		while (temp1 = ((global80 curEvent:) new:) type:):
 
@@ -503,7 +503,7 @@ class Inv(IconBar):
 					(curIcon != selectIcon)
 					(or
 						(temp2 == 1)
-						(and (temp2 == 4) (temp3 == 13) temp9 = 1)
+						((temp2 == 4) and (temp3 == 13) and temp9 = 1)
 						((temp2 == 256) and temp9 = 1)
 					)
 					(or
@@ -717,7 +717,7 @@ class Inv(IconBar):
 	@classmethod
 	def hide():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
 			(global8 pause: 0)

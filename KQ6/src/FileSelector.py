@@ -9,9 +9,9 @@ import kernel
 import Dialog
 
 @SCI.procedure
-def localproc_0(param1 = None, param2 = None):
+def localproc_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = (param2 - 1)
 	while (temp0 > 0): # inline for
@@ -42,9 +42,9 @@ class FileSelector(DSelector):
 	sort = 1
 	
 	@classmethod
-	def readFiles(param1 = None):
+	def readFiles(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc > 0):
 			mask = param1
@@ -89,7 +89,7 @@ class FileSelector(DSelector):
 	@classmethod
 	def setSize():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super setSize:)
 		kernel.TextSize(@temp0[0], r"""M""", font)
@@ -99,7 +99,7 @@ class FileSelector(DSelector):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if text:
 			kernel.Memory(3, text)

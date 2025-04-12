@@ -15,9 +15,9 @@ class DPath(Motion):
 	value = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None):
+	def init(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		points = (points or (List new:))
 		if argc:
@@ -43,7 +43,7 @@ class DPath(Motion):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(points):
 			(points dispose:)
@@ -54,7 +54,7 @@ class DPath(Motion):
 	@classmethod
 	def setTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((points at: value) != -32768):
 			x = (points at: value)
@@ -66,7 +66,7 @@ class DPath(Motion):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((points at: value) == -32768):
 			(super moveDone:)

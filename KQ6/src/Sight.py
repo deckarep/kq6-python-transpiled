@@ -16,9 +16,9 @@ SCI.public_exports(
 )
 
 @SCI.procedure
-def proc982_0(param1 = None):
+def proc982_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(return
 		(not
@@ -28,9 +28,9 @@ def proc982_0(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def proc982_1(param1 = None, param2 = None, param3 = None, param4 = None):
+def proc982_1(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = param2
 	temp1 = param3
@@ -72,9 +72,9 @@ def proc982_1(param1 = None, param2 = None, param3 = None, param4 = None):
 #end:procedure
 
 @SCI.procedure
-def proc982_2(param1 = None, param2 = None):
+def proc982_2(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (argc >= 2):
 		(param1 -= param2)

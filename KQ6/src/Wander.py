@@ -13,9 +13,9 @@ class Wander(Motion):
 	distance = 30
 	
 	@classmethod
-	def init(param1 = None, param2 = None):
+	def init(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc >= 1):
 			client = param1
@@ -30,7 +30,7 @@ class Wander(Motion):
 	@classmethod
 	def setTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		x = ((client x:) + (distance - kernel.Random(0, temp0 = (distance * 2))))
 		y = ((client y:) + (distance - kernel.Random(0, temp0)))
@@ -39,7 +39,7 @@ class Wander(Motion):
 	@classmethod
 	def onTarget():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return 0
 	#end:method
@@ -47,7 +47,7 @@ class Wander(Motion):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super doit:)
 		if (client isStopped:):
@@ -58,7 +58,7 @@ class Wander(Motion):
 	@classmethod
 	def moveDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self init:)
 	#end:method

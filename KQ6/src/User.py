@@ -15,7 +15,7 @@ class uEvt(Event):
 	@classmethod
 	def new():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		type = message = modifiers = y = x = claimed = port = 0
 		kernel.GetEvent(32767, self)
@@ -38,15 +38,15 @@ class User(Obj):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		curEvent = uEvt
 	#end:method
 
 	@classmethod
-	def canInput(param1 = None):
+	def canInput(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			input = param1
@@ -57,16 +57,16 @@ class User(Obj):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(curEvent new:)
 		(self handleEvent: curEvent)
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global70 = (param1 x:)
 		global71 = (param1 y:)
@@ -235,9 +235,9 @@ class User(Obj):
 	#end:method
 
 	@classmethod
-	def canControl(param1 = None):
+	def canControl(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			controls = param1
@@ -256,16 +256,16 @@ class OnMeAndLowY(Code):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		theObj = 0
 		lastY = -1
 	#end:method
 
 	@classmethod
-	def doit(param1 = None, param2 = None):
+	def doit(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((param1 onMe: param2) and ((param1 y:) > lastY)):
 			theObj = param1
@@ -279,9 +279,9 @@ class OnMeAndLowY(Code):
 class findNoun(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None, param2 = None):
+	def doit(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return ((param1 noun:) == param2)
 	#end:method

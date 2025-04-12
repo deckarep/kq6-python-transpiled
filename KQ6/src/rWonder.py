@@ -36,9 +36,9 @@ class rWonder(Rgn):
 	grabAtHidingHole = 0
 	
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		keep = proc999_5(param1, 450, 460, 461, 470, 475, 480, 490)
 		initialized = 0

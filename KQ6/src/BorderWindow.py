@@ -9,9 +9,9 @@ import kernel
 import Window
 
 @SCI.procedure
-def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, param7 = None, param8 = None, param9 = None, param10 = None, param11 = None, param12 = None, param13 = None):
+def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, param7 = None, param8 = None, param9 = None, param10 = None, param11 = None, param12 = None, param13 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	temp0 = kernel.GetPort()
 	kernel.SetPort(0)
@@ -46,9 +46,9 @@ def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, para
 #end:procedure
 
 @SCI.procedure
-def localproc_1(param1 = None):
+def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(= temp1
 		(cond
@@ -93,7 +93,7 @@ class BorderWindow(SysWindow):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.SetPort(0)
 		temp1 = 1
@@ -116,7 +116,7 @@ class BorderWindow(SysWindow):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.SetPort(0)
@@ -147,7 +147,7 @@ class InsetWindow(BorderWindow):
 	@classmethod
 	def open():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 1
 		if (priority != -1):

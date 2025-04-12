@@ -36,17 +36,17 @@ local393 = None
 
 
 @SCI.procedure
-def localproc_0(param1 = None):
+def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(param1 sightAngle: proc255_1(r"""sight angle?""", 40))
 #end:procedure
 
 @SCI.procedure
-def localproc_1(param1 = None):
+def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	proc921_0(r"""Click left mouse button on top left corner""")
 	while ((temp0 = (Event new:) type:) != 1):
@@ -86,9 +86,9 @@ def localproc_1(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def localproc_2(param1 = None):
+def localproc_2(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(param1
 		view: proc255_1(r"""View?""", (global2 curPic:))
@@ -112,9 +112,9 @@ def localproc_2(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def localproc_3(param1 = None):
+def localproc_3(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if 
 		(Print
@@ -180,7 +180,7 @@ def localproc_3(param1 = None):
 @SCI.procedure
 def localproc_4():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(= local391
 		(Print
@@ -193,9 +193,9 @@ def localproc_4():
 #end:procedure
 
 @SCI.procedure
-def localproc_5(param1 = None):
+def localproc_5(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(local393 name: @global42 writeString: param1 close:)
 #end:procedure
@@ -205,7 +205,7 @@ class Class_948_0
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global1 setCursor: 999)
 		local392 = global38
@@ -298,9 +298,9 @@ class Class_948_0
 class Class_948_1
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.FileIO(10, @global42):
 			kernel.Format(@temp492, r"""The file '%s' already exists""", @global42)
@@ -449,9 +449,9 @@ class Class_948_1
 	#end:method
 
 	@classmethod
-	def writeList(param1 = None):
+	def writeList(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(param1 eachElementDo: #perform self)
 		(Class_948_0 doit:)
@@ -466,9 +466,9 @@ class selectorI(DSelector):
 	x = 18
 	
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super handleEvent: param1)
 		temp0 = (param1 type:)
@@ -500,7 +500,7 @@ class clearBut(DButton):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		while (temp0 < 6): # inline for
@@ -523,7 +523,7 @@ class allBut(DButton):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		while (temp0 < 6): # inline for

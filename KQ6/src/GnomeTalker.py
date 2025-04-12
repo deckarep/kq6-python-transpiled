@@ -27,9 +27,9 @@ class GnomeTalker(Kq6Talker):
 	extra = 0
 	
 	@classmethod
-	def init(param1 = None, param2 = None, param3 = None, param4 = None):
+	def init(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			bust = param1
@@ -43,7 +43,7 @@ class GnomeTalker(Kq6Talker):
 				#endif
 			#endif
 		#endif
-		if (and (global90 == 2) argc kernel.IsObject(param1)):
+		if ((global90 == 2) and argc and kernel.IsObject(param1)):
 			(self x: 59 y: 15)
 		#endif
 		(self setSize:)
@@ -53,7 +53,7 @@ class GnomeTalker(Kq6Talker):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (raving and extra):
 			kernel.DrawCel((extra view:), (extra loop:), (extra cel:), (+
@@ -67,7 +67,7 @@ class GnomeTalker(Kq6Talker):
 	@classmethod
 	def setSize():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		nsLeft = x
 		nsTop = y
@@ -144,7 +144,7 @@ class GnomeTalker(Kq6Talker):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not underBits):
 			underBits = kernel.Graph(7, nsTop, nsLeft, nsBottom, nsRight, 1)
@@ -196,7 +196,7 @@ class Gnomes(GnomeTalker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: tBust 0 tMouth &rest)
 	#end:method
@@ -217,7 +217,7 @@ class GSmell(GnomeTalker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
 			(super init: tSmellBust 0 tSmellMouth &rest)
@@ -242,7 +242,7 @@ class GSound(GnomeTalker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
 			(super init: tSoundBust 0 tSoundMouth &rest)
@@ -267,7 +267,7 @@ class GTaste(GnomeTalker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: tTasteBust 0 tTasteMouth &rest)
 	#end:method
@@ -288,7 +288,7 @@ class GTouch(GnomeTalker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
 			(super init: tTouchBust 0 tTouchMouth &rest)
@@ -313,7 +313,7 @@ class GSight(GnomeTalker):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
 			(super init: tSightBust tSightEyes tSightMouth 0 &rest)

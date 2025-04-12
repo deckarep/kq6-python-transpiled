@@ -36,9 +36,9 @@ class IconI(Obj):
 	helpVerb = 0
 	
 	@classmethod
-	def show(param1 = None, param2 = None):
+	def show(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(signal |= 0x0020)
 		if argc:
@@ -60,7 +60,7 @@ class IconI(Obj):
 	@classmethod
 	def mask():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DrawCel(maskView, maskLoop, maskCel, (+
 			nsLeft
@@ -78,9 +78,9 @@ class IconI(Obj):
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(and
@@ -93,9 +93,9 @@ class IconI(Obj):
 	#end:method
 
 	@classmethod
-	def highlight(param1 = None):
+	def highlight(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not (signal & 0x0020)) or (highlightColor == -1)):
 			return
@@ -113,14 +113,14 @@ class IconI(Obj):
 	#end:method
 
 	@classmethod
-	def select(param1 = None):
+	def select(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(cond
 				case (signal & 0x0004): 0#end:case
-				case (and argc param1 (signal & 0x0001)):
+				case (argc and param1 and (signal & 0x0001)):
 					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1)
 					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 					while ((temp0 = (Event new:) type:) != 2):
@@ -220,9 +220,9 @@ class IconBar(Set):
 	y = 0
 	
 	@classmethod
-	def findIcon(param1 = None):
+	def findIcon(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
 		while (temp0 < size): # inline for
@@ -239,7 +239,7 @@ class IconBar(Set):
 	@classmethod
 	def noClickHelp():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = temp2 = 0
 		temp3 = kernel.GetPort()
@@ -295,9 +295,9 @@ class IconBar(Set):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(param1 localize:)
 		temp1 = (param1 type:)
@@ -426,9 +426,9 @@ class IconBar(Set):
 	#end:method
 
 	@classmethod
-	def disable(param1 = None):
+	def disable(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			temp0 = 0
@@ -458,9 +458,9 @@ class IconBar(Set):
 	#end:method
 
 	@classmethod
-	def enable(param1 = None):
+	def enable(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			temp0 = 0
@@ -484,7 +484,7 @@ class IconBar(Set):
 	@classmethod
 	def show():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global8 pause:)
 		(state |= 0x0020)
@@ -563,7 +563,7 @@ class IconBar(Set):
 	@classmethod
 	def hide():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
 			(global8 pause: 0)
@@ -597,7 +597,7 @@ class IconBar(Set):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		while ((state & 0x0020) and temp0 = ((global80 curEvent:) new:)):
 
@@ -633,9 +633,9 @@ class IconBar(Set):
 	#end:method
 
 	@classmethod
-	def dispatchEvent(param1 = None):
+	def dispatchEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (param1 x:)
 		temp0 = (param1 y:)
@@ -776,7 +776,7 @@ class IconBar(Set):
 	@classmethod
 	def advance():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 1
 		while (temp1 <= size): # inline for
@@ -796,7 +796,7 @@ class IconBar(Set):
 	@classmethod
 	def retreat():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 1
 		while (temp1 <= size): # inline for
@@ -814,9 +814,9 @@ class IconBar(Set):
 	#end:method
 
 	@classmethod
-	def select(param1 = None, param2 = None):
+	def select(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if (param1 select: ((argc >= 2) and param2)):
@@ -829,9 +829,9 @@ class IconBar(Set):
 	#end:method
 
 	@classmethod
-	def highlight(param1 = None, param2 = None):
+	def highlight(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not ((param1 signal:) & 0x0004)):
 			if kernel.IsObject(highlightedIcon):
@@ -857,7 +857,7 @@ class IconBar(Set):
 	@classmethod
 	def advanceCurIcon():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0004):
 			return
@@ -885,7 +885,7 @@ class IconBar(Set):
 	@classmethod
 	def swapCurIcon():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case (state & 0x0004):

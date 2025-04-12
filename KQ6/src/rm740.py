@@ -61,7 +61,7 @@ local5 = None
 @SCI.procedure
 def proc740_10():
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if ((global2 curPic:) != 740):
 		(global69 disable:)
@@ -160,7 +160,7 @@ class rm740(CastleRoom):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self
 			addObstacle:
@@ -187,7 +187,7 @@ class rm740(CastleRoom):
 				)
 		)
 		(global32 add: roomFeatures eachElementDo: #init)
-		if (and (global12 == 99) global100 kernel.FileIO(10, r"""g""")):
+		if ((global12 == 99) and global100 and kernel.FileIO(10, r"""g""")):
 			match
 				(Print
 					addText: r"""select:"""
@@ -218,7 +218,7 @@ class rm740(CastleRoom):
 			#end:match
 		#endif
 		if (global12 == 180):
-			if (and global100 kernel.FileIO(10, r"""g""") (not (global102 handle:))):
+			if (global100 and kernel.FileIO(10, r"""g""") and (not (global102 handle:))):
 				(global102 number: 743 setLoop: -1 play:)
 			#endif
 			if 
@@ -344,9 +344,9 @@ class rm740(CastleRoom):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(and
@@ -374,7 +374,7 @@ class rm740(CastleRoom):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (global0 onControl: 1)
 		(cond
@@ -411,9 +411,9 @@ class rm740(CastleRoom):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
 		(return
@@ -438,7 +438,7 @@ class rm740(CastleRoom):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		kernel.DisposeScript(741)
@@ -452,7 +452,7 @@ class rm740(CastleRoom):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global90 == 2):
 			(global2 setScript: kernel.ScriptID(52))
@@ -462,9 +462,9 @@ class rm740(CastleRoom):
 	#end:method
 
 	@classmethod
-	def newRoom(param1 = None):
+	def newRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(bTimer dispose: delete:)
 		(pTimer dispose: delete:)
@@ -481,7 +481,7 @@ class roomFeatures(Feature):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		y = 1
@@ -489,9 +489,9 @@ class roomFeatures(Feature):
 	#end:method
 
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global2 curPic:) == 740):
 			(return
@@ -541,9 +541,9 @@ class vizier(Prop):
 	detailLevel = 2
 	
 	@classmethod
-	def onMe(param1 = None):
+	def onMe(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			(and
@@ -562,9 +562,9 @@ class vizier(Prop):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 2):
 			(roomConv add: -1 noun param1 0 1)
@@ -604,9 +604,9 @@ class saladin(Actor):
 	detailLevel = 2
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global66 doit: param1) == -32768):
 			param1 = 0
@@ -618,7 +618,7 @@ class saladin(Actor):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self setHeading: 0)
 	#end:method
@@ -639,16 +639,16 @@ class jollo(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self view: 7464 loop: 0 cel: 0 stopUpd:)
 		(super cue:)
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 1:
@@ -690,9 +690,9 @@ class door(Prop):
 	detailLevel = 2
 	
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 5:
@@ -729,7 +729,7 @@ class prince(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super cue:)
 		match local1.post('++')
@@ -761,7 +761,7 @@ class beauty(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super cue:)
 		match local2.post('++')
@@ -877,7 +877,7 @@ class caliphimallaria(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super cue:)
 		match local5.post('++')
@@ -910,7 +910,7 @@ class grahamvalanice(Prop):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(self stopUpd:)
 	#end:method
@@ -940,9 +940,9 @@ class leftGuard(Prop):
 	signal = 26624
 	
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super cue:)
 		if (param1 == 99):
@@ -990,9 +990,9 @@ class rightGuard(Prop):
 	signal = 26624
 	
 	@classmethod
-	def cue(param1 = None):
+	def cue(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super cue:)
 		if (param1 == 99):
@@ -1086,9 +1086,9 @@ class guard3(Actor):
 class guardsActions(Actions):
 	#property vars (may be empty)
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 1
 		temp1 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
@@ -1138,9 +1138,9 @@ class cTimer(Timer):
 class theGreatEscape(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

@@ -18,9 +18,9 @@ class PseudoMouse(Code):
 	joyInc = 5
 	
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (param1 type:)
 		temp1 = (param1 message:)
@@ -56,9 +56,9 @@ class PseudoMouse(Code):
 	#end:method
 
 	@classmethod
-	def start(param1 = None):
+	def start(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
 			prevDir = param1
@@ -69,7 +69,7 @@ class PseudoMouse(Code):
 	@classmethod
 	def stop():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		prevDir = 0
 		(global78 delete: self)
@@ -78,7 +78,7 @@ class PseudoMouse(Code):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (global24 x:)
 		temp1 = (global24 y:)

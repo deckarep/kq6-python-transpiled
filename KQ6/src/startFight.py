@@ -33,9 +33,9 @@ local530 = [7514, 0, 0, 153, 150, -4095, 2, 1, -3968, 751, 1, 0, -4094, -1, -409
 class startFight(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -81,7 +81,7 @@ class cassimaHasDagger(Script):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(global73 add: self)
@@ -91,7 +91,7 @@ class cassimaHasDagger(Script):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global73 delete: self)
 		(global72 delete: self)
@@ -99,11 +99,11 @@ class cassimaHasDagger(Script):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (and (state == 11) (global80 canInput:) (global0 onMe: param1)):
+		if ((state == 11) and (global80 canInput:) and (global0 onMe: param1)):
 			(param1 claimed: 1)
 			(global1 handsOff:)
 			(self state: 25 seconds: 0 cycles: 2)
@@ -112,9 +112,9 @@ class cassimaHasDagger(Script):
 	#end:method
 
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -331,9 +331,9 @@ class cassimaHasDagger(Script):
 class startEndingCartoon(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:
@@ -355,9 +355,9 @@ class startEndingCartoon(Script):
 class SwordArrayScript(ArrayScript):
 	#property vars (may be empty)
 	@classmethod
-	def play(param1 = None, param2 = None, param3 = None):
+	def play(param1 = None, param2 = None, param3 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global104 number: 0 stop:)
 		(global104 number: param1 setLoop: param2 play:)
@@ -374,9 +374,9 @@ class SwordArrayScript(ArrayScript):
 class lampStartScr(SwordArrayScript):
 	#property vars (may be empty)
 	@classmethod
-	def at(param1 = None):
+	def at(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return local0[param1]
 	#end:method
@@ -387,9 +387,9 @@ class lampStartScr(SwordArrayScript):
 class fightPart1(SwordArrayScript):
 	#property vars (may be empty)
 	@classmethod
-	def at(param1 = None):
+	def at(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc958_0(0, 751, 7511, 7512, 7515, 7516, 7517)
 		return local25[param1]
@@ -398,7 +398,7 @@ class fightPart1(SwordArrayScript):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global69 enable: 6)
 		(super dispose: &rest)
@@ -410,9 +410,9 @@ class fightPart1(SwordArrayScript):
 class knockOutVizier(SwordArrayScript):
 	#property vars (may be empty)
 	@classmethod
-	def at(param1 = None):
+	def at(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		return local530[param1]
 	#end:method
@@ -423,9 +423,9 @@ class knockOutVizier(SwordArrayScript):
 class noDagger(Script):
 	#property vars (may be empty)
 	@classmethod
-	def changeState(param1 = None):
+	def changeState(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match state = param1
 			case 0:

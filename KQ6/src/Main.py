@@ -256,9 +256,9 @@ global170 = None
 
 
 @SCI.procedure
-def proc0_1(param1 = None):
+def proc0_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	global160 = param1
 	proc913_1(44)
@@ -266,9 +266,9 @@ def proc0_1(param1 = None):
 #end:procedure
 
 @SCI.procedure
-def proc0_2(param1 = None, param2 = None):
+def proc0_2(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values())
+	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (param1 < 0):
 		param1 = 0
@@ -290,7 +290,7 @@ class Kq6Points(Kq6Sound):
 	@classmethod
 	def check():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super check: &rest)
 		if (prevSignal == -1):
@@ -311,7 +311,7 @@ class ego(Body):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		(scaleSignal |= 0x0004)
@@ -319,9 +319,9 @@ class ego(Body):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((param1 type:) & 0x0040):
 			return 0
@@ -331,9 +331,9 @@ class ego(Body):
 	#end:method
 
 	@classmethod
-	def doVerb(param1 = None):
+	def doVerb(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		match param1
 			case 19:
@@ -425,16 +425,16 @@ class NewSound(Sound):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super init: &rest)
 		prevSignal = -1
 	#end:method
 
 	@classmethod
-	def fadeTo(param1 = None):
+	def fadeTo(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		newLoop = 0
 		if (argc and (argc >= 1)):
@@ -453,7 +453,7 @@ class NewSound(Sound):
 	@classmethod
 	def cue():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (prevSignal == -1):
 			(self
@@ -515,7 +515,7 @@ class Kq6(Game):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.ScriptID(982)
 		DText
@@ -611,9 +611,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def setCursor(param1 = None, param2 = None, param3 = None, param4 = None):
+	def setCursor(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = global19
 		global19 = param1
@@ -636,7 +636,7 @@ class Kq6(Game):
 	@classmethod
 	def save():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not proc913_0(49)) and (kernel.MemoryInfo(0) >= 1500)):
 			(super save: &rest)
@@ -656,7 +656,7 @@ class Kq6(Game):
 	@classmethod
 	def restore():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not proc913_0(49)) or (kernel.MemoryInfo(0) >= 1500)):
 			(super restore: &rest)
@@ -676,9 +676,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def pragmaFail(param1 = None):
+	def pragmaFail(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (User canInput:):
 			temp0 = kernel.Random(1, 3)
@@ -690,9 +690,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def refresh(param1 = None):
+	def refresh(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 and argc):
 			if (global84 and (not ((global9 state:) & 0x0020))):
@@ -706,7 +706,7 @@ class Kq6(Game):
 	@classmethod
 	def quitGame():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
 			(global25 dispose:)
@@ -714,7 +714,7 @@ class Kq6(Game):
 		if 
 			(or
 				((global11 == 640) and proc913_0(44))
-				(and (global11 == 740) (global90 == 2) (global12 == 180))
+				((global11 == 740) and (global90 == 2) and (global12 == 180))
 			)
 			kernel.DoAudio(10, 3)
 			global4 = 1
@@ -740,9 +740,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def restart(param1 = None):
+	def restart(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
 			(global25 dispose:)
@@ -771,9 +771,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def startRoom(param1 = None):
+	def startRoom(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp0
 			if global169:
@@ -871,7 +871,7 @@ class Kq6(Game):
 	@classmethod
 	def handsOff():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		isHandsOn = 0
 		if (not argc):
@@ -913,7 +913,7 @@ class Kq6(Game):
 	@classmethod
 	def handsOn():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		isHandsOn = 1
 		(User canControl: 1 canInput: 1)
@@ -929,9 +929,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def givePoints(param1 = None):
+	def givePoints(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global15 += param1)
 		((Kq6Points new:) flags: 1 number: 900 play:)
@@ -940,7 +940,7 @@ class Kq6(Game):
 	@classmethod
 	def play():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global1 = self
 		global29 = kernel.GetSaveDir()
@@ -952,9 +952,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 claimed:):
 			return 1
@@ -1035,9 +1035,9 @@ class Kq6(Game):
 	#end:method
 
 	@classmethod
-	def killSound(param1 = None):
+	def killSound(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc and param1):
 			(global8 eachElementDo: #pause 1)
@@ -1061,9 +1061,9 @@ class globalSounds(Sounds):
 class Kq6Messager(Messager):
 	#property vars (may be empty)
 	@classmethod
-	def findTalker(param1 = None):
+	def findTalker(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
 			(= temp0
@@ -1339,9 +1339,9 @@ class Kq6Messager(Messager):
 class kq6DoVerbCode(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None, param2 = None):
+	def doit(param1 = None, param2 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
 			case 
@@ -1363,9 +1363,9 @@ class kq6DoVerbCode(Code):
 class kq6FtrInit(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((param1 sightAngle:) == 26505):
 			(param1 sightAngle: 90)
@@ -1388,9 +1388,9 @@ class kq6FtrInit(Code):
 class kq6ApproachCode(Code):
 	#property vars (may be empty)
 	@classmethod
-	def doit(param1 = None):
+	def doit(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			match param1
@@ -1409,9 +1409,9 @@ class kq6ApproachCode(Code):
 class kq6PseudoMouse(PseudoMouse):
 	#property vars (may be empty)
 	@classmethod
-	def handleEvent(param1 = None):
+	def handleEvent(param1 = None, *rest):
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((param1 type:) & 0x0040):
 			temp0 = (global69 curIcon:)
@@ -1436,7 +1436,7 @@ class icon0(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1457,7 +1457,7 @@ class icon1(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1478,7 +1478,7 @@ class icon2(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1499,7 +1499,7 @@ class icon3(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1520,7 +1520,7 @@ class icon4(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1542,7 +1542,7 @@ class icon5(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1551,7 +1551,7 @@ class icon5(Kq6IconItem):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(kernel.ScriptID(907, 1) init: global0)
 	#end:method
@@ -1571,7 +1571,7 @@ class icon6(Kq6IconItem):
 	@classmethod
 	def init():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
 		(super init: &rest)
@@ -1580,7 +1580,7 @@ class icon6(Kq6IconItem):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((Cursor hidden:) and (kernel.MemoryInfo(0) >= 1500)):
 			(kernel.ScriptID(903) init: show: dispose:)
@@ -1592,7 +1592,7 @@ class icon6(Kq6IconItem):
 	@classmethod
 	def select():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
 			if (super select: &rest):
@@ -1675,7 +1675,7 @@ class emberTimer(Timer):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
 			(super doit: &rest)
@@ -1685,7 +1685,7 @@ class emberTimer(Timer):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		client = self
@@ -1694,7 +1694,7 @@ class emberTimer(Timer):
 	@classmethod
 	def delete():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not client):
 			client = self
@@ -1710,7 +1710,7 @@ class beastTimer(Timer):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
 			(super doit: &rest)
@@ -1720,7 +1720,7 @@ class beastTimer(Timer):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		client = self
@@ -1734,7 +1734,7 @@ class CharonTimer(Timer):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
 			(super doit: &rest)
@@ -1744,7 +1744,7 @@ class CharonTimer(Timer):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		client = self
@@ -1758,7 +1758,7 @@ class lettuceTimer(Timer):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
 			(super doit: &rest)
@@ -1768,7 +1768,7 @@ class lettuceTimer(Timer):
 	@classmethod
 	def dispose():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(super dispose:)
 		client = self
@@ -1777,7 +1777,7 @@ class lettuceTimer(Timer):
 	@classmethod
 	def delete():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not client):
 			client = self

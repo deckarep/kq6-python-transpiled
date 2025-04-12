@@ -15,7 +15,7 @@ class Rev(Cycle):
 	@classmethod
 	def doit():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (temp0 = (self nextCel:) < 0):
 			(self cycleDone:)
@@ -27,7 +27,7 @@ class Rev(Cycle):
 	@classmethod
 	def cycleDone():
 		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values())
+		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(client cel: (client lastCel:))
 	#end:method
