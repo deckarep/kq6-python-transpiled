@@ -38,8 +38,8 @@ class egaToon(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Cursor showCursor: 1)
-		(global1 restart: 1)
+		Cursor._send('showCursor:', 1)
+		global1._send('restart:', 1)
 	#end:method
 
 	@classmethod
@@ -47,15 +47,15 @@ class egaToon(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
-		(Cursor showCursor: 0)
-		(global69 disable: height: -100 activateHeight: -100)
-		(self setScript: openingScript)
-		(openingScript setScript: playMusic)
-		(super init: &rest)
-		(global74 addToFront: self)
-		(global72 addToFront: self)
-		(global73 addToFront: self)
+		global1._send('handsOff:')
+		Cursor._send('showCursor:', 0)
+		global69._send('disable:', 'height:', -100, 'activateHeight:', -100)
+		self._send('setScript:', openingScript)
+		openingScript._send('setScript:', playMusic)
+		super._send('init:', &rest)
+		global74._send('addToFront:', self)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
 		kernel.Palette(1, 999)
 	#end:method
 
@@ -64,12 +64,12 @@ class egaToon(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable: height: 0 activateHeight: 0)
-		(Cursor showCursor: 1)
-		(global74 delete: self)
-		(global72 delete: self)
-		(global73 delete: self)
-		(super newRoom: &rest)
+		global69._send('disable:', 'height:', 0, 'activateHeight:', 0)
+		Cursor._send('showCursor:', 1)
+		global74._send('delete:', self)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		super._send('newRoom:', &rest)
 	#end:method
 
 #end:class or instance
@@ -110,7 +110,7 @@ class openingScript(Script):
 					kernel.Message(0, 105, 2, 0, 0, local402, @local0)
 					local408 = kernel.Message(2, 105, 2, 0, 0, local402)
 				#endif
-				temp2 = (findSize doit: @local0)
+				temp2 = findSize._send('doit:', @local0)
 				match temp1
 					case 12:
 						(= local400
@@ -139,12 +139,12 @@ class openingScript(Script):
 				match local403
 					case 0:
 						if proc999_5(local402, 17, 19, 26):
-							(playMusic cue:)
+							playMusic._send('cue:')
 						#endif
 					#end:case
 					case 1:
 						if proc999_5(local402, 3, 9):
-							(playMusic cue:)
+							playMusic._send('cue:')
 						#endif
 					#end:case
 				#end:match
@@ -166,18 +166,18 @@ class openingScript(Script):
 					case ((not local403) and (temp0 == 28)):
 						local403 = 1
 						local402 = 1
-						(self init:)
+						self._send('init:')
 					#end:case
 					else:
-						(self init:)
+						self._send('init:')
 					#end:else
 				)
 			#end:case
 			case 5:
-				(self setScript: kernel.ScriptID(107, 0) self)
+				self._send('setScript:', kernel.ScriptID(107, 0), self)
 			#end:case
 			case 6:
-				(global2 newRoom: 200)
+				global2._send('newRoom:', 200)
 			#end:case
 		#end:match
 	#end:method
@@ -194,22 +194,22 @@ class playMusic(Script):
 
 		match state = param1
 			case 0:
-				(global102 loop: -1 number: 105 play:)
+				global102._send('loop:', -1, 'number:', 105, 'play:')
 			#end:case
 			case 1:
-				(global102 number: 106 play:)
+				global102._send('number:', 106, 'play:')
 			#end:case
 			case 2:
-				(global102 number: 107 play:)
+				global102._send('number:', 107, 'play:')
 			#end:case
 			case 3:
-				(global102 loop: 1 number: 108 play:)
+				global102._send('loop:', 1, 'number:', 108, 'play:')
 			#end:case
 			case 4:
-				(global102 stop: number: 109 loop: -1 play:)
+				global102._send('stop:', 'number:', 109, 'loop:', -1, 'play:')
 			#end:case
 			case 5:
-				(global102 stop: number: 110 loop: 1 play:)
+				global102._send('stop:', 'number:', 110, 'loop:', 1, 'play:')
 			#end:case
 		#end:match
 	#end:method

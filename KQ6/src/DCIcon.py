@@ -20,7 +20,7 @@ class DCIcon(DIcon):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(cycler = (Fwd new:) init: self)
+		cycler = Fwd._send('new:')._send('init:', self)
 	#end:method
 
 	@classmethod
@@ -30,9 +30,9 @@ class DCIcon(DIcon):
 
 		if cycler:
 			temp0 = cel
-			(cycler doit:)
+			cycler._send('doit:')
 			if (cel != temp0):
-				(self draw:)
+				self._send('draw:')
 			#endif
 		#endif
 	#end:method
@@ -43,9 +43,9 @@ class DCIcon(DIcon):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if cycler:
-			(cycler dispose:)
+			cycler._send('dispose:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod

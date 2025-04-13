@@ -27,10 +27,10 @@ class pearlForRingScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 30 global11 get: 39)
-				(global1 handsOff:)
+				global0._send('put:', 30, global11, 'get:', 39)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
@@ -39,24 +39,19 @@ class pearlForRingScr(Script):
 			case 2:
 				if register:
 					register = 27
-					(self setScript: kernel.ScriptID(286, 1) self)
+					self._send('setScript:', kernel.ScriptID(286, 1), self)
 				else:
 					register = 26
-					(global1 givePoints: 2)
-					(self setScript: kernel.ScriptID(286, 1) self 16384)
+					global1._send('givePoints:', 2)
+					self._send('setScript:', kernel.ScriptID(286, 1), self, 16384)
 				#endif
 			#end:case
 			case 3:
-				(global91 say: 4 66 register 1 kernel.ScriptID(286, 1))
+				global91._send('say:', 4, 66, register, 1, kernel.ScriptID(286, 1))
 			#end:case
 			case 4:
-				(global91
-					say:
-						4
-						66
-						register
-						2
-						if (register == 26):
+				global91._send(
+					'say:', 4, 66, register, 2, if (register == 26):
 							kernel.ScriptID(286, 1)
 						else:
 							self
@@ -67,10 +62,10 @@ class pearlForRingScr(Script):
 				cycles = 2
 			#end:case
 			case 6:
-				(self setScript: kernel.ScriptID(286, 0) self 1)
+				self._send('setScript:', kernel.ScriptID(286, 0), self, 1)
 			#end:case
 			case 7:
-				(global91 say: 4 66 register 3 self)
+				global91._send('say:', 4, 66, register, 3, self)
 			#end:case
 			case 8:
 				if (register == 27):
@@ -79,13 +74,13 @@ class pearlForRingScr(Script):
 				ticks = 1
 			#end:case
 			case 9:
-				(global91 say: 4 66 register 4 self)
+				global91._send('say:', 4, 66, register, 4, self)
 			#end:case
 			case 10:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -95,7 +90,7 @@ class pearlForRingScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(285)
 	#end:method
 
@@ -111,21 +106,18 @@ class pearlForMapScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 30 global11 get: 0)
-				(global1 handsOff:)
+				global0._send('put:', 30, global11, 'get:', 0)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(self
-					setScript:
-						kernel.ScriptID(286, 1)
-						self
-						if register:
+				self._send(
+					'setScript:', kernel.ScriptID(286, 1), self, if register:
 							register = 29
 							-32768
 						else:
@@ -135,16 +127,11 @@ class pearlForMapScr(Script):
 				)
 			#end:case
 			case 3:
-				(global91 say: 4 66 register 1 script)
+				global91._send('say:', 4, 66, register, 1, script)
 			#end:case
 			case 4:
-				(global91
-					say:
-						4
-						66
-						register
-						2
-						if (register == 28):
+				global91._send(
+					'say:', 4, 66, register, 2, if (register == 28):
 							script
 						else:
 							state.post('++')
@@ -153,16 +140,16 @@ class pearlForMapScr(Script):
 				)
 			#end:case
 			case 5:
-				(global91 say: 4 66 register 3 self)
+				global91._send('say:', 4, 66, register, 3, self)
 			#end:case
 			case 6:
-				(self setScript: kernel.ScriptID(286, 3) self)
+				self._send('setScript:', kernel.ScriptID(286, 3), self)
 			#end:case
 			case 7:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -172,7 +159,7 @@ class pearlForMapScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(285)
 	#end:method
 
@@ -188,42 +175,42 @@ class mapForPearlOrRingScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 0 global11)
-				(global1 handsOff:)
+				global0._send('put:', 0, global11)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				if (((global9 at: 30) owner:) == global11):
+				if (global9._send('at:', 30)._send('owner:') == global11):
 					register = 30
-					(global0 get: 30)
+					global0._send('get:', 30)
 				else:
 					register = 31
-					(global0 get: 39)
+					global0._send('get:', 39)
 				#endif
-				(global91 say: 4 12 register 1 self 280)
+				global91._send('say:', 4, 12, register, 1, self, 280)
 			#end:case
 			case 3:
-				(global91 say: 4 12 register 2 self 280)
+				global91._send('say:', 4, 12, register, 2, self, 280)
 			#end:case
 			case 4:
-				(self setScript: kernel.ScriptID(286, 3) self 1)
+				self._send('setScript:', kernel.ScriptID(286, 3), self, 1)
 			#end:case
 			case 5:
-				(global91 say: 4 12 register 3 self 280)
+				global91._send('say:', 4, 12, register, 3, self, 280)
 			#end:case
 			case 6:
-				(self setScript: kernel.ScriptID(286, 0) self 1)
+				self._send('setScript:', kernel.ScriptID(286, 0), self, 1)
 			#end:case
 			case 7:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -233,7 +220,7 @@ class mapForPearlOrRingScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(285)
 	#end:method
 

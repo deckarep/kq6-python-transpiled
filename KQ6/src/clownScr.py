@@ -29,44 +29,44 @@ class clownScr(Script):
 
 		match state = param1
 			case 0:
-				(clown init: setMotion: PolyPath 124 119 self)
+				clown._send('init:', 'setMotion:', PolyPath, 124, 119, self)
 			#end:case
 			case 1:
-				(clown setHeading: 0 self)
+				clown._send('setHeading:', 0, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(global91 say: 1 0 2 1 self)
+				global91._send('say:', 1, 0, 2, 1, self)
 			#end:case
 			case 4:
-				(global91 say: 1 0 2 2 self)
+				global91._send('say:', 1, 0, 2, 2, self)
 			#end:case
 			case 5:
-				(self setScript: kernel.ScriptID(220, 1) self 1)
+				self._send('setScript:', kernel.ScriptID(220, 1), self, 1)
 			#end:case
 			case 6:
-				(clown setMotion: MoveTo 117 109 self)
+				clown._send('setMotion:', MoveTo, 117, 109, self)
 			#end:case
 			case 7:
-				(clown setMotion: MoveTo 104 95 self)
+				clown._send('setMotion:', MoveTo, 104, 95, self)
 			#end:case
 			case 8:
-				(clown
-					setPri: 2
-					setScale: Scaler 64 94 103 95
-					setMotion: MoveTo 75 100 self
+				clown._send(
+					'setPri:', 2,
+					'setScale:', Scaler, 64, 94, 103, 95,
+					'setMotion:', MoveTo, 75, 100, self
 				)
 			#end:case
 			case 9:
-				(kernel.ScriptID(10, 0) clrIt: 2)
-				(clown dispose:)
-				(script cue:)
+				kernel.ScriptID(10, 0)._send('clrIt:', 2)
+				clown._send('dispose:')
+				script._send('cue:')
 			#end:case
 			case 10:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -76,7 +76,7 @@ class clownScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(224)
 	#end:method
 
@@ -90,40 +90,40 @@ class ModStopWalk(StopWalk):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (client isStopped:):
+		if client._send('isStopped:'):
 			(cond
-				case ((vStopped == -1) and ((client loop:) != 4)):
-					temp0 = (client loop:)
-					if (temp1 = (client mover:) and (not (temp1 completed:))):
-						(client setMotion: 0)
+				case ((vStopped == -1) and (client._send('loop:') != 4)):
+					temp0 = client._send('loop:')
+					if (temp1 = client._send('mover:') and (not temp1._send('completed:'))):
+						client._send('setMotion:', 0)
 					#endif
-					(super doit:)
-					(client loop: 4 setCel: temp0)
+					super._send('doit:')
+					client._send('loop:', 4, 'setCel:', temp0)
 				#end:case
-				case ((vStopped != -1) and ((client view:) == vWalking)):
-					(client view: vStopped)
-					if (temp1 = (client mover:) and (not (temp1 completed:))):
-						(client setMotion: 0)
+				case ((vStopped != -1) and (client._send('view:') == vWalking)):
+					client._send('view:', vStopped)
+					if (temp1 = client._send('mover:') and (not temp1._send('completed:'))):
+						client._send('setMotion:', 0)
 					#endif
-					(super doit:)
+					super._send('doit:')
 				#end:case
 				case (vStopped != -1):
-					(super doit:)
+					super._send('doit:')
 				#end:case
 			)
 		else:
 			match vStopped
-				case (client view:):
-					(client view: vWalking)
+				case client._send('view:'):
+					client._send('view:', vWalking)
 				#end:case
 				case -1:
-					(client setLoop: -1 setCel: -1)
-					if ((client loop:) == 4):
-						(client loop: (client cel:) cel: 0)
+					client._send('setLoop:', -1, 'setCel:', -1)
+					if (client._send('loop:') == 4):
+						client._send('loop:', client._send('cel:'), 'cel:', 0)
 					#endif
 				#end:case
 			#end:match
-			(super doit:)
+			super._send('doit:')
 		#endif
 	#end:method
 
@@ -142,8 +142,8 @@ class clown(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setScale: setCycle: ModStopWalk -1)
+		super._send('init:', &rest)
+		self._send('setScale:', 'setCycle:', ModStopWalk, -1)
 	#end:method
 
 #end:class or instance

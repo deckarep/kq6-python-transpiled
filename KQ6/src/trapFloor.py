@@ -32,12 +32,12 @@ class trapFloor(LabRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc401_2()
-		(super init: &rest)
-		(kernel.ScriptID(30, 0) initCrypt: 2)
-		(kernel.ScriptID(30, 5) addToPic:)
-		(kernel.ScriptID(30, 9) addToPic:)
-		(kernel.ScriptID(30, 8) addToPic:)
-		(self setScript: fallTrapFloor)
+		super._send('init:', &rest)
+		kernel.ScriptID(30, 0)._send('initCrypt:', 2)
+		kernel.ScriptID(30, 5)._send('addToPic:')
+		kernel.ScriptID(30, 9)._send('addToPic:')
+		kernel.ScriptID(30, 8)._send('addToPic:')
+		self._send('setScript:', fallTrapFloor)
 	#end:method
 
 #end:class or instance
@@ -52,57 +52,57 @@ class fallTrapFloor(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global69 disable: 6)
-				(global0 posn: 36 164 init: setMotion: PolyPath 120 164 self)
+				global1._send('handsOff:')
+				global69._send('disable:', 6)
+				global0._send('posn:', 36, 164, 'init:', 'setMotion:', PolyPath, 120, 164, self)
 			#end:case
 			case 1:
 				cycles = 8
 			#end:case
 			case 2:
-				(westHalfTrapFloor init: stopUpd:)
-				(eastHalfTrapFloor init: stopUpd:)
-				(eastTrapLedge init: stopUpd:)
-				(westTrapLedge init: stopUpd:)
-				(northTrapLedge init: stopUpd:)
+				westHalfTrapFloor._send('init:', 'stopUpd:')
+				eastHalfTrapFloor._send('init:', 'stopUpd:')
+				eastTrapLedge._send('init:', 'stopUpd:')
+				westTrapLedge._send('init:', 'stopUpd:')
+				northTrapLedge._send('init:', 'stopUpd:')
 				cycles = 2
 			#end:case
 			case 3:
-				(global102 stop:)
-				(global103 number: 909 setLoop: 1 play: self)
+				global102._send('stop:')
+				global103._send('number:', 909, 'setLoop:', 1, 'play:', self)
 			#end:case
 			case 4:
-				(global102 number: 409 setLoop: -1 play:)
+				global102._send('number:', 409, 'setLoop:', -1, 'play:')
 				cycles = 4
 			#end:case
 			case 5:
 				if proc913_0(1):
-					(global91 say: 1 0 30 0 self 400)
+					global91._send('say:', 1, 0, 30, 0, self, 400)
 				else:
-					(global91 say: 1 0 29 1 self 400)
+					global91._send('say:', 1, 0, 29, 1, self, 400)
 				#endif
 			#end:case
 			case 6:
-				(global0
-					setLoop: (global0 cel:)
-					normal: 0
-					cycleSpeed: 1
-					setCycle: Fwd
+				global0._send(
+					'setLoop:', global0._send('cel:'),
+					'normal:', 0,
+					'cycleSpeed:', 1,
+					'setCycle:', Fwd
 				)
 				seconds = 3
 			#end:case
 			case 7:
-				(global102 stop:)
-				(global103 number: 404 setLoop: 1 play:)
-				(global0
-					setCycle: 0
-					setStep: 40 30
-					setMotion: MoveTo (global0 x:) 250 self
+				global102._send('stop:')
+				global103._send('number:', 404, 'setLoop:', 1, 'play:')
+				global0._send(
+					'setCycle:', 0,
+					'setStep:', 40, 30,
+					'setMotion:', MoveTo, global0._send('x:'), 250, self
 				)
 			#end:case
 			case 8:
-				(global69 enable: 6)
-				(global2 style: -32758 newRoom: 406)
+				global69._send('enable:', 6)
+				global2._send('style:', -32758, 'newRoom:', 406)
 			#end:case
 		#end:match
 	#end:method

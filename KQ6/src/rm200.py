@@ -48,15 +48,14 @@ def localproc_0():
 	else:
 		proc913_1(11)
 	#endif
-	((global2 obstacles:) delete: plankPoly)
-	(global2
-		addObstacle:
-			if proc913_0(11):
-				(chest setPri: -1)
-				(plankPoly type: 2 points: @local13 size: 8 yourself:)
+	global2._send('obstacles:')._send('delete:', plankPoly)
+	global2._send(
+		'addObstacle:', if proc913_0(11):
+				chest._send('setPri:', -1)
+				plankPoly._send('type:', 2, 'points:', @local13, 'size:', 8, 'yourself:')
 			else:
-				(chest setPri: 1)
-				(plankPoly type: 2 points: @local3 size: 5 yourself:)
+				chest._send('setPri:', 1)
+				plankPoly._send('type:', 2, 'points:', @local3, 'size:', 5, 'yourself:')
 			#endif
 	)
 #end:procedure
@@ -73,138 +72,93 @@ class rm200(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						150
-						108
-						114
-						115
-						102
-						134
-						62
-						152
-						-50
-						189
-						-50
-						-200
-						319
-						-200
-						319
-						189
-						215
-						189
-						263
-						143
-						271
-						117
-						222
-						107
-						210
-						99
-						205
-						87
-						211
-						70
-						235
-						60
-						267
-						54
-						250
-						51
-						192
-						67
-						187
-						80
-						191
-						102
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 214 117 232 117 243 120 243 125 193 125 193 123
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 144 183 144 179 181 169 179 183
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 150, 108, 114, 115, 102, 134, 62, 152, -50, 189, -50, -200, 319, -200, 319, 189, 215, 189, 263, 143, 271, 117, 222, 107, 210, 99, 205, 87, 211, 70, 235, 60, 267, 54, 250, 51, 192, 67, 187, 80, 191, 102,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 214, 117, 232, 117, 243, 120, 243, 125, 193, 125, 193, 123,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 144, 183, 144, 179, 181, 169, 179, 183,
+					'yourself:'
 				)
 		)
-		(global69 enable:)
+		global69._send('enable:')
 		if (global12 == 155):
 			style = 6
 		#endif
-		(super init: &rest)
-		(global0 ignoreActors: actions: egoDoVerb)
-		(genericFeatures init:)
-		(kernel.ScriptID(10, 4) onMeCheck: 32 init:)
-		if (global2 script:):
-			((global2 script:) caller: self)
+		super._send('init:', &rest)
+		global0._send('ignoreActors:', 'actions:', egoDoVerb)
+		genericFeatures._send('init:')
+		kernel.ScriptID(10, 4)._send('onMeCheck:', 32, 'init:')
+		if global2._send('script:'):
+			global2._send('script:')._send('caller:', self)
 		#endif
 		if proc999_5(global12, 105, 106, 108, 99):
-			(global0 init:)
+			global0._send('init:')
 			kernel.Palette(4, 0, 256, 100)
-			(self setScript: kernel.ScriptID(201))
+			self._send('setScript:', kernel.ScriptID(201))
 			global153 = 1
 		else:
 			match global12
 				case 210:
-					(global0 init:)
-					(global2 setScript: enterRoomScr)
+					global0._send('init:')
+					global2._send('setScript:', enterRoomScr)
 				#end:case
 				case 155:
-					(global0 init: view: 203)
-					(global69 disable: 6)
-					(global1 setCursor: global19)
-					(self setScript: kernel.ScriptID(202))
+					global0._send('init:', 'view:', 203)
+					global69._send('disable:', 6)
+					global1._send('setCursor:', global19)
+					self._send('setScript:', kernel.ScriptID(202))
 				#end:case
 				case 100:
-					(global0
-						init:
-						posn: 175 130
-						loop: 2
-						setScale: Scaler 100 50 112 57
+					global0._send(
+						'init:',
+						'posn:', 175, 130,
+						'loop:', 2,
+						'setScale:', Scaler, 100, 50, 112, 57
 					)
-					(global1 handsOn:)
-					(global69 curIcon: (global69 at: 0))
-					(global1 setCursor: ((global69 curIcon:) cursor:))
+					global1._send('handsOn:')
+					global69._send('curIcon:', global69._send('at:', 0))
+					global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 				#end:case
 			#end:match
 		#endif
-		(bush1 init:)
-		(bush2 init:)
-		(bush3 init:)
-		(shipsails init:)
-		(wave init:)
-		if ((global1 _detailLevel:) > 1):
-			(wave setScript: waveScr)
-			if ((global1 _detailLevel:) > 2):
-				(bush1 setScript: kernel.Clone(kernel.ScriptID(13, 0)))
-				(bush2 setScript: kernel.Clone(kernel.ScriptID(13, 0)))
-				(shipsails setScript: kernel.Clone(kernel.ScriptID(13, 0)))
-				(bush3 setScript: kernel.ScriptID(13, 0))
+		bush1._send('init:')
+		bush2._send('init:')
+		bush3._send('init:')
+		shipsails._send('init:')
+		wave._send('init:')
+		if (global1._send('_detailLevel:') > 1):
+			wave._send('setScript:', waveScr)
+			if (global1._send('_detailLevel:') > 2):
+				bush1._send('setScript:', kernel.Clone(kernel.ScriptID(13, 0)))
+				bush2._send('setScript:', kernel.Clone(kernel.ScriptID(13, 0)))
+				shipsails._send('setScript:', kernel.Clone(kernel.ScriptID(13, 0)))
+				bush3._send('setScript:', kernel.ScriptID(13, 0))
 			#endif
 		#endif
 		if (global153 == 0):
 			global153 = 1
 		#endif
-		if (((global9 at: 39) owner:) == 200):
-			(royalRing init:)
+		if (global9._send('at:', 39)._send('owner:') == 200):
+			royalRing._send('init:')
 		#endif
-		(plank init:)
-		(shipWheel init:)
+		plank._send('init:')
+		shipWheel._send('init:')
 		local0 = 0
 		if (global12 == 155):
-			(global102 fade:)
+			global102._send('fade:')
 		else:
-			(global102 number: 915 loop: -1 play:)
+			global102._send('number:', 915, 'loop:', -1, 'play:')
 		#endif
-		(global103 number: 916 loop: -1 play:)
-		(global93 addToFront: self)
-		(global74 addToFront: self)
+		global103._send('number:', 916, 'loop:', -1, 'play:')
+		global93._send('addToFront:', self)
+		global74._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -212,7 +166,7 @@ class rm200(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 setScale: Scaler 100 50 112 57)
+		global0._send('setScale:', Scaler, 100, 50, 112, 57)
 	#end:method
 
 	@classmethod
@@ -220,47 +174,47 @@ class rm200(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		(cond
-			case ((temp0 = (global0 onControl: 1) & 0x0100) and (not local29)):
+			case ((temp0 = global0._send('onControl:', 1) & 0x0100) and (not local29)):
 				local29 = 1
-				(plank setPri: 15)
+				plank._send('setPri:', 15)
 			#end:case
 			case ((not (temp0 & 0x0100)) and local29):
 				local29 = 0
-				(plank setPri: 3)
+				plank._send('setPri:', 3)
 			#end:case
 		)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x4000):
-				(global2 setScript: exitRoomScr)
+				global2._send('setScript:', exitRoomScr)
 			#end:case
 			case (temp0 & 0x0004):
 				(cond
 					case (local0 != 1):
-						(global104 number: 922 loop: -1 play:)
-						(global0 view: 308)
-						if (not ((global0 cycler:) isKindOf: StopWalk)):
-							(global0 setCycle: StopWalk -1)
+						global104._send('number:', 922, 'loop:', -1, 'play:')
+						global0._send('view:', 308)
+						if (not global0._send('cycler:')._send('isKindOf:', StopWalk)):
+							global0._send('setCycle:', StopWalk, -1)
 						#endif
 						if (local0 == 0):
 							(cond
-								case ((global0 heading:) < 135):
-									(global0 loop: 0)
+								case (global0._send('heading:') < 135):
+									global0._send('loop:', 0)
 								#end:case
-								case ((global0 heading:) > 225):
-									(global0 loop: 1)
+								case (global0._send('heading:') > 225):
+									global0._send('loop:', 1)
 								#end:case
 								else:
-									(global0 loop: 2)
+									global0._send('loop:', 2)
 								#end:else
 							)
 						#endif
 						local0 = 1
 					#end:case
-					case ((global0 isStopped:) and (not local2) and local1):
-						(global91 say: 10 3 12 1)
+					case (global0._send('isStopped:') and (not local2) and local1):
+						global91._send('say:', 10, 3, 12, 1)
 						local2 = 1
 					#end:case
 				)
@@ -269,25 +223,25 @@ class rm200(KQ6Room):
 				(cond
 					case (local0 != 2):
 						if (local0 == 0):
-							(global104 number: 922 loop: -1 play:)
+							global104._send('number:', 922, 'loop:', -1, 'play:')
 						#endif
-						(global0 view: 3081)
+						global0._send('view:', 3081)
 						if 
 							(and
-								(not ((global0 cycler:) isKindOf: StopWalk))
-								(not ((global0 cycler:) isKindOf: Rev))
+								(not global0._send('cycler:')._send('isKindOf:', StopWalk))
+								(not global0._send('cycler:')._send('isKindOf:', Rev))
 							)
-							(global0 setCycle: StopWalk -1)
+							global0._send('setCycle:', StopWalk, -1)
 						#endif
 						local0 = 2
 					#end:case
-					case ((global0 isStopped:) and (not local2) and local1):
+					case (global0._send('isStopped:') and (not local2) and local1):
 						if local30:
-							(self setScript: egoStruggleScr)
+							self._send('setScript:', egoStruggleScr)
 							local2 = 1
 							local30 = 0
 						else:
-							(global91 say: 10 3 12 1)
+							global91._send('say:', 10, 3, 12, 1)
 							local2 = 1
 						#endif
 					#end:case
@@ -296,28 +250,28 @@ class rm200(KQ6Room):
 			case (temp0 & 0x0008):
 				if (local0 != 3):
 					if local1:
-						(global1 handsOff:)
-						(global0
-							setLoop: (global0 loop:)
-							setMotion: 0
-							normal: 0
-							setSpeed: 8
-							setCycle: Rev
+						global1._send('handsOff:')
+						global0._send(
+							'setLoop:', global0._send('loop:'),
+							'setMotion:', 0,
+							'normal:', 0,
+							'setSpeed:', 8,
+							'setCycle:', Rev
 						)
 						while True: #repeat
-							(global0 y: ((global0 y:) - 1))
-							(breakif (not ((global0 onControl: 1) & 0x0008)))
+							global0._send('y:', (global0._send('y:') - 1))
+							(breakif (not (global0._send('onControl:', 1) & 0x0008)))
 						#end:loop
 						local30 = 1
 					else:
-						(self setScript: deathByWaterScr)
+						self._send('setScript:', deathByWaterScr)
 					#endif
 					local0 = 3
 				#endif
 			#end:case
 			case (local0 != 0):
-				(global104 fade: 0 10 15 1)
-				(global0 view: 900 setCycle: Walk)
+				global104._send('fade:', 0, 10, 15, 1)
+				global0._send('view:', 900, 'setCycle:', Walk)
 				local0 = 0
 			#end:case
 		)
@@ -328,17 +282,17 @@ class rm200(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 type:) & 0x1040):
-			if (((global69 at: 0) == (global69 curIcon:)) and (local0 == 0)):
+		if (param1._send('type:') & 0x1040):
+			if ((global69._send('at:', 0) == global69._send('curIcon:')) and (local0 == 0)):
 				local1 = 1
 				local2 = 0
 			else:
 				local1 = 0
 			#endif
 		else:
-			(super handleEvent: param1)
+			super._send('handleEvent:', param1)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -349,11 +303,11 @@ class rm200(KQ6Room):
 		(return
 			match param1
 				case 2:
-					(global91 say: noun param1 5)
+					global91._send('say:', noun, param1, 5)
 					1
 				#end:case
 				else:
-					(super doVerb: param1)
+					super._send('doVerb:', param1)
 				#end:else
 			#end:match
 		)
@@ -364,11 +318,11 @@ class rm200(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 fade:)
-		(global103 fade:)
-		(global93 delete: self)
-		(global74 delete: self)
-		(super dispose:)
+		global102._send('fade:')
+		global103._send('fade:')
+		global93._send('delete:', self)
+		global74._send('delete:', self)
+		super._send('dispose:')
 		kernel.DisposeScript(951)
 		kernel.DisposeScript(969)
 		kernel.DisposeScript(923)
@@ -387,26 +341,8 @@ class sandPoly(Polygon):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super
-			init:
-				92
-				58
-				151
-				58
-				157
-				65
-				95
-				93
-				100
-				115
-				139
-				132
-				170
-				132
-				196
-				143
-				93
-				143
+		super._send(
+			'init:', 92, 58, 151, 58, 157, 65, 95, 93, 100, 115, 139, 132, 170, 132, 196, 143, 93, 143
 		)
 	#end:method
 
@@ -423,9 +359,9 @@ class sand(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		onMeCheck = (sandPoly init: yourself:)
-		(self setOnMeCheck: 2 onMeCheck)
+		super._send('init:', &rest)
+		onMeCheck = sandPoly._send('init:', 'yourself:')
+		self._send('setOnMeCheck:', 2, onMeCheck)
 		sightAngle = 26505
 	#end:method
 
@@ -446,13 +382,13 @@ class chestInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if (((global9 at: 9) owner:) == global11):
-			(coin init:)
+		super._send('init:', &rest)
+		if (global9._send('at:', 9)._send('owner:') == global11):
+			coin._send('init:')
 		#endif
-		(sand init:)
-		(global1 handsOn:)
-		(global69 disable: 0 3 4 5 6)
+		sand._send('init:')
+		global1._send('handsOn:')
+		global69._send('disable:', 0, 3, 4, 5, 6)
 	#end:method
 
 	@classmethod
@@ -461,10 +397,10 @@ class chestInset(Inset):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if 
-			proc999_4(((insetView nsLeft:) + 5), ((insetView nsTop:) + 5), (-
-				(insetView nsRight:)
+			proc999_4((insetView._send('nsLeft:') + 5), (insetView._send('nsTop:') + 5), (-
+				insetView._send('nsRight:')
 				5
-			), ((insetView nsBottom:) - 5), param1)
+			), (insetView._send('nsBottom:') - 5), param1)
 			return 1
 		else:
 			return 0
@@ -476,12 +412,12 @@ class chestInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: 9):
-			(coin dispose:)
+		if global5._send('contains:', 9):
+			coin._send('dispose:')
 		#endif
-		(sand dispose:)
-		(super dispose:)
-		(global69 enable: 0 3 6)
+		sand._send('dispose:')
+		super._send('dispose:')
+		global69._send('enable:', 0, 3, 6)
 	#end:method
 
 	@classmethod
@@ -491,27 +427,27 @@ class chestInset(Inset):
 
 		match param1
 			case 1:
-				if (((global9 at: 9) owner:) == 200):
-					(global91 say: noun param1 10)
+				if (global9._send('at:', 9)._send('owner:') == 200):
+					global91._send('say:', noun, param1, 10)
 				else:
-					(global91 say: noun param1 11)
+					global91._send('say:', noun, param1, 11)
 				#endif
 			#end:case
 			case 5:
-				if (((global9 at: 9) owner:) == 200):
-					(global91 say: noun param1 10)
+				if (global9._send('at:', 9)._send('owner:') == 200):
+					global91._send('say:', noun, param1, 10)
 				else:
-					(global91 say: noun param1 11)
+					global91._send('say:', noun, param1, 11)
 				#endif
 			#end:case
 			case 40:
-				(global91 say: 5 param1)
+				global91._send('say:', 5, param1)
 			#end:case
 			else:
 				if (param1 != 2):
 					param1 = 0
 				#endif
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -533,7 +469,7 @@ class egoDoVerb(Actions):
 
 		match param1
 			case 12:
-				(global2 setScript: 130)
+				global2._send('setScript:', 130)
 				return 1
 			#end:case
 			else:
@@ -554,21 +490,21 @@ class exitRoomScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 252 58 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 252, 58, self)
 			#end:case
 			case 1:
-				(global0
-					ignoreActors:
-					setPri: 1
-					setLoop: 3
-					setScale:
-					illegalBits: 0
-					setMotion: MoveTo 261 86 self
+				global0._send(
+					'ignoreActors:',
+					'setPri:', 1,
+					'setLoop:', 3,
+					'setScale:',
+					'illegalBits:', 0,
+					'setMotion:', MoveTo, 261, 86, self
 				)
 			#end:case
 			case 2:
-				(global2 newRoom: 210)
+				global2._send('newRoom:', 210)
 			#end:case
 		#end:match
 	#end:method
@@ -585,28 +521,28 @@ class enterRoomScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					setPri: 1
-					setLoop: 2
-					posn: 261 86
-					scaleX: 64
-					scaleY: 64
-					scaleSignal: 1
-					show:
-					setMotion: MoveTo 252 58 self
+				global0._send(
+					'setPri:', 1,
+					'setLoop:', 2,
+					'posn:', 261, 86,
+					'scaleX:', 64,
+					'scaleY:', 64,
+					'scaleSignal:', 1,
+					'show:',
+					'setMotion:', MoveTo, 252, 58, self
 				)
 			#end:case
 			case 1:
-				(global0
-					setPri: -1
-					setLoop: -1
-					setScale: Scaler 100 50 112 57
-					setMotion: PolyPath 204 103 self
+				global0._send(
+					'setPri:', -1,
+					'setLoop:', -1,
+					'setScale:', Scaler, 100, 50, 112, 57,
+					'setMotion:', PolyPath, 204, 103, self
 				)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -623,20 +559,20 @@ class getCoinScr(Script):
 
 		match state = param1
 			case 0:
-				(global69 enable: 6)
-				(global1 handsOff:)
-				(global0 get: 9)
-				(global1 givePoints: 1)
-				(coin dispose:)
+				global69._send('enable:', 6)
+				global1._send('handsOff:')
+				global0._send('get:', 9)
+				global1._send('givePoints:', 1)
+				coin._send('dispose:')
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 7 5)
+				global91._send('say:', 7, 5)
 				cycles = 2
 			#end:case
 			case 2:
-				(chestInset dispose:)
-				(self dispose:)
+				chestInset._send('dispose:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -657,10 +593,10 @@ class egoStruggleScr(Script):
 				ticks = 30
 			#end:case
 			case 1:
-				if ((global0 loop:) == 2):
-					(global0 setLoop: 1)
+				if (global0._send('loop:') == 2):
+					global0._send('setLoop:', 1)
 				else:
-					(global0 setLoop: 2)
+					global0._send('setLoop:', 2)
 				#endif
 				if (not register.post('--')):
 					state.post('--')
@@ -668,16 +604,16 @@ class egoStruggleScr(Script):
 				ticks = 30
 			#end:case
 			case 2:
-				(global0 normal: 1 setCycle: StopWalk -1 setLoop: -1)
+				global0._send('normal:', 1, 'setCycle:', StopWalk, -1, 'setLoop:', -1)
 				cycles = 2
 			#end:case
 			case 3:
-				(global91 say: 10 3 12 1 self)
+				global91._send('say:', 10, 3, 12, 1, self)
 			#end:case
 			case 4:
-				(global0 setSpeed: (global0 currentSpeed:))
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('setSpeed:', global0._send('currentSpeed:'))
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -694,11 +630,11 @@ class egoIntoSafeWater(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: 0 view: 308)
-				(global91 say: 10 3 12 1 self)
+				global0._send('setMotion:', 0, 'view:', 308)
+				global91._send('say:', 10, 3, 12, 1, self)
 			#end:case
 			case 1:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -715,24 +651,24 @@ class deathByWaterScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 10 3 15 0 self)
+				global1._send('handsOff:')
+				global91._send('say:', 10, 3, 15, 0, self)
 			#end:case
 			case 1:
-				(global104 stop: number: 921 loop: 1 play:)
-				(global0
-					view: 269
-					setLoop: 0
-					cel: 0
-					normal: 0
-					cycleSpeed: 6
-					setCycle: End self
-					heading: 200
-					setMotion: MoveFwd 200
+				global104._send('stop:', 'number:', 921, 'loop:', 1, 'play:')
+				global0._send(
+					'view:', 269,
+					'setLoop:', 0,
+					'cel:', 0,
+					'normal:', 0,
+					'cycleSpeed:', 6,
+					'setCycle:', End, self,
+					'heading:', 200,
+					'setMotion:', MoveFwd, 200
 				)
 			#end:case
 			case 2:
-				(global2 newRoom: 135)
+				global2._send('newRoom:', 135)
 			#end:case
 		#end:match
 	#end:method
@@ -749,46 +685,46 @@ class replacePlankScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				localproc_0()
-				(global0
-					normal: 0
-					posn: 242 139
-					setSpeed: 6
-					view: 201
-					loop: 1
-					cel: 8
-					setScale: 0
-					setCycle: CT 5 -1 self
+				global0._send(
+					'normal:', 0,
+					'posn:', 242, 139,
+					'setSpeed:', 6,
+					'view:', 201,
+					'loop:', 1,
+					'cel:', 8,
+					'setScale:', 0,
+					'setCycle:', CT, 5, -1, self
 				)
 			#end:case
 			case 1:
-				(plank cel: 0 hide:)
-				(global0 loop: 2 cel: 5 setCycle: CT 3 -1 self)
-				(global105 number: 200 loop: 1 play:)
+				plank._send('cel:', 0, 'hide:')
+				global0._send('loop:', 2, 'cel:', 5, 'setCycle:', CT, 3, -1, self)
+				global105._send('number:', 200, 'loop:', 1, 'play:')
 			#end:case
 			case 2:
-				(plank show: stopUpd:)
+				plank._send('show:', 'stopUpd:')
 				cycles = 1
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(chest dispose:)
-				(global0
-					posn: (plank approachX:) (plank approachY:)
-					reset: 2
-					setScale: Scaler 100 50 112 57
+				chest._send('dispose:')
+				global0._send(
+					'posn:', plank._send('approachX:'), plank._send('approachY:'),
+					'reset:', 2,
+					'setScale:', Scaler, 100, 50, 112, 57
 				)
 				cycles = 2
 			#end:case
 			case 5:
-				(global91 say: 4 5 7 0 self)
+				global91._send('say:', 4, 5, 7, 0, self)
 			#end:case
 			case 6:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -805,58 +741,58 @@ class displacePlankScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setSpeed: 6
-					posn: 242 139
-					view: 201
-					normal: 0
-					loop: 2
-					cel: 0
-					setScale: 0
-					setCycle: CT 3 1 self
+				global1._send('handsOff:')
+				global0._send(
+					'setSpeed:', 6,
+					'posn:', 242, 139,
+					'view:', 201,
+					'normal:', 0,
+					'loop:', 2,
+					'cel:', 0,
+					'setScale:', 0,
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 1:
-				(chest init:)
-				(global105 number: 200 loop: 1 play:)
+				chest._send('init:')
+				global105._send('number:', 200, 'loop:', 1, 'play:')
 				cycles = 2
 			#end:case
 			case 2:
-				(plank cel: 1 hide:)
+				plank._send('cel:', 1, 'hide:')
 				cycles = 1
 			#end:case
 			case 3:
-				(global0 setCycle: CT 4 1 self)
+				global0._send('setCycle:', CT, 4, 1, self)
 			#end:case
 			case 4:
-				(plank show: stopUpd:)
-				(global0 setCycle: End self)
+				plank._send('show:', 'stopUpd:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
-				(global0 loop: 1 cel: 5 setCycle: End self)
+				global0._send('loop:', 1, 'cel:', 5, 'setCycle:', End, self)
 			#end:case
 			case 7:
-				(global0
-					reset: 5
-					posn: (plank approachX:) (plank approachY:)
-					setScale: Scaler 100 50 112 57
+				global0._send(
+					'reset:', 5,
+					'posn:', plank._send('approachX:'), plank._send('approachY:'),
+					'setScale:', Scaler, 100, 50, 112, 57
 				)
 				localproc_0()
 				cycles = 2
 			#end:case
 			case 8:
-				(global91 say: 4 5 6 0 self)
+				global91._send('say:', 4, 5, 6, 0, self)
 			#end:case
 			case 9:
 				if (not proc913_1(92)):
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -877,7 +813,7 @@ class objectGlitter(Script):
 			#end:case
 			case 1:
 				state = -1
-				(client cel: 0 setCycle: End self)
+				client._send('cel:', 0, 'setCycle:', End, self)
 			#end:case
 		#end:match
 	#end:method
@@ -894,56 +830,56 @@ class openChestScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 1
 			#end:case
 			case 1:
-				(global0
-					setSpeed: 6
-					normal: 0
-					posn: (chest x:) (chest y:)
-					view: 201
-					loop: 3
-					cel: 0
-					setScale: 0
-					setCycle: End self
+				global0._send(
+					'setSpeed:', 6,
+					'normal:', 0,
+					'posn:', chest._send('x:'), chest._send('y:'),
+					'view:', 201,
+					'loop:', 3,
+					'cel:', 0,
+					'setScale:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
 				ticks = 12
 			#end:case
 			case 3:
-				(global105 number: 904 loop: 1 play: self)
+				global105._send('number:', 904, 'loop:', 1, 'play:', self)
 			#end:case
 			case 4:
 				ticks = 12
 			#end:case
 			case 5:
-				(chestInset init: self global2)
+				chestInset._send('init:', self, global2)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				ticks = 1
 			#end:case
 			case 8:
-				(global105 number: 905 loop: 1 play: self)
+				global105._send('number:', 905, 'loop:', 1, 'play:', self)
 			#end:case
 			case 9:
 				ticks = 12
 			#end:case
 			case 10:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 11:
-				(global0 posn: 240 132 reset: 2 setScale: Scaler 100 50 112 57)
+				global0._send('posn:', 240, 132, 'reset:', 2, 'setScale:', Scaler, 100, 50, 112, 57)
 				cycles = 2
 			#end:case
 			case 12:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -971,13 +907,13 @@ class chest(Prop):
 
 		match param1
 			case 5:
-				(self setScript: openChestScr)
+				self._send('setScript:', openChestScr)
 			#end:case
 			case 1:
-				(global91 say: noun param1 9)
+				global91._send('say:', noun, param1, 9)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -987,8 +923,8 @@ class chest(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 #end:class or instance
@@ -1003,38 +939,38 @@ class takeRingScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				if ((global0 loop:) != 1):
-					(global0 setHeading: 315 self)
+				global1._send('handsOff:')
+				if (global0._send('loop:') != 1):
+					global0._send('setHeading:', 315, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					setSpeed: 8
-					view: 201
-					loop: 4
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 8,
+					'view:', 201,
+					'loop:', 4,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
-				(royalRing dispose:)
+				royalRing._send('dispose:')
 			#end:case
 			case 3:
-				(global1 givePoints: 1)
-				(global0 reset: 7 get: 39)
+				global1._send('givePoints:', 1)
+				global0._send('reset:', 7, 'get:', 39)
 				cycles = 2
 			#end:case
 			case 4:
-				(global91 say: 9 5 0 0 self)
+				global91._send('say:', 9, 5, 0, 0, self)
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1060,10 +996,10 @@ class royalRing(Prop):
 
 		match param1
 			case 5:
-				(global2 setScript: takeRingScr)
+				global2._send('setScript:', takeRingScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1073,16 +1009,16 @@ class royalRing(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			cel: 0
-			setCycle: End
-			setScript: kernel.Clone(objectGlitter)
-			approachVerbs: 5
+		self._send(
+			'cel:', 0,
+			'setCycle:', End,
+			'setScript:', kernel.Clone(objectGlitter),
+			'approachVerbs:', 5
 		)
 		if (not proc913_0(48)):
 			loop = 3
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1104,14 +1040,14 @@ class coin(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			cel: 0
-			setCycle: End
-			setScript: kernel.Clone(objectGlitter)
-			sightAngle: 360
-			setPri: 15
+		self._send(
+			'cel:', 0,
+			'setCycle:', End,
+			'setScript:', kernel.Clone(objectGlitter),
+			'sightAngle:', 360,
+			'setPri:', 15
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		sightAngle = 26505
 	#end:method
 
@@ -1122,10 +1058,10 @@ class coin(Prop):
 
 		match param1
 			case 5:
-				(global2 setScript: getCoinScr)
+				global2._send('setScript:', getCoinScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1208,13 +1144,13 @@ class plank(View):
 		match param1
 			case 5:
 				if proc913_0(11):
-					(global2 setScript: replacePlankScr)
+					global2._send('setScript:', replacePlankScr)
 				else:
-					(global2 setScript: displacePlankScr)
+					global2._send('setScript:', displacePlankScr)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1224,25 +1160,23 @@ class plank(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self
-			approachVerbs: 5
-			cel:
-				if proc913_0(11):
-					(chest init:)
+		super._send('init:', &rest)
+		self._send(
+			'approachVerbs:', 5,
+			'cel:', if proc913_0(11):
+					chest._send('init:')
 					1
 				else:
 					0
 				#endif
 		)
-		(global2
-			addObstacle:
-				if proc913_0(11):
-					(chest setPri: -1)
-					(plankPoly type: 2 points: @local13 size: 8 yourself:)
+		global2._send(
+			'addObstacle:', if proc913_0(11):
+					chest._send('setPri:', -1)
+					plankPoly._send('type:', 2, 'points:', @local13, 'size:', 8, 'yourself:')
 				else:
-					(chest setPri: 1)
-					(plankPoly type: 2 points: @local3 size: 5 yourself:)
+					chest._send('setPri:', 1)
+					plankPoly._send('type:', 2, 'points:', @local3, 'size:', 5, 'yourself:')
 				#endif
 		)
 	#end:method
@@ -1257,8 +1191,8 @@ class genericFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
-		(genericFeatures x: (param1 x:) y: (param1 y:))
+		temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
+		genericFeatures._send('x:', param1._send('x:'), 'y:', param1._send('y:'))
 		(return
 			(= noun
 				(cond
@@ -1266,13 +1200,13 @@ class genericFeatures(Feature):
 					case 
 						(or
 							(temp0 == 256)
-							((temp0 == 2048) and ((param1 y:) > 91))
+							((temp0 == 2048) and (param1._send('y:') > 91))
 						):
 						14
 					#end:case
 					case (temp0 == 64): 12#end:case
 					case (temp0 == 16): 11#end:case
-					case ((temp0 == 512) and ((param1 y:) < 130)): 16#end:case
+					case ((temp0 == 512) and (param1._send('y:') < 130)): 16#end:case
 					case (temp0 == 2048): 17#end:case
 					case (temp0 == 16): 11#end:case
 					case proc999_5(temp0, 8, 4, 512): 10#end:case
@@ -1295,19 +1229,19 @@ class waveScr(Script):
 
 		match state = param1
 			case 0:
-				(wave cel: 0 setCycle: End self)
+				wave._send('cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 1:
-				(wave setCycle: Beg self)
+				wave._send('setCycle:', Beg, self)
 			#end:case
 			case 2:
-				(wave hide:)
+				wave._send('hide:')
 				seconds = kernel.Random(3, 8)
 			#end:case
 			case 3:
-				(wave show:)
+				wave._send('show:')
 				state = -1
-				(self cue:)
+				self._send('cue:')
 			#end:case
 		#end:match
 	#end:method
@@ -1340,10 +1274,10 @@ class shipWheel(Feature):
 
 		(return
 			(or
-				proc999_4(145, 175, 160, 181, (param1 x:), (param1 y:))
-				proc999_4(162, 169, 175, 177, (param1 x:), (param1 y:))
-				proc999_4(171, 164, 177, 169, (param1 x:), (param1 y:))
-				proc999_4(156, 170, 162, 175, (param1 x:), (param1 y:))
+				proc999_4(145, 175, 160, 181, param1._send('x:'), param1._send('y:'))
+				proc999_4(162, 169, 175, 177, param1._send('x:'), param1._send('y:'))
+				proc999_4(171, 164, 177, 169, param1._send('x:'), param1._send('y:'))
+				proc999_4(156, 170, 162, 175, param1._send('x:'), param1._send('y:'))
 			)
 		)
 	#end:method

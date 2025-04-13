@@ -41,7 +41,7 @@ def proc80_2(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global1 handsOff:)
+	global1._send('handsOff:')
 	match param1
 		case 4:
 			temp0 = -40
@@ -56,9 +56,9 @@ def proc80_2(param1 = None, *rest):
 			temp1 = -40
 		#end:case
 	#end:match
-	(global0
-		ignoreActors: 1
-		setMotion: MoveTo ((global0 x:) + temp0) ((global0 y:) + temp1)
+	global0._send(
+		'ignoreActors:', 1,
+		'setMotion:', MoveTo, (global0._send('x:') + temp0), (global0._send('y:') + temp1)
 	)
 #end:procedure
 
@@ -67,29 +67,29 @@ def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp2 = ((global0 brLeft:) - param2)
-	temp0 = ((global0 brTop:) - param3)
-	temp3 = ((global0 brRight:) + param2)
-	temp1 = ((global0 brBottom:) + param3)
+	temp2 = (global0._send('brLeft:') - param2)
+	temp0 = (global0._send('brTop:') - param3)
+	temp3 = (global0._send('brRight:') + param2)
+	temp1 = (global0._send('brBottom:') + param3)
 	if (not local2):
-		if (global2 moveOtherGuard:):
+		if global2._send('moveOtherGuard:'):
 			local2.post('++')
 		#endif
-		local0 = proc999_3(temp2, proc999_2(temp3, (param1 x:)))
-		local1 = proc999_3(temp0, proc999_2(temp1, (param1 y:)))
+		local0 = proc999_3(temp2, proc999_2(temp3, param1._send('x:')))
+		local1 = proc999_3(temp0, proc999_2(temp1, param1._send('y:')))
 	else:
 		local2 = 0
-		temp4 = ((((global0 x:) <= (param1 x:)) * 2) - 1)
+		temp4 = (((global0._send('x:') <= param1._send('x:')) * 2) - 1)
 		(= local0
 			(+
-				(global0 x:)
+				global0._send('x:')
 				(*
-					((((global0 brRight:) - (global0 brLeft:)) / 2) + param2)
+					(((global0._send('brRight:') - global0._send('brLeft:')) / 2) + param2)
 					temp4
 				)
 			)
 		)
-		local1 = proc999_3(temp0, proc999_2(temp1, (param1 y:)))
+		local1 = proc999_3(temp0, proc999_2(temp1, param1._send('y:')))
 	#endif
 #end:procedure
 
@@ -112,9 +112,9 @@ def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (global5 contains: param1):
+	if global5._send('contains:', param1):
 		(= temp0
-			kernel.GetDistance((param1 x:), (param1 y:), (global0 x:), (global0 y:), 60)
+			kernel.GetDistance(param1._send('x:'), param1._send('y:'), global0._send('x:'), global0._send('y:'), 60)
 		)
 	else:
 		temp0 = 500
@@ -144,7 +144,7 @@ class CastleRoom(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		scalerCode = spotEgoScr = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -152,10 +152,10 @@ class CastleRoom(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (((global103 prevSignal:) != -1) and ((global103 number:) == 710)):
-			(global103 fade:)
+		if ((global103._send('prevSignal:') != -1) and (global103._send('number:') == 710)):
+			global103._send('fade:')
 		#endif
-		(super newRoom: &rest)
+		super._send('newRoom:', &rest)
 	#end:method
 
 	@classmethod
@@ -163,12 +163,12 @@ class CastleRoom(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 stop:)
-		(global103 number: 710 loop: -1 play:)
+		global102._send('stop:')
+		global103._send('number:', 710, 'loop:', -1, 'play:')
 		if spotEgoScr:
-			(global2 setScript: spotEgoScr 0 param1)
+			global2._send('setScript:', spotEgoScr, 0, param1)
 		else:
-			(param1 setScript: guardsGetEgo &rest)
+			param1._send('setScript:', guardsGetEgo, &rest)
 		#endif
 	#end:method
 
@@ -185,13 +185,13 @@ class CastleRoom(KQ6Room):
 			)
 			match param1
 				case 85:
-					(global91 say: 0 0 199 0 0 899)
+					global91._send('say:', 0, 0, 199, 0, 0, 899)
 				#end:case
 				case 87:
-					(global91 say: 0 0 198 0 0 899)
+					global91._send('say:', 0, 0, 198, 0, 0, 899)
 				#end:case
 				case 93:
-					(global91 say: 0 0 3 0 0 899)
+					global91._send('say:', 0, 0, 3, 0, 0, 899)
 				#end:case
 			#end:match
 		else:
@@ -216,16 +216,16 @@ class GuardDog(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setScale:)
-		(super init: &rest)
-		(self
-			setCycle: StopWalk -1
-			setLoop: Grooper
-			setStep: 4 2
-			ignoreHorizon:
-			illegalBits: 0
-			ignoreActors: 1
-			signal: (| signal 0x1000)
+		self._send('setScale:')
+		super._send('init:', &rest)
+		self._send(
+			'setCycle:', StopWalk, -1,
+			'setLoop:', Grooper,
+			'setStep:', 4, 2,
+			'ignoreHorizon:',
+			'illegalBits:', 0,
+			'ignoreActors:', 1,
+			'signal:', (| signal 0x1000)
 		)
 	#end:method
 
@@ -234,21 +234,21 @@ class GuardDog(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		if 
 			(and
 				okToCheck
-				((not kernel.IsObject(okToCheck)) or (self perform: okToCheck))
+				((not kernel.IsObject(okToCheck)) or self._send('perform:', okToCheck))
 				kernel.IsObject(checkCode)
-				(self perform: checkCode)
+				self._send('perform:', checkCode)
 			)
 			checkCode = 0
-			(global1 handsOff:)
-			(self setMotion: 0)
-			(global2 spotEgo: self)
+			global1._send('handsOff:')
+			self._send('setMotion:', 0)
+			global2._send('spotEgo:', self)
 		#endif
-		if (kernel.IsObject(global2) and (global2 scalerCode:)):
-			(self perform: (global2 scalerCode:))
+		if (kernel.IsObject(global2) and global2._send('scalerCode:')):
+			self._send('perform:', global2._send('scalerCode:'))
 		#endif
 	#end:method
 
@@ -259,10 +259,10 @@ class GuardDog(Actor):
 
 		regPathID = checkCode = okToCheck = 0
 		if kernel.IsObject(scaler):
-			(scaler dispose:)
+			scaler._send('dispose:')
 		#endif
 		scaler = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -293,7 +293,7 @@ class rgCastle(Rgn):
 			case 
 				(and
 					(not global84)
-					(not ((global69 state:) & 0x0020))
+					(not (global69._send('state:') & 0x0020))
 					(lastSeconds != temp0)
 					(global11 == global13)
 					(not stopTimers)
@@ -302,28 +302,28 @@ class rgCastle(Rgn):
 				if 
 					(and
 						(loiterTimer > 0)
-						(not (global2 script:))
+						(not global2._send('script:'))
 						(loiterTimer.post('--') == 0)
 					)
-					(self doLoiter:)
+					self._send('doLoiter:')
 				#endif
 				if ((weddingRemind > 0) and (weddingRemind.post('--') == 0)):
 					if 
 						(or
 							weddingMusicCount
 							(and
-								((global6 size:) == 3)
-								(not (kernel.ScriptID(81, 0) tstFlag: 709 1))
-								(not (kernel.ScriptID(81, 0) tstFlag: 709 2))
+								(global6._send('size:') == 3)
+								(not kernel.ScriptID(81, 0)._send('tstFlag:', 709, 1))
+								(not kernel.ScriptID(81, 0)._send('tstFlag:', 709, 2))
 							)
 							1
 						)
-						if ((global102 number:) != 701):
-							(global102 fadeTo: 701 -1)
+						if (global102._send('number:') != 701):
+							global102._send('fadeTo:', 701, -1)
 						#endif
 						(rFlag1 |= 0x0002)
 						weddingMusicCount.post('++')
-						(global2 warnUser: 1)
+						global2._send('warnUser:', 1)
 					else:
 						weddingRemind = 5
 					#endif
@@ -333,12 +333,12 @@ class rgCastle(Rgn):
 						case (not (rFlag2 & 0x0001)):
 							(rFlag2 |= 0x0001)
 							if proc999_5(global11, 850, 880, 781):
-								(global2 warnUser: 2)
+								global2._send('warnUser:', 2)
 							#endif
 						#end:case
 						case (global11 == 850):
-							(global1 handsOff:)
-							(global2 spotEgo: kernel.ScriptID(80, 5))
+							global1._send('handsOff:')
+							global2._send('spotEgo:', kernel.ScriptID(80, 5))
 						#end:case
 					)
 				#endif
@@ -347,21 +347,21 @@ class rgCastle(Rgn):
 						case (not (rFlag2 & 0x0020)):
 							(rFlag2 |= 0x0020)
 							if (global11 == 870):
-								(global2 warnUser: 3 0)
+								global2._send('warnUser:', 3, 0)
 							#endif
 						#end:case
 						case (global11 == 870):
-							(global1 handsOff:)
-							(global2 warnUser: 3 1)
+							global1._send('handsOff:')
+							global2._send('warnUser:', 3, 1)
 						#end:case
 					)
 				#endif
 			#end:case
-			case ((global69 state:) & 0x0020):
+			case (global69._send('state:') & 0x0020):
 				lastSeconds = temp0
 			#end:case
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -369,13 +369,12 @@ class rgCastle(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(80, 0)
-			keep:
-				proc999_5(param1, 700, 710, 720, 730, 740, 750, 760, 770, 780, 781, 790, 800, 810, 820, 840, 850, 860, 870, 880, 180, 743)
+		kernel.ScriptID(80, 0)._send(
+			'keep:', proc999_5(param1, 700, 710, 720, 730, 740, 750, 760, 770, 780, 781, 790, 800, 810, 820, 840, 850, 860, 870, 880, 180, 743)
 		)
 		initialized = 0
 		loiterTimer = -1
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 		guard1Code = guard2Code = 0
 	#end:method
 
@@ -385,7 +384,7 @@ class rgCastle(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		loiterTimer = 0
-		(global2 doLoiter:)
+		global2._send('doLoiter:')
 	#end:method
 
 	@classmethod
@@ -393,32 +392,26 @@ class rgCastle(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: guard1):
-			(guard1 checkCode: guard1Code)
-			if (not kernel.IsObject((guard1 scaler:))):
-				(guard1
-					setScale:
-						Scaler
-						(global2 maxScaleSize:)
-						(global2 minScaleSize:)
-						(global2 maxScaleY:)
-						(global2 minScaleY:)
+		if global5._send('contains:', guard1):
+			guard1._send('checkCode:', guard1Code)
+			if (not kernel.IsObject(guard1._send('scaler:'))):
+				guard1._send(
+					'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+							'minScaleSize:'
+						), global2._send('maxScaleY:'), global2._send('minScaleY:')
 				)
-				((guard1 scaler:) doit:)
+				guard1._send('scaler:')._send('doit:')
 			#endif
 		#endif
-		if (global5 contains: guard2):
-			(guard2 checkCode: guard2Code)
-			if (not kernel.IsObject((guard2 scaler:))):
-				(guard2
-					setScale:
-						Scaler
-						(global2 maxScaleSize:)
-						(global2 minScaleSize:)
-						(global2 maxScaleY:)
-						(global2 minScaleY:)
+		if global5._send('contains:', guard2):
+			guard2._send('checkCode:', guard2Code)
+			if (not kernel.IsObject(guard2._send('scaler:'))):
+				guard2._send(
+					'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+							'minScaleSize:'
+						), global2._send('maxScaleY:'), global2._send('minScaleY:')
 				)
-				((guard2 scaler:) doit:)
+				guard2._send('scaler:')._send('doit:')
 			#endif
 		#endif
 	#end:method
@@ -433,7 +426,7 @@ class rgCastle(Rgn):
 		#endif
 		temp1 = 1
 		while (temp1 < argc): # inline for
-			(self temp0: (| (self temp0:) param1[temp1]))
+			self._send('temp0:', (| self._send('temp0:') param1[temp1]))
 			# for:reinit
 			temp1.post('++')
 		#end:loop
@@ -449,7 +442,7 @@ class rgCastle(Rgn):
 		#endif
 		temp1 = 1
 		while (temp1 < argc): # inline for
-			(self temp0: ((self temp0:) & ~param1[temp1]))
+			self._send('temp0:', (self._send('temp0:') & ~param1[temp1]))
 			# for:reinit
 			temp1.post('++')
 		#end:loop
@@ -460,7 +453,7 @@ class rgCastle(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return (1 if ((self param1:) & param2) else 0)
+		return (1 if (self._send('param1:') & param2) else 0)
 	#end:method
 
 #end:class or instance
@@ -473,9 +466,9 @@ class guardsGetEgo(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(rgCastle rFlag1: (| (rgCastle rFlag1:) 0x2000) dungeonEntered: 3)
+		rgCastle._send('rFlag1:', (| rgCastle._send('rFlag1:') 0x2000), 'dungeonEntered:', 3)
 		register = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -485,12 +478,12 @@ class guardsGetEgo(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 ignoreActors: setMotion: 0)
+				global1._send('handsOff:')
+				global0._send('ignoreActors:', 'setMotion:', 0)
 				if 
 					(and
-						(not ((global0 signal:) & 0x0800))
-						(not (global0 facingMe: client))
+						(not (global0._send('signal:') & 0x0800))
+						(not global0._send('facingMe:', client))
 					)
 					proc913_4(global0, client, self)
 				else:
@@ -502,13 +495,13 @@ class guardsGetEgo(Script):
 			#end:case
 			case 2:
 				localproc_0(client, 8, 5)
-				(client
-					setSpeed: 3
-					ignoreHorizon: 1
-					ignoreActors: 1
-					setMotion: PolyPath local0 local1 self
+				client._send(
+					'setSpeed:', 3,
+					'ignoreHorizon:', 1,
+					'ignoreActors:', 1,
+					'setMotion:', PolyPath, local0, local1, self
 				)
-				if (global2 moveOtherGuard:):
+				if global2._send('moveOtherGuard:'):
 					match client
 						case guard1:
 							temp0 = guard2
@@ -518,23 +511,23 @@ class guardsGetEgo(Script):
 						#end:case
 					#end:match
 					localproc_0(temp0, 25, 0)
-					(temp0
-						setSpeed: 3
-						ignoreHorizon: 1
-						ignoreActors: 1
-						setMotion: PolyPath local0 local1 self
+					temp0._send(
+						'setSpeed:', 3,
+						'ignoreHorizon:', 1,
+						'ignoreActors:', 1,
+						'setMotion:', PolyPath, local0, local1, self
 					)
 				#endif
 			#end:case
 			case 3:
-				if (global2 moveOtherGuard:):
+				if global2._send('moveOtherGuard:'):
 					0
 				else:
 					ticks = 1
 				#endif
 			#end:case
 			case 4:
-				if (global2 moveOtherGuard:):
+				if global2._send('moveOtherGuard:'):
 					match client
 						case guard1:
 							temp0 = guard2
@@ -545,19 +538,19 @@ class guardsGetEgo(Script):
 					#end:match
 					proc913_4(temp0, global0, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
 				if register:
-					(self dispose:)
+					self._send('dispose:')
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 6:
-				(global103 fade:)
-				(global2 newRoom: 820)
+				global103._send('fade:')
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -574,9 +567,9 @@ class guard1(GuardDog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if ((global6 size:) == 3):
-			checkCode = (kernel.ScriptID(81, 0) guard1Code:)
+		super._send('init:', &rest)
+		if (global6._send('size:') == 3):
+			checkCode = kernel.ScriptID(81, 0)._send('guard1Code:')
 		#endif
 	#end:method
 
@@ -590,11 +583,11 @@ class guard1(GuardDog):
 				temp0 = okToCheck
 				okToCheck = (>= 10 param1[0] 4)
 				if (temp0 and (param1 > 10)):
-					(global2 warnUser: 4 (regPathID currentRoom:))
+					global2._send('warnUser:', 4, regPathID._send('currentRoom:'))
 				#endif
 			#end:case
-			case ((global6 size:) == 3):
-				(kernel.ScriptID(81, 0) clrFlag: 709 1 loiterTimer: 36)
+			case (global6._send('size:') == 3):
+				kernel.ScriptID(81, 0)._send('clrFlag:', 709, 1, 'loiterTimer:', 36)
 			#end:case
 		)
 	#end:method
@@ -614,9 +607,9 @@ class guard2(GuardDog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if ((global6 size:) == 3):
-			checkCode = (kernel.ScriptID(81, 0) guard2Code:)
+		super._send('init:', &rest)
+		if (global6._send('size:') == 3):
+			checkCode = kernel.ScriptID(81, 0)._send('guard2Code:')
 		#endif
 	#end:method
 
@@ -633,15 +626,15 @@ class guard2(GuardDog):
 					(and
 						temp0
 						(not okToCheck)
-						((regPathID currentRoom:) == 840)
+						(regPathID._send('currentRoom:') == 840)
 					)
-					(global2 warnUser: 4 (regPathID currentRoom:))
+					global2._send('warnUser:', 4, regPathID._send('currentRoom:'))
 				#endif
 			#end:case
-			case ((global6 size:) == 3):
-				(kernel.ScriptID(81, 0)
-					rFlag1: ((kernel.ScriptID(81, 0) rFlag1:) & 0xfffd)
-					loiterTimer: 36
+			case (global6._send('size:') == 3):
+				kernel.ScriptID(81, 0)._send(
+					'rFlag1:', (kernel.ScriptID(81, 0)._send('rFlag1:') & 0xfffd),
+					'loiterTimer:', 36
 				)
 			#end:case
 		)

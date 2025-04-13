@@ -31,17 +31,17 @@ class tlkStepmother(Kq6Talker):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		textY = textX = 0
 		if (global90 & 0x0002):
 			x = 225
 			y = 59
-			(super init: 0 0 momsMouth &rest)
+			super._send('init:', 0, 0, momsMouth, &rest)
 		else:
 			x = 20
 			y = 16
-			(super init: &rest)
+			super._send('init:', &rest)
 		#endif
 	#end:method
 

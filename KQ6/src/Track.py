@@ -34,8 +34,8 @@ class Track(Motion):
 				#endif
 			#endif
 		#endif
-		(client ignoreActors: illegalBits: 0)
-		(self doit:)
+		client._send('ignoreActors:', 'illegalBits:', 0)
+		self._send('doit:')
 	#end:method
 
 	@classmethod
@@ -43,15 +43,15 @@ class Track(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (who heading:)
-		(client
-			heading: temp0
-			x: ((who x:) + xOffset)
-			y: ((who y:) + yOffset)
-			z: ((who z:) + zOffset)
+		temp0 = who._send('heading:')
+		client._send(
+			'heading:', temp0,
+			'x:', (who._send('x:') + xOffset),
+			'y:', (who._send('y:') + yOffset),
+			'z:', (who._send('z:') + zOffset)
 		)
-		if (client looper:):
-			((client looper:) doit: client temp0)
+		if client._send('looper:'):
+			client._send('looper:')._send('doit:', client, temp0)
 		else:
 			kernel.DirLoop(client, temp0)
 		#endif

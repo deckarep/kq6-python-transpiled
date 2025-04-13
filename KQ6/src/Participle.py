@@ -25,43 +25,43 @@ class Participle(Kq6Talker):
 
 		match global11
 			case 500:
-				(self
-					view: 479
-					loop: 5
-					x: 190
-					y: 38
-					textX: -70
-					textY: 76
-					talkWidth: 153
+				self._send(
+					'view:', 479,
+					'loop:', 5,
+					'x:', 190,
+					'y:', 38,
+					'textX:', -70,
+					'textY:', 76,
+					'talkWidth:', 153
 				)
-				(super init: 0 0 tMouth &rest)
+				super._send('init:', 0, 0, tMouth, &rest)
 			#end:case
 			case 460:
-				(self
-					view: 468
-					loop: 2
-					x: 129
-					y: 130
-					textX: 0
-					textY: 0
-					talkWidth: 150
+				self._send(
+					'view:', 468,
+					'loop:', 2,
+					'x:', 129,
+					'y:', 130,
+					'textX:', 0,
+					'textY:', 0,
+					'talkWidth:', 150
 				)
-				(tMouth view: 468 loop: 2)
-				(super init: 0 0 tMouth &rest)
+				tMouth._send('view:', 468, 'loop:', 2)
+				super._send('init:', 0, 0, tMouth, &rest)
 			#end:case
 			else:
-				(self
-					view: 970
-					loop: 5
-					cel: 0
-					x: 129
-					y: 130
-					textX: -60
-					textY: -100
-					talkWidth: 150
+				self._send(
+					'view:', 970,
+					'loop:', 5,
+					'cel:', 0,
+					'x:', 129,
+					'y:', 130,
+					'textX:', -60,
+					'textY:', -100,
+					'talkWidth:', 150
 				)
-				(tMouth view: 970 loop: 5 cel: 0)
-				(super init: 0 0 tMouth &rest)
+				tMouth._send('view:', 970, 'loop:', 5, 'cel:', 0)
+				super._send('init:', 0, 0, tMouth, &rest)
 			#end:else
 		#end:match
 	#end:method

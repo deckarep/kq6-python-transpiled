@@ -40,8 +40,8 @@ def proc481_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(kernel.ScriptID(480, 5) register: 1)
-	(global0 setScript: takeBottleAway 0 kernel.ScriptID(480, 6))
+	kernel.ScriptID(480, 5)._send('register:', 1)
+	global0._send('setScript:', takeBottleAway, 0, kernel.ScriptID(480, 6))
 #end:procedure
 
 @SCI.procedure
@@ -49,35 +49,35 @@ def proc481_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(kernel.ScriptID(480, 5) register: 1)
+	kernel.ScriptID(480, 5)._send('register:', 1)
 	if (not proc913_0(118)):
 		proc913_1(118)
-		(global1 givePoints: 2)
+		global1._send('givePoints:', 2)
 	#endif
 	match param1
 		case 1:
 			local2 = 0
 			local3 = 12
-			(kernel.ScriptID(40, 0) bottleSucker: 1)
-			(global0 setScript: giveBabyBottle 0 babyFace1)
+			kernel.ScriptID(40, 0)._send('bottleSucker:', 1)
+			global0._send('setScript:', giveBabyBottle, 0, babyFace1)
 		#end:case
 		case 2:
 			local2 = 1
 			local3 = 11
-			(kernel.ScriptID(40, 0) bottleSucker: 2)
-			(global0 setScript: giveBabyBottle 0 babyFace2)
+			kernel.ScriptID(40, 0)._send('bottleSucker:', 2)
+			global0._send('setScript:', giveBabyBottle, 0, babyFace2)
 		#end:case
 		case 3:
 			local2 = 0
 			local3 = 9
-			(kernel.ScriptID(40, 0) bottleSucker: 3)
-			(global0 setScript: giveBabyBottle 0 babyFace3)
+			kernel.ScriptID(40, 0)._send('bottleSucker:', 3)
+			global0._send('setScript:', giveBabyBottle, 0, babyFace3)
 		#end:case
 		case 4:
 			local2 = 0
 			local3 = 7
-			(kernel.ScriptID(40, 0) bottleSucker: 4)
-			(global2 setScript: giveBabyBottle 0 babyFace4)
+			kernel.ScriptID(40, 0)._send('bottleSucker:', 4)
+			global2._send('setScript:', giveBabyBottle, 0, babyFace4)
 		#end:case
 	#end:match
 #end:procedure
@@ -87,19 +87,19 @@ def proc481_3(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(kernel.ScriptID(480, 5) register: 1)
+	kernel.ScriptID(480, 5)._send('register:', 1)
 	match param1
 		case 1:
-			(global0 setScript: getBabyTears 0 babyFace1)
+			global0._send('setScript:', getBabyTears, 0, babyFace1)
 		#end:case
 		case 2:
-			(global0 setScript: getBabyTears 0 babyFace2)
+			global0._send('setScript:', getBabyTears, 0, babyFace2)
 		#end:case
 		case 3:
-			(global0 setScript: getBabyTears 0 babyFace3)
+			global0._send('setScript:', getBabyTears, 0, babyFace3)
 		#end:case
 		case 4:
-			(global0 setScript: getBabyTears 0 babyFace4)
+			global0._send('setScript:', getBabyTears, 0, babyFace4)
 		#end:case
 	#end:match
 #end:procedure
@@ -109,19 +109,19 @@ def proc481_6():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(cryMusic stop: dispose:)
-	(suckMusic stop: dispose:)
-	if (global5 contains: babyFace1):
-		(babyFace1 setCycle: 0 dispose: delete:)
+	cryMusic._send('stop:', 'dispose:')
+	suckMusic._send('stop:', 'dispose:')
+	if global5._send('contains:', babyFace1):
+		babyFace1._send('setCycle:', 0, 'dispose:', 'delete:')
 	#endif
-	if (global5 contains: babyFace2):
-		(babyFace2 setCycle: 0 dispose: delete:)
+	if global5._send('contains:', babyFace2):
+		babyFace2._send('setCycle:', 0, 'dispose:', 'delete:')
 	#endif
-	if (global5 contains: babyFace3):
-		(babyFace3 setCycle: 0 dispose: delete:)
+	if global5._send('contains:', babyFace3):
+		babyFace3._send('setCycle:', 0, 'dispose:', 'delete:')
 	#endif
-	if (global5 contains: babyFace4):
-		(babyFace4 setCycle: 0 dispose: delete:)
+	if global5._send('contains:', babyFace4):
+		babyFace4._send('setCycle:', 0, 'dispose:', 'delete:')
 	#endif
 	kernel.DisposeScript(481)
 #end:procedure
@@ -131,20 +131,20 @@ def proc481_7():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if ((babyFace1 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
-		(babyFace1 init: setCycle: Fwd)
+	if (babyFace1._send('bottleNum:') != kernel.ScriptID(40, 0)._send('bottleSucker:')):
+		babyFace1._send('init:', 'setCycle:', Fwd)
 	#endif
-	if ((babyFace2 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
-		(babyFace2 init: setCycle: Fwd)
+	if (babyFace2._send('bottleNum:') != kernel.ScriptID(40, 0)._send('bottleSucker:')):
+		babyFace2._send('init:', 'setCycle:', Fwd)
 	#endif
-	if ((babyFace3 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
-		(babyFace3 init: setCycle: Fwd)
+	if (babyFace3._send('bottleNum:') != kernel.ScriptID(40, 0)._send('bottleSucker:')):
+		babyFace3._send('init:', 'setCycle:', Fwd)
 	#endif
-	if ((babyFace4 bottleNum:) != (kernel.ScriptID(40, 0) bottleSucker:)):
-		(babyFace4 init: setCycle: Fwd)
+	if (babyFace4._send('bottleNum:') != kernel.ScriptID(40, 0)._send('bottleSucker:')):
+		babyFace4._send('init:', 'setCycle:', Fwd)
 	#endif
-	(cryMusic setLoop: -1 play:)
-	(suckMusic setLoop: -1 play:)
+	cryMusic._send('setLoop:', -1, 'play:')
+	suckMusic._send('setLoop:', -1, 'play:')
 #end:procedure
 
 class CryBaby(Prop):
@@ -160,9 +160,9 @@ class CryBaby(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(cryMusic stop: dispose:)
-		(suckMusic stop: dispose:)
-		(super dispose:)
+		cryMusic._send('stop:', 'dispose:')
+		suckMusic._send('stop:', 'dispose:')
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -171,32 +171,32 @@ class CryBaby(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 57, 58, 59, 60, 96):
-			if ((kernel.ScriptID(40, 0) bottleSucker:) == (self bottleNum:)):
-				(global91 say: 9 56 17 0 0 480)
+			if (kernel.ScriptID(40, 0)._send('bottleSucker:') == self._send('bottleNum:')):
+				global91._send('say:', 9, 56, 17, 0, 0, 480)
 			else:
-				(global91 say: 9 56 (kernel.ScriptID(40, 0) lampMsg:) 0 0 480)
+				global91._send('say:', 9, 56, kernel.ScriptID(40, 0)._send('lampMsg:'), 0, 0, 480)
 			#endif
 		else:
 			match param1
 				case 14:
-					(global91 say: 9 14 0 1 0 480)
+					global91._send('say:', 9, 14, 0, 1, 0, 480)
 				#end:case
 				case 5:
 					(cond
 						case 
 							(==
-								(kernel.ScriptID(40, 0) bottleSucker:)
-								(self bottleNum:)
+								kernel.ScriptID(40, 0)._send('bottleSucker:')
+								self._send('bottleNum:')
 							):
-							(global2
-								setScript: takeBottleAway 0 kernel.ScriptID(480, 6)
+							global2._send(
+								'setScript:', takeBottleAway, 0, kernel.ScriptID(480, 6)
 							)
 						#end:case
-						case ((kernel.ScriptID(40, 0) lampMsg:) == 15):
-							(global91 say: 9 5 15 1 0 480)
+						case (kernel.ScriptID(40, 0)._send('lampMsg:') == 15):
+							global91._send('say:', 9, 5, 15, 1, 0, 480)
 						#end:case
 						else:
-							(global91 say: 9 5 18 1 0 480)
+							global91._send('say:', 9, 5, 18, 1, 0, 480)
 						#end:else
 					)
 				#end:case
@@ -204,71 +204,71 @@ class CryBaby(Prop):
 					(cond
 						case 
 							(==
-								(kernel.ScriptID(40, 0) bottleSucker:)
-								(self bottleNum:)
+								kernel.ScriptID(40, 0)._send('bottleSucker:')
+								self._send('bottleNum:')
 							):
-							(global91 say: 9 43 17 1 0 480)
+							global91._send('say:', 9, 43, 17, 1, 0, 480)
 						#end:case
 						case (not proc913_0(77)):
-							(global91 say: 9 43 21 1 0 480)
+							global91._send('say:', 9, 43, 21, 1, 0, 480)
 						#end:case
 						case ((global161 & 0x0004) or proc913_0(144)):
-							(global91 say: 9 43 20 1 0 480)
+							global91._send('say:', 9, 43, 20, 1, 0, 480)
 						#end:case
 						case (global161 & 0x0001):
-							(global91 say: 9 43 13 1 0 480)
+							global91._send('say:', 9, 43, 13, 1, 0, 480)
 						#end:case
 						case (global161 & 0x0002):
-							(global2 setScript: getBabyTears 0 self)
+							global2._send('setScript:', getBabyTears, 0, self)
 						#end:case
-						case ((kernel.ScriptID(40, 0) lampMsg:) == 15):
-							(global91 say: 9 43 15 1 0 480)
+						case (kernel.ScriptID(40, 0)._send('lampMsg:') == 15):
+							global91._send('say:', 9, 43, 15, 1, 0, 480)
 						#end:case
 						else:
-							(global2 setScript: getBabyTears 0 self)
+							global2._send('setScript:', getBabyTears, 0, self)
 						#end:else
 					)
 				#end:case
 				case 1:
-					if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
-						(global91 say: 9 1 (kernel.ScriptID(40, 0) lampMsg:) 1 0 480)
+					if (kernel.ScriptID(40, 0)._send('lampMsg:') == 15):
+						global91._send('say:', 9, 1, kernel.ScriptID(40, 0)._send('lampMsg:'), 1, 0, 480)
 					else:
-						(global91 say: 9 1 16 1 0 480)
+						global91._send('say:', 9, 1, 16, 1, 0, 480)
 					#endif
 				#end:case
 				case 2:
-					if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
-						(global91 say: 9 2 (kernel.ScriptID(40, 0) lampMsg:) 0 0 480)
+					if (kernel.ScriptID(40, 0)._send('lampMsg:') == 15):
+						global91._send('say:', 9, 2, kernel.ScriptID(40, 0)._send('lampMsg:'), 0, 0, 480)
 					else:
-						(global91 say: 9 2 16 1 0 480)
+						global91._send('say:', 9, 2, 16, 1, 0, 480)
 					#endif
 				#end:case
 				case 44:
 					(cond
 						case 
 							(==
-								(kernel.ScriptID(40, 0) bottleSucker:)
-								(self bottleNum:)
+								kernel.ScriptID(40, 0)._send('bottleSucker:')
+								self._send('bottleNum:')
 							):
-							(global91 say: 9 44 17 1 0 480)
+							global91._send('say:', 9, 44, 17, 1, 0, 480)
 						#end:case
 						case (not proc913_0(77)):
-							(global91 say: 9 44 21 1 0 480)
+							global91._send('say:', 9, 44, 21, 1, 0, 480)
 						#end:case
 						else:
-							(global91 say: 9 44 22 1 0 480)
+							global91._send('say:', 9, 44, 22, 1, 0, 480)
 						#end:else
 					)
 				#end:case
 				case 24:
-					if ((kernel.ScriptID(40, 0) lampMsg:) == 15):
-						(global91 say: 9 24 15 1 0 480)
+					if (kernel.ScriptID(40, 0)._send('lampMsg:') == 15):
+						global91._send('say:', 9, 24, 15, 1, 0, 480)
 					else:
-						(global91 say: 9 24 16 1 0 480)
+						global91._send('say:', 9, 24, 16, 1, 0, 480)
 					#endif
 				#end:case
 				else:
-					(self setScript: inventOnBaby 0 self)
+					self._send('setScript:', inventOnBaby, 0, self)
 				#end:else
 			#end:match
 		#endif
@@ -286,32 +286,30 @@ class inventOnBaby(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setMotion:
-						PolyPath
-						(register walkToX:)
-						(register walkToY:)
-						self
+				global1._send('handsOff:')
+				global0._send(
+					'setMotion:', PolyPath, register._send('walkToX:'), register._send(
+							'walkToY:'
+						), self
 				)
 			#end:case
 			case 1:
 				(= temp0
-					kernel.GetAngle((global0 x:), (global0 y:), (register x:), (register
-						y:
-					))
+					kernel.GetAngle(global0._send('x:'), global0._send('y:'), register._send(
+						'x:'
+					), register._send('y:'))
 				)
-				(global0 setHeading: temp0 self)
+				global0._send('setHeading:', temp0, self)
 			#end:case
 			case 2:
 				cycles = 6
 			#end:case
 			case 3:
-				(global91 say: 9 0 16 0 self 480)
+				global91._send('say:', 9, 0, 16, 0, self, 480)
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -405,9 +403,9 @@ class cryMusic(Kq6Sound):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (local0 and kernel.DoAudio(4) and (kernel.DoAudio(6) == -1) and (not global84)):
-			(self play:)
+			self._send('play:')
 		#endif
-		(super check:)
+		super._send('check:')
 	#end:method
 
 	@classmethod
@@ -416,7 +414,7 @@ class cryMusic(Kq6Sound):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local0 = 0
-		(super stop:)
+		super._send('stop:')
 	#end:method
 
 	@classmethod
@@ -425,7 +423,7 @@ class cryMusic(Kq6Sound):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local0 = 1
-		(super play:)
+		super._send('play:')
 	#end:method
 
 #end:class or instance
@@ -448,88 +446,86 @@ class giveBabyBottle(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if (register != babyFace2):
 					proc913_1(59)
 				#endif
-				(global0
-					setMotion:
-						PolyPath
-						(register walkToX:)
-						(register walkToY:)
-						self
+				global0._send(
+					'setMotion:', PolyPath, register._send('walkToX:'), register._send(
+							'walkToY:'
+						), self
 				)
 			#end:case
 			case 1:
-				(global0
-					view: 4811
-					setLoop: 1
-					cel: 0
-					posn: (register stoopX:) (register stoopY:)
-					normal: 0
-					cycleSpeed: 12
-					setCycle: End self
+				global0._send(
+					'view:', 4811,
+					'setLoop:', 1,
+					'cel:', 0,
+					'posn:', register._send('stoopX:'), register._send('stoopY:'),
+					'normal:', 0,
+					'cycleSpeed:', 12,
+					'setCycle:', End, self
 				)
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 9 62 0 1 self 480)
+				global91._send('say:', 9, 62, 0, 1, self, 480)
 			#end:case
 			case 3:
-				(cryMusic setLoop: -1 play:)
-				(suckMusic setLoop: -1 play:)
-				(kernel.ScriptID(480, 6)
-					setLoop:
-						if ((register == babyFace1) or (register == babyFace2)):
+				cryMusic._send('setLoop:', -1, 'play:')
+				suckMusic._send('setLoop:', -1, 'play:')
+				kernel.ScriptID(480, 6)._send(
+					'setLoop:', if 
+							((register == babyFace1) or (register == babyFace2))
 							1
 						else:
 							0
-						#endif
-					x: ((global0 x:) - 24)
-					y: ((global0 y:) - 10)
-					z: 5
-					setPri: local3
-					init:
+						#endif,
+					'x:', (global0._send('x:') - 24),
+					'y:', (global0._send('y:') - 10),
+					'z:', 5,
+					'setPri:', local3,
+					'init:'
 				)
 				if proc913_0(77):
-					(kernel.ScriptID(40, 0) lampMsg: 22)
+					kernel.ScriptID(40, 0)._send('lampMsg:', 22)
 				else:
-					(kernel.ScriptID(40, 0) lampMsg: 21)
+					kernel.ScriptID(40, 0)._send('lampMsg:', 21)
 				#endif
 				if (register != babyFace1):
-					(babyFace1 init: setCycle: Fwd)
+					babyFace1._send('init:', 'setCycle:', Fwd)
 				#endif
 				if (register != babyFace2):
-					(babyFace2 init: setCycle: Fwd)
+					babyFace2._send('init:', 'setCycle:', Fwd)
 				#endif
 				if (register != babyFace3):
-					(babyFace3 init: setCycle: Fwd)
+					babyFace3._send('init:', 'setCycle:', Fwd)
 				#endif
 				if (register != babyFace4):
-					(babyFace4 init: setCycle: Fwd)
+					babyFace4._send('init:', 'setCycle:', Fwd)
 				#endif
-				(global0 setLoop: 3 cycleSpeed: 3 setCycle: Beg self)
+				global0._send('setLoop:', 3, 'cycleSpeed:', 3, 'setCycle:', Beg, self)
 				kernel.UnLoad(128, 4811)
 			#end:case
 			case 4:
-				(global0 posn: (register walkToX:) (register walkToY:) reset: 1)
+				global0._send('posn:', register._send('walkToX:'), register._send('walkToY:'), 'reset:', 1)
 				ticks = 8
 			#end:case
 			case 5:
-				(global91 say: 9 62 0 2 self 480)
+				global91._send('say:', 9, 62, 0, 2, self, 480)
 			#end:case
 			case 6:
-				(global0 setMotion: PolyPath 135 170 self)
+				global0._send('setMotion:', PolyPath, 135, 170, self)
 			#end:case
 			case 7:
-				(global91 say: 9 62 0 3 self 480)
+				global91._send('say:', 9, 62, 0, 3, self, 480)
 			#end:case
 			case 8:
-				(cryMusic setLoop: -1 play:)
-				(global1 handsOn:)
+				cryMusic._send('setLoop:', -1, 'play:')
+				global1._send('handsOn:')
 				proc913_2(59)
-				(register hide:)
-				(self dispose:)
+				register._send('hide:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -546,24 +542,22 @@ class getBabyTears(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setMotion:
-						PolyPath
-						(register walkToX:)
-						(register walkToY:)
-						self
+				global1._send('handsOff:')
+				global0._send(
+					'setMotion:', PolyPath, register._send('walkToX:'), register._send(
+							'walkToY:'
+						), self
 				)
 			#end:case
 			case 1:
-				(global0
-					view: 4811
-					setLoop: 0
-					cel: 0
-					posn: (register stoopX:) (register stoopY:)
-					normal: 0
-					cycleSpeed: 6
-					setCycle: End self
+				global0._send(
+					'view:', 4811,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', register._send('stoopX:'), register._send('stoopY:'),
+					'normal:', 0,
+					'cycleSpeed:', 6,
+					'setCycle:', End, self
 				)
 				kernel.UnLoad(128, 900)
 			#end:case
@@ -571,28 +565,28 @@ class getBabyTears(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
 				(global161 |= 0x0004)
-				(global1 givePoints: 1)
-				(global0 reset: 1 posn: (register walkToX:) (register walkToY:))
+				global1._send('givePoints:', 1)
+				global0._send('reset:', 1, 'posn:', register._send('walkToX:'), register._send('walkToY:'))
 				kernel.UnLoad(128, 4811)
 				ticks = 8
 			#end:case
 			case 5:
 				if (global161 & 0x0002):
-					(global91 say: 9 43 14 1 self 480)
+					global91._send('say:', 9, 43, 14, 1, self, 480)
 				else:
-					(global91 say: 9 43 19 1 self 480)
+					global91._send('say:', 9, 43, 19, 1, self, 480)
 				#endif
 			#end:case
 			case 6:
-				(global0 setMotion: PolyPath 135 170 self)
+				global0._send('setMotion:', PolyPath, 135, 170, self)
 			#end:case
 			case 7:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -609,61 +603,61 @@ class takeBottleAway(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setMotion:
-						PolyPath
-						((kernel.ScriptID(480, 6) x:) + 45)
-						((kernel.ScriptID(480, 6) y:) + 1)
-						self
+				global1._send('handsOff:')
+				global0._send(
+					'setMotion:', PolyPath, (kernel.ScriptID(480, 6)._send('x:') + 45), (+
+							kernel.ScriptID(480, 6)._send('y:')
+							1
+						), self
 				)
 			#end:case
 			case 1:
-				(global0
-					view: 4811
-					setLoop: 3
-					setPri:
-						if local2:
+				global0._send(
+					'view:', 4811,
+					'setLoop:', 3,
+					'setPri:', if local2:
 							-1
 						else:
-							((kernel.ScriptID(480, 6) priority:) + 1)
-						#endif
-					cel: 0
-					posn:
-						((kernel.ScriptID(480, 6) x:) + 21)
-						((kernel.ScriptID(480, 6) y:) + 6)
-					normal: 0
-					cycleSpeed: 12
-					setCycle: End self
+							(kernel.ScriptID(480, 6)._send('priority:') + 1)
+						#endif,
+					'cel:', 0,
+					'posn:', (kernel.ScriptID(480, 6)._send('x:') + 21), (+
+							kernel.ScriptID(480, 6)._send('y:')
+							6
+						),
+					'normal:', 0,
+					'cycleSpeed:', 12,
+					'setCycle:', End, self
 				)
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 9 5 17 1 self 480)
+				global91._send('say:', 9, 5, 17, 1, self, 480)
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				if ((kernel.ScriptID(40, 0) bottleSucker:) == 3):
+				if (kernel.ScriptID(40, 0)._send('bottleSucker:') == 3):
 					temp0 = 10
 				else:
 					temp0 = 1
 				#endif
-				(global0
-					reset: 1
-					setPri: 15
-					posn:
-						((kernel.ScriptID(480, 6) x:) + 45)
-						((kernel.ScriptID(480, 6) y:) + temp0)
-					setMotion: PolyPath 135 170 self
+				global0._send(
+					'reset:', 1,
+					'setPri:', 15,
+					'posn:', (kernel.ScriptID(480, 6)._send('x:') + 45), (+
+							kernel.ScriptID(480, 6)._send('y:')
+							temp0
+						),
+					'setMotion:', PolyPath, 135, 170, self
 				)
 				kernel.UnLoad(128, 4811)
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(global0 setPri: -1)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('setPri:', -1)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

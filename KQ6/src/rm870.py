@@ -47,78 +47,57 @@ class rm870(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Load(128, 723)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						-10
-						319
-						-10
-						319
-						140
-						298
-						140
-						288
-						143
-						219
-						143
-						202
-						140
-						90
-						140
-						80
-						144
-						0
-						144
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, -10, 319, -10, 319, 140, 298, 140, 288, 143, 219, 143, 202, 140, 90, 140, 80, 144, 0, 144,
+					'yourself:'
 				)
 		)
-		(global32 add: roomStuff cassima_door horse bench eachElementDo: #init)
+		global32._send('add:', roomStuff, cassima_door, horse, bench, 'eachElementDo:', #init)
 		spotEgoScr = walkGuardOn
-		(super init: &rest)
-		(global0
-			init:
-			setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
+		super._send('init:', &rest)
+		global0._send(
+			'init:',
+			'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY
 		)
 		match global12
 			case 860:
-				(global0 posn: 305 168)
+				global0._send('posn:', 305, 168)
 			#end:case
 			else:
-				(global0 posn: 13 167)
+				global0._send('posn:', 13, 167)
 				(cond
-					case (not (kernel.ScriptID(80, 0) tstFlag: 710 64)):
-						(self setScript: firstTime)
+					case (not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 64)):
+						self._send('setScript:', firstTime)
 					#end:case
-					case (not (kernel.ScriptID(80, 0) tstFlag: 710 32)):
-						(self setScript: stillCrying)
+					case (not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 32)):
+						self._send('setScript:', stillCrying)
 					#end:case
 					case 
 						(and
-							(not (kernel.ScriptID(80, 0) tstFlag: 711 256))
+							(not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 256))
 							kernel.Random(0, 1)
 						):
-						(global2 spotEgo: kernel.ScriptID(80, 5))
+						global2._send('spotEgo:', kernel.ScriptID(80, 5))
 					#end:case
 					else:
-						(kernel.ScriptID(80, 0) guard2Timer: 15)
+						kernel.ScriptID(80, 0)._send('guard2Timer:', 15)
 					#end:else
 				)
 			#end:else
 		#end:match
-		((global0 scaler:) doit:)
+		global0._send('scaler:')._send('doit:')
 		if (not script):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
 		if 
 			(and
-				((global103 number:) != 710)
-				(kernel.ScriptID(80, 0) tstFlag: 710 4)
-				(not (kernel.ScriptID(80, 0) tstFlag: 710 8))
+				(global103._send('number:') != 710)
+				kernel.ScriptID(80, 0)._send('tstFlag:', 710, 4)
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 8))
 			)
-			(global102 fadeTo: 703 -1)
+			global102._send('fadeTo:', 703, -1)
 		#endif
 	#end:method
 
@@ -127,10 +106,10 @@ class rm870(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (temp0 = (global0 onControl: 1) & 0x6000):
-			(global2 newRoom: east)
+		if (temp0 = global0._send('onControl:', 1) & 0x6000):
+			global2._send('newRoom:', east)
 		#endif
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -141,13 +120,13 @@ class rm870(CastleRoom):
 		match param1
 			case 3:
 				if ((argc > 1) and param2):
-					(global2 spotEgo: kernel.ScriptID(80, 5))
+					global2._send('spotEgo:', kernel.ScriptID(80, 5))
 				else:
-					(self setScript: warnAboutGuard)
+					self._send('setScript:', warnAboutGuard)
 				#endif
 			#end:case
 			else:
-				(super warnUser: param1 &rest)
+				super._send('warnUser:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -164,16 +143,16 @@ class firstTime(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 0) setFlag: 710 64)
+				kernel.ScriptID(80, 0)._send('setFlag:', 710, 64)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 0 self)
+				global91._send('say:', 1, 0, 1, 0, self)
 			#end:case
 			case 2:
-				(kernel.ScriptID(80, 0) guard2Timer: 31)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(80, 0)._send('guard2Timer:', 31)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -190,18 +169,18 @@ class stillCrying(Script):
 
 		match state = param1
 			case 0:
-				register = (kernel.ScriptID(80, 0) guard2Timer:)
-				(kernel.ScriptID(80, 0) guard2Timer: 0)
+				register = kernel.ScriptID(80, 0)._send('guard2Timer:')
+				kernel.ScriptID(80, 0)._send('guard2Timer:', 0)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 6 0 self)
+				global91._send('say:', 1, 0, 6, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(kernel.ScriptID(80, 0) guard2Timer: (register + 1))
+				global1._send('handsOn:')
+				kernel.ScriptID(80, 0)._send('guard2Timer:', (register + 1))
 				register = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -217,11 +196,11 @@ class bendOverToDoor(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((client == global2) and (not next)):
-			(kernel.ScriptID(80, 0) guardTimer: local0 guard2Timer: local1)
+			kernel.ScriptID(80, 0)._send('guardTimer:', local0, 'guard2Timer:', local1)
 			local0 = local1 = 0
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -231,43 +210,40 @@ class bendOverToDoor(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if (not local1):
-					local0 = (kernel.ScriptID(80, 0) guardTimer:)
-					local1 = (kernel.ScriptID(80, 0) guard2Timer:)
+					local0 = kernel.ScriptID(80, 0)._send('guardTimer:')
+					local1 = kernel.ScriptID(80, 0)._send('guard2Timer:')
 				#endif
-				(kernel.ScriptID(80, 0) guardTimer: 0 guard2Timer: 0)
-				(global0
-					view: 723
-					normal: 0
-					loop: 0
-					cel: 0
-					posn: 32 154
-					setScale: 0
-					scaler: 0
-					cycleSpeed: 9
-					setCycle: End self
+				kernel.ScriptID(80, 0)._send('guardTimer:', 0, 'guard2Timer:', 0)
+				global0._send(
+					'view:', 723,
+					'normal:', 0,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', 32, 154,
+					'setScale:', 0,
+					'scaler:', 0,
+					'cycleSpeed:', 9,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
-				(global0
-					reset: 3
-					posn: (cassima_door approachX:) (cassima_door approachY:)
-					setScale:
-						Scaler
-						(global2 maxScaleSize:)
-						(global2 minScaleSize:)
-						(global2 maxScaleY:)
-						(global2 minScaleY:)
+				global0._send(
+					'reset:', 3,
+					'posn:', cassima_door._send('approachX:'), cassima_door._send('approachY:'),
+					'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+							'minScaleSize:'
+						), global2._send('maxScaleY:'), global2._send('minScaleY:')
 				)
-				((global0 scaler:) doit:)
+				global0._send('scaler:')._send('doit:')
 				cycles = 2
 			#end:case
 			case 2:
 				if next:
-					(next next: self)
+					next._send('next:', self)
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -284,16 +260,16 @@ class giveDagger(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 6 8 11 0 self)
-				(global1 givePoints: 3)
-				(global0 put: 8 870)
+				global91._send('say:', 6, 8, 11, 0, self)
+				global1._send('givePoints:', 3)
+				global0._send('put:', 8, 870)
 				next = 0
 			#end:case
 			case 1:
-				(global1 handsOn:)
-				(kernel.ScriptID(80, 0) guardTimer: local0 guard2Timer: local1)
+				global1._send('handsOn:')
+				kernel.ScriptID(80, 0)._send('guardTimer:', local0, 'guard2Timer:', local1)
 				local0 = local1 = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -310,19 +286,19 @@ class showLetter(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 6 61 12 1 self)
+				global91._send('say:', 6, 61, 12, 1, self)
 			#end:case
 			case 1:
-				(global91 say: 6 61 12 2 self)
+				global91._send('say:', 6, 61, 12, 2, self)
 			#end:case
 			case 2:
 				seconds = 6
 			#end:case
 			case 3:
-				(global91 say: 6 61 12 3 self oneOnly: 0)
+				global91._send('say:', 6, 61, 12, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -339,68 +315,60 @@ class walkGuardOn(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global105 number: 702 loop: 1 play:)
-				(kernel.ScriptID(80, 5)
-					init:
-					loop: 3
-					setScale:
-						Scaler
-						(global2 maxScaleSize:)
-						(global2 minScaleSize:)
-						(global2 maxScaleY:)
-						(global2 minScaleY:)
-					posn: 336 172
-					setMotion: MoveTo 314 150 self
+				global1._send('handsOff:')
+				global105._send('number:', 702, 'loop:', 1, 'play:')
+				kernel.ScriptID(80, 5)._send(
+					'init:',
+					'loop:', 3,
+					'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+							'minScaleSize:'
+						), global2._send('maxScaleY:'), global2._send('minScaleY:'),
+					'posn:', 336, 172,
+					'setMotion:', MoveTo, 314, 150, self
 				)
 			#end:case
 			case 1:
 				proc913_4(register, global0, self)
 			#end:case
 			case 2:
-				(global91 say: 1 0 3 1 self)
+				global91._send('say:', 1, 0, 3, 1, self)
 			#end:case
 			case 3:
-				(global91 say: 1 0 3 2 self)
+				global91._send('say:', 1, 0, 3, 2, self)
 			#end:case
 			case 4:
-				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
+				kernel.ScriptID(80, 5)._send('setScript:', kernel.ScriptID(80, 4), self, 1)
 			#end:case
 			case 5:
-				(global91 say: 1 0 3 3 self)
+				global91._send('say:', 1, 0, 3, 3, self)
 			#end:case
 			case 6:
-				temp0 = proc999_3(160, proc999_2(185, (kernel.ScriptID(80, 5) y:)))
-				(kernel.ScriptID(80, 6)
-					init:
-					setScale:
-						Scaler
-						(global2 maxScaleSize:)
-						(global2 minScaleSize:)
-						(global2 maxScaleY:)
-						(global2 minScaleY:)
-					posn: 336 172
-					setSpeed: (kernel.ScriptID(80, 5) cycleSpeed:)
-					setMotion: MoveTo 300 temp0 self
+				temp0 = proc999_3(160, proc999_2(185, kernel.ScriptID(80, 5)._send('y:')))
+				kernel.ScriptID(80, 6)._send(
+					'init:',
+					'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+							'minScaleSize:'
+						), global2._send('maxScaleY:'), global2._send('minScaleY:'),
+					'posn:', 336, 172,
+					'setSpeed:', kernel.ScriptID(80, 5)._send('cycleSpeed:'),
+					'setMotion:', MoveTo, 300, temp0, self
 				)
 			#end:case
 			case 7:
-				(kernel.ScriptID(80, 6)
-					setMotion:
-						PolyPath
-						((kernel.ScriptID(80, 5) x:) + 10)
-						(global0 y:)
-						self
+				kernel.ScriptID(80, 6)._send(
+					'setMotion:', PolyPath, (kernel.ScriptID(80, 5)._send('x:') + 10), global0._send(
+							'y:'
+						), self
 				)
 			#end:case
 			case 8:
-				(global91 say: 1 0 3 4 self oneOnly: 0)
+				global91._send('say:', 1, 0, 3, 4, self, 'oneOnly:', 0)
 			#end:case
 			case 9:
 				cycles = 2
 			#end:case
 			case 10:
-				(global2 newRoom: 820)
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -417,11 +385,11 @@ class warnAboutGuard(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 1 0 2 0 self)
+				global91._send('say:', 1, 0, 2, 0, self)
 			#end:case
 			case 1:
-				(kernel.ScriptID(80, 0) guard2Timer: 6)
-				(self dispose:)
+				kernel.ScriptID(80, 0)._send('guard2Timer:', 6)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -448,8 +416,8 @@ class cassima_door(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 8 2)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 8, 2)
 	#end:method
 
 	@classmethod
@@ -458,85 +426,85 @@ class cassima_door(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 1):
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		else:
 			match param1
 				case 2:
-					if (kernel.ScriptID(80, 0) tstFlag: 710 4):
-						if (((global9 at: 8) owner:) == 870):
-							(global91 say: noun param1 15)
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 4):
+						if (global9._send('at:', 8)._send('owner:') == 870):
+							global91._send('say:', noun, param1, 15)
 						else:
-							(global91 say: noun param1 9)
+							global91._send('say:', noun, param1, 9)
 						#endif
 					else:
-						(global1 givePoints: 1)
-						(global102 fadeTo: 703 -1)
-						(roomConv
-							add: -1 noun param1 7 1
-							add: -1 noun param1 7 2
-							add: -1 noun param1 7 3
+						global1._send('givePoints:', 1)
+						global102._send('fadeTo:', 703, -1)
+						roomConv._send(
+							'add:', -1, noun, param1, 7, 1,
+							'add:', -1, noun, param1, 7, 2,
+							'add:', -1, noun, param1, 7, 3
 						)
-						if (not proc999_5(((global9 at: 39) owner:), 140, 210)):
-							(roomConv
-								add: -1 noun param1 7 4
-								add: -1 noun param1 7 5
-								add: -1 noun param1 7 6
+						if (not proc999_5(global9._send('at:', 39)._send('owner:'), 140, 210)):
+							roomConv._send(
+								'add:', -1, noun, param1, 7, 4,
+								'add:', -1, noun, param1, 7, 5,
+								'add:', -1, noun, param1, 7, 6
 							)
 						else:
-							(roomConv
-								add: -1 noun param1 8 1
-								add: -1 noun param1 8 2
-								add: -1 noun param1 8 3
+							roomConv._send(
+								'add:', -1, noun, param1, 8, 1,
+								'add:', -1, noun, param1, 8, 2,
+								'add:', -1, noun, param1, 8, 3
 							)
 						#endif
-						(roomConv
-							add: -1 noun param1 7 7
-							add: -1 noun param1 7 8
-							add: -1 noun param1 7 9
-							add: -1 noun param1 7 10
-							add: -1 noun param1 7 11
-							add: -1 noun param1 7 12
-							add: -1 noun param1 7 13
-							add: -1 noun param1 7 14
-							init:
+						roomConv._send(
+							'add:', -1, noun, param1, 7, 7,
+							'add:', -1, noun, param1, 7, 8,
+							'add:', -1, noun, param1, 7, 9,
+							'add:', -1, noun, param1, 7, 10,
+							'add:', -1, noun, param1, 7, 11,
+							'add:', -1, noun, param1, 7, 12,
+							'add:', -1, noun, param1, 7, 13,
+							'add:', -1, noun, param1, 7, 14,
+							'init:'
 						)
 					#endif
-					(kernel.ScriptID(80, 0) setFlag: 710 4)
+					kernel.ScriptID(80, 0)._send('setFlag:', 710, 4)
 				#end:case
 				case 8:
-					if (kernel.ScriptID(80, 0) tstFlag: 710 4):
-						(bendOverToDoor next: giveDagger)
-						(global2 setScript: bendOverToDoor)
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 4):
+						bendOverToDoor._send('next:', giveDagger)
+						global2._send('setScript:', bendOverToDoor)
 					else:
-						(global91 say: noun 0 10 0)
+						global91._send('say:', noun, 0, 10, 0)
 					#endif
 				#end:case
 				case 64:
-					(global91 say: noun param1)
+					global91._send('say:', noun, param1)
 				#end:case
 				case 16:
-					(global91 say: noun param1)
+					global91._send('say:', noun, param1)
 				#end:case
 				case 61:
 					(cond
-						case (kernel.ScriptID(80, 0) tstFlag: 710 8):
-							(global91 say: noun param1 14)
+						case kernel.ScriptID(80, 0)._send('tstFlag:', 710, 8):
+							global91._send('say:', noun, param1, 14)
 						#end:case
-						case (kernel.ScriptID(80, 0) tstFlag: 710 4):
-							(kernel.ScriptID(80, 0) setFlag: 710 8)
-							(bendOverToDoor next: showLetter)
-							(global2 setScript: bendOverToDoor)
+						case kernel.ScriptID(80, 0)._send('tstFlag:', 710, 4):
+							kernel.ScriptID(80, 0)._send('setFlag:', 710, 8)
+							bendOverToDoor._send('next:', showLetter)
+							global2._send('setScript:', bendOverToDoor)
 						#end:case
 						else:
-							(global91 say: noun 0 10 0)
+							global91._send('say:', noun, 0, 10, 0)
 						#end:else
 					)
 				#end:case
 				else:
-					if (kernel.ScriptID(80, 0) tstFlag: 710 4):
-						(global91 say: noun 0 11 0)
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 4):
+						global91._send('say:', noun, 0, 11, 0)
 					else:
-						(global91 say: noun 0 10 0)
+						global91._send('say:', noun, 0, 10, 0)
 					#endif
 				#end:else
 			#end:match
@@ -571,7 +539,7 @@ class roomStuff(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		sightAngle = 26505
 	#end:method
 
@@ -580,11 +548,11 @@ class roomStuff(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
+		temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
 		(return
 			(or
 				((0x2002 & temp0) and noun = 9)
-				((<= 0 (param1 y:) 137) and noun = 10)
+				((<= 0 param1._send('y:') 137) and noun = 10)
 			)
 		)
 	#end:method

@@ -50,118 +50,67 @@ class rm640(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						189
-						0
-						-10
-						319
-						-10
-						319
-						189
-						227
-						189
-						191
-						160
-						181
-						142
-						149
-						120
-						156
-						108
-						140
-						98
-						148
-						91
-						142
-						86
-						142
-						42
-						135
-						42
-						135
-						87
-						119
-						95
-						119
-						99
-						135
-						107
-						121
-						117
-						122
-						126
-						132
-						139
-						142
-						150
-						142
-						175
-						27
-						175
-						49
-						189
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 189, 0, -10, 319, -10, 319, 189, 227, 189, 191, 160, 181, 142, 149, 120, 156, 108, 140, 98, 148, 91, 142, 86, 142, 42, 135, 42, 135, 87, 119, 95, 119, 99, 135, 107, 121, 117, 122, 126, 132, 139, 142, 150, 142, 175, 27, 175, 49, 189,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		kernel.Lock(143, modNum, 0)
-		(global69 enable:)
-		(global1 handsOff:)
-		(global0 init: reset: 3 setScale: Scaler 100 70 200 70)
-		(doorMaster
-			init:
-			signal: (| (doorMaster signal:) 0x1000)
-			approachVerbs: 2 0
+		global69._send('enable:')
+		global1._send('handsOff:')
+		global0._send('init:', 'reset:', 3, 'setScale:', Scaler, 100, 70, 200, 70)
+		doorMaster._send(
+			'init:',
+			'signal:', (| doorMaster._send('signal:') 0x1000),
+			'approachVerbs:', 2, 0
 		)
-		(keyMaster init: signal: (| (keyMaster signal:) 0x1000) approachVerbs: 2)
+		keyMaster._send('init:', 'signal:', (| keyMaster._send('signal:') 0x1000), 'approachVerbs:', 2)
 		(cond
-			case (global0 has: 44): 0#end:case
+			case global0._send('has:', 44): 0#end:case
 			case proc913_0(115):
-				(boneKey
-					init:
-					view: 647
-					setLoop: 0
-					cel: 1
-					posn: ((keyMaster x:) + 78) ((keyMaster y:) + 1)
-					noun: 7
-					ignoreActors: 1
+				boneKey._send(
+					'init:',
+					'view:', 647,
+					'setLoop:', 0,
+					'cel:', 1,
+					'posn:', (keyMaster._send('x:') + 78), (keyMaster._send('y:') + 1),
+					'noun:', 7,
+					'ignoreActors:', 1
 				)
 			#end:case
 			else:
-				(boneKey
-					init:
-					posn: ((keyMaster x:) + 16) ((keyMaster y:) - 14)
-					ignoreActors: 1
+				boneKey._send(
+					'init:',
+					'posn:', (keyMaster._send('x:') + 16), (keyMaster._send('y:') - 14),
+					'ignoreActors:', 1
 				)
 			#end:else
 		)
-		(skelLeft init:)
-		(skelRight init:)
-		(boneMallet init:)
-		(ghost init: setScript: ghostScr)
-		(door init:)
-		(theSkull init:)
-		(xylophone init:)
+		skelLeft._send('init:')
+		skelRight._send('init:')
+		boneMallet._send('init:')
+		ghost._send('init:', 'setScript:', ghostScr)
+		door._send('init:')
+		theSkull._send('init:')
+		xylophone._send('init:')
 		if proc913_0(44):
-			(global102 stop:)
-			(global103 stop:)
-			(global104 stop:)
-			(global105 stop:)
-			(self setScript: deathCartoonScr)
+			global102._send('stop:')
+			global103._send('stop:')
+			global104._send('stop:')
+			global105._send('stop:')
+			self._send('setScript:', deathCartoonScr)
 		else:
-			(global0 setScript: musicStuffScript)
-			(lineGhost init: setScript: ghostLineScr)
+			global0._send('setScript:', musicStuffScript)
+			lineGhost._send('init:', 'setScript:', ghostLineScr)
 			match global12
 				case 650:
-					(global0 posn: 133 97)
+					global0._send('posn:', 133, 97)
 				#end:case
 				else:
-					(global0 posn: 109 187)
+					global0._send('posn:', 109, 187)
 				#end:else
 			#end:match
 		#endif
@@ -172,13 +121,13 @@ class rm640(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit: &rest)
-		temp0 = (global0 onControl: 1)
+		super._send('doit:', &rest)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 == 16384):
-				(global1 handsOff:)
-				(self setScript: goNoFarther)
+				global1._send('handsOff:')
+				self._send('setScript:', goNoFarther)
 			#end:case
 		)
 	#end:method
@@ -188,7 +137,7 @@ class rm640(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		proc958_0(0, 969, 942)
 	#end:method
 
@@ -204,12 +153,12 @@ class musicStuffScript(Script):
 
 		match state = param1
 			case 0:
-				(global102 number: 640 loop: 1 play: self)
+				global102._send('number:', 640, 'loop:', 1, 'play:', self)
 			#end:case
 			case 1:
-				(global102 stop:)
-				(global102 number: 600 loop: -1 play:)
-				(self dispose:)
+				global102._send('stop:')
+				global102._send('number:', 600, 'loop:', -1, 'play:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -226,62 +175,61 @@ class goNoFarther(Script):
 
 		match state = param1
 			case 0:
-				(doorMaster
-					view: 6407
-					loop: 0
-					cel: 0
-					posn: ((doorMaster x:) + 6) ((doorMaster y:) + 19)
-					setCycle: End self
+				doorMaster._send(
+					'view:', 6407,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', (doorMaster._send('x:') + 6), (doorMaster._send('y:') + 19),
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
 				ticks = 30
 			#end:case
 			case 2:
-				(global0 setHeading: 45 self)
+				global0._send('setHeading:', 45, self)
 			#end:case
 			case 3:
 				ticks = 15
 			#end:case
 			case 4:
-				(global91 say: 8 3 0 2 self)
+				global91._send('say:', 8, 3, 0, 2, self)
 			#end:case
 			case 5:
-				if ((global0 x:) > 129):
-					(global0
-						setLoop: 6
-						setCycle: Rev
-						setMotion:
-							MoveTo
-							((global0 x:) - 4)
-							((global0 y:) + 7)
-							self
+				if (global0._send('x:') > 129):
+					global0._send(
+						'setLoop:', 6,
+						'setCycle:', Rev,
+						'setMotion:', MoveTo, (global0._send('x:') - 4), (+
+								global0._send('y:')
+								7
+							), self
 					)
 				else:
-					(global0
-						setLoop: 3
-						setCycle: Rev
-						setMotion: MoveTo (global0 x:) ((global0 y:) + 7) self
+					global0._send(
+						'setLoop:', 3,
+						'setCycle:', Rev,
+						'setMotion:', MoveTo, global0._send('x:'), (global0._send('y:') + 7), self
 					)
 				#endif
 			#end:case
 			case 6:
-				(global0 setCycle: 0 setLoop: -1)
-				(doorMaster cel: 5 setCycle: Beg self)
+				global0._send('setCycle:', 0, 'setLoop:', -1)
+				doorMaster._send('cel:', 5, 'setCycle:', Beg, self)
 			#end:case
 			case 7:
-				(doorMaster
-					view: 642
-					loop: 0
-					cel: 0
-					posn: ((doorMaster x:) - 6) ((doorMaster y:) - 19)
+				doorMaster._send(
+					'view:', 642,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', (doorMaster._send('x:') - 6), (doorMaster._send('y:') - 19)
 				)
 				cycles = 1
 			#end:case
 			case 8:
-				(global0 reset: 6)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 6)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -296,33 +244,33 @@ class deathCartoonScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		(cond
-			case ((global0 has: 44) or proc913_0(115)): 0#end:case
-			case ((keyMaster view:) == 6404):
-				(boneKey posn: ((keyMaster x:) + 14) ((keyMaster y:) - 14))
+			case (global0._send('has:', 44) or proc913_0(115)): 0#end:case
+			case (keyMaster._send('view:') == 6404):
+				boneKey._send('posn:', (keyMaster._send('x:') + 14), (keyMaster._send('y:') - 14))
 			#end:case
-			case ((keyMaster loop:) == 1):
-				match (keyMaster cel:)
+			case (keyMaster._send('loop:') == 1):
+				match keyMaster._send('cel:')
 					case 7:
-						(boneKey
-							posn: ((keyMaster x:) + 9) ((keyMaster y:) - 16)
+						boneKey._send(
+							'posn:', (keyMaster._send('x:') + 9), (keyMaster._send('y:') - 16)
 						)
 					#end:case
 					case 9:
-						(boneKey
-							posn: ((keyMaster x:) + 9) ((keyMaster y:) - 18)
+						boneKey._send(
+							'posn:', (keyMaster._send('x:') + 9), (keyMaster._send('y:') - 18)
 						)
 					#end:case
 					case 10:
-						(boneKey
-							posn: ((keyMaster x:) + 16) ((keyMaster y:) - 14)
+						boneKey._send(
+							'posn:', (keyMaster._send('x:') + 16), (keyMaster._send('y:') - 14)
 						)
 					#end:case
 				#end:match
 			#end:case
-			case ((keyMaster loop:) == 2):
-				(boneKey posn: ((keyMaster x:) + 13) ((keyMaster y:) - 16))
+			case (keyMaster._send('loop:') == 2):
+				boneKey._send('posn:', (keyMaster._send('x:') + 13), (keyMaster._send('y:') - 16))
 			#end:case
 		)
 	#end:method
@@ -335,84 +283,84 @@ class deathCartoonScr(Script):
 		match state = param1
 			case 0:
 				cycles = 2
-				(global0 hide:)
+				global0._send('hide:')
 			#end:case
 			case 1:
-				(global102 loop: 1 number: 975 flags: 1 play:)
-				(keyMaster view: 643 loop: 1 cel: 0 setCycle: End self)
-				(global0
-					posn: 146 174
-					show:
-					view: 6402
-					loop: 0
-					cel: 0
-					normal: 0
-					cycleSpeed: 15
-					setCycle: CT 4 1 self
+				global102._send('loop:', 1, 'number:', 975, 'flags:', 1, 'play:')
+				keyMaster._send('view:', 643, 'loop:', 1, 'cel:', 0, 'setCycle:', End, self)
+				global0._send(
+					'posn:', 146, 174,
+					'show:',
+					'view:', 6402,
+					'loop:', 0,
+					'cel:', 0,
+					'normal:', 0,
+					'cycleSpeed:', 15,
+					'setCycle:', CT, 4, 1, self
 				)
 			#end:case
 			case 2: 0#end:case
 			case 3:
-				(keyMaster loop: 1 cel: 0)
-				(global0 setCycle: End self)
+				keyMaster._send('loop:', 1, 'cel:', 0)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(keyMaster
-					view: 6404
-					loop: 0
-					cel: 0
-					posn: (keyMaster x:) ((keyMaster y:) - 3)
+				keyMaster._send(
+					'view:', 6404,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', keyMaster._send('x:'), (keyMaster._send('y:') - 3)
 				)
-				(global0 posn: 142 133 loop: 1 cel: 0 setCycle: CT 1 1 self)
+				global0._send('posn:', 142, 133, 'loop:', 1, 'cel:', 0, 'setCycle:', CT, 1, 1, self)
 			#end:case
 			case 5:
-				(self setScript: modeLessScript)
-				(doorMaster view: 6406 loop: 0 cel: 0 setCycle: CT 2 1 self)
+				self._send('setScript:', modeLessScript)
+				doorMaster._send('view:', 6406, 'loop:', 0, 'cel:', 0, 'setCycle:', CT, 2, 1, self)
 			#end:case
 			case 6:
-				(doorMaster setCycle: End)
-				(global0 setCycle: End self)
+				doorMaster._send('setCycle:', End)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 7:
-				(doorMaster loop: 1 cel: 0 setCycle: End self)
+				doorMaster._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 8:
-				(modeLessScript cue:)
-				(doorMaster view: 6406 loop: 0 cel: 0)
-				(global0 loop: 2 cel: 0 cycleSpeed: 10 setCycle: End self)
+				modeLessScript._send('cue:')
+				doorMaster._send('view:', 6406, 'loop:', 0, 'cel:', 0)
+				global0._send('loop:', 2, 'cel:', 0, 'cycleSpeed:', 10, 'setCycle:', End, self)
 			#end:case
 			case 9:
-				(door setCycle: End self)
+				door._send('setCycle:', End, self)
 			#end:case
 			case 10:
-				(global0 dispose:)
-				(door setCycle: Beg self)
+				global0._send('dispose:')
+				door._send('setCycle:', Beg, self)
 			#end:case
 			case 11:
-				(global5 eachElementDo: #addToPic)
+				global5._send('eachElementDo:', #addToPic)
 				seconds = 3
 			#end:case
 			case 12:
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
-				(global1 setCursor: global20)
+				global1._send('setCursor:', global20)
 				while True: #repeat
 					match
-						(KQ6Print
-							posn: -1 10
-							addIcon: 649 0 0 67 1
-							say: 1 0 0 global160 1 0 40 916
-							addButton: 1 r"""Restore""" 0 78
-							addButton: 2 r"""Restart""" 67 78
-							addButton: 3 r"""Quit""" 134 78
-							init:
+						KQ6Print._send(
+							'posn:', -1, 10,
+							'addIcon:', 649, 0, 0, 67, 1,
+							'say:', 1, 0, 0, global160, 1, 0, 40, 916,
+							'addButton:', 1, r"""Restore""", 0, 78,
+							'addButton:', 2, r"""Restart""", 67, 78,
+							'addButton:', 3, r"""Quit""", 134, 78,
+							'init:'
 						)
 						case 1:
-							(global1 restore:)
+							global1._send('restore:')
 						#end:case
 						case 2:
-							(global1 restart: 1)
+							global1._send('restart:', 1)
 						#end:case
 						case 3:
 							global4 = 1
@@ -436,33 +384,33 @@ class modeLessScript(Script):
 
 		match state = param1
 			case 0:
-				(KQ6Print
-					font: global22
-					posn: 200 100
-					say: 0 1 0 1 1
-					modeless: 1
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 200, 100,
+					'say:', 0, 1, 0, 1, 1,
+					'modeless:', 1,
+					'init:'
 				)
 				seconds = 4
 			#end:case
 			case 1:
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
 			#end:case
 			case 2:
-				(KQ6Print
-					font: global22
-					posn: 200 100
-					say: 0 1 0 1 2
-					modeless: 1
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 200, 100,
+					'say:', 0, 1, 0, 1, 2,
+					'modeless:', 1,
+					'init:'
 				)
 				seconds = 3
 			#end:case
 			case 3:
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -480,44 +428,44 @@ class egoGiveTicketScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 givePoints: 3)
-				(global0 put: 28 640)
-				(global0 setMotion: PolyPath 145 133 self)
+				global1._send('givePoints:', 3)
+				global0._send('put:', 28, 640)
+				global0._send('setMotion:', PolyPath, 145, 133, self)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global91 say: 5 49 0 1 self)
+				global91._send('say:', 5, 49, 0, 1, self)
 			#end:case
 			case 3:
-				(global0 setHeading: 0 self)
+				global0._send('setHeading:', 0, self)
 			#end:case
 			case 4:
-				(self setScript: takeTicketScr self)
+				self._send('setScript:', takeTicketScr, self)
 			#end:case
 			case 5:
-				(takeTicketScr cue:)
+				takeTicketScr._send('cue:')
 			#end:case
 			case 6:
-				(global91 say: 5 49 0 2 self)
+				global91._send('say:', 5, 49, 0, 2, self)
 			#end:case
 			case 7:
-				(global0 reset: 0)
+				global0._send('reset:', 0)
 				cycles = 1
 			#end:case
 			case 8:
-				(global0 setMotion: PolyPath 139 90 self)
+				global0._send('setMotion:', PolyPath, 139, 90, self)
 			#end:case
 			case 9:
-				(door setCycle: End self)
+				door._send('setCycle:', End, self)
 			#end:case
 			case 10:
-				(global0 dispose:)
-				(door setCycle: Beg self)
+				global0._send('dispose:')
+				door._send('setCycle:', Beg, self)
 			#end:case
 			case 11:
-				(global2 newRoom: (global2 north:))
+				global2._send('newRoom:', global2._send('north:'))
 			#end:case
 		#end:match
 	#end:method
@@ -535,36 +483,36 @@ class takeTicketScr(Script):
 		match state = param1
 			case 0:
 				if (client != egoGiveTicketScr):
-					(global91 say: 1 0 2 2 self)
+					global91._send('say:', 1, 0, 2, 2, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
-				(doorMaster view: 6406 loop: 0 cel: 0 setCycle: CT 2 1 self)
+				doorMaster._send('view:', 6406, 'loop:', 0, 'cel:', 0, 'setCycle:', CT, 2, 1, self)
 			#end:case
 			case 2:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 3:
-				(doorMaster setCycle: End self)
+				doorMaster._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(doorMaster loop: 1 cel: 0 setCycle: End self)
+				doorMaster._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 5:
-				(doorMaster view: 642 loop: 0 cel: 0)
+				doorMaster._send('view:', 642, 'loop:', 0, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 6:
 				if (client != egoGiveTicketScr):
-					(global91 say: 1 0 2 3 self)
+					global91._send('say:', 1, 0, 2, 3, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 7:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -581,52 +529,52 @@ class ghostLineScr(Script):
 
 		match state = param1
 			case 0:
-				(client setCycle: End self)
+				client._send('setCycle:', End, self)
 			#end:case
 			case 1:
-				(client cel: 0 loop: 0 posn: 141 167 setCycle: End self)
+				client._send('cel:', 0, 'loop:', 0, 'posn:', 141, 167, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(client cel: 0 loop: 1 setCycle: Fwd)
-				(keyMaster view: 643 loop: 1 cel: 0 setCycle: CT 9 1 self)
+				client._send('cel:', 0, 'loop:', 1, 'setCycle:', Fwd)
+				keyMaster._send('view:', 643, 'loop:', 1, 'cel:', 0, 'setCycle:', CT, 9, 1, self)
 			#end:case
 			case 3:
-				(client cel: 0 loop: 2 setCycle: End self)
-				(keyMaster setCycle: End self)
+				client._send('cel:', 0, 'loop:', 2, 'setCycle:', End, self)
+				keyMaster._send('setCycle:', End, self)
 			#end:case
 			case 4: 0#end:case
 			case 5:
-				(keyMaster loop: 1 cel: 0)
+				keyMaster._send('loop:', 1, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 6:
-				(global91 say: 1 0 2 1 self)
+				global91._send('say:', 1, 0, 2, 1, self)
 			#end:case
 			case 7:
-				(client cel: 0 loop: 3 y: 136 setCycle: Fwd)
+				client._send('cel:', 0, 'loop:', 3, 'y:', 136, 'setCycle:', Fwd)
 				ticks = 30
 			#end:case
 			case 8:
-				(self setScript: takeTicketScr self)
+				self._send('setScript:', takeTicketScr, self)
 			#end:case
 			case 9:
-				(script cue:)
+				script._send('cue:')
 			#end:case
 			case 10:
-				(client cel: 0 loop: 4 setCycle: End self)
+				client._send('cel:', 0, 'loop:', 4, 'setCycle:', End, self)
 			#end:case
 			case 11:
-				(door setCycle: End self)
+				door._send('setCycle:', End, self)
 			#end:case
 			case 12:
-				(client hide:)
-				(door setCycle: Beg self)
+				client._send('hide:')
+				door._send('setCycle:', Beg, self)
 			#end:case
 			case 13:
-				(keyMaster view: 6404 loop: 0 cel: 0)
-				(client dispose:)
-				(global1 handsOn:)
-				(self dispose:)
+				keyMaster._send('view:', 6404, 'loop:', 0, 'cel:', 0)
+				client._send('dispose:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -643,101 +591,104 @@ class playXylophone(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 200 185 self)
+				global0._send('setMotion:', PolyPath, 200, 185, self)
 			#end:case
 			case 1:
-				(global0
-					normal: 0
-					view: 641
-					posn: ((boneMallet x:) - 3) ((boneMallet y:) + 9)
-					setLoop: 0
-					cycleSpeed: 10
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 641,
+					'posn:', (boneMallet._send('x:') - 3), (boneMallet._send('y:') + 9),
+					'setLoop:', 0,
+					'cycleSpeed:', 10,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
-				(boneMallet hide:)
+				boneMallet._send('hide:')
 			#end:case
 			case 2:
 				kernel.UnLoad(128, 900)
 				if proc913_0(100):
-					(global91 say: 6 5 4 1 self)
+					global91._send('say:', 6, 5, 4, 1, self)
 				else:
-					(global91 say: 6 5 3 1 self)
+					global91._send('say:', 6, 5, 3, 1, self)
 				#endif
 			#end:case
 			case 3:
 				if proc913_0(100):
 					cycles = 1
 				else:
-					(global1 givePoints: 2)
-					(global91 say: 6 5 3 2 self)
+					global1._send('givePoints:', 2)
+					global91._send('say:', 6, 5, 3, 2, self)
 					proc913_1(100)
 				#endif
-				if (global0 script:):
-					(global0 setScript: 0)
+				if global0._send('script:'):
+					global0._send('setScript:', 0)
 				#endif
-				(global102 stop:)
+				global102._send('stop:')
 			#end:case
 			case 4:
-				(global0
-					posn:
-						((boneMallet x:) + local0[1])
-						((boneMallet y:) + local4[1])
-					setLoop: 1
-					setCycle: End self
+				global0._send(
+					'posn:', (boneMallet._send('x:') + local0[1]), (+
+							boneMallet._send('y:')
+							local4[1]
+						),
+					'setLoop:', 1,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 5:
-				(global102 number: 641 loop: 1 play:)
-				(global102 prevSignal: 0)
-				(keyMaster setScript: keyDanceScript)
+				global102._send('number:', 641, 'loop:', 1, 'play:')
+				global102._send('prevSignal:', 0)
+				keyMaster._send('setScript:', keyDanceScript)
 				register = 2
 				cycles = 1
 			#end:case
 			case 6:
-				(global0
-					posn:
-						((boneMallet x:) + local0[register])
-						((boneMallet y:) + local4[register])
-					setLoop: register
-					setCycle: End self
+				global0._send(
+					'posn:', (boneMallet._send('x:') + local0[register]), (+
+							boneMallet._send('y:')
+							local4[register]
+						),
+					'setLoop:', register,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 7:
-				if ((global102 prevSignal:) == -1):
-					(keyDanceScript cue:)
-					(global102 number: 600 loop: -1 play:)
+				if (global102._send('prevSignal:') == -1):
+					keyDanceScript._send('cue:')
+					global102._send('number:', 600, 'loop:', -1, 'play:')
 					cycles = 1
 				else:
 					register = kernel.Random(2, 3)
-					(self start: 6 init:)
+					self._send('start:', 6, 'init:')
 				#endif
 			#end:case
 			case 8:
-				(global0
-					posn:
-						((boneMallet x:) + local0[1])
-						((boneMallet y:) + local4[1])
-					setLoop: 1
+				global0._send(
+					'posn:', (boneMallet._send('x:') + local0[1]), (+
+							boneMallet._send('y:')
+							local4[1]
+						),
+					'setLoop:', 1
 				)
-				(global0 cel: (global0 lastCel:) setCycle: Beg self)
+				global0._send('cel:', global0._send('lastCel:'), 'setCycle:', Beg, self)
 			#end:case
 			case 9:
-				(global0 setLoop: 0 cel: 5 setCycle: Beg self)
+				global0._send('setLoop:', 0, 'cel:', 5, 'setCycle:', Beg, self)
 			#end:case
 			case 10:
-				(boneMallet show:)
-				(global0 reset: 0 posn: 198 181)
+				boneMallet._send('show:')
+				global0._send('reset:', 0, 'posn:', 198, 181)
 				cycles = 1
 			#end:case
 			case 11:
-				(global91 say: 6 5 3 4 self)
+				global91._send('say:', 6, 5, 3, 4, self)
 			#end:case
 			case 12: 0#end:case
 			case 13:
-				(doorMaster view: 642 setLoop: 0 cel: 0 setCycle: 0)
-				(global1 handsOn:)
-				(self start: 0 dispose:)
+				doorMaster._send('view:', 642, 'setLoop:', 0, 'cel:', 0, 'setCycle:', 0)
+				global1._send('handsOn:')
+				self._send('start:', 0, 'dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -747,13 +698,13 @@ class playXylophone(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
-		if ((state == 6) and ((global102 prevSignal:) == -1)):
-			(global0 setCycle: 0)
-			(self cue:)
+		super._send('doit:')
+		if ((state == 6) and (global102._send('prevSignal:') == -1)):
+			global0._send('setCycle:', 0)
+			self._send('cue:')
 		#endif
-		if ((state == 12) and (not (chorusRight script:))):
-			(self cue:)
+		if ((state == 12) and (not chorusRight._send('script:'))):
+			self._send('cue:')
 		#endif
 	#end:method
 
@@ -767,17 +718,17 @@ class keyDanceScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		if 
 			(and
-				(global5 contains: chorusRight)
-				(not (chorusRight script:))
-				((global102 prevSignal:) == 10)
+				global5._send('contains:', chorusRight)
+				(not chorusRight._send('script:'))
+				(global102._send('prevSignal:') == 10)
 			)
-			(global102 prevSignal: 1)
-			(chorusRight setScript: chorusScript 0 0)
-			((skelLeft script:) cue:)
-			((skelRight script:) cue:)
+			global102._send('prevSignal:', 1)
+			chorusRight._send('setScript:', chorusScript, 0, 0)
+			skelLeft._send('script:')._send('cue:')
+			skelRight._send('script:')._send('cue:')
 		#endif
 	#end:method
 
@@ -792,63 +743,63 @@ class keyDanceScript(Script):
 				seconds = 3
 			#end:case
 			case 1:
-				(global102 pause:)
-				(KQ6Print font: global22 posn: -1 10 say: 0 6 5 3 3 init: self)
+				global102._send('pause:')
+				KQ6Print._send('font:', global22, 'posn:', -1, 10, 'say:', 0, 6, 5, 3, 3, 'init:', self)
 			#end:case
 			case 2:
-				(global102 pause: 0)
-				(skelLeft setScript: skelLeftScript)
-				(skelRight setScript: skelRightScript)
-				(doorMaster view: 646 setLoop: 0 cel: 0)
-				(chorusRight init:)
+				global102._send('pause:', 0)
+				skelLeft._send('setScript:', skelLeftScript)
+				skelRight._send('setScript:', skelRightScript)
+				doorMaster._send('view:', 646, 'setLoop:', 0, 'cel:', 0)
+				chorusRight._send('init:')
 				seconds = 10
 			#end:case
 			case 3:
-				(doorMaster setScript: doorScript)
+				doorMaster._send('setScript:', doorScript)
 				seconds = 10
 			#end:case
 			case 4:
-				(keyMaster view: 645 setLoop: 0 cel: 0 setCycle: Fwd)
-				if ((not (global0 has: 44)) and (not proc913_0(115))):
-					(boneKey view: 645 setLoop: 1 cel: 1)
+				keyMaster._send('view:', 645, 'setLoop:', 0, 'cel:', 0, 'setCycle:', Fwd)
+				if ((not global0._send('has:', 44)) and (not proc913_0(115))):
+					boneKey._send('view:', 645, 'setLoop:', 1, 'cel:', 1)
 					register = 1
 				#endif
 				seconds = 20
 			#end:case
 			case 5:
 				register = 0
-				if ((not (global0 has: 44)) and (not proc913_0(115))):
-					(boneKey
-						setLoop: 2
-						cel: 0
-						posn: (keyMaster x:) (keyMaster y:)
-						cycleSpeed: 0
-						setCycle: MCyc @local8 self
+				if ((not global0._send('has:', 44)) and (not proc913_0(115))):
+					boneKey._send(
+						'setLoop:', 2,
+						'cel:', 0,
+						'posn:', keyMaster._send('x:'), keyMaster._send('y:'),
+						'cycleSpeed:', 0,
+						'setCycle:', MCyc, @local8, self
 					)
-					(global103 number: 825 loop: 1)
+					global103._send('number:', 825, 'loop:', 1)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 6:
-				if ((not (global0 has: 44)) and (not proc913_0(115))):
-					(global103 play:)
-					(boneKey setCycle: MCyc @local45 self)
+				if ((not global0._send('has:', 44)) and (not proc913_0(115))):
+					global103._send('play:')
+					boneKey._send('setCycle:', MCyc, @local45, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 7:
-				if ((not (global0 has: 44)) and (not proc913_0(115))):
-					(global103 play:)
+				if ((not global0._send('has:', 44)) and (not proc913_0(115))):
+					global103._send('play:')
 					proc913_1(115)
-					(boneKey view: 647 loop: 0 cel: 1 noun: 7)
+					boneKey._send('view:', 647, 'loop:', 0, 'cel:', 1, 'noun:', 7)
 				#endif
-				((doorMaster script:) cue:)
+				doorMaster._send('script:')._send('cue:')
 			#end:case
 			case 8:
-				(keyMaster view: 6404 setLoop: 0 cel: 0 setCycle: 0)
-				(self dispose:)
+				keyMaster._send('view:', 6404, 'setLoop:', 0, 'cel:', 0, 'setCycle:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -865,11 +816,11 @@ class skelLeftScript(Script):
 
 		match state = param1
 			case 0:
-				(skelLeft view: 6403 setLoop: 1 cel: 0 setCycle: Fwd)
+				skelLeft._send('view:', 6403, 'setLoop:', 1, 'cel:', 0, 'setCycle:', Fwd)
 			#end:case
 			case 1:
-				(skelLeft view: 644 setLoop: 0 cel: 0 setCycle: 0)
-				(self dispose:)
+				skelLeft._send('view:', 644, 'setLoop:', 0, 'cel:', 0, 'setCycle:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -886,11 +837,11 @@ class skelRightScript(Script):
 
 		match state = param1
 			case 0:
-				(skelRight view: 6403 setLoop: 0 cel: 0 setCycle: Fwd)
+				skelRight._send('view:', 6403, 'setLoop:', 0, 'cel:', 0, 'setCycle:', Fwd)
 			#end:case
 			case 1:
-				(skelRight view: 644 setLoop: 0 cel: 0 setCycle: 0)
-				(self dispose:)
+				skelRight._send('view:', 644, 'setLoop:', 0, 'cel:', 0, 'setCycle:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -907,11 +858,11 @@ class doorScript(Script):
 
 		match state = param1
 			case 0:
-				(doorMaster setCycle: Fwd)
+				doorMaster._send('setCycle:', Fwd)
 			#end:case
 			case 1:
-				(doorMaster setLoop: 0 cel: 0 setCycle: 0)
-				(self dispose:)
+				doorMaster._send('setLoop:', 0, 'cel:', 0, 'setCycle:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -928,22 +879,22 @@ class chorusScript(Script):
 
 		match state = param1
 			case 0:
-				(chorusRight setCycle: Fwd setMotion: MoveTo 160 184 self)
-				(chorusMid init:)
-				(chorusLeft init:)
+				chorusRight._send('setCycle:', Fwd, 'setMotion:', MoveTo, 160, 184, self)
+				chorusMid._send('init:')
+				chorusLeft._send('init:')
 			#end:case
 			case 1:
-				(chorusRight setCycle: Fwd setMotion: MoveTo -18 184 self)
+				chorusRight._send('setCycle:', Fwd, 'setMotion:', MoveTo, -18, 184, self)
 			#end:case
 			case 2:
 				if (not register):
-					(chorusMid dispose:)
-					(chorusLeft dispose:)
-					(chorusRight dispose:)
-					(self dispose:)
+					chorusMid._send('dispose:')
+					chorusLeft._send('dispose:')
+					chorusRight._send('dispose:')
+					self._send('dispose:')
 				else:
 					register.post('--')
-					(self init:)
+					self._send('init:')
 				#endif
 			#end:case
 		#end:match
@@ -961,40 +912,40 @@ class getKeyScript(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					setMotion: PolyPath ((boneKey x:) - 41) (boneKey y:) self
+				global0._send(
+					'setMotion:', PolyPath, (boneKey._send('x:') - 41), boneKey._send('y:'), self
 				)
 			#end:case
 			case 1:
-				(global0
-					normal: 0
-					view: 6405
-					setLoop: 3
-					cel: 0
-					posn: ((boneKey x:) - 20) ((boneKey y:) + 5)
-					setCycle: CT 3 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 6405,
+					'setLoop:', 3,
+					'cel:', 0,
+					'posn:', (boneKey._send('x:') - 20), (boneKey._send('y:') + 5),
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 2:
-				(boneKey dispose:)
-				(global0 setCycle: End self)
+				boneKey._send('dispose:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0
-					reset: 0
-					posn: ((global0 x:) - 21) ((global0 y:) - 5)
-					get: 44
+				global0._send(
+					'reset:', 0,
+					'posn:', (global0._send('x:') - 21), (global0._send('y:') - 5),
+					'get:', 44
 				)
-				(global1 givePoints: 1)
+				global1._send('givePoints:', 1)
 				proc913_2(115)
 				cycles = 1
 			#end:case
 			case 4:
-				(global91 say: 7 5 0 1 self)
+				global91._send('say:', 7, 5, 0, 1, self)
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1011,18 +962,18 @@ class ghostScr(Script):
 
 		match state = param1
 			case 0:
-				(client setCycle: MCyc @local62 self)
+				client._send('setCycle:', MCyc, @local62, self)
 			#end:case
 			case 1:
-				if ((global2 script:) == playXylophone):
-					(client dispose:)
-					(self dispose:)
+				if (global2._send('script:') == playXylophone):
+					client._send('dispose:')
+					self._send('dispose:')
 				else:
 					seconds = kernel.Random(5, 10)
 				#endif
 			#end:case
 			case 2:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -1053,12 +1004,12 @@ class chorusMid(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			cel: (chorusRight cel:)
-			x: ((chorusRight x:) - 25)
-			y: (chorusRight y:)
+		self._send(
+			'cel:', chorusRight._send('cel:'),
+			'x:', (chorusRight._send('x:') - 25),
+			'y:', chorusRight._send('y:')
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 #end:class or instance
@@ -1077,12 +1028,12 @@ class chorusLeft(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			cel: (chorusRight cel:)
-			x: ((chorusRight x:) - 50)
-			y: (chorusRight y:)
+		self._send(
+			'cel:', chorusRight._send('cel:'),
+			'x:', (chorusRight._send('x:') - 50),
+			'y:', chorusRight._send('y:')
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 #end:class or instance
@@ -1102,10 +1053,10 @@ class boneMallet(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global1 handsOff:)
-			(global2 setScript: playXylophone)
+			global1._send('handsOff:')
+			global2._send('setScript:', playXylophone)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -1150,26 +1101,26 @@ class doorMaster(Prop):
 
 		match param1
 			case 5:
-				(global91 say: noun param1 0 0)
+				global91._send('say:', noun, param1, 0, 0)
 			#end:case
 			case 1:
-				(global91 say: noun param1 0 0)
+				global91._send('say:', noun, param1, 0, 0)
 			#end:case
 			case 2:
-				(global91 say: noun param1 0 0)
+				global91._send('say:', noun, param1, 0, 0)
 			#end:case
 			case 50:
-				(global91 say: noun param1 0 1)
+				global91._send('say:', noun, param1, 0, 1)
 			#end:case
 			case 49:
-				(global1 handsOff:)
-				(global2 setScript: egoGiveTicketScr)
+				global1._send('handsOff:')
+				global2._send('setScript:', egoGiveTicketScr)
 			#end:case
 			case 35:
-				(global91 say: 5 35 0 0)
+				global91._send('say:', 5, 35, 0, 0)
 			#end:case
 			else:
-				(global91 say: 5 0 0 0)
+				global91._send('say:', 5, 0, 0, 0)
 			#end:else
 		#end:match
 	#end:method
@@ -1188,14 +1139,14 @@ class boneKey(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (keyDanceScript register:):
-			(self
-				cel: (keyMaster cel:)
-				x: ((keyMaster x:) + 4)
-				y: ((keyMaster y:) - 53)
+		if keyDanceScript._send('register:'):
+			self._send(
+				'cel:', keyMaster._send('cel:'),
+				'x:', (keyMaster._send('x:') + 4),
+				'y:', (keyMaster._send('y:') - 53)
 			)
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -1206,14 +1157,14 @@ class boneKey(Prop):
 		match param1
 			case 5:
 				if proc913_0(115):
-					(global1 handsOff:)
-					(global2 setScript: getKeyScript)
+					global1._send('handsOff:')
+					global2._send('setScript:', getKeyScript)
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1269,8 +1220,8 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global93 addToFront: self)
+		super._send('init:', &rest)
+		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -1278,8 +1229,8 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(super dispose:)
+		global93._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -1288,10 +1239,10 @@ class door(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 3):
-			(global91 say: 8 3 0 1)
-			(global0 setMotion: PolyPath approachX approachY)
+			global91._send('say:', 8, 3, 0, 1)
+			global0._send('setMotion:', PolyPath, approachX, approachY)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -1317,10 +1268,10 @@ class xylophone(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global1 handsOff:)
-			(global2 setScript: playXylophone)
+			global1._send('handsOff:')
+			global2._send('setScript:', playXylophone)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 

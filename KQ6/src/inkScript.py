@@ -27,56 +27,56 @@ class inkScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc913_1(151)
 				cycles = 1
 			#end:case
 			case 1:
-				(global91 say: 1 83 0 1 self 0)
+				global91._send('say:', 1, 83, 0, 1, self, 0)
 			#end:case
 			case 2:
 				seconds = 2
 			#end:case
 			case 3:
-				(global0
-					normal: 0
-					view: 906
-					setCel: 0
-					setLoop: 0
-					cycleSpeed: 10
-					setCycle: CT 4 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 906,
+					'setCel:', 0,
+					'setLoop:', 0,
+					'cycleSpeed:', 10,
+					'setCycle:', CT, 4, 1, self
 				)
 			#end:case
 			case 4:
-				(global91 say: 1 83 0 2 self 0)
+				global91._send('say:', 1, 83, 0, 2, self, 0)
 			#end:case
 			case 5:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 6:
-				(global91 say: 1 83 0 3 self 0)
+				global91._send('say:', 1, 83, 0, 3, self, 0)
 			#end:case
 			case 7:
-				(global0 setCel: 0 setLoop: 1)
+				global0._send('setCel:', 0, 'setLoop:', 1)
 				seconds = 4
 			#end:case
 			case 8:
-				(global91 say: 1 83 0 4 self 0)
+				global91._send('say:', 1, 83, 0, 4, self, 0)
 			#end:case
 			case 9:
 				seconds = 2
 			#end:case
 			case 10:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 11:
-				(global91 say: 1 83 0 5 self 0)
+				global91._send('say:', 1, 83, 0, 5, self, 0)
 			#end:case
 			case 12:
 				proc913_1(116)
-				(global1 handsOn:)
-				(global0 reset: 2)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:', 2)
+				self._send('dispose:')
 				proc958_0(0, 92)
 			#end:case
 		#end:match

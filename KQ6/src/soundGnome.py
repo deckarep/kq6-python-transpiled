@@ -32,8 +32,8 @@ class soundGnome(Gnome):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self gnomeScript: soundScript setScript: soundInit stopUpd:)
-		(super init:)
+		self._send('gnomeScript:', soundScript, 'setScript:', soundInit, 'stopUpd:')
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -42,9 +42,9 @@ class soundGnome(Gnome):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
-			(global91 say: noun param1 22 1 0 450)
+			global91._send('say:', noun, param1, 22, 1, 0, 450)
 		else:
-			(kernel.ScriptID(450, 6) setScript: soundScript 0 param1)
+			kernel.ScriptID(450, 6)._send('setScript:', soundScript, 0, param1)
 		#endif
 	#end:method
 
@@ -63,11 +63,11 @@ class soundInit(Script):
 				seconds = 1
 			#end:case
 			case 1:
-				(global91 say: 15 0 12 1 self 450)
+				global91._send('say:', 15, 0, 12, 1, self, 450)
 			#end:case
 			case 2:
-				((kernel.ScriptID(450, 6) script:) cue:)
-				(self dispose:)
+				kernel.ScriptID(450, 6)._send('script:')._send('cue:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -86,54 +86,54 @@ class soundScript(Script):
 			case 0:
 				match register
 					case 37:
-						(global91 say: 15 37 12 1 self 450)
+						global91._send('say:', 15, 37, 12, 1, self, 450)
 					#end:case
 					case 83:
-						(self cue:)
+						self._send('cue:')
 					#end:case
 					case 31:
 						proc913_1(59)
-						(global91 say: 15 31 12 1 self 450)
+						global91._send('say:', 15, 31, 12, 1, self, 450)
 					#end:case
 					else:
-						(global91 say: 15 0 12 2 self 450)
+						global91._send('say:', 15, 0, 12, 2, self, 450)
 					#end:else
 				#end:match
 			#end:case
 			case 1:
-				(self setScript: kernel.ScriptID(450, 2) self register)
+				self._send('setScript:', kernel.ScriptID(450, 2), self, register)
 			#end:case
 			case 2:
 				if (register == 37):
-					(soundGnome setLoop: 4 cel: 0 setCycle: End self)
+					soundGnome._send('setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
 				else:
-					(self setScript: failScript 0 register)
+					self._send('setScript:', failScript, 0, register)
 				#endif
 			#end:case
 			case 3:
-				(soundGnome setLoop: 3 cycleSpeed: 6)
-				(soundGnome cel: (soundGnome lastCel:) setCycle: Beg self)
+				soundGnome._send('setLoop:', 3, 'cycleSpeed:', 6)
+				soundGnome._send('cel:', soundGnome._send('lastCel:'), 'setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(soundGnome setLoop: 0 cel: 0)
-				(global0 setCycle: End self)
+				soundGnome._send('setLoop:', 0, 'cel:', 0)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 5:
-				if (kernel.ScriptID(40, 0) alexX:):
-					(global0
-						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
+				if kernel.ScriptID(40, 0)._send('alexX:'):
+					global0._send(
+						'posn:', kernel.ScriptID(40, 0)._send('alexX:'), kernel.ScriptID(40, 0)._send('alexY:')
 					)
 				#endif
-				if ((global0 view:) != 900):
-					(global0 reset: 1)
+				if (global0._send('view:') != 900):
+					global0._send('reset:', 1)
 				#endif
 				cycles = 6
 			#end:case
 			case 6:
-				(global91 say: 15 37 12 2 self 450)
+				global91._send('say:', 15, 37, 12, 2, self, 450)
 			#end:case
 			case 7:
-				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 3) 0 soundGnome)
+				kernel.ScriptID(450, 6)._send('setScript:', kernel.ScriptID(450, 3), 0, soundGnome)
 			#end:case
 		#end:match
 	#end:method
@@ -151,11 +151,11 @@ class failScript(Script):
 		match state = param1
 			case 0:
 				(cond
-					case ((kernel.ScriptID(40, 0) alexInvisible:) or (register == 31)):
-						(self state: (state + 1) cue:)
+					case (kernel.ScriptID(40, 0)._send('alexInvisible:') or (register == 31)):
+						self._send('state:', (state + 1), 'cue:')
 					#end:case
 					case register:
-						(global0 setCycle: End self)
+						global0._send('setCycle:', End, self)
 					#end:case
 					else:
 						cycles = 1
@@ -163,53 +163,53 @@ class failScript(Script):
 				)
 			#end:case
 			case 1:
-				if (kernel.ScriptID(40, 0) alexX:):
-					(global0
-						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
+				if kernel.ScriptID(40, 0)._send('alexX:'):
+					global0._send(
+						'posn:', kernel.ScriptID(40, 0)._send('alexX:'), kernel.ScriptID(40, 0)._send('alexY:')
 					)
 				#endif
-				if ((global0 view:) != 900):
-					(global0 reset: 1)
+				if (global0._send('view:') != 900):
+					global0._send('reset:', 1)
 				#endif
 				cycles = 2
 			#end:case
 			case 2:
-				(soundGnome setLoop: 2 cel: 0 setCycle: End self)
+				soundGnome._send('setLoop:', 2, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(soundGnome setCycle: Beg self)
+				soundGnome._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
 				proc913_1(59)
 				(cond
 					case (not register):
-						(global91 say: 16 0 34 1 self 450)
+						global91._send('say:', 16, 0, 34, 1, self, 450)
 					#end:case
 					case (register == 31):
-						(global91 say: 15 31 12 2 self 450)
+						global91._send('say:', 15, 31, 12, 2, self, 450)
 					#end:case
 					else:
-						(global91 say: 15 0 12 3 self 450)
+						global91._send('say:', 15, 0, 12, 3, self, 450)
 					#end:else
 				)
 			#end:case
 			case 5:
-				(soundGnome setLoop: 3 cycleSpeed: 6)
-				(soundGnome cel: (soundGnome lastCel:) setCycle: Beg self)
+				soundGnome._send('setLoop:', 3, 'cycleSpeed:', 6)
+				soundGnome._send('cel:', soundGnome._send('lastCel:'), 'setCycle:', Beg, self)
 				proc913_2(59)
 			#end:case
 			case 6:
-				(self setScript: kernel.ScriptID(450, 4) self register)
+				self._send('setScript:', kernel.ScriptID(450, 4), self, register)
 			#end:case
 			case 7:
-				(global91 say: 16 0 30 1 self 450)
+				global91._send('say:', 16, 0, 30, 1, self, 450)
 			#end:case
 			case 8:
-				(soundGnome addToPic: delete: dispose:)
+				soundGnome._send('addToPic:', 'delete:', 'dispose:')
 				cycles = 10
 			#end:case
 			case 9:
-				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 5))
+				kernel.ScriptID(450, 6)._send('setScript:', kernel.ScriptID(450, 5))
 			#end:case
 		#end:match
 	#end:method

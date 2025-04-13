@@ -26,44 +26,44 @@ class startupScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setSpeed: 6
-					posn: 173 133
-					show:
-					view: 201
-					loop: 0
-					cel: 0
-					normal: 0
-					setScale: 0
-					setCycle: End self
+				global1._send('handsOff:')
+				global0._send(
+					'setSpeed:', 6,
+					'posn:', 173, 133,
+					'show:',
+					'view:', 201,
+					'loop:', 0,
+					'cel:', 0,
+					'normal:', 0,
+					'setScale:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 1 self)
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 2:
-				(global0 loop: 1 cel: 0 setCycle: End self)
+				global0._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0 posn: 177 127 reset: 5 setScale: Scaler 100 50 112 57)
+				global0._send('posn:', 177, 127, 'reset:', 5, 'setScale:', Scaler, 100, 50, 112, 57)
 				ticks = 20
 			#end:case
 			case 4:
-				(global0 loop: 2)
+				global0._send('loop:', 2)
 				cycles = 2
 			#end:case
 			case 5:
-				(global91 say: 1 0 1 2 self)
+				global91._send('say:', 1, 0, 1, 2, self)
 			#end:case
 			case 6:
-				(global91 say: 1 0 1 3 self oneOnly: 0)
+				global91._send('say:', 1, 0, 1, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 7:
-				(global1 handsOn:)
-				(global69 curIcon: (global69 at: 0))
-				(global1 setCursor: ((global69 curIcon:) cursor:))
-				(self dispose:)
+				global1._send('handsOn:')
+				global69._send('curIcon:', global69._send('at:', 0))
+				global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -73,7 +73,7 @@ class startupScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(201)
 	#end:method
 

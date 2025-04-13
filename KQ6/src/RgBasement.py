@@ -32,33 +32,33 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if (self tstFlag: 709 1):
-			(kernel.ScriptID(80, 5)
-				view: 725
-				regPathID: guardPath1
-				setMotion: guardPath1 kernel.ScriptID(80, 5) kernel.ScriptID(80, 5)
-				init:
+		super._send('init:', &rest)
+		if self._send('tstFlag:', 709, 1):
+			kernel.ScriptID(80, 5)._send(
+				'view:', 725,
+				'regPathID:', guardPath1,
+				'setMotion:', guardPath1, kernel.ScriptID(80, 5), kernel.ScriptID(80, 5),
+				'init:'
 			)
 		#endif
-		if (self tstFlag: 709 2):
-			(kernel.ScriptID(80, 6)
-				view: 727
-				regPathID: guardPath2
-				setMotion: guardPath2 kernel.ScriptID(80, 6) kernel.ScriptID(80, 6)
-				init:
+		if self._send('tstFlag:', 709, 2):
+			kernel.ScriptID(80, 6)._send(
+				'view:', 727,
+				'regPathID:', guardPath2,
+				'setMotion:', guardPath2, kernel.ScriptID(80, 6), kernel.ScriptID(80, 6),
+				'init:'
 			)
 		#endif
 		if 
 			(and
 				(or
 					(not proc999_5(global12, 840, 710, 720, 770, 820, 780))
-					((global102 number:) != 704)
+					(global102._send('number:') != 704)
 				)
-				(not (kernel.ScriptID(80, 0) tstFlag: 709 2))
-				(not (kernel.ScriptID(80, 0) tstFlag: 709 8192))
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2))
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8192))
 			)
-			(global102 fadeTo: 704 -1)
+			global102._send('fadeTo:', 704, -1)
 		#endif
 	#end:method
 
@@ -70,13 +70,13 @@ class RgBasement(rgCastle):
 		if 
 			(and
 				(loiterTimer == -1)
-				(not (global2 script:))
-				(not (self tstFlag: 709 1))
-				(not (self tstFlag: 709 2))
+				(not global2._send('script:'))
+				(not self._send('tstFlag:', 709, 1))
+				(not self._send('tstFlag:', 709, 2))
 			)
 			loiterTimer = 36
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -86,7 +86,7 @@ class RgBasement(rgCastle):
 
 		keep = proc999_5(param1, 840, 710, 720, 770, 820, 780)
 		initialized = 0
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -105,9 +105,9 @@ class RgBasement(rgCastle):
 					#end:else
 				#end:match
 				loiterTimer = 1
-				(global2 doLoiter:)
+				global2._send('doLoiter:')
 			else:
-				(self startGuard:)
+				self._send('startGuard:')
 			#endif
 		#endif
 	#end:method
@@ -117,23 +117,23 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((rFlag1 & 0x0001) and (not (kernel.ScriptID(80, 5) mover:))):
-			(kernel.ScriptID(80, 5)
-				view: 725
-				init:
-				regPathID: guardPath1
-				setMotion: guardPath1 kernel.ScriptID(80, 5) kernel.ScriptID(80, 5) 1
+		if ((rFlag1 & 0x0001) and (not kernel.ScriptID(80, 5)._send('mover:'))):
+			kernel.ScriptID(80, 5)._send(
+				'view:', 725,
+				'init:',
+				'regPathID:', guardPath1,
+				'setMotion:', guardPath1, kernel.ScriptID(80, 5), kernel.ScriptID(80, 5), 1
 			)
 		#endif
-		if ((rFlag1 & 0x0002) and (not (kernel.ScriptID(80, 6) mover:))):
-			(kernel.ScriptID(80, 6)
-				view: 727
-				init:
-				regPathID: guardPath2
-				setMotion: guardPath2 kernel.ScriptID(80, 6) kernel.ScriptID(80, 6) 1
+		if ((rFlag1 & 0x0002) and (not kernel.ScriptID(80, 6)._send('mover:'))):
+			kernel.ScriptID(80, 6)._send(
+				'view:', 727,
+				'init:',
+				'regPathID:', guardPath2,
+				'setMotion:', guardPath2, kernel.ScriptID(80, 6), kernel.ScriptID(80, 6), 1
 			)
 		#endif
-		(self setupGuards:)
+		self._send('setupGuards:')
 	#end:method
 
 	@classmethod
@@ -142,8 +142,8 @@ class RgBasement(rgCastle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(rFlag1 &= ~param2)
-		if kernel.IsObject((param1 regPathID:)):
-			((param1 regPathID:) value: 0)
+		if kernel.IsObject(param1._send('regPathID:')):
+			param1._send('regPathID:')._send('value:', 0)
 		#endif
 	#end:method
 
@@ -153,16 +153,16 @@ class RgBasement(rgCastle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((global11 != 840) and (rFlag1 & 0x0001)):
-			(kernel.ScriptID(80, 5)
-				okToCheck: (>= 10 (((kernel.ScriptID(80, 5) regPathID:) value:) / 2) 4)
+			kernel.ScriptID(80, 5)._send(
+				'okToCheck:', (>= 10 (kernel.ScriptID(80, 5)._send('regPathID:')._send('value:') / 2) 4)
 			)
 		#endif
 		if ((global11 != 840) and (rFlag1 & 0x0002)):
-			(kernel.ScriptID(80, 6)
-				okToCheck: (>= 13 (((kernel.ScriptID(80, 6) regPathID:) value:) / 2) 3)
+			kernel.ScriptID(80, 6)._send(
+				'okToCheck:', (>= 13 (kernel.ScriptID(80, 6)._send('regPathID:')._send('value:') / 2) 3)
 			)
 		#endif
-		(super setupGuards:)
+		super._send('setupGuards:')
 	#end:method
 
 	@classmethod
@@ -170,9 +170,9 @@ class RgBasement(rgCastle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(80, 5) z: 0 setMotion: 0)
-		(kernel.ScriptID(80, 6) z: 0 setMotion: 0)
-		(super dispose: &rest)
+		kernel.ScriptID(80, 5)._send('z:', 0, 'setMotion:', 0)
+		kernel.ScriptID(80, 6)._send('z:', 0, 'setMotion:', 0)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(918)
 	#end:method
 
@@ -184,15 +184,15 @@ class RgBasement(rgCastle):
 		match param1
 			case 1:
 				if ((argc > 3) and param4):
-					(global91 say: param2 param3 param4)
+					global91._send('say:', param2, param3, param4)
 				#endif
 				(cond
-					case ((kernel.ScriptID(80, 0) weddingMusicCount:) >= 3):
+					case (kernel.ScriptID(80, 0)._send('weddingMusicCount:') >= 3):
 						(rFlag1 |= 0x0004)
-						(self startGuard:)
+						self._send('startGuard:')
 					#end:case
-					case (not (kernel.ScriptID(80, 0) weddingRemind:)):
-						(kernel.ScriptID(80, 0) weddingRemind: 15)
+					case (not kernel.ScriptID(80, 0)._send('weddingRemind:')):
+						kernel.ScriptID(80, 0)._send('weddingRemind:', 15)
 					#end:case
 				)
 			#end:case
@@ -212,10 +212,10 @@ class guardPath1(RegionPath):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (RgBasement tstFlag: 709 4):
+		if RgBasement._send('tstFlag:', 709, 4):
 			endType = 2
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -232,18 +232,18 @@ class guardPath1(RegionPath):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = (currentRoom == global11)
-		(super nextRoom: &rest)
+		super._send('nextRoom:', &rest)
 		if (kernel.IsObject(global2) and (not temp0)):
 			(cond
 				case (value > 2):
-					(global2 warnUser: 5 currentRoom)
+					global2._send('warnUser:', 5, currentRoom)
 				#end:case
-				case (not (kernel.ScriptID(81, 0) tstFlag: 709 4)):
-					(global2 warnUser: 6 7)
+				case (not kernel.ScriptID(81, 0)._send('tstFlag:', 709, 4)):
+					global2._send('warnUser:', 6, 7)
 				#end:case
 			)
 			if (currentRoom == global11):
-				(global105 number: 702 loop: 1 play:)
+				global105._send('number:', 702, 'loop:', 1, 'play:')
 			#endif
 		#endif
 	#end:method
@@ -274,20 +274,20 @@ class guardPath2(RegionPath):
 			(and
 				(value < 2)
 				(global11 == 840)
-				(not (RgBasement tstFlag: 709 8))
+				(not RgBasement._send('tstFlag:', 709, 8))
 			)
-			(RgBasement setFlag: 709 8)
+			RgBasement._send('setFlag:', 709, 8)
 			value = 10
 		#endif
-		(super nextRoom: &rest)
+		super._send('nextRoom:', &rest)
 		if (kernel.IsObject(global2) and (not temp0)):
 			if (value > 2):
-				(global2 warnUser: 5 currentRoom)
+				global2._send('warnUser:', 5, currentRoom)
 			else:
-				(global2 warnUser: 6 8)
+				global2._send('warnUser:', 6, 8)
 			#endif
 			if (currentRoom == global11):
-				(global105 number: 702 loop: 1 play:)
+				global105._send('number:', 702, 'loop:', 1, 'play:')
 			#endif
 		#endif
 	#end:method

@@ -27,31 +27,31 @@ class genieLookScr(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(271, 0) setScript: 0)
-				if ((kernel.ScriptID(271, 0) loop:) and ((kernel.ScriptID(271, 0) cel:) > 3)):
+				kernel.ScriptID(271, 0)._send('setScript:', 0)
+				if (kernel.ScriptID(271, 0)._send('loop:') and (kernel.ScriptID(271, 0)._send('cel:') > 3)):
 					state.post('++')
-					(kernel.ScriptID(271, 0) setCycle: End self)
+					kernel.ScriptID(271, 0)._send('setCycle:', End, self)
 				else:
-					(kernel.ScriptID(271, 0) loop: 1 cel: 0)
+					kernel.ScriptID(271, 0)._send('loop:', 1, 'cel:', 0)
 					ticks = 10
 				#endif
 			#end:case
 			case 1:
-				(kernel.ScriptID(271, 0) cel: 4 setCycle: End self)
+				kernel.ScriptID(271, 0)._send('cel:', 4, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 3:
-				(kernel.ScriptID(271, 0) setCycle: Beg self)
+				kernel.ScriptID(271, 0)._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(kernel.ScriptID(271, 0) setScript: kernel.ScriptID(271, 1))
+				kernel.ScriptID(271, 0)._send('setScript:', kernel.ScriptID(271, 1))
 				if caller:
-					(caller cycles: 2)
+					caller._send('cycles:', 2)
 					caller = 0
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -68,33 +68,29 @@ class genieSpyScr(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(271, 0)
-					setScript: 0
-					setMotion:
-						MoveTo
-						((kernel.ScriptID(271, 0) x:) + 10)
-						(kernel.ScriptID(271, 0) y:)
-						self
+				kernel.ScriptID(271, 0)._send(
+					'setScript:', 0,
+					'setMotion:', MoveTo, (kernel.ScriptID(271, 0)._send('x:') + 10), kernel.ScriptID(271, 0)._send(
+							'y:'
+						), self
 				)
 			#end:case
 			case 1:
-				(kernel.ScriptID(271, 0) loop: 1 cel: 0)
+				kernel.ScriptID(271, 0)._send('loop:', 1, 'cel:', 0)
 				start = 2
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 2:
-				(kernel.ScriptID(271, 0)
-					setMotion:
-						MoveTo
-						((kernel.ScriptID(271, 0) x:) - 10)
-						(kernel.ScriptID(271, 0) y:)
-						self
+				kernel.ScriptID(271, 0)._send(
+					'setMotion:', MoveTo, (kernel.ScriptID(271, 0)._send('x:') - 10), kernel.ScriptID(271, 0)._send(
+							'y:'
+						), self
 				)
 			#end:case
 			case 3:
-				(kernel.ScriptID(271, 0) loop: 1 cel: 0 setScript: kernel.ScriptID(271, 1))
+				kernel.ScriptID(271, 0)._send('loop:', 1, 'cel:', 0, 'setScript:', kernel.ScriptID(271, 1))
 				start = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -104,7 +100,7 @@ class genieSpyScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		if (start == 0):
 			kernel.DisposeScript(278)
 		#endif
@@ -122,87 +118,87 @@ class giveMintScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 23 global11)
-				(global1 handsOff:)
-				(self setScript: genieLookScr self)
+				global0._send('put:', 23, global11)
+				global1._send('handsOff:')
+				self._send('setScript:', genieLookScr, self)
 			#end:case
 			case 1:
-				(global91 say: 9 63 0 1 self 270)
+				global91._send('say:', 9, 63, 0, 1, self, 270)
 			#end:case
 			case 2:
-				(global91 say: 9 63 0 2 self 270)
+				global91._send('say:', 9, 63, 0, 2, self, 270)
 			#end:case
 			case 3:
-				(global0
-					normal: 0
-					setSpeed: 6
-					view: 2832
-					loop: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'view:', 2832,
+					'loop:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 4:
 				ticks = 15
 			#end:case
 			case 5:
-				(kernel.ScriptID(271, 0)
-					view: 2834
-					loop: 0
-					cel: 0
-					posn: 185 118
-					setCycle: End self
+				kernel.ScriptID(271, 0)._send(
+					'view:', 2834,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', 185, 118,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
 				ticks = 30
 			#end:case
 			case 7:
-				(global91 say: 9 63 0 3 self 270)
+				global91._send('say:', 9, 63, 0, 3, self, 270)
 			#end:case
 			case 8:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 9:
-				(global0 reset: 7)
-				(kernel.ScriptID(271, 0)
-					loop: 1
-					cel: 0
-					posn: 185 118
-					cycleSpeed: 14
-					setCycle: End self
+				global0._send('reset:', 7)
+				kernel.ScriptID(271, 0)._send(
+					'loop:', 1,
+					'cel:', 0,
+					'posn:', 185, 118,
+					'cycleSpeed:', 14,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 10:
 				ticks = 15
 			#end:case
 			case 11:
-				(kernel.ScriptID(271, 0) cel: 0 setCycle: End self)
+				kernel.ScriptID(271, 0)._send('cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 12:
 				ticks = 15
 			#end:case
 			case 13:
-				(kernel.ScriptID(271, 0) setCycle: Beg self)
+				kernel.ScriptID(271, 0)._send('setCycle:', Beg, self)
 			#end:case
 			case 14:
 				ticks = 15
 			#end:case
 			case 15:
-				(kernel.ScriptID(271, 0) setCycle: Beg self)
+				kernel.ScriptID(271, 0)._send('setCycle:', Beg, self)
 			#end:case
 			case 16:
 				ticks = 45
 			#end:case
 			case 17:
-				(global91 say: 9 63 0 4 self 270)
+				global91._send('say:', 9, 63, 0, 4, self, 270)
 			#end:case
 			case 18:
-				(kernel.ScriptID(271, 0) view: 275 loop: 1 cel: 0 posn: 179 117)
-				(script cue:)
+				kernel.ScriptID(271, 0)._send('view:', 275, 'loop:', 1, 'cel:', 0, 'posn:', 179, 117)
+				script._send('cue:')
 			#end:case
 			case 19:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -212,7 +208,7 @@ class giveMintScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(278)
 	#end:method
 
@@ -228,18 +224,18 @@ class offerItemScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(self setScript: genieLookScr self)
+				global1._send('handsOff:')
+				self._send('setScript:', genieLookScr, self)
 			#end:case
 			case 1:
-				(global91 say: 9 0 0 0 self)
+				global91._send('say:', 9, 0, 0, 0, self)
 			#end:case
 			case 2:
-				(script cue:)
+				script._send('cue:')
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -249,7 +245,7 @@ class offerItemScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(278)
 	#end:method
 

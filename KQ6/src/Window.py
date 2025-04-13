@@ -49,7 +49,7 @@ class SysWindow(Obj):
 			kernel.DisposeWindow(window, eraseOnly)
 			window = 0
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -64,10 +64,11 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			moveTo:
-				(((brRight - left) - (right - left)) / 2)
-				(((brBottom - top) - (bottom - top)) / 2)
+		self._send(
+			'moveTo:', (((brRight - left) - (right - left)) / 2), (/
+					((brBottom - top) - (bottom - top))
+					2
+				)
 		)
 	#end:method
 
@@ -87,7 +88,7 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self move: (param1 - left) (param2 - top))
+		self._send('move:', (param1 - left), (param2 - top))
 	#end:method
 
 	@classmethod
@@ -121,7 +122,7 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		kernel.Graph(12, top, left, bottom, right, (self setMapSet:))
+		kernel.Graph(12, top, left, bottom, right, self._send('setMapSet:'))
 	#end:method
 
 	@classmethod
@@ -135,7 +136,7 @@ class Window(SysWindow):
 		if (argc >= 2):
 			priority = param2
 		#endif
-		kernel.Graph(11, top, left, bottom, right, (self setMapSet:), color, priority)
+		kernel.Graph(11, top, left, bottom, right, self._send('setMapSet:'), color, priority)
 	#end:method
 
 	@classmethod
@@ -143,7 +144,7 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		underBits = kernel.Graph(7, top, left, bottom, right, (self setMapSet:))
+		underBits = kernel.Graph(7, top, left, bottom, right, self._send('setMapSet:'))
 	#end:method
 
 	@classmethod
@@ -172,12 +173,12 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self restore:)
+		self._send('restore:')
 		if window:
 			kernel.DisposeWindow(window)
 			window = 0
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -185,7 +186,7 @@ class Window(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self draw: back -1)
+		self._send('draw:', back, -1)
 	#end:method
 
 #end:class or instance

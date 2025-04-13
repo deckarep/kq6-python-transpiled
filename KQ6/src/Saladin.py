@@ -33,30 +33,30 @@ class Saladin(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (((global2 curPic:) == 165) and (global11 == 740)):
-				(self cel: 1 x: 1 y: 1 textX: 5 textY: 8 keepWindow: 0)
-				(super init: 0 0 0 &rest)
+			case ((global2._send('curPic:') == 165) and (global11 == 740)):
+				self._send('cel:', 1, 'x:', 1, 'y:', 1, 'textX:', 5, 'textY:', 8, 'keepWindow:', 0)
+				super._send('init:', 0, 0, 0, &rest)
 			#end:case
 			case (global11 == 150):
-				(self cel: 1 x: 288 y: 16 textX: -240 textY: -10 keepWindow: 0)
-				(super init: 0 tEyesA tMouthA &rest)
+				self._send('cel:', 1, 'x:', 288, 'y:', 16, 'textX:', -240, 'textY:', -10, 'keepWindow:', 0)
+				super._send('init:', 0, tEyesA, tMouthA, &rest)
 			#end:case
 			case proc913_0(99):
-				(self cel: 1 x: 10 y: 24 textX: 5 textY: 88)
-				(super init: 0 0 wedMouth &rest)
+				self._send('cel:', 1, 'x:', 10, 'y:', 24, 'textX:', 5, 'textY:', 88)
+				super._send('init:', 0, 0, wedMouth, &rest)
 			#end:case
 			else:
-				(self
-					view: 8921
-					loop: 0
-					cel: 0
-					x: 5
-					y: 5
-					textX: 78
-					textY: 8
-					talkWidth: 213
+				self._send(
+					'view:', 8921,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 5,
+					'y:', 5,
+					'textX:', 78,
+					'textY:', 8,
+					'talkWidth:', 213
 				)
-				(super init: tBust tEyes tMouth &rest)
+				super._send('init:', tBust, tEyes, tMouth, &rest)
 			#end:else
 		)
 	#end:method

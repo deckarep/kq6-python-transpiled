@@ -21,9 +21,9 @@ class Ego(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
+		super._send('init:')
 		if (not cycler):
-			(self setCycle: Walk)
+			self._send('setCycle:', Walk)
 		#endif
 	#end:method
 
@@ -40,13 +40,13 @@ class Ego(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		(= edgeHit
 			(cond
 				case (x <= 0): 4#end:case
 				case (x >= 319): 2#end:case
 				case (y >= 189): 3#end:case
-				case (y <= (global2 horizon:)): 1#end:case
+				case (y <= global2._send('horizon:')): 1#end:case
 				else: 0#end:else
 			)
 		)
@@ -59,7 +59,7 @@ class Ego(Actor):
 
 		temp0 = 0
 		while (temp0 < argc): # inline for
-			((global9 at: param1[temp0]) moveTo: self)
+			global9._send('at:', param1[temp0])._send('moveTo:', self)
 			# for:reinit
 			temp0.post('++')
 		#end:loop
@@ -70,14 +70,14 @@ class Ego(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (self has: param1):
-			(temp0 = (global9 at: param1)
-				moveTo: (-1 if (argc == 1) else param2)
+		if self._send('has:', param1):
+			temp0 = global9._send('at:', param1)._send(
+				'moveTo:', (-1 if (argc == 1) else param2)
 			)
-			if (global69 and ((global69 curInvIcon:) == temp0)):
-				(global69
-					curInvIcon: 0
-					disable: ((global69 useIconItem:) cursor: 999 yourself:)
+			if (global69 and (global69._send('curInvIcon:') == temp0)):
+				global69._send(
+					'curInvIcon:', 0,
+					'disable:', global69._send('useIconItem:')._send('cursor:', 999, 'yourself:')
 				)
 			#endif
 		#endif
@@ -88,8 +88,8 @@ class Ego(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if temp0 = (global9 at: param1):
-			(temp0 ownedBy: self)
+		if temp0 = global9._send('at:', param1):
+			temp0._send('ownedBy:', self)
 		#endif
 	#end:method
 
@@ -98,65 +98,63 @@ class Ego(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp1 = (param1 type:)
-		temp2 = (param1 message:)
+		temp1 = param1._send('type:')
+		temp2 = param1._send('message:')
 		(cond
-			case (script and (script handleEvent: param1)): 1#end:case
+			case (script and script._send('handleEvent:', param1)): 1#end:case
 			case (temp1 & 0x0040):
 				if ((temp0 = temp2 == 0) and (temp1 & 0x0004)):
-					(param1 claimed:)
+					param1._send('claimed:')
 					return
 				#endif
 				if 
 					(and
 						(temp1 & 0x0004)
-						(temp0 == (global80 prevDir:))
+						(temp0 == global80._send('prevDir:'))
 						kernel.IsObject(mover)
 					)
 					temp0 = 0
 				#endif
-				(global80 prevDir: temp0)
-				(self setDirection: temp0)
-				(param1 claimed: 1)
+				global80._send('prevDir:', temp0)
+				self._send('setDirection:', temp0)
+				param1._send('claimed:', 1)
 			#end:case
 			case (temp1 & 0x4000):
 				if (temp1 & 0x1000):
 					match global67
 						case 0:
-							(self
-								setMotion: MoveTo (param1 x:) ((param1 y:) + z)
+							self._send(
+								'setMotion:', MoveTo, param1._send('x:'), (param1._send('y:') + z)
 							)
 						#end:case
 						case 1:
-							(self
-								setMotion:
-									PolyPath
-									(param1 x:)
-									((param1 y:) + z)
+							self._send(
+								'setMotion:', PolyPath, param1._send('x:'), (+
+										param1._send('y:')
+										z
+									)
 							)
 						#end:case
 						case 2:
-							(self
-								setMotion:
-									PolyPath
-									(param1 x:)
-									((param1 y:) + z)
-									0
-									0
+							self._send(
+								'setMotion:', PolyPath, param1._send('x:'), (+
+										param1._send('y:')
+										z
+									), 0, 0
 							)
 						#end:case
 					#end:match
-					(global80 prevDir: 0)
-					(param1 claimed: 1)
+					global80._send('prevDir:', 0)
+					param1._send('claimed:', 1)
 				else:
-					(super handleEvent: param1)
+					super._send('handleEvent:', param1)
 				#endif
 			#end:case
 			else:
-				(super handleEvent: param1)
+				super._send('handleEvent:', param1)
 			#end:else
 		)
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 #end:class or instance

@@ -34,12 +34,12 @@ class rm180(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if (global12 == 99):
-			(global102 number: 752 setLoop: -1 play:)
+			global102._send('number:', 752, 'setLoop:', -1, 'play:')
 		#endif
-		(global0 init: view: 180 normal: 0 cel: 0 posn: 86 94 setPri: 14)
-		(self setScript: sKissStuff)
+		global0._send('init:', 'view:', 180, 'normal:', 0, 'cel:', 0, 'posn:', 86, 94, 'setPri:', 14)
+		self._send('setScript:', sKissStuff)
 	#end:method
 
 #end:class or instance
@@ -54,196 +54,196 @@ class sKissStuff(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				seconds = 2
 			#end:case
 			case 1:
-				(global0 setCycle: CT 2 1 self)
+				global0._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 2:
 				ticks = 60
 			#end:case
 			case 3:
-				(global0 cel: 3)
+				global0._send('cel:', 3)
 				ticks = 30
 			#end:case
 			case 4:
-				(global0 cel: 2)
+				global0._send('cel:', 2)
 				ticks = 30
 			#end:case
 			case 5:
-				(global0 cel: 3)
+				global0._send('cel:', 3)
 				ticks = 30
 			#end:case
 			case 6:
-				(kernel.ScriptID(1015, 6) talkWidth: 100 x: 170 y: 140)
+				kernel.ScriptID(1015, 6)._send('talkWidth:', 100, 'x:', 170, 'y:', 140)
 				seconds = 5
 			#end:case
 			case 7:
-				(global91 say: 1 0 3 1 self)
+				global91._send('say:', 1, 0, 3, 1, self)
 			#end:case
 			case 8:
-				(global0 setCycle: Beg self)
-				(kernel.ScriptID(1015, 6) talkWidth: 150 x: 70 y: 40)
+				global0._send('setCycle:', Beg, self)
+				kernel.ScriptID(1015, 6)._send('talkWidth:', 150, 'x:', 70, 'y:', 40)
 			#end:case
 			case 9:
 				seconds = 2
 			#end:case
 			case 10:
-				(global0
-					view: 758
-					setLoop: 0
-					cel: 3
-					posn: 29 179
-					scaleSignal: 1
-					scaleX: 128
-					scaleY: 128
-					signal: 26624
+				global0._send(
+					'view:', 758,
+					'setLoop:', 0,
+					'cel:', 3,
+					'posn:', 29, 179,
+					'scaleSignal:', 1,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'signal:', 26624
 				)
-				(body init: setLoop: 0 cel: 0)
-				(leftGuard init: cel: 2)
-				(rightGuard init:)
-				(sword init: setPri: 1 ignoreActors: 1 addToPic:)
-				(global2 drawPic: 750 10)
-				(global69 disable: 6)
+				body._send('init:', 'setLoop:', 0, 'cel:', 0)
+				leftGuard._send('init:', 'cel:', 2)
+				rightGuard._send('init:')
+				sword._send('init:', 'setPri:', 1, 'ignoreActors:', 1, 'addToPic:')
+				global2._send('drawPic:', 750, 10)
+				global69._send('disable:', 6)
 				cycles = 2
 			#end:case
 			case 11:
-				(body setCycle: End self)
+				body._send('setCycle:', End, self)
 			#end:case
 			case 12:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 13:
-				(global0
-					reset: 0
-					scaleSignal: 1
-					scaleX: 115
-					scaleY: 115
-					setPri: 13
-					posn: 21 177
+				global0._send(
+					'reset:', 0,
+					'scaleSignal:', 1,
+					'scaleX:', 115,
+					'scaleY:', 115,
+					'setPri:', 13,
+					'posn:', 21, 177
 				)
-				(cassima init: setPri: 14 setCycle: Beg self)
+				cassima._send('init:', 'setPri:', 14, 'setCycle:', Beg, self)
 			#end:case
 			case 14:
-				(cassima view: 784 setLoop: 0 posn: 29 188 addToPic:)
-				(global0 addToPic:)
+				cassima._send('view:', 784, 'setLoop:', 0, 'posn:', 29, 188, 'addToPic:')
+				global0._send('addToPic:')
 				cycles = 2
 			#end:case
 			case 15:
-				(global91 say: 1 0 2 1 self)
+				global91._send('say:', 1, 0, 2, 1, self)
 			#end:case
 			case 16:
-				(cassima dispose:)
-				(global0 dispose:)
-				(body setCycle: End self)
+				cassima._send('dispose:')
+				global0._send('dispose:')
+				body._send('setCycle:', End, self)
 			#end:case
 			case 17:
-				(global91 say: 1 0 2 2 self)
+				global91._send('say:', 1, 0, 2, 2, self)
 			#end:case
 			case 18:
-				(body setCycle: End self)
+				body._send('setCycle:', End, self)
 			#end:case
 			case 19:
-				(global91 say: 1 0 2 3 self)
+				global91._send('say:', 1, 0, 2, 3, self)
 			#end:case
 			case 20:
-				(body setCycle: End self)
-				(rightGuard cel: 3)
+				body._send('setCycle:', End, self)
+				rightGuard._send('cel:', 3)
 			#end:case
 			case 21:
-				(global91 say: 1 0 2 4 self)
+				global91._send('say:', 1, 0, 2, 4, self)
 			#end:case
 			case 22:
-				(leftGuard cel: 0)
-				(body setLoop: 1 cel: 0 setCycle: End self)
+				leftGuard._send('cel:', 0)
+				body._send('setLoop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 23:
-				(body setLoop: 2 cel: 0 setCycle: End self)
+				body._send('setLoop:', 2, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 24:
 				ticks = 30
 			#end:case
 			case 25:
-				(body setCycle: CT 1 -1 self)
+				body._send('setCycle:', CT, 1, -1, self)
 			#end:case
 			case 26:
-				(body setCycle: End self)
+				body._send('setCycle:', End, self)
 			#end:case
 			case 27:
-				(body setCycle: Beg self)
+				body._send('setCycle:', Beg, self)
 			#end:case
 			case 28:
-				(rightGuard
-					setLoop: 3
-					setCycle: Walk
-					setMotion: MoveTo 233 133 self
+				rightGuard._send(
+					'setLoop:', 3,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 233, 133, self
 				)
 			#end:case
 			case 29:
-				(rightGuard setLoop: 0 setPri: 1 setMotion: MoveTo 249 135 self)
+				rightGuard._send('setLoop:', 0, 'setPri:', 1, 'setMotion:', MoveTo, 249, 135, self)
 			#end:case
 			case 30:
-				(rightGuard setLoop: 2 setMotion: MoveTo 289 184 rightGuard)
-				(body
-					view: 145
-					scaleSignal: 1
-					scaleX: 95
-					scaleY: 95
-					setStep: 4 4
-					posn: 169 149
-					setLoop: 0
-					setCycle: Walk
-					setMotion: MoveTo 233 133 self
+				rightGuard._send('setLoop:', 2, 'setMotion:', MoveTo, 289, 184, rightGuard)
+				body._send(
+					'view:', 145,
+					'scaleSignal:', 1,
+					'scaleX:', 95,
+					'scaleY:', 95,
+					'setStep:', 4, 4,
+					'posn:', 169, 149,
+					'setLoop:', 0,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 233, 133, self
 				)
 			#end:case
 			case 31:
-				(body setPri: 1 setMotion: MoveTo 249 135 self)
-				(leftGuard
-					view: 765
-					setLoop: 0
-					cel: 0
-					posn: 115 150
-					setCycle: End
+				body._send('setPri:', 1, 'setMotion:', MoveTo, 249, 135, self)
+				leftGuard._send(
+					'view:', 765,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', 115, 150,
+					'setCycle:', End
 				)
-				(global103 number: 0 stop:)
-				(global103 number: 652 setLoop: 1 play:)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 652, 'setLoop:', 1, 'play:')
 			#end:case
 			case 32:
-				(body setLoop: 2 setMotion: MoveTo 289 184 body)
-				(leftGuard
-					view: 7651
-					posn: 127 150
-					setLoop: 0
-					setCycle: Walk
-					setMotion: MoveTo 233 133 self
+				body._send('setLoop:', 2, 'setMotion:', MoveTo, 289, 184, body)
+				leftGuard._send(
+					'view:', 7651,
+					'posn:', 127, 150,
+					'setLoop:', 0,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 233, 133, self
 				)
 			#end:case
 			case 33:
-				(leftGuard setPri: 1 setMotion: MoveTo 249 135 self)
+				leftGuard._send('setPri:', 1, 'setMotion:', MoveTo, 249, 135, self)
 			#end:case
 			case 34:
-				(leftGuard setLoop: 2 setMotion: MoveTo 289 184 self)
+				leftGuard._send('setLoop:', 2, 'setMotion:', MoveTo, 289, 184, self)
 			#end:case
 			case 35:
-				(leftGuard dispose:)
+				leftGuard._send('dispose:')
 				cycles = 2
 			#end:case
 			case 36:
-				(global2 drawPic: 98 9)
-				(global69 enable: 6)
-				(global102 fade:)
+				global2._send('drawPic:', 98, 9)
+				global69._send('enable:', 6)
+				global102._send('fade:')
 				seconds = 4
 			#end:case
 			case 37:
 				kernel.Message(0, 180, 1, 0, 2, 5, @local0)
-				(global2 drawPic: 98 12)
+				global2._send('drawPic:', 98, 12)
 				kernel.Display(@local0, 100, 85, 85, 102, 14, 105, 0)
-				(global102 number: 743 setLoop: -1 play:)
+				global102._send('number:', 743, 'setLoop:', -1, 'play:')
 				seconds = 3
 			#end:case
 			case 38:
-				(global2 newRoom: 740)
+				global2._send('newRoom:', 740)
 			#end:case
 		#end:match
 	#end:method
@@ -287,8 +287,8 @@ class rightGuard(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
-		(self dispose:)
+		super._send('cue:')
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -307,8 +307,8 @@ class body(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
-		(self dispose:)
+		super._send('cue:')
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance

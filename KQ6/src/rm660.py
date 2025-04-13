@@ -45,62 +45,35 @@ class rm660(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						189
-						0
-						-10
-						319
-						-10
-						319
-						174
-						241
-						159
-						236
-						146
-						187
-						147
-						107
-						151
-						81
-						159
-						102
-						167
-						116
-						173
-						108
-						179
-						75
-						189
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 189, 0, -10, 319, -10, 319, 174, 241, 159, 236, 146, 187, 147, 107, 151, 81, 159, 102, 167, 116, 173, 108, 179, 75, 189,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
-		(global0
-			posn: 160 180
-			setPri: 12
-			setScale: Scaler 100 64 189 74
-			actions: egoActions
-			init:
+		super._send('init:', &rest)
+		global0._send(
+			'posn:', 160, 180,
+			'setPri:', 12,
+			'setScale:', Scaler, 100, 64, 189, 74,
+			'actions:', egoActions,
+			'init:'
 		)
-		(riverStyx init:)
-		(boat addToPic:)
-		(charon
-			posn: ((boat x:) - 79) ((boat y:) + 36)
-			ignoreActors: 1
-			init:
-			stopUpd:
+		riverStyx._send('init:')
+		boat._send('addToPic:')
+		charon._send(
+			'posn:', (boat._send('x:') - 79), (boat._send('y:') + 36),
+			'ignoreActors:', 1,
+			'init:',
+			'stopUpd:'
 		)
-		(spiritFeat init:)
+		spiritFeat._send('init:')
 		proc70_1(torch, @local1)
 		proc70_1(shimmer, @local20)
 		proc70_1(glow, @local36)
-		(global5 eachElementDo: #checkDetail)
-		(global1 handsOn:)
+		global5._send('eachElementDo:', #checkDetail)
+		global1._send('handsOn:')
 	#end:method
 
 #end:class or instance
@@ -127,32 +100,32 @@ class swimScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 99 182 self)
+				global0._send('setMotion:', PolyPath, 99, 182, self)
 			#end:case
 			case 1:
-				(global102 number: 653 loop: 1 play:)
-				(global0
-					normal: 0
-					view: 665
-					setLoop: 0
-					cel: 0
-					posn: 89 187
-					setCycle: CT 6 1 self
+				global102._send('number:', 653, 'loop:', 1, 'play:')
+				global0._send(
+					'normal:', 0,
+					'view:', 665,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', 89, 187,
+					'setCycle:', CT, 6, 1, self
 				)
 			#end:case
 			case 2:
-				(splashSound play:)
-				(global0 setCycle: End self)
+				splashSound._send('play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0 dispose:)
+				global0._send('dispose:')
 				cycles = 2
 			#end:case
 			case 4:
-				(global91 say: 3 3 0 1 self)
+				global91._send('say:', 3, 3, 0, 1, self)
 			#end:case
 			case 5:
-				(global91 say: 3 3 0 2 self)
+				global91._send('say:', 3, 3, 0, 2, self)
 			#end:case
 			case 6:
 				proc0_1(31)
@@ -175,46 +148,46 @@ class missedCharonScript(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 6 0 9 1 self)
+				global91._send('say:', 6, 0, 9, 1, self)
 			#end:case
 			case 2:
-				(global102 number: 601 loop: 1 play:)
+				global102._send('number:', 601, 'loop:', 1, 'play:')
 				if 
 					(>
-						kernel.GetDistance((global0 x:), (global0 y:), (charon
-							x:
-						), (charon y:))
+						kernel.GetDistance(global0._send('x:'), global0._send('y:'), charon._send(
+							'x:'
+						), charon._send('y:'))
 						40
 					)
-					(global0 setMotion: PolyPath 114 160 self)
+					global0._send('setMotion:', PolyPath, 114, 160, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 3:
-				(global91 say: 6 0 9 2 self)
+				global91._send('say:', 6, 0, 9, 2, self)
 			#end:case
 			case 4:
-				(charon view: 667 setLoop: 0 setCycle: End self)
-				(global103 number: 662 loop: 1 play:)
+				charon._send('view:', 667, 'setLoop:', 0, 'setCycle:', End, self)
+				global103._send('number:', 662, 'loop:', 1, 'play:')
 			#end:case
 			case 5:
-				(charon setLoop: 1 setCycle: Fwd)
-				(global0
-					normal: 0
-					view: 749
-					setLoop: 3
-					cel: 0
-					setCycle: End self
+				charon._send('setLoop:', 1, 'setCycle:', Fwd)
+				global0._send(
+					'normal:', 0,
+					'view:', 749,
+					'setLoop:', 3,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
-				(global0 setLoop: 5 cel: 0 setCycle: End)
-				(charon setLoop: 0)
-				(charon cel: (charon lastCel:) setCycle: Beg self)
+				global0._send('setLoop:', 5, 'cel:', 0, 'setCycle:', End)
+				charon._send('setLoop:', 0)
+				charon._send('cel:', charon._send('lastCel:'), 'setCycle:', Beg, self)
 			#end:case
 			case 7:
-				(global91 say: 6 0 9 3 self)
+				global91._send('say:', 6, 0, 9, 3, self)
 			#end:case
 			case 8:
 				proc0_1(39)
@@ -234,116 +207,116 @@ class buyTransportScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					illegalBits: 0
-					ignoreActors: 1
-					setMotion: MoveTo 106 147 self
+				global0._send(
+					'illegalBits:', 0,
+					'ignoreActors:', 1,
+					'setMotion:', MoveTo, 106, 147, self
 				)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global91 say: 2 7 0 1 self)
+				global91._send('say:', 2, 7, 0, 1, self)
 			#end:case
 			case 3:
-				(global1 givePoints: 3)
-				(global0
-					normal: 0
-					put: 7 -1
-					view: 661
-					setLoop: 0
-					cel: 0
-					posn: 110 150
-					setCycle: End self
+				global1._send('givePoints:', 3)
+				global0._send(
+					'normal:', 0,
+					'put:', 7, -1,
+					'view:', 661,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', 110, 150,
+					'setCycle:', End, self
 				)
-				(charon setCycle: End)
+				charon._send('setCycle:', End)
 			#end:case
 			case 4:
-				(fx number: 661 loop: 1 play:)
-				(global0
-					reset: 7
-					setPri: 12
-					posn: ((global0 x:) - 2) ((global0 y:) - 1)
+				fx._send('number:', 661, 'loop:', 1, 'play:')
+				global0._send(
+					'reset:', 7,
+					'setPri:', 12,
+					'posn:', (global0._send('x:') - 2), (global0._send('y:') - 1)
 				)
-				(charon setCycle: Beg self)
+				charon._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
 				seconds = 1
 			#end:case
 			case 6:
-				(global91 say: 2 7 0 2 self)
+				global91._send('say:', 2, 7, 0, 2, self)
 			#end:case
 			case 7:
 				seconds = 1
 			#end:case
 			case 8:
-				(global0 setMotion: MoveTo 124 144 self)
+				global0._send('setMotion:', MoveTo, 124, 144, self)
 			#end:case
 			case 9:
-				(global0
-					normal: 0
-					view: 661
-					setLoop: 1
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 661,
+					'setLoop:', 1,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 10:
 				ticks = 15
 			#end:case
 			case 11:
-				(boat dispose:)
-				(charon view: 668 setLoop: 0 cel: 0 setCycle: End self)
+				boat._send('dispose:')
+				charon._send('view:', 668, 'setLoop:', 0, 'cel:', 0, 'setCycle:', End, self)
 				kernel.UnLoad(128, 663)
 			#end:case
 			case 12:
-				(global0 setPri: -1 dispose:)
-				(charon dispose:)
+				global0._send('setPri:', -1, 'dispose:')
+				charon._send('dispose:')
 				if global169:
 					kernel.DrawPic(660, 15)
 				else:
-					(global2 drawPic: 660)
+					global2._send('drawPic:', 660)
 				#endif
-				(boat
-					signal: 16384
-					ignoreActors: 1
-					view: 662
-					setLoop: 0
-					cel: 0
-					setScale: Scaler 100 50 137 59
-					init:
+				boat._send(
+					'signal:', 16384,
+					'ignoreActors:', 1,
+					'view:', 662,
+					'setLoop:', 0,
+					'cel:', 0,
+					'setScale:', Scaler, 100, 50, 137, 59,
+					'init:'
 				)
 				kernel.UnLoad(128, 668)
 				kernel.UnLoad(128, 661)
 				ticks = 10
 			#end:case
 			case 13:
-				(boat cel: 1)
+				boat._send('cel:', 1)
 				ticks = 10
 			#end:case
 			case 14:
-				(boat setLoop: 1 cel: 0)
+				boat._send('setLoop:', 1, 'cel:', 0)
 				ticks = 10
 			#end:case
 			case 15:
-				(boat cel: 1)
+				boat._send('cel:', 1)
 				ticks = 10
 			#end:case
 			case 16:
-				(boat view: 6621 setLoop: 0 cel: 0)
+				boat._send('view:', 6621, 'setLoop:', 0, 'cel:', 0)
 				ticks = 10
 			#end:case
 			case 17:
-				(boat
-					ignoreActors: 1
-					ignoreHorizon: 1
-					setPri: 3
-					setMotion: MoveTo 345 63 self
+				boat._send(
+					'ignoreActors:', 1,
+					'ignoreHorizon:', 1,
+					'setPri:', 3,
+					'setMotion:', MoveTo, 345, 63, self
 				)
 			#end:case
 			case 18:
-				(global2 newRoom: 670)
+				global2._send('newRoom:', 670)
 			#end:case
 		#end:match
 	#end:method
@@ -360,38 +333,38 @@ class getWaterScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: MoveTo 119 184 self)
+				global0._send('setMotion:', MoveTo, 119, 184, self)
 			#end:case
 			case 1:
-				(global0
-					normal: 0
-					view: 666
-					setLoop: 0
-					cel: 0
-					posn: 110 189
-					setCycle: CT 3 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 666,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', 110, 189,
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 2:
-				(fx number: 924 loop: 1 play:)
-				(global0 setCycle: End self)
+				fx._send('number:', 924, 'loop:', 1, 'play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(global91 say: 3 44 (4 if proc913_0(68) else 3) 0 self)
+				global91._send('say:', 3, 44, (4 if proc913_0(68) else 3), 0, self)
 			#end:case
 			case 5:
-				(global0 reset: 1 setPri: 12 posn: 119 184)
+				global0._send('reset:', 1, 'setPri:', 12, 'posn:', 119, 184)
 				cycles = 1
 			#end:case
 			case 6:
 				kernel.UnLoad(128, 666)
 				proc913_1(58)
-				(global1 givePoints: 1)
-				(self dispose:)
-				(global1 handsOn:)
+				global1._send('givePoints:', 1)
+				self._send('dispose:')
+				global1._send('handsOn:')
 			#end:case
 		#end:match
 	#end:method
@@ -408,14 +381,14 @@ class playFlute(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: kernel.ScriptID(85, 0) self)
+				self._send('setScript:', kernel.ScriptID(85, 0), self)
 			#end:case
 			case 1:
-				(global91 say: 8 31 0 0 self)
+				global91._send('say:', 8, 31, 0, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -432,14 +405,14 @@ class playNightingale(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: kernel.ScriptID(93, 0) self)
+				self._send('setScript:', kernel.ScriptID(93, 0), self)
 			#end:case
 			case 1:
-				(global91 say: 8 37 0 0 self)
+				global91._send('say:', 8, 37, 0, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -458,12 +431,12 @@ class tryToBoardScript(Script):
 			case 0:
 				if 
 					(>
-						kernel.GetDistance((global0 x:), (global0 y:), (charon
-							x:
-						), (charon y:))
+						kernel.GetDistance(global0._send('x:'), global0._send('y:'), charon._send(
+							'x:'
+						), charon._send('y:'))
 						20
 					)
-					(global0 setMotion: MoveTo 112 149 self)
+					global0._send('setMotion:', MoveTo, 112, 149, self)
 				else:
 					cycles = 1
 				#endif
@@ -472,17 +445,17 @@ class tryToBoardScript(Script):
 				proc913_4(global0, charon, self)
 			#end:case
 			case 2:
-				(charonHead
-					posn: ((charon x:) - 5) ((charon y:) - 43)
-					init:
-					setCycle: Fwd
+				charonHead._send(
+					'posn:', (charon._send('x:') - 5), (charon._send('y:') - 43),
+					'init:',
+					'setCycle:', Fwd
 				)
 				cycles = 15
 			#end:case
 			case 3:
-				(charonHead dispose:)
-				(global1 handsOn:)
-				(self dispose:)
+				charonHead._send('dispose:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -501,12 +474,12 @@ class talkCharonScript(Script):
 			case 0:
 				if 
 					(>
-						kernel.GetDistance((global0 x:), (global0 y:), (charon
-							x:
-						), (charon y:))
+						kernel.GetDistance(global0._send('x:'), global0._send('y:'), charon._send(
+							'x:'
+						), charon._send('y:'))
 						20
 					)
-					(global0 setMotion: MoveTo 112 149 self)
+					global0._send('setMotion:', MoveTo, 112, 149, self)
 				else:
 					cycles = 1
 				#endif
@@ -515,34 +488,34 @@ class talkCharonScript(Script):
 				proc913_4(global0, charon, self)
 			#end:case
 			case 2:
-				(global91 say: 2 register 0 1 self)
+				global91._send('say:', 2, register, 0, 1, self)
 			#end:case
 			case 3:
-				if ((charon cel:) != 3):
-					(charon setCycle: End self)
+				if (charon._send('cel:') != 3):
+					charon._send('setCycle:', End, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 4:
-				(charonHead
-					posn: ((charon x:) - 5) ((charon y:) - 43)
-					init:
-					setCycle: Fwd
+				charonHead._send(
+					'posn:', (charon._send('x:') - 5), (charon._send('y:') - 43),
+					'init:',
+					'setCycle:', Fwd
 				)
 				cycles = 15
 			#end:case
 			case 5:
 				if proc999_5(register, 48, 2, 37):
-					(global91 say: 2 register 0 2 self)
+					global91._send('say:', 2, register, 0, 2, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 6:
-				(charonHead dispose:)
-				(global1 handsOn:)
-				(self dispose:)
+				charonHead._send('dispose:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -586,7 +559,7 @@ class shimmer(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(riverStyx doVerb: param1 &rest)
+		riverStyx._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -613,36 +586,14 @@ class spiritFeat(Feature):
 
 		(= onMeCheck
 			(= local0
-				((Polygon new:)
-					type: 0
-					init:
-						132
-						117
-						138
-						121
-						151
-						124
-						169
-						115
-						186
-						122
-						193
-						130
-						185
-						139
-						177
-						141
-						119
-						142
-						119
-						131
-						127
-						119
-					yourself:
+				Polygon._send('new:')._send(
+					'type:', 0,
+					'init:', 132, 117, 138, 121, 151, 124, 169, 115, 186, 122, 193, 130, 185, 139, 177, 141, 119, 142, 119, 131, 127, 119,
+					'yourself:'
 				)
 			)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -661,8 +612,8 @@ class boat(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global93 addToFront: self)
+		super._send('init:', &rest)
+		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -670,8 +621,8 @@ class boat(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
-		(global93 delete: self)
+		super._send('dispose:')
+		global93._send('delete:', self)
 	#end:method
 
 	@classmethod
@@ -680,14 +631,14 @@ class boat(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case ((param1 type:) & 0x1000):
-				(super handleEvent: param1)
+			case (param1._send('type:') & 0x1000):
+				super._send('handleEvent:', param1)
 			#end:case
-			case (spiritFeat onMe: param1):
-				(spiritFeat handleEvent: param1)
+			case spiritFeat._send('onMe:', param1):
+				spiritFeat._send('handleEvent:', param1)
 			#end:case
 			else:
-				(super handleEvent: param1)
+				super._send('handleEvent:', param1)
 			#end:else
 		)
 	#end:method
@@ -699,11 +650,11 @@ class boat(Actor):
 
 		match param1
 			case 3:
-				(global1 handsOff:)
-				(global2 setScript: tryToBoardScript)
+				global1._send('handsOff:')
+				global2._send('setScript:', tryToBoardScript)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -722,18 +673,18 @@ class charon(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		(cond
-			case ((kernel.ScriptID(0, 6) client:) == kernel.ScriptID(70, 0)): 0#end:case
+			case (kernel.ScriptID(0, 6)._send('client:') == kernel.ScriptID(70, 0)): 0#end:case
 			case proc913_0(121):
-				(global1 handsOff:)
-				(global2 setScript: missedCharonScript)
+				global1._send('handsOff:')
+				global2._send('setScript:', missedCharonScript)
 			#end:case
 			else:
-				(kernel.ScriptID(0, 6) setReal: kernel.ScriptID(70, 0) 0 2 0)
+				kernel.ScriptID(0, 6)._send('setReal:', kernel.ScriptID(70, 0), 0, 2, 0)
 			#end:else
 		)
-		(global93 addToFront: self)
+		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -741,8 +692,8 @@ class charon(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
-		(global93 delete: self)
+		super._send('dispose:')
+		global93._send('delete:', self)
 	#end:method
 
 	@classmethod
@@ -750,18 +701,18 @@ class charon(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		(cond
-			case (global2 script:): 0#end:case
+			case global2._send('script:'): 0#end:case
 			case proc913_0(121):
-				(global1 handsOff:)
-				(global2 setScript: missedCharonScript)
+				global1._send('handsOff:')
+				global2._send('setScript:', missedCharonScript)
 			#end:case
-			case (((self distanceTo: global0) < 40) and (cel != 3) and (not cycler)):
-				(self setCycle: End)
+			case ((self._send('distanceTo:', global0) < 40) and (cel != 3) and (not cycler)):
+				self._send('setCycle:', End)
 			#end:case
-			case (((self distanceTo: global0) > 40) and cel and (not cycler)):
-				(self setCycle: Beg)
+			case ((self._send('distanceTo:', global0) > 40) and cel and (not cycler)):
+				self._send('setCycle:', Beg)
 			#end:case
 		)
 	#end:method
@@ -773,29 +724,29 @@ class charon(Actor):
 
 		match param1
 			case 7:
-				(global1 handsOff:)
-				(kernel.ScriptID(0, 6) dispose:)
-				(global2 setScript: buyTransportScr)
+				global1._send('handsOff:')
+				kernel.ScriptID(0, 6)._send('dispose:')
+				global2._send('setScript:', buyTransportScr)
 			#end:case
 			case 3:
-				(global1 handsOff:)
-				(global2 setScript: tryToBoardScript)
+				global1._send('handsOff:')
+				global2._send('setScript:', tryToBoardScript)
 			#end:case
 			case 31:
-				(global1 handsOff:)
-				(global2 setScript: playFlute)
+				global1._send('handsOff:')
+				global2._send('setScript:', playFlute)
 			#end:case
 			case 37:
-				(global1 handsOff:)
-				(global2 setScript: playNightingale)
+				global1._send('handsOff:')
+				global2._send('setScript:', playNightingale)
 			#end:case
 			else:
 				if proc999_5(param1, 2, 5, 1, 13, 28, 8, 30, 48, 50, 16, 35):
-					(global1 handsOff:)
-					(global2 setScript: talkCharonScript 0 param1)
+					global1._send('handsOff:')
+					global2._send('setScript:', talkCharonScript, 0, param1)
 				else:
-					(global1 handsOff:)
-					(global2 setScript: talkCharonScript 0 0)
+					global1._send('handsOff:')
+					global2._send('setScript:', talkCharonScript, 0, 0)
 				#endif
 			#end:else
 		#end:match
@@ -814,8 +765,8 @@ class riverStyx(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global93 addToFront: self)
+		super._send('init:', &rest)
+		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -826,18 +777,18 @@ class riverStyx(Feature):
 		match param1
 			case 44:
 				if (not proc913_0(58)):
-					(global1 handsOff:)
-					(global2 setScript: getWaterScr)
+					global1._send('handsOff:')
+					global2._send('setScript:', getWaterScr)
 				else:
-					(global91 say: noun param1 5)
+					global91._send('say:', noun, param1, 5)
 				#endif
 			#end:case
 			case 3:
-				(global1 handsOff:)
-				(global2 setScript: swimScr)
+				global1._send('handsOff:')
+				global2._send('setScript:', swimScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -847,8 +798,8 @@ class riverStyx(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
-		(global93 delete: self)
+		super._send('dispose:')
+		global93._send('delete:', self)
 	#end:method
 
 #end:class or instance
@@ -863,12 +814,12 @@ class egoActions(Actions):
 
 		match param1
 			case 31:
-				(global1 handsOff:)
-				(global2 setScript: playFlute)
+				global1._send('handsOff:')
+				global2._send('setScript:', playFlute)
 			#end:case
 			case 37:
-				(global1 handsOff:)
-				(global2 setScript: playNightingale)
+				global1._send('handsOff:')
+				global2._send('setScript:', playNightingale)
 			#end:case
 			else:
 				return 0

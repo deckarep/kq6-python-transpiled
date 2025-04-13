@@ -31,25 +31,25 @@ class Jump(Motion):
 		if (argc == 2):
 			caller = param2
 		#endif
-		illegalBits = (client illegalBits:)
-		signal = (client signal:)
-		(client illegalBits: 0 setPri:)
+		illegalBits = client._send('illegalBits:')
+		signal = client._send('signal:')
+		client._send('illegalBits:', 0, 'setPri:')
 		if (xStep == 20000):
 			(= xStep
 				(cond
 					case 
 						(or
-							(temp0 = (client heading:) > 330)
+							(temp0 = client._send('heading:') > 330)
 							(temp0 < 30)
 							(< 150 temp0 210)
 						):
 						0
 					#end:case
 					case (temp0 < 180):
-						(client xStep:)
+						client._send('xStep:')
 					#end:case
 					else:
-						-(client xStep:)
+						-client._send('xStep:')
 					#end:else
 				)
 			)
@@ -61,7 +61,7 @@ class Jump(Motion):
 			waitApogeeY = 0
 		#endif
 		b-moveCnt = global88
-		(self setTest:)
+		self._send('setTest:')
 	#end:method
 
 	@classmethod
@@ -69,11 +69,11 @@ class Jump(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (kernel.Abs((global88 - b-moveCnt)) >= (client moveSpeed:)):
+		if (kernel.Abs((global88 - b-moveCnt)) >= client._send('moveSpeed:')):
 			b-moveCnt = global88
-			xLast = (client x:)
-			yLast = (client y:)
-			(client x: (xLast + xStep) y: (yLast + yStep))
+			xLast = client._send('x:')
+			yLast = client._send('y:')
+			client._send('x:', (xLast + xStep), 'y:', (yLast + yStep))
 			temp0 = xStep
 			temp1 = yStep
 			(xStep += gx)
@@ -82,29 +82,29 @@ class Jump(Motion):
 				(and
 					(not waitApogeeX)
 					(x != 20000)
-					(0 <= (dx * ((client x:) - x)))
+					(0 <= (dx * (client._send('x:') - x)))
 				)
-				(client x: x)
-				(self moveDone:)
+				client._send('x:', x)
+				self._send('moveDone:')
 				return
 			#endif
 			if 
 				(and
 					(not waitApogeeY)
 					(y != 20000)
-					(0 <= (dy * ((client y:) - y)))
+					(0 <= (dy * (client._send('y:') - y)))
 				)
-				(client y: y)
-				(self moveDone:)
+				client._send('y:', y)
+				self._send('moveDone:')
 				return
 			#endif
 			if ((temp0 * xStep) <= 0):
 				waitApogeeX = 0
-				(self setTest:)
+				self._send('setTest:')
 			#endif
 			if ((temp1 * yStep) <= 0):
 				waitApogeeY = 0
-				(self setTest:)
+				self._send('setTest:')
 			#endif
 		#endif
 	#end:method
@@ -114,7 +114,7 @@ class Jump(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client illegalBits: illegalBits signal: signal)
+		client._send('illegalBits:', illegalBits, 'signal:', signal)
 		if caller:
 			global37 = 1
 			completed = 1
@@ -127,14 +127,14 @@ class Jump(Motion):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= dx
-			if (((client x:) > x) or (((client x:) == x) and (xStep > 0))):
+			if ((client._send('x:') > x) or ((client._send('x:') == x) and (xStep > 0))):
 				-1
 			else:
 				1
 			#endif
 		)
 		(= dy
-			if (((client y:) > y) or (((client y:) == y) and (yStep > 0))):
+			if ((client._send('y:') > y) or ((client._send('y:') == y) and (yStep > 0))):
 				-1
 			else:
 				1
@@ -147,11 +147,11 @@ class Jump(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client mover: 0)
+		client._send('mover:', 0)
 		if (completed and kernel.IsObject(caller)):
-			(caller cue:)
+			caller._send('cue:')
 		#endif
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -166,14 +166,14 @@ class JumpTo(Jump):
 		client = param1
 		x = param2
 		y = param3
-		if ((x == (param1 x:)) and (y == (param1 y:))):
-			illegalBits = (client illegalBits:)
-			signal = (client signal:)
-			(self moveDone:)
+		if ((x == param1._send('x:')) and (y == param1._send('y:'))):
+			illegalBits = client._send('illegalBits:')
+			signal = client._send('signal:')
+			self._send('moveDone:')
 			return
 		#endif
-		temp0 = (x - (param1 x:))
-		temp1 = (y - (param1 y:))
+		temp0 = (x - param1._send('x:'))
+		temp1 = (y - param1._send('y:'))
 		kernel.SetJump(self, temp0, temp1, gy)
 		if (not temp0):
 			x = 20000
@@ -183,10 +183,10 @@ class JumpTo(Jump):
 		#endif
 		match argc
 			case 3:
-				(super init: param1)
+				super._send('init:', param1)
 			#end:case
 			case 4:
-				(super init: param1 param4)
+				super._send('init:', param1, param4)
 			#end:case
 		#end:match
 	#end:method
@@ -197,12 +197,12 @@ class JumpTo(Jump):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (x != 20000):
-			(client x: x)
+			client._send('x:', x)
 		#endif
 		if (y != 20000):
-			(client y: y)
+			client._send('y:', y)
 		#endif
-		(super moveDone:)
+		super._send('moveDone:')
 	#end:method
 
 #end:class or instance

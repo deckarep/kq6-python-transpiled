@@ -35,45 +35,45 @@ class The_Vizier(Kq6Talker):
 
 		(cond
 			case proc913_0(59):
-				(self cel: 1)
-				(super init: 0 0 0 &rest)
+				self._send('cel:', 1)
+				super._send('init:', 0, 0, 0, &rest)
 			#end:case
 			case proc913_0(99):
-				(self cel: 1 x: 135 y: 43 talkWidth: 150 textX: -44 textY: 53)
-				(super init: 0 0 wedMouth &rest)
+				self._send('cel:', 1, 'x:', 135, 'y:', 43, 'talkWidth:', 150, 'textX:', -44, 'textY:', 53)
+				super._send('init:', 0, 0, wedMouth, &rest)
 			#end:case
 			case (global11 == 145):
-				(self cel: 1 x: 42 y: 58 textX: -32 textY: -50)
-				(tMouth view: 1466 loop: 2 nsLeft: 0 nsTop: 0)
-				(super init: 0 0 tMouth &rest)
+				self._send('cel:', 1, 'x:', 42, 'y:', 58, 'textX:', -32, 'textY:', -50)
+				tMouth._send('view:', 1466, 'loop:', 2, 'nsLeft:', 0, 'nsTop:', 0)
+				super._send('init:', 0, 0, tMouth, &rest)
 			#end:case
 			case (global11 == 150):
-				(self
-					cel: 1
-					x: 54
-					y: 48
-					talkWidth: 160
-					textX: -44
-					textY: 53
-					keepWindow: 0
+				self._send(
+					'cel:', 1,
+					'x:', 54,
+					'y:', 48,
+					'talkWidth:', 160,
+					'textX:', -44,
+					'textY:', 53,
+					'keepWindow:', 0
 				)
-				(super init: 0 tEyes150 tMouth150 &rest)
+				super._send('init:', 0, tEyes150, tMouth150, &rest)
 			#end:case
 			else:
 				if (global11 == 750):
 					winPosn = 0
 				#endif
-				(self
-					view: 892
-					loop: 0
-					cel: 0
-					x: 5
-					y: 5
-					textX: 76
-					textY: 8
-					talkWidth: 213
+				self._send(
+					'view:', 892,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 5,
+					'y:', 5,
+					'textX:', 76,
+					'textY:', 8,
+					'talkWidth:', 213
 				)
-				(super init: tBust tEyes tMouth &rest)
+				super._send('init:', tBust, tEyes, tMouth, &rest)
 			#end:else
 		)
 	#end:method
@@ -91,9 +91,9 @@ class tBust(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
-			(self cel: 1)
+			self._send('cel:', 1)
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -112,9 +112,9 @@ class tEyes(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
-			(self cel: 1)
+			self._send('cel:', 1)
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

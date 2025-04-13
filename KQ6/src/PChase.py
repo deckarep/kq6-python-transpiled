@@ -28,15 +28,15 @@ class PChase(PolyPath):
 					obstacles = param5
 				#end:case
 				case (not kernel.IsObject(obstacles)):
-					obstacles = (global2 obstacles:)
+					obstacles = global2._send('obstacles:')
 				#end:case
 			)
 			if (argc >= 1):
 				client = param1
 				if (argc >= 2):
 					who = param2
-					targetX = (who x:)
-					targetY = (who y:)
+					targetX = who._send('x:')
+					targetY = who._send('y:')
 					if (argc >= 3):
 						distance = param3
 						if (argc >= 4):
@@ -45,9 +45,9 @@ class PChase(PolyPath):
 					#endif
 				#endif
 			#endif
-			(super init: client targetX targetY caller 1 obstacles)
+			super._send('init:', client, targetX, targetY, caller, 1, obstacles)
 		else:
-			(super init:)
+			super._send('init:')
 		#endif
 	#end:method
 
@@ -57,19 +57,19 @@ class PChase(PolyPath):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (kernel.GetDistance(targetX, targetY, (who x:), (who y:)) > distance):
+			case (kernel.GetDistance(targetX, targetY, who._send('x:'), who._send('y:')) > distance):
 				if points:
 					kernel.Memory(3, points)
 				#endif
 				points = 0
 				value = 2
-				(self init: client who)
+				self._send('init:', client, who)
 			#end:case
-			case (temp0 = (client distanceTo: who) <= distance):
-				(self moveDone:)
+			case (temp0 = client._send('distanceTo:', who) <= distance):
+				self._send('moveDone:')
 			#end:case
 			else:
-				(super doit:)
+				super._send('doit:')
 			#end:else
 		)
 	#end:method
@@ -80,8 +80,8 @@ class PChase(PolyPath):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (temp0 = (client distanceTo: who) <= distance):
-				(super moveDone:)
+			case (temp0 = client._send('distanceTo:', who) <= distance):
+				super._send('moveDone:')
 			#end:case
 			case (proc999_6(points, value) == 30583):
 				if points:
@@ -89,10 +89,10 @@ class PChase(PolyPath):
 				#endif
 				points = 0
 				value = 2
-				(self init: client who)
+				self._send('init:', client, who)
 			#end:case
 			else:
-				(self setTarget: init:)
+				self._send('setTarget:', 'init:')
 			#end:else
 		)
 	#end:method

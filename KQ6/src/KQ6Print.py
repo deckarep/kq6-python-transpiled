@@ -31,7 +31,7 @@ class myDialog(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((super check:) or (kernel.DoAudio(6) == -1)):
+		if (super._send('check:') or (kernel.DoAudio(6) == -1)):
 			return 1
 		#endif
 	#end:method
@@ -44,7 +44,7 @@ class myDialog(Dialog):
 		if (kernel.DoAudio(6) == -1):
 			return -2
 		else:
-			(super handleEvent: &rest)
+			super._send('handleEvent:', &rest)
 			return
 		#endif
 	#end:method
@@ -57,7 +57,7 @@ class myDialog(Dialog):
 		if (not (kernel.DoAudio(6) == -1)):
 			kernel.DoAudio(3)
 		#endif
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 #end:class or instance
@@ -89,12 +89,12 @@ class KQ6Print(Print):
 				#endif
 			#endif
 			if (param1 == 1):
-				(self addText: param2 &rest)
+				self._send('addText:', param2, &rest)
 			else:
 				repressText = 1
 			#endif
 		else:
-			(self addText: param2 &rest)
+			self._send('addText:', param2, &rest)
 		#endif
 	#end:method
 
@@ -108,21 +108,21 @@ class KQ6Print(Print):
 			caller = param1
 		#endif
 		if (argc > 1):
-			(self addText: &rest)
+			self._send('addText:', &rest)
 		#endif
 		if (not modeless):
 			if (not kernel.IsObject(global92)):
-				global92 = ((EventHandler new:) name: r"""prints""")
+				global92 = EventHandler._send('new:')._send('name:', r"""prints""")
 			#endif
-			(global92 add: self)
+			global92._send('add:', self)
 		#endif
 		if (global90 & 0x0002):
 			kernel.DoAudio(2, local0, local1, local2, local3, local4)
 		#endif
 		if modeless:
-			(global69 disable: 6)
+			global69._send('disable:', 6)
 		#endif
-		(self showSelf:)
+		self._send('showSelf:')
 	#end:method
 
 	@classmethod
@@ -131,13 +131,13 @@ class KQ6Print(Print):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if modeless:
-			(global69 enable: 6)
+			global69._send('enable:', 6)
 		#endif
 		repressText = 0
 		if (global90 & 0x0002):
 			kernel.DoAudio(3)
 		#endif
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -147,7 +147,7 @@ class KQ6Print(Print):
 
 		repressText = 0
 		if (not dialog):
-			dialog = (Dialog new:)
+			dialog = Dialog._send('new:')
 		#endif
 		if (font == -1):
 			font = global22
@@ -177,39 +177,36 @@ class KQ6Print(Print):
 						kernel.StrAt(temp7, 0, 9)
 						temp10 = (0 + ((temp9 - 65) / 13))
 						temp11 = (mod (temp9 - 65) 13)
-						(dialog
-							add:
-								((DText new:)
-									text: temp7
-									font: font
-									mode: mode
-									setSize: width
-									moveTo: (4 + temp4) (+ 4 temp5 7)
-									yourself:
-								)
-							add:
-								((DIcon new:)
-									view: (Kq6Narrator strView:)
-									loop: temp10
-									cel: temp11
-									setSize:
-									moveTo: (temp4 + 4) (temp5 + 4)
-									yourself:
-								)
-							setSize:
+						dialog._send(
+							'add:', DText._send('new:')._send(
+									'text:', temp7,
+									'font:', font,
+									'mode:', mode,
+									'setSize:', width,
+									'moveTo:', (4 + temp4), (+ 4 temp5 7),
+									'yourself:'
+								),
+							'add:', DIcon._send('new:')._send(
+									'view:', Kq6Narrator._send('strView:'),
+									'loop:', temp10,
+									'cel:', temp11,
+									'setSize:',
+									'moveTo:', (temp4 + 4), (temp5 + 4),
+									'yourself:'
+								),
+							'setSize:'
 						)
 					else:
-						(dialog
-							add:
-								((DText new:)
-									text: temp7
-									font: font
-									mode: mode
-									setSize: width
-									moveTo: (4 + temp4) (4 + temp5)
-									yourself:
-								)
-							setSize:
+						dialog._send(
+							'add:', DText._send('new:')._send(
+									'text:', temp7,
+									'font:', font,
+									'mode:', mode,
+									'setSize:', width,
+									'moveTo:', (4 + temp4), (4 + temp5),
+									'yourself:'
+								),
+							'setSize:'
 						)
 					#endif
 				#endif
@@ -225,17 +222,16 @@ class KQ6Print(Print):
 			#endif
 			temp7 = kernel.Memory(1, (kernel.StrLen(param1[0]) + 1))
 			kernel.StrCpy(temp7, param1[0])
-			(dialog
-				add:
-					((DText new:)
-						text: temp7
-						font: font
-						mode: mode
-						setSize: width
-						moveTo: (4 + temp4) (4 + temp5)
-						yourself:
-					)
-				setSize:
+			dialog._send(
+				'add:', DText._send('new:')._send(
+						'text:', temp7,
+						'font:', font,
+						'mode:', mode,
+						'setSize:', width,
+						'moveTo:', (4 + temp4), (4 + temp5),
+						'yourself:'
+					),
+				'setSize:'
 			)
 		#endif
 	#end:method
@@ -252,91 +248,91 @@ class KQ6Print(Print):
 						(global90 & 0x0002)
 					#endif
 				)
-				(global1 isHandsOn:)
+				global1._send('isHandsOn:')
 			)
 			temp5 = global19
-			(global1 setCursor: global21)
+			global1._send('setCursor:', global21)
 		else:
 			temp5 = 0
 		#endif
 		if saveCursor:
-			(global1 setCursor: 999)
+			global1._send('setCursor:', 999)
 		#endif
 		if (not dialog):
 			if temp6:
 				dialog = myDialog
 			else:
-				dialog = (Dialog new:)
+				dialog = Dialog._send('new:')
 			#endif
 		#endif
-		(dialog
-			window: (window if window else global38)
-			name: r"""PODialog"""
-			caller: self
+		dialog._send(
+			'window:', (window if window else global38),
+			'name:', r"""PODialog""",
+			'caller:', self
 		)
-		(dialog text: title time: ticks setSize:)
-		(dialog center:)
+		dialog._send('text:', title, 'time:', ticks, 'setSize:')
+		dialog._send('center:')
 		(= temp3
 			if (x == -1):
-				(dialog nsLeft:)
+				dialog._send('nsLeft:')
 			else:
 				x
 			#endif
 		)
 		(= temp4
 			if (y == -1):
-				(dialog nsTop:)
+				dialog._send('nsTop:')
 			else:
 				y
 			#endif
 		)
-		(dialog moveTo: temp3 temp4)
+		dialog._send('moveTo:', temp3, temp4)
 		temp1 = kernel.GetPort()
 		if (not repressText):
-			(dialog open: (4 if title else 0) 15)
+			dialog._send('open:', (4 if title else 0), 15)
 		#endif
 		if modeless:
 			global41 = kernel.GetPort()
 			kernel.SetPort(temp1)
 			global25 = dialog
 			if temp5:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 			#endif
 		else:
-			(global8 pause: 1)
+			global8._send('pause:', 1)
 			(cond
 				case (not temp0 = first):
 					if 
 						(and
-							temp0 = (dialog firstTrue: #checkState 1)
-							(not (dialog firstTrue: #checkState 2))
+							temp0 = dialog._send('firstTrue:', #checkState, 1)
+							(not dialog._send('firstTrue:', #checkState, 2))
 						)
-						(temp0 state: (| (temp0 state:) 0x0002))
+						temp0._send('state:', (| temp0._send('state:') 0x0002))
 					#endif
 				#end:case
 				case (not kernel.IsObject(temp0)):
-					temp0 = (dialog at: temp0)
+					temp0 = dialog._send('at:', temp0)
 				#end:case
 			)
-			retValue = (dialog doit: temp0)
+			retValue = dialog._send('doit:', temp0)
 			kernel.SetPort(temp1)
 			(cond
 				case (retValue == -1):
 					retValue = 0
 				#end:case
-				case (kernel.IsObject(retValue) and (retValue isKindOf: DButton)):
-					retValue = (retValue value:)
+				case (kernel.IsObject(retValue) and retValue._send('isKindOf:', DButton)):
+					retValue = retValue._send('value:')
 				#end:case
-				case (not (dialog theItem:)):
+				case (not dialog._send('theItem:')):
 					retValue = 1
 				#end:case
 			)
 			if saveCursor:
-				(global1 setCursor: ((global69 curIcon:) cursor:))
+				global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 			#endif
-			(dialog dispose:)
+			dialog._send('dispose:')
 			if temp5:
-				(global1 setCursor: temp5)
+				global1._send('setCursor:', temp5)
 			#endif
 			return retValue
 		#endif

@@ -44,10 +44,10 @@ class creditRoom(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(global102 number: 10 loop: -1 play: buttonScript)
-		(global69 disable:)
-		(global2 setScript: creditsScript)
+		super._send('init:')
+		global102._send('number:', 10, 'loop:', -1, 'play:', buttonScript)
+		global69._send('disable:')
+		global2._send('setScript:', creditsScript)
 	#end:method
 
 	@classmethod
@@ -55,7 +55,7 @@ class creditRoom(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global91 say: 2 0 0 0)
+		global91._send('say:', 2, 0, 0, 0)
 		return 1
 	#end:method
 
@@ -75,13 +75,13 @@ class creditsScript(Script):
 				if (local276[local302] == 98):
 					cycles = 2
 				else:
-					(setUpRoom doit: self)
+					setUpRoom._send('doit:', self)
 				#endif
 			#end:case
 			case 1:
 				if ((local276[local302] == 98) and local306):
 					local306 = 0
-					(self setScript: showScore self)
+					self._send('setScript:', showScore, self)
 				else:
 					cycles = 2
 				#endif
@@ -133,7 +133,7 @@ class creditsScript(Script):
 				if (not local305):
 					seconds = 8
 				else:
-					(client setScript: buttonScript)
+					client._send('setScript:', buttonScript)
 				#endif
 			#end:case
 			case 4:
@@ -143,7 +143,7 @@ class creditsScript(Script):
 					local304 = 0
 					local305 = 1
 				#endif
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -160,17 +160,17 @@ class buttonScript(Script):
 
 		match state = param1
 			case 0:
-				(global69
-					enable:
-					disable: 0 1 2 3 4 5 6
-					activateHeight: -100
-					height: -100
+				global69._send(
+					'enable:',
+					'disable:', 0, 1, 2, 3, 4, 5, 6,
+					'activateHeight:', -100,
+					'height:', -100
 				)
-				(User canInput: 1)
-				(global1 setCursor: global20)
-				(quitBut init:)
-				(replayBut init:)
-				(restartBut init:)
+				User._send('canInput:', 1)
+				global1._send('setCursor:', global20)
+				quitBut._send('init:')
+				replayBut._send('init:')
+				restartBut._send('init:')
 				cycles = 10
 			#end:case
 			case 1:#end:case
@@ -189,26 +189,25 @@ class showScore(Script):
 
 		match state = param1
 			case 0:
-				(KQ6Print
-					font: global22
-					addTextF:
-						r"""You received %d out of %d points. You've completed approximately %d percent of the main-path puzzles in King's Quest VI."""
-						global15
-						global16
-						((global15 * 100) / global16)
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'addTextF:', r"""You received %d out of %d points. You've completed approximately %d percent of the main-path puzzles in King's Quest VI.""", global15, global16, (/
+							(global15 * 100)
+							global16
+						),
+					'init:'
 				)
 				cycles = 1
 			#end:case
 			case 1:
 				if (global15 <= 230):
-					(global91 say: 0 0 1 2 self)
+					global91._send('say:', 0, 0, 1, 2, self)
 				else:
-					(global91 say: 0 0 1 3 self)
+					global91._send('say:', 0, 0, 1, 3, self)
 				#endif
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -228,7 +227,7 @@ class quitBut(ButtonActor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue: &rest)
+		super._send('cue:', &rest)
 		global4 = 1
 	#end:method
 
@@ -246,16 +245,16 @@ class replayBut(ButtonActor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue: &rest)
-		(global1 setCursor: global21)
+		super._send('cue:', &rest)
+		global1._send('setCursor:', global21)
 		local302 = 0
 		local303 = 1
 		local304 = 0
 		local305 = 0
-		(quitBut dispose:)
-		(restartBut dispose:)
-		(global2 init:)
-		(self dispose:)
+		quitBut._send('dispose:')
+		restartBut._send('dispose:')
+		global2._send('init:')
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -273,8 +272,8 @@ class restartBut(ButtonActor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue: &rest)
-		(global1 restart: 1)
+		super._send('cue:', &rest)
+		global1._send('restart:', 1)
 	#end:method
 
 #end:class or instance
@@ -291,314 +290,314 @@ class setUpRoom(Code):
 		param1 = 0
 		match local276[local302]
 			case 100:
-				(temp1 = (Prop new:)
-					view: 101
-					loop: 0
-					cel: 11
-					x: 113
-					y: 74
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 101,
+					'loop:', 0,
+					'cel:', 11,
+					'x:', 113,
+					'y:', 74,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 380:
-				(temp1 = (Prop new:)
-					view: 383
-					loop: 0
-					cel: 0
-					x: 94
-					y: 87
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 383,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 94,
+					'y:', 87,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp2 = (Prop new:)
-					view: 382
-					loop: 1
-					cel: 0
-					x: 158
-					y: 49
-					init:
-					addToPic:
-					dispose:
+				temp2 = Prop._send('new:')._send(
+					'view:', 382,
+					'loop:', 1,
+					'cel:', 0,
+					'x:', 158,
+					'y:', 49,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 240:
-				(temp1 = (Prop new:)
-					view: 240
-					loop: 0
-					cel: 0
-					x: 254
-					y: 99
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 240,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 254,
+					'y:', 99,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp2 = (Prop new:)
-					view: 240
-					loop: 1
-					cel: 0
-					x: 186
-					y: 86
-					init:
-					addToPic:
-					dispose:
+				temp2 = Prop._send('new:')._send(
+					'view:', 240,
+					'loop:', 1,
+					'cel:', 0,
+					'x:', 186,
+					'y:', 86,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 150:
-				(temp1 = (Prop new:)
-					view: 150
-					loop: 7
-					cel: 0
-					x: 291
-					y: 120
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 150,
+					'loop:', 7,
+					'cel:', 0,
+					'x:', 291,
+					'y:', 120,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 480:
-				(temp1 = (Prop new:)
-					view: 4801
-					loop: 0
-					cel: 0
-					x: 142
-					y: 76
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 4801,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 142,
+					'y:', 76,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp2 = (Prop new:)
-					view: 4801
-					loop: 1
-					x: 277
-					y: 129
-					init:
-					addToPic:
-					dispose:
+				temp2 = Prop._send('new:')._send(
+					'view:', 4801,
+					'loop:', 1,
+					'x:', 277,
+					'y:', 129,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp3 = (Prop new:)
-					view: 4851
-					loop: 0
-					x: 215
-					y: 91
-					init:
-					addToPic:
-					dispose:
+				temp3 = Prop._send('new:')._send(
+					'view:', 4851,
+					'loop:', 0,
+					'x:', 215,
+					'y:', 91,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp4 = (Prop new:)
-					view: 4851
-					loop: 1
-					x: 229
-					y: 93
-					init:
-					addToPic:
-					dispose:
+				temp4 = Prop._send('new:')._send(
+					'view:', 4851,
+					'loop:', 1,
+					'x:', 229,
+					'y:', 93,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp5 = (Prop new:)
-					view: 4851
-					loop: 2
-					x: 252
-					y: 84
-					init:
-					addToPic:
-					dispose:
+				temp5 = Prop._send('new:')._send(
+					'view:', 4851,
+					'loop:', 2,
+					'x:', 252,
+					'y:', 84,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp6 = (Prop new:)
-					view: 4851
-					loop: 3
-					x: 253
-					y: 85
-					init:
-					addToPic:
-					dispose:
+				temp6 = Prop._send('new:')._send(
+					'view:', 4851,
+					'loop:', 3,
+					'x:', 253,
+					'y:', 85,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 650:
-				(temp1 = (Prop new:)
-					view: 650
-					loop: 0
-					cel: 0
-					x: 159
-					y: 51
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 650,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 159,
+					'y:', 51,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp2 = (Prop new:)
-					view: 650
-					loop: 1
-					cel: 0
-					x: 299
-					y: 61
-					init:
-					addToPic:
-					dispose:
+				temp2 = Prop._send('new:')._send(
+					'view:', 650,
+					'loop:', 1,
+					'cel:', 0,
+					'x:', 299,
+					'y:', 61,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp3 = (Prop new:)
-					view: 650
-					loop: 2
-					cel: 0
-					x: 65
-					y: 89
-					init:
-					addToPic:
-					dispose:
+				temp3 = Prop._send('new:')._send(
+					'view:', 650,
+					'loop:', 2,
+					'cel:', 0,
+					'x:', 65,
+					'y:', 89,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 160:
-				(temp1 = (Prop new:)
-					view: 160
-					loop: 7
-					cel: 0
-					x: 5
-					y: 79
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 160,
+					'loop:', 7,
+					'cel:', 0,
+					'x:', 5,
+					'y:', 79,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 690:
-				(temp1 = (Prop new:)
-					view: 690
-					loop: 1
-					cel: 0
-					x: 22
-					y: 82
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 690,
+					'loop:', 1,
+					'cel:', 0,
+					'x:', 22,
+					'y:', 82,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp2 = (Prop new:)
-					view: 691
-					loop: 6
-					cel: 0
-					x: 111
-					y: 119
-					init:
-					addToPic:
-					dispose:
+				temp2 = Prop._send('new:')._send(
+					'view:', 691,
+					'loop:', 6,
+					'cel:', 0,
+					'x:', 111,
+					'y:', 119,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp3 = (Prop new:)
-					view: 692
-					loop: 0
-					cel: 0
-					x: 224
-					y: 107
-					init:
-					addToPic:
-					dispose:
+				temp3 = Prop._send('new:')._send(
+					'view:', 692,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 224,
+					'y:', 107,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 730:
-				(temp1 = (Prop new:)
-					view: 730
-					loop: 0
-					cel: 0
-					x: 160
-					y: 100
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 730,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 160,
+					'y:', 100,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp2 = (Prop new:)
-					view: 730
-					loop: 1
-					cel: 0
-					x: 70
-					y: 143
-					z: 28
-					init:
-					addToPic:
-					dispose:
+				temp2 = Prop._send('new:')._send(
+					'view:', 730,
+					'loop:', 1,
+					'cel:', 0,
+					'x:', 70,
+					'y:', 143,
+					'z:', 28,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
-				(temp3 = (Prop new:)
-					view: 730
-					loop: 2
-					cel: 0
-					x: 250
-					y: 119
-					init:
-					addToPic:
-					dispose:
+				temp3 = Prop._send('new:')._send(
+					'view:', 730,
+					'loop:', 2,
+					'cel:', 0,
+					'x:', 250,
+					'y:', 119,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 260:
-				(temp1 = (Prop new:)
-					view: 260
-					loop: 0
-					cel: 0
-					x: 22
-					y: 80
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 260,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 22,
+					'y:', 80,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 220:
-				(temp1 = (Prop new:)
-					view: 220
-					loop: 0
-					cel: 0
-					x: 107
-					y: 94
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 220,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 107,
+					'y:', 94,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 510:
-				(temp1 = (Prop new:)
-					view: 510
-					loop: 1
-					cel: 0
-					x: 236
-					y: 58
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 510,
+					'loop:', 1,
+					'cel:', 0,
+					'x:', 236,
+					'y:', 58,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 290:
-				(temp1 = (Prop new:)
-					view: 290
-					loop: 3
-					cel: 0
-					x: 136
-					y: 80
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 290,
+					'loop:', 3,
+					'cel:', 0,
+					'x:', 136,
+					'y:', 80,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 750:
-				(temp1 = (Prop new:)
-					view: 7500
-					loop: 0
-					cel: 0
-					x: 210
-					y: 115
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 7500,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 210,
+					'y:', 115,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			case 470:
-				(temp1 = (Prop new:)
-					view: 475
-					loop: 2
-					cel: 2
-					x: 273
-					y: 119
-					init:
-					addToPic:
-					dispose:
+				temp1 = Prop._send('new:')._send(
+					'view:', 475,
+					'loop:', 2,
+					'cel:', 2,
+					'x:', 273,
+					'y:', 119,
+					'init:',
+					'addToPic:',
+					'dispose:'
 				)
 			#end:case
 			else: 1#end:else
 		#end:match
-		(temp0 cue:)
+		temp0._send('cue:')
 	#end:method
 
 #end:class or instance

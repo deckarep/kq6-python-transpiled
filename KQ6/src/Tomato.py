@@ -24,54 +24,54 @@ class Tomato(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case ((global11 == 470) and (((global9 at: 49) owner:) == global11)):
-				(self
-					view: 475
-					loop: 7
-					x: 259
-					y: 123
-					textX: -239
-					textY: -117
-					talkWidth: 213
+			case ((global11 == 470) and (global9._send('at:', 49)._send('owner:') == global11)):
+				self._send(
+					'view:', 475,
+					'loop:', 7,
+					'x:', 259,
+					'y:', 123,
+					'textX:', -239,
+					'textY:', -117,
+					'talkWidth:', 213
 				)
-				(super init: 0 0 tSwampMater &rest)
+				super._send('init:', 0, 0, tSwampMater, &rest)
 			#end:case
-			case ((global11 == 470) and (global2 script:)):
-				(self
-					view: 474
-					loop: 7
-					x: 17
-					y: 171
-					textX: 3
-					textY: -165
-					talkWidth: 213
+			case ((global11 == 470) and global2._send('script:')):
+				self._send(
+					'view:', 474,
+					'loop:', 7,
+					'x:', 17,
+					'y:', 171,
+					'textX:', 3,
+					'textY:', -165,
+					'talkWidth:', 213
 				)
-				(super init: 0 0 tBumpMater &rest)
+				super._send('init:', 0, 0, tBumpMater, &rest)
 			#end:case
-			case ((global11 == 480) and (((global9 at: 49) owner:) == global11)):
-				(self
-					view: 4802
-					loop: 1
-					x: 122
-					y: 141
-					textX: -74
-					textY: -130
-					talkWidth: 213
+			case ((global11 == 480) and (global9._send('at:', 49)._send('owner:') == global11)):
+				self._send(
+					'view:', 4802,
+					'loop:', 1,
+					'x:', 122,
+					'y:', 141,
+					'textX:', -74,
+					'textY:', -130,
+					'talkWidth:', 213
 				)
-				(super init: 0 0 tGroundMater &rest)
+				super._send('init:', 0, 0, tGroundMater, &rest)
 			#end:case
 			else:
-				(self
-					view: 890
-					loop: 0
-					cel: 1
-					x: 255
-					y: 5
-					textX: -209
-					textY: 8
-					talkWidth: 213
+				self._send(
+					'view:', 890,
+					'loop:', 0,
+					'cel:', 1,
+					'x:', 255,
+					'y:', 5,
+					'textX:', -209,
+					'textY:', 8,
+					'talkWidth:', 213
 				)
-				(super init: 0 0 0 &rest)
+				super._send('init:', 0, 0, 0, &rest)
 			#end:else
 		)
 	#end:method

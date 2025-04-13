@@ -44,19 +44,19 @@ class blackWidowInset(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global69 disable: 6)
-		(global102 fade: 0 10 10)
-		(global103 number: 465 setLoop: -1 setVol: 0 play: fade: 127 10 10)
-		(global32 add: roomAtLarge web eachElementDo: #init)
+		super._send('init:', &rest)
+		global69._send('disable:', 6)
+		global102._send('fade:', 0, 10, 10)
+		global103._send('number:', 465, 'setLoop:', -1, 'setVol:', 0, 'play:', 'fade:', 127, 10, 10)
+		global32._send('add:', roomAtLarge, web, 'eachElementDo:', #init)
 		if (not proc913_0(160)):
-			(looseThread init:)
+			looseThread._send('init:')
 		#endif
 		if (not proc913_0(136)):
-			(parchment init:)
+			parchment._send('init:')
 		#endif
-		(spider init:)
-		(self setScript: helloScript)
+		spider._send('init:')
+		self._send('setScript:', helloScript)
 	#end:method
 
 	@classmethod
@@ -64,8 +64,8 @@ class blackWidowInset(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable: 6)
-		(super newRoom: &rest)
+		global69._send('enable:', 6)
+		super._send('newRoom:', &rest)
 	#end:method
 
 	@classmethod
@@ -74,7 +74,7 @@ class blackWidowInset(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc913_2(59)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -100,14 +100,14 @@ class looseThread(Prop):
 		match param1
 			case 5:
 				if (not proc913_0(160)):
-					(global1 handsOff:)
-					(global2 setScript: unravelWeb)
+					global1._send('handsOff:')
+					global2._send('setScript:', unravelWeb)
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -134,15 +134,15 @@ class parchment(Prop):
 		match param1
 			case 5:
 				if local0:
-					(global1 handsOff:)
-					(kernel.ScriptID(40, 0) gotParchment: 1)
-					(global2 newRoom: 460)
+					global1._send('handsOff:')
+					kernel.ScriptID(40, 0)._send('gotParchment:', 1)
+					global2._send('newRoom:', 460)
 				else:
-					(global2 setScript: bitParchment)
+					global2._send('setScript:', bitParchment)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -186,10 +186,10 @@ class spider(Actor):
 
 		match param1
 			case 5:
-				(global2 setScript: touchSpider)
+				global2._send('setScript:', touchSpider)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -199,8 +199,8 @@ class spider(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self sightAngle: 180 setCycle: Fwd)
-		(super init: &rest)
+		self._send('sightAngle:', 180, 'setCycle:', Fwd)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -216,8 +216,8 @@ class roomAtLarge(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOn:)
-		(global2 newRoom: 460)
+		global1._send('handsOn:')
+		global2._send('newRoom:', 460)
 	#end:method
 
 #end:class or instance
@@ -236,20 +236,20 @@ class web(Feature):
 
 		match param1
 			case 1:
-				(global91 say: 9 1 0 1 0 460)
+				global91._send('say:', 9, 1, 0, 1, 0, 460)
 			#end:case
 			case 5:
 				local1 = global70
 				if (local2 = global71 > 150):
 					local2 = 150
 				#endif
-				(global2 setScript: spiderRush)
+				global2._send('setScript:', spiderRush)
 			#end:case
 			case 2:
-				(global91 say: 9 2 0 1 0 460)
+				global91._send('say:', 9, 2, 0, 1, 0, 460)
 			#end:case
 			else:
-				(global91 say: 9 0 0 1 0 460)
+				global91._send('say:', 9, 0, 0, 1, 0, 460)
 			#end:else
 		#end:match
 	#end:method
@@ -266,13 +266,13 @@ class spiderRush(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 9 5 0 1 self 460)
+				global1._send('handsOff:')
+				global91._send('say:', 9, 5, 0, 1, self, 460)
 			#end:case
 			case 1:
-				(kernel.ScriptID(40, 0) spiderBit: 1)
-				(global1 handsOn:)
-				(global2 newRoom: 460)
+				kernel.ScriptID(40, 0)._send('spiderBit:', 1)
+				global1._send('handsOn:')
+				global2._send('newRoom:', 460)
 			#end:case
 		#end:match
 	#end:method
@@ -289,11 +289,11 @@ class bitParchment(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 12 5 11 1 self 460)
+				global91._send('say:', 12, 5, 11, 1, self, 460)
 			#end:case
 			case 1:
-				(kernel.ScriptID(40, 0) parchmentBit: 1)
-				(global2 newRoom: 460)
+				kernel.ScriptID(40, 0)._send('parchmentBit:', 1)
+				global2._send('newRoom:', 460)
 			#end:case
 		#end:match
 	#end:method
@@ -310,12 +310,12 @@ class touchSpider(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 11 5 0 1 self 460)
+				global91._send('say:', 11, 5, 0, 1, self, 460)
 			#end:case
 			case 1:
-				(kernel.ScriptID(40, 0) spiderBit: 1)
-				(global1 handsOn:)
-				(global2 newRoom: 460)
+				kernel.ScriptID(40, 0)._send('spiderBit:', 1)
+				global1._send('handsOn:')
+				global2._send('newRoom:', 460)
 			#end:case
 		#end:match
 	#end:method
@@ -332,35 +332,35 @@ class unravelWeb(Script):
 
 		match state = param1
 			case 0:
-				(global1 givePoints: 1)
+				global1._send('givePoints:', 1)
 				proc913_1(160)
 				local0 = 1
-				(global91 say: 13 5 0 1 self 460)
+				global91._send('say:', 13, 5, 0, 1, self, 460)
 			#end:case
 			case 1:
-				(global105 number: 467 setLoop: 1 play:)
-				(looseThread setCycle: End self)
+				global105._send('number:', 467, 'setLoop:', 1, 'play:')
+				looseThread._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(spider setLoop: 2 setMotion: MoveTo 196 137 self)
+				global1._send('handsOn:')
+				spider._send('setLoop:', 2, 'setMotion:', MoveTo, 196, 137, self)
 				seconds = 2
 			#end:case
 			case 3:
-				(looseThread dispose:)
+				looseThread._send('dispose:')
 			#end:case
 			case 4:
-				(spider setCycle: 0)
-				(global69 disable: 0)
+				spider._send('setCycle:', 0)
+				global69._send('disable:', 0)
 				seconds = 5
 			#end:case
 			case 5:
-				(spider setCycle: Walk setLoop: 1 setMotion: MoveTo 167 76 self)
+				spider._send('setCycle:', Walk, 'setLoop:', 1, 'setMotion:', MoveTo, 167, 76, self)
 			#end:case
 			case 6:
-				(global91 say: 13 5 0 3 self 460)
+				global91._send('say:', 13, 5, 0, 3, self, 460)
 				local0 = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -377,45 +377,45 @@ class helloScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(spider
-					setCycle: Walk
-					setLoop: 1
-					ignoreActors:
-					ignoreHorizon:
-					setMotion: MoveTo 167 76 self
+				global1._send('handsOff:')
+				spider._send(
+					'setCycle:', Walk,
+					'setLoop:', 1,
+					'ignoreActors:',
+					'ignoreHorizon:',
+					'setMotion:', MoveTo, 167, 76, self
 				)
 			#end:case
 			case 1:
 				if proc913_0(56):
-					(global91 say: 8 1 10 1 self 460)
+					global91._send('say:', 8, 1, 10, 1, self, 460)
 				else:
-					(myConv
-						add: 460 8 1 9 1
-						add: 460 8 1 9 2
-						add: 460 8 1 9 3
-						add: 460 8 1 9 4
-						init: self
+					myConv._send(
+						'add:', 460, 8, 1, 9, 1,
+						'add:', 460, 8, 1, 9, 2,
+						'add:', 460, 8, 1, 9, 3,
+						'add:', 460, 8, 1, 9, 4,
+						'init:', self
 					)
 				#endif
 			#end:case
 			case 2:
 				if proc913_0(56):
-					(self cue:)
+					self._send('cue:')
 				else:
-					(myConv
-						add: 460 8 1 9 5
-						add: 460 8 1 9 6
-						add: 460 8 1 9 7
-						init: self
+					myConv._send(
+						'add:', 460, 8, 1, 9, 5,
+						'add:', 460, 8, 1, 9, 6,
+						'add:', 460, 8, 1, 9, 7,
+						'init:', self
 					)
 				#endif
 			#end:case
 			case 3:
 				proc913_1(56)
-				(global1 handsOn:)
-				(global69 disable: 0)
-				(self dispose:)
+				global1._send('handsOn:')
+				global69._send('disable:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

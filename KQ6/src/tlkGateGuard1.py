@@ -32,7 +32,7 @@ class tlkGateGuard1(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		y = x = 10
 	#end:method
 
@@ -43,52 +43,52 @@ class tlkGateGuard1(Kq6Talker):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		(cond
 			case (global90 == 1):
 				textY = 10
-				(super init: 0 0 0 &rest)
+				super._send('init:', 0, 0, 0, &rest)
 			#end:case
-			case ((global11 == 220) and ((kernel.ScriptID(220, 3) y:) == 97)):
+			case ((global11 == 220) and (kernel.ScriptID(220, 3)._send('y:') == 97)):
 				textY = 0
-				(gd1Mouth loop: 6)
+				gd1Mouth._send('loop:', 6)
 				x = 91
 				y = 58
-				(super init: 0 0 gd1Mouth &rest)
+				super._send('init:', 0, 0, gd1Mouth, &rest)
 			#end:case
-			case ((global11 == 220) and ((kernel.ScriptID(220, 3) y:) == 119)):
+			case ((global11 == 220) and (kernel.ScriptID(220, 3)._send('y:') == 119)):
 				textY = 0
-				(gd1Mouth loop: 6)
+				gd1Mouth._send('loop:', 6)
 				x = 102
 				y = 80
-				(super init: 0 0 gd1Mouth &rest)
+				super._send('init:', 0, 0, gd1Mouth, &rest)
 			#end:case
 			case 
 				(and
 					(global11 == 220)
-					((kernel.ScriptID(220, 3) loop:) == 0)
-					((kernel.ScriptID(220, 3) cel:) == 0)
+					(kernel.ScriptID(220, 3)._send('loop:') == 0)
+					(kernel.ScriptID(220, 3)._send('cel:') == 0)
 				):
 				textY = 0
-				(gd1Mouth loop: 6)
+				gd1Mouth._send('loop:', 6)
 				x = 95
 				y = 71
-				(super init: 0 0 gd1Mouth &rest)
+				super._send('init:', 0, 0, gd1Mouth, &rest)
 			#end:case
 			case proc913_0(162):
 				textY = 0
-				(gd1Mouth loop: 6)
+				gd1Mouth._send('loop:', 6)
 				x = 100
 				y = 70
-				(super init: 0 0 gd1Mouth &rest)
+				super._send('init:', 0, 0, gd1Mouth, &rest)
 			#end:case
 			else:
-				(gd1Mouth loop: 4)
+				gd1Mouth._send('loop:', 4)
 				x = 94
 				y = 70
 				textY = 0
-				(super init: 0 0 gd1Mouth &rest)
+				super._send('init:', 0, 0, gd1Mouth, &rest)
 			#end:else
 		)
 	#end:method
@@ -110,7 +110,7 @@ class tlkGateGuard2(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		x = 20
 		y = 10
 	#end:method
@@ -122,16 +122,16 @@ class tlkGateGuard2(Kq6Talker):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		if ((global90 == 1) or proc913_0(162)):
 			textY = 10
-			(super init: 0 0 0 &rest)
+			super._send('init:', 0, 0, 0, &rest)
 		else:
 			x = 133
 			y = 70
 			textY = -10
-			(super init: 0 0 gd2Mouth &rest)
+			super._send('init:', 0, 0, gd2Mouth, &rest)
 		#endif
 	#end:method
 

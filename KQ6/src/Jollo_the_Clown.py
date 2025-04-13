@@ -37,7 +37,7 @@ class Jollo_the_Clown(Kq6Talker):
 		else:
 			winPosn = 0
 		#endif
-		(super init: tBust tEyes tMouth &rest)
+		super._send('init:', tBust, tEyes, tMouth, &rest)
 	#end:method
 
 #end:class or instance

@@ -50,8 +50,8 @@ class Orbit(Motion):
 			#endif
 		#endif
 		if centerObj:
-			temp0 = (centerObj x:)
-			temp1 = (centerObj y:)
+			temp0 = centerObj._send('x:')
+			temp1 = centerObj._send('y:')
 		else:
 			temp0 = 160
 			temp1 = 100
@@ -65,7 +65,7 @@ class Orbit(Motion):
 		x = (temp0 + temp2)
 		y = (temp1 - temp3)
 		curAngle = proc999_1((curAngle + (winding * angleStep)), 360)
-		(super init: client x y)
+		super._send('init:', client, x, y)
 	#end:method
 
 	@classmethod
@@ -73,7 +73,7 @@ class Orbit(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self init:)
+		self._send('init:')
 	#end:method
 
 #end:class or instance

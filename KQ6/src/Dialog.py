@@ -41,9 +41,9 @@ class DButton(Class_255_0):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (text and ((not argc) or (not param1))):
-			kernel.Memory(3, (self text:))
+			kernel.Memory(3, self._send('text:'))
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -167,7 +167,7 @@ class DSelector(Class_255_0):
 		#end:loop
 		(return
 			if temp0:
-				(self draw:)
+				self._send('draw:')
 				1
 			#endif
 		)
@@ -199,7 +199,7 @@ class DSelector(Class_255_0):
 		#end:loop
 		(return
 			if temp0:
-				(self draw:)
+				self._send('draw:')
 				1
 			#endif
 		)
@@ -210,50 +210,49 @@ class DSelector(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (param1 claimed:):
+		if param1._send('claimed:'):
 			return 0
 		#endif
 		temp0 = 0
-		match (param1 type:)
+		match param1._send('type:')
 			case 4:
-				(param1
-					claimed:
-						match (param1 message:)
+				param1._send(
+					'claimed:', match param1._send('message:')
 							case 18176:
-								(self retreat: 50)
+								self._send('retreat:', 50)
 							#end:case
 							case 20224:
-								(self advance: 50)
+								self._send('advance:', 50)
 							#end:case
 							case 20736:
-								(self advance: (y - 1))
+								self._send('advance:', (y - 1))
 							#end:case
 							case 18688:
-								(self retreat: (y - 1))
+								self._send('retreat:', (y - 1))
 							#end:case
 							case 20480:
-								(self advance: 1)
+								self._send('advance:', 1)
 							#end:case
 							case 18432:
-								(self retreat: 1)
+								self._send('retreat:', 1)
 							#end:case
 							else: 0#end:else
 						#end:match
 				)
 			#end:case
 			case 1:
-				if (self check: param1):
-					(param1 claimed: 1)
+				if self._send('check:', param1):
+					param1._send('claimed:', 1)
 					(cond
-						case ((param1 y:) < (nsTop + 10)):
+						case (param1._send('y:') < (nsTop + 10)):
 							while True: #repeat
-								(self retreat: 1)
+								self._send('retreat:', 1)
 								(breakif (not proc255_0()))
 							#end:loop
 						#end:case
-						case ((param1 y:) > (nsBottom - 10)):
+						case (param1._send('y:') > (nsBottom - 10)):
 							while True: #repeat
-								(self advance: 1)
+								self._send('advance:', 1)
 								(breakif (not proc255_0()))
 							#end:loop
 						#end:case
@@ -263,22 +262,22 @@ class DSelector(Class_255_0):
 								(>
 									(= temp4
 										(/
-											((param1 y:) - (nsTop + 10))
+											(param1._send('y:') - (nsTop + 10))
 											temp5[2]
 										)
 									)
 									mark
 								)
-								(self advance: (temp4 - mark))
+								self._send('advance:', (temp4 - mark))
 							else:
-								(self retreat: (mark - temp4))
+								self._send('retreat:', (mark - temp4))
 							#endif
 						#end:else
 					)
 				#endif
 			#end:case
 		#end:match
-		(self if ((param1 claimed:) and (state & 0x0002)) else 0)
+		(self if (param1._send('claimed:') and (state & 0x0002)) else 0)
 	#end:method
 
 #end:class or instance
@@ -290,8 +289,8 @@ class Controls(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #setSize)
-		(self eachElementDo: #draw)
+		self._send('eachElementDo:', #setSize)
+		self._send('eachElementDo:', #draw)
 	#end:method
 
 	@classmethod
@@ -299,15 +298,15 @@ class Controls(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (param1 claimed:):
+		if param1._send('claimed:'):
 			return 0
 		#endif
 		if 
 			(and
-				temp0 = (self firstTrue: #handleEvent param1)
-				(not (temp0 checkState: 2))
+				temp0 = self._send('firstTrue:', #handleEvent, param1)
+				(not temp0._send('checkState:', 2))
 			)
-			(temp0 doit:)
+			temp0._send('doit:')
 			temp0 = 0
 		#endif
 		return temp0

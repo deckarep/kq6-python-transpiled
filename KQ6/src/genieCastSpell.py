@@ -30,73 +30,43 @@ class genieCastSpell(Script):
 
 		match state = param1
 			case 0:
-				if (global2 obstacles:):
-					((global2 obstacles:) dispose:)
+				if global2._send('obstacles:'):
+					global2._send('obstacles:')._send('dispose:')
 				#endif
-				(global2
-					addObstacle:
-						((Polygon new:)
-							type: 2
-							init:
-								0
-								189
-								0
-								0
-								319
-								0
-								319
-								189
-								314
-								189
-								195
-								189
-								198
-								161
-								279
-								161
-								227
-								120
-								223
-								120
-								212
-								129
-								159
-								129
-								115
-								162
-								78
-								189
-							yourself:
-						)
-						((Polygon new:)
-							type: 2
-							init: 165 141 238 141 246 151 159 151
-							yourself:
+				global2._send(
+					'addObstacle:', Polygon._send('new:')._send(
+							'type:', 2,
+							'init:', 0, 189, 0, 0, 319, 0, 319, 189, 314, 189, 195, 189, 198, 161, 279, 161, 227, 120, 223, 120, 212, 129, 159, 129, 115, 162, 78, 189,
+							'yourself:'
+						), Polygon._send('new:')._send(
+							'type:', 2,
+							'init:', 165, 141, 238, 141, 246, 151, 159, 151,
+							'yourself:'
 						)
 				)
 				cycles = 2
 			#end:case
 			case 1:
-				(global69 enable:)
-				(global91 say: 1 0 6 1 self)
+				global69._send('enable:')
+				global91._send('say:', 1, 0, 6, 1, self)
 			#end:case
 			case 2:
-				(self setScript: kernel.ScriptID(742, 4) self)
+				self._send('setScript:', kernel.ScriptID(742, 4), self)
 			#end:case
 			case 3:
-				(global91 say: 1 0 6 2 self)
+				global91._send('say:', 1, 0, 6, 2, self)
 			#end:case
 			case 4:
-				(global91 say: 1 0 6 3 self)
+				global91._send('say:', 1, 0, 6, 3, self)
 			#end:case
 			case 5:
-				(global91 say: 1 0 6 4 self)
+				global91._send('say:', 1, 0, 6, 4, self)
 			#end:case
 			case 6:
-				(global91 say: 1 0 6 5 self)
+				global91._send('say:', 1, 0, 6, 5, self)
 			#end:case
 			case 7:
-				(global91 say: 1 0 6 6 self)
+				global91._send('say:', 1, 0, 6, 6, self)
 			#end:case
 			case 8:
 				proc958_0(0, 1004, 1063, 1029, 1001, 1026)
@@ -106,13 +76,13 @@ class genieCastSpell(Script):
 				kernel.UnLoad(128, 8992)
 				kernel.UnLoad(128, 891)
 				kernel.UnLoad(128, 890)
-				(self setScript: kernel.ScriptID(740, 23) self)
+				self._send('setScript:', kernel.ScriptID(740, 23), self)
 			#end:case
 			case 9:
-				(global0 put: 24)
-				(global1 handsOn:)
-				(kernel.ScriptID(740, 3) setScript: kernel.ScriptID(742, 5))
-				(self dispose:)
+				global0._send('put:', 24)
+				global1._send('handsOn:')
+				kernel.ScriptID(740, 3)._send('setScript:', kernel.ScriptID(742, 5))
+				self._send('dispose:')
 				kernel.DisposeScript(744)
 			#end:case
 		#end:match
@@ -130,14 +100,14 @@ class saladinKillEgo(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 2
 			#end:case
 			case 1:
-				(global69 enable:)
+				global69._send('enable:')
 				if proc913_0(156):
 					register = 999
-					(kernel.ScriptID(740, 2) view: 7415 setLoop: 0 cel: 3 setPri: 9)
+					kernel.ScriptID(740, 2)._send('view:', 7415, 'setLoop:', 0, 'cel:', 3, 'setPri:', 9)
 				else:
 					state = 11
 				#endif
@@ -145,91 +115,90 @@ class saladinKillEgo(Script):
 			#end:case
 			case 2:
 				proc913_1(59)
-				(global91 say: 1 0 38 1 self)
+				global91._send('say:', 1, 0, 38, 1, self)
 			#end:case
 			case 3:
 				proc913_2(59)
-				(global91 say: 1 0 38 2 self)
+				global91._send('say:', 1, 0, 38, 2, self)
 			#end:case
 			case 4:
-				(kernel.ScriptID(740, 2) setCycle: CT 5 1 self)
+				kernel.ScriptID(740, 2)._send('setCycle:', CT, 5, 1, self)
 			#end:case
 			case 5:
 				ticks = 90
 			#end:case
 			case 6:
-				(kernel.ScriptID(740, 2) setCycle: CT 10 1 self)
+				kernel.ScriptID(740, 2)._send('setCycle:', CT, 10, 1, self)
 			#end:case
 			case 7:
 				proc913_1(59)
-				(global91 say: 1 0 38 3 self)
+				global91._send('say:', 1, 0, 38, 3, self)
 			#end:case
 			case 8:
 				proc913_2(59)
-				(global91 say: 1 0 38 4 self)
+				global91._send('say:', 1, 0, 38, 4, self)
 			#end:case
 			case 9:
 				proc913_1(59)
-				(global91 say: 1 0 38 5 self)
+				global91._send('say:', 1, 0, 38, 5, self)
 			#end:case
 			case 10:
-				(kernel.ScriptID(740, 2) setCycle: End self)
+				kernel.ScriptID(740, 2)._send('setCycle:', End, self)
 			#end:case
 			case 11:
 				proc913_2(59)
-				(global91 say: 1 0 38 6 self)
+				global91._send('say:', 1, 0, 38, 6, self)
 			#end:case
 			case 12:
-				(global102 number: 0 stop:)
-				(global102 number: 705 setLoop: 1 play:)
-				(kernel.ScriptID(740, 5) view: 736 cycleSpeed: 3 moveSpeed: 3)
+				global102._send('number:', 0, 'stop:')
+				global102._send('number:', 705, 'setLoop:', 1, 'play:')
+				kernel.ScriptID(740, 5)._send('view:', 736, 'cycleSpeed:', 3, 'moveSpeed:', 3)
 				proc913_4(kernel.ScriptID(740, 5), global0, self)
 			#end:case
 			case 13:
 				if (not register):
-					(global91 say: 1 0 5 0 self)
+					global91._send('say:', 1, 0, 5, 0, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 14:
-				(global0 setHeading: 180)
-				(kernel.ScriptID(740, 5)
-					setMotion:
-						PolyPath
-						((global0 x:) - 24)
-						((global0 y:) + 5)
-						self
+				global0._send('setHeading:', 180)
+				kernel.ScriptID(740, 5)._send(
+					'setMotion:', PolyPath, (global0._send('x:') - 24), (+
+							global0._send('y:')
+							5
+						), self
 				)
 			#end:case
 			case 15:
-				(kernel.ScriptID(740, 5) setHeading: 0 self)
+				kernel.ScriptID(740, 5)._send('setHeading:', 0, self)
 			#end:case
 			case 16:
-				(global0 hide:)
-				(kernel.ScriptID(740, 5)
-					view: 738
-					setLoop: 2
-					cel: 0
-					cycleSpeed: 8
-					setCycle: CT 2 1 self
+				global0._send('hide:')
+				kernel.ScriptID(740, 5)._send(
+					'view:', 738,
+					'setLoop:', 2,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', CT, 2, 1, self
 				)
-				(global103 number: 0 stop:)
-				(global103 number: 756 setLoop: 1 play:)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 756, 'setLoop:', 1, 'play:')
 			#end:case
 			case 17:
-				(global103 number: 0 stop:)
-				(global103 number: 971 setLoop: 1 play: self)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 971, 'setLoop:', 1, 'play:', self)
 			#end:case
 			case 18:
-				(global103 number: 0 stop:)
-				(global103 number: 652 setLoop: 1 play:)
-				(kernel.ScriptID(740, 5) setCycle: End self)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 652, 'setLoop:', 1, 'play:')
+				kernel.ScriptID(740, 5)._send('setCycle:', End, self)
 			#end:case
 			case 19:
 				match register
 					case 29:
-						(global91 say: 1 0 29 0 self)
+						global91._send('say:', 1, 0, 29, 0, self)
 					#end:case
 					else:
 						cycles = 2
@@ -237,7 +206,7 @@ class saladinKillEgo(Script):
 				#end:match
 			#end:case
 			case 20:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -247,7 +216,7 @@ class saladinKillEgo(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		proc0_1(33)
 		kernel.DisposeScript(744)
 	#end:method

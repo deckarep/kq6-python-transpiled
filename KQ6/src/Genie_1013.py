@@ -32,17 +32,17 @@ class Genie(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global11 == 145):
-			(self view: 1466 loop: 3 talkWidth: 175)
+			self._send('view:', 1466, 'loop:', 3, 'talkWidth:', 175)
 			if proc913_0(133):
-				(self x: 173 y: 134 textX: -73 textY: -114)
+				self._send('x:', 173, 'y:', 134, 'textX:', -73, 'textY:', -114)
 				temp0 = tMouthLo
 			else:
-				(self x: 182 y: 68 textX: -107 textY: 20)
+				self._send('x:', 182, 'y:', 68, 'textX:', -107, 'textY:', 20)
 				temp0 = tMouthHi
 			#endif
-			(super init: 0 0 temp0 &rest)
+			super._send('init:', 0, 0, temp0, &rest)
 		else:
-			(super init: tBust tEyes tMouth &rest)
+			super._send('init:', tBust, tEyes, tMouth, &rest)
 		#endif
 	#end:method
 

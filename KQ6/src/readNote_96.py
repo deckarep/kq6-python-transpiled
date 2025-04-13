@@ -22,7 +22,7 @@ class readNote(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(96)
 	#end:method
 
@@ -33,15 +33,15 @@ class readNote(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 36 5 0 0 self 907)
+				global1._send('handsOff:')
+				global91._send('say:', 36, 5, 0, 0, self, 907)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

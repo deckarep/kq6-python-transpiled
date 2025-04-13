@@ -23,8 +23,8 @@ class Wander(Motion):
 				distance = param2
 			#endif
 		#endif
-		(self setTarget:)
-		(super init: client)
+		self._send('setTarget:')
+		super._send('init:', client)
 	#end:method
 
 	@classmethod
@@ -32,8 +32,8 @@ class Wander(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		x = ((client x:) + (distance - kernel.Random(0, temp0 = (distance * 2))))
-		y = ((client y:) + (distance - kernel.Random(0, temp0)))
+		x = (client._send('x:') + (distance - kernel.Random(0, temp0 = (distance * 2))))
+		y = (client._send('y:') + (distance - kernel.Random(0, temp0)))
 	#end:method
 
 	@classmethod
@@ -49,9 +49,9 @@ class Wander(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
-		if (client isStopped:):
-			(self moveDone:)
+		super._send('doit:')
+		if client._send('isStopped:'):
+			self._send('moveDone:')
 		#endif
 	#end:method
 
@@ -60,7 +60,7 @@ class Wander(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self init:)
+		self._send('init:')
 	#end:method
 
 #end:class or instance

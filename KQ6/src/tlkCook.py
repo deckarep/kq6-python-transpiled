@@ -26,10 +26,10 @@ class tlkCook(Narrator):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		font = global22
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

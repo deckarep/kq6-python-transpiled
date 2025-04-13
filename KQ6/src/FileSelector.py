@@ -91,7 +91,7 @@ class FileSelector(DSelector):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super setSize:)
+		super._send('setSize:')
 		kernel.TextSize(@temp0[0], r"""M""", font)
 		nsRight = (nsLeft + (temp0[3] * x))
 	#end:method
@@ -105,7 +105,7 @@ class FileSelector(DSelector):
 			kernel.Memory(3, text)
 			text = 0
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance

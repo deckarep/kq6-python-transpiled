@@ -16,15 +16,17 @@ class MoveFwd(PolyPath):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
-			(super
-				init:
-					param1
-					((param1 x:) + kernel.SinMult((param1 heading:), param2))
-					((param1 y:) - kernel.CosMult((param1 heading:), param2))
-					((argc >= 3) and param3)
+			super._send(
+				'init:', param1, (+
+						param1._send('x:')
+						kernel.SinMult(param1._send('heading:'), param2)
+					), (param1._send('y:') - kernel.CosMult(param1._send('heading:'), param2)), (and
+						(argc >= 3)
+						param3
+					)
 			)
 		else:
-			(super init:)
+			super._send('init:')
 		#endif
 	#end:method
 

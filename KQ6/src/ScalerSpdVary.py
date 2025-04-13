@@ -67,7 +67,7 @@ class ScalerSpdVary(Code):
 			#endif
 		#endif
 		const = (backSize - ((slopeNum * backY) / slopeDen))
-		(self doit:)
+		self._send('doit:')
 	#end:method
 
 	@classmethod
@@ -80,9 +80,9 @@ class ScalerSpdVary(Code):
 				(<
 					(= temp0
 						if (not whichSel):
-							(client y:)
+							client._send('y:')
 						else:
-							(client x:)
+							client._send('x:')
 						#endif
 					)
 					backY
@@ -109,22 +109,22 @@ class ScalerSpdVary(Code):
 			#end:else
 		)
 		if constSpd:
-			(client moveSpeed: temp2)
+			client._send('moveSpeed:', temp2)
 			if 
 				(and
 					constStp
 					(not
 						(and
-							((client xStep:) == temp3)
-							((client yStep:) == temp3)
+							(client._send('xStep:') == temp3)
+							(client._send('yStep:') == temp3)
 						)
 					)
 				)
-				(client setStep: temp3 temp3 1)
+				client._send('setStep:', temp3, temp3, 1)
 			#endif
 		#endif
 		temp1 = ((temp1 * 128) / 100)
-		(client scaleX: temp1 scaleY: temp1)
+		client._send('scaleX:', temp1, 'scaleY:', temp1)
 	#end:method
 
 #end:class or instance

@@ -34,48 +34,48 @@ class nightScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff: killSound: 1)
-				(localMusic4 number: 930 loop: 1 play:)
-				local1 = (global0 cel:)
-				(global0
-					normal: 0
-					view: 883
-					ignoreActors: 1
-					illegalBits: 0
-					ignoreHorizon: 1
-					cycleSpeed: 10
+				global1._send('handsOff:', 'killSound:', 1)
+				localMusic4._send('number:', 930, 'loop:', 1, 'play:')
+				local1 = global0._send('cel:')
+				global0._send(
+					'normal:', 0,
+					'view:', 883,
+					'ignoreActors:', 1,
+					'illegalBits:', 0,
+					'ignoreHorizon:', 1,
+					'cycleSpeed:', 10
 				)
-				if proc999_5((global0 cel:), 0, 2, 4, 6):
+				if proc999_5(global0._send('cel:'), 0, 2, 4, 6):
 					local0 = 1
-					(global0 setLoop: 1)
+					global0._send('setLoop:', 1)
 				else:
-					(global0 setLoop: 0)
+					global0._send('setLoop:', 0)
 				#endif
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 1:
-				(global91 say: 1 37 0 0 self 0)
+				global91._send('say:', 1, 37, 0, 0, self, 0)
 			#end:case
 			case 2:
-				(localMusic4 number: 931 loop: 1 play: self)
+				localMusic4._send('number:', 931, 'loop:', 1, 'play:', self)
 				if local0:
-					(global0 setLoop: 7 setCycle: Fwd)
+					global0._send('setLoop:', 7, 'setCycle:', Fwd)
 				else:
-					(global0 setLoop: 6 setCycle: Fwd)
+					global0._send('setLoop:', 6, 'setCycle:', Fwd)
 				#endif
 			#end:case
 			case 3:
-				(global1 killSound: 0)
+				global1._send('killSound:', 0)
 				cycles = 2
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(localMusic4 stop: dispose:)
-				(global0 reset: local1)
+				global1._send('handsOn:')
+				localMusic4._send('stop:', 'dispose:')
+				global0._send('reset:', local1)
 				cycles = 1
 			#end:case
 			case 5:
-				(self dispose:)
+				self._send('dispose:')
 				proc958_0(0, 93)
 			#end:case
 		#end:match

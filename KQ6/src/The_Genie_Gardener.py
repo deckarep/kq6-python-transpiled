@@ -38,7 +38,7 @@ class The_Genie_Gardener(Kq6Talker):
 			x = 202
 			y = 98
 		#endif
-		(super init: 0 0 tMouth1 &rest)
+		super._send('init:', 0, 0, tMouth1, &rest)
 	#end:method
 
 #end:class or instance

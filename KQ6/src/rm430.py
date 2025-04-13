@@ -30,16 +30,16 @@ class rm430(LabRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc401_3()
-		(super init: &rest)
-		(theCorpseNorth init: stopUpd:)
-		if (((global9 at: 7) owner:) == global11):
-			(theGlint init:)
+		super._send('init:', &rest)
+		theCorpseNorth._send('init:', 'stopUpd:')
+		if (global9._send('at:', 7)._send('owner:') == global11):
+			theGlint._send('init:')
 		#endif
-		(global2 setScript: kernel.ScriptID(30, 1))
-		(kernel.ScriptID(30, 0) initCrypt: 4)
-		(kernel.ScriptID(30, 6) addToPic:)
-		(kernel.ScriptID(30, 10) addToPic:)
-		(kernel.ScriptID(30, 8) addToPic:)
+		global2._send('setScript:', kernel.ScriptID(30, 1))
+		kernel.ScriptID(30, 0)._send('initCrypt:', 4)
+		kernel.ScriptID(30, 6)._send('addToPic:')
+		kernel.ScriptID(30, 10)._send('addToPic:')
+		kernel.ScriptID(30, 8)._send('addToPic:')
 	#end:method
 
 	@classmethod
@@ -47,10 +47,10 @@ class rm430(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(30, 6) addToPic:)
-		(kernel.ScriptID(30, 10) addToPic:)
-		(kernel.ScriptID(30, 8) addToPic:)
-		(kernel.ScriptID(30, 3) show:)
+		kernel.ScriptID(30, 6)._send('addToPic:')
+		kernel.ScriptID(30, 10)._send('addToPic:')
+		kernel.ScriptID(30, 8)._send('addToPic:')
+		kernel.ScriptID(30, 3)._send('show:')
 	#end:method
 
 #end:class or instance
@@ -71,9 +71,9 @@ class theGlint(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(theDeadMansCoin init:)
-		(self setScript: glintCoinEyes)
-		(super init: &rest)
+		theDeadMansCoin._send('init:')
+		self._send('setScript:', glintCoinEyes)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -83,10 +83,10 @@ class theGlint(Prop):
 
 		match param1
 			case 5:
-				(global0 setScript: getCoins)
+				global0._send('setScript:', getCoins)
 			#end:case
 			else:
-				(kernel.ScriptID(30, 4) doVerb: param1 &rest)
+				kernel.ScriptID(30, 4)._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -114,13 +114,13 @@ class theDeadMansCoin(Prop):
 
 		match param1
 			case 5:
-				(global0 setScript: getCoins)
+				global0._send('setScript:', getCoins)
 			#end:case
 			case 1:
-				(global91 say: 13 1 0 0 0 400)
+				global91._send('say:', 13, 1, 0, 0, 0, 400)
 			#end:case
 			else:
-				(kernel.ScriptID(30, 4) doVerb: param1 &rest)
+				kernel.ScriptID(30, 4)._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -146,12 +146,12 @@ class theCorpseNorth(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: theDeadMansCoin):
-			(self noun: 13)
+		if global5._send('contains:', theDeadMansCoin):
+			self._send('noun:', 13)
 		else:
-			(self noun: 8)
+			self._send('noun:', 8)
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -161,20 +161,20 @@ class theCorpseNorth(View):
 
 		match param1
 			case 7:
-				(global91 say: 13 7 0 1 0 400)
+				global91._send('say:', 13, 7, 0, 1, 0, 400)
 			#end:case
 			case 5:
-				if (global5 contains: theDeadMansCoin):
-					(global0 setScript: getCoins)
+				if global5._send('contains:', theDeadMansCoin):
+					global0._send('setScript:', getCoins)
 				else:
-					(global2 setScript: kernel.ScriptID(30, 11) 0 self)
+					global2._send('setScript:', kernel.ScriptID(30, 11), 0, self)
 				#endif
 			#end:case
 			else:
-				if (global5 contains: theDeadMansCoin):
-					(theDeadMansCoin doVerb: param1 &rest)
+				if global5._send('contains:', theDeadMansCoin):
+					theDeadMansCoin._send('doVerb:', param1, &rest)
 				else:
-					(kernel.ScriptID(30, 4) doVerb: param1 &rest)
+					kernel.ScriptID(30, 4)._send('doVerb:', param1, &rest)
 				#endif
 			#end:else
 		#end:match
@@ -192,47 +192,47 @@ class getCoins(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 127 149 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 127, 149, self)
 			#end:case
 			case 1:
-				(global0
-					view: 431
-					normal: 0
-					setLoop: 5
-					cel: 0
-					cycleSpeed: 10
-					setCycle: End self
+				global0._send(
+					'view:', 431,
+					'normal:', 0,
+					'setLoop:', 5,
+					'cel:', 0,
+					'cycleSpeed:', 10,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 setLoop: 4 cel: 0 setCycle: End self)
+				global0._send('setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				if (((global9 at: 7) owner:) != global11):
-					(global91 say: 8 5 0 1 self 400)
+				if (global9._send('at:', 7)._send('owner:') != global11):
+					global91._send('say:', 8, 5, 0, 1, self, 400)
 				else:
-					(global91 say: 13 5 0 1 self 400)
+					global91._send('say:', 13, 5, 0, 1, self, 400)
 				#endif
 			#end:case
 			case 5:
-				(global0 reset: 3)
-				if (((global9 at: 7) owner:) == global11):
-					(global1 givePoints: 1)
-					(global0 get: 7)
-					(theDeadMansCoin dispose:)
-					(theGlint dispose:)
+				global0._send('reset:', 3)
+				if (global9._send('at:', 7)._send('owner:') == global11):
+					global1._send('givePoints:', 1)
+					global0._send('get:', 7)
+					theDeadMansCoin._send('dispose:')
+					theGlint._send('dispose:')
 				#endif
 				seconds = 1
 			#end:case
 			case 6:
-				(global1 handsOn:)
-				(global0 setHeading: 180)
-				(theCorpseNorth noun: 8)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('setHeading:', 180)
+				theCorpseNorth._send('noun:', 8)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -249,16 +249,16 @@ class glintCoinEyes(Script):
 
 		match state = param1
 			case 0:
-				(theGlint setCycle: Beg self)
+				theGlint._send('setCycle:', Beg, self)
 			#end:case
 			case 1:
-				(theGlint hide:)
+				theGlint._send('hide:')
 				seconds = 10
 			#end:case
 			case 2:
 				(state -= 3)
-				(theGlint show:)
-				(self cue:)
+				theGlint._send('show:')
+				self._send('cue:')
 			#end:case
 		#end:match
 	#end:method

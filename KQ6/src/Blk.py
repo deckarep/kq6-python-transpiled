@@ -22,10 +22,10 @@ class Blk(Obj):
 
 		(return
 			(or
-				((param1 brBottom:) <= top)
-				((param1 brTop:) > bottom)
-				((param1 brRight:) < left)
-				((param1 brLeft:) >= right)
+				(param1._send('brBottom:') <= top)
+				(param1._send('brTop:') > bottom)
+				(param1._send('brRight:') < left)
+				(param1._send('brLeft:') >= right)
 			)
 		)
 	#end:method
@@ -41,10 +41,10 @@ class Cage(Blk):
 
 		(return
 			(and
-				((param1 brTop:) >= top)
-				((param1 brLeft:) >= left)
-				((param1 brBottom:) <= bottom)
-				((param1 brRight:) <= right)
+				(param1._send('brTop:') >= top)
+				(param1._send('brLeft:') >= left)
+				(param1._send('brBottom:') <= bottom)
+				(param1._send('brRight:') <= right)
 			)
 		)
 	#end:method

@@ -24,13 +24,13 @@ class StopWalk(Fwd):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
-			vWalking = (client = param1 view:)
+			vWalking = client = param1._send('view:')
 			if (argc >= 2):
 				vStopped = param2
 			#endif
 		#endif
-		(super init: client)
-		(self doit:)
+		super._send('init:', client)
+		self._send('doit:')
 	#end:method
 
 	@classmethod
@@ -38,10 +38,10 @@ class StopWalk(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((client view:) == vStopped):
-			(client view: vWalking)
+		if (client._send('view:') == vStopped):
+			client._send('view:', vWalking)
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -49,38 +49,38 @@ class StopWalk(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (client isStopped:):
+		if client._send('isStopped:'):
 			(cond
 				case 
 					(and
 						(vStopped == -1)
-						((client loop:) != (kernel.NumLoops(client) - 1))
+						(client._send('loop:') != (kernel.NumLoops(client) - 1))
 					):
-					temp0 = (client loop:)
-					(super doit:)
-					(client loop: (kernel.NumLoops(client) - 1) setCel: temp0)
+					temp0 = client._send('loop:')
+					super._send('doit:')
+					client._send('loop:', (kernel.NumLoops(client) - 1), 'setCel:', temp0)
 				#end:case
-				case ((vStopped != -1) and ((client view:) == vWalking)):
-					(client view: vStopped)
-					(super doit:)
+				case ((vStopped != -1) and (client._send('view:') == vWalking)):
+					client._send('view:', vStopped)
+					super._send('doit:')
 				#end:case
 				case (vStopped != -1):
-					(super doit:)
+					super._send('doit:')
 				#end:case
 			)
 		else:
 			match vStopped
-				case (client view:):
-					(client view: vWalking)
+				case client._send('view:'):
+					client._send('view:', vWalking)
 				#end:case
 				case -1:
-					(client setLoop: -1 setCel: -1)
-					if ((client loop:) == (kernel.NumLoops(client) - 1)):
-						(client loop: (client cel:) cel: 0)
+					client._send('setLoop:', -1, 'setCel:', -1)
+					if (client._send('loop:') == (kernel.NumLoops(client) - 1)):
+						client._send('loop:', client._send('cel:'), 'cel:', 0)
 					#endif
 				#end:case
 			#end:match
-			(super doit:)
+			super._send('doit:')
 		#endif
 	#end:method
 

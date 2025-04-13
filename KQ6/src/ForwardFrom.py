@@ -24,7 +24,7 @@ class ForwardFrom(Fwd):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
-		(client cel: startAt = param2)
+		client._send('cel:', startAt = param2)
 		if (argc > 2):
 			cycleCount = param3
 			if (argc > 3):
@@ -38,10 +38,10 @@ class ForwardFrom(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client cel: startAt)
+		client._send('cel:', startAt)
 		if (not cycleCount.post('--')):
 			completed = 1
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 

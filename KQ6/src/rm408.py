@@ -31,13 +31,13 @@ class rm408(LabRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc402_0()
-		(super init: &rest)
-		if (((global9 at: 43) owner:) == 408):
-			(theShield init:)
+		super._send('init:', &rest)
+		if (global9._send('at:', 43)._send('owner:') == 408):
+			theShield._send('init:')
 		#endif
-		(global2 setScript: kernel.ScriptID(30, 1))
-		(kernel.ScriptID(30, 7) addToPic:)
-		(kernel.ScriptID(30, 0) initCrypt: 2)
+		global2._send('setScript:', kernel.ScriptID(30, 1))
+		kernel.ScriptID(30, 7)._send('addToPic:')
+		kernel.ScriptID(30, 0)._send('initCrypt:', 2)
 	#end:method
 
 	@classmethod
@@ -45,8 +45,8 @@ class rm408(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(30, 7) addToPic:)
-		(kernel.ScriptID(30, 3) show:)
+		kernel.ScriptID(30, 7)._send('addToPic:')
+		kernel.ScriptID(30, 3)._send('show:')
 	#end:method
 
 #end:class or instance
@@ -67,7 +67,7 @@ class theShield(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -77,10 +77,10 @@ class theShield(View):
 
 		match param1
 			case 5:
-				(global2 setScript: getShield)
+				global2._send('setScript:', getShield)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -97,32 +97,32 @@ class getShield(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 84 149 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 84, 149, self)
 			#end:case
 			case 1:
-				(theShield hide:)
-				(global0
-					normal: 0
-					view: 401
-					setLoop: 0
-					posn: 75 152
-					cycleSpeed: 8
-					setCycle: End self
+				theShield._send('hide:')
+				global0._send(
+					'normal:', 0,
+					'view:', 401,
+					'setLoop:', 0,
+					'posn:', 75, 152,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global91 say: 15 5 0 1 self 400)
+				global91._send('say:', 15, 5, 0, 1, self, 400)
 			#end:case
 			case 3:
-				(global1 givePoints: 1)
-				(theShield dispose:)
-				(global0 posn: 84 149 get: 43 reset: 1)
+				global1._send('givePoints:', 1)
+				theShield._send('dispose:')
+				global0._send('posn:', 84, 149, 'get:', 43, 'reset:', 1)
 				cycles = 2
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

@@ -22,17 +22,17 @@ def proc926_0(param1 = None, *rest):
 
 	(cond
 		case (not argc):
-			temp0 = (global2 obstacles:)
+			temp0 = global2._send('obstacles:')
 		#end:case
-		case (param1 isKindOf: Collect):
+		case param1._send('isKindOf:', Collect):
 			temp0 = param1
 		#end:case
 		else:
-			(param1 perform: flipPoly)
+			param1._send('perform:', flipPoly)
 			return
 		#end:else
 	)
-	(temp0 eachElementDo: #perform flipPoly)
+	temp0._send('eachElementDo:', #perform, flipPoly)
 	kernel.DisposeScript(926)
 #end:procedure
 
@@ -42,14 +42,14 @@ def proc926_1(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if (not argc):
-		(global32 eachElementDo: #perform flipFeature)
+		global32._send('eachElementDo:', #perform, flipFeature)
 	else:
 		temp0 = 0
 		while (temp0 < argc): # inline for
-			if (param1[temp0] isKindOf: Collect):
-				(param1[temp0] eachElementDo: #perform flipFeature)
+			if param1[temp0]._send('isKindOf:', Collect):
+				param1[temp0]._send('eachElementDo:', #perform, flipFeature)
 			else:
-				(param1[temp0] perform: flipFeature)
+				param1[temp0]._send('perform:', flipFeature)
 			#endif
 			# for:reinit
 			temp0.post('++')
@@ -66,27 +66,27 @@ class flipPoly(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp1 = kernel.Memory(1, (4 * temp2 = (param1 size:)))
+		temp1 = kernel.Memory(1, (4 * temp2 = param1._send('size:')))
 		temp0 = 0
 		while (temp0 < temp2): # inline for
 			kernel.Memory(6, (temp1 + (4 * temp0)), (-
 				320
 				kernel.Memory(5, (-
-					((param1 points:) + (4 * temp2))
+					(param1._send('points:') + (4 * temp2))
 					(4 + (4 * temp0))
 				))
 			))
 			kernel.Memory(6, (+ temp1 (4 * temp0) 2), kernel.Memory(5, (-
-				((param1 points:) + (4 * temp2))
+				(param1._send('points:') + (4 * temp2))
 				(2 + (4 * temp0))
 			)))
 			# for:reinit
 			temp0.post('++')
 		#end:loop
-		if (param1 dynamic:):
-			kernel.Memory(3, (param1 points:))
+		if param1._send('dynamic:'):
+			kernel.Memory(3, param1._send('points:'))
 		#endif
-		(param1 points: temp1 dynamic: 1)
+		param1._send('points:', temp1, 'dynamic:', 1)
 	#end:method
 
 #end:class or instance
@@ -99,11 +99,11 @@ class flipFeature(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if kernel.IsObject((param1 onMeCheck:)):
-			proc926_0((param1 onMeCheck:))
+		if kernel.IsObject(param1._send('onMeCheck:')):
+			proc926_0(param1._send('onMeCheck:'))
 		else:
-			temp0 = (param1 nsLeft:)
-			(param1 nsLeft: (320 - (param1 nsRight:)) nsRight: (320 - temp0))
+			temp0 = param1._send('nsLeft:')
+			param1._send('nsLeft:', (320 - param1._send('nsRight:')), 'nsRight:', (320 - temp0))
 		#endif
 	#end:method
 

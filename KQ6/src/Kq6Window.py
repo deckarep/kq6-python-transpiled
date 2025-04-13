@@ -36,10 +36,10 @@ class Kq6Window(SysWindow):
 		lsBottom = (bottom + 6)
 		type = 128
 		priority = 15
-		(super open:)
+		super._send('open:')
 		temp1 = kernel.GetPort()
 		kernel.SetPort(0)
-		(self drawEdgedWindow: temp0)
+		self._send('drawEdgedWindow:', temp0)
 		kernel.DrawCel(930, 0, 0, (left - 5), (top - 5), -1)
 		kernel.DrawCel(930, 0, 1, (left - 5), (bottom - 1), -1)
 		kernel.DrawCel(930, 0, 2, (right - 1), (top - 5), -1)

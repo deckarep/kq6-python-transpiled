@@ -32,7 +32,7 @@ class Sound(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		((super new:) owner: (param1 if argc else 0) yourself:)
+		super._send('new:')._send('owner:', (param1 if argc else 0), 'yourself:')
 	#end:method
 
 	@classmethod
@@ -41,7 +41,7 @@ class Sound(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		prevSignal = signal = 0
-		(global8 add: self)
+		global8._send('add:', self)
 		kernel.DoSound(6, self)
 	#end:method
 
@@ -56,8 +56,8 @@ class Sound(Obj):
 		else:
 			client = 0
 		#endif
-		if (not (global8 contains: self)):
-			(self init:)
+		if (not global8._send('contains:', self)):
+			self._send('init:')
 		#endif
 		if (not loop):
 			loop = 1
@@ -89,7 +89,7 @@ class Sound(Obj):
 		if (not argc):
 			param1 = 1
 		#endif
-		kernel.DoSound(10, (self if (self isMemberOf: Sound) else 0), param1)
+		kernel.DoSound(10, (self if self._send('isMemberOf:', Sound) else 0), param1)
 	#end:method
 
 	@classmethod
@@ -199,7 +199,7 @@ class Sound(Obj):
 			prevSignal = signal
 			signal = 0
 			if kernel.IsObject(client):
-				(client cue: self)
+				client._send('cue:', self)
 			#endif
 		#endif
 	#end:method
@@ -210,7 +210,7 @@ class Sound(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not owner) or (owner == param1)):
-			(self dispose:)
+			self._send('dispose:')
 		#endif
 	#end:method
 
@@ -219,12 +219,12 @@ class Sound(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global8 delete: self)
+		global8._send('delete:', self)
 		if nodePtr:
 			kernel.DoSound(7, self)
 			nodePtr = 0
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -238,7 +238,7 @@ class Sound(Obj):
 		else:
 			client = 0
 		#endif
-		(self init:)
+		self._send('init:')
 		if (not loop):
 			loop = 1
 		#endif

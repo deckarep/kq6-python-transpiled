@@ -49,63 +49,34 @@ class rm420(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 3
-					init:
-						194
-						120
-						122
-						120
-						116
-						122
-						54
-						122
-						50
-						125
-						110
-						125
-						96
-						130
-						96
-						150
-						221
-						150
-						220
-						132
-						204
-						125
-						245
-						125
-						243
-						122
-						198
-						122
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 3,
+					'init:', 194, 120, 122, 120, 116, 122, 54, 122, 50, 125, 110, 125, 96, 130, 96, 150, 221, 150, 220, 132, 204, 125, 245, 125, 243, 122, 198, 122,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		proc958_0(128, 421)
-		(global0 init: setScale: Scaler 100 60 128 100 actions: egoDoCrushCode)
-		(kernel.ScriptID(30, 0) cue:)
-		(global32 add: floor walls exits eachElementDo: #init)
-		if local0 = (((global9 at: 2) owner:) == global11):
+		global0._send('init:', 'setScale:', Scaler, 100, 60, 128, 100, 'actions:', egoDoCrushCode)
+		kernel.ScriptID(30, 0)._send('cue:')
+		global32._send('add:', floor, walls, exits, 'eachElementDo:', #init)
+		if local0 = (global9._send('at:', 2)._send('owner:') == global11):
 			local1 = 5
-			(theBrick addToPic:)
-			(gears addToPic:)
-			(ceiling addToPic:)
+			theBrick._send('addToPic:')
+			gears._send('addToPic:')
+			ceiling._send('addToPic:')
 		else:
 			local1 = 4
-			(eastDoor init:)
-			(westDoor init:)
-			(gears init: stopUpd:)
-			(ceiling init: stopUpd:)
+			eastDoor._send('init:')
+			westDoor._send('init:')
+			gears._send('init:', 'stopUpd:')
+			ceiling._send('init:', 'stopUpd:')
 		#endif
-		if (not (rLab prevEdgeHit:)):
-			(rLab prevEdgeHit: 2)
+		if (not rLab._send('prevEdgeHit:')):
+			rLab._send('prevEdgeHit:', 2)
 		#endif
-		(self setScript: walkIn)
+		self._send('setScript:', walkIn)
 	#end:method
 
 	@classmethod
@@ -114,17 +85,17 @@ class rm420(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (self script:):#end:case
-			case ((global0 onControl: 1) == 16384):
-				(kernel.ScriptID(30, 0) prevEdgeHit: 2)
-				(self setScript: walkOut)
+			case self._send('script:'):#end:case
+			case (global0._send('onControl:', 1) == 16384):
+				kernel.ScriptID(30, 0)._send('prevEdgeHit:', 2)
+				self._send('setScript:', walkOut)
 			#end:case
-			case ((global0 onControl: 1) == 8192):
-				(kernel.ScriptID(30, 0) prevEdgeHit: 4)
-				(self setScript: walkOut)
+			case (global0._send('onControl:', 1) == 8192):
+				kernel.ScriptID(30, 0)._send('prevEdgeHit:', 4)
+				self._send('setScript:', walkOut)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -135,24 +106,24 @@ class rm420(KQ6Room):
 		(return
 			match param1
 				case 1:
-					(global91 say: 2 1 local1 1)
+					global91._send('say:', 2, 1, local1, 1)
 					1
 				#end:case
 				case 2:
 					if local0:
-						(global91 say: 2 2 local1 1)
+						global91._send('say:', 2, 2, local1, 1)
 						1
 					else:
-						(myConv add: -1 2 2 local1 1 add: -1 2 2 local1 2 init:)
+						myConv._send('add:', -1, 2, 2, local1, 1, 'add:', -1, 2, 2, local1, 2, 'init:')
 						1
 					#endif
 				#end:case
 				case 5:
-					(global91 say: 2 5 local1 1)
+					global91._send('say:', 2, 5, local1, 1)
 					1
 				#end:case
 				else:
-					(global91 say: 2 0 local1 1)
+					global91._send('say:', 2, 0, local1, 1)
 					1
 				#end:else
 			#end:match
@@ -166,7 +137,7 @@ class rm420(KQ6Room):
 
 		temp0 = 1
 		if (not local0):
-			(global91 say: 0 0 164 1 0 899)
+			global91._send('say:', 0, 0, 164, 1, 0, 899)
 			temp0 = 0
 		#endif
 		return temp0
@@ -187,16 +158,16 @@ class floor(Feature):
 
 		match param1
 			case 5:
-				(global91 say: 8 5 local1 1)
+				global91._send('say:', 8, 5, local1, 1)
 			#end:case
 			case 1:
-				(global91 say: 8 1 0 1)
+				global91._send('say:', 8, 1, 0, 1)
 			#end:case
 			case 2:
-				(global91 say: 8 2 local1 0)
+				global91._send('say:', 8, 2, local1, 0)
 			#end:case
 			else:
-				(global91 say: 2 0 local1 1)
+				global91._send('say:', 2, 0, local1, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -216,20 +187,20 @@ class walls(Feature):
 
 		match param1
 			case 1:
-				(global91 say: 7 1 local1 1)
+				global91._send('say:', 7, 1, local1, 1)
 			#end:case
 			case 5:
-				(global91 say: 7 5 local1 1)
+				global91._send('say:', 7, 5, local1, 1)
 			#end:case
 			case 2:
 				if local0:
-					(global91 say: 2 2 local1 0)
+					global91._send('say:', 2, 2, local1, 0)
 				else:
-					(global91 say: 7 2 local1 0)
+					global91._send('say:', 7, 2, local1, 0)
 				#endif
 			#end:case
 			else:
-				(global91 say: 2 0 local1 1)
+				global91._send('say:', 2, 0, local1, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -246,7 +217,7 @@ class exits(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(westDoor doVerb: param1 &rest)
+		westDoor._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -269,75 +240,75 @@ class gears(Prop):
 
 		match param1
 			case 1:
-				(global91 say: 6 1 local1 1)
+				global91._send('say:', 6, 1, local1, 1)
 			#end:case
 			case 5:
-				(global91 say: 6 5 local1 1)
+				global91._send('say:', 6, 5, local1, 1)
 			#end:case
 			case 2:
-				(global91 say: 6 2 local1 1)
+				global91._send('say:', 6, 2, local1, 1)
 			#end:case
 			case 39:
-				(global2 setScript: useBrick)
+				global2._send('setScript:', useBrick)
 			#end:case
 			case 51:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global2 setScript: throwSkull)
+					global2._send('setScript:', throwSkull)
 				#endif
 			#end:case
 			case 17:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 17 local1 1)
+					global91._send('say:', 6, 17, local1, 1)
 				#endif
 			#end:case
 			case 28:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 28 local1 1)
+					global91._send('say:', 6, 28, local1, 1)
 				#endif
 			#end:case
 			case 36:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 36 local1 1)
+					global91._send('say:', 6, 36, local1, 1)
 				#endif
 			#end:case
 			case 42:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 42 local1 1)
+					global91._send('say:', 6, 42, local1, 1)
 				#endif
 			#end:case
 			case 20:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 20 local1 1)
+					global91._send('say:', 6, 20, local1, 1)
 				#endif
 			#end:case
 			case 34:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 34 local1 1)
+					global91._send('say:', 6, 34, local1, 1)
 				#endif
 			#end:case
 			case 94:
 				if local0:
-					(global91 say: 6 0 local1 1)
+					global91._send('say:', 6, 0, local1, 1)
 				else:
-					(global91 say: 6 94 local1 1)
+					global91._send('say:', 6, 94, local1, 1)
 				#endif
 			#end:case
 			else:
-				(global91 say: 6 0 local1 1)
+				global91._send('say:', 6, 0, local1, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -360,11 +331,11 @@ class ceiling(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			y: (kernel.ScriptID(30, 0) crushCeilingY:)
-			cel: (kernel.ScriptID(30, 0) crushCeilingCel:)
+		self._send(
+			'y:', kernel.ScriptID(30, 0)._send('crushCeilingY:'),
+			'cel:', kernel.ScriptID(30, 0)._send('crushCeilingCel:')
 		)
-		(super addToPic:)
+		super._send('addToPic:')
 	#end:method
 
 	@classmethod
@@ -374,47 +345,47 @@ class ceiling(Prop):
 
 		match param1
 			case 1:
-				(global91 say: 4 1 local1 1)
+				global91._send('say:', 4, 1, local1, 1)
 			#end:case
 			case 5:
-				(global91 say: 4 5 local1 1)
+				global91._send('say:', 4, 5, local1, 1)
 			#end:case
 			case 2:
-				(global91 say: 4 2 local1 1)
+				global91._send('say:', 4, 2, local1, 1)
 			#end:case
 			case 51:
 				if local0:
-					(global91 say: 4 0 local1 1)
+					global91._send('say:', 4, 0, local1, 1)
 				else:
-					(global91 say: 4 51 local1 1)
+					global91._send('say:', 4, 51, local1, 1)
 				#endif
 			#end:case
 			case 17:
 				if local0:
-					(global91 say: 4 0 local1 1)
+					global91._send('say:', 4, 0, local1, 1)
 				else:
-					(global91 say: 4 17 local1 1)
+					global91._send('say:', 4, 17, local1, 1)
 				#endif
 			#end:case
 			case 28:
 				if local0:
-					(global91 say: 4 0 local1 1)
+					global91._send('say:', 4, 0, local1, 1)
 				else:
-					(global91 say: 4 28 local1 1)
+					global91._send('say:', 4, 28, local1, 1)
 				#endif
 			#end:case
 			case 94:
 				if local0:
-					(global91 say: 4 0 local1 1)
+					global91._send('say:', 4, 0, local1, 1)
 				else:
-					(global91 say: 4 94 local1 1)
+					global91._send('say:', 4, 94, local1, 1)
 				#endif
 			#end:case
 			case 12:
-				(global91 say: 4 12 0 1)
+				global91._send('say:', 4, 12, 0, 1)
 			#end:case
 			else:
-				(global91 say: 4 0 local1 1)
+				global91._send('say:', 4, 0, local1, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -439,16 +410,16 @@ class westDoor(Prop):
 
 		match param1
 			case 1:
-				(global91 say: 5 1 local1 1)
+				global91._send('say:', 5, 1, local1, 1)
 			#end:case
 			case 5:
-				(global91 say: 5 5 local1 1)
+				global91._send('say:', 5, 5, local1, 1)
 			#end:case
 			case 2:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			else:
-				(global91 say: 5 0 local1 1)
+				global91._send('say:', 5, 0, local1, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -471,7 +442,7 @@ class eastDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(westDoor doVerb: param1 &rest)
+		westDoor._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -490,12 +461,12 @@ class theBrick(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (((global9 at: 2) owner:) == global11):
-			(self x: 169 y: 119 z: 32)
+		if (global9._send('at:', 2)._send('owner:') == global11):
+			self._send('x:', 169, 'y:', 119, 'z:', 32)
 		else:
-			(self x: 169 y: 118)
+			self._send('x:', 169, 'y:', 118)
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -532,19 +503,19 @@ class walkOut(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global69 disable: 6)
-				match (rLab prevEdgeHit:)
+				global1._send('handsOff:')
+				global69._send('disable:', 6)
+				match rLab._send('prevEdgeHit:')
 					case 2:
-						(global0 edgeHit: 2 setMotion: MoveTo 232 123 self)
+						global0._send('edgeHit:', 2, 'setMotion:', MoveTo, 232, 123, self)
 					#end:case
 					case 4:
-						(global0 edgeHit: 4 setMotion: MoveTo 82 123 self)
+						global0._send('edgeHit:', 4, 'setMotion:', MoveTo, 82, 123, self)
 					#end:case
 				#end:match
 			#end:case
 			case 1:
-				(global2 newRoom: 400)
+				global2._send('newRoom:', 400)
 			#end:case
 		#end:match
 	#end:method
@@ -561,59 +532,59 @@ class walkIn(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				match (rLab prevEdgeHit:)
+				global1._send('handsOff:')
+				match rLab._send('prevEdgeHit:')
 					case 4:
-						(global0 posn: 232 123 setMotion: PolyPath 194 123 self)
+						global0._send('posn:', 232, 123, 'setMotion:', PolyPath, 194, 123, self)
 					#end:case
 					case 2:
-						(global0 posn: 82 123 setMotion: PolyPath 122 123 self)
+						global0._send('posn:', 82, 123, 'setMotion:', PolyPath, 122, 123, self)
 					#end:case
 				#end:match
 			#end:case
 			case 1:
 				if local0:
-					(global1 handsOn:)
-					(self dispose:)
+					global1._send('handsOn:')
+					self._send('dispose:')
 				else:
-					(global0 setPri: 14 setMotion: PolyPath 152 134 self)
+					global0._send('setPri:', 14, 'setMotion:', PolyPath, 152, 134, self)
 				#endif
 			#end:case
 			case 2:
-				(global0 setHeading: 90)
-				(eastDoor setCycle: End)
-				(westDoor setCycle: End self)
-				(global105 number: 426 setLoop: 1 play:)
+				global0._send('setHeading:', 90)
+				eastDoor._send('setCycle:', End)
+				westDoor._send('setCycle:', End, self)
+				global105._send('number:', 426, 'setLoop:', 1, 'play:')
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global69 enable: 6 disable: 0)
-				(global102 number: 420 setLoop: -1 play: self)
-				(global103 number: 421 setLoop: -1 play: self)
+				global1._send('handsOn:')
+				global69._send('enable:', 6, 'disable:', 0)
+				global102._send('number:', 420, 'setLoop:', -1, 'play:', self)
+				global103._send('number:', 421, 'setLoop:', -1, 'play:', self)
 				ticks = 4
 			#end:case
 			case 4:
-				(eastDoor stopUpd:)
-				(westDoor stopUpd:)
-				(global91 say: 1 0 1 1 self)
+				eastDoor._send('stopUpd:')
+				westDoor._send('stopUpd:')
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 5:
-				(ceiling startUpd: y: ((ceiling y:) + 1))
-				(gears setCycle: Fwd)
+				ceiling._send('startUpd:', 'y:', (ceiling._send('y:') + 1))
+				gears._send('setCycle:', Fwd)
 				cycles = 4
 			#end:case
 			case 6:
-				(global91 say: 1 0 1 2 self)
+				global91._send('say:', 1, 0, 1, 2, self)
 			#end:case
 			case 7:
-				(self setScript: dropCeiling self 1)
+				self._send('setScript:', dropCeiling, self, 1)
 			#end:case
 			case 8:
-				(ceiling stopUpd:)
+				ceiling._send('stopUpd:')
 				seconds = 1
 			#end:case
 			case 9:
-				(global2 setScript: sqwishEm)
+				global2._send('setScript:', sqwishEm)
 			#end:case
 		#end:match
 	#end:method
@@ -630,7 +601,7 @@ class dropCeiling(Script):
 
 		match state = param1
 			case 0:
-				(ceiling startUpd: y: ((ceiling y:) + 1))
+				ceiling._send('startUpd:', 'y:', (ceiling._send('y:') + 1))
 				seconds = 2
 			#end:case
 			case 1:
@@ -639,10 +610,10 @@ class dropCeiling(Script):
 				else:
 					temp0 = 91
 				#endif
-				if ((ceiling y:) < temp0):
-					(self changeState: 0)
+				if (ceiling._send('y:') < temp0):
+					self._send('changeState:', 0)
 				else:
-					(self dispose:)
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -660,120 +631,120 @@ class throwSkull(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 6 51 4 1 self)
+				global1._send('handsOff:')
+				global91._send('say:', 6, 51, 4, 1, self)
 			#end:case
 			case 1:
-				(global0 view: 421 normal: 0 setLoop: 1 cel: 4 posn: 162 146)
+				global0._send('view:', 421, 'normal:', 0, 'setLoop:', 1, 'cel:', 4, 'posn:', 162, 146)
 				ticks = 4
 			#end:case
 			case 2:
-				(global0 cel: 5)
-				(theSkull init:)
+				global0._send('cel:', 5)
+				theSkull._send('init:')
 				ticks = 4
 			#end:case
 			case 3:
-				(global0 cel: 6)
+				global0._send('cel:', 6)
 				ticks = 4
 			#end:case
 			case 4:
-				(global0 cel: 7)
-				(theSkull posn: 161 124)
-				(theSkull posn: ((theSkull x:) - 8) ((theSkull y:) + 6))
+				global0._send('cel:', 7)
+				theSkull._send('posn:', 161, 124)
+				theSkull._send('posn:', (theSkull._send('x:') - 8), (theSkull._send('y:') + 6))
 				ticks = 4
 			#end:case
 			case 5:
-				(global0 cel: 8)
-				(theSkull
-					setPri: 11
-					posn: ((theSkull x:) - 10) ((theSkull y:) - 3)
+				global0._send('cel:', 8)
+				theSkull._send(
+					'setPri:', 11,
+					'posn:', (theSkull._send('x:') - 10), (theSkull._send('y:') - 3)
 				)
 				ticks = 4
 			#end:case
 			case 6:
-				(global0 cel: 9)
-				(theSkull
-					setPri: -1
-					posn: ((theSkull x:) + 26) ((theSkull y:) - 3)
+				global0._send('cel:', 9)
+				theSkull._send(
+					'setPri:', -1,
+					'posn:', (theSkull._send('x:') + 26), (theSkull._send('y:') - 3)
 				)
 				ticks = 4
 			#end:case
 			case 7:
-				(global0 cel: 10)
-				(theSkull posn: ((theSkull x:) - 5) ((theSkull y:) - 18))
+				global0._send('cel:', 10)
+				theSkull._send('posn:', (theSkull._send('x:') - 5), (theSkull._send('y:') - 18))
 				ticks = 2
 			#end:case
 			case 8:
-				(theSkull cel: 1 posn: ((theSkull x:) + 1) ((theSkull y:) - 6))
+				theSkull._send('cel:', 1, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') - 6))
 				ticks = 2
 			#end:case
 			case 9:
-				(theSkull cel: 2 posn: ((theSkull x:) + 1) ((theSkull y:) - 5))
+				theSkull._send('cel:', 2, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') - 5))
 				ticks = 2
 			#end:case
 			case 10:
-				(theSkull cel: 3 posn: ((theSkull x:) + 1) ((theSkull y:) - 7))
+				theSkull._send('cel:', 3, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') - 7))
 				ticks = 2
 			#end:case
 			case 11:
-				(theSkull cel: 0 posn: ((theSkull x:) + 1) ((theSkull y:) - 5))
+				theSkull._send('cel:', 0, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') - 5))
 				ticks = 2
 			#end:case
 			case 12:
-				(theSkull cel: 1 posn: ((theSkull x:) + 1) ((theSkull y:) + 2))
+				theSkull._send('cel:', 1, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') + 2))
 				ticks = 2
 			#end:case
 			case 13:
-				(theSkull cel: 2 posn: ((theSkull x:) + 1) ((theSkull y:) + 2))
+				theSkull._send('cel:', 2, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') + 2))
 				ticks = 2
 			#end:case
 			case 14:
-				(theSkull cel: 3 posn: ((theSkull x:) + 1) ((theSkull y:) + 1))
+				theSkull._send('cel:', 3, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') + 1))
 				ticks = 2
 			#end:case
 			case 15:
-				(global102 stop:)
-				(global103 stop:)
-				(global105 number: 422 setLoop: 1 play: self)
-				(global104 number: 424 setLoop: 1 play:)
-				(theSkull cel: 0 posn: ((theSkull x:) + 1) ((theSkull y:) + 4))
+				global102._send('stop:')
+				global103._send('stop:')
+				global105._send('number:', 422, 'setLoop:', 1, 'play:', self)
+				global104._send('number:', 424, 'setLoop:', 1, 'play:')
+				theSkull._send('cel:', 0, 'posn:', (theSkull._send('x:') + 1), (theSkull._send('y:') + 4))
 			#end:case
 			case 16:
-				(theSkull posn: ((theSkull x:) - 1) ((theSkull y:) - 1))
-				(global91 say: 6 51 4 2 self)
+				theSkull._send('posn:', (theSkull._send('x:') - 1), (theSkull._send('y:') - 1))
+				global91._send('say:', 6, 51, 4, 2, self)
 			#end:case
 			case 17:
-				(gears setCycle: 0 stopUpd:)
-				(global0 reset: 0 posn: 155 134)
-				(global91 say: 6 51 4 3 self)
+				gears._send('setCycle:', 0, 'stopUpd:')
+				global0._send('reset:', 0, 'posn:', 155, 134)
+				global91._send('say:', 6, 51, 4, 3, self)
 			#end:case
 			case 18:
-				(global91 say: 6 51 4 4 self)
+				global91._send('say:', 6, 51, 4, 4, self)
 			#end:case
 			case 19:
 				seconds = 2
 			#end:case
 			case 20:
-				(theSkull setLoop: 6 setCycle: End self)
-				(global105 number: 423 setLoop: 1 play: self)
+				theSkull._send('setLoop:', 6, 'setCycle:', End, self)
+				global105._send('number:', 423, 'setLoop:', 1, 'play:', self)
 			#end:case
 			case 21:
-				(global102 number: 420 setLoop: -1 play: self)
-				(global103 number: 421 setLoop: -1 play: self)
+				global102._send('number:', 420, 'setLoop:', -1, 'play:', self)
+				global103._send('number:', 421, 'setLoop:', -1, 'play:', self)
 			#end:case
 			case 22:
-				(gears setCycle: Fwd)
-				(global91 say: 6 51 4 5 self)
+				gears._send('setCycle:', Fwd)
+				global91._send('say:', 6, 51, 4, 5, self)
 			#end:case
 			case 23:
-				(theSkull dispose:)
-				(global69 disable: 0)
-				(global0 put: 11 global11)
-				(ceiling y: 84)
+				theSkull._send('dispose:')
+				global69._send('disable:', 0)
+				global0._send('put:', 11, global11)
+				ceiling._send('y:', 84)
 				seconds = 2
 			#end:case
 			case 24:
-				(global2 setScript: sqwishEm 0 1)
+				global2._send('setScript:', sqwishEm, 0, 1)
 			#end:case
 		#end:match
 	#end:method
@@ -790,63 +761,63 @@ class sqwishEm(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 1 0 3 1 self)
+				global1._send('handsOff:')
+				global91._send('say:', 1, 0, 3, 1, self)
 			#end:case
 			case 1:
-				(ceiling setPri: 12 setCycle: CT 3 1 self)
-				(global0
-					view: 421
-					normal: 0
-					setLoop: 2
-					cel: 0
-					cycleSpeed: 6
-					setPri: 14
-					posn: ((global0 x:) - 2) ((global0 y:) + 4)
-					setCycle: End self
+				ceiling._send('setPri:', 12, 'setCycle:', CT, 3, 1, self)
+				global0._send(
+					'view:', 421,
+					'normal:', 0,
+					'setLoop:', 2,
+					'cel:', 0,
+					'cycleSpeed:', 6,
+					'setPri:', 14,
+					'posn:', (global0._send('x:') - 2), (global0._send('y:') + 4),
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(ceiling cel: ((ceiling cel:) + 1))
-				(global0 setPri: 13 setLoop: 3 cel: 0 setCycle: End self)
+				ceiling._send('cel:', (ceiling._send('cel:') + 1))
+				global0._send('setPri:', 13, 'setLoop:', 3, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(ceiling cel: ((ceiling cel:) + 1))
-				(global0 setLoop: 4 cel: 0 setCycle: CT 4 1 self)
+				ceiling._send('cel:', (ceiling._send('cel:') + 1))
+				global0._send('setLoop:', 4, 'cel:', 0, 'setCycle:', CT, 4, 1, self)
 			#end:case
 			case 4:
-				(global91 say: 1 0 3 2 self)
+				global91._send('say:', 1, 0, 3, 2, self)
 			#end:case
 			case 5:
-				(ceiling setPri: 14 cel: ((ceiling cel:) + 1))
-				(global0 setCycle: CT 7 1 self)
+				ceiling._send('setPri:', 14, 'cel:', (ceiling._send('cel:') + 1))
+				global0._send('setCycle:', CT, 7, 1, self)
 			#end:case
 			case 6:
-				(ceiling cel: ((ceiling cel:) + 1))
-				(global0 setCycle: CT 8 1 self)
+				ceiling._send('cel:', (ceiling._send('cel:') + 1))
+				global0._send('setCycle:', CT, 8, 1, self)
 			#end:case
 			case 7:
-				(global91 say: 1 0 3 3 self)
+				global91._send('say:', 1, 0, 3, 3, self)
 			#end:case
 			case 8:
-				(ceiling setCycle: End self)
+				ceiling._send('setCycle:', End, self)
 			#end:case
 			case 9:
-				(global102 stop:)
-				(global103 stop:)
-				(global105 number: 425 setLoop: 1 play:)
+				global102._send('stop:')
+				global103._send('stop:')
+				global105._send('number:', 425, 'setLoop:', 1, 'play:')
 				cycles = 6
 			#end:case
 			case 10:
-				(ceiling stopUpd:)
+				ceiling._send('stopUpd:')
 				if register:
-					(global91 say: 6 51 4 6 self)
+					global91._send('say:', 6, 51, 4, 6, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 11:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				proc0_1(9)
 			#end:case
 		#end:match
@@ -864,116 +835,116 @@ class useBrick(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 6 39 0 1 self)
+				global1._send('handsOff:')
+				global91._send('say:', 6, 39, 0, 1, self)
 			#end:case
 			case 1:
-				(global0 view: 421 normal: 0 setLoop: 0 cel: 4 posn: 162 146)
+				global0._send('view:', 421, 'normal:', 0, 'setLoop:', 0, 'cel:', 4, 'posn:', 162, 146)
 				ticks = 2
 			#end:case
 			case 2:
-				(global0 cel: 5)
-				(theBrick init:)
+				global0._send('cel:', 5)
+				theBrick._send('init:')
 				ticks = 2
 			#end:case
 			case 3:
-				(global0 cel: 6)
-				(theBrick posn: ((theBrick x:) - 2) ((theBrick y:) - 4))
+				global0._send('cel:', 6)
+				theBrick._send('posn:', (theBrick._send('x:') - 2), (theBrick._send('y:') - 4))
 				ticks = 2
 			#end:case
 			case 4:
-				(global0 cel: 7)
-				(theBrick posn: ((theBrick x:) - 10) ((theBrick y:) + 8))
+				global0._send('cel:', 7)
+				theBrick._send('posn:', (theBrick._send('x:') - 10), (theBrick._send('y:') + 8))
 				ticks = 2
 			#end:case
 			case 5:
-				(global0 cel: 8)
-				(theBrick
-					setPri: 11
-					posn: ((theBrick x:) - 7) ((theBrick y:) - 3)
+				global0._send('cel:', 8)
+				theBrick._send(
+					'setPri:', 11,
+					'posn:', (theBrick._send('x:') - 7), (theBrick._send('y:') - 3)
 				)
 				ticks = 2
 			#end:case
 			case 6:
-				(global0 cel: 9)
-				(theBrick
-					setPri: -1
-					posn: ((theBrick x:) + 24) ((theBrick y:) - 1)
+				global0._send('cel:', 9)
+				theBrick._send(
+					'setPri:', -1,
+					'posn:', (theBrick._send('x:') + 24), (theBrick._send('y:') - 1)
 				)
 				ticks = 2
 			#end:case
 			case 7:
-				(global0 cel: 10)
-				(theBrick posn: ((theBrick x:) - 4) ((theBrick y:) - 19))
+				global0._send('cel:', 10)
+				theBrick._send('posn:', (theBrick._send('x:') - 4), (theBrick._send('y:') - 19))
 				ticks = 2
 			#end:case
 			case 8:
-				(theBrick cel: 1 posn: ((theBrick x:) + 1) ((theBrick y:) - 6))
+				theBrick._send('cel:', 1, 'posn:', (theBrick._send('x:') + 1), (theBrick._send('y:') - 6))
 				ticks = 2
 			#end:case
 			case 9:
-				(theBrick cel: 2 posn: (theBrick x:) ((theBrick y:) - 5))
+				theBrick._send('cel:', 2, 'posn:', theBrick._send('x:'), (theBrick._send('y:') - 5))
 				ticks = 2
 			#end:case
 			case 10:
-				(theBrick cel: 3 posn: (theBrick x:) ((theBrick y:) - 6))
+				theBrick._send('cel:', 3, 'posn:', theBrick._send('x:'), (theBrick._send('y:') - 6))
 				ticks = 2
 			#end:case
 			case 11:
-				(theBrick cel: 0 posn: (theBrick x:) ((theBrick y:) - 4))
+				theBrick._send('cel:', 0, 'posn:', theBrick._send('x:'), (theBrick._send('y:') - 4))
 				ticks = 2
 			#end:case
 			case 12:
-				(theBrick cel: 1 posn: (theBrick x:) ((theBrick y:) + 3))
+				theBrick._send('cel:', 1, 'posn:', theBrick._send('x:'), (theBrick._send('y:') + 3))
 				ticks = 2
 			#end:case
 			case 13:
-				(theBrick cel: 2 posn: (theBrick x:) ((theBrick y:) + 3))
+				theBrick._send('cel:', 2, 'posn:', theBrick._send('x:'), (theBrick._send('y:') + 3))
 				ticks = 2
 			#end:case
 			case 14:
-				(theBrick cel: 3 posn: (theBrick x:) ((theBrick y:) + 2))
+				theBrick._send('cel:', 3, 'posn:', theBrick._send('x:'), (theBrick._send('y:') + 2))
 				ticks = 2
 			#end:case
 			case 15:
-				(global102 stop:)
-				(global103 stop:)
-				(global105 number: 422 setLoop: 1 play: self)
-				(global104 number: 424 setLoop: 1 play:)
-				(theBrick cel: 0 posn: (theBrick x:) ((theBrick y:) + 2))
+				global102._send('stop:')
+				global103._send('stop:')
+				global105._send('number:', 422, 'setLoop:', 1, 'play:', self)
+				global104._send('number:', 424, 'setLoop:', 1, 'play:')
+				theBrick._send('cel:', 0, 'posn:', theBrick._send('x:'), (theBrick._send('y:') + 2))
 			#end:case
 			case 16:
-				(theBrick x: 169 y: 119 z: 32 stopUpd:)
-				(global91 say: 6 39 0 2 self)
+				theBrick._send('x:', 169, 'y:', 119, 'z:', 32, 'stopUpd:')
+				global91._send('say:', 6, 39, 0, 2, self)
 			#end:case
 			case 17:
-				(gears setCycle: 0 stopUpd:)
-				(cog init: setCycle: End self)
-				(global0 reset: 0 posn: 155 134)
+				gears._send('setCycle:', 0, 'stopUpd:')
+				cog._send('init:', 'setCycle:', End, self)
+				global0._send('reset:', 0, 'posn:', 155, 134)
 			#end:case
 			case 18:
-				(global91 say: 6 39 0 3 self)
+				global91._send('say:', 6, 39, 0, 3, self)
 			#end:case
 			case 19:
-				(global1 givePoints: 2)
-				(cog dispose:)
-				(global105 number: 426 setLoop: 1 play:)
-				(eastDoor setCycle: Beg)
-				(westDoor setCycle: Beg self)
+				global1._send('givePoints:', 2)
+				cog._send('dispose:')
+				global105._send('number:', 426, 'setLoop:', 1, 'play:')
+				eastDoor._send('setCycle:', Beg)
+				westDoor._send('setCycle:', Beg, self)
 			#end:case
 			case 20:
-				(global91 say: 6 39 0 4 self)
+				global91._send('say:', 6, 39, 0, 4, self)
 			#end:case
 			case 21:
-				(kernel.ScriptID(30, 0) crushCeilingCel: (ceiling cel:))
-				(kernel.ScriptID(30, 0) crushCeilingY: (ceiling y:))
+				kernel.ScriptID(30, 0)._send('crushCeilingCel:', ceiling._send('cel:'))
+				kernel.ScriptID(30, 0)._send('crushCeilingY:', ceiling._send('y:'))
 				local0 = 1
 				local1 = 5
-				(ceiling stopUpd:)
-				(global102 number: 400 play:)
-				(global1 handsOn:)
-				(global0 put: 2 global11)
-				(self dispose:)
+				ceiling._send('stopUpd:')
+				global102._send('number:', 400, 'play:')
+				global1._send('handsOn:')
+				global0._send('put:', 2, global11)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -990,11 +961,11 @@ class egoDoCrushCode(Actions):
 
 		match param1
 			case 17:
-				(global91 say: 3 17 local1 1)
+				global91._send('say:', 3, 17, local1, 1)
 				return 1
 			#end:case
 			case 12:
-				(global91 say: 3 12 0 1)
+				global91._send('say:', 3, 12, 0, 1)
 				return 1
 			#end:case
 			else:

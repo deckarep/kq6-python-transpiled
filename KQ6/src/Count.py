@@ -17,11 +17,11 @@ def proc965_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp1 = kernel.FirstNode((param1 elements:))
+	temp1 = kernel.FirstNode(param1._send('elements:'))
 	temp0 = 0
 	while temp1:
 
-		if (param2 doit: kernel.NodeValue(temp1) &rest):
+		if param2._send('doit:', kernel.NodeValue(temp1), &rest):
 			temp0.post('++')
 		#endif
 		temp1 = kernel.NextNode(temp1)

@@ -56,13 +56,13 @@ def proc990_0(param1 = None, *rest):
 		if 
 			(not
 				(= temp0
-					(Print
-						font: 0
-						addText: 1 0 0 1 0 0 990
-						addEdit: kernel.StrCpy(@temp1, param1) 29 0 20 param1
-						addButton: 1 27 0 0 1 0 34 990
-						addButton: 0 38 0 0 1 50 34 990
-						init:
+					Print._send(
+						'font:', 0,
+						'addText:', 1, 0, 0, 1, 0, 0, 990,
+						'addEdit:', kernel.StrCpy(@temp1, param1), 29, 0, 20, param1,
+						'addButton:', 1, 27, 0, 0, 1, 0, 34, 990,
+						'addButton:', 0, 38, 0, 0, 1, 50, 34, 990,
+						'init:'
 					)
 				)
 			)
@@ -77,7 +77,7 @@ def proc990_0(param1 = None, *rest):
 		else:
 			kernel.Message(0, 990, 29, 0, 0, 1, @temp134)
 			kernel.Format(@temp34, @temp134, @temp1)
-			(Print font: 0 addText: @temp34 init:)
+			Print._send('font:', 0, 'addText:', @temp34, 'init:')
 		#endif
 	#end:loop
 #end:procedure
@@ -97,7 +97,7 @@ def localproc_2():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(Print font: 0 addText: 3 0 0 1 0 0 990 init:)
+	Print._send('font:', 0, 'addText:', 3, 0, 0, 1, 0, 0, 990, 'init:')
 #end:procedure
 
 class SRDialog(Dialog):
@@ -107,7 +107,7 @@ class SRDialog(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -117,24 +117,24 @@ class SRDialog(Dialog):
 
 		window = global38
 		nsBottom = 0
-		if (local2 = kernel.GetSaveFiles((global1 name:), param2, param3) == -1):
+		if (local2 = kernel.GetSaveFiles(global1._send('name:'), param2, param3) == -1):
 			return 0
 		#endif
 		if (local4 = localproc_0() == 1):
-			(editI
-				text: kernel.StrCpy(param1, param2)
-				font: global23
-				setSize:
-				moveTo: 4 4
+			editI._send(
+				'text:', kernel.StrCpy(param1, param2),
+				'font:', global23,
+				'setSize:',
+				'moveTo:', 4, 4
 			)
-			(self add: editI setSize:)
+			self._send('add:', editI, 'setSize:')
 		#endif
-		(selectorI
-			text: param2
-			font: global23
-			setSize:
-			moveTo: 4 (nsBottom + 4)
-			state: 2
+		selectorI._send(
+			'text:', param2,
+			'font:', global23,
+			'setSize:',
+			'moveTo:', 4, (nsBottom + 4),
+			'state:', 2
 		)
 		match local4
 			case 0:
@@ -147,40 +147,39 @@ class SRDialog(Dialog):
 				kernel.Message(0, 990, 25, 0, 0, 1, @local5)
 			#end:else
 		#end:match
-		local1 = ((selectorI nsRight:) + 4)
-		(okI
-			text: @local5
-			setSize:
-			moveTo: local1 (selectorI nsTop:)
-			state:
-				if (((local4 == 0) and (not local2)) or (local4 == 3)):
+		local1 = (selectorI._send('nsRight:') + 4)
+		okI._send(
+			'text:', @local5,
+			'setSize:',
+			'moveTo:', local1, selectorI._send('nsTop:'),
+			'state:', if (((local4 == 0) and (not local2)) or (local4 == 3)):
 					0
 				else:
 					3
 				#endif
 		)
 		kernel.Message(0, 990, 24, 0, 0, 1, @local20)
-		(deleteI
-			text: @local20
-			setSize:
-			moveTo: local1 ((okI nsBottom:) + 4)
-			state: (0 if (not local2) else 3)
+		deleteI._send(
+			'text:', @local20,
+			'setSize:',
+			'moveTo:', local1, (okI._send('nsBottom:') + 4),
+			'state:', (0 if (not local2) else 3)
 		)
 		kernel.Message(0, 990, 23, 0, 0, 1, @local35)
-		(changeDirI
-			text: @local35
-			setSize:
-			moveTo: local1 ((deleteI nsBottom:) + 4)
-			state: ((changeDirI state:) & 0xfff7)
+		changeDirI._send(
+			'text:', @local35,
+			'setSize:',
+			'moveTo:', local1, (deleteI._send('nsBottom:') + 4),
+			'state:', (changeDirI._send('state:') & 0xfff7)
 		)
 		kernel.Message(0, 990, 22, 0, 0, 1, @local50)
-		(cancelI
-			text: @local50
-			setSize:
-			moveTo: local1 ((changeDirI nsBottom:) + 4)
-			state: ((cancelI state:) & 0xfff7)
+		cancelI._send(
+			'text:', @local50,
+			'setSize:',
+			'moveTo:', local1, (changeDirI._send('nsBottom:') + 4),
+			'state:', (cancelI._send('state:') & 0xfff7)
 		)
-		(self add: selectorI okI deleteI changeDirI cancelI setSize:)
+		self._send('add:', selectorI, okI, deleteI, changeDirI, cancelI, 'setSize:')
 		match local4
 			case 0:
 				kernel.Message(0, 990, 10, 0, 0, 1, @temp0)
@@ -192,10 +191,10 @@ class SRDialog(Dialog):
 				kernel.Message(0, 990, 30, 0, 0, 1, @temp0)
 			#end:else
 		#end:match
-		(textI text: @temp0 setSize: ((nsRight - nsLeft) - 8) moveTo: 4 4)
-		local1 = ((textI nsBottom:) + 4)
-		(self eachElementDo: #move 0 local1)
-		(self add: textI setSize: center: open: 4 -1)
+		textI._send('text:', @temp0, 'setSize:', ((nsRight - nsLeft) - 8), 'moveTo:', 4, 4)
+		local1 = (textI._send('nsBottom:') + 4)
+		self._send('eachElementDo:', #move, 0, local1)
+		self._send('add:', textI, 'setSize:', 'center:', 'open:', 4, -1)
 		return 1
 	#end:method
 
@@ -208,8 +207,8 @@ class SRDialog(Dialog):
 			if 
 				(==
 					(= temp0
-						kernel.FileIO(0, kernel.Format(@temp385, r"""%ssg.dir""", (global1
-							name:
+						kernel.FileIO(0, kernel.Format(@temp385, r"""%ssg.dir""", global1._send(
+							'name:'
 						)))
 					)
 					-1
@@ -218,7 +217,7 @@ class SRDialog(Dialog):
 			#endif
 			kernel.FileIO(1, temp0)
 		#endif
-		if (not (self init: param1 @temp3 @temp364)):
+		if (not self._send('init:', param1, @temp3, @temp364)):
 			return -1
 		#endif
 		while True: #repeat
@@ -232,16 +231,16 @@ class SRDialog(Dialog):
 					else: changeDirI#end:else
 				#end:match
 			)
-			local1 = (super doit: local0)
-			temp2 = (local3 = (selectorI indexOf: (selectorI cursor:)) * 18)
+			local1 = super._send('doit:', local0)
+			temp2 = (local3 = selectorI._send('indexOf:', selectorI._send('cursor:')) * 18)
 			if (local1 == changeDirI):
-				(self dispose:)
+				self._send('dispose:')
 				if 
 					(and
 						proc990_0(global29)
 						(==
 							(= local2
-								kernel.GetSaveFiles((global1 name:), @temp3, @temp364)
+								kernel.GetSaveFiles(global1._send('name:'), @temp3, @temp364)
 							)
 							-1
 						)
@@ -249,22 +248,22 @@ class SRDialog(Dialog):
 					temp1 = -1
 					(break)
 				#endif
-				(self init: param1 @temp3 @temp364)
+				self._send('init:', param1, @temp3, @temp364)
 			else:
 				if ((local4 == 2) and (local1 == okI)):
-					(self dispose:)
-					if (GetReplaceName doit: kernel.StrCpy(param1, @temp3[temp2])):
+					self._send('dispose:')
+					if GetReplaceName._send('doit:', kernel.StrCpy(param1, @temp3[temp2])):
 						temp1 = temp364[local3]
 						(break)
 					#endif
-					(self init: param1 @temp3 @temp364)
+					self._send('init:', param1, @temp3, @temp364)
 					(continue)
 				#endif
 				if ((local4 == 1) and ((local1 == okI) or (local1 == editI))):
 					if (kernel.StrLen(param1) == 0):
-						(self dispose:)
+						self._send('dispose:')
 						localproc_2()
-						(self init: param1 @temp3 @temp364)
+						self._send('init:', param1, @temp3, @temp364)
 						(continue)
 					#endif
 					temp1 = -1
@@ -304,40 +303,40 @@ class SRDialog(Dialog):
 				#endif
 				(cond
 					case (local1 == deleteI):
-						(self dispose:)
+						self._send('dispose:')
 						if 
 							(not
-								(Print
-									addText: 12 0 0 1 0 0 990
-									addButton: 0 31 0 0 1 0 35 990
-									addButton: 1 32 0 0 1 50 35 990
-									init:
+								Print._send(
+									'addText:', 12, 0, 0, 1, 0, 0, 990,
+									'addButton:', 0, 31, 0, 0, 1, 0, 35, 990,
+									'addButton:', 1, 32, 0, 0, 1, 50, 35, 990,
+									'init:'
 								)
 							)
-							(self init: param1 @temp3 @temp364)
+							self._send('init:', param1, @temp3, @temp364)
 						else:
-							(temp0 = (File new:)
-								name: kernel.DeviceInfo(7, @temp385, (global1 name:))
-								open: 2
+							temp0 = File._send('new:')._send(
+								'name:', kernel.DeviceInfo(7, @temp385, global1._send('name:')),
+								'open:', 2
 							)
 							temp1 = 2570
 							local1 = 0
 							while (local1 < local2): # inline for
 								if (local1 != local3):
-									(temp0 write: @temp364[local1] 2)
-									(temp0 writeString: @temp3[(local1 * 18)])
-									(temp0 write: @temp1 1)
+									temp0._send('write:', @temp364[local1], 2)
+									temp0._send('writeString:', @temp3[(local1 * 18)])
+									temp0._send('write:', @temp1, 1)
 								#endif
 								# for:reinit
 								local1.post('++')
 							#end:loop
 							temp1 = -1
-							(temp0 write: @temp1 2 close: dispose:)
-							kernel.DeviceInfo(8, @temp385, (global1 name:), [temp364
+							temp0._send('write:', @temp1, 2, 'close:', 'dispose:')
+							kernel.DeviceInfo(8, @temp385, global1._send('name:'), [temp364
 								local3
 							])
 							kernel.FileIO(4, @temp385)
-							(self init: param1 @temp3 @temp364)
+							self._send('init:', param1, @temp3, @temp364)
 						#endif
 					#end:case
 					case (local1 == okI):
@@ -349,16 +348,16 @@ class SRDialog(Dialog):
 						(break)
 					#end:case
 					case (local4 == 1):
-						(editI
-							cursor: kernel.StrLen(kernel.StrCpy(param1, @temp3[temp2]))
-							draw:
+						editI._send(
+							'cursor:', kernel.StrLen(kernel.StrCpy(param1, @temp3[temp2])),
+							'draw:'
 						)
 					#end:case
 				)
 			#endif
 		#end:loop
 		kernel.DisposeScript(993)
-		(self dispose:)
+		self._send('dispose:')
 		kernel.DisposeScript(990)
 		return temp1
 	#end:method
@@ -374,7 +373,7 @@ class Restore(SRDialog):
 
 		kernel.Message(0, 990, 20, 0, 0, 1, @local65)
 		text = @local65
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -388,7 +387,7 @@ class Save(SRDialog):
 
 		kernel.Message(0, 990, 21, 0, 0, 1, @local65)
 		text = @local65
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -403,26 +402,26 @@ class GetReplaceName(Dialog):
 
 		window = global38
 		kernel.Message(0, 990, 33, 0, 0, 1, @temp1)
-		(text1 text: @temp1 setSize: moveTo: 4 4)
-		(self add: text1 setSize:)
-		(oldName text: param1 font: global23 setSize: moveTo: 4 nsBottom)
-		(self add: oldName setSize:)
+		text1._send('text:', @temp1, 'setSize:', 'moveTo:', 4, 4)
+		self._send('add:', text1, 'setSize:')
+		oldName._send('text:', param1, 'font:', global23, 'setSize:', 'moveTo:', 4, nsBottom)
+		self._send('add:', oldName, 'setSize:')
 		kernel.Message(0, 990, 34, 0, 0, 1, @temp16)
-		(text2 text: @temp16 setSize: moveTo: 4 nsBottom)
-		(self add: text2 setSize:)
-		(newName text: param1 font: global23 setSize: moveTo: 4 nsBottom)
-		(self add: newName setSize:)
+		text2._send('text:', @temp16, 'setSize:', 'moveTo:', 4, nsBottom)
+		self._send('add:', text2, 'setSize:')
+		newName._send('text:', param1, 'font:', global23, 'setSize:', 'moveTo:', 4, nsBottom)
+		self._send('add:', newName, 'setSize:')
 		kernel.Message(0, 990, 33, 0, 0, 1, @temp31)
-		(button1 text: @temp31 nsLeft: 0 nsTop: 0 setSize:)
+		button1._send('text:', @temp31, 'nsLeft:', 0, 'nsTop:', 0, 'setSize:')
 		kernel.Message(0, 990, 38, 0, 0, 1, @temp46)
-		(button2 text: @temp46 nsLeft: 0 nsTop: 0 setSize:)
-		(button2 moveTo: (nsRight - ((button2 nsRight:) + 4)) nsBottom)
-		(button1
-			moveTo: ((button2 nsLeft:) - ((button1 nsRight:) + 4)) nsBottom
+		button2._send('text:', @temp46, 'nsLeft:', 0, 'nsTop:', 0, 'setSize:')
+		button2._send('moveTo:', (nsRight - (button2._send('nsRight:') + 4)), nsBottom)
+		button1._send(
+			'moveTo:', (button2._send('nsLeft:') - (button1._send('nsRight:') + 4)), nsBottom
 		)
-		(self add: button1 button2 setSize: center: open: 0 -1)
-		temp0 = (super doit: newName)
-		(self dispose:)
+		self._send('add:', button1, button2, 'setSize:', 'center:', 'open:', 0, -1)
+		temp0 = super._send('doit:', newName)
+		self._send('dispose:')
 		if (not kernel.StrLen(param1)):
 			localproc_2()
 			temp0 = 0
@@ -455,7 +454,7 @@ class okI(DButton):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -468,7 +467,7 @@ class cancelI(DButton):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -481,7 +480,7 @@ class changeDirI(DButton):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -494,7 +493,7 @@ class deleteI(DButton):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -509,7 +508,7 @@ class textI(DText):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -524,7 +523,7 @@ class text1(DText):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -539,7 +538,7 @@ class text2(DText):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -552,7 +551,7 @@ class oldName(DText):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -572,7 +571,7 @@ class button1(DButton):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance
@@ -585,7 +584,7 @@ class button2(DButton):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: 1)
+		super._send('dispose:', 1)
 	#end:method
 
 #end:class or instance

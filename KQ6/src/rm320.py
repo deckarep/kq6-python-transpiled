@@ -68,38 +68,38 @@ class rm320(CliffRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
+		global1._send('handsOff:')
 		if (global12 == 300):
-			(self style: 14)
+			self._send('style:', 14)
 		else:
-			(self style: -32758)
-			if ((global102 number:) != 915):
-				(global102 number: 915 setLoop: -1 play:)
+			self._send('style:', -32758)
+			if (global102._send('number:') != 915):
+				global102._send('number:', 915, 'setLoop:', -1, 'play:')
 			#endif
 		#endif
 		proc958_0(128, 322, 325)
-		(super init: &rest)
-		(rCliffs stepDirection: 3)
+		super._send('init:', &rest)
+		rCliffs._send('stepDirection:', 3)
 		if proc913_0(123):
-			(global2 allRocksOut: 0)
+			global2._send('allRocksOut:', 0)
 		else:
-			(global2 constantRocks:)
+			global2._send('constantRocks:')
 		#endif
-		(writ x: 230 init: stopUpd:)
-		(theRoom init:)
-		(global0
-			view: 301
-			normal: 0
-			cycleSpeed: 14
-			setLoop: 2
-			posn: 101 182
-			setPri: 10
-			init:
-			actions: egoStepVerb
+		writ._send('x:', 230, 'init:', 'stopUpd:')
+		theRoom._send('init:')
+		global0._send(
+			'view:', 301,
+			'normal:', 0,
+			'cycleSpeed:', 14,
+			'setLoop:', 2,
+			'posn:', 101, 182,
+			'setPri:', 10,
+			'init:',
+			'actions:', egoStepVerb
 		)
-		(kernel.ScriptID(21, 0) notify:)
-		(global74 add: self)
-		(global1 handsOn:)
+		kernel.ScriptID(21, 0)._send('notify:')
+		global74._send('add:', self)
+		global1._send('handsOn:')
 	#end:method
 
 	@classmethod
@@ -107,7 +107,7 @@ class rm320(CliffRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2 setScript: insetDispose)
+		global2._send('setScript:', insetDispose)
 	#end:method
 
 	@classmethod
@@ -117,16 +117,16 @@ class rm320(CliffRoom):
 
 		match param1
 			case 1:
-				(global0 signal: 8192)
-				(rCliffs cheatCount: 1)
-				(global2 setScript: nextCliffUp)
+				global0._send('signal:', 8192)
+				rCliffs._send('cheatCount:', 1)
+				global2._send('setScript:', nextCliffUp)
 			#end:case
 			case 0:
-				(rCliffs cheatCount: 15)
-				(global2 setScript: nextCliffDown)
+				rCliffs._send('cheatCount:', 15)
+				global2._send('setScript:', nextCliffDown)
 			#end:case
 			case -1:
-				(global2 setScript: downToBeach)
+				global2._send('setScript:', downToBeach)
 			#end:case
 		#end:match
 	#end:method
@@ -142,10 +142,10 @@ class PuzzleBackup(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global72 addToFront: self)
-		(global73 addToFront: self)
-		(global74 addToFront: self)
+		super._send('init:', &rest)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
+		global74._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -153,10 +153,10 @@ class PuzzleBackup(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(global73 delete: self)
-		(global74 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		global74._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -166,63 +166,63 @@ class PuzzleBackup(View):
 
 		if 
 			(and
-				(User canInput:)
+				User._send('canInput:')
 				(or
-					(((param1 message:) == 13) and ((param1 type:) == 4))
-					((param1 type:) == 1)
+					((param1._send('message:') == 13) and (param1._send('type:') == 4))
+					(param1._send('type:') == 1)
 				)
-				((param1 type:) != 16384)
-				(not (param1 modifiers:))
+				(param1._send('type:') != 16384)
+				(not param1._send('modifiers:'))
 			)
 			(cond
 				case 
 					(and
 						(or
-							((param1 type:) & 0x0001)
+							(param1._send('type:') & 0x0001)
 							(and
-								((param1 type:) & 0x0004)
-								((param1 message:) == 13)
+								(param1._send('type:') & 0x0004)
+								(param1._send('message:') == 13)
 							)
 						)
-						(self onMe: param1)
-						((global69 curIcon:) == (global69 at: 2))
+						self._send('onMe:', param1)
+						(global69._send('curIcon:') == global69._send('at:', 2))
 					):
-					(param1 claimed: 1)
+					param1._send('claimed:', 1)
 					(cond
-						case (global5 contains: puzzle3):
-							(global91 say: 2 1 0 1 0 21)
+						case global5._send('contains:', puzzle3):
+							global91._send('say:', 2, 1, 0, 1, 0, 21)
 						#end:case
-						case (global5 contains: puzzle1):
-							(global91 say: 1 1 0 1 0 21)
+						case global5._send('contains:', puzzle1):
+							global91._send('say:', 1, 1, 0, 1, 0, 21)
 						#end:case
 						else:
-							(global91 say: lookMsg 1 0 1 0 21)
+							global91._send('say:', lookMsg, 1, 0, 1, 0, 21)
 						#end:else
 					)
 				#end:case
 				case 
 					(and
 						(or
-							((param1 type:) & 0x0001)
+							(param1._send('type:') & 0x0001)
 							(and
-								((param1 type:) & 0x0004)
-								((param1 message:) == 13)
+								(param1._send('type:') & 0x0004)
+								(param1._send('message:') == 13)
 							)
 						)
-						(self onMe: param1)
-						((global69 curIcon:) == (global69 at: 1))
+						self._send('onMe:', param1)
+						(global69._send('curIcon:') == global69._send('at:', 1))
 					):
-					(param1 claimed: 1)
+					param1._send('claimed:', 1)
 					0
 				#end:case
 				else:
-					(super handleEvent: param1)
+					super._send('handleEvent:', param1)
 				#end:else
 			)
 		else:
-			(super handleEvent: param1)
+			super._send('handleEvent:', param1)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 #end:class or instance
@@ -245,21 +245,21 @@ class puzzle1(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			buttTop: @local253
-			buttLeft: @local305
-			buttRight: @local331
-			buttBottom: @local279
-			buttLoop: @local357
-			buttCel: @local383
-			buttX: @local305
-			buttY: @local253
-			buttVal: @local435
-			buttKill: @local501
+		self._send(
+			'buttTop:', @local253,
+			'buttLeft:', @local305,
+			'buttRight:', @local331,
+			'buttBottom:', @local279,
+			'buttLoop:', @local357,
+			'buttCel:', @local383,
+			'buttX:', @local305,
+			'buttY:', @local253,
+			'buttVal:', @local435,
+			'buttKill:', @local501
 		)
-		(super init:)
-		(headStone init:)
-		(headStoneWords loop: 1 init:)
+		super._send('init:')
+		headStone._send('init:')
+		headStoneWords._send('loop:', 1, 'init:')
 	#end:method
 
 	@classmethod
@@ -267,10 +267,10 @@ class puzzle1(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(headStone dispose:)
-		(headStoneWords dispose:)
-		(super dispose:)
-		(global0 view: 301 setLoop: 6 cel: 0)
+		headStone._send('dispose:')
+		headStoneWords._send('dispose:')
+		super._send('dispose:')
+		global0._send('view:', 301, 'setLoop:', 6, 'cel:', 0)
 		kernel.UnLoad(128, 3012)
 	#end:method
 
@@ -294,20 +294,20 @@ class puzzle2(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			buttTop: @local461
-			buttLeft: @local465
-			buttRight: @local473
-			buttBottom: @local469
-			buttLoop: @local477
-			buttCel: @local481
-			buttX: @local485
-			buttY: @local489
-			buttVal: @local493
-			buttKill: @local497
+		self._send(
+			'buttTop:', @local461,
+			'buttLeft:', @local465,
+			'buttRight:', @local473,
+			'buttBottom:', @local469,
+			'buttLoop:', @local477,
+			'buttCel:', @local481,
+			'buttX:', @local485,
+			'buttY:', @local489,
+			'buttVal:', @local493,
+			'buttKill:', @local497
 		)
-		(super init:)
-		(rollos init: stopUpd:)
+		super._send('init:')
+		rollos._send('init:', 'stopUpd:')
 	#end:method
 
 	@classmethod
@@ -315,9 +315,9 @@ class puzzle2(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(rollos dispose:)
-		(super dispose:)
-		(global0 view: 301 setLoop: 1)
+		rollos._send('dispose:')
+		super._send('dispose:')
+		global0._send('view:', 301, 'setLoop:', 1)
 		kernel.UnLoad(128, 3012)
 	#end:method
 
@@ -341,21 +341,21 @@ class puzzle3(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			buttTop: @local253
-			buttLeft: @local305
-			buttRight: @local331
-			buttBottom: @local279
-			buttLoop: @local357
-			buttCel: @local383
-			buttX: @local305
-			buttY: @local253
-			buttVal: @local409
-			buttKill: @local501
+		self._send(
+			'buttTop:', @local253,
+			'buttLeft:', @local305,
+			'buttRight:', @local331,
+			'buttBottom:', @local279,
+			'buttLoop:', @local357,
+			'buttCel:', @local383,
+			'buttX:', @local305,
+			'buttY:', @local253,
+			'buttVal:', @local409,
+			'buttKill:', @local501
 		)
-		(super init:)
-		(headStone init:)
-		(headStoneWords loop: 2 init:)
+		super._send('init:')
+		headStone._send('init:')
+		headStoneWords._send('loop:', 2, 'init:')
 	#end:method
 
 	@classmethod
@@ -363,10 +363,10 @@ class puzzle3(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(headStone dispose:)
-		(headStoneWords dispose:)
-		(super dispose:)
-		(global0 view: 301 setLoop: 6 cel: 0)
+		headStone._send('dispose:')
+		headStoneWords._send('dispose:')
+		super._send('dispose:')
+		global0._send('view:', 301, 'setLoop:', 6, 'cel:', 0)
 		kernel.UnLoad(128, 3012)
 	#end:method
 
@@ -390,20 +390,20 @@ class puzzle4(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			buttTop: @local1
-			buttLeft: @local29
-			buttRight: @local85
-			buttBottom: @local57
-			buttLoop: @local169
-			buttCel: @local197
-			buttX: @local113
-			buttY: @local141
-			buttVal: @local225
-			buttKill: @local501
+		self._send(
+			'buttTop:', @local1,
+			'buttLeft:', @local29,
+			'buttRight:', @local85,
+			'buttBottom:', @local57,
+			'buttLoop:', @local169,
+			'buttCel:', @local197,
+			'buttX:', @local113,
+			'buttY:', @local141,
+			'buttVal:', @local225,
+			'buttKill:', @local501
 		)
-		(super init:)
-		(words init: stopUpd:)
+		super._send('init:')
+		words._send('init:', 'stopUpd:')
 	#end:method
 
 	@classmethod
@@ -411,9 +411,9 @@ class puzzle4(PuzzleInset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(words dispose:)
-		(super dispose:)
-		(global0 view: 301 setLoop: 1)
+		words._send('dispose:')
+		super._send('dispose:')
+		global0._send('view:', 301, 'setLoop:', 1)
 		kernel.UnLoad(128, 3012)
 	#end:method
 
@@ -434,7 +434,7 @@ class words(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(puzzle4 doVerb: param1 &rest)
+		puzzle4._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -465,10 +465,10 @@ class headStone(PuzzleBackup):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: puzzle1):
-			(puzzle1 doVerb: param1 &rest)
+		if global5._send('contains:', puzzle1):
+			puzzle1._send('doVerb:', param1, &rest)
 		else:
-			(puzzle3 doVerb: param1 &rest)
+			puzzle3._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -488,10 +488,10 @@ class headStoneWords(PuzzleBackup):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: puzzle1):
-			(puzzle1 doVerb: param1 &rest)
+		if global5._send('contains:', puzzle1):
+			puzzle1._send('doVerb:', param1, &rest)
 		else:
-			(puzzle3 doVerb: param1 &rest)
+			puzzle3._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -509,8 +509,8 @@ class theRoom(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global93 add: self)
+		super._send('init:', &rest)
+		global93._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -518,8 +518,8 @@ class theRoom(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(super dispose:)
+		global93._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -530,10 +530,10 @@ class theRoom(Feature):
 		match param1
 			case 3:
 				proc913_1(59)
-				(global2 setScript: dieHard)
+				global2._send('setScript:', dieHard)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -555,10 +555,10 @@ class writ(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global72 add: self)
-		(global73 add: self)
-		(global74 add: self)
+		super._send('init:', &rest)
+		global72._send('add:', self)
+		global73._send('add:', self)
+		global74._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -566,10 +566,10 @@ class writ(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(global73 delete: self)
-		(global74 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		global74._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -579,63 +579,63 @@ class writ(View):
 
 		if 
 			(and
-				(not (kernel.ScriptID(21, 0) puzzleIsUp:))
+				(not kernel.ScriptID(21, 0)._send('puzzleIsUp:'))
 				(or
-					((global69 curIcon:) == (global69 at: 1))
-					((global69 curIcon:) == (global69 at: 2))
+					(global69._send('curIcon:') == global69._send('at:', 1))
+					(global69._send('curIcon:') == global69._send('at:', 2))
 				)
 				(or
-					(((param1 message:) == 13) and ((param1 type:) == 4))
-					((param1 type:) == 1)
+					((param1._send('message:') == 13) and (param1._send('type:') == 4))
+					(param1._send('type:') == 1)
 				)
-				(User canInput:)
-				((param1 type:) != 16384)
-				(self onMe: param1)
-				(not (param1 modifiers:))
+				User._send('canInput:')
+				(param1._send('type:') != 16384)
+				self._send('onMe:', param1)
+				(not param1._send('modifiers:'))
 			)
-			(param1 claimed: 1)
-			if (((global0 y:) < 110) or ((global0 y:) > 120)):
-				(global91 say: 4 1 13 1)
+			param1._send('claimed:', 1)
+			if ((global0._send('y:') < 110) or (global0._send('y:') > 120)):
+				global91._send('say:', 4, 1, 13, 1)
 			else:
-				if ((global0 loop:) == 6):
-					(global0 view: 3012 setLoop: 0 cel: 1)
+				if (global0._send('loop:') == 6):
+					global0._send('view:', 3012, 'setLoop:', 0, 'cel:', 1)
 				else:
-					(global0 view: 3012 setLoop: 0 cel: 0)
+					global0._send('view:', 3012, 'setLoop:', 0, 'cel:', 0)
 				#endif
 				kernel.UnLoad(128, 301)
-				match (kernel.ScriptID(21, 0) cliffFace:)
+				match kernel.ScriptID(21, 0)._send('cliffFace:')
 					case 0:
 						if proc913_0(123):
-							(puzzle1 puzzSolved:)
+							puzzle1._send('puzzSolved:')
 						else:
-							(global2 setScript: insetInit 0 puzzle1)
+							global2._send('setScript:', insetInit, 0, puzzle1)
 						#endif
 					#end:case
 					case 1:
 						if proc913_0(124):
-							(puzzle2 puzzSolved:)
+							puzzle2._send('puzzSolved:')
 						else:
-							(global2 setScript: insetInit 0 puzzle2)
+							global2._send('setScript:', insetInit, 0, puzzle2)
 						#endif
 					#end:case
 					case 2:
 						if proc913_0(125):
-							(puzzle3 puzzSolved:)
+							puzzle3._send('puzzSolved:')
 						else:
-							(global2 setScript: insetInit 0 puzzle3)
+							global2._send('setScript:', insetInit, 0, puzzle3)
 						#endif
 					#end:case
 					case 3:
 						if proc913_0(126):
-							(puzzle4 puzzSolved:)
+							puzzle4._send('puzzSolved:')
 						else:
-							(global2 setScript: insetInit 0 puzzle4)
+							global2._send('setScript:', insetInit, 0, puzzle4)
 						#endif
 					#end:case
 				#end:match
 			#endif
 		else:
-			(super handleEvent: param1)
+			super._send('handleEvent:', param1)
 		#endif
 	#end:method
 
@@ -651,19 +651,19 @@ class insetDispose(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				ticks = 6
 			#end:case
 			case 1:
-				if (mod (kernel.ScriptID(21, 0) cliffFace:) 2):
-					(global2 flipRocks: 1 callForRocks:)
+				if (mod kernel.ScriptID(21, 0)._send('cliffFace:') 2):
+					global2._send('flipRocks:', 1, 'callForRocks:')
 				else:
-					(global2 flipRocks: 0 callForRocks:)
+					global2._send('flipRocks:', 0, 'callForRocks:')
 				#endif
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -680,29 +680,29 @@ class nextCliffUp(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				if ((kernel.ScriptID(21, 0) cliffFace:) == 3):
-					(global102 fade: 0 10 10)
-					(global105 stop:)
-					(global2 newRoom: 340)
+				global1._send('handsOff:')
+				if (kernel.ScriptID(21, 0)._send('cliffFace:') == 3):
+					global102._send('fade:', 0, 10, 10)
+					global105._send('stop:')
+					global2._send('newRoom:', 340)
 				else:
-					(global2 dumpRocks:)
-					(self cue:)
+					global2._send('dumpRocks:')
+					self._send('cue:')
 				#endif
 			#end:case
 			case 1:
-				(rCliffs cliffFace: ((rCliffs cliffFace:) + 1))
-				if ((rCliffs cliffFace:) > 3):
-					(rCliffs cliffFace: 3)
+				rCliffs._send('cliffFace:', (rCliffs._send('cliffFace:') + 1))
+				if (rCliffs._send('cliffFace:') > 3):
+					rCliffs._send('cliffFace:', 3)
 				#endif
-				match (kernel.ScriptID(21, 0) cliffFace:)
+				match kernel.ScriptID(21, 0)._send('cliffFace:')
 					case 1:
 						kernel.UnLoad(128, 322)
 						kernel.UnLoad(128, 325)
 						if proc913_0(124):
-							(global2 allRocksOut: 1)
+							global2._send('allRocksOut:', 1)
 						else:
-							(global2 constantRocks: 1)
+							global2._send('constantRocks:', 1)
 						#endif
 						proc958_0(128, 320, 323)
 					#end:case
@@ -710,9 +710,9 @@ class nextCliffUp(Script):
 						kernel.UnLoad(128, 320)
 						kernel.UnLoad(128, 323)
 						if proc913_0(125):
-							(global2 allRocksOut: 0)
+							global2._send('allRocksOut:', 0)
 						else:
-							(global2 constantRocks:)
+							global2._send('constantRocks:')
 						#endif
 						proc958_0(128, 322, 325)
 					#end:case
@@ -720,28 +720,28 @@ class nextCliffUp(Script):
 						kernel.UnLoad(128, 322)
 						kernel.UnLoad(128, 325)
 						if proc913_0(126):
-							(global2 allRocksOut: 1)
+							global2._send('allRocksOut:', 1)
 						else:
-							(global2 constantRocks: 1)
+							global2._send('constantRocks:', 1)
 						#endif
 						proc958_0(128, 320, 324)
 					#end:case
 				#end:match
-				(global2 drawPic: 320 14)
-				if (mod (kernel.ScriptID(21, 0) cliffFace:) 2):
-					(writ
-						loop: (1 if ((kernel.ScriptID(21, 0) cliffFace:) == 1) else 0)
-						x: 90
-						stopUpd:
+				global2._send('drawPic:', 320, 14)
+				if (mod kernel.ScriptID(21, 0)._send('cliffFace:') 2):
+					writ._send(
+						'loop:', (1 if (kernel.ScriptID(21, 0)._send('cliffFace:') == 1) else 0),
+						'x:', 90,
+						'stopUpd:'
 					)
-					(global0 posn: 238 182 setLoop: 6 cel: 0 setPri: 10 show:)
+					global0._send('posn:', 238, 182, 'setLoop:', 6, 'cel:', 0, 'setPri:', 10, 'show:')
 				else:
-					(writ loop: 0 x: 230 stopUpd:)
-					(global0 posn: 101 182 setLoop: 2 cel: 0 setPri: 10 show:)
+					writ._send('loop:', 0, 'x:', 230, 'stopUpd:')
+					global0._send('posn:', 101, 182, 'setLoop:', 2, 'cel:', 0, 'setPri:', 10, 'show:')
 				#endif
-				(global1 handsOn:)
-				(kernel.ScriptID(21, 0) notify:)
-				(self dispose:)
+				global1._send('handsOn:')
+				kernel.ScriptID(21, 0)._send('notify:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -758,54 +758,54 @@ class downToBeach(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc21_1()
-				(global0
-					view: 301
-					setLoop: 7
-					cel: 0
-					posn: ((global0 x:) + 2) ((global0 y:) + 2)
-					cycleSpeed: 16
+				global0._send(
+					'view:', 301,
+					'setLoop:', 7,
+					'cel:', 0,
+					'posn:', (global0._send('x:') + 2), (global0._send('y:') + 2),
+					'cycleSpeed:', 16
 				)
 				cycles = 8
 			#end:case
 			case 1:
-				(global0 cel: 1 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 1, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 2:
-				(global0 cel: 2 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 2, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 3:
-				(global0 cel: 3 posn: (global0 x:) ((global0 y:) - 1))
+				global0._send('cel:', 3, 'posn:', global0._send('x:'), (global0._send('y:') - 1))
 				cycles = 8
 			#end:case
 			case 4:
-				(global0 cel: 4 posn: ((global0 x:) - 4) ((global0 y:) - 4))
+				global0._send('cel:', 4, 'posn:', (global0._send('x:') - 4), (global0._send('y:') - 4))
 				cycles = 8
 			#end:case
 			case 5:
-				(global0 cel: 5 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 5, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 6:
-				(global0 cel: 6 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 6, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 7:
-				(global0
-					setLoop: 5
-					cel: 0
-					cycleSpeed: 12
-					posn: ((global0 x:) - 7) ((global0 y:) + 19)
-					setCycle: End self
+				global0._send(
+					'setLoop:', 5,
+					'cel:', 0,
+					'cycleSpeed:', 12,
+					'posn:', (global0._send('x:') - 7), (global0._send('y:') + 19),
+					'setCycle:', End, self
 				)
-				(rCliffs stepDirection: 1)
+				rCliffs._send('stepDirection:', 1)
 			#end:case
 			case 8:
-				(global2 dumpRocks:)
-				(global2 newRoom: 300)
+				global2._send('dumpRocks:')
+				global2._send('newRoom:', 300)
 			#end:case
 		#end:match
 	#end:method
@@ -822,30 +822,30 @@ class nextCliffDown(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(kernel.ScriptID(21, 0) cue:)
-				if ((rCliffs stepDirection:) == 2):
+				global1._send('handsOff:')
+				kernel.ScriptID(21, 0)._send('cue:')
+				if (rCliffs._send('stepDirection:') == 2):
 					temp0 = 5
 					temp1 = 18
 					temp2 = 6
-					(rCliffs stepDirection: 1)
+					rCliffs._send('stepDirection:', 1)
 				else:
 					temp0 = 4
 					temp1 = -19
 					temp2 = 7
-					(rCliffs stepDirection: 2)
+					rCliffs._send('stepDirection:', 2)
 				#endif
-				(global0
-					setLoop: temp0
-					cel: 0
-					cycleSpeed: 12
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
-					setCycle: End self
+				global0._send(
+					'setLoop:', temp0,
+					'cel:', 0,
+					'cycleSpeed:', 12,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2),
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
 				proc21_1()
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp0 = 7
 					temp1 = -14
 					temp2 = -6
@@ -854,61 +854,61 @@ class nextCliffDown(Script):
 					temp1 = 14
 					temp2 = -5
 				#endif
-				(global0
-					view: 301
-					setLoop: temp0
-					cel: 0
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
-					cycleSpeed: 16
+				global0._send(
+					'view:', 301,
+					'setLoop:', temp0,
+					'cel:', 0,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2),
+					'cycleSpeed:', 16
 				)
 				cycles = 8
 			#end:case
 			case 2:
-				(global0 cel: 1 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 1, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 3:
-				(global0 cel: 2 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 2, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 4:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp2 = 0
 				else:
 					temp2 = -3
 				#endif
-				(global0 cel: 3 posn: (global0 x:) ((global0 y:) + temp2))
+				global0._send('cel:', 3, 'posn:', global0._send('x:'), (global0._send('y:') + temp2))
 				cycles = 8
 			#end:case
 			case 5:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp1 = -4
 					temp2 = 0
 				else:
 					temp1 = 4
 					temp2 = -1
 				#endif
-				(global0
-					cel: 4
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
+				global0._send(
+					'cel:', 4,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2)
 				)
 				cycles = 8
 			#end:case
 			case 6:
-				(global0 cel: 5 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 5, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 7:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp2 = -2
 				else:
 					temp2 = 0
 				#endif
-				(global0 cel: 6 posn: (global0 x:) ((global0 y:) + temp2))
+				global0._send('cel:', 6, 'posn:', global0._send('x:'), (global0._send('y:') + temp2))
 				cycles = 8
 			#end:case
 			case 8:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp0 = 6
 					temp1 = -25
 					temp2 = 11
@@ -917,58 +917,57 @@ class nextCliffDown(Script):
 					temp1 = 27
 					temp2 = 12
 				#endif
-				(global0
-					view: 301
-					setLoop: temp0
-					cel: 0
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
+				global0._send(
+					'view:', 301,
+					'setLoop:', temp0,
+					'cel:', 0,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2)
 				)
 				cycles = 8
 			#end:case
 			case 9:
-				(kernel.ScriptID(21, 0) cliffFace: ((kernel.ScriptID(21, 0) cliffFace:) - 1))
-				(global2 dumpRocks:)
-				(global2 drawPic: 320 13)
-				match (kernel.ScriptID(21, 0) cliffFace:)
+				kernel.ScriptID(21, 0)._send('cliffFace:', (kernel.ScriptID(21, 0)._send('cliffFace:') - 1))
+				global2._send('dumpRocks:')
+				global2._send('drawPic:', 320, 13)
+				match kernel.ScriptID(21, 0)._send('cliffFace:')
 					case 0:
 						kernel.UnLoad(128, 320)
 						kernel.UnLoad(128, 323)
 						proc958_0(128, 322, 325)
-						(global2 allRocksOut: 0)
-						(writ loop: 0 x: 230 stopUpd:)
-						(global0 view: 301 setLoop: 6 cel: 0 posn: 210 4)
+						global2._send('allRocksOut:', 0)
+						writ._send('loop:', 0, 'x:', 230, 'stopUpd:')
+						global0._send('view:', 301, 'setLoop:', 6, 'cel:', 0, 'posn:', 210, 4)
 					#end:case
 					case 1:
 						kernel.UnLoad(128, 322)
 						kernel.UnLoad(128, 325)
 						proc958_0(128, 320, 323)
-						(global2 allRocksOut: 1)
-						(writ
-							loop:
-								if ((kernel.ScriptID(21, 0) cliffFace:) == 1):
+						global2._send('allRocksOut:', 1)
+						writ._send(
+							'loop:', if (kernel.ScriptID(21, 0)._send('cliffFace:') == 1):
 									1
 								else:
 									0
-								#endif
-							x: 90
-							stopUpd:
+								#endif,
+							'x:', 90,
+							'stopUpd:'
 						)
-						(global0 view: 301 setLoop: 1 cel: 0 posn: 127 4)
+						global0._send('view:', 301, 'setLoop:', 1, 'cel:', 0, 'posn:', 127, 4)
 					#end:case
 					case 2:
 						kernel.UnLoad(128, 320)
 						kernel.UnLoad(128, 324)
 						proc958_0(128, 322, 325)
-						(global2 allRocksOut: 0)
-						(writ loop: 0 x: 230 stopUpd:)
-						(global0 view: 301 setLoop: 6 cel: 0 posn: 210 4)
+						global2._send('allRocksOut:', 0)
+						writ._send('loop:', 0, 'x:', 230, 'stopUpd:')
+						global0._send('view:', 301, 'setLoop:', 6, 'cel:', 0, 'posn:', 210, 4)
 					#end:case
 				#end:match
 				cycles = 8
 			#end:case
 			case 10:
 				proc21_1()
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp0 = 7
 					temp1 = 1
 					temp2 = 1
@@ -977,66 +976,66 @@ class nextCliffDown(Script):
 					temp1 = 1
 					temp2 = 0
 				#endif
-				(global0
-					view: 301
-					setLoop: temp0
-					cel: 0
-					cycleSpeed: 16
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
+				global0._send(
+					'view:', 301,
+					'setLoop:', temp0,
+					'cel:', 0,
+					'cycleSpeed:', 16,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2)
 				)
 				cycles = 8
 			#end:case
 			case 11:
-				(global0 cel: 1 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 1, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 12:
-				(global0 cel: 2 posn: (global0 x:) (global0 y:))
+				global0._send('cel:', 2, 'posn:', global0._send('x:'), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 13:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp1 = 1
 					temp2 = -2
 				else:
 					temp1 = 0
 					temp2 = 0
 				#endif
-				(global0
-					cel: 3
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
+				global0._send(
+					'cel:', 3,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2)
 				)
 				cycles = 8
 			#end:case
 			case 14:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp1 = -4
 				else:
 					temp1 = 1
 				#endif
-				(global0 cel: 4 posn: ((global0 x:) + temp1) (global0 y:))
+				global0._send('cel:', 4, 'posn:', (global0._send('x:') + temp1), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 15:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp1 = 0
 				else:
 					temp1 = -1
 				#endif
-				(global0 cel: 5 posn: ((global0 x:) + temp1) (global0 y:))
+				global0._send('cel:', 5, 'posn:', (global0._send('x:') + temp1), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 16:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp1 = 0
 				else:
 					temp1 = -1
 				#endif
-				(global0 cel: 6 posn: ((global0 x:) + temp1) (global0 y:))
+				global0._send('cel:', 6, 'posn:', (global0._send('x:') + temp1), global0._send('y:'))
 				cycles = 8
 			#end:case
 			case 17:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp0 = 6
 					temp1 = -27
 					temp2 = 13
@@ -1045,14 +1044,14 @@ class nextCliffDown(Script):
 					temp1 = 29
 					temp2 = 12
 				#endif
-				(global0
-					view: 301
-					setLoop: temp0
-					cel: 0
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
+				global0._send(
+					'view:', 301,
+					'setLoop:', temp0,
+					'cel:', 0,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2)
 				)
 				if (local0 == 3):
-					(self cue:)
+					self._send('cue:')
 				else:
 					seconds = 2
 				#endif
@@ -1064,30 +1063,30 @@ class nextCliffDown(Script):
 				else:
 					local0 = 0
 				#endif
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 19:
-				if ((rCliffs stepDirection:) == 2):
+				if (rCliffs._send('stepDirection:') == 2):
 					temp0 = 5
 					temp1 = 18
 					temp2 = 7
-					(rCliffs stepDirection: 3)
+					rCliffs._send('stepDirection:', 3)
 				else:
 					temp0 = 4
 					temp1 = -19
 					temp2 = 7
-					(rCliffs stepDirection: 4)
+					rCliffs._send('stepDirection:', 4)
 				#endif
-				(global0
-					setLoop: temp0
-					cel: 0
-					cycleSpeed: 12
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
-					setCycle: End self
+				global0._send(
+					'setLoop:', temp0,
+					'cel:', 0,
+					'cycleSpeed:', 12,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2),
+					'setCycle:', End, self
 				)
 			#end:case
 			case 20:
-				if ((global0 loop:) == 4):
+				if (global0._send('loop:') == 4):
 					temp0 = 6
 					temp1 = -15
 					temp2 = -7
@@ -1096,18 +1095,18 @@ class nextCliffDown(Script):
 					temp1 = 17
 					temp2 = -7
 				#endif
-				(global0
-					setLoop: temp0
-					cel: 0
-					posn: ((global0 x:) + temp1) ((global0 y:) + temp2)
+				global0._send(
+					'setLoop:', temp0,
+					'cel:', 0,
+					'posn:', (global0._send('x:') + temp1), (global0._send('y:') + temp2)
 				)
 				ticks = 4
 			#end:case
 			case 21:
-				(global1 handsOn:)
-				(kernel.ScriptID(21, 0) cheatCount: 10)
-				(kernel.ScriptID(21, 0) notify:)
-				(self dispose:)
+				global1._send('handsOn:')
+				kernel.ScriptID(21, 0)._send('cheatCount:', 10)
+				kernel.ScriptID(21, 0)._send('notify:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1124,12 +1123,12 @@ class insetInit(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(21, 0) cue:)
-				(global91 say: 4 1 12 1 self)
+				kernel.ScriptID(21, 0)._send('cue:')
+				global91._send('say:', 4, 1, 12, 1, self)
 			#end:case
 			case 1:
-				(register init:)
-				(self dispose:)
+				register._send('init:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1146,66 +1145,64 @@ class dieHard(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global69 disable: 6)
-				(kernel.ScriptID(21, 0) cue:)
-				if ((global0 loop:) < 6):
-					(global0
-						posn: ((global0 x:) - 8) ((global0 y:) - 3)
-						view: 900
-						setLoop: 0
-						cel: 0
+				global1._send('handsOff:')
+				global69._send('disable:', 6)
+				kernel.ScriptID(21, 0)._send('cue:')
+				if (global0._send('loop:') < 6):
+					global0._send(
+						'posn:', (global0._send('x:') - 8), (global0._send('y:') - 3),
+						'view:', 900,
+						'setLoop:', 0,
+						'cel:', 0
 					)
 				else:
-					(global0
-						posn: ((global0 x:) + 6) ((global0 y:) - 3)
-						view: 900
-						setLoop: 1
-						cel: 0
+					global0._send(
+						'posn:', (global0._send('x:') + 6), (global0._send('y:') - 3),
+						'view:', 900,
+						'setLoop:', 1,
+						'cel:', 0
 					)
 				#endif
 				cycles = 6
 			#end:case
 			case 1:
 				proc913_2(59)
-				(global0
-					x:
-						if ((global0 loop:) == 1):
-							((global0 x:) - 18)
+				global0._send(
+					'x:', if (global0._send('loop:') == 1):
+							(global0._send('x:') - 18)
 						else:
-							((global0 x:) + 18)
-						#endif
-					y:
-						if ((global0 loop:) == 1):
-							((global0 y:) + 2)
+							(global0._send('x:') + 18)
+						#endif,
+					'y:', if (global0._send('loop:') == 1):
+							(global0._send('y:') + 2)
 						else:
-							((global0 y:) + 2)
-						#endif
-					view: 4011
-					normal: 0
-					cycleSpeed: 6
-					setLoop: (1 if ((global0 loop:) == 1) else 0)
-					setCycle: CT 10 1 self
+							(global0._send('y:') + 2)
+						#endif,
+					'view:', 4011,
+					'normal:', 0,
+					'cycleSpeed:', 6,
+					'setLoop:', (1 if (global0._send('loop:') == 1) else 0),
+					'setCycle:', CT, 10, 1, self
 				)
 			#end:case
 			case 2:
-				(global104 number: 306 setLoop: 1 play: self)
-				(global0 setCycle: End)
+				global104._send('number:', 306, 'setLoop:', 1, 'play:', self)
+				global0._send('setCycle:', End)
 			#end:case
 			case 3:
-				(global0 y: 280)
+				global0._send('y:', 280)
 				seconds = 2
 			#end:case
 			case 4:
-				(global104 number: 307 setLoop: 1 play:)
+				global104._send('number:', 307, 'setLoop:', 1, 'play:')
 				kernel.ShakeScreen(2, 2)
 				ticks = 4
 			#end:case
 			case 5:
-				(global91 say: 9 3 38 3 self)
+				global91._send('say:', 9, 3, 38, 3, self)
 			#end:case
 			case 6:
-				(global105 fade: 0 5 5)
+				global105._send('fade:', 0, 5, 5)
 				proc0_1(8)
 			#end:case
 		#end:match
@@ -1232,7 +1229,7 @@ class egoStepVerb(Actions):
 				return 0
 			#end:case
 			else:
-				(global91 say: 0 0 64 1 0 899)
+				global91._send('say:', 0, 0, 64, 1, 0, 899)
 				return 1
 			#end:else
 		#end:match

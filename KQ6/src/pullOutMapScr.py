@@ -50,40 +50,40 @@ class pullOutMapScr(Script):
 			case 0:
 				temp0 = 0
 				while (temp0 < 6): # inline for
-					local10[temp0] = (((global69 at: temp0) signal:) & 0x0004)
+					local10[temp0] = (global69._send('at:', temp0)._send('signal:') & 0x0004)
 					# for:reinit
 					temp0.post('++')
 				#end:loop
-				(global1 handsOff:)
-				(global69 disable:)
-				(global91 say: 1 12 5 0 self 0)
+				global1._send('handsOff:')
+				global69._send('disable:')
+				global91._send('say:', 1, 12, 5, 0, self, 0)
 			#end:case
 			case 1:
 				match global11
 					case 200:
-						if (not (global0 inRect: 93 98 284 183)):
-							(global0 setMotion: PolyPath 182 126 self)
+						if (not global0._send('inRect:', 93, 98, 284, 183)):
+							global0._send('setMotion:', PolyPath, 182, 126, self)
 						else:
 							cycles = 2
 						#endif
 					#end:case
 					case 450:
-						if (not (global0 inRect: 24 103 252 155)):
-							(global0 setMotion: PolyPath 176 131 self)
+						if (not global0._send('inRect:', 24, 103, 252, 155)):
+							global0._send('setMotion:', PolyPath, 176, 131, self)
 						else:
 							cycles = 2
 						#endif
 					#end:case
 					case 550:
-						if (not (global0 inRect: 0 79 274 133)):
-							(global0 setMotion: PolyPath 167 101 self)
+						if (not global0._send('inRect:', 0, 79, 274, 133)):
+							global0._send('setMotion:', PolyPath, 167, 101, self)
 						else:
 							cycles = 2
 						#endif
 					#end:case
 					case 500:
-						if (not (global0 inRect: 86 89 318 159)):
-							(global0 setMotion: PolyPath 203 129 self)
+						if (not global0._send('inRect:', 86, 89, 318, 159)):
+							global0._send('setMotion:', PolyPath, 203, 129, self)
 						else:
 							cycles = 2
 						#endif
@@ -94,20 +94,20 @@ class pullOutMapScr(Script):
 				#end:match
 			#end:case
 			case 2:
-				if ((global0 cel:) != 2):
-					(global0 setHeading: 180 self)
+				if (global0._send('cel:') != 2):
+					global0._send('setHeading:', 180, self)
 				else:
 					cycles = 2
 				#endif
 			#end:case
 			case 3:
-				(global0
-					normal: 0
-					cycleSpeed: 10
-					view: 207
-					setLoop: 2
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'cycleSpeed:', 10,
+					'view:', 207,
+					'setLoop:', 2,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 4:
@@ -115,10 +115,10 @@ class pullOutMapScr(Script):
 			#end:case
 			case 5:
 				if next:
-					(kernel.ScriptID(130, 1) next: next)
+					kernel.ScriptID(130, 1)._send('next:', next)
 					next = 0
 				#endif
-				(global2 setScript: kernel.ScriptID(130, 1))
+				global2._send('setScript:', kernel.ScriptID(130, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -138,19 +138,19 @@ class MapScr(Script):
 		local3 = global73
 		local4 = global72
 		local6 = global93
-		local7 = (global2 obstacles:)
-		(global2 obstacles: ((List new:) add: yourself:))
-		(global5 = (EventHandler new:) name: r"""newCast""" add:)
-		(global32 = (EventHandler new:) name: r"""newFeatures""")
-		(global10 = (EventHandler new:) name: r"""newATPs""" add:)
-		(global73 = (EventHandler new:) name: r"""newMH""" add: self)
-		(global72 = (EventHandler new:) name: r"""newKH""" add: self)
-		(global93 = (EventHandler new:) name: r"""newWH""" add:)
+		local7 = global2._send('obstacles:')
+		global2._send('obstacles:', List._send('new:')._send('add:', 'yourself:'))
+		global5 = EventHandler._send('new:')._send('name:', r"""newCast""", 'add:')
+		global32 = EventHandler._send('new:')._send('name:', r"""newFeatures""")
+		global10 = EventHandler._send('new:')._send('name:', r"""newATPs""", 'add:')
+		global73 = EventHandler._send('new:')._send('name:', r"""newMH""", 'add:', self)
+		global72 = EventHandler._send('new:')._send('name:', r"""newKH""", 'add:', self)
+		global93 = EventHandler._send('new:')._send('name:', r"""newWH""", 'add:')
 		if register:
-			(global9 hide:)
+			global9._send('hide:')
 			register = 0
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -158,9 +158,9 @@ class MapScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global73 delete: self dispose:)
-		(global72 delete: self dispose:)
-		(global93 delete: self dispose:)
+		global73._send('delete:', self, 'dispose:')
+		global72._send('delete:', self, 'dispose:')
+		global93._send('delete:', self, 'dispose:')
 		global73 = local3
 		global72 = local4
 		global93 = local6
@@ -173,27 +173,27 @@ class MapScr(Script):
 
 		if 
 			(and
-				(not (param1 modifiers:))
-				((param1 type:) & 0x0005)
-				(not (param1 claimed:))
+				(not param1._send('modifiers:'))
+				(param1._send('type:') & 0x0005)
+				(not param1._send('claimed:'))
 			)
 			(cond
 				case 
 					(and
-						(User canControl:)
-						local8 = (global5 firstTrue: #onMe param1)
+						User._send('canControl:')
+						local8 = global5._send('firstTrue:', #onMe, param1)
 					):
 					if (local8 == mistsProp):
 						local8 = mists
 					#endif
-					(param1 claimed: 1)
-					(local8 doVerb: ((global69 curIcon:) message:))
+					param1._send('claimed:', 1)
+					local8._send('doVerb:', global69._send('curIcon:')._send('message:'))
 				#end:case
-				case (User canControl:):
-					(global32 delete: MapScr)
-					local8 = (global32 firstTrue: #onMe param1)
-					(param1 claimed: 1)
-					(local8 doVerb: ((global69 curIcon:) message:))
+				case User._send('canControl:'):
+					global32._send('delete:', MapScr)
+					local8 = global32._send('firstTrue:', #onMe, param1)
+					param1._send('claimed:', 1)
+					local8._send('doVerb:', global69._send('curIcon:')._send('message:'))
 				#end:case
 			)
 			return 1
@@ -208,50 +208,50 @@ class MapScr(Script):
 		match state = param1
 			case 0:
 				kernel.DrawPic(130, 10)
-				(sacredMountain init:)
-				(wonder init:)
-				(crown init:)
-				(beast init:)
-				(northMarker init:)
-				(mists init:)
-				(mapTitle init:)
-				(exitFeature init:)
-				(theMap init:)
-				(mapSound number: 130 loop: 1 play:)
+				sacredMountain._send('init:')
+				wonder._send('init:')
+				crown._send('init:')
+				beast._send('init:')
+				northMarker._send('init:')
+				mists._send('init:')
+				mapTitle._send('init:')
+				exitFeature._send('init:')
+				theMap._send('init:')
+				mapSound._send('number:', 130, 'loop:', 1, 'play:')
 				cycles = 10
 			#end:case
 			case 1:
-				(global1 handsOn:)
-				(global69 enable: disable: 0 3 4 5 6)
+				global1._send('handsOn:')
+				global69._send('enable:', 'disable:', 0, 3, 4, 5, 6)
 			#end:case
 			case 2:
-				if (global5 contains: mistsProp):
-					(mistsProp dispose:)
+				if global5._send('contains:', mistsProp):
+					mistsProp._send('dispose:')
 				#endif
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
-				(global1 setCursor: global21)
-				(global5
-					eachElementDo: #dispose
-					eachElementDo: #delete
-					release:
-					dispose:
+				global1._send('setCursor:', global21)
+				global5._send(
+					'eachElementDo:', #dispose,
+					'eachElementDo:', #delete,
+					'release:',
+					'dispose:'
 				)
-				(global10 dispose:)
-				(global32 delete: self dispose:)
-				((global2 obstacles:) dispose:)
-				(global2 obstacles: local7)
+				global10._send('dispose:')
+				global32._send('delete:', self, 'dispose:')
+				global2._send('obstacles:')._send('dispose:')
+				global2._send('obstacles:', local7)
 				global5 = local0
 				global32 = local1
 				global10 = local2
 				kernel.UnLoad(128, 131)
-				kernel.DrawPic((global2 picture:), 100)
+				kernel.DrawPic(global2._send('picture:'), 100)
 				if global10:
-					(global10 doit:)
+					global10._send('doit:')
 				#endif
 				if register:
-					(global69 enable: disable: 2 1)
+					global69._send('enable:', 'disable:', 2, 1)
 					cycles = 15
 				else:
 					next = 0
@@ -260,13 +260,13 @@ class MapScr(Script):
 			#end:case
 			case 3:
 				if register:
-					(global0
-						normal: 0
-						cycleSpeed: 10
-						view: 207
-						setLoop: 2
-						lastCel:
-						setCycle: Beg self
+					global0._send(
+						'normal:', 0,
+						'cycleSpeed:', 10,
+						'view:', 207,
+						'setLoop:', 2,
+						'lastCel:',
+						'setCycle:', Beg, self
 					)
 				else:
 					seconds = 2
@@ -274,47 +274,47 @@ class MapScr(Script):
 			#end:case
 			case 4:
 				if register:
-					(global0 reset: 2)
-					(global1 handsOn:)
-					(global69 enable: 6)
+					global0._send('reset:', 2)
+					global1._send('handsOn:')
+					global69._send('enable:', 6)
 					temp0 = 0
 					while (temp0 < 6): # inline for
 						if (local10[temp0] != 0):
-							(global69 disable: (global69 at: temp0))
+							global69._send('disable:', global69._send('at:', temp0))
 						#endif
 						# for:reinit
 						temp0.post('++')
 					#end:loop
-					(self dispose:)
+					self._send('dispose:')
 				else:
-					(mapSound loop: 1 number: 947 play:)
-					(global0 cel: 0 setLoop: 0 setCycle: End self)
+					mapSound._send('loop:', 1, 'number:', 947, 'play:')
+					global0._send('cel:', 0, 'setLoop:', 0, 'setCycle:', End, self)
 				#endif
 			#end:case
 			case 5:
 				seconds = 1
 			#end:case
 			case 6:
-				(global69 enable: enable: 6)
+				global69._send('enable:', 'enable:', 6)
 				proc913_1(103)
-				match (local8 tpRoom:)
+				match local8._send('tpRoom:')
 					case 200:
-						(global0 posn: 182 126)
+						global0._send('posn:', 182, 126)
 					#end:case
 					case 300:
-						(global0 posn: 151 134)
+						global0._send('posn:', 151, 134)
 					#end:case
 					case 450:
-						(global0 posn: 176 131)
+						global0._send('posn:', 176, 131)
 					#end:case
 					case 550:
-						(global0 posn: 167 101)
+						global0._send('posn:', 167, 101)
 					#end:case
 					case 500:
-						(global0 posn: 203 129)
+						global0._send('posn:', 203, 129)
 					#end:case
 				#end:match
-				(global2 newRoom: (local8 tpRoom:))
+				global2._send('newRoom:', local8._send('tpRoom:'))
 			#end:case
 		#end:match
 	#end:method
@@ -346,24 +346,24 @@ class HighliteMap(Feature):
 
 		local8 = self
 		if (param1 == 5):
-			(MapScr resetHandlers:)
+			MapScr._send('resetHandlers:')
 		#endif
 		(cond
 			case ((param1 == 5) and (global11 == tpRoom)):
-				(global69 enable:)
-				(MapScr register: 1 cue:)
+				global69._send('enable:')
+				MapScr._send('register:', 1, 'cue:')
 			#end:case
 			case (param1 == 5):
 				if (not proc913_0(128)):
 					proc913_1(128)
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global91 say: noun param1 0 0 self 130)
-				(global69 enable:)
-				(global1 handsOff:)
+				global91._send('say:', noun, param1, 0, 0, self, 130)
+				global69._send('enable:')
+				global1._send('handsOff:')
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		)
 	#end:method
@@ -373,18 +373,18 @@ class HighliteMap(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(theMapObj = (Actor new:)
-			view: view
-			setPri: 15
-			loop: loop
-			illegalBits: 0
-			ignoreActors: 1
-			ignoreHorizon: 1
-			posn: x y
-			init:
-			setCycle: End MapScr
+		theMapObj = Actor._send('new:')._send(
+			'view:', view,
+			'setPri:', 15,
+			'loop:', loop,
+			'illegalBits:', 0,
+			'ignoreActors:', 1,
+			'ignoreHorizon:', 1,
+			'posn:', x, y,
+			'init:',
+			'setCycle:', End, MapScr
 		)
-		(mapSound number: 131 loop: 1 play:)
+		mapSound._send('number:', 131, 'loop:', 1, 'play:')
 	#end:method
 
 #end:class or instance
@@ -403,7 +403,7 @@ class mistsProp(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(mists doVerb: &rest)
+		mists._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance
@@ -475,10 +475,10 @@ class mists(HighliteMap):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(3):
-			(mistsLabel init:)
-			(mistsProp init:)
+			mistsLabel._send('init:')
+			mistsProp._send('init:')
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -491,7 +491,7 @@ class mists(HighliteMap):
 		else:
 			noun = 4
 		#endif
-		return (super onMe: &rest)
+		return super._send('onMe:', &rest)
 	#end:method
 
 	@classmethod
@@ -502,17 +502,17 @@ class mists(HighliteMap):
 		temp0 = proc913_0(3)
 		(cond
 			case ((param1 == 5) and temp0):
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case ((param1 == 1) and temp0 and (not proc913_0(80))):
 				proc913_1(80)
-				(global91 say: noun param1 12 0 0 modNum)
+				global91._send('say:', noun, param1, 12, 0, 0, modNum)
 			#end:case
 			case ((param1 == 1) and temp0):
-				(global91 say: noun param1 11 0 0 modNum)
+				global91._send('say:', noun, param1, 11, 0, 0, modNum)
 			#end:case
 			else:
-				(global91 say: noun param1 0 0 0 modNum)
+				global91._send('say:', noun, param1, 0, 0, 0, modNum)
 			#end:else
 		)
 	#end:method
@@ -532,9 +532,9 @@ class northMarker(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global91 say: 6 param1 0 0 0 130)
+			global91._send('say:', 6, param1, 0, 0, 0, 130)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -553,9 +553,9 @@ class mapTitle(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global91 say: 6 param1 0 0 0 130)
+			global91._send('say:', 6, param1, 0, 0, 0, 130)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -575,7 +575,7 @@ class mistsLabel(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(mists doVerb: &rest)
+		mists._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance
@@ -590,7 +590,7 @@ class exitFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(MapScr resetHandlers: register: 1 cue:)
+		MapScr._send('resetHandlers:', 'register:', 1, 'cue:')
 	#end:method
 
 #end:class or instance

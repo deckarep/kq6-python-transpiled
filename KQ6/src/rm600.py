@@ -49,52 +49,36 @@ class rm600(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						189
-						0
-						0
-						319
-						0
-						319
-						138
-						268
-						137
-						232
-						102
-						144
-						102
-						102
-						128
-						15
-						141
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 189, 0, 0, 319, 0, 319, 138, 268, 137, 232, 102, 144, 102, 102, 128, 15, 141,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 319, 163, 319, 189, 224, 189,
+					'yourself:'
 				)
-				((Polygon new:) type: 2 init: 319 163 319 189 224 189 yourself:)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		proc913_1(91)
-		(global1 handsOff:)
+		global1._send('handsOff:')
 		proc913_1(15)
 		match global12
 			case 630:
-				(global1 handsOn:)
-				(global0 init: setScale: Scaler 100 67 189 84 posn: 303 160)
+				global1._send('handsOn:')
+				global0._send('init:', 'setScale:', Scaler, 100, 67, 189, 84, 'posn:', 303, 160)
 			#end:case
 			else:
-				if ((global103 number:) != 155):
-					(global103 number: 155 play:)
+				if (global103._send('number:') != 155):
+					global103._send('number:', 155, 'play:')
 				#endif
-				(self setScript: horseToon)
+				self._send('setScript:', horseToon)
 			#end:else
 		#end:match
-		(deadGuy init: setScript: deadOneScript)
-		(deadGuy2 init: setScript: deadTwoScript)
-		(queen init: ignoreActors: 1 setScript: queenScript)
+		deadGuy._send('init:', 'setScript:', deadOneScript)
+		deadGuy2._send('init:', 'setScript:', deadTwoScript)
+		queen._send('init:', 'ignoreActors:', 1, 'setScript:', queenScript)
 	#end:method
 
 	@classmethod
@@ -102,9 +86,9 @@ class rm600(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(deadGuy setMotion: 0 setCycle: 0)
-		(deadGuy2 setMotion: 0 setCycle: 0)
-		(super newRoom: param1)
+		deadGuy._send('setMotion:', 0, 'setCycle:', 0)
+		deadGuy2._send('setMotion:', 0, 'setCycle:', 0)
+		super._send('newRoom:', param1)
 	#end:method
 
 	@classmethod
@@ -112,7 +96,7 @@ class rm600(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		proc958_0(0, 964, 942)
 	#end:method
 
@@ -153,22 +137,22 @@ class queen(Actor):
 
 		match param1
 			case 1:
-				if (global0 has: 28):
-					(global91 say: noun param1 1)
+				if global0._send('has:', 28):
+					global91._send('say:', noun, param1, 1)
 				else:
-					(global91 say: noun param1 2)
+					global91._send('say:', noun, param1, 2)
 				#endif
 			#end:case
 			case 2:
-				if (global0 has: 28):
-					(global91 say: noun param1 1)
+				if global0._send('has:', 28):
+					global91._send('say:', noun, param1, 1)
 				else:
-					(global1 handsOff:)
-					(script register: 1)
+					global1._send('handsOff:')
+					script._send('register:', 1)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -189,10 +173,10 @@ class deadGuy(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global1 handsOff:)
-			(global2 setScript: egoIsDead 0 self)
+			global1._send('handsOff:')
+			global2._send('setScript:', egoIsDead, 0, self)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -205,14 +189,14 @@ class deadGuy(Actor):
 			(and
 				(not local61)
 				mover
-				(not (global2 script:))
-				((global0 distanceTo: self) <= 10)
+				(not global2._send('script:'))
+				(global0._send('distanceTo:', self) <= 10)
 			)
-			(global1 handsOff:)
+			global1._send('handsOff:')
 			local58 = 1
-			(global2 setScript: egoIsDead 0 self)
+			global2._send('setScript:', egoIsDead, 0, self)
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 #end:class or instance
@@ -231,10 +215,10 @@ class deadGuy2(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global1 handsOff:)
-			(global2 setScript: egoIsDead 0 self)
+			global1._send('handsOff:')
+			global2._send('setScript:', egoIsDead, 0, self)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -247,14 +231,14 @@ class deadGuy2(Actor):
 			(and
 				(not local61)
 				mover
-				(not (global2 script:))
-				((global0 distanceTo: self) <= 10)
+				(not global2._send('script:'))
+				(global0._send('distanceTo:', self) <= 10)
 			)
-			(global1 handsOff:)
+			global1._send('handsOff:')
 			local58 = 1
-			(global2 setScript: egoIsDead 0 self)
+			global2._send('setScript:', egoIsDead, 0, self)
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 #end:class or instance
@@ -272,29 +256,29 @@ class deadOneScript(Script):
 				seconds = 8
 			#end:case
 			case 1:
-				if (global2 script:):
-					(self init:)
+				if global2._send('script:'):
+					self._send('init:')
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				while (register = (kernel.Random(0, 4) + 600) == (deadGuy2 view:)):
+				while (register = (kernel.Random(0, 4) + 600) == deadGuy2._send('view:')):
 
 					0
 				#end:loop
-				(client
-					view: register
-					posn: 38 116
-					ignoreActors: 1
-					init:
-					setScale: Scaler 100 67 189 84
-					setCycle: Walk
-					setMotion: DPath -20 116 38 116 148 122 112 158 -15 152 self
+				client._send(
+					'view:', register,
+					'posn:', 38, 116,
+					'ignoreActors:', 1,
+					'init:',
+					'setScale:', Scaler, 100, 67, 189, 84,
+					'setCycle:', Walk,
+					'setMotion:', DPath, -20, 116, 38, 116, 148, 122, 112, 158, -15, 152, self
 				)
 			#end:case
 			case 3:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -314,29 +298,29 @@ class deadTwoScript(Script):
 				seconds = 8
 			#end:case
 			case 1:
-				if (global2 script:):
-					(self init:)
+				if global2._send('script:'):
+					self._send('init:')
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				while (register = (kernel.Random(0, 4) + 600) == (deadGuy view:)):
+				while (register = (kernel.Random(0, 4) + 600) == deadGuy._send('view:')):
 
 					0
 				#end:loop
-				(client
-					view: register
-					posn: 341 167
-					ignoreActors: 1
-					init:
-					setScale: Scaler 100 67 189 84
-					setCycle: Walk
-					setMotion: DPath 331 167 149 151 108 107 -21 100 self
+				client._send(
+					'view:', register,
+					'posn:', 341, 167,
+					'ignoreActors:', 1,
+					'init:',
+					'setScale:', Scaler, 100, 67, 189, 84,
+					'setCycle:', Walk,
+					'setMotion:', DPath, 331, 167, 149, 151, 108, 107, -21, 100, self
 				)
 			#end:case
 			case 3:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -356,25 +340,25 @@ class queenScript(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				(queen setCycle: End self)
+				queen._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(queen setCycle: MCyc @local0 self)
+				queen._send('setCycle:', MCyc, @local0, self)
 			#end:case
 			case 3:
-				cycles = ((queen cycleSpeed:) / 2)
+				cycles = (queen._send('cycleSpeed:') / 2)
 			#end:case
 			case 4:
 				(cond
-					case (global2 script:):
-						(self start: 2 init:)
+					case global2._send('script:'):
+						self._send('start:', 2, 'init:')
 					#end:case
 					case register:
-						(queen setLoop: 4 cel: 0)
-						(global2 setScript: egoGetTicket)
+						queen._send('setLoop:', 4, 'cel:', 0)
+						global2._send('setScript:', egoGetTicket)
 					#end:case
 					else:
-						(self start: 2 init:)
+						self._send('start:', 2, 'init:')
 					#end:else
 				)
 			#end:case
@@ -393,73 +377,73 @@ class egoGetTicket(Script):
 
 		match state = param1
 			case 0:
-				local59 = (deadGuy mover:)
-				(deadGuy mover: 0)
-				local60 = (deadGuy2 mover:)
-				(deadGuy2 mover: 0)
-				(global0 setMotion: PolyPath 149 157 self)
+				local59 = deadGuy._send('mover:')
+				deadGuy._send('mover:', 0)
+				local60 = deadGuy2._send('mover:')
+				deadGuy2._send('mover:', 0)
+				global0._send('setMotion:', PolyPath, 149, 157, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 315 self)
+				global0._send('setHeading:', 315, self)
 			#end:case
 			case 2:
-				(theConv
-					add: -1 3 2 2 1
-					add: -1 3 2 2 2
-					add: -1 3 2 2 3
-					add: -1 3 2 2 4
-					add: -1 3 2 2 5
-					add: -1 3 2 2 6
-					add: -1 3 2 2 7
-					add: -1 3 2 2 8
-					add: -1 3 2 2 9
-					add: -1 3 2 2 10
-					add: -1 3 2 2 11
-					init: self
+				theConv._send(
+					'add:', -1, 3, 2, 2, 1,
+					'add:', -1, 3, 2, 2, 2,
+					'add:', -1, 3, 2, 2, 3,
+					'add:', -1, 3, 2, 2, 4,
+					'add:', -1, 3, 2, 2, 5,
+					'add:', -1, 3, 2, 2, 6,
+					'add:', -1, 3, 2, 2, 7,
+					'add:', -1, 3, 2, 2, 8,
+					'add:', -1, 3, 2, 2, 9,
+					'add:', -1, 3, 2, 2, 10,
+					'add:', -1, 3, 2, 2, 11,
+					'init:', self
 				)
 			#end:case
 			case 3:
-				(theConv
-					add: -1 3 2 2 12
-					add: -1 3 2 2 13
-					add: -1 3 2 2 14
-					add: -1 3 2 2 15
-					add: -1 3 2 2 16
-					add: -1 3 2 2 17
-					init: self
+				theConv._send(
+					'add:', -1, 3, 2, 2, 12,
+					'add:', -1, 3, 2, 2, 13,
+					'add:', -1, 3, 2, 2, 14,
+					'add:', -1, 3, 2, 2, 15,
+					'add:', -1, 3, 2, 2, 16,
+					'add:', -1, 3, 2, 2, 17,
+					'init:', self
 				)
 			#end:case
 			case 4:
-				(queen setLoop: 4 cel: 0 setCycle: End self)
-				(global0 normal: 0 view: 626 setLoop: 5 cel: 0)
+				queen._send('setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
+				global0._send('normal:', 0, 'view:', 626, 'setLoop:', 5, 'cel:', 0)
 			#end:case
 			case 5:
-				(global0 get: 28)
-				(global1 givePoints: 1)
-				(queen setCycle: Beg self)
+				global0._send('get:', 28)
+				global1._send('givePoints:', 1)
+				queen._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(global0 reset: 7)
+				global0._send('reset:', 7)
 				cycles = 1
 			#end:case
 			case 7:
-				(global91 say: 3 2 2 18 self)
+				global91._send('say:', 3, 2, 2, 18, self)
 			#end:case
 			case 8:
-				(global91 say: 3 2 2 19 self)
+				global91._send('say:', 3, 2, 2, 19, self)
 			#end:case
 			case 9:
 				if local59:
-					(deadGuy mover: local59)
+					deadGuy._send('mover:', local59)
 				#endif
 				if local60:
-					(deadGuy2 mover: local60)
+					deadGuy2._send('mover:', local60)
 				#endif
 				local59 = local60 = 0
 				local61 = 0
-				(queen setScript: queenScript 0 0)
-				(global1 handsOn:)
-				(self dispose:)
+				queen._send('setScript:', queenScript, 0, 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -481,12 +465,12 @@ class egoIsDead(Script):
 
 		match state = param1
 			case 0:
-				(deadGuy setMotion: 0)
-				(deadGuy2 setMotion: 0)
+				deadGuy._send('setMotion:', 0)
+				deadGuy2._send('setMotion:', 0)
 				if local58:
-					(global91 say: 5 0 3 1 self)
+					global91._send('say:', 5, 0, 3, 1, self)
 				else:
-					(global91 say: 6 5 0 1 self)
+					global91._send('say:', 6, 5, 0, 1, self)
 				#endif
 			#end:case
 			case 1:
@@ -494,43 +478,39 @@ class egoIsDead(Script):
 					case local58:
 						cycles = 1
 					#end:case
-					case ((global0 x:) > (register x:)):
-						(global0
-							setMotion:
-								PolyPath
-								((register x:) + 20)
-								(register y:)
-								self
+					case (global0._send('x:') > register._send('x:')):
+						global0._send(
+							'setMotion:', PolyPath, (register._send('x:') + 20), register._send(
+									'y:'
+								), self
 						)
 					#end:case
 					else:
-						(global0
-							setMotion:
-								PolyPath
-								((register x:) - 20)
-								(register y:)
-								self
+						global0._send(
+							'setMotion:', PolyPath, (register._send('x:') - 20), register._send(
+									'y:'
+								), self
 						)
 					#end:else
 				)
-				(global102 stop:)
-				(global103 number: 601 play:)
+				global102._send('stop:')
+				global103._send('number:', 601, 'play:')
 			#end:case
 			case 2:
 				if local58:
-					(global91 say: 5 0 3 2 self)
+					global91._send('say:', 5, 0, 3, 2, self)
 				else:
-					(global91 say: 6 5 0 2 self)
+					global91._send('say:', 6, 5, 0, 2, self)
 				#endif
 			#end:case
 			case 3:
-				(global0
-					view: 606
-					normal: 0
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 15
-					setCycle: End self
+				global0._send(
+					'view:', 606,
+					'normal:', 0,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 15,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 4:
@@ -551,59 +531,59 @@ class horseToon(Script):
 
 		match state = param1
 			case 0:
-				(horse
-					init:
-					setScale: Scaler 100 67 189 84
-					cel: 0
-					setCycle: End self
+				horse._send(
+					'init:',
+					'setScale:', Scaler, 100, 67, 189, 84,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 				if (global12 == 155):
 					kernel.SetCursor(1)
 				else:
-					(global1 setCursor: global19)
+					global1._send('setCursor:', global19)
 				#endif
 			#end:case
 			case 1:
-				(global0
-					init:
-					normal: 0
-					setScale: Scaler 100 67 189 84
-					view: 606
-					setLoop: 2
-					cel: 0
-					setPri: ((horse priority:) + 1)
-					posn: ((horse x:) + 38) ((horse y:) - 39)
-					setCycle: End self
+				global0._send(
+					'init:',
+					'normal:', 0,
+					'setScale:', Scaler, 100, 67, 189, 84,
+					'view:', 606,
+					'setLoop:', 2,
+					'cel:', 0,
+					'setPri:', (horse._send('priority:') + 1),
+					'posn:', (horse._send('x:') + 38), (horse._send('y:') - 39),
+					'setCycle:', End, self
 				)
-				(horse
-					view: 607
-					setLoop: 0
-					cel: 0
-					posn: ((horse x:) + 40) ((horse y:) + 5)
+				horse._send(
+					'view:', 607,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', (horse._send('x:') + 40), (horse._send('y:') + 5)
 				)
 			#end:case
 			case 2:
-				(global0 reset: 7 posn: ((global0 x:) + 17) ((global0 y:) + 47))
+				global0._send('reset:', 7, 'posn:', (global0._send('x:') + 17), (global0._send('y:') + 47))
 				cycles = 2
 			#end:case
 			case 3:
-				(global91 say: 5 0 4 1 self)
+				global91._send('say:', 5, 0, 4, 1, self)
 			#end:case
 			case 4:
-				(horse setCycle: End)
-				(global103 fade: 0 10 20 1 self)
+				horse._send('setCycle:', End)
+				global103._send('fade:', 0, 10, 20, 1, self)
 			#end:case
 			case 5:
-				(global102 number: 600 flags: 1 play:)
+				global102._send('number:', 600, 'flags:', 1, 'play:')
 				cycles = 1
 			#end:case
 			case 6:
-				(global91 say: 5 0 4 2 self)
+				global91._send('say:', 5, 0, 4, 2, self)
 			#end:case
 			case 7:
-				(horse dispose:)
-				(global1 handsOn:)
-				(self dispose:)
+				horse._send('dispose:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

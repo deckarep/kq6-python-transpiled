@@ -33,20 +33,20 @@ class Beauty(Kq6Talker):
 
 		(cond
 			case proc913_0(59):
-				(tBust cel: 1)
+				tBust._send('cel:', 1)
 				cel = 1
-				(super init: tBust 0 0 &rest)
+				super._send('init:', tBust, 0, 0, &rest)
 			#end:case
 			case proc913_0(43):
 				view = 8951
-				(tBust view: 8951)
-				(tMouth view: 8951 nsTop: 33 nsLeft: 28)
-				(tEyes view: 8951 nsTop: 26 nsLeft: 28)
+				tBust._send('view:', 8951)
+				tMouth._send('view:', 8951, 'nsTop:', 33, 'nsLeft:', 28)
+				tEyes._send('view:', 8951, 'nsTop:', 26, 'nsLeft:', 28)
 				raveName = r"""BEAUTESS"""
-				(super init: tBust tEyes tMouth &rest)
+				super._send('init:', tBust, tEyes, tMouth, &rest)
 			#end:case
 			else:
-				(super init: tBust tEyes tMouth &rest)
+				super._send('init:', tBust, tEyes, tMouth, &rest)
 			#end:else
 		)
 	#end:method

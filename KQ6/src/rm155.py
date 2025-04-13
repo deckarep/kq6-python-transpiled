@@ -34,9 +34,9 @@ class rm155(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global69 disable:)
-		(self setScript: backgroundScr)
+		super._send('init:', &rest)
+		global69._send('disable:')
+		self._send('setScript:', backgroundScr)
 	#end:method
 
 	@classmethod
@@ -44,8 +44,8 @@ class rm155(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable:)
-		(super dispose:)
+		global69._send('enable:')
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -64,36 +64,36 @@ class backgroundScr(Script):
 					kernel.Palette(1, 1551)
 					local0 = 155
 				else:
-					(moonEnd init:)
+					moonEnd._send('init:')
 				#endif
-				(global2 drawPic: 136 100)
+				global2._send('drawPic:', 136, 100)
 				kernel.SetCursor(0)
-				(mane1 init: setCycle: Fwd)
-				(mane2 init: setCycle: Fwd)
-				(mane3 init: setCycle: Fwd)
-				(mane4 init: setCycle: Fwd)
-				(mane5 init: setCycle: Fwd)
-				(mane6 init: setCycle: Fwd)
-				(water1 init: setCycle: Fwd)
-				(water2 init: setCycle: Fwd)
-				(isle1 init:)
-				(isle2 init:)
-				(isle1 moveSpeed: 15 setMotion: MoveTo 76 154 self)
-				(isle2 moveSpeed: 15 setMotion: MoveTo 242 159 self)
+				mane1._send('init:', 'setCycle:', Fwd)
+				mane2._send('init:', 'setCycle:', Fwd)
+				mane3._send('init:', 'setCycle:', Fwd)
+				mane4._send('init:', 'setCycle:', Fwd)
+				mane5._send('init:', 'setCycle:', Fwd)
+				mane6._send('init:', 'setCycle:', Fwd)
+				water1._send('init:', 'setCycle:', Fwd)
+				water2._send('init:', 'setCycle:', Fwd)
+				isle1._send('init:')
+				isle2._send('init:')
+				isle1._send('moveSpeed:', 15, 'setMotion:', MoveTo, 76, 154, self)
+				isle2._send('moveSpeed:', 15, 'setMotion:', MoveTo, 242, 159, self)
 				ticks = 60
 			#end:case
 			case 1:
-				(water1
-					moveSpeed: 30
-					setStep: 1 1
-					setMotion: MoveTo 27 176
-					setPri: 12
+				water1._send(
+					'moveSpeed:', 30,
+					'setStep:', 1, 1,
+					'setMotion:', MoveTo, 27, 176,
+					'setPri:', 12
 				)
-				(water2
-					moveSpeed: 30
-					setStep: 1 1
-					setMotion: MoveTo 289 176
-					setPri: 12
+				water2._send(
+					'moveSpeed:', 30,
+					'setStep:', 1, 1,
+					'setMotion:', MoveTo, 289, 176,
+					'setPri:', 12
 				)
 				ticks = 120
 			#end:case
@@ -102,26 +102,26 @@ class backgroundScr(Script):
 				ticks = 60
 			#end:case
 			case 3:
-				if (global5 contains: moonEnd):
-					(moonEnd moveSpeed: 4 setMotion: MoveTo 73 118)
+				if global5._send('contains:', moonEnd):
+					moonEnd._send('moveSpeed:', 4, 'setMotion:', MoveTo, 73, 118)
 				#endif
 			#end:case
 			case 4: 0#end:case
 			case 5:
-				(isle1 setPri: 13 cycleSpeed: 25)
-				(isle2 setPri: 13 cycleSpeed: 25)
+				isle1._send('setPri:', 13, 'cycleSpeed:', 25)
+				isle2._send('setPri:', 13, 'cycleSpeed:', 25)
 				ticks = 1
 			#end:case
 			case 6:
-				(isle1 setCycle: End setMotion: MoveTo 62 172 self)
-				(isle2 setCycle: End setMotion: MoveTo 256 177 self)
+				isle1._send('setCycle:', End, 'setMotion:', MoveTo, 62, 172, self)
+				isle2._send('setCycle:', End, 'setMotion:', MoveTo, 256, 177, self)
 			#end:case
 			case 7:
 				kernel.PalVary(3)
 				if (global12 == 340):
-					(global2 newRoom: 600)
+					global2._send('newRoom:', 600)
 				else:
-					(global2 newRoom: 200)
+					global2._send('newRoom:', 200)
 				#endif
 			#end:case
 		#end:match
@@ -166,11 +166,11 @@ class isle1(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global12 == 340):
-			(self view: 137)
+			self._send('view:', 137)
 		else:
-			(self view: 139)
+			self._send('view:', 139)
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -190,11 +190,11 @@ class isle2(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global12 == 340):
-			(self view: 137)
+			self._send('view:', 137)
 		else:
-			(self view: 139)
+			self._send('view:', 139)
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance

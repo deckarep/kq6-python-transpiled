@@ -31,14 +31,14 @@ class Slider(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super show: &rest)
+		super._send('show:', &rest)
 		if (not sRight):
 			sLeft = nsLeft
 			sRight = nsRight
 			maxY = (nsBottom - kernel.CelHigh(sliderView, sliderLoop, sliderCel))
 			minY = nsTop
 		#endif
-		sTop = (self valueToPosn:)
+		sTop = self._send('valueToPosn:')
 		kernel.DrawCel(sliderView, sliderLoop, sliderCel, sLeft, sTop, -1)
 		kernel.Graph(12, (nsTop - 1), (nsLeft - 1), (2 + nsBottom), (2 + nsRight), 1)
 	#end:method
@@ -49,23 +49,23 @@ class Slider(IconI):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc and param1):
-			while ((temp0 = (Event new:) type:) != 2):
+			while (temp0 = Event._send('new:')._send('type:') != 2):
 
-				(temp0 localize:)
+				temp0._send('localize:')
 				(cond
-					case ((temp0 y:) < (sTop - yStep)):
-						(self move: yStep (not (signal & 0x0200)))
+					case (temp0._send('y:') < (sTop - yStep)):
+						self._send('move:', yStep, (not (signal & 0x0200)))
 					#end:case
-					case ((temp0 y:) > (sTop + yStep)):
-						(self move: -yStep (not (signal & 0x0200)))
+					case (temp0._send('y:') > (sTop + yStep)):
+						self._send('move:', -yStep, (not (signal & 0x0200)))
 					#end:case
 				)
-				(temp0 dispose:)
+				temp0._send('dispose:')
 			#end:loop
 			if (signal & 0x0200):
-				(self doit: (self posnToValue: sTop))
+				self._send('doit:', self._send('posnToValue:', sTop))
 			#endif
-			(temp0 dispose:)
+			temp0._send('dispose:')
 		else:
 			return 1
 		#endif
@@ -98,12 +98,12 @@ class Slider(IconI):
 			kernel.DrawCel(sliderView, sliderLoop, sliderCel, sLeft, sTop, -1)
 			kernel.Graph(12, (nsTop - 1), (nsLeft - 1), (2 + nsBottom), (2 + nsRight), 1)
 			kernel.PicNotValid(temp2)
-			temp3 = (self posnToValue: sTop)
+			temp3 = self._send('posnToValue:', sTop)
 			(= temp6
 				if temp7:
-					(self doit: temp3)
+					self._send('doit:', temp3)
 				else:
-					(self doit:)
+					self._send('doit:')
 				#endif
 			)
 			# for:reinit
@@ -149,7 +149,7 @@ class Slider(IconI):
 								if argc:
 									param1
 								else:
-									(self doit:)
+									self._send('doit:')
 								#endif
 							)
 							topValue
@@ -179,22 +179,19 @@ class Slider(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			move:
-				proc999_3(yStep, (-
+		self._send(
+			'move:', proc999_3(yStep, (-
 					sTop
-					(self
-						valueToPosn:
-							(+
-								(self doit:)
+					self._send(
+						'valueToPosn:', (+
+								self._send('doit:')
 								proc999_0((topValue - bottomValue))
 							)
 					)
-				))
-				(not (signal & 0x0200))
+				)), (not (signal & 0x0200))
 		)
 		if (signal & 0x0200):
-			(self doit: (self posnToValue: sTop))
+			self._send('doit:', self._send('posnToValue:', sTop))
 		#endif
 	#end:method
 
@@ -203,22 +200,19 @@ class Slider(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			move:
-				proc999_2(-yStep, (-
+		self._send(
+			'move:', proc999_2(-yStep, (-
 					sTop
-					(self
-						valueToPosn:
-							(-
-								(self doit:)
+					self._send(
+						'valueToPosn:', (-
+								self._send('doit:')
 								proc999_0((topValue - bottomValue))
 							)
 					)
-				))
-				(not (signal & 0x0200))
+				)), (not (signal & 0x0200))
 		)
 		if (signal & 0x0200):
-			(self doit: (self posnToValue: sTop))
+			self._send('doit:', self._send('posnToValue:', sTop))
 		#endif
 	#end:method
 

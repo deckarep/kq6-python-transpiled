@@ -44,24 +44,21 @@ def proc730_3():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global2
-		vanishingX: 160
-		vanishingY: -10000
-		maxScaleSize: 100
-		minScaleSize: 60
+	global2._send(
+		'vanishingX:', 160,
+		'vanishingY:', -10000,
+		'maxScaleSize:', 100,
+		'minScaleSize:', 60
 	)
 	if local0:
-		(global2 maxScaleY: 127 minScaleY: 68 minScaleSize: 64)
+		global2._send('maxScaleY:', 127, 'minScaleY:', 68, 'minScaleSize:', 64)
 	else:
-		(global2 maxScaleY: 174 minScaleY: 127)
+		global2._send('maxScaleY:', 174, 'minScaleY:', 127)
 	#endif
-	(global0
-		setScale:
-			Scaler
-			(global2 maxScaleSize:)
-			(global2 minScaleSize:)
-			(global2 maxScaleY:)
-			(global2 minScaleY:)
+	global0._send(
+		'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+				'minScaleSize:'
+			), global2._send('maxScaleY:'), global2._send('minScaleY:')
 	)
 #end:procedure
 
@@ -90,178 +87,133 @@ class rm730(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Load(128, 730)
-		if (kernel.ScriptID(80, 0) tstFlag: 709 2):
+		if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
 			0
 		else:
 			proc958_0(128, 794, 736)
 		#endif
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						19
-						170
-						9
-						158
-						12
-						141
-						75
-						69
-						53
-						69
-						0
-						109
-						-50
-						110
-						-50
-						-60
-						369
-						-60
-						319
-						114
-						263
-						65
-						246
-						65
-						315
-						146
-						312
-						162
-						286
-						178
-						212
-						129
-						109
-						129
-						90
-						142
-						77
-						142
-						80
-						149
-						37
-						179
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 176 134 196 134 200 141 176 141
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 126 134 145 134 145 141 122 141
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 19, 170, 9, 158, 12, 141, 75, 69, 53, 69, 0, 109, -50, 110, -50, -60, 369, -60, 319, 114, 263, 65, 246, 65, 315, 146, 312, 162, 286, 178, 212, 129, 109, 129, 90, 142, 77, 142, 80, 149, 37, 179,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 176, 134, 196, 134, 200, 141, 176, 141,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 126, 134, 145, 134, 145, 141, 122, 141,
+					'yourself:'
 				)
 		)
-		(global32
-			add: urns chandelier balconyFtr pillarsFtr stairs
-			eachElementDo: #init
+		global32._send(
+			'add:', urns, chandelier, balconyFtr, pillarsFtr, stairs,
+			'eachElementDo:', #init
 		)
-		(kernel.ScriptID(80, 5) noun: 4)
-		(kernel.ScriptID(80, 6) noun: 4)
-		(super init: &rest)
-		(global0 init:)
-		(candles setCycle: Fwd init:)
+		kernel.ScriptID(80, 5)._send('noun:', 4)
+		kernel.ScriptID(80, 6)._send('noun:', 4)
+		super._send('init:', &rest)
+		global0._send('init:')
+		candles._send('setCycle:', Fwd, 'init:')
 		match global12
 			case 740:
-				(global0 posn: (throneDoor approachX:) (throneDoor approachY:))
+				global0._send('posn:', throneDoor._send('approachX:'), throneDoor._send('approachY:'))
 			#end:case
 			case 860:
 				local0 = 1
-				(global0 posn: 272 84)
+				global0._send('posn:', 272, 84)
 			#end:case
 			case 850:
 				local0 = 1
-				(global0 posn: 52 84)
+				global0._send('posn:', 52, 84)
 				(cond
-					case (kernel.ScriptID(80, 0) tstFlag: 711 16384):
-						(kernel.ScriptID(80, 0) clrFlag: 711 16384)
-						(kernel.ScriptID(80, 5)
-							init:
-							loop: 0
-							posn: 107 68
-							setPri: 0
-							ignoreActors:
-							setScale: Scaler 35 64 107 59 1
+					case kernel.ScriptID(80, 0)._send('tstFlag:', 711, 16384):
+						kernel.ScriptID(80, 0)._send('clrFlag:', 711, 16384)
+						kernel.ScriptID(80, 5)._send(
+							'init:',
+							'loop:', 0,
+							'posn:', 107, 68,
+							'setPri:', 0,
+							'ignoreActors:',
+							'setScale:', Scaler, 35, 64, 107, 59, 1
 						)
-						(kernel.ScriptID(80, 6)
-							init:
-							loop: 3
-							posn: 111 68
-							setPri: 0
-							ignoreActors:
-							setScale: Scaler 35 64 111 69 1
+						kernel.ScriptID(80, 6)._send(
+							'init:',
+							'loop:', 3,
+							'posn:', 111, 68,
+							'setPri:', 0,
+							'ignoreActors:',
+							'setScale:', Scaler, 35, 64, 111, 69, 1
 						)
-						(global0 posn: 46 83)
-						(global102 fade: 80 25 10 0)
-						(self setScript: followEgoIn)
+						global0._send('posn:', 46, 83)
+						global102._send('fade:', 80, 25, 10, 0)
+						self._send('setScript:', followEgoIn)
 					#end:case
-					case local2 = (kernel.ScriptID(80, 0) tstFlag: 709 512):
-						(kernel.ScriptID(80, 5) init: loop: 0 posn: 82 165)
-						(kernel.ScriptID(80, 6) init: loop: 3 posn: 103 176)
-						(kernel.ScriptID(80, 6)
-							signal: ((kernel.ScriptID(80, 6) signal:) & 0xefff)
+					case local2 = kernel.ScriptID(80, 0)._send('tstFlag:', 709, 512):
+						kernel.ScriptID(80, 5)._send('init:', 'loop:', 0, 'posn:', 82, 165)
+						kernel.ScriptID(80, 6)._send('init:', 'loop:', 3, 'posn:', 103, 176)
+						kernel.ScriptID(80, 6)._send(
+							'signal:', (kernel.ScriptID(80, 6)._send('signal:') & 0xefff)
 						)
-						(saladin init: loop: 4 cel: 1 stopUpd:)
+						saladin._send('init:', 'loop:', 4, 'cel:', 1, 'stopUpd:')
 						(cond
-							case (kernel.ScriptID(80, 0) tstFlag: 710 1):
-								(kernel.ScriptID(80, 5) posn: 9 113)
-								(kernel.ScriptID(80, 6) posn: 18 128)
-								(self spotEgo: kernel.ScriptID(80, 5))
+							case kernel.ScriptID(80, 0)._send('tstFlag:', 710, 1):
+								kernel.ScriptID(80, 5)._send('posn:', 9, 113)
+								kernel.ScriptID(80, 6)._send('posn:', 18, 128)
+								self._send('spotEgo:', kernel.ScriptID(80, 5))
 							#end:case
-							case (not (kernel.ScriptID(80, 0) tstFlag: 709 2048)):
-								(global0 posn: 51 83)
-								(self setScript: overseeGuards)
+							case (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2048)):
+								global0._send('posn:', 51, 83)
+								self._send('setScript:', overseeGuards)
 							#end:case
 							else:
-								(self setScript: tooManyTimes)
+								self._send('setScript:', tooManyTimes)
 							#end:else
 						)
 					#end:case
 				)
 			#end:case
 			case 840:
-				(global0 setSpeed: 8 posn: 261 144)
-				(self setScript: kernel.ScriptID(732, 0))
+				global0._send('setSpeed:', 8, 'posn:', 261, 144)
+				self._send('setScript:', kernel.ScriptID(732, 0))
 			#end:case
 			else:
-				(global102 fadeTo: 700 -1)
-				(global0 reset: 3 733 posn: 229 181)
-				(kernel.ScriptID(80, 0) setFlag: 709 128)
-				(self setScript: kernel.ScriptID(731, 0))
+				global102._send('fadeTo:', 700, -1)
+				global0._send('reset:', 3, 733, 'posn:', 229, 181)
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 128)
+				self._send('setScript:', kernel.ScriptID(731, 0))
 			#end:else
 		#end:match
-		(kitchenDoor init: stopUpd: ignoreActors:)
-		(throneDoor
-			init:
-			ignoreActors:
-			setPri: 1
-			cel: (kernel.ScriptID(80, 0) tstFlag: 709 2)
-			stopUpd:
+		kitchenDoor._send('init:', 'stopUpd:', 'ignoreActors:')
+		throneDoor._send(
+			'init:',
+			'ignoreActors:',
+			'setPri:', 1,
+			'cel:', kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2),
+			'stopUpd:'
 		)
-		(basementDoor init: stopUpd: ignoreActors:)
-		if (kernel.ScriptID(80, 0) tstFlag: 709 2):
+		basementDoor._send('init:', 'stopUpd:', 'ignoreActors:')
+		if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
 			if script:
-				(script next: saladinEnters)
+				script._send('next:', saladinEnters)
 			else:
-				(self setScript: saladinEnters)
+				self._send('setScript:', saladinEnters)
 			#endif
 		#endif
 		proc730_3()
-		(kernel.ScriptID(80, 0) setupGuards:)
-		if (global5 contains: saladin):
-			(saladin
-				setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
+		kernel.ScriptID(80, 0)._send('setupGuards:')
+		if global5._send('contains:', saladin):
+			saladin._send(
+				'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY
 			)
-			((saladin scaler:) doit:)
+			saladin._send('scaler:')._send('doit:')
 		#endif
-		if (global0 scaler:):
-			((global0 scaler:) doit:)
+		if global0._send('scaler:'):
+			global0._send('scaler:')._send('doit:')
 		#endif
 		if (not script):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
 	#end:method
 
@@ -270,24 +222,24 @@ class rm730(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		local1 = (global0 onControl: 1)
+		local1 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
-			case (((User alterEgo:) edgeHit:) == 3):
-				(global0 y: ((global0 y:) - 2))
-				(self setScript: don_tLeave)
+			case (User._send('alterEgo:')._send('edgeHit:') == 3):
+				global0._send('y:', (global0._send('y:') - 2))
+				self._send('setScript:', don_tLeave)
 			#end:case
 			case (local1 & 0x4000):
-				(global2 newRoom: 860)
+				global2._send('newRoom:', 860)
 			#end:case
 			case (local1 & 0x2000):
-				(global2 newRoom: 850)
+				global2._send('newRoom:', 850)
 			#end:case
 			case (local1 & 0x0800):
-				(global2 newRoom: 840)
+				global2._send('newRoom:', 840)
 			#end:case
 		)
-		if ((global0 view:) != 881):
+		if (global0._send('view:') != 881):
 			if ((local1 & 0x0200) and local0):
 				local0 = 0
 				proc730_3()
@@ -304,7 +256,7 @@ class rm730(CastleRoom):
 				vanishingY = 92
 			#endif
 		#endif
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -313,10 +265,10 @@ class rm730(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((script == saladinEnters) and (param1 != showLetter)):
-			(global1 handsOff:)
-			(saladinEnters cue:)
+			global1._send('handsOff:')
+			saladinEnters._send('cue:')
 		else:
-			(super setScript: param1 &rest)
+			super._send('setScript:', param1, &rest)
 		#endif
 	#end:method
 
@@ -334,15 +286,15 @@ class don_tLeave(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 4
 			#end:case
 			case 1:
-				(global91 say: 3 3 14 0 self)
+				global91._send('say:', 3, 3, 14, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -359,46 +311,44 @@ class doKitchen(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				if (not (kernel.ScriptID(80, 0) tstFlag: 711 -32768)):
-					(kernel.ScriptID(80, 0) setFlag: 711 -32768)
-					(global91 say: 8 5 0 1 self)
+				global1._send('handsOff:')
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 711, -32768)):
+					kernel.ScriptID(80, 0)._send('setFlag:', 711, -32768)
+					global91._send('say:', 8, 5, 0, 1, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
-				(global105 number: 901 loop: 1 play:)
-				(global104 number: 731 loop: -1 play:)
-				(kitchenDoor setCycle: End self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				global104._send('number:', 731, 'loop:', -1, 'play:')
+				kitchenDoor._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(global105 stop:)
-				(global0 setHeading: 270 setMotion: MoveTo 57 143 self)
+				global105._send('stop:')
+				global0._send('setHeading:', 270, 'setMotion:', MoveTo, 57, 143, self)
 			#end:case
 			case 3:
-				(global91 say: 8 5 0 2 self)
+				global91._send('say:', 8, 5, 0, 2, self)
 			#end:case
 			case 4:
-				(global0
-					setMotion:
-						MoveTo
-						(kitchenDoor approachX:)
-						(kitchenDoor approachY:)
-						self
+				global0._send(
+					'setMotion:', MoveTo, kitchenDoor._send('approachX:'), kitchenDoor._send(
+							'approachY:'
+						), self
 				)
 			#end:case
 			case 5:
-				(global104 stop:)
-				(kitchenDoor setCycle: Beg self)
+				global104._send('stop:')
+				kitchenDoor._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(global91 say: 8 5 0 3 self oneOnly: 0)
+				global91._send('say:', 8, 5, 0, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 7:
-				(global105 number: 902 loop: 1 play:)
-				(global1 handsOn:)
-				(self dispose:)
+				global105._send('number:', 902, 'loop:', 1, 'play:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -413,8 +363,8 @@ class overseeGuards(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(80, 0) setFlag: 709 2048)
-		(super dispose:)
+		kernel.ScriptID(80, 0)._send('setFlag:', 709, 2048)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -424,56 +374,54 @@ class overseeGuards(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(kernel.ScriptID(1015, 6) talkWidth: 150 x: 15 y: 20)
-				(kernel.ScriptID(1015, 7) talkWidth: 135 x: 160 y: 20)
+				global1._send('handsOff:')
+				kernel.ScriptID(1015, 6)._send('talkWidth:', 150, 'x:', 15, 'y:', 20)
+				kernel.ScriptID(1015, 7)._send('talkWidth:', 135, 'x:', 160, 'y:', 20)
 				cycles = 10
 			#end:case
 			case 1:
-				(global91 say: 1 0 3 0 self)
+				global91._send('say:', 1, 0, 3, 0, self)
 			#end:case
 			case 2:
 				seconds = 2
 			#end:case
 			case 3:
-				(global102 number: 710 loop: -1 play:)
+				global102._send('number:', 710, 'loop:', -1, 'play:')
 				if proc913_0(72):
 					register = 5
 				else:
 					register = 4
 				#endif
-				(global91 say: 1 0 register 1 self)
+				global91._send('say:', 1, 0, register, 1, self)
 			#end:case
 			case 4:
-				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
+				kernel.ScriptID(80, 5)._send('setScript:', kernel.ScriptID(80, 4), self, 1)
 			#end:case
 			case 5:
-				(global0
-					setSpeed: 8
-					ignoreActors:
-					setMotion: PolyPath ((saladin x:) - 45) (saladin y:) self
+				global0._send(
+					'setSpeed:', 8,
+					'ignoreActors:',
+					'setMotion:', PolyPath, (saladin._send('x:') - 45), saladin._send('y:'), self
 				)
 				seconds = 3
 			#end:case
 			case 6:
-				(kernel.ScriptID(80, 5)
-					setSpeed: 8
-					ignoreActors:
-					setMotion:
-						PolyPath
-						((saladin x:) - 45)
-						(kernel.ScriptID(80, 6) y:)
-						self
+				kernel.ScriptID(80, 5)._send(
+					'setSpeed:', 8,
+					'ignoreActors:',
+					'setMotion:', PolyPath, (saladin._send('x:') - 45), kernel.ScriptID(80, 6)._send(
+							'y:'
+						), self
 				)
 			#end:case
 			case 7:
-				(global0 setHeading: 90)
+				global0._send('setHeading:', 90)
 			#end:case
 			case 8:
-				(global91 say: 1 0 register 2 self oneOnly: 0)
+				global91._send('say:', 1, 0, register, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 9:
-				(global2 newRoom: 820)
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -490,22 +438,22 @@ class tooManyTimes(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 4
 			#end:case
 			case 1:
 				register = (5 if proc913_0(72) else 4)
-				(global91 say: 1 0 register 1 self)
+				global91._send('say:', 1, 0, register, 1, self)
 			#end:case
 			case 2:
-				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
+				kernel.ScriptID(80, 5)._send('setScript:', kernel.ScriptID(80, 4), self, 1)
 			#end:case
 			case 3:
-				(global91 say: 1 0 register 2 self oneOnly: 0)
+				global91._send('say:', 1, 0, register, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 4:
-				(kernel.ScriptID(80, 0) setFlag: 709 8192)
-				(global2 newRoom: 820)
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 8192)
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -520,9 +468,9 @@ class saladinEnters(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global93 add: self)
-		(global74 add: self)
+		super._send('init:', &rest)
+		global93._send('add:', self)
+		global74._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -532,16 +480,16 @@ class saladinEnters(Script):
 
 		if 
 			(and
-				(global80 canInput:)
+				global80._send('canInput:')
 				(or
-					((param1 type:) & 0x1000)
-					(((param1 type:) & 0x0040) and ((param1 message:) != 0))
+					(param1._send('type:') & 0x1000)
+					((param1._send('type:') & 0x0040) and (param1._send('message:') != 0))
 				)
 			)
-			(param1 claimed: 1)
-			(self cue:)
+			param1._send('claimed:', 1)
+			self._send('cue:')
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -549,9 +497,9 @@ class saladinEnters(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(global74 delete: self)
-		(super dispose:)
+		global93._send('delete:', self)
+		global74._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -561,66 +509,66 @@ class saladinEnters(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(kernel.ScriptID(80, 0) weddingRemind: 0)
+				global1._send('handsOff:')
+				kernel.ScriptID(80, 0)._send('weddingRemind:', 0)
 				if (global12 == 840):
-					(self setScript: exitBaseScr self)
+					self._send('setScript:', exitBaseScr, self)
 				else:
-					(self setScript: exitUpstairsScr self)
+					self._send('setScript:', exitUpstairsScr, self)
 				#endif
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 150 128 self)
+				global0._send('setMotion:', PolyPath, 150, 128, self)
 			#end:case
 			case 2:
-				(global0 setHeading: 45 self)
+				global0._send('setHeading:', 45, self)
 			#end:case
 			case 3:
 				cycles = 5
 			#end:case
 			case 4:
-				(saladin
-					view: 737
-					setLoop: 0
-					cel: 0
-					posn: 160 123
-					setPri: 0
-					sightAngle: 180
-					init:
+				saladin._send(
+					'view:', 737,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', 160, 123,
+					'setPri:', 0,
+					'sightAngle:', 180,
+					'init:'
 				)
-				(throneDoor startUpd: cel: 2 stopUpd:)
-				(global0
-					setCycle: Rev
-					setLoop: -1
-					setLoop: 6
-					setMotion: MoveTo 141 131 self
+				throneDoor._send('startUpd:', 'cel:', 2, 'stopUpd:')
+				global0._send(
+					'setCycle:', Rev,
+					'setLoop:', -1,
+					'setLoop:', 6,
+					'setMotion:', MoveTo, 141, 131, self
 				)
 			#end:case
 			case 5:
-				(global0 setCycle: StopWalk -1)
-				(saladin setCycle: CT 2 1 self)
+				global0._send('setCycle:', StopWalk, -1)
+				saladin._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 6:
 				kernel.DisposeScript(969)
-				(global105 number: 901 loop: 1 play:)
-				(saladin setCycle: End self)
-				(throneDoor setCycle: End)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				saladin._send('setCycle:', End, self)
+				throneDoor._send('setCycle:', End)
 			#end:case
 			case 7:
 				cycles = 20
 			#end:case
 			case 8:
-				(global105 stop:)
-				(saladin setLoop: 7 cel: 9 setPri: 9 setCycle: Beg self)
-				(global105 number: 652 setLoop: 1 play:)
-				(throneDoor setCycle: Beg throneDoor)
+				global105._send('stop:')
+				saladin._send('setLoop:', 7, 'cel:', 9, 'setPri:', 9, 'setCycle:', Beg, self)
+				global105._send('number:', 652, 'setLoop:', 1, 'play:')
+				throneDoor._send('setCycle:', Beg, throneDoor)
 			#end:case
 			case 9:
 				register = (11 if proc913_0(72) else 10)
-				(global91 say: 1 0 register 0 self)
+				global91._send('say:', 1, 0, register, 0, self)
 			#end:case
 			case 10:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				if kernel.HaveMouse():
 					seconds = 11
 				else:
@@ -628,60 +576,60 @@ class saladinEnters(Script):
 				#endif
 			#end:case
 			case 11:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				register = (13 if proc913_0(72) else 12)
-				(global91 say: 1 0 register 0 self)
+				global91._send('say:', 1, 0, register, 0, self)
 			#end:case
 			case 12:
-				(global0 hide:)
-				(saladin setLoop: 1 cel: 0 posn: 140 133 setCycle: End self)
+				global0._send('hide:')
+				saladin._send('setLoop:', 1, 'cel:', 0, 'posn:', 140, 133, 'setCycle:', End, self)
 			#end:case
 			case 13:
-				(global0
-					view: 737
-					normal: 0
-					setLoop: 2
-					cel: 0
-					x: 121
-					y: 134
-					setScale: 0
-					setCycle: Walk
-					setSpeed: 8
-					setStep: 3 2
-					show:
-					setMotion: MoveTo 99 135 self
+				global0._send(
+					'view:', 737,
+					'normal:', 0,
+					'setLoop:', 2,
+					'cel:', 0,
+					'x:', 121,
+					'y:', 134,
+					'setScale:', 0,
+					'setCycle:', Walk,
+					'setSpeed:', 8,
+					'setStep:', 3, 2,
+					'show:',
+					'setMotion:', MoveTo, 99, 135, self
 				)
-				(saladin
-					setLoop: 3
-					cel: 0
-					posn: 149 134
-					setSpeed: 8
-					setStep: 3 2
-					setCycle: Walk
-					setMotion: MoveTo 128 134
+				saladin._send(
+					'setLoop:', 3,
+					'cel:', 0,
+					'posn:', 149, 134,
+					'setSpeed:', 8,
+					'setStep:', 3, 2,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 128, 134
 				)
 			#end:case
 			case 14:
-				(global0 setLoop: 5 cel: 0)
-				(saladin setMotion: MoveTo 128 134 self)
+				global0._send('setLoop:', 5, 'cel:', 0)
+				saladin._send('setMotion:', MoveTo, 128, 134, self)
 			#end:case
 			case 15:
-				(global102 number: 705 setLoop: 1 play:)
-				(saladin setLoop: 4 cel: 0 setCycle: End self)
-				(global103 number: 756 setLoop: 1 play:)
+				global102._send('number:', 705, 'setLoop:', 1, 'play:')
+				saladin._send('setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
+				global103._send('number:', 756, 'setLoop:', 1, 'play:')
 			#end:case
 			case 16:
-				(saladin cycleSpeed: 8 setCycle: CT 2 -1 self)
+				saladin._send('cycleSpeed:', 8, 'setCycle:', CT, 2, -1, self)
 			#end:case
 			case 17:
-				(global0 setLoop: 8 cel: 0 cycleSpeed: 5 setCycle: CT 3 1 self)
+				global0._send('setLoop:', 8, 'cel:', 0, 'cycleSpeed:', 5, 'setCycle:', CT, 3, 1, self)
 			#end:case
 			case 18:
 				cycles = 10
 			#end:case
 			case 19:
-				(global103 number: 971 setLoop: 1 play: self)
-				(global0 cycleSpeed: 8 setCycle: End self)
+				global103._send('number:', 971, 'setLoop:', 1, 'play:', self)
+				global0._send('cycleSpeed:', 8, 'setCycle:', End, self)
 			#end:case
 			case 20:
 				proc0_1(32)
@@ -701,38 +649,38 @@ class exitBaseScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 173 127 self)
+				global0._send('setMotion:', PolyPath, 173, 127, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 225 self)
+				global0._send('setHeading:', 225, self)
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 881
-					loop: 2
-					cel: 0
-					x: 158
-					y: 132
-					setScale:
-					scaleX: 90
-					scaleY: 90
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 881,
+					'loop:', 2,
+					'cel:', 0,
+					'x:', 158,
+					'y:', 132,
+					'setScale:',
+					'scaleX:', 90,
+					'scaleY:', 90,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
 				seconds = 3
 			#end:case
 			case 4:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
-				(global0 posn: 173 127 reset: 5 setSpeed: 8)
+				global0._send('posn:', 173, 127, 'reset:', 5, 'setSpeed:', 8)
 				cycles = 3
 			#end:case
 			case 6:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -752,45 +700,45 @@ class exitUpstairsScr(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 8 1 self)
+				global91._send('say:', 1, 0, 8, 1, self)
 			#end:case
 			case 2:
-				(global0 setSpeed: 8 setMotion: PolyPath 19 166 self)
+				global0._send('setSpeed:', 8, 'setMotion:', PolyPath, 19, 166, self)
 			#end:case
 			case 3:
-				(global0 setHeading: 135 self)
+				global0._send('setHeading:', 135, self)
 			#end:case
 			case 4:
 				cycles = 4
 			#end:case
 			case 5:
-				(global1 handsOff:)
-				(global0
-					normal: 0
-					setScale:
-					scaleX: 144
-					scaleY: 144
-					view: 881
-					loop: 3
-					cel: 4
-					x: 38
-					y: 175
-					cycleSpeed: 8
-					setCycle: End self
+				global1._send('handsOff:')
+				global0._send(
+					'normal:', 0,
+					'setScale:',
+					'scaleX:', 144,
+					'scaleY:', 144,
+					'view:', 881,
+					'loop:', 3,
+					'cel:', 4,
+					'x:', 38,
+					'y:', 175,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
-				(global91 say: 1 0 8 2 self)
+				global91._send('say:', 1, 0, 8, 2, self)
 			#end:case
 			case 7:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 8:
-				(global0 reset: 4 posn: 19 166 setSpeed: 8)
+				global0._send('reset:', 4, 'posn:', 19, 166, 'setSpeed:', 8)
 				cycles = 4
 			#end:case
 			case 9:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -807,103 +755,103 @@ class showLetter(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(kernel.ScriptID(80, 0) setFlag: 709 1024)
-				(global1 givePoints: 3)
-				(roomConv add: -1 6 61 21 1 add: -1 6 61 21 2 init: self)
+				global1._send('handsOff:')
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 1024)
+				global1._send('givePoints:', 3)
+				roomConv._send('add:', -1, 6, 61, 21, 1, 'add:', -1, 6, 61, 21, 2, 'init:', self)
 			#end:case
 			case 1:
-				(global0 hide:)
-				(saladin
-					setLoop: 6
-					cel: 0
-					setPri: 9
-					posn: 140 133
-					setCycle: End self
+				global0._send('hide:')
+				saladin._send(
+					'setLoop:', 6,
+					'cel:', 0,
+					'setPri:', 9,
+					'posn:', 140, 133,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(roomConv add: -1 6 61 21 3 init: self)
+				roomConv._send('add:', -1, 6, 61, 21, 3, 'init:', self)
 			#end:case
 			case 3:
 				seconds = 3
 			#end:case
 			case 4:
-				(roomConv add: -1 6 61 21 4 init: self)
+				roomConv._send('add:', -1, 6, 61, 21, 4, 'init:', self)
 			#end:case
 			case 5:
-				(saladin setCycle: Beg self)
+				saladin._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(roomConv
-					add: -1 6 61 21 5
-					add: -1 6 61 21 6
-					add: -1 6 61 21 7
-					init: self
+				roomConv._send(
+					'add:', -1, 6, 61, 21, 5,
+					'add:', -1, 6, 61, 21, 6,
+					'add:', -1, 6, 61, 21, 7,
+					'init:', self
 				)
 			#end:case
 			case 7:
-				(global0 show:)
-				(saladin setLoop: 7 cel: 0 posn: 160 123 setCycle: End self)
-				(global105 number: 652 setLoop: 1 play:)
+				global0._send('show:')
+				saladin._send('setLoop:', 7, 'cel:', 0, 'posn:', 160, 123, 'setCycle:', End, self)
+				global105._send('number:', 652, 'setLoop:', 1, 'play:')
 			#end:case
 			case 8:
-				(roomConv add: -1 6 61 21 8 add: -1 6 61 21 9)
+				roomConv._send('add:', -1, 6, 61, 21, 8, 'add:', -1, 6, 61, 21, 9)
 				if proc913_0(72):
-					(roomConv add: -1 6 61 20 1)
+					roomConv._send('add:', -1, 6, 61, 20, 1)
 				else:
-					(roomConv add: -1 6 61 21 10)
+					roomConv._send('add:', -1, 6, 61, 21, 10)
 				#endif
-				(roomConv init: self)
+				roomConv._send('init:', self)
 			#end:case
 			case 9:
-				(global0 put: 20)
+				global0._send('put:', 20)
 				cycles = 1
 			#end:case
 			case 10:
-				(saladin
-					view: 736
-					loop: 4
-					cel: 2
-					scaleSignal: 1
-					scaleX: 87
-					scaleY: 87
-					x: ((saladin x:) + 1)
-					y: ((saladin y:) + 3)
+				saladin._send(
+					'view:', 736,
+					'loop:', 4,
+					'cel:', 2,
+					'scaleSignal:', 1,
+					'scaleX:', 87,
+					'scaleY:', 87,
+					'x:', (saladin._send('x:') + 1),
+					'y:', (saladin._send('y:') + 3)
 				)
 				cycles = 8
 			#end:case
 			case 11:
-				(saladin cel: 0)
+				saladin._send('cel:', 0)
 				cycles = 8
 			#end:case
 			case 12:
-				(saladin cel: 3)
+				saladin._send('cel:', 3)
 				cycles = 8
 			#end:case
 			case 13:
-				(throneDoor setCycle: End self)
-				(global105 number: 901 setLoop: 1 play:)
+				throneDoor._send('setCycle:', End, self)
+				global105._send('number:', 901, 'setLoop:', 1, 'play:')
 			#end:case
 			case 14:
-				(saladin
-					setLoop: 3
-					setCycle: Walk
-					setMotion: MoveTo 167 123 self
+				saladin._send(
+					'setLoop:', 3,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 167, 123, self
 				)
 			#end:case
 			case 15:
-				(saladin loop: 4 cel: 3 stopUpd:)
-				(global0 setMotion: MoveTo 152 128 self)
+				saladin._send('loop:', 4, 'cel:', 3, 'stopUpd:')
+				global0._send('setMotion:', MoveTo, 152, 128, self)
 			#end:case
 			case 16:
-				(global0 setMotion: MoveTo 152 122 self)
+				global0._send('setMotion:', MoveTo, 152, 122, self)
 			#end:case
 			case 17:
 				cycles = 4
 			#end:case
 			case 18:
-				(global2 newRoom: 740)
+				global2._send('newRoom:', 740)
 			#end:case
 		#end:match
 	#end:method
@@ -919,9 +867,9 @@ class enterThroneRoom(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (local1 & 0x1000):
-			(global2 newRoom: 740)
+			global2._send('newRoom:', 740)
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -931,12 +879,12 @@ class enterThroneRoom(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global105 number: 901 loop: 1 play:)
-				(throneDoor setCycle: End self)
+				global1._send('handsOff:')
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				throneDoor._send('setCycle:', End, self)
 			#end:case
 			case 1:
-				(global105 stop:)
+				global105._send('stop:')
 				proc80_2(1)
 			#end:case
 		#end:match
@@ -957,32 +905,32 @@ class followEgoIn(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global102 stop:)
-				(global102 number: 700 loop: -1 play: 80 fade: 127 25 10 0)
+				global102._send('stop:')
+				global102._send('number:', 700, 'loop:', -1, 'play:', 80, 'fade:', 127, 25, 10, 0)
 				cycles = 10
 			#end:case
 			case 2:
-				(kernel.ScriptID(80, 5) setMotion: MoveTo 59 68 self)
-				(kernel.ScriptID(80, 6) setMotion: MoveTo 69 68 self)
+				kernel.ScriptID(80, 5)._send('setMotion:', MoveTo, 59, 68, self)
+				kernel.ScriptID(80, 6)._send('setMotion:', MoveTo, 69, 68, self)
 			#end:case
 			case 3: 0#end:case
 			case 4:
-				(global102 number: 710 loop: -1 play:)
-				(global91 say: 1 0 2 1 self)
+				global102._send('number:', 710, 'loop:', -1, 'play:')
+				global91._send('say:', 1, 0, 2, 1, self)
 			#end:case
 			case 5:
-				(global91 say: 1 0 2 2 self)
+				global91._send('say:', 1, 0, 2, 2, self)
 			#end:case
 			case 6:
-				(global2 moveOtherGuard: 1)
-				(kernel.ScriptID(80, 5) setScript: kernel.ScriptID(80, 4) self 1)
+				global2._send('moveOtherGuard:', 1)
+				kernel.ScriptID(80, 5)._send('setScript:', kernel.ScriptID(80, 4), self, 1)
 			#end:case
 			case 7:
-				(global91 say: 1 0 2 3 self oneOnly: 0)
+				global91._send('say:', 1, 0, 2, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 8:
-				(global102 fade:)
-				(global2 newRoom: 820)
+				global102._send('fade:')
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -999,32 +947,32 @@ class tryToOpenDoor(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 3
 			#end:case
 			case 1:
-				(global0
-					view: 730
-					loop: 4
-					cel: 0
-					normal: 0
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'view:', 730,
+					'loop:', 4,
+					'cel:', 0,
+					'normal:', 0,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 3:
-				(global91 say: 7 5 0 0 self)
+				global91._send('say:', 7, 5, 0, 0, self)
 			#end:case
 			case 4:
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1046,9 +994,9 @@ class throneDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if ((not local2) and (not (kernel.ScriptID(80, 0) tstFlag: 709 2))):
-			(self approachVerbs: 5)
+		super._send('init:', &rest)
+		if ((not local2) and (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2))):
+			self._send('approachVerbs:', 5)
 		#endif
 	#end:method
 
@@ -1057,7 +1005,7 @@ class throneDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return ((super onMe: param1) and ((param1 y:) <= 127))
+		return (super._send('onMe:', param1) and (param1._send('y:') <= 127))
 	#end:method
 
 	@classmethod
@@ -1072,30 +1020,27 @@ class throneDoor(Prop):
 					if 
 						(and
 							(not local2)
-							(not (kernel.ScriptID(80, 0) tstFlag: 709 2))
+							(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2))
 						)
-						(_approachVerbs |= (global66 doit: 1))
+						(_approachVerbs |= global66._send('doit:', 1))
 					#endif
-					(global91 say: 9 1 25)
+					global91._send('say:', 9, 1, 25)
 				else:
-					(global91 say: noun param1 26 1 kernel.ScriptID(82))
-					(global2
-						setScript:
-							(kernel.ScriptID(82) start: -1 yourself:)
-							0
-							lookIntoThroneRoom
+					global91._send('say:', noun, param1, 26, 1, kernel.ScriptID(82))
+					global2._send(
+						'setScript:', kernel.ScriptID(82)._send('start:', -1, 'yourself:'), 0, lookIntoThroneRoom
 					)
 				#endif
 			#end:case
 			case 5:
 				if local2:
-					(global91 say: 7 5 22)
+					global91._send('say:', 7, 5, 22)
 				else:
-					(global2 setScript: enterThroneRoom)
+					global2._send('setScript:', enterThroneRoom)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -1105,7 +1050,7 @@ class throneDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self stopUpd:)
+		self._send('stopUpd:')
 	#end:method
 
 #end:class or instance
@@ -1118,9 +1063,9 @@ class lookIntoThroneRoom(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(tempGuard1 dispose:)
-		(tempGuard2 dispose:)
-		(super dispose:)
+		tempGuard1._send('dispose:')
+		tempGuard2._send('dispose:')
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -1130,13 +1075,13 @@ class lookIntoThroneRoom(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(82, 1) noun: 5 init: 794)
-				(tempGuard1 init: stopUpd:)
-				(tempGuard2 view: (kernel.ScriptID(80, 6) view:) init: stopUpd:)
+				kernel.ScriptID(82, 1)._send('noun:', 5, 'init:', 794)
+				tempGuard1._send('init:', 'stopUpd:')
+				tempGuard2._send('view:', kernel.ScriptID(80, 6)._send('view:'), 'init:', 'stopUpd:')
 				cycles = 4
 			#end:case
 			case 1:
-				(global91 say: 9 1 26 2)
+				global91._send('say:', 9, 1, 26, 2)
 			#end:case
 		#end:match
 	#end:method
@@ -1189,9 +1134,9 @@ class kitchenDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if ((not local2) and (not (kernel.ScriptID(80, 0) tstFlag: 709 2))):
-			(self approachVerbs: 5)
+		super._send('init:', &rest)
+		if ((not local2) and (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2))):
+			self._send('approachVerbs:', 5)
 		#endif
 	#end:method
 
@@ -1203,13 +1148,13 @@ class kitchenDoor(Prop):
 		match param1
 			case 5:
 				if local2:
-					(global91 say: 7 5 22)
+					global91._send('say:', 7, 5, 22)
 				else:
-					(global2 setScript: doKitchen)
+					global2._send('setScript:', doKitchen)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -1232,9 +1177,9 @@ class basementDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if ((not local2) and (not (kernel.ScriptID(80, 0) tstFlag: 709 2))):
-			(self approachVerbs: 5)
+		super._send('init:', &rest)
+		if ((not local2) and (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2))):
+			self._send('approachVerbs:', 5)
 		#endif
 	#end:method
 
@@ -1246,13 +1191,13 @@ class basementDoor(Prop):
 		match param1
 			case 5:
 				if local2:
-					(global91 say: 7 5 22)
+					global91._send('say:', 7, 5, 22)
 				else:
-					(global2 setScript: tryToOpenDoor)
+					global2._send('setScript:', tryToOpenDoor)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -1291,29 +1236,29 @@ class saladin(Actor):
 			case local2:
 				if (param1 == 1):
 					if proc913_0(72):
-						(global91 say: noun param1 18)
+						global91._send('say:', noun, param1, 18)
 					else:
-						(global91 say: noun param1 19)
+						global91._send('say:', noun, param1, 19)
 					#endif
 				else:
-					(global91 say: 6 5 22)
+					global91._send('say:', 6, 5, 22)
 				#endif
 			#end:case
 			case (param1 == 61):
-				(global2 setScript: showLetter)
+				global2._send('setScript:', showLetter)
 			#end:case
 			case proc999_5(param1, 1, 2):
 				if proc913_0(72):
-					(global91 say: noun param1 20)
+					global91._send('say:', noun, param1, 20)
 				else:
-					(global91 say: noun param1 21)
+					global91._send('say:', noun, param1, 21)
 				#endif
 			#end:case
 			case proc999_5(param1, 5, 8, 18, 65, 33, 16):
-				(global91 say: noun param1 23)
+				global91._send('say:', noun, param1, 23)
 			#end:case
 			else:
-				(global91 say: 6 0 23)
+				global91._send('say:', 6, 0, 23)
 			#end:else
 		)
 	#end:method
@@ -1333,9 +1278,9 @@ class urns(Feature):
 
 		(return
 			(and
-				(super onMe: param1)
-				x = (param1 x:)
-				((((param1 x:) > 160) and noun = 13) or noun = 12)
+				super._send('onMe:', param1)
+				x = param1._send('x:')
+				(((param1._send('x:') > 160) and noun = 13) or noun = 12)
 			)
 		)
 	#end:method
@@ -1371,12 +1316,12 @@ class pillarsFtr(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		x = (param1 x:)
+		x = param1._send('x:')
 		y = 0
 		(return
 			(and
 				(or
-					(super onMe: param1)
+					super._send('onMe:', param1)
 					proc999_4(50, 59, 66, 70, param1)
 					proc999_4(254, 62, 271, 70, param1)
 				)
@@ -1399,7 +1344,7 @@ class stairs(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		x = y = 0
-		return ((super onMe: param1) and x = (param1 x:) and y = (param1 y:))
+		return (super._send('onMe:', param1) and x = param1._send('x:') and y = param1._send('y:'))
 	#end:method
 
 #end:class or instance

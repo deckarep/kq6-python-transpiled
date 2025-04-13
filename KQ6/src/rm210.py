@@ -52,13 +52,13 @@ def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (singSing script:):
+	if singSing._send('script:'):
 		local29 = param1
-		if proc999_5((singSingScr state:), 3, 9):
-			(singSing setScript: 0)
+		if proc999_5(singSingScr._send('state:'), 3, 9):
+			singSing._send('setScript:', 0)
 		#endif
 	else:
-		(param1 cue:)
+		param1._send('cue:')
 	#endif
 #end:procedure
 
@@ -75,81 +75,76 @@ class rm210(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init: 39 -10 263 -10 250 78 232 104 139 139 76 113 39 82
-					yourself:
-				)
-				((Polygon new:)
-					type: 0
-					init: 0 189 0 120 65 120 117 148 68 189
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 29 138 94 138 94 156 31 162
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 0 -10 27 -10 27 84 64 119 0 119
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 115 189 151 145 244 108 266 79 319 79 319 189
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 39, -10, 263, -10, 250, 78, 232, 104, 139, 139, 76, 113, 39, 82,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 0,
+					'init:', 0, 189, 0, 120, 65, 120, 117, 148, 68, 189,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 29, 138, 94, 138, 94, 156, 31, 162,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, -10, 27, -10, 27, 84, 64, 119, 0, 119,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 115, 189, 151, 145, 244, 108, 266, 79, 319, 79, 319, 189,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
-		(global0 init: setScale: Scaler 100 84 134 81)
-		(global32 add: genericFeatures tree holeInTree eachElementDo: #init)
-		(kernel.ScriptID(10, 4) onMeCheck: 2 setOnMeCheck: 1 2 init:)
+		super._send('init:', &rest)
+		global0._send('init:', 'setScale:', Scaler, 100, 84, 134, 81)
+		global32._send('add:', genericFeatures, tree, holeInTree, 'eachElementDo:', #init)
+		kernel.ScriptID(10, 4)._send('onMeCheck:', 2, 'setOnMeCheck:', 1, 2, 'init:')
 		proc958_0(132, 214, 215, 216)
 		match global12
 			case 220:
-				(global2 setScript: enterFromCastleScr 0 global0)
+				global2._send('setScript:', enterFromCastleScr, 0, global0)
 			#end:case
 			case 240:
-				(global2 setScript: enterFromVillageScr)
+				global2._send('setScript:', enterFromVillageScr)
 			#end:case
 			case 140:
-				(global104 fade: 0 30 8 1)
-				(global0
-					posn: (singSing approachX:) (singSing approachY:)
-					loop: 6
+				global104._send('fade:', 0, 30, 8, 1)
+				global0._send(
+					'posn:', singSing._send('approachX:'), singSing._send('approachY:'),
+					'loop:', 6
 				)
 			#end:case
 			else:
 				if (global12 != 200):
-					(kernel.ScriptID(10, 0) setIt: 2)
+					kernel.ScriptID(10, 0)._send('setIt:', 2)
 				#endif
 				local34 = 1
 				proc12_1(91, 185, 30)
 			#end:else
 		#end:match
-		temp2 = ((global9 at: 39) owner:)
-		temp3 = ((global9 at: 38) owner:)
+		temp2 = global9._send('at:', 39)._send('owner:')
+		temp3 = global9._send('at:', 38)._send('owner:')
 		if (proc913_0(94) and (temp3 != 140)):
 			temp3 = global11
 		#endif
-		temp1 = ((global9 at: 47) owner:)
-		if (((global9 at: 35) owner:) == -1):
-			(theRibbon init:)
+		temp1 = global9._send('at:', 47)._send('owner:')
+		if (global9._send('at:', 35)._send('owner:') == -1):
+			theRibbon._send('init:')
 		#endif
-		if (((global9 at: 32) owner:) == -1):
-			(letter init:)
+		if (global9._send('at:', 32)._send('owner:') == -1):
+			letter._send('init:')
 		#endif
 		if (temp2 == 140):
-			((global9 at: 39) owner: global11)
+			global9._send('at:', 39)._send('owner:', global11)
 		#endif
 		if (temp3 == 140):
-			((global9 at: 38) owner: global11)
+			global9._send('at:', 38)._send('owner:', global11)
 		#endif
 		if (temp1 == 140):
-			((global9 at: 47) owner: global11)
+			global9._send('at:', 47)._send('owner:', global11)
 		#endif
 		(= temp0
 			(not
@@ -160,9 +155,9 @@ class rm210(KQ6Room):
 				)
 			)
 		)
-		if (kernel.ScriptID(10, 0) isSet: 2):
-			(kernel.ScriptID(10, 0) clrIt: 2)
-			(clown init:)
+		if kernel.ScriptID(10, 0)._send('isSet:', 2):
+			kernel.ScriptID(10, 0)._send('clrIt:', 2)
+			clown._send('init:')
 		#endif
 		(cond
 			case 
@@ -200,14 +195,14 @@ class rm210(KQ6Room):
 				proc10_2(deliveryScr, 6)
 			#end:case
 			else:
-				if ((global0 has: 0) and temp0):
+				if (global0._send('has:', 0) and temp0):
 					if proc913_0(21):
-						(singSing init: 0)
+						singSing._send('init:', 0)
 					else:
-						(singSing init: 1)
+						singSing._send('init:', 1)
 					#endif
-					(global103 number: 210 loop: -1 play:)
-					(musicScr client: musicScr cue:)
+					global103._send('number:', 210, 'loop:', -1, 'play:')
+					musicScr._send('client:', musicScr, 'cue:')
 				#endif
 				proc913_2(62)
 				proc913_2(63)
@@ -215,22 +210,22 @@ class rm210(KQ6Room):
 		)
 		(= temp5
 			(or
-				proc999_5((global2 script:), enterFromCastleScr, enterFromVillageScr)
+				proc999_5(global2._send('script:'), enterFromCastleScr, enterFromVillageScr)
 				local34
 			)
 		)
 		if 
 			(and
-				(global5 contains: singSing)
+				global5._send('contains:', singSing)
 				(or
-					(temp5 and (not ((global2 script:) script:)))
-					((not temp5) and (not (global2 script:)))
+					(temp5 and (not global2._send('script:')._send('script:')))
+					((not temp5) and (not global2._send('script:')))
 				)
 			)
-			(singSing setScript: singSingScr)
+			singSing._send('setScript:', singSingScr)
 		#endif
 		if (global12 != 220):
-			(global102 number: 917 loop: -1 play:)
+			global102._send('number:', 917, 'loop:', -1, 'play:')
 		#endif
 	#end:method
 
@@ -239,18 +234,18 @@ class rm210(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x4000):
-				(global0 setSpeed: 6)
-				(global2 setScript: kernel.Clone(exitToCastleScr) 0 global0)
+				global0._send('setSpeed:', 6)
+				global2._send('setScript:', kernel.Clone(exitToCastleScr), 0, global0)
 			#end:case
 			case (temp0 & 0x2000):
-				(global2 setScript: exitToVillageScr)
+				global2._send('setScript:', exitToVillageScr)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -258,16 +253,16 @@ class rm210(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 == 220) and (global5 contains: clown)):
-			(kernel.ScriptID(10, 0) setIt: 2)
+		if ((param1 == 220) and global5._send('contains:', clown)):
+			kernel.ScriptID(10, 0)._send('setIt:', 2)
 		#endif
-		if (global5 contains: singSing):
-			(global103 fade:)
-			if (global78 contains: musicScr):
-				(musicScr dispose:)
+		if global5._send('contains:', singSing):
+			global103._send('fade:')
+			if global78._send('contains:', musicScr):
+				musicScr._send('dispose:')
 			#endif
 		#endif
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -277,18 +272,18 @@ class rm210(KQ6Room):
 
 		match param1
 			case 85:
-				if (not (global5 contains: singSing)):
+				if (not global5._send('contains:', singSing)):
 					temp0 = 1
 				else:
-					(self setScript: fluteScr)
+					self._send('setScript:', fluteScr)
 					temp0 = 0
 				#endif
 			#end:case
 			case 93:
-				if (not (global5 contains: singSing)):
+				if (not global5._send('contains:', singSing)):
 					temp0 = 1
 				else:
-					(singSing doVerb: 37)
+					singSing._send('doVerb:', 37)
 					temp0 = 0
 				#endif
 			#end:case
@@ -307,10 +302,10 @@ class rm210(KQ6Room):
 				return 0
 			#end:case
 			case argc:
-				(super edgeToRoom: param1 &rest)
+				super._send('edgeToRoom:', param1, &rest)
 			#end:case
 			else:
-				(super edgeToRoom:)
+				super._send('edgeToRoom:')
 			#end:else
 		)
 	#end:method
@@ -320,8 +315,8 @@ class rm210(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 fade:)
-		(super dispose:)
+		global102._send('fade:')
+		super._send('dispose:')
 		kernel.DisposeScript(983)
 		kernel.DisposeScript(964)
 	#end:method
@@ -356,22 +351,21 @@ class musicScr(Script):
 		match state = param1
 			case 0:
 				if (not register):
-					(global104 stop:)
+					global104._send('stop:')
 				#endif
 				register = 1
-				(global78 add: self)
+				global78._send('add:', self)
 				while True: #repeat
 					(breakif (register = kernel.Random(0, 2) != local33))
 				#end:loop
-				(global104
-					number:
-						match register
+				global104._send(
+					'number:', match register
 							case 0: 214#end:case
 							case 1: 215#end:case
 							case 2: 216#end:case
-						#end:match
-					loop: 1
-					play: self
+						#end:match,
+					'loop:', 1,
+					'play:', self
 				)
 			#end:case
 			case 1:
@@ -386,9 +380,9 @@ class musicScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		if register:
-			(global78 delete: self)
+			global78._send('delete:', self)
 		#endif
 		register = 0
 	#end:method
@@ -405,31 +399,31 @@ class fluteScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				localproc_0(self)
 			#end:case
 			case 1:
-				if (global5 contains: singSing):
-					(global103 fade:)
-					(musicScr dispose:)
+				if global5._send('contains:', singSing):
+					global103._send('fade:')
+					musicScr._send('dispose:')
 				#endif
-				(global102 fade:)
-				(self setScript: kernel.ScriptID(85) self)
+				global102._send('fade:')
+				self._send('setScript:', kernel.ScriptID(85), self)
 			#end:case
 			case 2:
-				(global91 say: 14 31 9 0 self)
+				global91._send('say:', 14, 31, 9, 0, self)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(global102 play:)
-				if (global5 contains: singSing):
-					(global103 play:)
-					(musicScr state: -1 client: musicScr cue:)
+				global102._send('play:')
+				if global5._send('contains:', singSing):
+					global103._send('play:')
+					musicScr._send('state:', -1, 'client:', musicScr, 'cue:')
 				#endif
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -446,15 +440,15 @@ class enterFromVillageScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					setSpeed: 6
-					posn: 23 70
-					setScale: Scaler 86 20 88 70
-					setMotion: MoveTo 38 88 self
+				global0._send(
+					'setSpeed:', 6,
+					'posn:', 23, 70,
+					'setScale:', Scaler, 86, 20, 88, 70,
+					'setMotion:', MoveTo, 38, 88, self
 				)
 			#end:case
 			case 1:
-				(global0 reset: 2 setScale: Scaler 100 84 134 81)
+				global0._send('reset:', 2, 'setScale:', Scaler, 100, 84, 134, 81)
 				cycles = 1
 			#end:case
 			case 2:
@@ -463,10 +457,10 @@ class enterFromVillageScr(Script):
 				#endif
 			#end:case
 			case 3:
-				if (not (global5 contains: clown)):
-					(global1 handsOn:)
+				if (not global5._send('contains:', clown)):
+					global1._send('handsOn:')
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -483,18 +477,18 @@ class exitToVillageScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setSpeed: 6
-					setScale: Scaler 90 20 88 70
-					setMotion: MoveTo 23 70 self
+				global1._send('handsOff:')
+				global0._send(
+					'setSpeed:', 6,
+					'setScale:', Scaler, 90, 20, 88, 70,
+					'setMotion:', MoveTo, 23, 70, self
 				)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global2 newRoom: 240)
+				global2._send('newRoom:', 240)
 			#end:case
 		#end:match
 	#end:method
@@ -511,48 +505,48 @@ class enterFromCastleScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					setSpeed: 6
-					posn: 277 64
-					setScale: Scaler 30 5 75 15
-					setMotion: DPath 283 65 295 71 300 79 self
+				global0._send(
+					'setSpeed:', 6,
+					'posn:', 277, 64,
+					'setScale:', Scaler, 30, 5, 75, 15,
+					'setMotion:', DPath, 283, 65, 295, 71, 300, 79, self
 				)
 			#end:case
 			case 1:
-				(global0 hide:)
+				global0._send('hide:')
 				ticks = 150
 			#end:case
 			case 2:
-				(global0
-					show:
-					setPri: 3
-					posn: 271 130
-					setLoop: 2
-					scaleX: 108
-					scaleY: 108
-					setScale:
-					setMotion: MoveTo 263 81 self
+				global0._send(
+					'show:',
+					'setPri:', 3,
+					'posn:', 271, 130,
+					'setLoop:', 2,
+					'scaleX:', 108,
+					'scaleY:', 108,
+					'setScale:',
+					'setMotion:', MoveTo, 263, 81, self
 				)
 			#end:case
 			case 3:
-				(global0 setPri: -1 setScale: Scaler 100 84 134 81)
+				global0._send('setPri:', -1, 'setScale:', Scaler, 100, 84, 134, 81)
 				cycles = 1
 			#end:case
 			case 4:
-				(global0 setMotion: MoveTo 260 85 self)
+				global0._send('setMotion:', MoveTo, 260, 85, self)
 			#end:case
 			case 5:
-				(global0 reset: 2)
+				global0._send('reset:', 2)
 				if register:
-					(register cue:)
+					register._send('cue:')
 				#endif
 				if (not script):
 					cycles = 1
 				#endif
 			#end:case
 			case 6:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -570,40 +564,40 @@ class exitToCastleScr(Script):
 		match state = param1
 			case 0:
 				if (register == global0):
-					(global1 handsOff:)
+					global1._send('handsOff:')
 				#endif
-				(register
-					setLoop: 3
-					setPri: 3
-					setScale:
-					setMotion: MoveTo 267 131 self
+				register._send(
+					'setLoop:', 3,
+					'setPri:', 3,
+					'setScale:',
+					'setMotion:', MoveTo, 267, 131, self
 				)
 			#end:case
 			case 1:
-				(register hide:)
+				register._send('hide:')
 				ticks = 150
 				if (register != global0):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
 			#end:case
 			case 2:
-				(register
-					show:
-					setLoop: -1
-					setPri: -1
-					setScale: Scaler 30 5 75 15
-					posn: 300 79
+				register._send(
+					'show:',
+					'setLoop:', -1,
+					'setPri:', -1,
+					'setScale:', Scaler, 30, 5, 75, 15,
+					'posn:', 300, 79
 				)
-				(register setMotion: kernel.Clone(exitPath) self)
+				register._send('setMotion:', kernel.Clone(exitPath), self)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
 				if (register == global0):
-					(global2 newRoom: 220)
+					global2._send('newRoom:', 220)
 				else:
-					(self dispose:)
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -621,23 +615,23 @@ class clownScr(Script):
 
 		match state = param1
 			case 0:
-				(clown setMotion: PolyPath 138 144 self)
+				clown._send('setMotion:', PolyPath, 138, 144, self)
 			#end:case
 			case 1:
-				(clown view: 718 setLoop: 5 setMotion: PolyPath 247 104 self)
+				clown._send('view:', 718, 'setLoop:', 5, 'setMotion:', PolyPath, 247, 104, self)
 			#end:case
 			case 2:
-				(clown view: 717 setLoop: -1 setMotion: PolyPath 261 85 self)
+				clown._send('view:', 717, 'setLoop:', -1, 'setMotion:', PolyPath, 261, 85, self)
 			#end:case
 			case 3:
-				(self setScript: kernel.Clone(exitToCastleScr) self clown)
+				self._send('setScript:', kernel.Clone(exitToCastleScr), self, clown)
 			#end:case
 			case 4:
-				(clown hide:)
+				clown._send('hide:')
 				seconds = 10
 			#end:case
 			case 5:
-				(clown dispose:)
+				clown._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -654,42 +648,42 @@ class returnToBranch(Script):
 
 		match state = param1
 			case 0:
-				(singSing
-					init:
-					z: 0
-					setPri: 1
-					posn: 305 30
-					setScale: Scaler 100 5 51 30
-					setLoop: 0
-					setCycle: Fwd
-					setMotion: MoveTo 272 52 self
+				singSing._send(
+					'init:',
+					'z:', 0,
+					'setPri:', 1,
+					'posn:', 305, 30,
+					'setScale:', Scaler, 100, 5, 51, 30,
+					'setLoop:', 0,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 272, 52, self
 				)
 			#end:case
 			case 1:
-				(singSing
-					setStep: 4 3
-					setScale: 0
-					setMotion: MoveTo 226 55 self
+				singSing._send(
+					'setStep:', 4, 3,
+					'setScale:', 0,
+					'setMotion:', MoveTo, 226, 55, self
 				)
 			#end:case
 			case 2:
-				(singSing setLoop: 3 cel: 0 setCycle: End self)
+				singSing._send('setLoop:', 3, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(singSing loop: 2 cel: 8 posn: 252 125 97 setPri: 14)
+				singSing._send('loop:', 2, 'cel:', 8, 'posn:', 252, 125, 97, 'setPri:', 14)
 				cycles = 2
 			#end:case
 			case 4:
-				(global91 say: 1 0 register 0 self)
+				global91._send('say:', 1, 0, register, 0, self)
 			#end:case
 			case 5:
-				(global103 number: 210 loop: -1 play:)
-				(musicScr client: musicScr cue:)
+				global103._send('number:', 210, 'loop:', -1, 'play:')
+				musicScr._send('client:', musicScr, 'cue:')
 				proc913_2(62)
 				proc913_2(63)
-				(singSing setScript: singSingScr)
-				(global1 handsOn:)
-				(self dispose:)
+				singSing._send('setScript:', singSingScr)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -709,13 +703,13 @@ class notReturnScr(Script):
 				seconds = 5
 			#end:case
 			case 1:
-				(global91 say: 1 0 register 0 self)
+				global91._send('say:', 1, 0, register, 0, self)
 			#end:case
 			case 2:
 				proc913_2(62)
 				proc913_2(63)
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -733,13 +727,13 @@ class deliveryScr(Script):
 		match state = param1
 			case 0:
 				if proc999_5(register, 5, 6):
-					(singSing init: 0)
+					singSing._send('init:', 0)
 					(cond
-						case (clown script:):
+						case clown._send('script:'):
 							seconds = 6
 						#end:case
 						case (client == enterFromCastleScr):
-							(client register: self)
+							client._send('register:', self)
 						#end:case
 						else:
 							seconds = 3
@@ -747,123 +741,123 @@ class deliveryScr(Script):
 					)
 				else:
 					state = 2
-					(singSing
-						init:
-						z: 0
-						posn: 305 30
-						setScale: Scaler 100 5 51 30
+					singSing._send(
+						'init:',
+						'z:', 0,
+						'posn:', 305, 30,
+						'setScale:', Scaler, 100, 5, 51, 30
 					)
 					cycles = 2
 				#endif
 			#end:case
 			case 1:
-				(singSing z: 0 loop: 4 cel: 0 posn: 225 56 setCycle: End self)
+				singSing._send('z:', 0, 'loop:', 4, 'cel:', 0, 'posn:', 225, 56, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(singSing posn: 201 56)
-				(self cue:)
+				singSing._send('posn:', 201, 56)
+				self._send('cue:')
 			#end:case
 			case 3:
-				(singSing
-					view: 214
-					setLoop: (0 if proc913_0(62) else 1)
-					setCycle: Fwd
+				singSing._send(
+					'view:', 214,
+					'setLoop:', (0 if proc913_0(62) else 1),
+					'setCycle:', Fwd
 				)
 				if proc999_5(register, 5, 6):
 					state = 4
 				#endif
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 4:
-				(singSing setMotion: MoveTo 272 52 self)
+				singSing._send('setMotion:', MoveTo, 272, 52, self)
 			#end:case
 			case 5:
-				(singSing setScale: 0 setStep: 4 3)
+				singSing._send('setScale:', 0, 'setStep:', 4, 3)
 				if proc913_0(62):
-					(singSing setMotion: MoveTo 156 79 self)
+					singSing._send('setMotion:', MoveTo, 156, 79, self)
 				else:
-					(singSing setMotion: MoveTo 111 81 self)
+					singSing._send('setMotion:', MoveTo, 111, 81, self)
 				#endif
 			#end:case
 			case 6:
 				if proc913_0(62):
-					(theRibbon init:)
+					theRibbon._send('init:')
 				else:
-					(letter init:)
+					letter._send('init:')
 				#endif
 				if 
 					(and
-						(((global9 at: 39) owner:) == global11)
-						(((global9 at: 38) owner:) == global11)
-						(((global9 at: 47) owner:) == global11)
+						(global9._send('at:', 39)._send('owner:') == global11)
+						(global9._send('at:', 38)._send('owner:') == global11)
+						(global9._send('at:', 47)._send('owner:') == global11)
 					)
-					(singSing
-						view: 213
-						setLoop: 0
-						setMotion: MoveTo -10 79 self
+					singSing._send(
+						'view:', 213,
+						'setLoop:', 0,
+						'setMotion:', MoveTo, -10, 79, self
 					)
 				else:
 					state.post('++')
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 7:
-				(singSing dispose:)
+				singSing._send('dispose:')
 				cycles = 2
 				state = 10
 			#end:case
 			case 8:
 				if proc913_0(62):
-					(singSing posn: 156 79)
+					singSing._send('posn:', 156, 79)
 				else:
-					(singSing posn: 111 81)
+					singSing._send('posn:', 111, 81)
 				#endif
-				(singSing view: 213 setLoop: 5 cel: 0 setCycle: End self)
+				singSing._send('view:', 213, 'setLoop:', 5, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 9:
 				if proc913_0(62):
-					(singSing posn: 185 69)
+					singSing._send('posn:', 185, 69)
 				else:
-					(singSing posn: 141 72)
+					singSing._send('posn:', 141, 72)
 				#endif
-				(singSing
-					setLoop: 1
-					setCycle: Fwd
-					setMotion: MoveTo 220 49 self
+				singSing._send(
+					'setLoop:', 1,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 220, 49, self
 				)
 			#end:case
 			case 10:
-				(singSing
-					setLoop: -1
-					loop: 6
-					cel: 0
-					posn: 225 56
-					setCycle: End self
+				singSing._send(
+					'setLoop:', -1,
+					'loop:', 6,
+					'cel:', 0,
+					'posn:', 225, 56,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 11:
-				if (global5 contains: singSing):
-					(global103 number: 210 loop: -1 play:)
-					(musicScr state: -1 client: musicScr cue:)
+				if global5._send('contains:', singSing):
+					global103._send('number:', 210, 'loop:', -1, 'play:')
+					musicScr._send('state:', -1, 'client:', musicScr, 'cue:')
 				#endif
-				(global91 say: 1 0 register 0 self)
+				global91._send('say:', 1, 0, register, 0, self)
 			#end:case
 			case 12:
-				if (global5 contains: singSing):
-					(singSing
-						loop: 2
-						cel: 8
-						posn: 252 125 97
-						setPri: 14
-						setScript: singSingScr
+				if global5._send('contains:', singSing):
+					singSing._send(
+						'loop:', 2,
+						'cel:', 8,
+						'posn:', 252, 125, 97,
+						'setPri:', 14,
+						'setScript:', singSingScr
 					)
 				#endif
 				if local32:
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
 				proc913_2(62)
 				proc913_2(63)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -880,109 +874,108 @@ class giveItemToBirdScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: MoveTo 138 142 self)
+				global0._send('setMotion:', MoveTo, 138, 142, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 90 self)
+				global0._send('setHeading:', 90, self)
 			#end:case
 			case 2:
 				localproc_0(self)
 			#end:case
 			case 3:
-				(global0
-					view: 211
-					posn: 147 143
-					loop: 0
-					cel: 0
-					normal: 0
-					setCycle: End self
+				global0._send(
+					'view:', 211,
+					'posn:', 147, 143,
+					'loop:', 0,
+					'cel:', 0,
+					'normal:', 0,
+					'setCycle:', End, self
 				)
 				if local31:
-					(genieSnake init:)
+					genieSnake._send('init:')
 				#endif
 			#end:case
 			case 4:
 				if 
 					(and
-						(global5 contains: genieSnake)
-						(((genieSnake script:) state:) <= 0)
+						global5._send('contains:', genieSnake)
+						(genieSnake._send('script:')._send('state:') <= 0)
 					)
 					state.post('--')
 					ticks = 15
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 6:
-				(global103 fade:)
-				(musicScr dispose:)
-				(singSing z: 0 loop: 4 posn: 225 56 setCycle: End self)
+				global103._send('fade:')
+				musicScr._send('dispose:')
+				singSing._send('z:', 0, 'loop:', 4, 'posn:', 225, 56, 'setCycle:', End, self)
 			#end:case
 			case 7:
-				(singSing
-					setLoop: 0
-					posn: 201 56
-					setCycle: Fwd self
-					setMotion: MoveTo 158 95 self
+				singSing._send(
+					'setLoop:', 0,
+					'posn:', 201, 56,
+					'setCycle:', Fwd, self,
+					'setMotion:', MoveTo, 158, 95, self
 				)
 			#end:case
 			case 8:
-				if ((global103 prevSignal:) != -1):
-					(global103 stop:)
+				if (global103._send('prevSignal:') != -1):
+					global103._send('stop:')
 				#endif
-				(global105 number: 212 play:)
+				global105._send('number:', 212, 'play:')
 				if proc913_0(10):
-					(global105 hold: 10)
+					global105._send('hold:', 10)
 				#endif
-				(singSing setLoop: 5 cel: 0 setCycle: End self)
+				singSing._send('setLoop:', 5, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 9:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 10:
-				(global0 setCycle: Beg self)
-				(self cue:)
+				global0._send('setCycle:', Beg, self)
+				self._send('cue:')
 				register = 0
 			#end:case
 			case 11:
-				(singSing
-					view: 214
-					setLoop:
-						match register
+				singSing._send(
+					'view:', 214,
+					'setLoop:', match register
 							case 2: 2#end:case
 							case 1: 3#end:case
 							case 0: 4#end:case
-						#end:match
-					posn: 187 85
-					setCycle: Fwd
-					setMotion: MoveTo 272 52 self
+						#end:match,
+					'posn:', 187, 85,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 272, 52, self
 				)
 			#end:case
 			case 12:
-				(global0 posn: ((global0 x:) - 10) ((global0 y:) - 3) reset: 4)
+				global0._send('posn:', (global0._send('x:') - 10), (global0._send('y:') - 3), 'reset:', 4)
 			#end:case
 			case 13:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 14:
-				(singSing
-					setScale: Scaler 100 5 51 30
-					setMotion: MoveTo 305 30 self
+				singSing._send(
+					'setScale:', Scaler, 100, 5, 51, 30,
+					'setMotion:', MoveTo, 305, 30, self
 				)
 			#end:case
 			case 15:
-				(singSing dispose:)
-				if (global5 contains: genieSnake):
-					((genieSnake script:) caller: self ticks: 0 state: 2 cue:)
+				singSing._send('dispose:')
+				if global5._send('contains:', genieSnake):
+					genieSnake._send('script:')._send('caller:', self, 'ticks:', 0, 'state:', 2, 'cue:')
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 16:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -999,19 +992,19 @@ class givePoemScr(CartoonScript):
 
 		match state = param1
 			case 0:
-				(global0 put: 47 140)
-				(global1 handsOff:)
-				if (temp0 = ((global9 at: 39) owner:) == 210):
-					(global1 givePoints: 1)
+				global0._send('put:', 47, 140)
+				global1._send('handsOff:')
+				if (temp0 = global9._send('at:', 39)._send('owner:') == 210):
+					global1._send('givePoints:', 1)
 				#endif
-				temp1 = ((global9 at: 38) owner:)
+				temp1 = global9._send('at:', 38)._send('owner:')
 				(= register
 					(cond
 						case 
 							(and
 								(temp0 != global11)
 								(temp1 != global11)
-								(((global9 at: 47) owner:) != global11)
+								(global9._send('at:', 47)._send('owner:') != global11)
 							):
 							local31 = 1
 							(25 if proc913_0(10) else 26)
@@ -1023,59 +1016,58 @@ class givePoemScr(CartoonScript):
 						#end:case
 					)
 				)
-				(self setScript: giveItemToBirdScr self 2)
+				self._send('setScript:', giveItemToBirdScr, self, 2)
 			#end:case
 			case 1:
 				if proc999_5(register, 14, 32, 25):
-					(KQ6Print posn: -1 80)
+					KQ6Print._send('posn:', -1, 80)
 				else:
-					(KQ6Print posn: -1 100)
+					KQ6Print._send('posn:', -1, 100)
 				#endif
-				(KQ6Print
-					font: global22
-					say: 0 4 32 register 1
-					init: giveItemToBirdScr
+				KQ6Print._send(
+					'font:', global22,
+					'say:', 0, 4, 32, register, 1,
+					'init:', giveItemToBirdScr
 				)
 			#end:case
 			case 2:
 				if proc999_5(register, 25, 26):
-					(KQ6Print
-						font: global22
-						posn: -1 100
-						say: 0 4 32 register 2
-						init: giveItemToBirdScr
+					KQ6Print._send(
+						'font:', global22,
+						'posn:', -1, 100,
+						'say:', 0, 4, 32, register, 2,
+						'init:', giveItemToBirdScr
 					)
 				else:
-					(giveItemToBirdScr cue:)
+					giveItemToBirdScr._send('cue:')
 				#endif
 			#end:case
 			case 3:
-				(KQ6Print
-					font: global22
-					posn: -1 100
-					modeless: 1
-					ticks: 0
-					say:
-						0
-						4
-						32
-						register
-						(3 if proc999_5(register, 25, 26) else 2)
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', -1, 100,
+					'modeless:', 1,
+					'ticks:', 0,
+					'say:', 0, 4, 32, register, if proc999_5(register, 25, 26):
+							3
+						else:
+							2
+						#endif,
+					'init:'
 				)
-				(giveItemToBirdScr cue:)
+				giveItemToBirdScr._send('cue:')
 			#end:case
 			case 4:
 				if global25:
 					if (global90 & 0x0002):
-						(self cue:)
+						self._send('cue:')
 					else:
 						state.post('++')
-						(KQ6Print caller: self)
+						KQ6Print._send('caller:', self)
 					#endif
 				else:
 					state.post('++')
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
@@ -1086,10 +1078,10 @@ class givePoemScr(CartoonScript):
 			#end:case
 			case 6:
 				if proc913_0(10):
-					(global2 newRoom: 140)
+					global2._send('newRoom:', 140)
 				else:
-					(global1 handsOn:)
-					(self dispose:)
+					global1._send('handsOn:')
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -1107,23 +1099,23 @@ class giveRingScr(CartoonScript):
 
 		match state = param1
 			case 0:
-				(global0 put: 39 140)
-				(global1 handsOff:)
+				global0._send('put:', 39, 140)
+				global1._send('handsOff:')
 				if proc913_0(10):
-					(global1 givePoints: 3)
+					global1._send('givePoints:', 3)
 				else:
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
 				proc913_1(62)
-				temp0 = ((global9 at: 47) owner:)
-				temp1 = ((global9 at: 38) owner:)
+				temp0 = global9._send('at:', 47)._send('owner:')
+				temp1 = global9._send('at:', 38)._send('owner:')
 				(= register
 					(cond
 						case 
 							(and
 								(temp0 != global11)
 								(temp1 != global11)
-								(((global9 at: 39) owner:) != global11)
+								(global9._send('at:', 39)._send('owner:') != global11)
 							):
 							local31 = 1
 							(25 if proc913_0(10) else 26)
@@ -1136,71 +1128,70 @@ class giveRingScr(CartoonScript):
 						#end:else
 					)
 				)
-				(self setScript: giveItemToBirdScr self 0)
+				self._send('setScript:', giveItemToBirdScr, self, 0)
 			#end:case
 			case 1:
 				(cond
 					case (register == 25):
-						(KQ6Print posn: -1 100)
+						KQ6Print._send('posn:', -1, 100)
 					#end:case
 					case proc999_5(register, 36, 34):
-						(KQ6Print posn: -1 100)
+						KQ6Print._send('posn:', -1, 100)
 					#end:case
 					case (register == 38):
-						(KQ6Print posn: -1 100)
+						KQ6Print._send('posn:', -1, 100)
 					#end:case
 					else:
-						(KQ6Print posn: -1 100)
+						KQ6Print._send('posn:', -1, 100)
 					#end:else
 				)
-				(KQ6Print
-					font: global22
-					say: 0 4 70 register 1
-					init: giveItemToBirdScr
+				KQ6Print._send(
+					'font:', global22,
+					'say:', 0, 4, 70, register, 1,
+					'init:', giveItemToBirdScr
 				)
 			#end:case
 			case 2:
 				if proc999_5(register, 25, 26):
-					(KQ6Print
-						font: global22
-						posn: -1 100
-						say: 0 4 70 register 2
-						init: giveItemToBirdScr
+					KQ6Print._send(
+						'font:', global22,
+						'posn:', -1, 100,
+						'say:', 0, 4, 70, register, 2,
+						'init:', giveItemToBirdScr
 					)
 				else:
-					(giveItemToBirdScr cue:)
+					giveItemToBirdScr._send('cue:')
 				#endif
 			#end:case
 			case 3:
 				if proc999_5(register, 36, 38):
 					register = 34
 				#endif
-				(KQ6Print
-					font: global22
-					posn: -1 100
-					modeless: 1
-					ticks: 0
-					say:
-						0
-						4
-						70
-						register
-						(3 if proc999_5(register, 25, 26) else 2)
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', -1, 100,
+					'modeless:', 1,
+					'ticks:', 0,
+					'say:', 0, 4, 70, register, if proc999_5(register, 25, 26):
+							3
+						else:
+							2
+						#endif,
+					'init:'
 				)
-				(giveItemToBirdScr cue:)
+				giveItemToBirdScr._send('cue:')
 			#end:case
 			case 4:
 				if global25:
 					if (global90 & 0x0002):
-						(self cue:)
+						self._send('cue:')
 					else:
 						state.post('++')
-						(KQ6Print caller: self)
+						KQ6Print._send('caller:', self)
 					#endif
 				else:
 					state.post('++')
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
@@ -1211,10 +1202,10 @@ class giveRingScr(CartoonScript):
 			#end:case
 			case 6:
 				if proc913_0(10):
-					(global2 newRoom: 140)
+					global2._send('newRoom:', 140)
 				else:
-					(global1 handsOn:)
-					(self dispose:)
+					global1._send('handsOn:')
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -1232,12 +1223,12 @@ class giveRoseScr(CartoonScript):
 
 		match state = param1
 			case 0:
-				(global0 put: 38 140)
-				(global1 handsOff:)
-				temp0 = ((global9 at: 39) owner:)
-				temp1 = ((global9 at: 47) owner:)
+				global0._send('put:', 38, 140)
+				global1._send('handsOff:')
+				temp0 = global9._send('at:', 39)._send('owner:')
+				temp1 = global9._send('at:', 47)._send('owner:')
 				if (temp0 == global11):
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
 				(= register
 					(cond
@@ -1245,7 +1236,7 @@ class giveRoseScr(CartoonScript):
 							(and
 								(temp0 != global11)
 								(temp1 != global11)
-								(((global9 at: 38) owner:) != global11)
+								(global9._send('at:', 38)._send('owner:') != global11)
 							):
 							local31 = 1
 							(25 if proc913_0(10) else 26)
@@ -1258,68 +1249,67 @@ class giveRoseScr(CartoonScript):
 						#end:else
 					)
 				)
-				(self setScript: giveItemToBirdScr self 1)
+				self._send('setScript:', giveItemToBirdScr, self, 1)
 			#end:case
 			case 1:
 				(cond
 					case (register == 25):
-						(KQ6Print posn: -1 80)
+						KQ6Print._send('posn:', -1, 80)
 					#end:case
 					case proc999_5(register, 23, 41):
-						(KQ6Print posn: -1 80)
+						KQ6Print._send('posn:', -1, 80)
 					#end:case
 					else:
-						(KQ6Print posn: -1 100)
+						KQ6Print._send('posn:', -1, 100)
 					#end:else
 				)
-				(KQ6Print
-					font: global22
-					say: 0 4 71 register 1
-					init: giveItemToBirdScr
+				KQ6Print._send(
+					'font:', global22,
+					'say:', 0, 4, 71, register, 1,
+					'init:', giveItemToBirdScr
 				)
 			#end:case
 			case 2:
 				if proc999_5(register, 25, 26):
-					(KQ6Print
-						font: global22
-						posn: -1 100
-						say: 0 4 71 register 2
-						init: giveItemToBirdScr
+					KQ6Print._send(
+						'font:', global22,
+						'posn:', -1, 100,
+						'say:', 0, 4, 71, register, 2,
+						'init:', giveItemToBirdScr
 					)
 				else:
-					(giveItemToBirdScr cue:)
+					giveItemToBirdScr._send('cue:')
 				#endif
 			#end:case
 			case 3:
 				if proc999_5(register, 41):
 					register = 23
 				#endif
-				(KQ6Print
-					font: global22
-					posn: -1 100
-					modeless: 1
-					ticks: 0
-					say:
-						0
-						4
-						71
-						register
-						(3 if proc999_5(register, 25, 26) else 2)
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', -1, 100,
+					'modeless:', 1,
+					'ticks:', 0,
+					'say:', 0, 4, 71, register, if proc999_5(register, 25, 26):
+							3
+						else:
+							2
+						#endif,
+					'init:'
 				)
-				(giveItemToBirdScr cue:)
+				giveItemToBirdScr._send('cue:')
 			#end:case
 			case 4:
 				if global25:
 					if (global90 & 0x0002):
-						(self cue:)
+						self._send('cue:')
 					else:
 						state.post('++')
-						(KQ6Print caller: self)
+						KQ6Print._send('caller:', self)
 					#endif
 				else:
 					state.post('++')
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
@@ -1330,10 +1320,10 @@ class giveRoseScr(CartoonScript):
 			#end:case
 			case 6:
 				if proc913_0(10):
-					(global2 newRoom: 140)
+					global2._send('newRoom:', 140)
 				else:
-					(global1 handsOn:)
-					(self dispose:)
+					global1._send('handsOn:')
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -1351,47 +1341,47 @@ class windBirdHeader(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 120 141 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 120, 141, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 90 self)
+				global0._send('setHeading:', 90, self)
 			#end:case
 			case 2:
 				localproc_0(self)
 			#end:case
 			case 3:
-				(KQ6Print
-					font: global22
-					posn: 10 10
-					say: 0 4 37 register 1
-					init: self
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 10, 10,
+					'say:', 0, 4, 37, register, 1,
+					'init:', self
 				)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(global103 fade:)
-				(musicScr dispose:)
-				(global0
-					setSpeed: 6
-					view: 883
-					loop: 1
-					cel: 0
-					posn: 120 142
-					normal: 0
-					setCycle: Fwd
-					scaleX: 128
-					scaleY: 128
-					setScale:
+				global103._send('fade:')
+				musicScr._send('dispose:')
+				global0._send(
+					'setSpeed:', 6,
+					'view:', 883,
+					'loop:', 1,
+					'cel:', 0,
+					'posn:', 120, 142,
+					'normal:', 0,
+					'setCycle:', Fwd,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'setScale:'
 				)
-				(global105 number: 930 loop: -1 play:)
+				global105._send('number:', 930, 'loop:', -1, 'play:')
 				ticks = 180
 			#end:case
 			case 6:
-				(global105 stop:)
-				(self dispose:)
+				global105._send('stop:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1408,43 +1398,43 @@ class windUpBirdScr(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: windBirdHeader self 10)
+				self._send('setScript:', windBirdHeader, self, 10)
 			#end:case
 			case 1:
-				(global105 number: 931 loop: -1 play:)
-				(global0 loop: 7 cycleSpeed: 9 setCycle: Fwd)
+				global105._send('number:', 931, 'loop:', -1, 'play:')
+				global0._send('loop:', 7, 'cycleSpeed:', 9, 'setCycle:', Fwd)
 				ticks = 180
 			#end:case
 			case 2:
-				(KQ6Print
-					font: global22
-					posn: 10 10
-					say: 0 4 37 10 2
-					init: self
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 10, 10,
+					'say:', 0, 4, 37, 10, 2,
+					'init:', self
 				)
 			#end:case
 			case 3:
-				(KQ6Print
-					font: global22
-					posn: 10 10
-					say: 0 4 37 10 3
-					init: self
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 10, 10,
+					'say:', 0, 4, 37, 10, 3,
+					'init:', self
 				)
 			#end:case
 			case 4:
 				ticks = 30
 			#end:case
 			case 5:
-				(global105 fade:)
-				(global103 play: 0 fade: 127 25 10 0)
-				(musicScr state: -1 client: musicScr cue:)
-				(global0 reset: 0 posn: 126 139)
+				global105._send('fade:')
+				global103._send('play:', 0, 'fade:', 127, 25, 10, 0)
+				musicScr._send('state:', -1, 'client:', musicScr, 'cue:')
+				global0._send('reset:', 0, 'posn:', 126, 139)
 				cycles = 2
 			#end:case
 			case 6:
-				(singSing setScript: singSingScr)
-				(global1 handsOn:)
-				(self dispose:)
+				singSing._send('setScript:', singSingScr)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1461,67 +1451,67 @@ class befriendSSScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 givePoints: 4)
-				(self setScript: windBirdHeader self 11)
+				global1._send('givePoints:', 4)
+				self._send('setScript:', windBirdHeader, self, 11)
 			#end:case
 			case 1:
-				(global0 loop: 3 cel: 0 posn: 119 142 setCycle: End self)
+				global0._send('loop:', 3, 'cel:', 0, 'posn:', 119, 142, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(windUpBird init:)
-				(global105 number: 931 loop: -1 play:)
-				(global0 posn: 120 141 reset: 0)
+				windUpBird._send('init:')
+				global105._send('number:', 931, 'loop:', -1, 'play:')
+				global0._send('posn:', 120, 141, 'reset:', 0)
 				cycles = 2
 			#end:case
 			case 3:
 				ticks = 180
 			#end:case
 			case 4:
-				(KQ6Print
-					font: global22
-					posn: 10 10
-					say: 0 4 37 11 2
-					init: self
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 10, 10,
+					'say:', 0, 4, 37, 11, 2,
+					'init:', self
 				)
 			#end:case
 			case 5:
-				(singSing posn: 252 125 97 loop: 2 cel: 0 setCycle: End self)
+				singSing._send('posn:', 252, 125, 97, 'loop:', 2, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(KQ6Print
-					font: global22
-					posn: 10 10
-					say: 0 4 37 11 3
-					init: self
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', 10, 10,
+					'say:', 0, 4, 37, 11, 3,
+					'init:', self
 				)
 			#end:case
 			case 8:
 				ticks = 48
 			#end:case
 			case 9:
-				(global105 fade:)
-				(windUpBird dispose:)
-				(global0
-					setSpeed: 6
-					posn: 119 143
-					view: 883
-					loop: 3
-					cel: 7
-					normal: 0
-					setCycle: CT 1 -1 self
+				global105._send('fade:')
+				windUpBird._send('dispose:')
+				global0._send(
+					'setSpeed:', 6,
+					'posn:', 119, 143,
+					'view:', 883,
+					'loop:', 3,
+					'cel:', 7,
+					'normal:', 0,
+					'setCycle:', CT, 1, -1, self
 				)
 			#end:case
 			case 10:
-				(global103 play: 0 fade: 127 25 10 0)
-				(musicScr state: -1 client: musicScr cue:)
-				(global0 reset: 0 posn: 120 141 setScale: Scaler 100 84 134 81)
+				global103._send('play:', 0, 'fade:', 127, 25, 10, 0)
+				musicScr._send('state:', -1, 'client:', musicScr, 'cue:')
+				global0._send('reset:', 0, 'posn:', 120, 141, 'setScale:', Scaler, 100, 84, 134, 81)
 				proc913_1(21)
-				(singSing setScript: singSingScr)
-				(global1 handsOn:)
-				(self dispose:)
+				singSing._send('setScript:', singSingScr)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1538,19 +1528,19 @@ class snakeScr(Script):
 
 		match state = param1
 			case 0:
-				(client setCycle: End self)
+				client._send('setCycle:', End, self)
 			#end:case
 			case 1:
-				(client loop: 1 cel: 0 setCycle: End self)
+				client._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 2:
 				if (local35.post('++') < 2):
-					(global104 number: 211 loop: 1 play:)
+					global104._send('number:', 211, 'loop:', 1, 'play:')
 				#endif
 				if ((not kernel.Random(0, 1)) and (not local30)):
 					local30 = 1
 					state = 5
-					(self cue:)
+					self._send('cue:')
 				else:
 					state = 0
 					ticks = kernel.Random(60, 150)
@@ -1560,38 +1550,38 @@ class snakeScr(Script):
 				if (not local30):
 					local30 = register = 1
 					state = 5
-					(self cue:)
+					self._send('cue:')
 				else:
 					register = 0
-					if (global5 contains: eye):
-						(eye dispose:)
+					if global5._send('contains:', eye):
+						eye._send('dispose:')
 					#endif
-					(genieSnake loop: 2 cel: 0 setCycle: End self)
+					genieSnake._send('loop:', 2, 'cel:', 0, 'setCycle:', End, self)
 				#endif
 			#end:case
 			case 4:
-				(genieSnake dispose:)
+				genieSnake._send('dispose:')
 			#end:case
 			case 5:
-				if ((genieSnake cel:) != 6):
-					(genieSnake setCycle: End self)
+				if (genieSnake._send('cel:') != 6):
+					genieSnake._send('setCycle:', End, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 6:
-				(eye init: setCycle: End self)
+				eye._send('init:', 'setCycle:', End, self)
 			#end:case
 			case 7:
 				ticks = 45
 			#end:case
 			case 8:
-				(eye setCycle: Beg self)
+				eye._send('setCycle:', Beg, self)
 			#end:case
 			case 9:
-				(eye dispose:)
+				eye._send('dispose:')
 				state = ((3 if register else 2) - 1)
-				(self cue:)
+				self._send('cue:')
 			#end:case
 		#end:match
 	#end:method
@@ -1608,51 +1598,49 @@ class showItemScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setMotion:
-						MoveTo
-						(singSing approachX:)
-						(singSing approachY:)
-						self
+				global1._send('handsOff:')
+				global0._send(
+					'setMotion:', MoveTo, singSing._send('approachX:'), singSing._send(
+							'approachY:'
+						), self
 				)
 			#end:case
 			case 1:
-				(global0
-					view: 211
-					posn: 147 145
-					loop: 0
-					cel: 0
-					normal: 0
-					setCycle: End self
+				global0._send(
+					'view:', 211,
+					'posn:', 147, 145,
+					'loop:', 0,
+					'cel:', 0,
+					'normal:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
 				ticks = 30
 			#end:case
 			case 3:
-				(global91 say: 4 0 11 1 self)
+				global91._send('say:', 4, 0, 11, 1, self)
 			#end:case
 			case 4:
 				if proc913_0(21):
-					(global91 say: 4 register 10 1 self)
+					global91._send('say:', 4, register, 10, 1, self)
 				else:
-					(global91 say: 4 register 11 2 self)
+					global91._send('say:', 4, register, 11, 2, self)
 				#endif
 			#end:case
 			case 5:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(global0
-					reset: 4
-					posn: (singSing approachX:) (singSing approachY:)
+				global0._send(
+					'reset:', 4,
+					'posn:', singSing._send('approachX:'), singSing._send('approachY:')
 				)
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1681,33 +1669,33 @@ class singSingScr(Script):
 				)
 				state.post('--')
 				if local29:
-					(self dispose:)
+					self._send('dispose:')
 				else:
 					seconds = kernel.Random(3, 12)
 				#endif
 			#end:case
 			case 2:
 				if register:
-					(singSing posn: 225 105 49)
+					singSing._send('posn:', 225, 105, 49)
 				else:
-					(singSing posn: 268 96 85)
+					singSing._send('posn:', 268, 96, 85)
 				#endif
 				cycles = 2
 			#end:case
 			case 3: 0#end:case
 			case 4:
-				(singSing loop: 7 cel: 0)
-				(self changeState: 2)
+				singSing._send('loop:', 7, 'cel:', 0)
+				self._send('changeState:', 2)
 				state = 4
 			#end:case
 			case 5:
-				(singSing setCycle: End self)
+				singSing._send('setCycle:', End, self)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(singSing setCycle: Beg self)
+				singSing._send('setCycle:', Beg, self)
 			#end:case
 			case 8:
 				state = 0
@@ -1715,19 +1703,19 @@ class singSingScr(Script):
 			#end:case
 			case 9: 0#end:case
 			case 10:
-				(singSing loop: 8 cel: 0)
-				(self changeState: 2)
+				singSing._send('loop:', 8, 'cel:', 0)
+				self._send('changeState:', 2)
 				state = 10
 			#end:case
 			case 11:
-				(singSing cycleSpeed: 8 setCycle: End self)
+				singSing._send('cycleSpeed:', 8, 'setCycle:', End, self)
 			#end:case
 			case 12:
-				(singSing cycleSpeed: 6 cel: 0)
+				singSing._send('cycleSpeed:', 6, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 13:
-				(self changeState: 8)
+				self._send('changeState:', 8)
 			#end:case
 		#end:match
 	#end:method
@@ -1739,13 +1727,13 @@ class singSingScr(Script):
 
 		if (local29 and (local29 != -1)):
 			if (not global18):
-				global18 = (Set new:)
+				global18 = Set._send('new:')
 			#endif
-			(global18 add: ((Cue new:) cuee: local29 cuer: self yourself:))
+			global18._send('add:', Cue._send('new:')._send('cuee:', local29, 'cuer:', self, 'yourself:'))
 		#endif
-		(singSing cycleSpeed: 6)
+		singSing._send('cycleSpeed:', 6)
 		local29 = seconds = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -1760,12 +1748,12 @@ class getRibbonScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global1 givePoints: 1)
+				global1._send('handsOff:')
+				global1._send('givePoints:', 1)
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 get: 35 setHeading: 90 self)
+				global0._send('get:', 35, 'setHeading:', 90, self)
 			#end:case
 			case 2:
 				if (not proc913_0(112)):
@@ -1774,40 +1762,40 @@ class getRibbonScr(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(global0
-					normal: 0
-					setSpeed: 6
-					posn: 142 149
-					view: 215
-					loop: 1
-					cel: 0
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'posn:', 142, 149,
+					'view:', 215,
+					'loop:', 1,
+					'cel:', 0
 				)
 				cycles = 2
 			#end:case
 			case 4:
-				(global0 setCycle: CT 3 1 self)
+				global0._send('setCycle:', CT, 3, 1, self)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
-				(theRibbon dispose:)
-				(global0 setCycle: End self)
+				theRibbon._send('dispose:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 7:
 				cycles = 2
 			#end:case
 			case 8:
-				(global0 reset: 6 posn: 129 144)
+				global0._send('reset:', 6, 'posn:', 129, 144)
 				cycles = 2
 			#end:case
 			case 9:
 				kernel.UnLoad(128, 215)
-				(global91 say: 6 5 (22 if proc913_0(10) else 21) 0 self)
+				global91._send('say:', 6, 5, (22 if proc913_0(10) else 21), 0, self)
 			#end:case
 			case 10:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1824,68 +1812,67 @@ class getLetterScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global1 givePoints: 1)
+				global1._send('handsOff:')
+				global1._send('givePoints:', 1)
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 get: 32 setHeading: 270 self)
+				global0._send('get:', 32, 'setHeading:', 270, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(global0
-					normal: 0
-					setSpeed: 6
-					posn: 138 147
-					view: 215
-					loop: 0
-					cel: 0
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'posn:', 138, 147,
+					'view:', 215,
+					'loop:', 0,
+					'cel:', 0
 				)
 				cycles = 2
 			#end:case
 			case 4:
-				(global0 setCycle: CT 3 1 self)
+				global0._send('setCycle:', CT, 3, 1, self)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
-				(letter dispose:)
-				(global0 setCycle: End self)
+				letter._send('dispose:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 7:
 				cycles = 2
 			#end:case
 			case 8:
-				(global0 reset: 7 posn: 149 142)
+				global0._send('reset:', 7, 'posn:', 149, 142)
 				cycles = 2
 			#end:case
 			case 9:
-				if (global5 contains: singSing):
-					(global103 fade: 0 15 20 1)
-					(musicScr dispose:)
+				if global5._send('contains:', singSing):
+					global103._send('fade:', 0, 15, 20, 1)
+					musicScr._send('dispose:')
 				else:
 					state.post('++')
 				#endif
-				(global91 say: 5 5 0 1 self)
+				global91._send('say:', 5, 5, 0, 1, self)
 			#end:case
 			case 10:
-				if ((global103 prevSignal:) != -1):
+				if (global103._send('prevSignal:') != -1):
 					state.post('--')
 				#endif
 				cycles = 2
 			#end:case
 			case 11:
-				(global105 number: 213 loop: -1 play:)
+				global105._send('number:', 213, 'loop:', -1, 'play:')
 				if (global90 & 0x0002):
-					(global91 say: 5 5 0 2 self)
+					global91._send('say:', 5, 5, 0, 2, self)
 				else:
-					(KQ6Print
-						addText:
-							r"""Dearest Alexander:\n\nI cannot believe you are here, my friend! Please, please be careful! Abdul isn't about to let anyone interfere with his plans. Watch out for Abdul's genie, Alexander, and do not do anything rash."""
-						init: self
+					KQ6Print._send(
+						'addText:', r"""Dearest Alexander:\n\nI cannot believe you are here, my friend! Please, please be careful! Abdul isn't about to let anyone interfere with his plans. Watch out for Abdul's genie, Alexander, and do not do anything rash.""",
+						'init:', self
 					)
 				#endif
 			#end:case
@@ -1893,26 +1880,25 @@ class getLetterScr(Script):
 				if (global90 & 0x0002):
 					cycles = 1
 				else:
-					(KQ6Print
-						addText:
-							r"""I am not without resources, and I will prevail if I can only find some small means of defense. Do nothing to try to get to me. You must not be endangered again for my sake.\n\nGreatly in your family's debt,\n\nCassima"""
-						init: self
+					KQ6Print._send(
+						'addText:', r"""I am not without resources, and I will prevail if I can only find some small means of defense. Do nothing to try to get to me. You must not be endangered again for my sake.\n\nGreatly in your family's debt,\n\nCassima""",
+						'init:', self
 					)
 				#endif
 			#end:case
 			case 13:
-				(global91 say: 5 5 0 3 self oneOnly: 0)
+				global91._send('say:', 5, 5, 0, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 14:
-				(global105 client: self fade: 0 15 20 1)
+				global105._send('client:', self, 'fade:', 0, 15, 20, 1)
 			#end:case
 			case 15:
-				if (global5 contains: singSing):
-					(global103 play:)
-					(musicScr state: -1 client: musicScr cue:)
+				if global5._send('contains:', singSing):
+					global103._send('play:')
+					musicScr._send('state:', -1, 'client:', musicScr, 'cue:')
 				#endif
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1949,12 +1935,12 @@ class singSing(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self
-			setScale: 0
-			setStep: 4 3
-			ignoreActors:
-			cel: (8 if (not param1) else 0)
+		super._send('init:', &rest)
+		self._send(
+			'setScale:', 0,
+			'setStep:', 4, 3,
+			'ignoreActors:',
+			'cel:', (8 if (not param1) else 0)
 		)
 	#end:method
 
@@ -1965,67 +1951,64 @@ class singSing(Actor):
 
 		(cond
 			case proc999_5(param1, 1, 5):
-				(global91 say: noun param1 (10 if proc913_0(21) else 11))
+				global91._send('say:', noun, param1, (10 if proc913_0(21) else 11))
 			#end:case
 			case (proc999_5(param1, 29, 46, 44, 66) and proc913_0(21)):
-				(global91 say: noun 29 10)
+				global91._send('say:', noun, 29, 10)
 			#end:case
 			case (param1 == 37):
 				if proc913_0(21):
-					(global2 setScript: windUpBirdScr)
+					global2._send('setScript:', windUpBirdScr)
 				else:
-					(global2 setScript: befriendSSScr)
+					global2._send('setScript:', befriendSSScr)
 				#endif
 			#end:case
 			case (param1 == 2):
-				(global91
-					say:
-						noun
-						param1
-						(cond
+				global91._send(
+					'say:', noun, param1, (cond
 							case (not proc913_0(21)): 11#end:case
-							case (global0 has: 32): 19#end:case
+							case global0._send('has:', 32): 19#end:case
 							else: 43#end:else
 						)
 				)
 			#end:case
 			case (param1 == 31):
-				(global2 setScript: fluteScr)
+				global2._send('setScript:', fluteScr)
 			#end:case
 			case (not proc913_0(21)):
-				(global2 setScript: showItemScr 0 0)
+				global2._send('setScript:', showItemScr, 0, 0)
 			#end:case
 			case proc999_5(param1, 15, 18):
-				(global91 say: noun 15 10)
+				global91._send('say:', noun, 15, 10)
 			#end:case
 			case (param1 == 32):
-				(global2 setScript: givePoemScr)
+				global2._send('setScript:', givePoemScr)
 			#end:case
 			case (param1 == 71):
 				if proc913_0(94):
-					(global91 say: noun param1 27)
+					global91._send('say:', noun, param1, 27)
 				else:
 					proc913_1(94)
-					(global2 setScript: giveRoseScr)
+					global2._send('setScript:', giveRoseScr)
 				#endif
 			#end:case
 			case (param1 == 70):
-				(global2 setScript: giveRingScr)
+				global2._send('setScript:', giveRingScr)
 			#end:case
 			case proc999_5(param1, 42, 27, 28, 45, 8):
-				(global91 say: noun 42 10)
+				global91._send('say:', noun, 42, 10)
 			#end:case
 			case proc999_5(param1, 33, 65):
-				(global91 say: noun 33)
+				global91._send('say:', noun, 33)
 			#end:case
 			case proc999_5(param1, 63, 67):
-				(global2 setScript: showItemScr 0 63)
+				global2._send('setScript:', showItemScr, 0, 63)
 			#end:case
 			case proc999_5(param1, 35, 47, 68, 72):
-				(global2 setScript: showItemScr 0 param1)
+				global2._send('setScript:', showItemScr, 0, param1)
 			#end:case
 			else:
-				(global2 setScript: showItemScr 0 0)
+				global2._send('setScript:', showItemScr, 0, 0)
 			#end:else
 		)
 	#end:method
@@ -2053,7 +2036,7 @@ class letter(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self posn: 112 136 setLoop: 8 cel: 0 stopUpd:)
+		self._send('posn:', 112, 136, 'setLoop:', 8, 'cel:', 0, 'stopUpd:')
 	#end:method
 
 	@classmethod
@@ -2063,10 +2046,10 @@ class letter(Actor):
 
 		match param1
 			case 5:
-				(global2 setScript: getLetterScr)
+				global2._send('setScript:', getLetterScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -2076,13 +2059,13 @@ class letter(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
-		if (((global9 at: 32) owner:) != -1):
-			((global9 at: 32) owner: -1)
-			(self setMotion: MoveTo 120 137 self)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
+		if (global9._send('at:', 32)._send('owner:') != -1):
+			global9._send('at:', 32)._send('owner:', -1)
+			self._send('setMotion:', MoveTo, 120, 137, self)
 		else:
-			(self cue:)
+			self._send('cue:')
 		#endif
 	#end:method
 
@@ -2107,13 +2090,13 @@ class theRibbon(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 signal: 18448)
-		if (((global9 at: 35) owner:) != -1):
-			((global9 at: 35) owner: -1)
-			(self setMotion: MoveTo 155 138 self)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 'signal:', 18448)
+		if (global9._send('at:', 35)._send('owner:') != -1):
+			global9._send('at:', 35)._send('owner:', -1)
+			self._send('setMotion:', MoveTo, 155, 138, self)
 		else:
-			(self cue:)
+			self._send('cue:')
 		#endif
 	#end:method
 
@@ -2122,7 +2105,7 @@ class theRibbon(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self posn: 153 138 setLoop: 6 cel: 0 stopUpd:)
+		self._send('posn:', 153, 138, 'setLoop:', 6, 'cel:', 0, 'stopUpd:')
 	#end:method
 
 	@classmethod
@@ -2132,10 +2115,10 @@ class theRibbon(Actor):
 
 		match param1
 			case 5:
-				(global2 setScript: getRibbonScr)
+				global2._send('setScript:', getRibbonScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -2154,7 +2137,7 @@ class genieSnake(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -2162,8 +2145,8 @@ class genieSnake(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setScript: snakeScr setPri: 14)
+		super._send('init:', &rest)
+		self._send('setScript:', snakeScr, 'setPri:', 14)
 	#end:method
 
 #end:class or instance
@@ -2180,15 +2163,15 @@ class clown(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self
-			setScale: Scaler 100 84 134 81
-			setScript: clownScr
-			ignoreActors:
-			setStep: 4 3
-			moveSpeed: 7
-			cycleSpeed: 7
-			setCycle: StopWalk 2741
+		super._send('init:', &rest)
+		self._send(
+			'setScale:', Scaler, 100, 84, 134, 81,
+			'setScript:', clownScr,
+			'ignoreActors:',
+			'setStep:', 4, 3,
+			'moveSpeed:', 7,
+			'cycleSpeed:', 7,
+			'setCycle:', StopWalk, 2741
 		)
 	#end:method
 
@@ -2207,8 +2190,8 @@ class windUpBird(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Fwd)
+		super._send('init:', &rest)
+		self._send('setCycle:', Fwd)
 	#end:method
 
 #end:class or instance
@@ -2229,25 +2212,22 @@ class tree(Feature):
 
 		match param1
 			case 5:
-				(global91
-					say:
-						noun
-						param1
-						(cond
+				global91._send(
+					'say:', noun, param1, (cond
 							case 
 								(and
-									(global5 contains: singSing)
+									global5._send('contains:', singSing)
 									proc913_0(21)
 								):
 								10
 							#end:case
-							case (global5 contains: singSing): 11#end:case
+							case global5._send('contains:', singSing): 11#end:case
 							else: 8#end:else
 						)
 				)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -2270,8 +2250,8 @@ class holeInTree(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 2)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 2)
 	#end:method
 
 #end:class or instance
@@ -2286,7 +2266,7 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
+				match temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
 					case 4: 8#end:case
 					case 8: 9#end:case
 					case 16: 10#end:case

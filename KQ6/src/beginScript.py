@@ -46,36 +46,36 @@ class beginScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global69 disable: 6)
+				global1._send('handsOff:')
+				global69._send('disable:', 6)
 				if (not proc913_0(129)):
 					proc913_1(129)
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global91 say: 1 27 0 1 self 0)
+				global91._send('say:', 1, 27, 0, 1, self, 0)
 			#end:case
 			case 1:
 				seconds = 2
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 903
-					cel: 0
-					setLoop: 2
-					cycleSpeed: 5
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 903,
+					'cel:', 0,
+					'setLoop:', 2,
+					'cycleSpeed:', 5,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
-				(global0 cel: 0 setLoop: 0 setCycle: End self)
+				global0._send('cel:', 0, 'setLoop:', 0, 'setCycle:', End, self)
 			#end:case
 			case 4:
-				(global0 setLoop: 1 setCycle: Fwd)
+				global0._send('setLoop:', 1, 'setCycle:', Fwd)
 				seconds = 4
 			#end:case
 			case 5:
-				(client setScript: kernel.ScriptID(90, 1))
+				client._send('setScript:', kernel.ScriptID(90, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -99,21 +99,21 @@ class riddleBookScript(Script):
 		local4 = global72
 		local5 = global74
 		local6 = global93
-		local7 = (global2 obstacles:)
-		(global2 obstacles: ((List new:) add: yourself:))
-		(global5 = (EventHandler new:) name: r"""newCast""" add:)
-		(global32 = (EventHandler new:) name: r"""newFeatures""" add: self)
-		(global10 = (EventHandler new:) name: r"""newATPs""" add:)
-		(global73 = (EventHandler new:) name: r"""newMH""" add: self)
-		(global72 = (EventHandler new:) name: r"""newKH""" add: self)
-		(global74 = (EventHandler new:) name: r"""newDH""" add: self)
-		(global93 = (EventHandler new:) name: r"""newWH""" add:)
+		local7 = global2._send('obstacles:')
+		global2._send('obstacles:', List._send('new:')._send('add:', 'yourself:'))
+		global5 = EventHandler._send('new:')._send('name:', r"""newCast""", 'add:')
+		global32 = EventHandler._send('new:')._send('name:', r"""newFeatures""", 'add:', self)
+		global10 = EventHandler._send('new:')._send('name:', r"""newATPs""", 'add:')
+		global73 = EventHandler._send('new:')._send('name:', r"""newMH""", 'add:', self)
+		global72 = EventHandler._send('new:')._send('name:', r"""newKH""", 'add:', self)
+		global74 = EventHandler._send('new:')._send('name:', r"""newDH""", 'add:', self)
+		global93 = EventHandler._send('new:')._send('name:', r"""newWH""", 'add:')
 		if register:
-			(global9 hide:)
+			global9._send('hide:')
 			register = 0
 		#endif
 		kernel.DrawPic(98)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -123,42 +123,42 @@ class riddleBookScript(Script):
 
 		match state = param1
 			case 0:
-				(background init:)
-				(bookView init: stopUpd:)
+				background._send('init:')
+				bookView._send('init:', 'stopUpd:')
 				seconds = 2
 			#end:case
 			case 1:
-				(global91 say: 1 27 0 2 self 0)
+				global91._send('say:', 1, 27, 0, 2, self, 0)
 			#end:case
 			case 2:
-				(global91 say: 1 27 0 3 self 0)
+				global91._send('say:', 1, 27, 0, 3, self, 0)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global32 delete: self)
-				(User controls: 0)
-				(global69 disable: 0 3 4 5)
+				global1._send('handsOn:')
+				global32._send('delete:', self)
+				User._send('controls:', 0)
+				global69._send('disable:', 0, 3, 4, 5)
 			#end:case
 			case 4:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
-				(global1 setCursor: global21)
-				(global5
-					eachElementDo: #dispose
-					eachElementDo: #delete
-					release:
-					dispose:
+				global1._send('setCursor:', global21)
+				global5._send(
+					'eachElementDo:', #dispose,
+					'eachElementDo:', #delete,
+					'release:',
+					'dispose:'
 				)
-				(global10 dispose:)
-				(global32 delete: background self dispose:)
-				(global73 delete: self dispose:)
-				(global72 delete: self dispose:)
-				(global74 delete: self dispose:)
-				(global93 delete: self dispose:)
-				((global2 obstacles:) dispose:)
-				(global2 obstacles: local7)
+				global10._send('dispose:')
+				global32._send('delete:', background, self, 'dispose:')
+				global73._send('delete:', self, 'dispose:')
+				global72._send('delete:', self, 'dispose:')
+				global74._send('delete:', self, 'dispose:')
+				global93._send('delete:', self, 'dispose:')
+				global2._send('obstacles:')._send('dispose:')
+				global2._send('obstacles:', local7)
 				global5 = local0
 				global32 = local1
 				global73 = local3
@@ -167,20 +167,20 @@ class riddleBookScript(Script):
 				global93 = local6
 				global10 = local2
 				kernel.UnLoad(128, 904)
-				kernel.DrawPic((global2 picture:), 100)
+				kernel.DrawPic(global2._send('picture:'), 100)
 				if global10:
-					(global10 doit:)
+					global10._send('doit:')
 				#endif
 				seconds = 2
 			#end:case
 			case 5:
-				(global0 setLoop: 2 cycleSpeed: 10 lastCel: setCycle: Beg self)
+				global0._send('setLoop:', 2, 'cycleSpeed:', 10, 'lastCel:', 'setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(global0 reset: 2)
-				(global69 enable: 6)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 2)
+				global69._send('enable:', 6)
+				global1._send('handsOn:')
+				self._send('dispose:')
 				global91 = local9
 				kernel.DisposeScript(90)
 			#end:case
@@ -200,7 +200,7 @@ class background(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(riddleBookScript cue:)
+		riddleBookScript._send('cue:')
 	#end:method
 
 #end:class or instance
@@ -218,9 +218,9 @@ class bookView(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
-			(riddleBookScript state: ((riddleBookScript state:) - 3) cue:)
+			riddleBookScript._send('state:', (riddleBookScript._send('state:') - 3), 'cue:')
 		else:
-			(background doVerb: param1)
+			background._send('doVerb:', param1)
 		#endif
 	#end:method
 
@@ -238,7 +238,7 @@ class rBookMessager(Kq6Messager):
 			temp0 = localNarrator
 			return
 		else:
-			(super findTalker: param1)
+			super._send('findTalker:', param1)
 		#endif
 	#end:method
 
@@ -255,7 +255,7 @@ class localNarrator(Kq6Narrator):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		talkWidth = 280
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

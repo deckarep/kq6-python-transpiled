@@ -37,9 +37,9 @@ class rm145(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable:)
-		(super init: &rest)
-		(global2 setScript: seqScr)
+		global69._send('disable:')
+		super._send('init:', &rest)
+		global2._send('setScript:', seqScr)
 	#end:method
 
 	@classmethod
@@ -47,10 +47,10 @@ class rm145(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable:)
+		global69._send('enable:')
 		proc913_2(133)
 		kernel.DisposeScript(960)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -70,7 +70,7 @@ class eyeCue(TimedCue):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1 0 0)
+		super._send('init:', param1, 0, 0)
 		ticks = param2
 	#end:method
 
@@ -89,12 +89,12 @@ class GlintingEye(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not argc):
-			(self setScript: eyeCue 12)
+			self._send('setScript:', eyeCue, 12)
 		else:
 			if caller:
-				(caller cue:)
+				caller._send('cue:')
 			#endif
-			(self dispose:)
+			self._send('dispose:')
 		#endif
 	#end:method
 
@@ -106,8 +106,8 @@ class GlintingEye(Prop):
 		if argc:
 			caller = param1
 		#endif
-		(super init: &rest)
-		(self setCycle: End self)
+		super._send('init:', &rest)
+		self._send('setCycle:', End, self)
 	#end:method
 
 #end:class or instance
@@ -149,16 +149,16 @@ class seqScr(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global2
-					drawPic: 98 (9 if ((global87 == 0) or global169) else 12)
+				global2._send(
+					'drawPic:', 98, (9 if ((global87 == 0) or global169) else 12)
 				)
 				if proc913_0(41):
-					(global102 number: 150)
+					global102._send('number:', 150)
 					local0 = 1
 					register = 3
 					proc913_2(41)
 				else:
-					(global102 number: 145)
+					global102._send('number:', 145)
 					if proc913_0(72):
 						register = 1
 					else:
@@ -166,108 +166,108 @@ class seqScr(Script):
 					#endif
 					proc913_1(41)
 				#endif
-				(global102 loop: -1 play:)
+				global102._send('loop:', -1, 'play:')
 				kernel.Message(0, 145, 1, 0, 4, 1, @temp1)
 				kernel.Display(@temp1, 100, 82, 85, 102, 14, 105, 0)
 				seconds = 5
 			#end:case
 			case 2:
 				if local0:
-					(bottle init:)
+					bottle._send('init:')
 				#endif
-				(genie init:)
-				(vizier init:)
-				(global2
-					drawPic: 145 (9 if ((global87 == 0) or global169) else 11)
+				genie._send('init:')
+				vizier._send('init:')
+				global2._send(
+					'drawPic:', 145, (9 if ((global87 == 0) or global169) else 11)
 				)
 				cycles = 1
 			#end:case
 			case 3:
 				(cond
 					case (register == 3):
-						(roomConv
-							add: -1 1 0 3 1
-							add: eyeGlintScr
-							add: -1 1 0 3 2
-							add: eyeGlintScr
-							add: -1 1 0 3 3
-							add: eyeGlintScr
-							add: -1 1 0 3 4
-							add: eyeGlintScr
-							add: -1 1 0 3 5
-							add: eyeGlintScr
-							add: -1 1 0 3 6
-							add: eyeGlintScr
-							add: -1 1 0 3 7
-							add: eyeGlintScr
-							add: -1 1 0 3 8
-							add: eyeGlintScr
-							add: -1 1 0 3 9
-							add: eyeGlintScr
-							add: -1 1 0 3 10
-							add: genieBottleScr
-							init: self
+						roomConv._send(
+							'add:', -1, 1, 0, 3, 1,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 2,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 3,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 4,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 5,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 6,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 7,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 8,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 9,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 3, 10,
+							'add:', genieBottleScr,
+							'init:', self
 						)
 						state.post('++')
 					#end:case
 					case (register == 1):
-						(roomConv
-							add: -1 1 0 1 1
-							add: genieFallScr
-							add: -1 1 0 1 2
-							add: genieFallScr
-							add: -1 1 0 1 3
-							add: eyeGlintScr
-							add: -1 1 0 1 4
-							add: eyeGlintScr
-							add: -1 1 0 1 5
-							add: eyeGlintScr
-							add: -1 1 0 1 6
-							add: eyeGlintScr
-							add: -1 1 0 1 7
-							init: self
+						roomConv._send(
+							'add:', -1, 1, 0, 1, 1,
+							'add:', genieFallScr,
+							'add:', -1, 1, 0, 1, 2,
+							'add:', genieFallScr,
+							'add:', -1, 1, 0, 1, 3,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 1, 4,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 1, 5,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 1, 6,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 1, 7,
+							'init:', self
 						)
 						state.post('++')
 					#end:case
 					else:
-						(roomConv
-							add: -1 1 0 2 1
-							add: genieFallScr
-							add: -1 1 0 2 2
-							add: genieFallScr
-							add: -1 1 0 2 3
-							add: eyeGlintScr
-							add: -1 1 0 2 4
-							add: eyeGlintScr
-							add: -1 1 0 2 5
-							add: eyeGlintScr
-							add: -1 1 0 2 6
-							add: eyeGlintScr
-							init: self
+						roomConv._send(
+							'add:', -1, 1, 0, 2, 1,
+							'add:', genieFallScr,
+							'add:', -1, 1, 0, 2, 2,
+							'add:', genieFallScr,
+							'add:', -1, 1, 0, 2, 3,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 2, 4,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 2, 5,
+							'add:', eyeGlintScr,
+							'add:', -1, 1, 0, 2, 6,
+							'add:', eyeGlintScr,
+							'init:', self
 						)
 					#end:else
 				)
 			#end:case
 			case 4:
-				(roomConv
-					add: -1 1 0 2 7
-					add: eyeGlintScr
-					add: -1 1 0 2 8
-					add: eyeGlintScr
-					add: -1 1 0 2 9
-					add: eyeGlintScr
-					add: -1 1 0 2 10
-					add: eyeGlintScr
-					add: -1 1 0 2 11
-					add: eyeGlintScr
-					add: -1 1 0 2 12
-					add: eyeGlintScr
-					add: -1 1 0 2 13
-					init: self
+				roomConv._send(
+					'add:', -1, 1, 0, 2, 7,
+					'add:', eyeGlintScr,
+					'add:', -1, 1, 0, 2, 8,
+					'add:', eyeGlintScr,
+					'add:', -1, 1, 0, 2, 9,
+					'add:', eyeGlintScr,
+					'add:', -1, 1, 0, 2, 10,
+					'add:', eyeGlintScr,
+					'add:', -1, 1, 0, 2, 11,
+					'add:', eyeGlintScr,
+					'add:', -1, 1, 0, 2, 12,
+					'add:', eyeGlintScr,
+					'add:', -1, 1, 0, 2, 13,
+					'init:', self
 				)
 			#end:case
 			case 5:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -277,15 +277,15 @@ class seqScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 fade:)
-		(super dispose:)
-		(genie dispose:)
-		(vizier dispose:)
-		if (global5 contains: bottle):
-			(bottle dispose:)
+		global102._send('fade:')
+		super._send('dispose:')
+		genie._send('dispose:')
+		vizier._send('dispose:')
+		if global5._send('contains:', bottle):
+			bottle._send('dispose:')
 		#endif
-		(global2 drawPic: 98 9)
-		(global2 newRoom: 280)
+		global2._send('drawPic:', 98, 9)
+		global2._send('newRoom:', 280)
 	#end:method
 
 #end:class or instance
@@ -322,41 +322,41 @@ class genieFallScr(Script):
 			case 0:
 				proc913_1(133)
 				kernel.DisposeScript(1013)
-				(genie
-					view: 1461
-					loop: 1
-					cel: 0
-					cycleSpeed: 15
-					setCycle: End self
+				genie._send(
+					'view:', 1461,
+					'loop:', 1,
+					'cel:', 0,
+					'cycleSpeed:', 15,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
-				(global102 pause:)
-				(global103 number: 147 loop: 1 play:)
-				(vizier cycleSpeed: 15 setCycle: End)
-				(genie view: 1462 loop: 0 cel: 0 setCycle: End self)
+				global102._send('pause:')
+				global103._send('number:', 147, 'loop:', 1, 'play:')
+				vizier._send('cycleSpeed:', 15, 'setCycle:', End)
+				genie._send('view:', 1462, 'loop:', 0, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(global103 number: 960 loop: 1 play:)
-				(genie hide:)
-				(vizier setCycle: Beg)
+				global103._send('number:', 960, 'loop:', 1, 'play:')
+				genie._send('hide:')
+				vizier._send('setCycle:', Beg)
 				kernel.ScriptID(1013)
 				seconds = 3
 			#end:case
 			case 3:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 4:
-				(genie show: view: 1463 cel: 0 x: 205 y: 137 setCycle: End self)
+				genie._send('show:', 'view:', 1463, 'cel:', 0, 'x:', 205, 'y:', 137, 'setCycle:', End, self)
 			#end:case
 			case 5:
-				(global102 pause: 0 setVol: 0 fade: 127 10 15 0)
-				(genie stopUpd:)
-				(vizier stopUpd:)
+				global102._send('pause:', 0, 'setVol:', 0, 'fade:', 127, 10, 15, 0)
+				genie._send('stopUpd:')
+				vizier._send('stopUpd:')
 				cycles = 2
 			#end:case
 			case 6:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -366,7 +366,7 @@ class genieFallScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		start = (state + 1)
 	#end:method
 
@@ -382,19 +382,19 @@ class genieBottleScr(Script):
 
 		match state = param1
 			case 0:
-				(global103 number: 943 loop: 1 play:)
-				(genie view: 1465 posn: 186 99 loop: 0 cycleSpeed: 8)
+				global103._send('number:', 943, 'loop:', 1, 'play:')
+				genie._send('view:', 1465, 'posn:', 186, 99, 'loop:', 0, 'cycleSpeed:', 8)
 				if register:
-					(genie cel: 6 setCycle: Beg self)
+					genie._send('cel:', 6, 'setCycle:', Beg, self)
 				else:
-					(genie cel: 0 setCycle: End self)
+					genie._send('cel:', 0, 'setCycle:', End, self)
 				#endif
 			#end:case
 			case 1:
 				ticks = 60
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -411,27 +411,27 @@ class eyeGlintScr(Script):
 
 		match state = param1
 			case 0:
-				if (kernel.Random(0, 1) and (global5 contains: genie)):
+				if (kernel.Random(0, 1) and global5._send('contains:', genie)):
 					(cond
 						case proc913_0(133):
-							(lowEye init: self)
+							lowEye._send('init:', self)
 						#end:case
 						case kernel.Random(0, 1):
-							(hiEye1 init: self)
+							hiEye1._send('init:', self)
 						#end:case
 						else:
-							(hiEye2 init: self)
+							hiEye2._send('init:', self)
 						#end:else
 					)
 				else:
-					(self dispose:)
+					self._send('dispose:')
 				#endif
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

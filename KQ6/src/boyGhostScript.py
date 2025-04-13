@@ -36,9 +36,9 @@ def localproc_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (kernel.ScriptID(820, 4) cycler:):
-		(kernel.ScriptID(820, 4) setCycle: 0 stopUpd:)
-		(kernel.ScriptID(820, 5) setCycle: 0 stopUpd:)
+	if kernel.ScriptID(820, 4)._send('cycler:'):
+		kernel.ScriptID(820, 4)._send('setCycle:', 0, 'stopUpd:')
+		kernel.ScriptID(820, 5)._send('setCycle:', 0, 'stopUpd:')
 	#endif
 #end:procedure
 
@@ -47,9 +47,9 @@ def localproc_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (not (kernel.ScriptID(820, 4) cycler:)):
-		(kernel.ScriptID(820, 4) startUpd: setCycle: Fwd)
-		(kernel.ScriptID(820, 5) startUpd: setCycle: RandCycle)
+	if (not kernel.ScriptID(820, 4)._send('cycler:')):
+		kernel.ScriptID(820, 4)._send('startUpd:', 'setCycle:', Fwd)
+		kernel.ScriptID(820, 5)._send('startUpd:', 'setCycle:', RandCycle)
 	#endif
 #end:procedure
 
@@ -61,9 +61,9 @@ class boyGhostScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOn:)
-		(super dispose:)
-		(boyGhost delete:)
+		global1._send('handsOn:')
+		super._send('dispose:')
+		boyGhost._send('delete:')
 		kernel.DisposeScript(822)
 	#end:method
 
@@ -78,84 +78,84 @@ class boyGhostScript(Script):
 				cycles = 5
 			#end:case
 			case 1:
-				(global1 handsOff:)
-				(boyGhost
-					view: 763
-					setLoop: 0
-					cel: 7
-					x: 260
-					y: 118
-					cycleSpeed: 10
-					show:
-					setCycle: End self
+				global1._send('handsOff:')
+				boyGhost._send(
+					'view:', 763,
+					'setLoop:', 0,
+					'cel:', 7,
+					'x:', 260,
+					'y:', 118,
+					'cycleSpeed:', 10,
+					'show:',
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(boyGhost setLoop: 1 cel: 7 posn: 258 117)
-				(self setScript: cryBaby self)
+				boyGhost._send('setLoop:', 1, 'cel:', 7, 'posn:', 258, 117)
+				self._send('setScript:', cryBaby, self)
 			#end:case
 			case 3:
-				if (global0 has: 17):
-					(global1 handsOn:)
+				if global0._send('has:', 17):
+					global1._send('handsOn:')
 				else:
 					state = 5
 					cycles = 1
 				#endif
 			#end:case
 			case 4:
-				(global1 handsOff:)
-				(global91 say: 6 2 16 1 self)
+				global1._send('handsOff:')
+				global91._send('say:', 6, 2, 16, 1, self)
 			#end:case
 			case 5:
 				localproc_1()
-				(cryBaby
-					next: (showNonHanky register: 1 caller: self yourself:)
+				cryBaby._send(
+					'next:', showNonHanky._send('register:', 1, 'caller:', self, 'yourself:')
 				)
 			#end:case
 			case 6:
-				if (local0 or (global0 has: 17)):
+				if (local0 or global0._send('has:', 17)):
 					localproc_0()
 					state = 7
 					if local0:
 						cycles = 3
 					else:
-						(global1 handsOn:)
+						global1._send('handsOn:')
 					#endif
 				else:
-					(self setScript: noHanky self)
+					self._send('setScript:', noHanky, self)
 				#endif
 			#end:case
 			case 7:
-				(global2 setScript: kernel.ScriptID(820, 1))
+				global2._send('setScript:', kernel.ScriptID(820, 1))
 			#end:case
 			case 8:
-				(global1 handsOff:)
-				(kernel.ScriptID(80, 0) setFlag: 709 -32768)
-				(global91 say: 6 50 0 1 self)
+				global1._send('handsOff:')
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, -32768)
+				global91._send('say:', 6, 50, 0, 1, self)
 			#end:case
 			case 9:
 				localproc_1()
 				if (script == cryBaby):
-					(cryBaby next: (showNonHanky caller: self yourself:))
+					cryBaby._send('next:', showNonHanky._send('caller:', self, 'yourself:'))
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 10:
-				(global0
-					normal: 0
-					setScale: 0
-					view: 763
-					setLoop: 7
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'setScale:', 0,
+					'view:', 763,
+					'setLoop:', 7,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 11:
-				(boyGhost setCycle: End self)
+				boyGhost._send('setCycle:', End, self)
 			#end:case
 			case 12:
-				(boyGhost setLoop: 3 cel: 0 posn: 229 70 setCycle: Fwd)
+				boyGhost._send('setLoop:', 3, 'cel:', 0, 'posn:', 229, 70, 'setCycle:', Fwd)
 				seconds = 5
 			#end:case
 			case 13:
@@ -163,47 +163,47 @@ class boyGhostScript(Script):
 				cycles = 4
 			#end:case
 			case 14:
-				(kernel.ScriptID(820, 2)
-					add: -1 6 50 0 2
-					add: -1 6 50 0 3
-					add: -1 6 50 0 4
-					init: self
+				kernel.ScriptID(820, 2)._send(
+					'add:', -1, 6, 50, 0, 2,
+					'add:', -1, 6, 50, 0, 3,
+					'add:', -1, 6, 50, 0, 4,
+					'init:', self
 				)
 			#end:case
 			case 15:
 				localproc_1()
-				(boyGhost setCycle: Beg self)
+				boyGhost._send('setCycle:', Beg, self)
 			#end:case
 			case 16:
-				(boyGhost setLoop: 4 cel: 0 posn: 155 88 setCycle: CT 10 1 self)
+				boyGhost._send('setLoop:', 4, 'cel:', 0, 'posn:', 155, 88, 'setCycle:', CT, 10, 1, self)
 			#end:case
 			case 17:
-				(global0 reset: 0)
-				(boyGhost setCycle: End self)
+				global0._send('reset:', 0)
+				boyGhost._send('setCycle:', End, self)
 			#end:case
 			case 18:
-				(boyGhost setLoop: 5 cel: 0 posn: 229 88 setCycle: End self)
+				boyGhost._send('setLoop:', 5, 'cel:', 0, 'posn:', 229, 88, 'setCycle:', End, self)
 			#end:case
 			case 19:
-				(boyGhost hide:)
+				boyGhost._send('hide:')
 				seconds = 2
 			#end:case
 			case 20:
-				(boyGhost
-					setLoop: 6
-					setPri: ((global0 priority:) - 1)
-					cel: 0
-					posn: 85 151
-					show:
-					setCycle: End self
+				boyGhost._send(
+					'setLoop:', 6,
+					'setPri:', (global0._send('priority:') - 1),
+					'cel:', 0,
+					'posn:', 85, 151,
+					'show:',
+					'setCycle:', End, self
 				)
 			#end:case
 			case 21:
-				(global91 say: 6 50 0 5 self)
+				global91._send('say:', 6, 50, 0, 5, self)
 			#end:case
 			case 22:
-				(global102 fadeTo: 824 -1)
-				(boyGhost setCycle: 0 setMotion: 0 dispose:)
+				global102._send('fadeTo:', 824, -1)
+				boyGhost._send('setCycle:', 0, 'setMotion:', 0, 'dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -220,31 +220,31 @@ class showNonHanky(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				localproc_1()
-				if (((boyGhost loop:) == 1) and (boyGhost cel:)):
-					(boyGhost setCycle: Beg self)
+				if ((boyGhost._send('loop:') == 1) and boyGhost._send('cel:')):
+					boyGhost._send('setCycle:', Beg, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
-				(boyGhost setLoop: 2 cel: 0 posn: 241 96 setCycle: CT 4 1 self)
+				boyGhost._send('setLoop:', 2, 'cel:', 0, 'posn:', 241, 96, 'setCycle:', CT, 4, 1, self)
 			#end:case
 			case 2:
 				if register:
 					localproc_0()
 					cycles = 4
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 3:
 				if register:
-					(kernel.ScriptID(820, 2)
-						add: -1 6 2 16 2
-						add: -1 6 2 16 3
-						init: self
+					kernel.ScriptID(820, 2)._send(
+						'add:', -1, 6, 2, 16, 2,
+						'add:', -1, 6, 2, 16, 3,
+						'init:', self
 					)
 				else:
 					ticks = 1
@@ -255,23 +255,23 @@ class showNonHanky(Script):
 					localproc_1()
 				#endif
 				if local0:
-					(self dispose:)
+					self._send('dispose:')
 				else:
 					seconds = 3
 				#endif
 			#end:case
 			case 5:
-				(boyGhost setCycle: CT 0 -1 self)
+				boyGhost._send('setCycle:', CT, 0, -1, self)
 			#end:case
 			case 6:
-				(boyGhost setLoop: 1 cel: 0 posn: 258 117)
+				boyGhost._send('setLoop:', 1, 'cel:', 0, 'posn:', 258, 117)
 				local1 = 0
 				if (not register):
-					(global1 handsOn:)
-					(client setScript: cryBaby)
+					global1._send('handsOn:')
+					client._send('setScript:', cryBaby)
 				else:
 					register = 0
-					(client setScript: cryBaby 0 1)
+					client._send('setScript:', cryBaby, 0, 1)
 				#endif
 			#end:case
 		#end:match
@@ -288,7 +288,7 @@ class cryBaby(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local2 = 30
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -303,7 +303,7 @@ class cryBaby(Script):
 				local2.post('++')
 			#endif
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -314,9 +314,9 @@ class cryBaby(Script):
 		if (not next):
 			match state = param1
 				case 0:
-					(boyGhost view: 763 setLoop: 1 x: 258 y: 117)
-					if (boyGhost cel:):
-						(boyGhost setCycle: Beg self)
+					boyGhost._send('view:', 763, 'setLoop:', 1, 'x:', 258, 'y:', 117)
+					if boyGhost._send('cel:'):
+						boyGhost._send('setCycle:', Beg, self)
 					else:
 						cycles = 1
 					#endif
@@ -324,13 +324,13 @@ class cryBaby(Script):
 				case 1:
 					(cond
 						case (register == -32768):
-							(global91 say: 6 0 0 2 self oneOnly: 0)
+							global91._send('say:', 6, 0, 0, 2, self, 'oneOnly:', 0)
 						#end:case
 						case register:
-							(global91 say: 6 2 16 4 self)
+							global91._send('say:', 6, 2, 16, 4, self)
 						#end:case
 						case (not local1):
-							(global91 say: 1 0 4 0 self)
+							global91._send('say:', 1, 0, 4, 0, self)
 						#end:case
 						else:
 							ticks = 1
@@ -344,13 +344,13 @@ class cryBaby(Script):
 						local2 = 0
 					#endif
 					if caller:
-						(caller cue:)
+						caller._send('cue:')
 						caller = 0
 					#endif
-					(boyGhost setCycle: End self)
+					boyGhost._send('setCycle:', End, self)
 				#end:case
 				case 3:
-					(boyGhost setCycle: CT 2 -1 self)
+					boyGhost._send('setCycle:', CT, 2, -1, self)
 				#end:case
 				case 4:
 					if ((not local1) and (local2 == 30)):
@@ -363,7 +363,7 @@ class cryBaby(Script):
 				#end:case
 			#end:match
 		else:
-			(self dispose:)
+			self._send('dispose:')
 		#endif
 	#end:method
 
@@ -379,25 +379,25 @@ class noHanky(Script):
 
 		match state = param1
 			case 0:
-				(KQ6Print posn: -1 10 say: 0 1 0 5 1 init: self)
+				KQ6Print._send('posn:', -1, 10, 'say:', 0, 1, 0, 5, 1, 'init:', self)
 			#end:case
 			case 1:
-				(self setScript: justCryToMama self 2)
+				self._send('setScript:', justCryToMama, self, 2)
 			#end:case
 			case 2:
 				localproc_0()
 				cycles = 2
 			#end:case
 			case 3:
-				(kernel.ScriptID(820, 2)
-					add: -1 1 0 5 3 -1 10
-					add: -1 1 0 5 4 -1 10
-					init: self
+				kernel.ScriptID(820, 2)._send(
+					'add:', -1, 1, 0, 5, 3, -1, 10,
+					'add:', -1, 1, 0, 5, 4, -1, 10,
+					'init:', self
 				)
 			#end:case
 			case 4:
 				localproc_1()
-				(self setScript: justCryToMama self 5)
+				self._send('setScript:', justCryToMama, self, 5)
 			#end:case
 			case 5:
 				proc913_4(global0, kernel.ScriptID(820, 3), self)
@@ -407,23 +407,21 @@ class noHanky(Script):
 				cycles = 4
 			#end:case
 			case 7:
-				(global91 say: 1 0 5 6 self)
+				global91._send('say:', 1, 0, 5, 6, self)
 			#end:case
 			case 8:
-				(global91 say: 1 0 5 7 self)
+				global91._send('say:', 1, 0, 5, 7, self)
 			#end:case
 			case 9:
 				localproc_1()
-				(boyGhost setLoop: 0 cel: 7 x: 260 y: 118 setCycle: Beg self)
+				boyGhost._send('setLoop:', 0, 'cel:', 7, 'x:', 260, 'y:', 118, 'setCycle:', Beg, self)
 			#end:case
 			case 10:
-				if ((global0 x:) <= (kernel.ScriptID(820, 3) approachX:)):
-					(global0
-						setMotion:
-							PolyPath
-							(kernel.ScriptID(820, 3) approachX:)
-							(kernel.ScriptID(820, 3) approachY:)
-							self
+				if (global0._send('x:') <= kernel.ScriptID(820, 3)._send('approachX:')):
+					global0._send(
+						'setMotion:', PolyPath, kernel.ScriptID(820, 3)._send('approachX:'), kernel.ScriptID(820, 3)._send(
+								'approachY:'
+							), self
 					)
 				else:
 					state.post('++')
@@ -434,37 +432,37 @@ class noHanky(Script):
 				proc913_4(global0, kernel.ScriptID(820, 3), self)
 			#end:case
 			case 12:
-				(global0 setPri: 9)
-				(global105 number: 821 loop: 1 play:)
-				(kernel.ScriptID(820, 3) setPri: 10 setCycle: End self)
+				global0._send('setPri:', 9)
+				global105._send('number:', 821, 'loop:', 1, 'play:')
+				kernel.ScriptID(820, 3)._send('setPri:', 10, 'setCycle:', End, self)
 			#end:case
 			case 13:
 				localproc_0()
-				(kernel.ScriptID(820, 3) stopUpd:)
+				kernel.ScriptID(820, 3)._send('stopUpd:')
 				cycles = 4
 			#end:case
 			case 14:
-				(global91 say: 1 0 5 8 self)
+				global91._send('say:', 1, 0, 5, 8, self)
 			#end:case
 			case 15:
-				(global105 stop:)
-				(kernel.ScriptID(820, 2)
-					add: -1 1 0 5 9
-					add: -1 1 0 5 10
-					add: -1 1 0 5 11
-					add: -1 1 0 5 12
-					add: -1 1 0 5 13
-					init: self
+				global105._send('stop:')
+				kernel.ScriptID(820, 2)._send(
+					'add:', -1, 1, 0, 5, 9,
+					'add:', -1, 1, 0, 5, 10,
+					'add:', -1, 1, 0, 5, 11,
+					'add:', -1, 1, 0, 5, 12,
+					'add:', -1, 1, 0, 5, 13,
+					'init:', self
 				)
 			#end:case
 			case 16:
 				localproc_1()
-				(kernel.ScriptID(820, 3) setCycle: Beg self)
-				(global105 number: 822 loop: 1 play:)
+				kernel.ScriptID(820, 3)._send('setCycle:', Beg, self)
+				global105._send('number:', 822, 'loop:', 1, 'play:')
 			#end:case
 			case 17:
-				(global105 stop:)
-				(self dispose:)
+				global105._send('stop:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -481,21 +479,21 @@ class justCryToMama(Script):
 
 		match state = param1
 			case 0:
-				(boyGhost view: 763 setLoop: 1 x: 258 y: 117)
-				if (boyGhost cel:):
-					(boyGhost setCycle: Beg self)
+				boyGhost._send('view:', 763, 'setLoop:', 1, 'x:', 258, 'y:', 117)
+				if boyGhost._send('cel:'):
+					boyGhost._send('setCycle:', Beg, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
-				(KQ6Print posn: -1 10 say: 0 1 0 5 register init: self)
+				KQ6Print._send('posn:', -1, 10, 'say:', 0, 1, 0, 5, register, 'init:', self)
 			#end:case
 			case 2:
-				(boyGhost setCycle: End self)
+				boyGhost._send('setCycle:', End, self)
 			#end:case
 			case 3:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -518,8 +516,8 @@ class boyGhost(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self hide: setScript: boyGhostScript approachVerbs: 50)
+		super._send('init:', &rest)
+		self._send('hide:', 'setScript:', boyGhostScript, 'approachVerbs:', 50)
 	#end:method
 
 	@classmethod
@@ -529,37 +527,37 @@ class boyGhost(Actor):
 
 		match param1
 			case 2:
-				if ((boyGhostScript state:) == 3):
+				if (boyGhostScript._send('state:') == 3):
 					local1 = 1
-					(boyGhostScript cue:)
+					boyGhostScript._send('cue:')
 				else:
 					localproc_0()
-					(global91 say: noun param1 17)
+					global91._send('say:', noun, param1, 17)
 					localproc_1()
 				#endif
 			#end:case
 			case 50:
 				localproc_0()
 				local0 = 1
-				(global0 put: 17 820)
-				(global1 givePoints: 3)
+				global0._send('put:', 17, 820)
+				global1._send('givePoints:', 3)
 				local1 = 1
-				if ((boyGhostScript state:) == 3):
-					(boyGhostScript cue:)
+				if (boyGhostScript._send('state:') == 3):
+					boyGhostScript._send('cue:')
 				else:
-					(boyGhostScript changeState: 8)
+					boyGhostScript._send('changeState:', 8)
 				#endif
 			#end:case
 			else:
-				if ((global66 doit: param1) == -32768):
+				if (global66._send('doit:', param1) == -32768):
 					localproc_0()
-					(global91 say: noun 0 0 1)
+					global91._send('say:', noun, 0, 0, 1)
 					local1 = 1
-					if ((script script:) != showNonHanky):
-						((script script:) register: -32768 next: showNonHanky)
+					if (script._send('script:') != showNonHanky):
+						script._send('script:')._send('register:', -32768, 'next:', showNonHanky)
 					#endif
 				else:
-					(super doVerb: param1)
+					super._send('doVerb:', param1)
 				#endif
 			#end:else
 		#end:match

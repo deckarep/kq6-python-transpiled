@@ -19,12 +19,12 @@ class DPath(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		points = (points or (List new:))
+		points = (points or List._send('new:'))
 		if argc:
 			client = param1
 			temp0 = 0
 			while (temp0 <= (argc - 3)): # inline for
-				(points add: param2[temp0] param2[temp0.post('++')])
+				points._send('add:', param2[temp0], param2[temp0.post('++')])
 				# for:reinit
 				temp0.post('++')
 			#end:loop
@@ -32,11 +32,11 @@ class DPath(Motion):
 				caller = param2[temp0]
 			#endif
 		#endif
-		((points contains: -32768) or (points add: -32768))
-		(self setTarget:)
-		(super init:)
+		(points._send('contains:', -32768) or points._send('add:', -32768))
+		self._send('setTarget:')
+		super._send('init:')
 		if (not argc):
-			(self doit:)
+			self._send('doit:')
 		#endif
 	#end:method
 
@@ -46,9 +46,9 @@ class DPath(Motion):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(points):
-			(points dispose:)
+			points._send('dispose:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -56,9 +56,9 @@ class DPath(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((points at: value) != -32768):
-			x = (points at: value)
-			y = (points at: value.post('++'))
+		if (points._send('at:', value) != -32768):
+			x = points._send('at:', value)
+			y = points._send('at:', value.post('++'))
 			value.post('++')
 		#endif
 	#end:method
@@ -68,10 +68,10 @@ class DPath(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((points at: value) == -32768):
-			(super moveDone:)
+		if (points._send('at:', value) == -32768):
+			super._send('moveDone:')
 		else:
-			(self init:)
+			self._send('init:')
 		#endif
 	#end:method
 

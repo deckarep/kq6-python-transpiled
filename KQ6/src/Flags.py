@@ -19,7 +19,7 @@ class Flags(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (size and (not array)):
-			(self setSize: size)
+			self._send('setSize:', size)
 		#endif
 	#end:method
 
@@ -51,7 +51,7 @@ class Flags(Obj):
 			kernel.Memory(3, array)
 			array = 0
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod

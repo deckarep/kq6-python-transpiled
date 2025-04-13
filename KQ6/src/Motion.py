@@ -35,11 +35,11 @@ class Cycle(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
-			if (kernel.Abs((global88 - cycleCnt)) < (client cycleSpeed:)):
-				(client cel:)
+			if (kernel.Abs((global88 - cycleCnt)) < client._send('cycleSpeed:')):
+				client._send('cel:')
 			else:
 				cycleCnt = global88
-				((client cel:) + cycleDir)
+				(client._send('cel:') + cycleDir)
 			#endif
 		)
 	#end:method
@@ -52,11 +52,11 @@ class Cycle(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client cycler: 0)
+		client._send('cycler:', 0)
 		if (completed and kernel.IsObject(caller)):
-			(caller cue:)
+			caller._send('cue:')
 		#endif
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -68,10 +68,10 @@ class Fwd(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (temp0 = (self nextCel:) > (client lastCel:)):
-			(self cycleDone:)
+		if (temp0 = self._send('nextCel:') > client._send('lastCel:')):
+			self._send('cycleDone:')
 		else:
-			(client cel: temp0)
+			client._send('cel:', temp0)
 		#endif
 	#end:method
 
@@ -80,7 +80,7 @@ class Fwd(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client cel: 0)
+		client._send('cel:', 0)
 	#end:method
 
 #end:class or instance
@@ -92,8 +92,8 @@ class Walk(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (not (client isStopped:)):
-			(super doit:)
+		if (not client._send('isStopped:')):
+			super._send('doit:')
 		#endif
 	#end:method
 
@@ -108,12 +108,12 @@ class CT(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1)
+		super._send('init:', param1)
 		cycleDir = param3
 		if (argc == 4):
 			caller = param4
 		#endif
-		temp0 = (client lastCel:)
+		temp0 = client._send('lastCel:')
 		endCel = (temp0 if (param2 > temp0) else param2)
 	#end:method
 
@@ -122,21 +122,20 @@ class CT(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp1 = (client lastCel:)
+		temp1 = client._send('lastCel:')
 		if (endCel > temp1):
 			endCel = temp1
 		#endif
-		temp0 = (self nextCel:)
-		(client
-			cel:
-				(cond
+		temp0 = self._send('nextCel:')
+		client._send(
+			'cel:', (cond
 					case (temp0 > temp1): 0#end:case
 					case (temp0 < 0): temp1#end:case
 					else: temp0#end:else
 				)
 		)
-		if ((global88 == cycleCnt) and (endCel == (client cel:))):
-			(self cycleDone:)
+		if ((global88 == cycleCnt) and (endCel == client._send('cel:'))):
+			self._send('cycleDone:')
 		#endif
 	#end:method
 
@@ -149,7 +148,7 @@ class CT(Cycle):
 		if caller:
 			global37 = 1
 		else:
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 
@@ -162,7 +161,7 @@ class End(CT):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1 (param1 lastCel:) 1 (param2 if (argc == 2) else 0))
+		super._send('init:', param1, param1._send('lastCel:'), 1, (param2 if (argc == 2) else 0))
 	#end:method
 
 #end:class or instance
@@ -174,7 +173,7 @@ class Beg(CT):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1 0 -1 (param2 if (argc == 2) else 0))
+		super._send('init:', param1, 0, -1, (param2 if (argc == 2) else 0))
 	#end:method
 
 #end:class or instance
@@ -191,12 +190,12 @@ class SyncWalk(Fwd):
 
 		if 
 			(and
-				kernel.IsObject(temp0 = (client mover:))
-				(((client x:) != xLast) or ((client y:) != yLast))
+				kernel.IsObject(temp0 = client._send('mover:'))
+				((client._send('x:') != xLast) or (client._send('y:') != yLast))
 			)
-			xLast = (client x:)
-			yLast = (client y:)
-			(super doit:)
+			xLast = client._send('x:')
+			yLast = client._send('y:')
+			super._send('doit:')
 		#endif
 	#end:method
 
@@ -205,8 +204,8 @@ class SyncWalk(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		cycleCnt = (global88 + (client cycleSpeed:))
-		(super nextCel:)
+		cycleCnt = (global88 + client._send('cycleSpeed:'))
+		super._send('nextCel:')
 	#end:method
 
 #end:class or instance
@@ -247,12 +246,12 @@ class Motion(Obj):
 			#endif
 		#endif
 		yLast = xLast = completed = 0
-		b-moveCnt = (+ 1 (client moveSpeed:) global88)
-		if temp3 = (client cycler:):
-			(temp3 cycleCnt: b-moveCnt)
+		b-moveCnt = (+ 1 client._send('moveSpeed:') global88)
+		if temp3 = client._send('cycler:'):
+			temp3._send('cycleCnt:', b-moveCnt)
 		#endif
-		if kernel.GetDistance(temp2 = (client x:), temp3 = (client y:), x, y):
-			(client setHeading: kernel.GetAngle(temp2, temp3, x, y))
+		if kernel.GetDistance(temp2 = client._send('x:'), temp3 = client._send('y:'), x, y):
+			client._send('setHeading:', kernel.GetAngle(temp2, temp3, x, y))
 		#endif
 		kernel.InitBresen(self)
 	#end:method
@@ -262,7 +261,7 @@ class Motion(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return (((client x:) == x) and ((client y:) == y))
+		return ((client._send('x:') == x) and (client._send('y:') == y))
 	#end:method
 
 	@classmethod
@@ -281,7 +280,7 @@ class Motion(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (kernel.Abs((global88 - b-moveCnt)) >= (client moveSpeed:)):
+		if (kernel.Abs((global88 - b-moveCnt)) >= client._send('moveSpeed:')):
 			b-moveCnt = global88
 			kernel.DoBresen(self)
 		#endif
@@ -296,7 +295,7 @@ class Motion(Obj):
 		if caller:
 			global37 = 1
 		else:
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 
@@ -305,11 +304,11 @@ class Motion(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client mover: 0)
+		client._send('mover:', 0)
 		if (completed and kernel.IsObject(caller)):
-			(caller cue:)
+			caller._send('cue:')
 		#endif
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -323,8 +322,8 @@ class MoveTo(Motion):
 
 		(return
 			(and
-				(kernel.Abs(((client x:) - x)) <= (client xStep:))
-				(kernel.Abs(((client y:) - y)) <= (client yStep:))
+				(kernel.Abs((client._send('x:') - x)) <= client._send('xStep:'))
+				(kernel.Abs((client._send('y:') - y)) <= client._send('yStep:'))
 			)
 		)
 	#end:method

@@ -34,12 +34,12 @@ class Beast(Kq6Talker):
 
 		if proc913_0(113):
 			view = 8961
-			(tBust view: 8961)
-			(tMouth view: 8961 nsTop: 32 nsLeft: 30)
-			(tEyes view: 8961 nsTop: 21 nsLeft: 30)
+			tBust._send('view:', 8961)
+			tMouth._send('view:', 8961, 'nsTop:', 32, 'nsLeft:', 30)
+			tEyes._send('view:', 8961, 'nsTop:', 21, 'nsLeft:', 30)
 			raveName = r"""PRINCE"""
 		#endif
-		(super init: tBust tEyes tMouth &rest)
+		super._send('init:', tBust, tEyes, tMouth, &rest)
 	#end:method
 
 #end:class or instance

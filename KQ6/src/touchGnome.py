@@ -32,8 +32,8 @@ class touchGnome(Gnome):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self gnomeScript: touchScript setScript: touchInit stopUpd:)
-		(super init:)
+		self._send('gnomeScript:', touchScript, 'setScript:', touchInit, 'stopUpd:')
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -42,9 +42,9 @@ class touchGnome(Gnome):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
-			(global91 say: noun param1 22 1 0 450)
+			global91._send('say:', noun, param1, 22, 1, 0, 450)
 		else:
-			(kernel.ScriptID(450, 6) setScript: touchScript 0 param1)
+			kernel.ScriptID(450, 6)._send('setScript:', touchScript, 0, param1)
 		#endif
 	#end:method
 
@@ -63,11 +63,11 @@ class touchInit(Script):
 				seconds = 1
 			#end:case
 			case 1:
-				(global91 say: 18 0 41 1 self 450)
+				global91._send('say:', 18, 0, 41, 1, self, 450)
 			#end:case
 			case 2:
-				((kernel.ScriptID(450, 6) script:) cue:)
-				(self dispose:)
+				kernel.ScriptID(450, 6)._send('script:')._send('cue:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -86,66 +86,66 @@ class touchScript(Script):
 			case 0:
 				match register
 					case 68:
-						(global91 say: 18 68 41 1 self 450)
+						global91._send('say:', 18, 68, 41, 1, self, 450)
 					#end:case
 					case 83:
-						(self cue:)
+						self._send('cue:')
 					#end:case
 					case 31:
-						(self cue:)
+						self._send('cue:')
 					#end:case
 					case 37:
-						(global91 say: 2 37 42 1 self 450)
+						global91._send('say:', 2, 37, 42, 1, self, 450)
 					#end:case
 					else:
-						(global91 say: 18 0 41 2 self 450)
+						global91._send('say:', 18, 0, 41, 2, self, 450)
 					#end:else
 				#end:match
 			#end:case
 			case 1:
-				(self setScript: kernel.ScriptID(450, 2) self register)
+				self._send('setScript:', kernel.ScriptID(450, 2), self, register)
 			#end:case
 			case 2:
-				(global104 number: 455 setLoop: 1)
-				(touchGnome setLoop: 1 cel: 0 setCycle: CT 6 1 self)
+				global104._send('number:', 455, 'setLoop:', 1)
+				touchGnome._send('setLoop:', 1, 'cel:', 0, 'setCycle:', CT, 6, 1, self)
 			#end:case
 			case 3:
-				(global104 play:)
-				(touchGnome setCycle: End self)
+				global104._send('play:')
+				touchGnome._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(global104 play:)
+				global104._send('play:')
 				cycles = 1
 			#end:case
 			case 5:
 				if (register == 68):
-					(touchGnome setLoop: 4 cel: 0 setCycle: End self)
+					touchGnome._send('setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
 				else:
-					(self setScript: failScript 0 register)
+					self._send('setScript:', failScript, 0, register)
 				#endif
 			#end:case
 			case 6:
-				(global0 setCycle: End self)
-				(touchGnome setLoop: 3)
-				(touchGnome cel: (kernel.NumCels(touchGnome) - 1) setCycle: Beg self)
+				global0._send('setCycle:', End, self)
+				touchGnome._send('setLoop:', 3)
+				touchGnome._send('cel:', (kernel.NumCels(touchGnome) - 1), 'setCycle:', Beg, self)
 			#end:case
 			case 7: 0#end:case
 			case 8:
-				if (kernel.ScriptID(40, 0) alexX:):
-					(global0
-						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
+				if kernel.ScriptID(40, 0)._send('alexX:'):
+					global0._send(
+						'posn:', kernel.ScriptID(40, 0)._send('alexX:'), kernel.ScriptID(40, 0)._send('alexY:')
 					)
 				#endif
-				if ((global0 view:) != 900):
-					(global0 reset: 1)
+				if (global0._send('view:') != 900):
+					global0._send('reset:', 1)
 				#endif
 				cycles = 6
 			#end:case
 			case 9:
-				(global91 say: 18 68 41 2 self 450)
+				global91._send('say:', 18, 68, 41, 2, self, 450)
 			#end:case
 			case 10:
-				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 3) 0 touchGnome)
+				kernel.ScriptID(450, 6)._send('setScript:', kernel.ScriptID(450, 3), 0, touchGnome)
 			#end:case
 		#end:match
 	#end:method
@@ -163,11 +163,11 @@ class failScript(Script):
 		match state = param1
 			case 0:
 				(cond
-					case ((kernel.ScriptID(40, 0) alexInvisible:) or (register == 31)):
-						(self state: (state + 1) cue:)
+					case (kernel.ScriptID(40, 0)._send('alexInvisible:') or (register == 31)):
+						self._send('state:', (state + 1), 'cue:')
 					#end:case
 					case register:
-						(global0 setCycle: End self)
+						global0._send('setCycle:', End, self)
 					#end:case
 					else:
 						cycles = 1
@@ -175,72 +175,72 @@ class failScript(Script):
 				)
 			#end:case
 			case 1:
-				if (kernel.ScriptID(40, 0) alexX:):
-					(global0
-						posn: (kernel.ScriptID(40, 0) alexX:) (kernel.ScriptID(40, 0) alexY:)
+				if kernel.ScriptID(40, 0)._send('alexX:'):
+					global0._send(
+						'posn:', kernel.ScriptID(40, 0)._send('alexX:'), kernel.ScriptID(40, 0)._send('alexY:')
 					)
 				#endif
-				if ((global0 view:) != 900):
-					(global0 reset: 1)
+				if (global0._send('view:') != 900):
+					global0._send('reset:', 1)
 				#endif
 				cycles = 2
 			#end:case
 			case 2:
 				if (not register):
-					(global104 number: 455 setLoop: 1)
-					(touchGnome setLoop: 1 cel: 0 setCycle: CT 6 1 self)
+					global104._send('number:', 455, 'setLoop:', 1)
+					touchGnome._send('setLoop:', 1, 'cel:', 0, 'setCycle:', CT, 6, 1, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 3:
 				if (not register):
-					(global104 play:)
-					(touchGnome setCycle: End self)
+					global104._send('play:')
+					touchGnome._send('setCycle:', End, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 4:
 				if (not register):
-					(global104 play:)
+					global104._send('play:')
 					cycles = 1
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 5:
-				(touchGnome setLoop: 2 cel: 0 setCycle: End self)
+				touchGnome._send('setLoop:', 2, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 6:
 				proc913_1(59)
 				if (not register):
-					(global91 say: 16 0 36 1 self 450)
+					global91._send('say:', 16, 0, 36, 1, self, 450)
 				else:
-					(global91 say: 18 0 41 3 self 450)
+					global91._send('say:', 18, 0, 41, 3, self, 450)
 				#endif
 			#end:case
 			case 7:
-				(touchGnome cel: 4)
-				(touchGnome setCycle: Beg self)
+				touchGnome._send('cel:', 4)
+				touchGnome._send('setCycle:', Beg, self)
 			#end:case
 			case 8:
-				(touchGnome setLoop: 3)
-				(touchGnome cel: (touchGnome lastCel:) setCycle: Beg self)
+				touchGnome._send('setLoop:', 3)
+				touchGnome._send('cel:', touchGnome._send('lastCel:'), 'setCycle:', Beg, self)
 				proc913_2(59)
 			#end:case
 			case 9:
-				(self setScript: kernel.ScriptID(450, 4) self register)
+				self._send('setScript:', kernel.ScriptID(450, 4), self, register)
 			#end:case
 			case 10:
-				(global91 say: 16 0 37 1 self 450)
+				global91._send('say:', 16, 0, 37, 1, self, 450)
 			#end:case
 			case 11:
-				(touchGnome addToPic: delete: dispose:)
+				touchGnome._send('addToPic:', 'delete:', 'dispose:')
 				cycles = 10
 			#end:case
 			case 12:
-				(kernel.ScriptID(450, 6) setScript: kernel.ScriptID(450, 5))
+				kernel.ScriptID(450, 6)._send('setScript:', kernel.ScriptID(450, 5))
 			#end:case
 		#end:match
 	#end:method

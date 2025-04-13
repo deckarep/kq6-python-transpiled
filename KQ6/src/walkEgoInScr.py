@@ -32,33 +32,33 @@ def proc12_1(param1 = None, param2 = None, param3 = None, *rest):
 
 	temp0 = 0
 	match global12
-		case (global2 north:):
-			(global0 posn: param1 -60)
+		case global2._send('north:'):
+			global0._send('posn:', param1, -60)
 		#end:case
-		case (global2 south:):
-			(global0 posn: param1 250)
+		case global2._send('south:'):
+			global0._send('posn:', param1, 250)
 		#end:case
-		case (global2 east:):
-			(global0 posn: 370 param2)
+		case global2._send('east:'):
+			global0._send('posn:', 370, param2)
 		#end:case
-		case (global2 west:):
-			(global0 posn: -20 param2)
+		case global2._send('west:'):
+			global0._send('posn:', -20, param2)
 		#end:case
 		else:
 			temp0 = 1
-			(global0 posn: param1 param2)
+			global0._send('posn:', param1, param2)
 		#end:else
 	#end:match
 	if (argc > 2):
-		temp1 = ((global0 x:) - param1)
-		temp2 = ((global0 y:) - param2)
+		temp1 = (global0._send('x:') - param1)
+		temp2 = (global0._send('y:') - param2)
 		localproc_0(@temp1, @temp2, param3)
-		(global0 reset: posn: (param1 + temp1) (param2 + temp2))
+		global0._send('reset:', 'posn:', (param1 + temp1), (param2 + temp2))
 	#endif
 	if (not temp0):
 		local0 = param1
 		local1 = param2
-		(global2 setScript: walkEgoInScr)
+		global2._send('setScript:', walkEgoInScr)
 	else:
 		kernel.DisposeScript(12)
 	#endif
@@ -69,35 +69,35 @@ def proc12_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global1 handsOff:)
+	global1._send('handsOff:')
 	match param1
 		case 1:
 			temp0 = 0
 			temp1 = -70
-			temp2 = (global2 north:)
+			temp2 = global2._send('north:')
 		#end:case
 		case 3:
 			temp0 = 0
 			temp1 = 70
-			temp2 = (global2 south:)
+			temp2 = global2._send('south:')
 		#end:case
 		case 2:
 			temp0 = 20
 			temp1 = 0
-			temp2 = (global2 east:)
+			temp2 = global2._send('east:')
 		#end:case
 		case 4:
 			temp0 = -20
 			temp1 = 0
-			temp2 = (global2 west:)
+			temp2 = global2._send('west:')
 		#end:case
 	#end:match
 	if (argc > 1):
 		localproc_0(@temp0, @temp1, param2)
 	#endif
-	local0 = ((global0 x:) + temp0)
-	local1 = ((global0 y:) + temp1)
-	(global2 setScript: walkEgoOutScr 0 temp2)
+	local0 = (global0._send('x:') + temp0)
+	local1 = (global0._send('y:') + temp1)
+	global2._send('setScript:', walkEgoOutScr, 0, temp2)
 #end:procedure
 
 @SCI.procedure
@@ -120,8 +120,8 @@ def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 
 	temp3 = 0
 	if kernel.IsObject(param2):
-		temp1 = (param2 x:)
-		temp2 = (param2 y:)
+		temp1 = param2._send('x:')
+		temp2 = param2._send('y:')
 		if (argc == 3):
 			temp3 = param3
 		#endif
@@ -132,8 +132,8 @@ def proc12_2(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
 			temp3 = param4
 		#endif
 	#endif
-	temp0 = kernel.GetAngle((param1 x:), (param1 y:), temp1, temp2)
-	(param1 setHeading: temp0 (kernel.IsObject(temp3) and temp3))
+	temp0 = kernel.GetAngle(param1._send('x:'), param1._send('y:'), temp1, temp2)
+	param1._send('setHeading:', temp0, (kernel.IsObject(temp3) and temp3))
 	kernel.DisposeScript(12)
 #end:procedure
 
@@ -147,18 +147,18 @@ class walkEgoInScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 reset: setMotion: PolyPath local0 local1 self)
+				global0._send('reset:', 'setMotion:', PolyPath, local0, local1, self)
 			#end:case
 			case 1:
-				(kernel.ScriptID(10, 0) setIt: 4096)
+				kernel.ScriptID(10, 0)._send('setIt:', 4096)
 				if (not script):
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				(kernel.ScriptID(10, 0) clrIt: 4096)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(10, 0)._send('clrIt:', 4096)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -168,7 +168,7 @@ class walkEgoInScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		register = 0
 		kernel.DisposeScript(12)
 	#end:method
@@ -185,14 +185,14 @@ class walkEgoOutScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: 0)
+				global0._send('setMotion:', 0)
 				cycles = 1
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath local0 local1 self)
+				global0._send('setMotion:', PolyPath, local0, local1, self)
 			#end:case
 			case 2:
-				(global2 newRoom: register)
+				global2._send('newRoom:', register)
 			#end:case
 		#end:match
 	#end:method
@@ -202,7 +202,7 @@ class walkEgoOutScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(12)
 	#end:method
 

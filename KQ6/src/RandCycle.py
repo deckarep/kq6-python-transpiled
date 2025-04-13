@@ -19,12 +19,12 @@ class RandCycle(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1)
+		super._send('init:', param1)
 		if (argc >= 4):
 			reset = param4
 		#endif
 		if reset:
-			(client cel: 0)
+			client._send('cel:', 0)
 		#endif
 		cycleCnt = kernel.GetTime()
 		if (argc >= 2):
@@ -47,15 +47,15 @@ class RandCycle(Cycle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((count > temp0 = kernel.GetTime()) or (count == -1)):
-			if ((temp0 - cycleCnt) > (client cycleSpeed:)):
-				(client cel: (self nextCel:))
+			if ((temp0 - cycleCnt) > client._send('cycleSpeed:')):
+				client._send('cel:', self._send('nextCel:'))
 				cycleCnt = kernel.GetTime()
 			#endif
 		else:
 			if reset:
-				(client cel: 0)
+				client._send('cel:', 0)
 			#endif
-			(self cycleDone:)
+			self._send('cycleDone:')
 		#endif
 	#end:method
 
@@ -66,7 +66,7 @@ class RandCycle(Cycle):
 
 		(return
 			if (kernel.NumCels(client) != 1):
-				while (temp0 = kernel.Random(0, (client lastCel:)) == (client cel:)):
+				while (temp0 = kernel.Random(0, client._send('lastCel:')) == client._send('cel:')):
 
 				#end:loop
 				temp0
@@ -83,7 +83,7 @@ class RandCycle(Cycle):
 		if caller:
 			global37 = 1
 		else:
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 

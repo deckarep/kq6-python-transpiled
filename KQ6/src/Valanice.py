@@ -30,7 +30,7 @@ class Valanice(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: tBust tEyes tMouth &rest)
+		super._send('init:', tBust, tEyes, tMouth, &rest)
 	#end:method
 
 #end:class or instance

@@ -40,135 +40,25 @@ def localproc_0():
 	temp1 = local0
 	if argc:
 		local0 = (1 + (not (local0 == 2)))
-		if (global2 obstacles:):
-			((global2 obstacles:) dispose:)
-			(global2 obstacles: 0)
+		if global2._send('obstacles:'):
+			global2._send('obstacles:')._send('dispose:')
+			global2._send('obstacles:', 0)
 			match local0
 				case 1:
-					(global2
-						addObstacle:
-							((Polygon new:)
-								type: 3
-								init:
-									81
-									129
-									56
-									138
-									114
-									169
-									114
-									177
-									107
-									177
-									64
-									153
-									26
-									125
-									4
-									99
-									4
-									63
-									33
-									34
-									69
-									18
-									57
-									18
-									24
-									32
-									0
-									49
-									-10
-									83
-									0
-									164
-									51
-									189
-									230
-									189
-									285
-									185
-									319
-									169
-									319
-									155
-									298
-									146
-									230
-									128
-									186
-									124
-									129
-									124
-								yourself:
+					global2._send(
+						'addObstacle:', Polygon._send('new:')._send(
+								'type:', 3,
+								'init:', 81, 129, 56, 138, 114, 169, 114, 177, 107, 177, 64, 153, 26, 125, 4, 99, 4, 63, 33, 34, 69, 18, 57, 18, 24, 32, 0, 49, -10, 83, 0, 164, 51, 189, 230, 189, 285, 185, 319, 169, 319, 155, 298, 146, 230, 128, 186, 124, 129, 124,
+								'yourself:'
 							)
 					)
 				#end:case
 				else:
-					(global2
-						addObstacle:
-							((Polygon new:)
-								type: 3
-								init:
-									191
-									124
-									134
-									124
-									90
-									128
-									58
-									134
-									36
-									154
-									44
-									154
-									72
-									134
-									85
-									134
-									48
-									158
-									0
-									158
-									1
-									169
-									35
-									185
-									90
-									189
-									269
-									189
-									320
-									164
-									330
-									83
-									320
-									49
-									296
-									32
-									263
-									18
-									251
-									18
-									287
-									34
-									316
-									63
-									316
-									99
-									294
-									125
-									256
-									153
-									213
-									177
-									206
-									177
-									206
-									169
-									226
-									129
-								yourself:
+					global2._send(
+						'addObstacle:', Polygon._send('new:')._send(
+								'type:', 3,
+								'init:', 191, 124, 134, 124, 90, 128, 58, 134, 36, 154, 44, 154, 72, 134, 85, 134, 48, 158, 0, 158, 1, 169, 35, 185, 90, 189, 269, 189, 320, 164, 330, 83, 320, 49, 296, 32, 263, 18, 251, 18, 287, 34, 316, 63, 316, 99, 294, 125, 256, 153, 213, 177, 206, 177, 206, 169, 226, 129,
+								'yourself:'
 							)
 					)
 				#end:else
@@ -178,21 +68,18 @@ def localproc_0():
 	if (temp1 != local0):
 		local2 = (not local2)
 	#endif
-	(global0 oldScaleSignal: 0)
+	global0._send('oldScaleSignal:', 0)
 	if local2:
-		(global0 setPri: 5 setScale: Scaler 100 56 131 41)
+		global0._send('setPri:', 5, 'setScale:', Scaler, 100, 56, 131, 41)
 	else:
-		(global0
-			setScale:
-				Scaler
-				(global2 maxScaleSize:)
-				(global2 minScaleSize:)
-				(global2 maxScaleY:)
-				(global2 minScaleY:)
-			setPri: -1
+		global0._send(
+			'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+					'minScaleSize:'
+				), global2._send('maxScaleY:'), global2._send('minScaleY:'),
+			'setPri:', -1
 		)
 	#endif
-	((global0 scaler:) doit:)
+	global0._send('scaler:')._send('doit:')
 #end:procedure
 
 @SCI.procedure
@@ -229,100 +116,49 @@ class rm790(CastleRoom):
 		else:
 			(style &= 0xbfff)
 		#endif
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 3
-					init:
-						81
-						129
-						56
-						138
-						114
-						169
-						114
-						177
-						107
-						177
-						64
-						153
-						26
-						125
-						4
-						99
-						4
-						63
-						33
-						34
-						69
-						18
-						57
-						18
-						24
-						32
-						0
-						49
-						-10
-						83
-						0
-						164
-						51
-						189
-						230
-						189
-						285
-						185
-						319
-						169
-						319
-						155
-						298
-						146
-						230
-						128
-						186
-						124
-						129
-						124
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 3,
+					'init:', 81, 129, 56, 138, 114, 169, 114, 177, 107, 177, 64, 153, 26, 125, 4, 99, 4, 63, 33, 34, 69, 18, 57, 18, 24, 32, 0, 49, -10, 83, 0, 164, 51, 189, 230, 189, 285, 185, 319, 169, 319, 155, 298, 146, 230, 128, 186, 124, 129, 124,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
-		(global0 init:)
-		(global32
-			add: stairsFeature doorFeature torchFeature
-			eachElementDo: #init
+		super._send('init:', &rest)
+		global0._send('init:')
+		global32._send(
+			'add:', stairsFeature, doorFeature, torchFeature,
+			'eachElementDo:', #init
 		)
 		match global12
 			case 750:
 				proc926_0()
-				(global0 posn: 256 19)
+				global0._send('posn:', 256, 19)
 				local2 = 1
 				local0 = 2
-				(self setScript: enterFromTop)
-				(stairs addToPic:)
-				(railing addToPic:)
-				(doorCover addToPic:)
+				self._send('setScript:', enterFromTop)
+				stairs._send('addToPic:')
+				railing._send('addToPic:')
+				doorCover._send('addToPic:')
 			#end:case
 			else:
-				(rglow init: posn: 228 81 setLoop: 0)
-				(lglow init: posn: 96 73 setLoop: 2)
-				(rflame init: posn: 229 73 setLoop: 4 setCycle: Fwd)
-				(lflame init: posn: 97 71 setLoop: 4 setCycle: Fwd)
-				(global0 loop: 2 posn: 159 125)
-				(vizier init:)
+				rglow._send('init:', 'posn:', 228, 81, 'setLoop:', 0)
+				lglow._send('init:', 'posn:', 96, 73, 'setLoop:', 2)
+				rflame._send('init:', 'posn:', 229, 73, 'setLoop:', 4, 'setCycle:', Fwd)
+				lflame._send('init:', 'posn:', 97, 71, 'setLoop:', 4, 'setCycle:', Fwd)
+				global0._send('loop:', 2, 'posn:', 159, 125)
+				vizier._send('init:')
 				local0 = 1
 				if ((not global87) or (not kernel.HaveMouse())):
-					(kernel.ScriptID(80, 0) loiterTimer: 242)
+					kernel.ScriptID(80, 0)._send('loiterTimer:', 242)
 				else:
-					(kernel.ScriptID(80, 0) loiterTimer: 122)
+					kernel.ScriptID(80, 0)._send('loiterTimer:', 122)
 				#endif
 			#end:else
 		#end:match
 		localproc_0()
-		((global0 scaler:) doit:)
+		global0._send('scaler:')._send('doit:')
 		if (not script):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
 	#end:method
 
@@ -331,43 +167,38 @@ class rm790(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case ((temp0 & 0x0002) or ((local0 == 2) and (temp0 & 0x0044))):
-				(self setScript: changeTowerRooms)
+				self._send('setScript:', changeTowerRooms)
 			#end:case
 			case ((temp0 & 0x2000) and local2):
-				(global0
-					setScale:
-						Scaler
-						maxScaleSize
-						minScaleSize
-						maxScaleY
-						minScaleY
-					setPri: -1
+				global0._send(
+					'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY,
+					'setPri:', -1
 				)
 				local2 = 0
 			#end:case
 			case ((temp0 & 0x4020) and (not local2)):
-				(global0 setPri: 13 setScale: Scaler 100 56 131 41)
-				((global0 scaler:) doit:)
+				global0._send('setPri:', 13, 'setScale:', Scaler, 100, 56, 131, 41)
+				global0._send('scaler:')._send('doit:')
 				local2 = 1
 			#end:case
 			case local2:
 				(cond
-					case ((global0 y:) < 83):
-						if ((global0 priority:) == 13):
-							(global0 priority: 5)
+					case (global0._send('y:') < 83):
+						if (global0._send('priority:') == 13):
+							global0._send('priority:', 5)
 						#endif
 					#end:case
-					case ((global0 priority:) == 5):
-						(global0 priority: 13)
+					case (global0._send('priority:') == 5):
+						global0._send('priority:', 13)
 					#end:case
 				)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -375,7 +206,7 @@ class rm790(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2 setScript: castSpell 0 2)
+		global2._send('setScript:', castSpell, 0, 2)
 	#end:method
 
 	@classmethod
@@ -383,7 +214,7 @@ class rm790(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(752)
 	#end:method
 
@@ -392,9 +223,9 @@ class rm790(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(lTimer dispose: delete:)
-		(rTimer dispose: delete:)
-		(super newRoom: param1)
+		lTimer._send('dispose:', 'delete:')
+		rTimer._send('dispose:', 'delete:')
+		super._send('newRoom:', param1)
 	#end:method
 
 #end:class or instance
@@ -407,8 +238,8 @@ class changeTowerRooms(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
-		(super init: &rest)
+		global1._send('handsOff:')
+		super._send('init:', &rest)
 		register = local2
 	#end:method
 
@@ -419,7 +250,7 @@ class changeTowerRooms(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 0) loiterTimer: 0)
+				kernel.ScriptID(80, 0)._send('loiterTimer:', 0)
 				cycles = 2
 			#end:case
 			case 1:
@@ -431,53 +262,53 @@ class changeTowerRooms(Script):
 					#endif
 				)
 				temp1 = (19 if register else 149)
-				(global0 setMotion: MoveTo temp0 temp1 self)
+				global0._send('setMotion:', MoveTo, temp0, temp1, self)
 			#end:case
 			case 2:
 				temp2 = 1
 				if register:
 					if (local0 == 2):
-						(global2 newRoom: 750)
+						global2._send('newRoom:', 750)
 						temp2 = 0
 					else:
-						(global0 posn: 49 149)
+						global0._send('posn:', 49, 149)
 					#endif
 				else:
-					(global0 posn: 64 19)
+					global0._send('posn:', 64, 19)
 				#endif
 				if temp2:
 					localproc_0(register)
 					if (local0 == 1):
-						(global2 style: ((global2 style:) & 0xbfff))
+						global2._send('style:', (global2._send('style:') & 0xbfff))
 					else:
-						(global2 style: (| (global2 style:) 0x4000))
+						global2._send('style:', (| global2._send('style:') 0x4000))
 					#endif
-					(global2 drawPic: 790)
+					global2._send('drawPic:', 790)
 					if (local0 == local1):
-						(vizier init:)
+						vizier._send('init:')
 					#endif
 					if (local0 == 2):
-						(stairs addToPic:)
-						(railing addToPic:)
-						(doorCover addToPic:)
-						(rglow init: posn: 223 73 setLoop: 3)
-						(rTimer client: rglow)
-						(lglow init: posn: 90 81 setLoop: 1)
-						(lTimer client: lglow)
-						(rflame init: posn: 222 71 setLoop: 4 setCycle: Fwd)
-						(lflame init: posn: 90 73 setLoop: 4 setCycle: Fwd)
+						stairs._send('addToPic:')
+						railing._send('addToPic:')
+						doorCover._send('addToPic:')
+						rglow._send('init:', 'posn:', 223, 73, 'setLoop:', 3)
+						rTimer._send('client:', rglow)
+						lglow._send('init:', 'posn:', 90, 81, 'setLoop:', 1)
+						lTimer._send('client:', lglow)
+						rflame._send('init:', 'posn:', 222, 71, 'setLoop:', 4, 'setCycle:', Fwd)
+						lflame._send('init:', 'posn:', 90, 73, 'setLoop:', 4, 'setCycle:', Fwd)
 					else:
-						if (global10 contains: stairs):
-							(stairs dispose:)
-							(railing dispose:)
-							(doorCover dispose:)
+						if global10._send('contains:', stairs):
+							stairs._send('dispose:')
+							railing._send('dispose:')
+							doorCover._send('dispose:')
 						#endif
-						(rglow init: posn: 228 81 setLoop: 0 cue:)
-						(rTimer client: rglow)
-						(lglow init: posn: 96 73 setLoop: 2)
-						(lTimer client: lglow)
-						(rflame init: posn: 229 73 setLoop: 4 setCycle: Fwd)
-						(lflame init: posn: 97 71 setLoop: 4 setCycle: Fwd)
+						rglow._send('init:', 'posn:', 228, 81, 'setLoop:', 0, 'cue:')
+						rTimer._send('client:', rglow)
+						lglow._send('init:', 'posn:', 96, 73, 'setLoop:', 2)
+						lTimer._send('client:', lglow)
+						rflame._send('init:', 'posn:', 229, 73, 'setLoop:', 4, 'setCycle:', Fwd)
+						lflame._send('init:', 'posn:', 97, 71, 'setLoop:', 4, 'setCycle:', Fwd)
 					#endif
 					cycles = 2
 				#endif
@@ -491,20 +322,20 @@ class changeTowerRooms(Script):
 					#endif
 				)
 				temp1 = (132 if register else 45)
-				(global0 setMotion: PolyPath temp0 temp1 self)
+				global0._send('setMotion:', PolyPath, temp0, temp1, self)
 			#end:case
 			case 4:
 				if (not local2):
-					(global0 reset:)
-					(global1 handsOn:)
+					global0._send('reset:')
+					global1._send('handsOn:')
 					if ((not global87) or (not kernel.HaveMouse())):
-						(kernel.ScriptID(80, 0) loiterTimer: 61)
+						kernel.ScriptID(80, 0)._send('loiterTimer:', 61)
 					else:
-						(kernel.ScriptID(80, 0) loiterTimer: 31)
+						kernel.ScriptID(80, 0)._send('loiterTimer:', 31)
 					#endif
-					(self dispose:)
+					self._send('dispose:')
 				else:
-					(global2 setScript: castSpell 0 3)
+					global2._send('setScript:', castSpell, 0, 3)
 				#endif
 			#end:case
 		#end:match
@@ -525,11 +356,11 @@ class enterFromTop(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setMotion: MoveTo 278 29 self)
+				global0._send('setMotion:', MoveTo, 278, 29, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -546,27 +377,27 @@ class castSpell(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(genie loop: 8 cel: (6 + ((global0 x:) < 160)) setPri: 15)
+				global1._send('handsOff:')
+				genie._send('loop:', 8, 'cel:', (6 + (global0._send('x:') < 160)), 'setPri:', 15)
 				(cond
-					case ((global0 x:) >= 160):
+					case (global0._send('x:') >= 160):
 						if (local0 == 2):
-							(genie posn: localproc_1(257) 162)
+							genie._send('posn:', localproc_1(257), 162)
 						else:
-							(genie posn: 17 137)
+							genie._send('posn:', 17, 137)
 						#endif
 					#end:case
 					case (local0 == 2):
-						(genie posn: localproc_1(17) 137)
+						genie._send('posn:', localproc_1(17), 137)
 					#end:case
 					else:
-						(genie posn: localproc_1(257) 162)
+						genie._send('posn:', localproc_1(257), 162)
 					#end:else
 				)
 				cycles = 2
 			#end:case
 			case 1:
-				(self setScript: kernel.ScriptID(752, 1) self genie)
+				self._send('setScript:', kernel.ScriptID(752, 1), self, genie)
 			#end:case
 			case 2:
 				proc913_4(global0, genie, self)
@@ -577,20 +408,20 @@ class castSpell(Script):
 			case 4:
 				match register
 					case 1:
-						(global91 say: 4 5 0 0 self)
+						global91._send('say:', 4, 5, 0, 0, self)
 					#end:case
 					case 2:
-						(global91 say: 1 0 2 0 self)
+						global91._send('say:', 1, 0, 2, 0, self)
 					#end:case
 					case 3:
-						(global91 say: 1 0 4 0 self)
+						global91._send('say:', 1, 0, 4, 0, self)
 					#end:case
 				#end:match
 			#end:case
 			case 5:
 				global106 = global0
 				global156 = getEgo
-				(self setScript: kernel.ScriptID(752, 0) 0 genie)
+				self._send('setScript:', kernel.ScriptID(752, 0), 0, genie)
 			#end:case
 		#end:match
 	#end:method
@@ -607,20 +438,19 @@ class getEgo(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					view: 749
-					normal: 0
-					cel: 0
-					loop: (mod (global0 cel:) 4)
-					cycleSpeed: 8
-					setCycle: CT 2 1 self
+				global0._send(
+					'view:', 749,
+					'normal:', 0,
+					'cel:', 0,
+					'loop:', (mod global0._send('cel:') 4),
+					'cycleSpeed:', 8,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 1:
-				if ((not local2) or (local2 and ((global0 y:) < 43))):
-					(global0
-						loop:
-							match (global0 loop:)
+				if ((not local2) or (local2 and (global0._send('y:') < 43))):
+					global0._send(
+						'loop:', match global0._send('loop:')
 								case 0: 3#end:case
 								case 1: 2#end:case
 								case 2: 1#end:case
@@ -628,14 +458,14 @@ class getEgo(Script):
 							#end:match
 					)
 				#endif
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				if ((global0 loop:) > 2):
-					(global0
-						loop: (4 + ((global0 loop:) == 3))
-						cycleSpeed: 10
-						setCycle: End self
+				if (global0._send('loop:') > 2):
+					global0._send(
+						'loop:', (4 + (global0._send('loop:') == 3)),
+						'cycleSpeed:', 10,
+						'setCycle:', End, self
 					)
 				else:
 					cycles = 1
@@ -643,7 +473,7 @@ class getEgo(Script):
 			#end:case
 			case 3:
 				if register:
-					(self dispose:)
+					self._send('dispose:')
 				else:
 					proc0_1(18)
 				#endif
@@ -681,11 +511,11 @@ class vizier(Actor):
 
 		x = localproc_1(20)
 		y = 39
-		(super init: &rest)
-		(self
-			setCycle: Walk
-			setStep: 8 4
-			setMotion: MoveTo localproc_1(80) 14 self
+		super._send('init:', &rest)
+		self._send(
+			'setCycle:', Walk,
+			'setStep:', 8, 4,
+			'setMotion:', MoveTo, localproc_1(80), 14, self
 		)
 	#end:method
 
@@ -695,7 +525,7 @@ class vizier(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local1.post('++')
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -711,7 +541,7 @@ class doorFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return ((super onMe: param1) and (local0 == 1))
+		return (super._send('onMe:', param1) and (local0 == 1))
 	#end:method
 
 	@classmethod
@@ -721,10 +551,10 @@ class doorFeature(Feature):
 
 		match param1
 			case 5:
-				(global2 setScript: castSpell 0 1)
+				global2._send('setScript:', castSpell, 0, 1)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -800,8 +630,8 @@ class rglow(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(rTimer setCycle: self kernel.Random(10, 30))
+		super._send('init:', &rest)
+		rTimer._send('setCycle:', self, kernel.Random(10, 30))
 	#end:method
 
 	@classmethod
@@ -809,9 +639,9 @@ class rglow(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self cel: kernel.Random(0, 2))
-		(rflame cycleSpeed: kernel.Random(4, 8))
-		(rTimer setCycle: self kernel.Random(2, 20))
+		self._send('cel:', kernel.Random(0, 2))
+		rflame._send('cycleSpeed:', kernel.Random(4, 8))
+		rTimer._send('setCycle:', self, kernel.Random(2, 20))
 	#end:method
 
 #end:class or instance
@@ -828,8 +658,8 @@ class lglow(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(lTimer setCycle: self kernel.Random(10, 30))
+		super._send('init:', &rest)
+		lTimer._send('setCycle:', self, kernel.Random(10, 30))
 	#end:method
 
 	@classmethod
@@ -837,9 +667,9 @@ class lglow(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self cel: kernel.Random(0, 2))
-		(lflame cycleSpeed: kernel.Random(4, 8))
-		(lTimer setCycle: self kernel.Random(2, 20))
+		self._send('cel:', kernel.Random(0, 2))
+		lflame._send('cycleSpeed:', kernel.Random(4, 8))
+		lTimer._send('setCycle:', self, kernel.Random(2, 20))
 	#end:method
 
 #end:class or instance

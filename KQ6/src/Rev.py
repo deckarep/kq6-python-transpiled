@@ -17,10 +17,10 @@ class Rev(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (temp0 = (self nextCel:) < 0):
-			(self cycleDone:)
+		if (temp0 = self._send('nextCel:') < 0):
+			self._send('cycleDone:')
 		else:
-			(client cel: temp0)
+			client._send('cel:', temp0)
 		#endif
 	#end:method
 
@@ -29,7 +29,7 @@ class Rev(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client cel: (client lastCel:))
+		client._send('cel:', client._send('lastCel:'))
 	#end:method
 
 #end:class or instance

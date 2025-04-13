@@ -28,7 +28,7 @@ class Kq6IconBar(IconBar):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
-			(global8 pause: 0)
+			global8._send('pause:', 0)
 			(state &= 0xffdf)
 			temp0 = kernel.FirstNode(elements)
 			while temp0: # inline for
@@ -36,11 +36,11 @@ class Kq6IconBar(IconBar):
 				if (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))):
 					return
 				#endif
-				(temp2 = kernel.NodeValue(temp0)
-					signal: ((temp2 signal:) & 0xffdf)
-					view: local0
-					maskView: local0
-					hiRes: 0
+				temp2 = kernel.NodeValue(temp0)._send(
+					'signal:', (temp2._send('signal:') & 0xffdf),
+					'view:', local0,
+					'maskView:', local0,
+					'hiRes:', 0
 				)
 				# for:reinit
 				temp0 = temp1
@@ -49,9 +49,9 @@ class Kq6IconBar(IconBar):
 				(and
 					(not (state & 0x0800))
 					helpIconItem
-					((helpIconItem signal:) & 0x0010)
+					(helpIconItem._send('signal:') & 0x0010)
 				)
-				(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
+				helpIconItem._send('signal:', (helpIconItem._send('signal:') & 0xffef))
 			#endif
 			kernel.Graph(8, underBits)
 			kernel.Graph(12, y, 0, (y + height), 320, 1)
@@ -67,22 +67,22 @@ class Kq6IconBar(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global8 pause:)
+		global8._send('pause:')
 		(state |= 0x0020)
-		(global1 setCursor: 999 1)
-		temp0 = (self at: 0)
-		local0 = (temp0 view:)
+		global1._send('setCursor:', 999, 1)
+		temp0 = self._send('at:', 0)
+		local0 = temp0._send('view:')
 		(= hiRes
 			if (global169 and (not kernel.Platform(5))):
 				kernel.Platform(6)
 			#endif
 		)
 		if hiRes:
-			(temp0 view: (temp0 hrView:))
+			temp0._send('view:', temp0._send('hrView:'))
 		else:
-			(temp0 view: (temp0 view:))
+			temp0._send('view:', temp0._send('view:'))
 		#endif
-		height = kernel.CelHigh((temp0 view:), (temp0 loop:), (temp0 cel:))
+		height = kernel.CelHigh(temp0._send('view:'), temp0._send('loop:'), temp0._send('cel:'))
 		port = kernel.GetPort()
 		kernel.SetPort(-1)
 		if hiRes:
@@ -102,35 +102,35 @@ class Kq6IconBar(IconBar):
 				return
 			#endif
 			if hiRes:
-				(temp7
-					maskView: (temp0 hrView:)
-					view: (temp0 hrView:)
-					nsRight: 0
+				temp7._send(
+					'maskView:', temp0._send('hrView:'),
+					'view:', temp0._send('hrView:'),
+					'nsRight:', 0
 				)
 			else:
-				(temp7
-					maskView: (temp0 maskView:)
-					view: (temp0 view:)
-					nsRight: 0
+				temp7._send(
+					'maskView:', temp0._send('maskView:'),
+					'view:', temp0._send('view:'),
+					'nsRight:', 0
 				)
 			#endif
-			if ((temp7 nsRight:) <= 0):
-				(temp7 show: temp3 temp4)
-				temp3 = (temp7 nsRight:)
+			if (temp7._send('nsRight:') <= 0):
+				temp7._send('show:', temp3, temp4)
+				temp3 = temp7._send('nsRight:')
 			else:
-				(temp7 show:)
+				temp7._send('show:')
 			#endif
 			# for:reinit
 			temp5 = temp6
 		#end:loop
-		(self updateInvIcon:)
+		self._send('updateInvIcon:')
 		kernel.PicNotValid(temp1)
 		kernel.Graph(12, y, 0, (height * (2 if hiRes else 1)), 639, 1, if hiRes:
 			underBits
 		else:
 			0
 		#endif)
-		(self highlight: curIcon)
+		self._send('highlight:', curIcon)
 	#end:method
 
 	@classmethod
@@ -141,16 +141,16 @@ class Kq6IconBar(IconBar):
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
-				(self at: (mod (temp1 + (self indexOf: highlightedIcon)) size))
+				self._send('at:', (mod (temp1 + self._send('indexOf:', highlightedIcon)) size))
 			)
 			if (not kernel.IsObject(temp0)):
-				temp0 = kernel.NodeValue((self first:))
+				temp0 = kernel.NodeValue(self._send('first:'))
 			#endif
-			(breakif (not ((temp0 signal:) & 0x0004)))
+			(breakif (not (temp0._send('signal:') & 0x0004)))
 			# for:reinit
 			temp1.post('++')
 		#end:loop
-		(self highlight: temp0 (state & 0x0020))
+		self._send('highlight:', temp0, (state & 0x0020))
 	#end:method
 
 	@classmethod
@@ -161,16 +161,16 @@ class Kq6IconBar(IconBar):
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
-				(self at: (mod ((self indexOf: highlightedIcon) - temp1) size))
+				self._send('at:', (mod (self._send('indexOf:', highlightedIcon) - temp1) size))
 			)
 			if (not kernel.IsObject(temp0)):
-				temp0 = kernel.NodeValue((self last:))
+				temp0 = kernel.NodeValue(self._send('last:'))
 			#endif
-			(breakif (not ((temp0 signal:) & 0x0004)))
+			(breakif (not (temp0._send('signal:') & 0x0004)))
 			# for:reinit
 			temp1.post('++')
 		#end:loop
-		(self highlight: temp0 (state & 0x0020))
+		self._send('highlight:', temp0, (state & 0x0020))
 	#end:method
 
 	@classmethod
@@ -178,21 +178,21 @@ class Kq6IconBar(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (curInvIcon and (not ((useIconItem state:) & 0x0004))):
-			(curInvIcon view: (973 if hiRes else 970))
-			if (global0 has: (global9 indexOf: curInvIcon)):
+		if (curInvIcon and (not (useIconItem._send('state:') & 0x0004))):
+			curInvIcon._send('view:', (973 if hiRes else 970))
+			if global0._send('has:', global9._send('indexOf:', curInvIcon)):
 				(= temp0
 					(+
 						(/
 							(-
-								((useIconItem nsRight:) - (useIconItem nsLeft:))
-								kernel.CelWide((curInvIcon view:), (curInvIcon
-									loop:
-								), (curInvIcon cel:))
+								(useIconItem._send('nsRight:') - useIconItem._send('nsLeft:'))
+								kernel.CelWide(curInvIcon._send('view:'), curInvIcon._send(
+									'loop:'
+								), curInvIcon._send('cel:'))
 							)
 							2
 						)
-						(useIconItem nsLeft:)
+						useIconItem._send('nsLeft:')
 					)
 				)
 				(= temp1
@@ -200,21 +200,21 @@ class Kq6IconBar(IconBar):
 						y
 						(/
 							(-
-								((useIconItem nsBottom:) - (useIconItem nsTop:))
-								kernel.CelHigh((curInvIcon view:), (curInvIcon
-									loop:
-								), (curInvIcon cel:))
+								(useIconItem._send('nsBottom:') - useIconItem._send('nsTop:'))
+								kernel.CelHigh(curInvIcon._send('view:'), curInvIcon._send(
+									'loop:'
+								), curInvIcon._send('cel:'))
 							)
 							2
 						)
-						(useIconItem nsTop:)
+						useIconItem._send('nsTop:')
 					)
 				)
-				kernel.DrawCel((curInvIcon view:), (curInvIcon loop:), (curInvIcon
-					cel:
+				kernel.DrawCel(curInvIcon._send('view:'), curInvIcon._send('loop:'), curInvIcon._send(
+					'cel:'
 				), temp0, temp1, -1, 0, (underBits if hiRes else 0))
-				if ((useIconItem signal:) & 0x0004):
-					(useIconItem mask:)
+				if (useIconItem._send('signal:') & 0x0004):
+					useIconItem._send('mask:')
 				#endif
 			else:
 				curInvIcon = 0
@@ -227,8 +227,8 @@ class Kq6IconBar(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param1 localize:)
-		temp1 = (param1 type:)
+		param1._send('localize:')
+		temp1 = param1._send('type:')
 		(cond
 			case (state & 0x0004):#end:case
 			case 
@@ -236,124 +236,118 @@ class Kq6IconBar(IconBar):
 					(and
 						(not temp1)
 						(state & 0x0400)
-						(<= -10 (param1 y:) height)
-						(<= 0 (param1 x:) 320)
+						(<= -10 param1._send('y:') height)
+						(<= 0 param1._send('x:') 320)
 						(not temp0 = 0)
 					)
 					(and
 						(temp1 == 4)
 						(or
-							((param1 message:) == 27)
-							((param1 message:) == 21248)
+							(param1._send('message:') == 27)
+							(param1._send('message:') == 21248)
 						)
 						temp0 = 1
 					)
 				):
-				(param1 globalize:)
-				oldMouseX = (param1 x:)
-				oldMouseY = (param1 y:)
+				param1._send('globalize:')
+				oldMouseX = param1._send('x:')
+				oldMouseY = param1._send('y:')
 				temp4 = global19
 				temp5 = curIcon
 				temp6 = curInvIcon
-				(self show:)
-				(global1 setCursor: 999)
+				self._send('show:')
+				global1._send('setCursor:', 999)
 				if temp0:
-					(global1
-						setCursor:
-							global19
-							1
-							(+
-								(curIcon nsLeft:)
+					global1._send(
+						'setCursor:', global19, 1, (+
+								curIcon._send('nsLeft:')
 								(/
-									((curIcon nsRight:) - (curIcon nsLeft:))
+									(curIcon._send('nsRight:') - curIcon._send('nsLeft:'))
 									(4 if hiRes else 2)
 								)
-							)
-							if (not hiRes):
-								((curIcon nsBottom:) - 3)
+							), if (not hiRes):
+								(curIcon._send('nsBottom:') - 3)
 							else:
 								(-
 									(+
-										(curIcon nsTop:)
-										kernel.CelHigh((curIcon view:), (curIcon
-											loop:
-										), (curIcon cel:))
+										curIcon._send('nsTop:')
+										kernel.CelHigh(curIcon._send('view:'), curIcon._send(
+											'loop:'
+										), curIcon._send('cel:'))
 									)
 									3
 								)
 							#endif
 					)
 				#endif
-				(self doit:)
+				self._send('doit:')
 				(= temp3
-					if ((global80 canControl:) or (global80 canInput:)):
-						(curIcon cursor:)
+					if (global80._send('canControl:') or global80._send('canInput:')):
+						curIcon._send('cursor:')
 					else:
 						global21
 					#endif
 				)
 				if temp0:
-					(global1 setCursor: temp3 1 oldMouseX oldMouseY)
+					global1._send('setCursor:', temp3, 1, oldMouseX, oldMouseY)
 				else:
-					(global1 setCursor: temp3 1)
+					global1._send('setCursor:', temp3, 1)
 				#endif
-				(self hide:)
+				self._send('hide:')
 			#end:case
 			case (temp1 & 0x0004):
-				match (param1 message:)
+				match param1._send('message:')
 					case 13:
 						(cond
 							case (not kernel.IsObject(curIcon)):#end:case
 							case ((curIcon != useIconItem) or curInvIcon):
-								(param1
-									type: (curIcon type:)
-									message:
-										if (curIcon == useIconItem):
-											(curInvIcon message:)
+								param1._send(
+									'type:', curIcon._send('type:'),
+									'message:', if (curIcon == useIconItem):
+											curInvIcon._send('message:')
 										else:
-											(curIcon message:)
+											curIcon._send('message:')
 										#endif
 								)
 							#end:case
 							else:
-								(param1 type: 0)
+								param1._send('type:', 0)
 							#end:else
 						)
 					#end:case
 					case 20992:
-						if (global80 canControl:):
-							(self swapCurIcon:)
+						if global80._send('canControl:'):
+							self._send('swapCurIcon:')
 						#endif
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 					#end:case
 					case 0:
-						if ((param1 type:) & 0x0040):
-							(self advanceCurIcon:)
-							(param1 claimed: 1)
+						if (param1._send('type:') & 0x0040):
+							self._send('advanceCurIcon:')
+							param1._send('claimed:', 1)
 						#endif
 					#end:case
 				#end:match
 			#end:case
 			case (temp1 & 0x0001):
 				(cond
-					case ((param1 modifiers:) & 0x0003):
-						(self advanceCurIcon:)
-						(param1 claimed: 1)
+					case (param1._send('modifiers:') & 0x0003):
+						self._send('advanceCurIcon:')
+						param1._send('claimed:', 1)
 					#end:case
-					case ((param1 modifiers:) & 0x0004):
-						if (global80 canControl:):
-							(self swapCurIcon:)
+					case (param1._send('modifiers:') & 0x0004):
+						if global80._send('canControl:'):
+							self._send('swapCurIcon:')
 						#endif
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 					#end:case
 					case kernel.IsObject(curIcon):
-						(param1
-							type: (curIcon type:)
-							message:
-								if (curIcon == useIconItem):
-									(curInvIcon message:)
+						param1._send(
+							'type:', curIcon._send('type:'),
+							'message:', if (curIcon == useIconItem):
+									curInvIcon._send('message:')
 								else:
-									(curIcon message:)
+									curIcon._send('message:')
 								#endif
 						)
 					#end:case
@@ -388,9 +382,9 @@ class Kq6IconItem(IconI):
 			kernel.Graph(4, temp2, temp3, temp2, temp1, temp4, -1, -1)
 			kernel.Graph(4, temp2, temp1, temp0, temp1, temp4, -1, -1)
 		else:
-			(self show:)
-			if (Kq6IconBar curInvIcon:):
-				(Kq6IconBar updateInvIcon:)
+			self._send('show:')
+			if Kq6IconBar._send('curInvIcon:'):
+				Kq6IconBar._send('updateInvIcon:')
 			#endif
 		#endif
 		kernel.Graph(12, (nsTop - 2), (nsLeft - 2), nsBottom, (nsRight + 3), 1)
@@ -404,7 +398,7 @@ class Kq6IconItem(IconI):
 		(return
 			(and
 				(>=
-					(param1 x:)
+					param1._send('x:')
 					if hiRes:
 						(nsLeft / 2)
 					else:
@@ -412,7 +406,7 @@ class Kq6IconItem(IconI):
 					#endif
 				)
 				(>=
-					(param1 y:)
+					param1._send('y:')
 					if hiRes:
 						(nsTop / 2)
 					else:
@@ -420,7 +414,7 @@ class Kq6IconItem(IconI):
 					#endif
 				)
 				(<=
-					(param1 x:)
+					param1._send('x:')
 					if hiRes:
 						(nsRight / 2)
 					else:
@@ -428,7 +422,7 @@ class Kq6IconItem(IconI):
 					#endif
 				)
 				(<=
-					(param1 y:)
+					param1._send('y:')
 					if hiRes:
 						(nsBottom / 2)
 					else:
@@ -445,7 +439,7 @@ class Kq6IconItem(IconI):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if hiRes:
-			temp3 = (global69 underBits:)
+			temp3 = global69._send('underBits:')
 		else:
 			temp3 = 0
 		#endif
@@ -455,11 +449,11 @@ class Kq6IconItem(IconI):
 				case (argc and param1 and (signal & 0x0001)):
 					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
 					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
-					while ((temp0 = (Event new:) type:) != 2):
+					while (temp0 = Event._send('new:')._send('type:') != 2):
 
-						(temp0 localize:)
+						temp0._send('localize:')
 						(cond
-							case (self onMe: temp0):
+							case self._send('onMe:', temp0):
 								if (not temp1):
 									kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1, 0, temp3)
 									kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
@@ -470,34 +464,34 @@ class Kq6IconItem(IconI):
 								kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 							#end:case
 						)
-						(temp0 dispose:)
+						temp0._send('dispose:')
 					#end:loop
-					(temp0 dispose:)
+					temp0._send('dispose:')
 					if (temp1 == 1):
 						kernel.DrawCel(view, loop, 0, nsLeft, nsTop, -1, 0, temp3)
 						kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1, temp3)
 					#endif
 					if 
 						(and
-							temp2 = (global1 script:)
-							(temp2 isKindOf: Tutorial)
+							temp2 = global1._send('script:')
+							temp2._send('isKindOf:', Tutorial)
 						)
 						(cond
 							case 
 								(and
-									((temp2 nextItem:) == self)
+									(temp2._send('nextItem:') == self)
 									(!=
-										(temp2 nextAction:)
-										((global69 helpIconItem:) message:)
+										temp2._send('nextAction:')
+										global69._send('helpIconItem:')._send('message:')
 									)
 								):
-								(temp2 cue:)
+								temp2._send('cue:')
 							#end:case
 							case (not temp1):
 								return 0
 							#end:case
 							else:
-								(temp2 report:)
+								temp2._send('report:')
 								return 0
 							#end:else
 						)
@@ -507,20 +501,20 @@ class Kq6IconItem(IconI):
 				else:
 					if 
 						(and
-							temp2 = (global1 script:)
-							(temp2 isKindOf: Tutorial)
+							temp2 = global1._send('script:')
+							temp2._send('isKindOf:', Tutorial)
 						)
 						if 
 							(and
-								((temp2 nextItem:) == self)
+								(temp2._send('nextItem:') == self)
 								(!=
-									(temp2 nextAction:)
-									((global69 helpIconItem:) message:)
+									temp2._send('nextAction:')
+									global69._send('helpIconItem:')._send('message:')
 								)
 							)
-							(temp2 cue:)
+							temp2._send('cue:')
 						else:
-							(temp2 report:)
+							temp2._send('report:')
 							return 0
 						#endif
 					#endif
@@ -548,7 +542,7 @@ class Kq6IconItem(IconI):
 				2
 			)
 		), -1, 0, if hiRes:
-			(global69 underBits:)
+			global69._send('underBits:')
 		else:
 			0
 		#endif)
@@ -573,15 +567,15 @@ class Kq6IconItem(IconI):
 			nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 		#endif
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1, 0, if hiRes:
-			(global69 underBits:)
+			global69._send('underBits:')
 		else:
 			0
 		#endif)
 		if (signal & 0x0004):
-			(self mask:)
+			self._send('mask:')
 		#endif
-		if (global77 and (global77 respondsTo: #stop)):
-			(global77 stop:)
+		if (global77 and global77._send('respondsTo:', #stop)):
+			global77._send('stop:')
 		#endif
 	#end:method
 

@@ -47,79 +47,42 @@ class rm781(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc958_0(128, 787, 785, 786, 724, 726)
-		(global0 init: setPri: 13 setScale: Scaler 118 70 190 140)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						-10
-						-10
-						329
-						-10
-						329
-						179
-						319
-						179
-						271
-						154
-						250
-						154
-						233
-						143
-						207
-						143
-						201
-						147
-						176
-						147
-						173
-						142
-						167
-						142
-						162
-						147
-						76
-						147
-						48
-						162
-						33
-						162
-						0
-						177
-						-10
-						177
-					yourself:
+		global0._send('init:', 'setPri:', 13, 'setScale:', Scaler, 118, 70, 190, 140)
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', -10, -10, 329, -10, 329, 179, 319, 179, 271, 154, 250, 154, 233, 143, 207, 143, 201, 147, 176, 147, 173, 142, 167, 142, 162, 147, 76, 147, 48, 162, 33, 162, 0, 177, -10, 177,
+					'yourself:'
 				)
 		)
-		(global32 add: trunk box rug chandelier eachElementDo: #init)
-		(door cel: ((global12 == 850) * 4) init: stopUpd: approachVerbs: 5)
-		(super init: &rest)
-		(trunkLid init:)
-		(boxLid init:)
-		(candles init:)
-		(doorFrame1ATP addToPic:)
-		(doorFrame2ATP addToPic:)
-		(fireplaceATP addToPic:)
-		(fireplace setCycle: Fwd init:)
-		(wardrobeDoor init:)
-		(bedATP addToPic:)
+		global32._send('add:', trunk, box, rug, chandelier, 'eachElementDo:', #init)
+		door._send('cel:', ((global12 == 850) * 4), 'init:', 'stopUpd:', 'approachVerbs:', 5)
+		super._send('init:', &rest)
+		trunkLid._send('init:')
+		boxLid._send('init:')
+		candles._send('init:')
+		doorFrame1ATP._send('addToPic:')
+		doorFrame2ATP._send('addToPic:')
+		fireplaceATP._send('addToPic:')
+		fireplace._send('setCycle:', Fwd, 'init:')
+		wardrobeDoor._send('init:')
+		bedATP._send('addToPic:')
 		match global12
 			case 810:
-				(wardrobeDoor hide:)
-				(self setScript: wardrobeEntrance)
+				wardrobeDoor._send('hide:')
+				self._send('setScript:', wardrobeEntrance)
 			#end:case
 			else:
-				(self setScript: hallDoorEntrance)
+				self._send('setScript:', hallDoorEntrance)
 			#end:else
 		#end:match
-		if (global0 scaler:):
-			((global0 scaler:) doit:)
+		if global0._send('scaler:'):
+			global0._send('scaler:')._send('doit:')
 		#endif
 		if (not script):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
-		(global102 fadeTo: 150 -1)
+		global102._send('fadeTo:', 150, -1)
 	#end:method
 
 	@classmethod
@@ -127,14 +90,14 @@ class rm781(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x4000):
-				(global2 newRoom: 850)
+				global2._send('newRoom:', 850)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -145,16 +108,16 @@ class rm781(CastleRoom):
 		(return
 			match param1
 				case 1:
-					if (global0 has: 20):
-						(global91 say: noun param1 5)
+					if global0._send('has:', 20):
+						global91._send('say:', noun, param1, 5)
 						1
 					else:
-						(global91 say: noun param1 4)
+						global91._send('say:', noun, param1, 4)
 						1
 					#endif
 				#end:case
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#end:else
 			#end:match
 		)
@@ -168,14 +131,14 @@ class rm781(CastleRoom):
 		match param1
 			case 2:
 				if inset:
-					(script next: they_reBack)
-					(inset dispose:)
+					script._send('next:', they_reBack)
+					inset._send('dispose:')
 				else:
-					(self setScript: they_reBack)
+					self._send('setScript:', they_reBack)
 				#endif
 			#end:case
 			else:
-				(super warnUser: param1 &rest)
+				super._send('warnUser:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -185,8 +148,8 @@ class rm781(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 setPri: -1)
-		(super dispose:)
+		global0._send('setPri:', -1)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -201,30 +164,30 @@ class hallDoorEntrance(Script):
 
 		match state = param1
 			case 0:
-				(door cel: 4 forceUpd:)
-				(global0
-					setPri: -1
-					posn: 306 157
-					setMotion: MoveTo (door approachX:) (door approachY:) self
+				door._send('cel:', 4, 'forceUpd:')
+				global0._send(
+					'setPri:', -1,
+					'posn:', 306, 157,
+					'setMotion:', MoveTo, door._send('approachX:'), door._send('approachY:'), self
 				)
 			#end:case
 			case 1:
-				(global0 setPri: 13)
-				(door setCycle: Beg self)
+				global0._send('setPri:', 13)
+				door._send('setCycle:', Beg, self)
 			#end:case
 			case 2:
-				(global105 number: 902 loop: 1 play:)
-				(door stopUpd:)
-				if (kernel.ScriptID(80, 0) tstFlag: 709 1):
-					(kernel.ScriptID(80, 0) clrFlag: 709 1)
+				global105._send('number:', 902, 'loop:', 1, 'play:')
+				door._send('stopUpd:')
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 1):
+					kernel.ScriptID(80, 0)._send('clrFlag:', 709, 1)
 					cycles = 10
 				else:
-					(global1 handsOn:)
-					(self dispose:)
+					global1._send('handsOn:')
+					self._send('dispose:')
 				#endif
 			#end:case
 			case 3:
-				(global2 warnUser: 2)
+				global2._send('warnUser:', 2)
 			#end:case
 		#end:match
 	#end:method
@@ -241,70 +204,70 @@ class openTrunk(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if 
 					(and
-						(not (kernel.ScriptID(80, 0) tstFlag: 711 4096))
+						(not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 4096))
 						proc999_5(register, 64, 35)
 					)
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global0
-					normal: 0
-					view: 787
-					loop: 0
-					cel: 0
-					cycleSpeed: 8
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					posn: 151 154
-					setCycle: CT 3 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 787,
+					'loop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'posn:', 151, 154,
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 1:
-				if (kernel.ScriptID(80, 0) tstFlag: 711 4096):
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 4096):
 					if proc999_5(register, 64, 35):
 						state = 4
-						(global91 say: 4 35 14 0 self)
+						global91._send('say:', 4, 35, 14, 0, self)
 					else:
-						(global91 say: 4 5 14 0 self)
+						global91._send('say:', 4, 5, 14, 0, self)
 					#endif
 				else:
 					if (not proc999_5(register, 64, 35)):
 						state = 4
 					else:
-						(global105 number: 781 loop: 1 play:)
+						global105._send('number:', 781, 'loop:', 1, 'play:')
 					#endif
-					(global91 say: 4 register 13 0 self)
+					global91._send('say:', 4, register, 13, 0, self)
 				#endif
 			#end:case
 			case 2:
-				(kernel.ScriptID(80, 0) setFlag: 711 4096)
-				(trunkLid hide:)
-				(global105 number: 904 loop: 1 play:)
-				(global0 cel: 4 setCycle: End self)
+				kernel.ScriptID(80, 0)._send('setFlag:', 711, 4096)
+				trunkLid._send('hide:')
+				global105._send('number:', 904, 'loop:', 1, 'play:')
+				global0._send('cel:', 4, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(global105 stop:)
-				(global1 handsOn:)
-				(global69 disable: 0 3 4 5)
-				(global69 disable: 0)
-				(chestInset init: self global2)
+				global105._send('stop:')
+				global1._send('handsOn:')
+				global69._send('disable:', 0, 3, 4, 5)
+				global69._send('disable:', 0)
+				chestInset._send('init:', self, global2)
 			#end:case
 			case 4:
-				(global105 number: 905 loop: 1 play:)
-				(global0 setCycle: CT 3 -1 self)
+				global105._send('number:', 905, 'loop:', 1, 'play:')
+				global0._send('setCycle:', CT, 3, -1, self)
 			#end:case
 			case 5:
-				(trunkLid show:)
-				(global105 stop:)
-				(global0 setCycle: Beg self)
+				trunkLid._send('show:')
+				global105._send('stop:')
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(global1 handsOn:)
-				(global0 reset: 1 setPri: 13 posn: 171 148)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:', 1, 'setPri:', 13, 'posn:', 171, 148)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -321,40 +284,40 @@ class openEbonyBox(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 14 5 0 0 self)
+				global1._send('handsOff:')
+				global91._send('say:', 14, 5, 0, 0, self)
 			#end:case
 			case 1:
-				(global0
-					normal: 0
-					view: 787
-					loop: 2
-					cel: 0
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					cycleSpeed: 8
-					setCycle: CT 4 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 787,
+					'loop:', 2,
+					'cel:', 0,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'cycleSpeed:', 8,
+					'setCycle:', CT, 4, 1, self
 				)
 			#end:case
 			case 2:
-				(global69 disable: 0)
-				(ebonyBoxInset init: self global2)
-				(global1 handsOn:)
-				(global69 disable: 0 3 4 5)
+				global69._send('disable:', 0)
+				ebonyBoxInset._send('init:', self, global2)
+				global1._send('handsOn:')
+				global69._send('disable:', 0, 3, 4, 5)
 			#end:case
 			case 3:
-				(global1 handsOff:)
-				(global0 setCycle: End self)
+				global1._send('handsOff:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(global0
-					reset: 6
-					setPri: 13
-					posn: (box approachX:) (box approachY:)
+				global0._send(
+					'reset:', 6,
+					'setPri:', 13,
+					'posn:', box._send('approachX:'), box._send('approachY:')
 				)
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -371,39 +334,39 @@ class wardrobeEntrance(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global103 number: 783 loop: 1 play:)
-				(global0
-					normal: 0
-					view: 785
-					loop: 2
-					cel: 9
-					posn: 58 162
-					cycleSpeed: 8
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					setCycle: Beg self
+				global1._send('handsOff:')
+				global103._send('number:', 783, 'loop:', 1, 'play:')
+				global0._send(
+					'normal:', 0,
+					'view:', 785,
+					'loop:', 2,
+					'cel:', 9,
+					'posn:', 58, 162,
+					'cycleSpeed:', 8,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'setCycle:', Beg, self
 				)
-				(global105 number: 901 loop: 1 play:)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
 			#end:case
 			case 1:
-				(global0 loop: 1 cel: 5 setCycle: CT 2 -1 self)
+				global0._send('loop:', 1, 'cel:', 5, 'setCycle:', CT, 2, -1, self)
 			#end:case
 			case 2:
-				(global0 setCycle: Beg)
-				(global105 number: 902 loop: 1 play:)
+				global0._send('setCycle:', Beg)
+				global105._send('number:', 902, 'loop:', 1, 'play:')
 				ticks = 60
 			#end:case
 			case 3:
-				(global0
-					posn: (wardrobeDoor approachX:) (wardrobeDoor approachY:)
-					reset: 0
-					setPri: 13
+				global0._send(
+					'posn:', wardrobeDoor._send('approachX:'), wardrobeDoor._send('approachY:'),
+					'reset:', 0,
+					'setPri:', 13
 				)
-				(wardrobeDoor show: stopUpd:)
-				(global1 handsOn:)
-				(self dispose:)
+				wardrobeDoor._send('show:', 'stopUpd:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -422,38 +385,38 @@ class they_reBack(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 1 0 3 1 self)
+				global1._send('handsOff:')
+				global91._send('say:', 1, 0, 3, 1, self)
 			#end:case
 			case 1:
 				proc913_4(global0, door, self)
 			#end:case
 			case 2:
-				(global105 number: 901 loop: 1 play:)
-				(door setCycle: CT 2 1 self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				door._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 3:
-				(global105 stop:)
-				(global91 say: 1 0 3 2 self)
+				global105._send('stop:')
+				global91._send('say:', 1, 0, 3, 2, self)
 			#end:case
 			case 4:
-				(global105 number: 901 loop: 1 play:)
-				(door setCycle: End self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				door._send('setCycle:', End, self)
 			#end:case
 			case 5:
-				(global105 stop:)
-				(kernel.ScriptID(80, 5) init: posn: 307 158 loop: 1)
-				(kernel.ScriptID(80, 0) setupGuards:)
-				(kernel.ScriptID(80, 5) setMotion: MoveTo 283 158 self)
+				global105._send('stop:')
+				kernel.ScriptID(80, 5)._send('init:', 'posn:', 307, 158, 'loop:', 1)
+				kernel.ScriptID(80, 0)._send('setupGuards:')
+				kernel.ScriptID(80, 5)._send('setMotion:', MoveTo, 283, 158, self)
 			#end:case
 			case 6:
-				(global102 number: 710 loop: -1 play:)
-				(global91 say: 1 0 3 3 self oneOnly: 0)
+				global102._send('number:', 710, 'loop:', -1, 'play:')
+				global91._send('say:', 1, 0, 3, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 7:
-				(global102 fade:)
-				(kernel.ScriptID(80, 0) setFlag: 709 8192)
-				(global2 newRoom: 820)
+				global102._send('fade:')
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 8192)
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -471,67 +434,67 @@ class openWardrobe(Script):
 		if (not local1):
 			match state = param1
 				case 0:
-					(global1 handsOff:)
-					(wardrobeDoor hide:)
-					(global0
-						normal: 0
-						view: 785
-						setScale: 0
-						scaleX: 128
-						scaleY: 128
-						loop: 1
-						cel: 0
-						posn: 58 162
-						cycleSpeed: 8
-						setCycle: CT 2 1 self
+					global1._send('handsOff:')
+					wardrobeDoor._send('hide:')
+					global0._send(
+						'normal:', 0,
+						'view:', 785,
+						'setScale:', 0,
+						'scaleX:', 128,
+						'scaleY:', 128,
+						'loop:', 1,
+						'cel:', 0,
+						'posn:', 58, 162,
+						'cycleSpeed:', 8,
+						'setCycle:', CT, 2, 1, self
 					)
 				#end:case
 				case 1:
-					(global103 number: 901 loop: 1 play:)
-					(global0 setCycle: End self)
+					global103._send('number:', 901, 'loop:', 1, 'play:')
+					global0._send('setCycle:', End, self)
 				#end:case
 				case 2:
 					if (global12 != 810):
-						(global91 say: 12 5 8 0 self)
+						global91._send('say:', 12, 5, 8, 0, self)
 					else:
 						(state += 2)
 						cycles = 1
 					#endif
 				#end:case
 				case 3:
-					(global0 setCycle: CT 1 -1 self)
+					global0._send('setCycle:', CT, 1, -1, self)
 				#end:case
 				case 4:
 					local1 = 1
-					(global0 cel: 0)
-					(global105 number: 902 loop: 1 play: self)
+					global0._send('cel:', 0)
+					global105._send('number:', 902, 'loop:', 1, 'play:', self)
 				#end:case
 				case 5:
-					(global103 number: 783 loop: 1 play:)
-					(global0 loop: 2 cel: 0 setCycle: CT 8 1 self)
+					global103._send('number:', 783, 'loop:', 1, 'play:')
+					global0._send('loop:', 2, 'cel:', 0, 'setCycle:', CT, 8, 1, self)
 				#end:case
 				case 6:
-					(global0 cel: 9)
-					(global105 number: 902 loop: 1 play:)
+					global0._send('cel:', 9)
+					global105._send('number:', 902, 'loop:', 1, 'play:')
 					cycles = 2
 				#end:case
 				case 7:
-					(global91 say: 12 5 9 0 self)
+					global91._send('say:', 12, 5, 9, 0, self)
 				#end:case
 				case 8:
-					(global2 newRoom: 810)
+					global2._send('newRoom:', 810)
 				#end:case
 			#end:match
 		else:
 			local1 = 0
-			(global1 handsOn:)
-			(wardrobeDoor show: stopUpd:)
-			(global0
-				posn: (wardrobeDoor approachX:) (wardrobeDoor approachY:)
-				reset: 1
-				setPri: 13
+			global1._send('handsOn:')
+			wardrobeDoor._send('show:', 'stopUpd:')
+			global0._send(
+				'posn:', wardrobeDoor._send('approachX:'), wardrobeDoor._send('approachY:'),
+				'reset:', 1,
+				'setPri:', 13
 			)
-			(self dispose:)
+			self._send('dispose:')
 		#endif
 	#end:method
 
@@ -558,23 +521,23 @@ class door(Prop):
 
 		match param1
 			case 5:
-				(global1 handsOff:)
-				(global0 setPri: -1)
-				(global105 number: 901 loop: 1 play:)
-				(self setCycle: End self)
+				global1._send('handsOff:')
+				global0._send('setPri:', -1)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				self._send('setCycle:', End, self)
 			#end:case
 			case 1:
 				if local0:
-					(global91 say: noun param1 12)
-					(global2 setScript: kernel.ScriptID(82) 0 hallScr)
+					global91._send('say:', noun, param1, 12)
+					global2._send('setScript:', kernel.ScriptID(82), 0, hallScr)
 				else:
 					local0.post('++')
-					(_approachVerbs |= (global66 doit: 1))
-					(global91 say: noun param1 11)
+					(_approachVerbs |= global66._send('doit:', 1))
+					global91._send('say:', noun, param1, 11)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -584,7 +547,7 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global105 stop:)
+		global105._send('stop:')
 		proc80_2(2)
 	#end:method
 
@@ -598,22 +561,22 @@ class hallScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if register = (not (kernel.ScriptID(80, 0) tstFlag: 709 128)):
-			(tempGuard1
-				view: (kernel.ScriptID(80, 6) view:)
-				posn: 192 126
-				setSpeed: (3 if (global87 < 2) else 5)
-				init:
+		if register = (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128)):
+			tempGuard1._send(
+				'view:', kernel.ScriptID(80, 6)._send('view:'),
+				'posn:', 192, 126,
+				'setSpeed:', (3 if (global87 < 2) else 5),
+				'init:'
 			)
-			(tempGuard2
-				posn: 200 128
-				setSpeed: (3 if (global87 < 2) else 5)
-				init:
+			tempGuard2._send(
+				'posn:', 200, 128,
+				'setSpeed:', (3 if (global87 < 2) else 5),
+				'init:'
 			)
 		#endif
-		(super init: &rest)
-		(client caller: self)
-		(kernel.ScriptID(82, 1) noun: 26 actions: keyHoleDoVerb init: 786 0 0 91 59)
+		super._send('init:', &rest)
+		client._send('caller:', self)
+		kernel.ScriptID(82, 1)._send('noun:', 26, 'actions:', keyHoleDoVerb, 'init:', 786, 0, 0, 91, 59)
 	#end:method
 
 	@classmethod
@@ -622,10 +585,10 @@ class hallScr(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if register:
-			(tempGuard1 dispose:)
-			(tempGuard2 dispose:)
+			tempGuard1._send('dispose:')
+			tempGuard2._send('dispose:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -634,9 +597,9 @@ class hallScr(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if client:
-			(super cue: &rest)
+			super._send('cue:', &rest)
 		else:
-			(global0 setPri: 13)
+			global0._send('setPri:', 13)
 		#endif
 	#end:method
 
@@ -648,13 +611,13 @@ class hallScr(Script):
 		match state = param1
 			case 0:
 				if register:
-					if ((tempGuard1 x:) < 160):
-						(tempGuard1 setMotion: MoveTo 192 126 self)
-						(tempGuard2 setMotion: MoveTo 200 128)
+					if (tempGuard1._send('x:') < 160):
+						tempGuard1._send('setMotion:', MoveTo, 192, 126, self)
+						tempGuard2._send('setMotion:', MoveTo, 200, 128)
 					else:
-						(kernel.ScriptID(80, 0) setFlag: 711 128)
-						(tempGuard1 setMotion: MoveTo 128 126 self)
-						(tempGuard2 setMotion: MoveTo 120 128)
+						kernel.ScriptID(80, 0)._send('setFlag:', 711, 128)
+						tempGuard1._send('setMotion:', MoveTo, 128, 126, self)
+						tempGuard2._send('setMotion:', MoveTo, 120, 128)
 					#endif
 				else:
 					cycles = 4
@@ -662,7 +625,7 @@ class hallScr(Script):
 			#end:case
 			case 1:
 				if register:
-					if ((tempGuard1 x:) < 160):
+					if (tempGuard1._send('x:') < 160):
 						seconds = 4
 					else:
 						seconds = 10
@@ -670,8 +633,8 @@ class hallScr(Script):
 				#endif
 			#end:case
 			case 2:
-				(kernel.ScriptID(80, 0) clrFlag: 711 128)
-				(self changeState: 0)
+				kernel.ScriptID(80, 0)._send('clrFlag:', 711, 128)
+				self._send('changeState:', 0)
 			#end:case
 		#end:match
 	#end:method
@@ -689,10 +652,10 @@ class keyHoleDoVerb(Actions):
 		temp0 = 1
 		match param1
 			case 1:
-				if (kernel.ScriptID(80, 0) tstFlag: 709 128):
-					(global91 say: 26 1 8)
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128):
+					global91._send('say:', 26, 1, 8)
 				else:
-					(global91 say: 26 1 9)
+					global91._send('say:', 26, 1, 9)
 				#endif
 			#end:case
 			else:
@@ -721,8 +684,8 @@ class tempGuard1(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Walk setStep: 4 2 actions: keyHoleDoVerb)
+		super._send('init:', &rest)
+		self._send('setCycle:', Walk, 'setStep:', 4, 2, 'actions:', keyHoleDoVerb)
 	#end:method
 
 #end:class or instance
@@ -744,8 +707,8 @@ class tempGuard2(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Walk setStep: 4 2 actions: keyHoleDoVerb)
+		super._send('init:', &rest)
+		self._send('setCycle:', Walk, 'setStep:', 4, 2, 'actions:', keyHoleDoVerb)
 	#end:method
 
 #end:class or instance
@@ -780,8 +743,8 @@ class wardrobeDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -790,9 +753,9 @@ class wardrobeDoor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(global2 setScript: openWardrobe)
+			global2._send('setScript:', openWardrobe)
 		else:
-			(super doVerb: param1)
+			super._send('doVerb:', param1)
 		#endif
 	#end:method
 
@@ -817,8 +780,8 @@ class trunkLid(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 35 64)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 35, 64)
 	#end:method
 
 	@classmethod
@@ -826,7 +789,7 @@ class trunkLid(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(trunk doVerb: &rest)
+		trunk._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance
@@ -857,8 +820,8 @@ class candles(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCycle: Fwd)
-		(super init: &rest)
+		self._send('setCycle:', Fwd)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -905,12 +868,12 @@ class bedATP(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 x:)
-		temp1 = (param1 y:)
+		temp0 = param1._send('x:')
+		temp1 = param1._send('y:')
 		approachY = approachX = _approachVerbs = 0
 		(return
 			(and
-				(super onMe: temp0 temp1)
+				super._send('onMe:', temp0, temp1)
 				(temp0 -= nsLeft)
 				(temp1 -= nsTop)
 				(or
@@ -918,8 +881,8 @@ class bedATP(View):
 						(temp0 > 41)
 						(or
 							(and
-								((global69 curIcon:) == (global69 at: 1))
-								(_approachVerbs |= (global66 doit: 5))
+								(global69._send('curIcon:') == global69._send('at:', 1))
+								(_approachVerbs |= global66._send('doit:', 5))
 								approachX = 105
 								approachY = 150
 							)
@@ -927,7 +890,7 @@ class bedATP(View):
 						)
 						noun = 21
 					)
-					(self approachX: 55 approachY: 161 approachVerbs: 5)
+					self._send('approachX:', 55, 'approachY:', 161, 'approachVerbs:', 5)
 					noun = 12
 				)
 			)
@@ -940,9 +903,9 @@ class bedATP(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (noun == 12):
-			(wardrobeDoor doVerb: &rest)
+			wardrobeDoor._send('doVerb:', &rest)
 		else:
-			(super doVerb: &rest)
+			super._send('doVerb:', &rest)
 		#endif
 	#end:method
 
@@ -963,11 +926,11 @@ class fireplaceATP(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 x:)
-		temp1 = (param1 y:)
+		temp0 = param1._send('x:')
+		temp1 = param1._send('y:')
 		(return
 			(and
-				(super onMe: temp0 temp1)
+				super._send('onMe:', temp0, temp1)
 				(temp0 -= nsLeft)
 				(temp1 -= nsTop)
 				(or
@@ -1018,8 +981,8 @@ class trunk(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 35 64)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 35, 64)
 	#end:method
 
 	@classmethod
@@ -1029,24 +992,24 @@ class trunk(Feature):
 
 		(cond
 			case proc999_5(param1, 5, 35, 64):
-				(global2 setScript: openTrunk 0 param1)
+				global2._send('setScript:', openTrunk, 0, param1)
 			#end:case
-			case ((global66 doit: param1) == -32768):
+			case (global66._send('doit:', param1) == -32768):
 				match param1
 					case 61:
-						(super doVerb: param1)
+						super._send('doVerb:', param1)
 					#end:case
 					else:
-						if (kernel.ScriptID(80, 0) tstFlag: 711 4096):
-							(global91 say: noun 0 14)
+						if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 4096):
+							global91._send('say:', noun, 0, 14)
 						else:
-							(global91 say: noun 0 13)
+							global91._send('say:', noun, 0, 13)
 						#endif
 					#end:else
 				#end:match
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		)
 	#end:method
@@ -1074,8 +1037,8 @@ class box(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -1085,10 +1048,10 @@ class box(Feature):
 
 		match param1
 			case 5:
-				(global2 setScript: openEbonyBox)
+				global2._send('setScript:', openEbonyBox)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1124,15 +1087,15 @@ class chestInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable: 6)
-		(global0 setPri: 0 stopUpd:)
+		global69._send('disable:', 6)
+		global0._send('setPri:', 0, 'stopUpd:')
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
 		y = (90 - (kernel.CelHigh(view, loop, cel) / 2))
-		(super init: &rest)
-		(papers_ChestInset init: self)
-		(books_ChestInset init: self)
-		(vase_ChestInset init: self)
-		(lid_ChestInset init: self)
+		super._send('init:', &rest)
+		papers_ChestInset._send('init:', self)
+		books_ChestInset._send('init:', self)
+		vase_ChestInset._send('init:', self)
+		lid_ChestInset._send('init:', self)
 	#end:method
 
 	@classmethod
@@ -1140,12 +1103,12 @@ class chestInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable: 6)
+		global69._send('enable:', 6)
 		if (caller == openTrunk):
-			(global1 handsOff:)
+			global1._send('handsOff:')
 		#endif
-		(super dispose:)
-		(global0 setPri: 13 startUpd:)
+		super._send('dispose:')
+		global0._send('setPri:', 13, 'startUpd:')
 	#end:method
 
 #end:class or instance
@@ -1162,16 +1125,16 @@ class ebonyBoxInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable: 6)
-		(global0 stopUpd:)
+		global69._send('disable:', 6)
+		global0._send('stopUpd:')
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
 		y = (90 - (kernel.CelHigh(view, loop, cel) / 2))
-		(super init: &rest)
-		(global105 number: 904 play:)
-		(paper_BoxInset init: self)
-		(pens_BoxInset init: self)
-		(dice_BoxInset init: self)
-		(lid_BoxInset cel: 1 init: self)
+		super._send('init:', &rest)
+		global105._send('number:', 904, 'play:')
+		paper_BoxInset._send('init:', self)
+		pens_BoxInset._send('init:', self)
+		dice_BoxInset._send('init:', self)
+		lid_BoxInset._send('cel:', 1, 'init:', self)
 	#end:method
 
 	@classmethod
@@ -1179,8 +1142,8 @@ class ebonyBoxInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable: 6)
-		(super dispose: &rest)
+		global69._send('enable:', 6)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -1189,16 +1152,16 @@ class ebonyBoxInset(Inset):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (inset and (inset handleEvent: param1)): 0#end:case
-			case ((param1 type:) & 0x4000):
+			case (inset and inset._send('handleEvent:', param1)): 0#end:case
+			case (param1._send('type:') & 0x4000):
 				(cond
-					case (self onMe: param1):
-						(param1 claimed: 1)
-						(self doVerb: (param1 message:))
+					case self._send('onMe:', param1):
+						param1._send('claimed:', 1)
+						self._send('doVerb:', param1._send('message:'))
 					#end:case
 					case disposeNotOnMe:
-						(param1 claimed: 1)
-						(lid_BoxInset doVerb: 5)
+						param1._send('claimed:', 1)
+						lid_BoxInset._send('doVerb:', 5)
 					#end:case
 					else:
 						return 0
@@ -1215,13 +1178,13 @@ class ebonyBoxInset(Inset):
 
 		match param1
 			case 2:
-				(global91 say: 14 param1)
+				global91._send('say:', 14, param1)
 			#end:case
 			else:
-				if ((global66 doit: param1) == -32768):
-					(global91 say: 14)
+				if (global66._send('doit:', param1) == -32768):
+					global91._send('say:', 14)
 				else:
-					(super doVerb: param1)
+					super._send('doVerb:', param1)
 				#endif
 			#end:else
 		#end:match
@@ -1242,10 +1205,10 @@ class letterInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable: 6)
+		global69._send('disable:', 6)
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
 		y = (100 - (kernel.CelHigh(view, loop, cel) / 2))
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -1253,8 +1216,8 @@ class letterInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable: 6)
-		(super dispose:)
+		global69._send('enable:', 6)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -1272,10 +1235,10 @@ class InsetView(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		x = ((param1 x:) + offsetX)
-		y = ((param1 y:) + offsetY)
-		(super init: &rest)
-		(self stopUpd:)
+		x = (param1._send('x:') + offsetX)
+		y = (param1._send('y:') + offsetY)
+		super._send('init:', &rest)
+		self._send('stopUpd:')
 	#end:method
 
 #end:class or instance
@@ -1296,28 +1259,28 @@ class papers_ChestInset(InsetView):
 
 		match param1
 			case 1:
-				if (global0 has: 20):
+				if global0._send('has:', 20):
 					temp0 = 7
 				else:
 					temp0 = 6
 				#endif
-				(global91 say: noun param1 temp0)
+				global91._send('say:', noun, param1, temp0)
 			#end:case
 			case 5:
-				if (not (global0 has: 20)):
-					(global0 get: 20)
-					(global1 givePoints: 1)
-					(openTrunk next: viewLetter)
-					(chestInset dispose:)
+				if (not global0._send('has:', 20)):
+					global0._send('get:', 20)
+					global1._send('givePoints:', 1)
+					openTrunk._send('next:', viewLetter)
+					chestInset._send('dispose:')
 				else:
-					(global91 say: noun param1 7)
+					global91._send('say:', noun, param1, 7)
 				#endif
 			#end:case
 			case 61:
-				(global91 say: 4 61)
+				global91._send('say:', 4, 61)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1334,34 +1297,34 @@ class viewLetter(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 5 5 6 1 self)
+				global1._send('handsOff:')
+				global91._send('say:', 5, 5, 6, 1, self)
 			#end:case
 			case 1:
-				(letterInset init: 0 global2)
+				letterInset._send('init:', 0, global2)
 				cycles = 2
 			#end:case
 			case 2:
-				(roomConv
-					add: -1 5 5 6 2
-					add: -1 5 5 6 3
-					add: -1 5 5 6 4
-					add: -1 5 5 6 5
-					init: self
+				roomConv._send(
+					'add:', -1, 5, 5, 6, 2,
+					'add:', -1, 5, 5, 6, 3,
+					'add:', -1, 5, 5, 6, 4,
+					'add:', -1, 5, 5, 6, 5,
+					'init:', self
 				)
 			#end:case
 			case 3:
-				(letterInset caller: self dispose:)
+				letterInset._send('caller:', self, 'dispose:')
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(global91 say: 5 5 6 6 self oneOnly: 0)
+				global91._send('say:', 5, 5, 6, 6, self, 'oneOnly:', 0)
 			#end:case
 			case 6:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1384,16 +1347,16 @@ class books_ChestInset(InsetView):
 
 		match param1
 			case 2:
-				(papers_ChestInset doVerb: param1)
+				papers_ChestInset._send('doVerb:', param1)
 			#end:case
 			case 61:
-				(global91 say: 4 61)
+				global91._send('say:', 4, 61)
 			#end:case
 			else:
-				if ((global66 doit: param1) == -32768):
-					(global91 say: 5)
+				if (global66._send('doit:', param1) == -32768):
+					global91._send('say:', 5)
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#endif
 			#end:else
 		#end:match
@@ -1417,16 +1380,16 @@ class vase_ChestInset(InsetView):
 
 		match param1
 			case 2:
-				(papers_ChestInset doVerb: param1)
+				papers_ChestInset._send('doVerb:', param1)
 			#end:case
 			case 61:
-				(global91 say: 4 61)
+				global91._send('say:', 4, 61)
 			#end:case
 			else:
-				if ((global66 doit: param1) == -32768):
-					(global91 say: 5)
+				if (global66._send('doit:', param1) == -32768):
+					global91._send('say:', 5)
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#endif
 			#end:else
 		#end:match
@@ -1448,9 +1411,9 @@ class lid_ChestInset(InsetView):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(chestInset dispose:)
+			chestInset._send('dispose:')
 		else:
-			(chestInset doVerb: param1)
+			chestInset._send('doVerb:', param1)
 		#endif
 	#end:method
 
@@ -1471,13 +1434,13 @@ class paper_BoxInset(InsetView):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 1):
-			if (not (kernel.ScriptID(80, 0) tstFlag: 709 64)):
-				(global1 givePoints: 1)
+			if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 64)):
+				global1._send('givePoints:', 1)
 			#endif
-			(kernel.ScriptID(80, 0) setFlag: 709 64)
-			(KQ6Print posn: -1 10 say: 1 noun param1 0 1 init:)
+			kernel.ScriptID(80, 0)._send('setFlag:', 709, 64)
+			KQ6Print._send('posn:', -1, 10, 'say:', 1, noun, param1, 0, 1, 'init:')
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -1508,11 +1471,11 @@ class dice_BoxInset(InsetView):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 x:)
-		temp1 = (param1 y:)
+		temp0 = param1._send('x:')
+		temp1 = param1._send('y:')
 		(return
 			(and
-				(super onMe: temp0 temp1)
+				super._send('onMe:', temp0, temp1)
 				(temp0 -= nsLeft)
 				(temp1 -= nsTop)
 				(((temp0 > 17) and noun = 18) or noun = 17)
@@ -1538,15 +1501,15 @@ class lid_BoxInset(InsetView):
 
 		match param1
 			case 5:
-				(self startUpd:)
+				self._send('startUpd:')
 				cel = 0
-				(global105 number: 905 play:)
-				kernel.Animate((global5 elements:), 0)
-				kernel.Animate((global5 elements:), 0)
-				(ebonyBoxInset dispose:)
+				global105._send('number:', 905, 'play:')
+				kernel.Animate(global5._send('elements:'), 0)
+				kernel.Animate(global5._send('elements:'), 0)
+				ebonyBoxInset._send('dispose:')
 			#end:case
 			else:
-				(ebonyBoxInset doVerb: param1)
+				ebonyBoxInset._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method

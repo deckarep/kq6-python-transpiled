@@ -32,9 +32,9 @@ class Genie(Kq6Talker):
 
 		if proc913_0(59):
 			cel = 1
-			(super init: 0 0 0 &rest)
+			super._send('init:', 0, 0, 0, &rest)
 		else:
-			(super init: tBust tEyes tMouth &rest)
+			super._send('init:', tBust, tEyes, tMouth, &rest)
 		#endif
 	#end:method
 

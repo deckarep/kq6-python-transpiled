@@ -39,19 +39,19 @@ class turnPageScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setCycle: CT 1 -1 self)
+				global0._send('setCycle:', CT, 1, -1, self)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -68,83 +68,83 @@ class poemShelfScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				if ((global0 loop:) != 3):
-					(global0 loop: 3)
+				global1._send('handsOff:')
+				if (global0._send('loop:') != 3):
+					global0._send('loop:', 3)
 				#endif
 				cycles = 2
 			#end:case
 			case 1:
-				(global0
-					setSpeed: 6
-					view: 279
-					loop: 2
-					cel: 0
-					normal: 0
-					setCycle: End self
+				global0._send(
+					'setSpeed:', 6,
+					'view:', 279,
+					'loop:', 2,
+					'cel:', 0,
+					'normal:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 loop: 3 cel: 0 setCycle: End self)
+				global0._send('loop:', 3, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				if (((global9 at: 47) owner:) != 270):
+				if (global9._send('at:', 47)._send('owner:') != 270):
 					register = 1
-					(roomConv
-						add: -1 13 5 18 1
-						add: -1 13 5 18 2
-						add: -1 13 5 18 3
-						add: turnPageScr
-						add: -1 13 5 18 4
-						add: -1 13 5 18 5
-						init: self
+					roomConv._send(
+						'add:', -1, 13, 5, 18, 1,
+						'add:', -1, 13, 5, 18, 2,
+						'add:', -1, 13, 5, 18, 3,
+						'add:', turnPageScr,
+						'add:', -1, 13, 5, 18, 4,
+						'add:', -1, 13, 5, 18, 5,
+						'init:', self
 					)
 				else:
-					(roomConv
-						add: -1 13 5 17 1
-						add: -1 13 5 17 2
-						add: -1 13 5 17 3
-						add: turnPageScr
-						add: -1 13 5 17 4
-						add: -1 13 5 17 5
-						add: turnPageScr
-						add: -1 13 5 17 6
-						add: turnPageScr
-						add: -1 13 5 17 7
-						add: turnPageScr
-						add: -1 13 5 17 8
-						add: -1 13 5 17 9
-						add: -1 13 5 17 10
-						init: self
+					roomConv._send(
+						'add:', -1, 13, 5, 17, 1,
+						'add:', -1, 13, 5, 17, 2,
+						'add:', -1, 13, 5, 17, 3,
+						'add:', turnPageScr,
+						'add:', -1, 13, 5, 17, 4,
+						'add:', -1, 13, 5, 17, 5,
+						'add:', turnPageScr,
+						'add:', -1, 13, 5, 17, 6,
+						'add:', turnPageScr,
+						'add:', -1, 13, 5, 17, 7,
+						'add:', turnPageScr,
+						'add:', -1, 13, 5, 17, 8,
+						'add:', -1, 13, 5, 17, 9,
+						'add:', -1, 13, 5, 17, 10,
+						'init:', self
 					)
 				#endif
 			#end:case
 			case 4:
 				if (not register):
-					((global9 at: 47) owner: -1)
-					(poem
-						init:
-						posn: 303 92
-						view: 279
-						setLoop: 6
-						cel: 0
-						setCycle: Fwd
-						setMotion: MoveTo 281 120 poem
+					global9._send('at:', 47)._send('owner:', -1)
+					poem._send(
+						'init:',
+						'posn:', 303, 92,
+						'view:', 279,
+						'setLoop:', 6,
+						'cel:', 0,
+						'setCycle:', Fwd,
+						'setMotion:', MoveTo, 281, 120, poem
 					)
 				#endif
 				cycles = 2
 			#end:case
 			case 5:
-				(global0 loop: 2 cel: (global0 lastCel:))
+				global0._send('loop:', 2, 'cel:', global0._send('lastCel:'))
 				cycles = 2
 			#end:case
 			case 6:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 7:
-				(global0 reset: 3)
+				global0._send('reset:', 3)
 				if (not register):
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
 				cycles = 1
 			#end:case
@@ -158,8 +158,8 @@ class poemShelfScr(Script):
 			#end:case
 			case 9:
 				kernel.UnLoad(128, 279)
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -170,7 +170,7 @@ class poemShelfScr(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		register = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -185,54 +185,54 @@ class takePoemScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global1 givePoints: 1)
-				(global0
-					setSpeed: 6
-					view: 2701
-					loop: 1
-					cel: 0
-					normal: 0
-					setCycle: CT 3 1 self
+				global1._send('handsOff:')
+				global1._send('givePoints:', 1)
+				global0._send(
+					'setSpeed:', 6,
+					'view:', 2701,
+					'loop:', 1,
+					'cel:', 0,
+					'normal:', 0,
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 1:
-				(poem dispose:)
-				(global0 get: 47)
+				poem._send('dispose:')
+				global0._send('get:', 47)
 				cycles = 2
 			#end:case
 			case 2:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(global0 reset: 7)
+				global0._send('reset:', 7)
 				cycles = 2
 			#end:case
 			case 5:
 				kernel.UnLoad(128, 2701)
-				(global91 say: 6 5 0 1 self)
+				global91._send('say:', 6, 5, 0, 1, self)
 			#end:case
 			case 6:
-				(global91 say: 6 5 0 2 self)
+				global91._send('say:', 6, 5, 0, 2, self)
 			#end:case
 			case 7:
-				(global91 say: 6 5 0 3 self)
+				global91._send('say:', 6, 5, 0, 3, self)
 			#end:case
 			case 8:
-				(global0 setHeading: 180 self)
+				global0._send('setHeading:', 180, self)
 			#end:case
 			case 9:
 				cycles = 2
 			#end:case
 			case 10:
-				(global91 say: 6 5 0 4 self)
+				global91._send('say:', 6, 5, 0, 4, self)
 			#end:case
 			case 11:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 				kernel.DisposeScript(272)
 			#end:case
 		#end:match
@@ -260,9 +260,9 @@ class poem(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not local0.post('++')):
-			(self setCycle: End self)
+			self._send('setCycle:', End, self)
 		else:
-			(self view: 270 setLoop: 2 cel: 1)
+			self._send('view:', 270, 'setLoop:', 2, 'cel:', 1)
 			local1 = 1
 		#endif
 	#end:method
@@ -274,10 +274,10 @@ class poem(Actor):
 
 		match param1
 			case 5:
-				(global2 setScript: takePoemScr)
+				global2._send('setScript:', takePoemScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -287,8 +287,8 @@ class poem(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 #end:class or instance

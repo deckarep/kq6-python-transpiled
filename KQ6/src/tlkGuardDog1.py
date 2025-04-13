@@ -30,9 +30,9 @@ class tlkGuardDog(Narrator):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
-		(super init: &rest)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -49,8 +49,8 @@ class tlkGuardDog1(Narrator):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		(cond
 			case (global11 == 800):
 				x = 100
@@ -63,7 +63,7 @@ class tlkGuardDog1(Narrator):
 				y = 10
 			#end:else
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -80,8 +80,8 @@ class tlkGuardDog2(Narrator):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		(cond
 			case (global11 == 800):
 				x = 10
@@ -94,7 +94,7 @@ class tlkGuardDog2(Narrator):
 				y = 10
 			#end:else
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

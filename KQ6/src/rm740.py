@@ -63,84 +63,84 @@ def proc740_10():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if ((global2 curPic:) != 740):
-		(global69 disable:)
-		(global2 drawPic: 740 10)
+	if (global2._send('curPic:') != 740):
+		global69._send('disable:')
+		global2._send('drawPic:', 740, 10)
 	#endif
-	(priest
-		view: 748
-		init:
-		setLoop: 0
-		posn: 178 139
-		setCycle: 0
-		cel: 0
-		setScale: 0
-		signal: 26624
+	priest._send(
+		'view:', 748,
+		'init:',
+		'setLoop:', 0,
+		'posn:', 178, 139,
+		'setCycle:', 0,
+		'cel:', 0,
+		'setScale:', 0,
+		'signal:', 26624
 	)
-	(saladin
-		view: 7411
-		init:
-		setLoop: 0
-		cel: 0
-		posn: 183 129
-		signal: 26624
-		addToPic:
+	saladin._send(
+		'view:', 7411,
+		'init:',
+		'setLoop:', 0,
+		'cel:', 0,
+		'posn:', 183, 129,
+		'signal:', 26624,
+		'addToPic:'
 	)
 	if proc913_0(15):
-		(caliphimallaria init: stopUpd:)
+		caliphimallaria._send('init:', 'stopUpd:')
 		global164 = 105
 		global165 = 155
 	else:
 		global164 = 116
 		global165 = 143
 	#endif
-	if (((global9 at: 25) owner:) == global11):
-		(genie
-			view: 7020
-			init:
-			setLoop: 0
-			cel: 0
-			posn: 274 160
-			scaleSignal: 1
-			scaleX: 115
-			scaleY: 115
-			signal: 26624
-			stopUpd:
+	if (global9._send('at:', 25)._send('owner:') == global11):
+		genie._send(
+			'view:', 7020,
+			'init:',
+			'setLoop:', 0,
+			'cel:', 0,
+			'posn:', 274, 160,
+			'scaleSignal:', 1,
+			'scaleX:', 115,
+			'scaleY:', 115,
+			'signal:', 26624,
+			'stopUpd:'
 		)
-		(grahamvalanice init: stopUpd:)
-		(rosella init: stopUpd:)
-		if (kernel.ScriptID(80, 0) tstFlag: 710 16):
-			(druid1 init: stopUpd:)
-			(druid2 init: stopUpd:)
-			(druid3 init: stopUpd:)
-			(celeste init: addToPic:)
-			(aeriel init: addToPic:)
-			(azure init: addToPic:)
-			(beauty init: setPri: 15 stopUpd:)
-			(prince init: setPri: 14 stopUpd:)
-			(redQBody init: addToPic:)
-			(whiteQBody init: addToPic:)
-			(redQueen init: stopUpd:)
-			(whiteQueen init: stopUpd:)
+		grahamvalanice._send('init:', 'stopUpd:')
+		rosella._send('init:', 'stopUpd:')
+		if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 16):
+			druid1._send('init:', 'stopUpd:')
+			druid2._send('init:', 'stopUpd:')
+			druid3._send('init:', 'stopUpd:')
+			celeste._send('init:', 'addToPic:')
+			aeriel._send('init:', 'addToPic:')
+			azure._send('init:', 'addToPic:')
+			beauty._send('init:', 'setPri:', 15, 'stopUpd:')
+			prince._send('init:', 'setPri:', 14, 'stopUpd:')
+			redQBody._send('init:', 'addToPic:')
+			whiteQBody._send('init:', 'addToPic:')
+			redQueen._send('init:', 'stopUpd:')
+			whiteQueen._send('init:', 'stopUpd:')
 		#endif
 	#endif
-	(leftGuard init: stopUpd:)
-	(rightGuard init: stopUpd:)
-	(jollo
-		init:
-		view: 7463
-		loop: 1
-		cel: 0
-		posn: 116 143
-		scaleSignal: 1
-		scaleX: 115
-		scaleY: 115
-		posn: global164 global165
-		signal: 26624
-		stopUpd:
+	leftGuard._send('init:', 'stopUpd:')
+	rightGuard._send('init:', 'stopUpd:')
+	jollo._send(
+		'init:',
+		'view:', 7463,
+		'loop:', 1,
+		'cel:', 0,
+		'posn:', 116, 143,
+		'scaleSignal:', 1,
+		'scaleX:', 115,
+		'scaleY:', 115,
+		'posn:', global164, global165,
+		'signal:', 26624,
+		'stopUpd:'
 	)
-	(door init: addToPic:)
-	(global69 enable:)
+	door._send('init:', 'addToPic:')
+	global69._send('enable:')
 #end:procedure
 
 @SCI.instance
@@ -162,54 +162,37 @@ class rm740(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						-10
-						319
-						-10
-						319
-						189
-						228
-						121
-						221
-						121
-						221
-						134
-						120
-						134
-						0
-						179
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, -10, 319, -10, 319, 189, 228, 121, 221, 121, 221, 134, 120, 134, 0, 179,
+					'yourself:'
 				)
 		)
-		(global32 add: roomFeatures eachElementDo: #init)
+		global32._send('add:', roomFeatures, 'eachElementDo:', #init)
 		if ((global12 == 99) and global100 and kernel.FileIO(10, r"""g""")):
 			match
-				(Print
-					addText: r"""select:"""
-					addButton: 1 r"""V wedding""" 0 12
-					addButton: 2 r"""A wedding""" 0 26
-					init:
+				Print._send(
+					'addText:', r"""select:""",
+					'addButton:', 1, r"""V wedding""", 0, 12,
+					'addButton:', 2, r"""A wedding""", 0, 26,
+					'init:'
 				)
 				case 1:
 					if 
-						(Print
-							addText: r"""Are Cassima's parents alive?"""
-							addButton: 1 r"""No""" 0 12
-							addButton: 0 r"""Yes""" 0 26
-							init:
+						Print._send(
+							'addText:', r"""Are Cassima's parents alive?""",
+							'addButton:', 1, r"""No""", 0, 12,
+							'addButton:', 0, r"""Yes""", 0, 26,
+							'init:'
 						)
-						(kernel.ScriptID(80, 0) setFlag: 709 128)
+						kernel.ScriptID(80, 0)._send('setFlag:', 709, 128)
 					#endif
-					(global102 number: 701 setLoop: -1 play:)
-					(kernel.ScriptID(80, 0) setFlag: 709 2)
-					(global0 get: 24 get: 31)
-					((global9 at: 25) owner: 750)
-					((global9 at: 8) owner: 870)
+					global102._send('number:', 701, 'setLoop:', -1, 'play:')
+					kernel.ScriptID(80, 0)._send('setFlag:', 709, 2)
+					global0._send('get:', 24, 'get:', 31)
+					global9._send('at:', 25)._send('owner:', 750)
+					global9._send('at:', 8)._send('owner:', 870)
 					global12 = 730
 				#end:case
 				case 2:
@@ -218,18 +201,18 @@ class rm740(CastleRoom):
 			#end:match
 		#endif
 		if (global12 == 180):
-			if (global100 and kernel.FileIO(10, r"""g""") and (not (global102 handle:))):
-				(global102 number: 743 setLoop: -1 play:)
+			if (global100 and kernel.FileIO(10, r"""g""") and (not global102._send('handle:'))):
+				global102._send('number:', 743, 'setLoop:', -1, 'play:')
 			#endif
 			if 
 				(and
 					global100
 					kernel.FileIO(10, r"""g""")
-					(Print
-						addText: r"""Are Cassima's parents alive?"""
-						addButton: 0 r"""No""" 0 12
-						addButton: 1 r"""Yes""" 0 26
-						init:
+					Print._send(
+						'addText:', r"""Are Cassima's parents alive?""",
+						'addButton:', 0, r"""No""", 0, 12,
+						'addButton:', 1, r"""Yes""", 0, 26,
+						'init:'
 					)
 				)
 				proc913_1(15)
@@ -238,37 +221,37 @@ class rm740(CastleRoom):
 				(and
 					global100
 					kernel.FileIO(10, r"""g""")
-					(Print
-						addText: r"""genie status?"""
-						addButton: 0 r"""Killed with peppermint""" 0 12
-						addButton: 1 r"""Saved""" 0 26
-						init:
+					Print._send(
+						'addText:', r"""genie status?""",
+						'addButton:', 0, r"""Killed with peppermint""", 0, 12,
+						'addButton:', 1, r"""Saved""", 0, 26,
+						'init:'
 					)
 				)
-				((global9 at: 25) owner: global11)
+				global9._send('at:', 25)._send('owner:', global11)
 			#endif
 			if 
 				(and
 					global100
 					kernel.FileIO(10, r"""g""")
-					(Print
-						addText: r"""Found missing treasure?"""
-						addButton: 0 r"""No""" 0 12
-						addButton: 1 r"""Yes""" 0 26
-						init:
+					Print._send(
+						'addText:', r"""Found missing treasure?""",
+						'addButton:', 0, r"""No""", 0, 12,
+						'addButton:', 1, r"""Yes""", 0, 26,
+						'init:'
 					)
 				)
-				(kernel.ScriptID(80, 0) setFlag: 710 16)
+				kernel.ScriptID(80, 0)._send('setFlag:', 710, 16)
 			#endif
 			if 
 				(and
 					global100
 					kernel.FileIO(10, r"""g""")
-					(Print
-						addText: r"""Befriended Court Clown?"""
-						addButton: 0 r"""No""" 0 12
-						addButton: 1 r"""Yes""" 0 26
-						init:
+					Print._send(
+						'addText:', r"""Befriended Court Clown?""",
+						'addButton:', 0, r"""No""", 0, 12,
+						'addButton:', 1, r"""Yes""", 0, 26,
+						'init:'
 					)
 				)
 				proc913_1(10)
@@ -277,19 +260,19 @@ class rm740(CastleRoom):
 				while True: #repeat
 					match
 						(= temp1
-							(Print
-								addText: r"""Which ring?"""
-								addButton: 1 r"""Cassima has a ring""" 0 12
-								addButton: 2 r"""Alex has a ring """ 0 26
-								addButton: 3 r"""Left ring at pawn shop""" 0 40
-								init:
+							Print._send(
+								'addText:', r"""Which ring?""",
+								'addButton:', 1, r"""Cassima has a ring""", 0, 12,
+								'addButton:', 2, r"""Alex has a ring """, 0, 26,
+								'addButton:', 3, r"""Left ring at pawn shop""", 0, 40,
+								'init:'
 							)
 						)
 						case 1:
-							((global9 at: 39) owner: 140)
+							global9._send('at:', 39)._send('owner:', 140)
 						#end:case
 						case 2:
-							(global0 get: 39)
+							global0._send('get:', 39)
 						#end:case
 						case 3:#end:case
 					#end:match
@@ -298,48 +281,48 @@ class rm740(CastleRoom):
 					#endif
 				#end:loop
 			#endif
-			(super init: &rest)
+			super._send('init:', &rest)
 			proc740_10()
-			(self setScript: kernel.ScriptID(743, 0))
+			self._send('setScript:', kernel.ScriptID(743, 0))
 		else:
-			(super init: &rest)
-			(global0
-				init:
-				reset: 3
-				setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
+			super._send('init:', &rest)
+			global0._send(
+				'init:',
+				'reset:', 3,
+				'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY
 			)
-			(door init:)
+			door._send('init:')
 			match global12
 				case 790:
-					(global0 posn: 222 126)
+					global0._send('posn:', 222, 126)
 				#end:case
 				else:
-					if (kernel.ScriptID(80, 0) tstFlag: 709 2):
-						(global0 posn: 131 180)
-						(saladin
-							posn: 147 187
-							init:
-							setStep: 5 3
-							setCycle: StopWalk -1
-							setScale: Scaler 110 93 189 141
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
+						global0._send('posn:', 131, 180)
+						saladin._send(
+							'posn:', 147, 187,
+							'init:',
+							'setStep:', 5, 3,
+							'setCycle:', StopWalk, -1,
+							'setScale:', Scaler, 110, 93, 189, 141
 						)
 						if (not proc913_0(10)):
-							(jollo init: stopUpd:)
+							jollo._send('init:', 'stopUpd:')
 						#endif
-						(kernel.ScriptID(80, 5) actions: guardsActions)
-						(kernel.ScriptID(80, 6) actions: guardsActions)
-						(guard3 actions: guardsActions)
-						(self setScript: kernel.ScriptID(742, 0))
+						kernel.ScriptID(80, 5)._send('actions:', guardsActions)
+						kernel.ScriptID(80, 6)._send('actions:', guardsActions)
+						guard3._send('actions:', guardsActions)
+						self._send('setScript:', kernel.ScriptID(742, 0))
 					else:
-						(global0 posn: 128 185)
-						(self setScript: kernel.ScriptID(741, 0))
+						global0._send('posn:', 128, 185)
+						self._send('setScript:', kernel.ScriptID(741, 0))
 					#endif
 				#end:else
 			#end:match
-			((global0 scaler:) doit:)
+			global0._send('scaler:')._send('doit:')
 		#endif
 		if (not script):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
 	#end:method
 
@@ -350,24 +333,24 @@ class rm740(CastleRoom):
 
 		if 
 			(and
-				((global69 curIcon:) == (global69 at: 3))
-				((param1 type:) != 16384)
-				(not (param1 modifiers:))
-				(not (vizier onMe: param1))
-				(not (jollo onMe: param1))
+				(global69._send('curIcon:') == global69._send('at:', 3))
+				(param1._send('type:') != 16384)
+				(not param1._send('modifiers:'))
+				(not vizier._send('onMe:', param1))
+				(not jollo._send('onMe:', param1))
 				(or
-					(((param1 type:) & 0x0004) and ((param1 message:) == 13))
-					((param1 type:) & 0x0001)
+					((param1._send('type:') & 0x0004) and (param1._send('message:') == 13))
+					(param1._send('type:') & 0x0001)
 				)
 			)
-			(global1 handsOff:)
-			(kernel.ScriptID(740, 7) add: -1 3 2 21 0)
-			(global2 setScript: kernel.ScriptID(742, 1))
-			(param1 claimed: 1)
-			(param1 claimed:)
+			global1._send('handsOff:')
+			kernel.ScriptID(740, 7)._send('add:', -1, 3, 2, 21, 0)
+			global2._send('setScript:', kernel.ScriptID(742, 1))
+			param1._send('claimed:', 1)
+			param1._send('claimed:')
 			return
 		else:
-			(super handleEvent: param1)
+			super._send('handleEvent:', param1)
 		#endif
 	#end:method
 
@@ -376,38 +359,33 @@ class rm740(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x4000):
-				if (global5 contains: genie):
-					(genie setScript: 0)
+				if global5._send('contains:', genie):
+					genie._send('setScript:', 0)
 				#endif
-				(global2 newRoom: 790)
+				global2._send('newRoom:', 790)
 			#end:case
 		)
-		if (global0 scaler:):
+		if global0._send('scaler:'):
 			(cond
-				case ((global0 y:) < 142):
+				case (global0._send('y:') < 142):
 					if local0:
 						local0 = 0
-						(global0 setScale: Scaler 83 43 142 120)
+						global0._send('setScale:', Scaler, 83, 43, 142, 120)
 					#endif
 				#end:case
 				case (not local0):
 					local0 = 1
-					(global0
-						setScale:
-							Scaler
-							maxScaleSize
-							minScaleSize
-							maxScaleY
-							minScaleY
+					global0._send(
+						'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY
 					)
 				#end:case
 			)
 		#endif
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -415,20 +393,20 @@ class rm740(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
+		temp0 = (22 if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2048) else 21)
 		(return
 			match param1
 				case 1:
-					(global91 say: noun param1 temp0)
+					global91._send('say:', noun, param1, temp0)
 					1
 				#end:case
 				case 2:
-					(kernel.ScriptID(80, 0) setFlag: 710 2048)
-					(global91 say: noun param1 temp0)
+					kernel.ScriptID(80, 0)._send('setFlag:', 710, 2048)
+					global91._send('say:', noun, param1, temp0)
 					1
 				#end:case
 				else:
-					(super doVerb: param1)
+					super._send('doVerb:', param1)
 					1
 				#end:else
 			#end:match
@@ -440,7 +418,7 @@ class rm740(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(741)
 		kernel.DisposeScript(742)
 		kernel.DisposeScript(743)
@@ -455,9 +433,9 @@ class rm740(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global90 == 2):
-			(global2 setScript: kernel.ScriptID(52))
+			global2._send('setScript:', kernel.ScriptID(52))
 		else:
-			(global2 newRoom: 94)
+			global2._send('newRoom:', 94)
 		#endif
 	#end:method
 
@@ -466,11 +444,11 @@ class rm740(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(bTimer dispose: delete:)
-		(pTimer dispose: delete:)
-		(lgTimer dispose: delete:)
-		(rgTimer dispose: delete:)
-		(super newRoom: param1)
+		bTimer._send('dispose:', 'delete:')
+		pTimer._send('dispose:', 'delete:')
+		lgTimer._send('dispose:', 'delete:')
+		rgTimer._send('dispose:', 'delete:')
+		super._send('newRoom:', param1)
 	#end:method
 
 #end:class or instance
@@ -483,7 +461,7 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		y = 1
 		sightAngle = 26505
 	#end:method
@@ -493,12 +471,12 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global2 curPic:) == 740):
+		if (global2._send('curPic:') == 740):
 			(return
 				(or
 					(and
 						(&
-							temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
+							temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
 							0x0002
 						)
 						noun = 17
@@ -547,12 +525,12 @@ class vizier(Prop):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
 					(and
 						(view == 741)
 						(loop == 2)
-						(((param1 x:) - nsLeft) < 15)
+						((param1._send('x:') - nsLeft) < 15)
 						noun = 6
 					)
 					noun = 4
@@ -567,10 +545,10 @@ class vizier(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 2):
-			(roomConv add: -1 noun param1 0 1)
-			(global2 setScript: kernel.ScriptID(742, 1))
+			roomConv._send('add:', -1, noun, param1, 0, 1)
+			global2._send('setScript:', kernel.ScriptID(742, 1))
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -608,11 +586,11 @@ class saladin(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global66 doit: param1) == -32768):
+		if (global66._send('doit:', param1) == -32768):
 			param1 = 0
 		#endif
-		temp0 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
-		(global91 say: noun param1 temp0)
+		temp0 = (22 if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2048) else 21)
+		global91._send('say:', noun, param1, temp0)
 	#end:method
 
 	@classmethod
@@ -620,7 +598,7 @@ class saladin(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setHeading: 0)
+		self._send('setHeading:', 0)
 	#end:method
 
 #end:class or instance
@@ -641,8 +619,8 @@ class jollo(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self view: 7464 loop: 0 cel: 0 stopUpd:)
-		(super cue:)
+		self._send('view:', 7464, 'loop:', 0, 'cel:', 0, 'stopUpd:')
+		super._send('cue:')
 	#end:method
 
 	@classmethod
@@ -652,24 +630,24 @@ class jollo(Prop):
 
 		match param1
 			case 1:
-				(global91 say: 19 1 0 1)
+				global91._send('say:', 19, 1, 0, 1)
 			#end:case
 			case 2:
-				if (kernel.ScriptID(80, 0) tstFlag: 710 2048):
-					(global91 say: 19 2 22 1)
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2048):
+					global91._send('say:', 19, 2, 22, 1)
 				else:
-					(global91 say: 19 2 21 1)
+					global91._send('say:', 19, 2, 21, 1)
 				#endif
 			#end:case
 			case 5:
-				if (kernel.ScriptID(80, 0) tstFlag: 710 2048):
-					(global91 say: 19 5 22 1)
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2048):
+					global91._send('say:', 19, 5, 22, 1)
 				else:
-					(global91 say: 19 5 21 1)
+					global91._send('say:', 19, 5, 21, 1)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -696,14 +674,14 @@ class door(Prop):
 
 		match param1
 			case 5:
-				if (kernel.ScriptID(80, 0) tstFlag: 710 2048):
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2048):
 					0
 				else:
-					(global91 say: noun param1 21)
+					global91._send('say:', noun, param1, 21)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -731,16 +709,16 @@ class prince(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
+		super._send('cue:')
 		match local1.post('++')
 			case 1:
-				(pTimer setReal: self 5)
+				pTimer._send('setReal:', self, 5)
 			#end:case
 			case 2:
-				(self setCycle: Beg self)
+				self._send('setCycle:', Beg, self)
 			#end:case
 			case 3:
-				(self addToPic:)
+				self._send('addToPic:')
 			#end:case
 		#end:match
 	#end:method
@@ -763,28 +741,28 @@ class beauty(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
+		super._send('cue:')
 		match local2.post('++')
 			case 1:
-				(bTimer setCycle: self 5)
+				bTimer._send('setCycle:', self, 5)
 			#end:case
 			case 2:
-				(self cel: 2)
-				(bTimer setCycle: self 5)
+				self._send('cel:', 2)
+				bTimer._send('setCycle:', self, 5)
 			#end:case
 			case 3:
-				(self cel: 3)
-				(bTimer setCycle: self 5)
+				self._send('cel:', 3)
+				bTimer._send('setCycle:', self, 5)
 			#end:case
 			case 4:
-				(self setCycle: Beg self)
+				self._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
-				(bTimer setReal: self 3)
+				bTimer._send('setReal:', self, 3)
 			#end:case
 			case 6:
 				local2 = 0
-				(self setCycle: End self)
+				self._send('setCycle:', End, self)
 			#end:case
 		#end:match
 	#end:method
@@ -879,17 +857,17 @@ class caliphimallaria(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
+		super._send('cue:')
 		match local5.post('++')
 			case 1:
-				(self setCycle: Beg self)
+				self._send('setCycle:', Beg, self)
 			#end:case
 			case 2:
-				(cTimer setReal: self kernel.Random(2, 4))
+				cTimer._send('setReal:', self, kernel.Random(2, 4))
 			#end:case
 			case 3:
 				local5 = 0
-				(self setCycle: End self)
+				self._send('setCycle:', End, self)
 			#end:case
 		#end:match
 	#end:method
@@ -912,7 +890,7 @@ class grahamvalanice(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self stopUpd:)
+		self._send('stopUpd:')
 	#end:method
 
 #end:class or instance
@@ -944,37 +922,37 @@ class leftGuard(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
+		super._send('cue:')
 		if (param1 == 99):
 			local4 = param1
 		#endif
 		param1 = 0
 		match local4.post('++')
 			case 1:
-				(lgTimer setReal: self kernel.Random(1, 2))
+				lgTimer._send('setReal:', self, kernel.Random(1, 2))
 			#end:case
 			case 2:
-				(self cel: 2)
-				(lgTimer setReal: self kernel.Random(1, 2))
+				self._send('cel:', 2)
+				lgTimer._send('setReal:', self, kernel.Random(1, 2))
 			#end:case
 			case 3:
-				(self cel: 3)
-				(lgTimer setReal: self kernel.Random(1, 2))
+				self._send('cel:', 3)
+				lgTimer._send('setReal:', self, kernel.Random(1, 2))
 			#end:case
 			case 4:
-				(self setCycle: Beg self)
+				self._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
-				(lgTimer setReal: self kernel.Random(2, 3))
+				lgTimer._send('setReal:', self, kernel.Random(2, 3))
 			#end:case
 			case 6:
 				local4 = 0
-				(self setCycle: End self)
+				self._send('setCycle:', End, self)
 			#end:case
 			case 100:
 				local4 = 0
-				(lgTimer dispose:)
-				(self cel: 0 setCycle: 0 stopUpd:)
+				lgTimer._send('dispose:')
+				self._send('cel:', 0, 'setCycle:', 0, 'stopUpd:')
 			#end:case
 		#end:match
 	#end:method
@@ -994,37 +972,37 @@ class rightGuard(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
+		super._send('cue:')
 		if (param1 == 99):
 			local3 = param1
 		#endif
 		param1 = 0
 		match local3.post('++')
 			case 1:
-				(rgTimer setReal: self kernel.Random(1, 2))
+				rgTimer._send('setReal:', self, kernel.Random(1, 2))
 			#end:case
 			case 2:
-				(self cel: 1)
-				(rgTimer setReal: self kernel.Random(1, 2))
+				self._send('cel:', 1)
+				rgTimer._send('setReal:', self, kernel.Random(1, 2))
 			#end:case
 			case 3:
-				(self cel: 2)
-				(rgTimer setReal: self kernel.Random(1, 2))
+				self._send('cel:', 2)
+				rgTimer._send('setReal:', self, kernel.Random(1, 2))
 			#end:case
 			case 4:
-				(self setCycle: Beg self)
+				self._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
-				(rgTimer setReal: self kernel.Random(2, 3))
+				rgTimer._send('setReal:', self, kernel.Random(2, 3))
 			#end:case
 			case 6:
 				local3 = 0
-				(self setCycle: End self)
+				self._send('setCycle:', End, self)
 			#end:case
 			case 100:
 				local3 = 0
-				(rgTimer dispose:)
-				(self cel: 0 setCycle: 0 stopUpd:)
+				rgTimer._send('dispose:')
+				self._send('cel:', 0, 'setCycle:', 0, 'stopUpd:')
 			#end:case
 		#end:match
 	#end:method
@@ -1091,16 +1069,16 @@ class guardsActions(Actions):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 1
-		temp1 = (22 if (kernel.ScriptID(80, 0) tstFlag: 710 2048) else 21)
+		temp1 = (22 if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2048) else 21)
 		(= temp2
-			if (((CueObj client:) modNum:) == -1):
+			if (CueObj._send('client:')._send('modNum:') == -1):
 				global11
 			else:
-				((CueObj client:) modNum:)
+				CueObj._send('client:')._send('modNum:')
 			#endif
 		)
-		if kernel.Message(0, temp2, ((CueObj client:) noun:), param1, temp1, 1):
-			(global91 say: ((CueObj client:) noun:) param1 temp1)
+		if kernel.Message(0, temp2, CueObj._send('client:')._send('noun:'), param1, temp1, 1):
+			global91._send('say:', CueObj._send('client:')._send('noun:'), param1, temp1)
 		else:
 			temp0 = 0
 		#endif
@@ -1144,24 +1122,24 @@ class theGreatEscape(Script):
 
 		match state = param1
 			case 0:
-				(global69 disable: 6)
-				(global102 number: 742 loop: -1 play:)
-				(vizier cycleSpeed: 6 setCycle: CT 9 1 self)
+				global69._send('disable:', 6)
+				global102._send('number:', 742, 'loop:', -1, 'play:')
+				vizier._send('cycleSpeed:', 6, 'setCycle:', CT, 9, 1, self)
 			#end:case
 			case 1:
-				(door hide:)
-				(door approachVerbs: 5)
-				(vizier setCycle: End self)
+				door._send('hide:')
+				door._send('approachVerbs:', 5)
+				vizier._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(door show: cel: 1 stopUpd:)
-				(vizier dispose:)
+				door._send('show:', 'cel:', 1, 'stopUpd:')
+				vizier._send('dispose:')
 				cycles = 3
 			#end:case
 			case 3:
 				kernel.UnLoad(128, 7413)
-				(global69 enable: 6)
-				(self dispose:)
+				global69._send('enable:', 6)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

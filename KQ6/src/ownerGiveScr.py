@@ -40,73 +40,73 @@ class ownerGiveScr(Script):
 		match state = param1
 			case 0:
 				if register:
-					(kernel.ScriptID(280, 2) view: 286 loop: 1 cel: 0)
+					kernel.ScriptID(280, 2)._send('view:', 286, 'loop:', 1, 'cel:', 0)
 					cycles = 2
 				else:
 					(state += 4)
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 1:
-				(kernel.ScriptID(280, 2) setCycle: CT 2 1 self)
+				kernel.ScriptID(280, 2)._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(kernel.ScriptID(280, 2) setCycle: Beg self)
+				kernel.ScriptID(280, 2)._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(kernel.ScriptID(280, 2) view: 284 loop: 2 cel: 0)
+				kernel.ScriptID(280, 2)._send('view:', 284, 'loop:', 2, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 6:
-				(kernel.ScriptID(280, 2) setCycle: CT 1 1 self)
+				kernel.ScriptID(280, 2)._send('setCycle:', CT, 1, 1, self)
 			#end:case
 			case 7:
 				cycles = 2
 			#end:case
 			case 8:
-				(global0
-					normal: 0
-					setSpeed: 6
-					posn: 188 135
-					view: 2811
-					loop: 1
-					setScale: 0
-					cel: 0
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'posn:', 188, 135,
+					'view:', 2811,
+					'loop:', 1,
+					'setScale:', 0,
+					'cel:', 0
 				)
 				cycles = 2
 			#end:case
 			case 9:
-				(global0 setCycle: CT 2 1 self)
+				global0._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 10:
 				cycles = 2
 			#end:case
 			case 11:
-				(kernel.ScriptID(280, 2) setCycle: Beg self)
-				(global0 setCycle: End self)
+				kernel.ScriptID(280, 2)._send('setCycle:', Beg, self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 12: 0#end:case
 			case 13:
-				(kernel.ScriptID(280, 2) view: 2841 loop: 0 cel: 0)
-				(global0
-					posn:
-						(kernel.ScriptID(280, 2) approachX:)
-						(kernel.ScriptID(280, 2) approachY:)
-					view: 280
-					loop: 7
-					cel: 0
-					setScale: Scaler 105 90 139 121
+				kernel.ScriptID(280, 2)._send('view:', 2841, 'loop:', 0, 'cel:', 0)
+				global0._send(
+					'posn:', kernel.ScriptID(280, 2)._send('approachX:'), kernel.ScriptID(280, 2)._send(
+							'approachY:'
+						),
+					'view:', 280,
+					'loop:', 7,
+					'cel:', 0,
+					'setScale:', Scaler, 105, 90, 139, 121
 				)
 				cycles = 2
 			#end:case
 			case 14:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -116,7 +116,7 @@ class ownerGiveScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(286)
 	#end:method
 
@@ -136,7 +136,7 @@ class arm(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -151,34 +151,33 @@ class alexShowScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					normal: 0
-					setSpeed: 6
-					posn: 188 135
-					view: 2811
-					setScale: 0
-					loop: 1
-					cel: 0
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'posn:', 188, 135,
+					'view:', 2811,
+					'setScale:', 0,
+					'loop:', 1,
+					'cel:', 0
 				)
 				if register:
-					(arm
-						loop:
-							match register
+					arm._send(
+						'loop:', match register
 								case 3: 5#end:case
 								case 2: 6#end:case
 								case 0: 7#end:case
 								case 1: 8#end:case
-							#end:match
-						cel: 0
-						init:
+							#end:match,
+						'cel:', 0,
+						'init:'
 					)
 				#endif
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setCycle: CT 2 1 self)
+				global0._send('setCycle:', CT, 2, 1, self)
 				if register:
-					(arm setCycle: CT 2 1)
+					arm._send('setCycle:', CT, 2, 1)
 				#endif
 			#end:case
 			case 2:
@@ -189,47 +188,46 @@ class alexShowScr(Script):
 					local0 = 1
 					register = 0
 				#endif
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 4:
 				if local0:
-					(arm dispose:)
+					arm._send('dispose:')
 				#endif
 				if register:
-					(arm
-						loop:
-							match register
+					arm._send(
+						'loop:', match register
 								case 3: 5#end:case
 								case 2: 6#end:case
 								case 0: 7#end:case
 								case 1: 8#end:case
-							#end:match
-						cel: 2
-						init:
+							#end:match,
+						'cel:', 2,
+						'init:'
 					)
 				#endif
 				cycles = 2
 			#end:case
 			case 5:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 				if register:
-					(arm setCycle: End arm)
+					arm._send('setCycle:', End, arm)
 				#endif
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(global0
-					posn:
-						(kernel.ScriptID(280, 2) approachX:)
-						(kernel.ScriptID(280, 2) approachY:)
-					view: 280
-					loop: 7
-					cel: 0
-					setScale: Scaler 105 90 139 121
+				global0._send(
+					'posn:', kernel.ScriptID(280, 2)._send('approachX:'), kernel.ScriptID(280, 2)._send(
+							'approachY:'
+						),
+					'view:', 280,
+					'loop:', 7,
+					'cel:', 0,
+					'setScale:', Scaler, 105, 90, 139, 121
 				)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -244,7 +242,7 @@ class alexShowScr(Script):
 		else:
 			temp0 = 0
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 		if temp0:
 			kernel.DisposeScript(286)
 		#endif
@@ -262,43 +260,43 @@ class alexGiveScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					normal: 0
-					setSpeed: 6
-					posn: 188 135
-					view: 2811
-					loop: 1
-					cel: 0
-					setScale: 0
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'posn:', 188, 135,
+					'view:', 2811,
+					'loop:', 1,
+					'cel:', 0,
+					'setScale:', 0
 				)
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setCycle: CT 2 1 self)
+				global0._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 4:
-				(kernel.ScriptID(280, 2) view: 284 loop: 2 cel: 0)
+				kernel.ScriptID(280, 2)._send('view:', 284, 'loop:', 2, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 5:
-				(kernel.ScriptID(280, 2) setCycle: CT 1 1 self)
+				kernel.ScriptID(280, 2)._send('setCycle:', CT, 1, 1, self)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 				if (register & 0x4000):
-					(kernel.ScriptID(280, 2) setCycle: End self)
+					kernel.ScriptID(280, 2)._send('setCycle:', End, self)
 				else:
 					(state += 3)
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 8: 0#end:case
@@ -306,16 +304,16 @@ class alexGiveScr(Script):
 				cycles = 2
 			#end:case
 			case 10:
-				(client cue:)
+				client._send('cue:')
 			#end:case
 			case 11:
-				(kernel.ScriptID(280, 2) setCycle: Beg self)
+				kernel.ScriptID(280, 2)._send('setCycle:', Beg, self)
 			#end:case
 			case 12:
 				if (not (register & 0x4000)):
 					0
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 13:
@@ -323,41 +321,41 @@ class alexGiveScr(Script):
 			#end:case
 			case 14:
 				if (register & 0x8000):
-					(kernel.ScriptID(280, 2)
-						view: 286
-						loop: 1
-						cel: 1
-						setCycle: CT 2 1 self
+					kernel.ScriptID(280, 2)._send(
+						'view:', 286,
+						'loop:', 1,
+						'cel:', 1,
+						'setCycle:', CT, 2, 1, self
 					)
 				else:
 					(state += 2)
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 15:
 				cycles = 2
 			#end:case
 			case 16:
-				(kernel.ScriptID(280, 2) setCycle: Beg self)
+				kernel.ScriptID(280, 2)._send('setCycle:', Beg, self)
 			#end:case
 			case 17:
 				cycles = 2
 			#end:case
 			case 18:
-				(global0
-					posn:
-						(kernel.ScriptID(280, 2) approachX:)
-						(kernel.ScriptID(280, 2) approachY:)
-					view: 280
-					loop: 7
-					cel: 0
-					setScale: Scaler 105 90 139 121
+				global0._send(
+					'posn:', kernel.ScriptID(280, 2)._send('approachX:'), kernel.ScriptID(280, 2)._send(
+							'approachY:'
+						),
+					'view:', 280,
+					'loop:', 7,
+					'cel:', 0,
+					'setScale:', Scaler, 105, 90, 139, 121
 				)
-				(kernel.ScriptID(280, 2) view: 280 loop: 8 cel: 0)
+				kernel.ScriptID(280, 2)._send('view:', 280, 'loop:', 8, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 19:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -367,7 +365,7 @@ class alexGiveScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(286)
 	#end:method
 
@@ -383,54 +381,54 @@ class alexTakeMapScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					normal: 0
-					setSpeed: 6
-					view: 2861
-					posn: 199 143
-					loop: 0
-					setScale: 0
+				global0._send(
+					'normal:', 0,
+					'setSpeed:', 6,
+					'view:', 2861,
+					'posn:', 199, 143,
+					'loop:', 0,
+					'setScale:', 0
 				)
 				if (not register):
-					(global0 cel: 0)
+					global0._send('cel:', 0)
 				else:
-					(global0 cel: 4)
+					global0._send('cel:', 4)
 				#endif
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setCycle: CT 2 (-1 if register else 1) self)
+				global0._send('setCycle:', CT, 2, (-1 if register else 1), self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
 				if register:
-					(kernel.ScriptID(280, 1) init:)
+					kernel.ScriptID(280, 1)._send('init:')
 				else:
-					(kernel.ScriptID(280, 1) dispose:)
+					kernel.ScriptID(280, 1)._send('dispose:')
 				#endif
 				cycles = 2
 			#end:case
 			case 4:
 				if register:
-					(global0 setCycle: Beg self put: 0)
+					global0._send('setCycle:', Beg, self, 'put:', 0)
 				else:
-					(global0 setCycle: End self get: 0)
+					global0._send('setCycle:', End, self, 'get:', 0)
 				#endif
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
-				(global0
-					posn:
-						(kernel.ScriptID(280, 2) approachX:)
-						(kernel.ScriptID(280, 2) approachY:)
-					view: 280
-					loop: 7
-					cel: 0
-					setScale: Scaler 105 90 139 121
+				global0._send(
+					'posn:', kernel.ScriptID(280, 2)._send('approachX:'), kernel.ScriptID(280, 2)._send(
+							'approachY:'
+						),
+					'view:', 280,
+					'loop:', 7,
+					'cel:', 0,
+					'setScale:', Scaler, 105, 90, 139, 121
 				)
 				ticks = 12
 			#end:case
@@ -438,7 +436,7 @@ class alexTakeMapScr(Script):
 				cycles = 2
 			#end:case
 			case 8:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -448,7 +446,7 @@ class alexTakeMapScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(286)
 	#end:method
 
@@ -464,28 +462,28 @@ class fullMsgShowScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(self setScript: alexShowScr self)
+				self._send('setScript:', alexShowScr, self)
 			#end:case
 			case 3:
-				(global91 say: 4 register 0 1 alexShowScr)
+				global91._send('say:', 4, register, 0, 1, alexShowScr)
 			#end:case
 			case 4:
-				(global91 say: 4 register 0 2 self)
+				global91._send('say:', 4, register, 0, 2, self)
 			#end:case
 			case 5:
-				(global0 reset: 0)
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 0)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -495,7 +493,7 @@ class fullMsgShowScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(286)
 	#end:method
 
@@ -511,31 +509,31 @@ class genericShowScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(self setScript: alexShowScr self)
+				self._send('setScript:', alexShowScr, self)
 			#end:case
 			case 3:
 				if (not register):
 					register = 0
 				#endif
-				(global91 say: 4 0 0 1 alexShowScr)
+				global91._send('say:', 4, 0, 0, 1, alexShowScr)
 			#end:case
 			case 4:
-				(global91 say: 4 register 0 (2 if (register == 0) else 1) self)
+				global91._send('say:', 4, register, 0, (2 if (register == 0) else 1), self)
 			#end:case
 			case 5:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -545,7 +543,7 @@ class genericShowScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(286)
 	#end:method
 

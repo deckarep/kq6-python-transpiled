@@ -31,8 +31,8 @@ class Kq6Talker(Talker):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		if ((global90 == 2) and argc and kernel.IsObject(param1) and raveName):
 			saveX = x
 			saveY = y
@@ -71,9 +71,9 @@ class Kq6Talker(Talker):
 			)
 		#endif
 		if argc:
-			(super init: param1 &rest)
+			super._send('init:', param1, &rest)
 		else:
-			(super init:)
+			super._send('init:')
 		#endif
 	#end:method
 
@@ -90,8 +90,8 @@ class Kq6Narrator(Narrator):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self font: global22 color: (Kq6Window color:) back: (Kq6Window back:))
-		(super init: &rest)
+		self._send('font:', global22, 'color:', Kq6Window._send('color:'), 'back:', Kq6Window._send('back:'))
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -104,36 +104,36 @@ class Kq6Narrator(Narrator):
 		else:
 			temp0 = talkWidth
 		#endif
-		(temp1 = (global38 new:) color: color back: back)
+		temp1 = global38._send('new:')._send('color:', color, 'back:', back)
 		temp2 = kernel.StrAt(param1, 0)
 		if (>= 90 temp2 65):
 			kernel.StrAt(param1, 0, 9)
-			(temp3 = (DIcon new:)
-				view: strView
-				loop: (0 + ((temp2 - 65) / 13))
-				cel: (mod (temp2 - 65) 13)
+			temp3 = DIcon._send('new:')._send(
+				'view:', strView,
+				'loop:', (0 + ((temp2 - 65) / 13)),
+				'cel:', (mod (temp2 - 65) 13)
 			)
-			(Print
-				window: temp1
-				posn: x y
-				font: font
-				width: temp0
-				addTitle: (name if showTitle else 0)
-				addText: param1 0 7
-				addIcon: temp3 0 0 0 0
-				modeless: 1
-				init:
+			Print._send(
+				'window:', temp1,
+				'posn:', x, y,
+				'font:', font,
+				'width:', temp0,
+				'addTitle:', (name if showTitle else 0),
+				'addText:', param1, 0, 7,
+				'addIcon:', temp3, 0, 0, 0, 0,
+				'modeless:', 1,
+				'init:'
 			)
 		else:
-			(Print
-				window: temp1
-				posn: x y
-				font: font
-				width: temp0
-				title: (name if showTitle else 0)
-				addText: param1
-				modeless: 1
-				init:
+			Print._send(
+				'window:', temp1,
+				'posn:', x, y,
+				'font:', font,
+				'width:', temp0,
+				'title:', (name if showTitle else 0),
+				'addText:', param1,
+				'modeless:', 1,
+				'init:'
 			)
 		#endif
 	#end:method

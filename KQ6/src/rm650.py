@@ -49,95 +49,43 @@ class rm650(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						105
-						189
-						105
-						178
-						253
-						178
-						267
-						151
-						267
-						112
-						253
-						109
-						199
-						108
-						123
-						108
-						77
-						112
-						52
-						106
-						52
-						0
-						319
-						0
-						319
-						189
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						168
-						0
-						0
-						43
-						0
-						43
-						104
-						57
-						112
-						87
-						115
-						122
-						110
-						210
-						110
-						251
-						113
-						265
-						117
-						265
-						137
-						152
-						168
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 105, 189, 105, 178, 253, 178, 267, 151, 267, 112, 253, 109, 199, 108, 123, 108, 77, 112, 52, 106, 52, 0, 319, 0, 319, 189,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 168, 0, 0, 43, 0, 43, 104, 57, 112, 87, 115, 122, 110, 210, 110, 251, 113, 265, 117, 265, 137, 152, 168,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		match global12
 			case 660:
-				(global0 posn: 79 113)
+				global0._send('posn:', 79, 113)
 				local18 = 1
 			#end:case
 			else:
-				(global102 number: 650 loop: -1 play:)
-				(global0 posn: 47 172)
+				global102._send('number:', 650, 'loop:', -1, 'play:')
+				global0._send('posn:', 47, 172)
 			#end:else
 		#end:match
 		proc70_1(flames, @local0)
-		(glow1 init: setCycle: RandCycle)
-		(glow2 init: setCycle: RandCycle)
-		(riverStyx init:)
-		(fallFeat init:)
-		(knight init:)
-		(global0
-			init:
-			baseSetter: bSetter
-			observeControl: -32768
-			setScale: Scaler 100 65 150 100
+		glow1._send('init:', 'setCycle:', RandCycle)
+		glow2._send('init:', 'setCycle:', RandCycle)
+		riverStyx._send('init:')
+		fallFeat._send('init:')
+		knight._send('init:')
+		global0._send(
+			'init:',
+			'baseSetter:', bSetter,
+			'observeControl:', -32768,
+			'setScale:', Scaler, 100, 65, 150, 100
 		)
-		(path init:)
-		(global1 handsOn:)
-		(ghost init: hide: setScript: ghostScript)
+		path._send('init:')
+		global1._send('handsOn:')
+		ghost._send('init:', 'hide:', 'setScript:', ghostScript)
 	#end:method
 
 	@classmethod
@@ -145,49 +93,49 @@ class rm650(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
-		temp0 = (global0 onControl: 1)
+		super._send('doit:')
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
-			case ((global0 y:) >= 186):
-				(global1 handsOff:)
-				(self setScript: cantLeaveSouth)
+			case (global0._send('y:') >= 186):
+				global1._send('handsOff:')
+				self._send('setScript:', cantLeaveSouth)
 			#end:case
-			case ((global0 x:) <= 5):
-				(global1 handsOff:)
-				(self setScript: cantLeaveWest)
+			case (global0._send('x:') <= 5):
+				global1._send('handsOff:')
+				self._send('setScript:', cantLeaveWest)
 			#end:case
 			case (temp0 & 0x0800):
 				if 
 					(and
-						(not (global0 isStopped:))
+						(not global0._send('isStopped:'))
 						(or
-							(((global0 mover:) y:) < (global0 y:))
-							proc999_5((global0 loop:), 3, 6, 7)
+							(global0._send('mover:')._send('y:') < global0._send('y:'))
+							proc999_5(global0._send('loop:'), 3, 6, 7)
 						)
 					)
-					(self setScript: egoNorthOverKnightScr)
+					self._send('setScript:', egoNorthOverKnightScr)
 				#endif
 			#end:case
 			case (temp0 & 0x0002):
 				if 
 					(and
 						local18
-						(not (global0 isStopped:))
+						(not global0._send('isStopped:'))
 						(or
-							(((global0 mover:) y:) > (global0 y:))
-							proc999_5((global0 loop:), 2, 4, 5)
+							(global0._send('mover:')._send('y:') > global0._send('y:'))
+							proc999_5(global0._send('loop:'), 2, 4, 5)
 						)
 					)
-					(self setScript: egoSouthOverKnightScr)
+					self._send('setScript:', egoSouthOverKnightScr)
 				#endif
 			#end:case
 			case (temp0 & 0x1000):
-				(self newRoom: north)
+				self._send('newRoom:', north)
 			#end:case
 			case (not ((temp0 & 0x4000) or (temp0 & 0x2000) or (temp0 & 0x0002))):
-				(global1 handsOff:)
-				(self setScript: egoFallScr)
+				global1._send('handsOff:')
+				self._send('setScript:', egoFallScr)
 			#end:case
 		)
 	#end:method
@@ -197,7 +145,7 @@ class rm650(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(991)
 	#end:method
 
@@ -213,29 +161,29 @@ class egoNorthOverKnightScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 mover:) and ((global0 mover:) isKindOf: PolyPath)):
-					local16 = ((global0 mover:) finalX:)
-					local17 = ((global0 mover:) finalY:)
+				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
+					local16 = global0._send('mover:')._send('finalX:')
+					local17 = global0._send('mover:')._send('finalY:')
 				#endif
-				(global1 handsOff:)
-				(global0
-					normal: 0
-					view: 652
-					loop: 2
-					cel: 3
-					posn: ((global0 x:) + 1) ((global0 y:) + 5)
-					setPri: 9
+				global1._send('handsOff:')
+				global0._send(
+					'normal:', 0,
+					'view:', 652,
+					'loop:', 2,
+					'cel:', 3,
+					'posn:', (global0._send('x:') + 1), (global0._send('y:') + 5),
+					'setPri:', 9
 				)
 				cycles = 1
 			#end:case
 			case 1:
-				(global0 setCycle: CT 7 1 self)
+				global0._send('setCycle:', CT, 7, 1, self)
 			#end:case
 			case 2:
-				(global0 setPri: 8 x: ((global0 x:) + 2) setCycle: End self)
+				global0._send('setPri:', 8, 'x:', (global0._send('x:') + 2), 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0 posn: ((global0 x:) - 2) ((global0 y:) - 11) reset: 3)
+				global0._send('posn:', (global0._send('x:') - 2), (global0._send('y:') - 11), 'reset:', 3)
 				cycles = 2
 			#end:case
 			case 4:
@@ -243,18 +191,18 @@ class egoNorthOverKnightScr(Script):
 					(and
 						local16
 						(>
-							kernel.GetDistance(local16, local17, (global0 x:), (global0
-								y:
+							kernel.GetDistance(local16, local17, global0._send('x:'), global0._send(
+								'y:'
 							))
 							20
 						)
 					)
-					(global0 setMotion: PolyPath local16 local17)
+					global0._send('setMotion:', PolyPath, local16, local17)
 					local16 = 0
 				#endif
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				local18 = 1
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -271,39 +219,39 @@ class egoSouthOverKnightScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 mover:) and ((global0 mover:) isKindOf: PolyPath)):
-					local16 = ((global0 mover:) finalX:)
-					local17 = ((global0 mover:) finalY:)
+				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
+					local16 = global0._send('mover:')._send('finalX:')
+					local17 = global0._send('mover:')._send('finalY:')
 				#endif
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 2
 			#end:case
 			case 1:
-				(global0
-					setLoop: 2
-					setCycle: 0
-					setPri: 9
-					setMotion: JumpTo 261 137 self
+				global0._send(
+					'setLoop:', 2,
+					'setCycle:', 0,
+					'setPri:', 9,
+					'setMotion:', JumpTo, 261, 137, self
 				)
 			#end:case
 			case 2:
-				(global0 reset:)
+				global0._send('reset:')
 				local18 = 0
 				if 
 					(and
 						local16
 						(>
-							kernel.GetDistance(local16, local17, (global0 x:), (global0
-								y:
+							kernel.GetDistance(local16, local17, global0._send('x:'), global0._send(
+								'y:'
 							))
 							20
 						)
 					)
-					(global0 setMotion: PolyPath local16 local17)
+					global0._send('setMotion:', PolyPath, local16, local17)
 					local16 = 0
 				#endif
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -320,50 +268,50 @@ class egoFallScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 y:) < 124):
+				if (global0._send('y:') < 124):
 					register = 1
-					(global0 setMotion: PolyPath 163 108 self)
+					global0._send('setMotion:', PolyPath, 163, 108, self)
 				else:
 					register = 0
-					(global0 setMotion: PolyPath 119 168 self)
+					global0._send('setMotion:', PolyPath, 119, 168, self)
 				#endif
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global91 say: 3 3 3 1 self)
+				global91._send('say:', 3, 3, 3, 1, self)
 			#end:case
 			case 3:
-				(global102 stop:)
-				(global102 number: 653 loop: 1 play:)
+				global102._send('stop:')
+				global102._send('number:', 653, 'loop:', 1, 'play:')
 				if register:
-					(global0
-						normal: 0
-						view: 653
-						setLoop: 0
-						cel: 0
-						cycleSpeed: 5
-						setCycle: End self
+					global0._send(
+						'normal:', 0,
+						'view:', 653,
+						'setLoop:', 0,
+						'cel:', 0,
+						'cycleSpeed:', 5,
+						'setCycle:', End, self
 					)
 				else:
-					(global0
-						normal: 0
-						view: 653
-						setLoop: 1
-						cel: 0
-						setPri: 8
-						cycleSpeed: 5
-						setCycle: End self
+					global0._send(
+						'normal:', 0,
+						'view:', 653,
+						'setLoop:', 1,
+						'cel:', 0,
+						'setPri:', 8,
+						'cycleSpeed:', 5,
+						'setCycle:', End, self
 					)
 				#endif
 			#end:case
 			case 4:
-				(global0 dispose:)
-				(splashSound play: self)
+				global0._send('dispose:')
+				splashSound._send('play:', self)
 			#end:case
 			case 5:
-				(global91 say: 3 3 3 2 self)
+				global91._send('say:', 3, 3, 3, 2, self)
 			#end:case
 			case 6:
 				proc0_1(31)
@@ -429,20 +377,20 @@ class knightInset(Inset):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (ribbonFeat onMe: param1):
-				(ribbonFeat handleEvent: param1)
+			case ribbonFeat._send('onMe:', param1):
+				ribbonFeat._send('handleEvent:', param1)
 			#end:case
-			case (handFeat onMe: param1):
-				(handFeat handleEvent: param1)
+			case handFeat._send('onMe:', param1):
+				handFeat._send('handleEvent:', param1)
 			#end:case
-			case (knightFeat onMe: param1):
-				(knightFeat handleEvent: param1)
+			case knightFeat._send('onMe:', param1):
+				knightFeat._send('handleEvent:', param1)
 			#end:case
-			case (knightInsetFeat onMe: param1):
-				(knightInsetFeat handleEvent: param1)
+			case knightInsetFeat._send('onMe:', param1):
+				knightInsetFeat._send('handleEvent:', param1)
 			#end:case
 			else:
-				(super handleEvent: param1)
+				super._send('handleEvent:', param1)
 			#end:else
 		)
 	#end:method
@@ -452,14 +400,14 @@ class knightInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable: 6)
-		(knightInsetFeat init:)
-		(knightFeat init:)
-		(ribbonFeat init:)
-		(handFeat init:)
-		(super init: &rest)
-		if (((global9 at: 15) owner:) == global11):
-			(gauntlet init:)
+		global69._send('disable:', 6)
+		knightInsetFeat._send('init:')
+		knightFeat._send('init:')
+		ribbonFeat._send('init:')
+		handFeat._send('init:')
+		super._send('init:', &rest)
+		if (global9._send('at:', 15)._send('owner:') == global11):
+			gauntlet._send('init:')
 		#endif
 	#end:method
 
@@ -468,12 +416,12 @@ class knightInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(ribbonFeat dispose:)
-		(knightFeat dispose:)
-		(knightInsetFeat dispose:)
-		(handFeat dispose:)
-		(super dispose:)
-		(global69 enable: 6)
+		ribbonFeat._send('dispose:')
+		knightFeat._send('dispose:')
+		knightInsetFeat._send('dispose:')
+		handFeat._send('dispose:')
+		super._send('dispose:')
+		global69._send('enable:', 6)
 	#end:method
 
 #end:class or instance
@@ -488,37 +436,37 @@ class getGauntletScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(knightInset dispose:)
-				(global0 reset: 0)
+				global1._send('handsOff:')
+				knightInset._send('dispose:')
+				global0._send('reset:', 0)
 				seconds = 2
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 267 130 self)
+				global0._send('setMotion:', PolyPath, 267, 130, self)
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 652
-					loop: 1
-					cycleSpeed: 6
-					cel: 0
-					posn: 277 131
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 652,
+					'loop:', 1,
+					'cycleSpeed:', 6,
+					'cel:', 0,
+					'posn:', 277, 131,
+					'setCycle:', End, self
 				)
-				(scrape play:)
+				scrape._send('play:')
 			#end:case
 			case 3:
-				(global0 reset: 0 posn: 267 130 get: 15)
+				global0._send('reset:', 0, 'posn:', 267, 130, 'get:', 15)
 				cycles = 2
 			#end:case
 			case 4:
-				(global1 givePoints: 1)
-				(global91 say: 6 5 0 0 self)
+				global1._send('givePoints:', 1)
+				global91._send('say:', 6, 5, 0, 0, self)
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -550,10 +498,10 @@ class gauntlet(Prop):
 
 		match param1
 			case 5:
-				(global2 setScript: getGauntletScr)
+				global2._send('setScript:', getGauntletScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -598,14 +546,14 @@ class ghostScript(Script):
 				cycles = kernel.Random(90, 300)
 			#end:case
 			case 1:
-				(ghost show: setCycle: End self)
+				ghost._send('show:', 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(ghost hide:)
+				ghost._send('hide:')
 				cycles = 1
 			#end:case
 			case 3:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -623,40 +571,40 @@ class ghostTormentScr(Script):
 		match state = param1
 			case 0:
 				if (client == global2):
-					(global0 setMotion: 0 setHeading: 45)
+					global0._send('setMotion:', 0, 'setHeading:', 45)
 				#endif
-				(global102 number: 651 loop: 1 play:)
-				(kernel.ScriptID(70, 0) setIt: 4)
-				(knightGhost init: cycleSpeed: 10 setCycle: End self)
+				global102._send('number:', 651, 'loop:', 1, 'play:')
+				kernel.ScriptID(70, 0)._send('setIt:', 4)
+				knightGhost._send('init:', 'cycleSpeed:', 10, 'setCycle:', End, self)
 			#end:case
 			case 1:
-				(global0 hide:)
-				(knightGhost loop: 1 cel: 0 setPri: -1 setCycle: End self)
+				global0._send('hide:')
+				knightGhost._send('loop:', 1, 'cel:', 0, 'setPri:', -1, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(global0 show:)
-				(knightGhost
-					loop: 2
-					cel: 0
-					posn: 201 127
-					setPri: 4
-					setCycle: End self
+				global0._send('show:')
+				knightGhost._send(
+					'loop:', 2,
+					'cel:', 0,
+					'posn:', 201, 127,
+					'setPri:', 4,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
-				(global102 stop:)
-				(global102 number: 650 loop: -1 play:)
-				(knightGhost dispose:)
+				global102._send('stop:')
+				global102._send('number:', 650, 'loop:', -1, 'play:')
+				knightGhost._send('dispose:')
 				seconds = 2
 			#end:case
 			case 4:
-				(global91 say: 1 0 4 1 self)
+				global91._send('say:', 1, 0, 4, 1, self)
 			#end:case
 			case 5:
 				if (client == global2):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -673,35 +621,33 @@ class knightInsetScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					setMotion:
-						PolyPath
-						(knight approachX:)
-						(knight approachY:)
-						self
+				global0._send(
+					'setMotion:', PolyPath, knight._send('approachX:'), knight._send(
+							'approachY:'
+						), self
 				)
 			#end:case
 			case 1:
-				if (not (kernel.ScriptID(70, 0) isSet: 4)):
-					(self setScript: ghostTormentScr self)
+				if (not kernel.ScriptID(70, 0)._send('isSet:', 4)):
+					self._send('setScript:', ghostTormentScr, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				(global0 setHeading: 90 self)
+				global0._send('setHeading:', 90, self)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(global69 disable: 0 3 4 5)
-				(knightInset init: self global2)
+				global1._send('handsOn:')
+				global69._send('disable:', 0, 3, 4, 5)
+				knightInset._send('init:', self, global2)
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -725,10 +671,10 @@ class knight(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 1):
-			(global1 handsOff:)
-			(global2 setScript: knightInsetScr)
+			global1._send('handsOff:')
+			global2._send('setScript:', knightInsetScr)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -745,10 +691,10 @@ class fallFeat(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 3):
-			(global1 handsOff:)
-			(global2 setScript: egoFallScr)
+			global1._send('handsOff:')
+			global2._send('setScript:', egoFallScr)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -757,8 +703,8 @@ class fallFeat(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(global93 addToFront: self)
+		super._send('init:')
+		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -766,8 +712,8 @@ class fallFeat(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(super dispose:)
+		global93._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -784,10 +730,10 @@ class riverStyx(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 3):
-			(global1 handsOff:)
-			(global2 setScript: egoFallScr)
+			global1._send('handsOff:')
+			global2._send('setScript:', egoFallScr)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -796,8 +742,8 @@ class riverStyx(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(global93 addToFront: self)
+		super._send('init:')
+		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -805,8 +751,8 @@ class riverStyx(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(super dispose:)
+		global93._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -819,10 +765,10 @@ class bSetter(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param1 brTop: (param1 y:))
-		(param1 brBottom: (param1 y:))
-		(param1 brLeft: (param1 x:))
-		(param1 brRight: (param1 x:))
+		param1._send('brTop:', param1._send('y:'))
+		param1._send('brBottom:', param1._send('y:'))
+		param1._send('brLeft:', param1._send('x:'))
+		param1._send('brRight:', param1._send('x:'))
 	#end:method
 
 #end:class or instance
@@ -845,20 +791,19 @@ class cantLeaveSouth(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 3 3 2 0 self)
+				global91._send('say:', 3, 3, 2, 0, self)
 			#end:case
 			case 1:
-				(global0
-					setMotion:
-						MoveTo
-						((global0 x:) + 3)
-						((global0 y:) - 10)
-						self
+				global0._send(
+					'setMotion:', MoveTo, (global0._send('x:') + 3), (-
+							global0._send('y:')
+							10
+						), self
 				)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -875,20 +820,19 @@ class cantLeaveWest(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 3 3 2 0 self)
+				global91._send('say:', 3, 3, 2, 0, self)
 			#end:case
 			case 1:
-				(global0
-					setMotion:
-						MoveTo
-						((global0 x:) + 10)
-						((global0 y:) - 3)
-						self
+				global0._send(
+					'setMotion:', MoveTo, (global0._send('x:') + 10), (-
+							global0._send('y:')
+							3
+						), self
 				)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -940,52 +884,14 @@ class knightFeat(Feature):
 
 		(= onMeCheck
 			(= local19
-				((Polygon new:)
-					type: 0
-					init:
-						298
-						68
-						298
-						81
-						290
-						91
-						303
-						103
-						304
-						118
-						282
-						151
-						267
-						153
-						280
-						124
-						265
-						129
-						256
-						152
-						234
-						152
-						237
-						142
-						218
-						133
-						157
-						141
-						156
-						127
-						230
-						110
-						253
-						86
-						269
-						89
-						275
-						68
-					yourself:
+				Polygon._send('new:')._send(
+					'type:', 0,
+					'init:', 298, 68, 298, 81, 290, 91, 303, 103, 304, 118, 282, 151, 267, 153, 280, 124, 265, 129, 256, 152, 234, 152, 237, 142, 218, 133, 157, 141, 156, 127, 230, 110, 253, 86, 269, 89, 275, 68,
+					'yourself:'
 				)
 			)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

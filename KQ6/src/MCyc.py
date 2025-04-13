@@ -45,7 +45,7 @@ class MCyc(Cycle):
 		else:
 			value = (size - 4)
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -53,9 +53,9 @@ class MCyc(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (kernel.Abs((global88 - cycleCnt)) >= (client cycleSpeed:)):
+		if (kernel.Abs((global88 - cycleCnt)) >= client._send('cycleSpeed:')):
 			cycleCnt = global88
-			(self nextCel:)
+			self._send('nextCel:')
 		#endif
 	#end:method
 
@@ -64,11 +64,11 @@ class MCyc(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client
-			loop: proc999_6(points, value)
-			cel: proc999_6(points, (value + 1))
-			x: proc999_6(points, (value + 2))
-			y: proc999_6(points, (value + 3))
+		client._send(
+			'loop:', proc999_6(points, value),
+			'cel:', proc999_6(points, (value + 1)),
+			'x:', proc999_6(points, (value + 2)),
+			'y:', proc999_6(points, (value + 3))
 		)
 		(value += (cycleDir * 4))
 		if 
@@ -76,7 +76,7 @@ class MCyc(Cycle):
 				((cycleDir == 1) and (value >= size))
 				((cycleDir == -1) and (value < 0))
 			)
-			(self cycleDone:)
+			self._send('cycleDone:')
 		#endif
 	#end:method
 
@@ -90,7 +90,7 @@ class MCyc(Cycle):
 		if caller:
 			global37 = 1
 		else:
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 

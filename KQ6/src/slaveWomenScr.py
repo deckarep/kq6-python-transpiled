@@ -39,7 +39,7 @@ class slave1(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -47,8 +47,8 @@ class slave1(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Walk)
+		super._send('init:', &rest)
+		self._send('setCycle:', Walk)
 	#end:method
 
 #end:class or instance
@@ -68,7 +68,7 @@ class slave2(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -76,8 +76,8 @@ class slave2(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Walk)
+		super._send('init:', &rest)
+		self._send('setCycle:', Walk)
 	#end:method
 
 #end:class or instance
@@ -97,7 +97,7 @@ class slave3(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -105,8 +105,8 @@ class slave3(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Walk)
+		super._send('init:', &rest)
+		self._send('setCycle:', Walk)
 	#end:method
 
 #end:class or instance
@@ -126,8 +126,8 @@ class slave4(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Walk)
+		super._send('init:', &rest)
+		self._send('setCycle:', Walk)
 	#end:method
 
 #end:class or instance
@@ -143,24 +143,23 @@ class slaveWomenScr(Script):
 		match state = param1
 			case 0:
 				local4 = (3 if (global153 == 3) else 4)
-				local0[0] = (slave1 init: yourself:)
-				local0[1] = (slave2 init: yourself:)
-				local0[2] = (slave3 init: yourself:)
-				local0[3] = (slave4 init: yourself:)
+				local0[0] = slave1._send('init:', 'yourself:')
+				local0[1] = slave2._send('init:', 'yourself:')
+				local0[2] = slave3._send('init:', 'yourself:')
+				local0[3] = slave4._send('init:', 'yourself:')
 				cycles = 3
 			#end:case
 			case 1:
-				(global91 say: 1 0 local4 1 self)
+				global91._send('say:', 1, 0, local4, 1, self)
 			#end:case
 			case 2:
 				temp0 = 0
 				while (temp0 < 4): # inline for
-					(local0[temp0]
-						setMotion:
-							MoveTo
-							((local0[temp0] x:) - 19)
-							((local0[temp0] y:) - 11)
-							(self if (temp0 == 3) else 0)
+					local0[temp0]._send(
+						'setMotion:', MoveTo, (local0[temp0]._send('x:') - 19), (-
+								local0[temp0]._send('y:')
+								11
+							), (self if (temp0 == 3) else 0)
 					)
 					# for:reinit
 					temp0.post('++')
@@ -168,155 +167,152 @@ class slaveWomenScr(Script):
 			#end:case
 			case 3:
 				if (global153 == 5):
-					(global91 say: 1 0 local4 2 self)
+					global91._send('say:', 1, 0, local4, 2, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 4:
 				if (global153 == 3):
-					(kernel.ScriptID(220, 4)
-						view: 725
-						setLoop: 1
-						setCycle: Rev
-						setMotion:
-							MoveTo
-							((kernel.ScriptID(220, 4) x:) + 10)
-							(kernel.ScriptID(220, 4) y:)
-							self
+					kernel.ScriptID(220, 4)._send(
+						'view:', 725,
+						'setLoop:', 1,
+						'setCycle:', Rev,
+						'setMotion:', MoveTo, (kernel.ScriptID(220, 4)._send('x:') + 10), kernel.ScriptID(220, 4)._send(
+								'y:'
+							), self
 					)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
 				if (global153 == 3):
-					(kernel.ScriptID(220, 4) setCycle: 0 setLoop: -1)
-					(self setScript: kernel.ScriptID(220, 1) self 1)
+					kernel.ScriptID(220, 4)._send('setCycle:', 0, 'setLoop:', -1)
+					self._send('setScript:', kernel.ScriptID(220, 1), self, 1)
 				else:
-					(self setScript: kernel.ScriptID(220, 7) self)
+					self._send('setScript:', kernel.ScriptID(220, 7), self)
 				#endif
 			#end:case
 			case 6:
-				(kernel.ScriptID(220, 3) setPri: 7)
-				(kernel.ScriptID(220, 4) setPri: 4)
+				kernel.ScriptID(220, 3)._send('setPri:', 7)
+				kernel.ScriptID(220, 4)._send('setPri:', 4)
 				temp0 = 0
 				while (temp0 < 4): # inline for
-					(local0[temp0] setPri: 5)
+					local0[temp0]._send('setPri:', 5)
 					# for:reinit
 					temp0.post('++')
 				#end:loop
-				(global91 say: 1 0 local4 (2 if (global153 == 3) else 3) self)
+				global91._send('say:', 1, 0, local4, (2 if (global153 == 3) else 3), self)
 			#end:case
 			case 7:
-				(global91 say: 1 0 local4 (3 if (global153 == 3) else 4) self)
+				global91._send('say:', 1, 0, local4, (3 if (global153 == 3) else 4), self)
 			#end:case
 			case 8:
-				(kernel.ScriptID(220, 4) stopUpd:)
-				(local0[0] setMotion: MoveTo 104 94 self)
-				(local0[1]
-					setMotion: MoveTo (local0[0] x:) (local0[0] y:) self
+				kernel.ScriptID(220, 4)._send('stopUpd:')
+				local0[0]._send('setMotion:', MoveTo, 104, 94, self)
+				local0[1]._send(
+					'setMotion:', MoveTo, local0[0]._send('x:'), local0[0]._send('y:'), self
 				)
-				(local0[2]
-					setMotion: MoveTo (local0[1] x:) (local0[1] y:) self
+				local0[2]._send(
+					'setMotion:', MoveTo, local0[1]._send('x:'), local0[1]._send('y:'), self
 				)
-				(local0[3]
-					setMotion: MoveTo (local0[2] x:) (local0[2] y:) self
+				local0[3]._send(
+					'setMotion:', MoveTo, local0[2]._send('x:'), local0[2]._send('y:'), self
 				)
 			#end:case
 			case 9: 0#end:case
 			case 10: 0#end:case
 			case 11: 0#end:case
 			case 12:
-				(local0[0]
-					setPri: 2
-					setScale: Scaler 64 94 103 95
-					setMotion: MoveTo 75 100 local0[0]
+				local0[0]._send(
+					'setPri:', 2,
+					'setScale:', Scaler, 64, 94, 103, 95,
+					'setMotion:', MoveTo, 75, 100, local0[0]
 				)
-				(local0[1] setMotion: MoveTo 104 94 self)
-				(local0[2]
-					setMotion: MoveTo (local0[1] x:) (local0[1] y:) self
+				local0[1]._send('setMotion:', MoveTo, 104, 94, self)
+				local0[2]._send(
+					'setMotion:', MoveTo, local0[1]._send('x:'), local0[1]._send('y:'), self
 				)
-				(local0[3]
-					setMotion: MoveTo (local0[2] x:) (local0[2] y:) self
+				local0[3]._send(
+					'setMotion:', MoveTo, local0[2]._send('x:'), local0[2]._send('y:'), self
 				)
 			#end:case
 			case 13: 0#end:case
 			case 14: 0#end:case
 			case 15:
-				(local0[1]
-					setPri: 2
-					setScale: Scaler 64 94 103 95
-					setMotion: MoveTo 75 100 local0[1]
+				local0[1]._send(
+					'setPri:', 2,
+					'setScale:', Scaler, 64, 94, 103, 95,
+					'setMotion:', MoveTo, 75, 100, local0[1]
 				)
-				(local0[2] setMotion: MoveTo 104 94 self)
-				(local0[3]
-					setMotion: MoveTo (local0[2] x:) (local0[2] y:) self
+				local0[2]._send('setMotion:', MoveTo, 104, 94, self)
+				local0[3]._send(
+					'setMotion:', MoveTo, local0[2]._send('x:'), local0[2]._send('y:'), self
 				)
 			#end:case
 			case 16: 0#end:case
 			case 17:
-				(local0[2]
-					setPri: 2
-					setScale: Scaler 64 94 103 95
-					setMotion: MoveTo 75 100 local0[2]
+				local0[2]._send(
+					'setPri:', 2,
+					'setScale:', Scaler, 64, 94, 103, 95,
+					'setMotion:', MoveTo, 75, 100, local0[2]
 				)
-				(local0[3] setMotion: MoveTo 104 94 self)
+				local0[3]._send('setMotion:', MoveTo, 104, 94, self)
 			#end:case
 			case 18:
-				(local0[3]
-					setPri: 2
-					setScale: Scaler 64 94 103 95
-					setMotion: MoveTo 75 100 self
+				local0[3]._send(
+					'setPri:', 2,
+					'setScale:', Scaler, 64, 94, 103, 95,
+					'setMotion:', MoveTo, 75, 100, self
 				)
 			#end:case
 			case 19:
-				(local0[3] dispose:)
+				local0[3]._send('dispose:')
 				cycles = 2
 			#end:case
 			case 20:
 				if (global153 == 3):
-					(kernel.ScriptID(220, 4)
-						setCycle: Walk
-						setMotion:
-							MoveTo
-							((kernel.ScriptID(220, 4) x:) - 10)
-							(kernel.ScriptID(220, 4) y:)
+					kernel.ScriptID(220, 4)._send(
+						'setCycle:', Walk,
+						'setMotion:', MoveTo, (kernel.ScriptID(220, 4)._send('x:') - 10), kernel.ScriptID(220, 4)._send(
+								'y:'
+							)
 					)
 				#endif
-				(kernel.ScriptID(220, 3) setPri: -1)
-				(kernel.ScriptID(220, 4) setPri: -1)
-				(script cue:)
+				kernel.ScriptID(220, 3)._send('setPri:', -1)
+				kernel.ScriptID(220, 4)._send('setPri:', -1)
+				script._send('cue:')
 			#end:case
 			case 21:
 				if (global153 == 3):
-					(kernel.ScriptID(220, 4)
-						view: 224
-						setLoop: -1
-						loop: 1
-						cel: 0
-						posn: 139 109
+					kernel.ScriptID(220, 4)._send(
+						'view:', 224,
+						'setLoop:', -1,
+						'loop:', 1,
+						'cel:', 0,
+						'posn:', 139, 109
 					)
 					cycles = 2
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 22:
 				if (global153 == 3):
-					(global91 say: 1 0 local4 4 self)
+					global91._send('say:', 1, 0, local4, 4, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 23:
-				(global91 say: 1 0 local4 5 self)
+				global91._send('say:', 1, 0, local4, 5, self)
 			#end:case
 			case 24:
-				(kernel.ScriptID(220, 3) stopUpd:)
-				(kernel.ScriptID(220, 4) stopUpd:)
-				(kernel.ScriptID(220, 5) stopUpd:)
-				(self dispose:)
+				kernel.ScriptID(220, 3)._send('stopUpd:')
+				kernel.ScriptID(220, 4)._send('stopUpd:')
+				kernel.ScriptID(220, 5)._send('stopUpd:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -326,7 +322,7 @@ class slaveWomenScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(223)
 	#end:method
 

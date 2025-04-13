@@ -34,7 +34,7 @@ def proc404_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global0 setScript: holeOnWall 0 param1)
+	global0._send('setScript:', holeOnWall, 0, param1)
 #end:procedure
 
 @SCI.procedure
@@ -42,16 +42,16 @@ def proc404_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(kernel.ScriptID(30, 0) holeIsUp: 1)
-	match (kernel.ScriptID(30, 0) holeWall:)
+	kernel.ScriptID(30, 0)._send('holeIsUp:', 1)
+	match kernel.ScriptID(30, 0)._send('holeWall:')
 		case 2:
-			(aHole posn: 281 222 setPri: 13 init:)
+			aHole._send('posn:', 281, 222, 'setPri:', 13, 'init:')
 		#end:case
 		case 1:
-			(aHole posn: 159 191 setLoop: 7 setPri: 10 init:)
+			aHole._send('posn:', 159, 191, 'setLoop:', 7, 'setPri:', 10, 'init:')
 		#end:case
 		case 4:
-			(aHole posn: 36 223 setPri: 13 init:)
+			aHole._send('posn:', 36, 223, 'setPri:', 13, 'init:')
 		#end:case
 	#end:match
 #end:procedure
@@ -61,8 +61,8 @@ def proc404_2():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (global5 contains: aHole):
-		(aHole dispose: delete:)
+	if global5._send('contains:', aHole):
+		aHole._send('dispose:', 'delete:')
 	#endif
 	kernel.DisposeScript(404)
 #end:procedure
@@ -86,16 +86,16 @@ class aHole(Actor):
 
 		match param1
 			case 1:
-				(global0 setScript: lookInHole)
+				global0._send('setScript:', lookInHole)
 			#end:case
 			case 2:
-				(global91 say: 17 2 0 1 0 400)
+				global91._send('say:', 17, 2, 0, 1, 0, 400)
 			#end:case
 			case 5:
-				(global0 setScript: getHole)
+				global0._send('setScript:', getHole)
 			#end:case
 			else:
-				(global91 say: 17 0 0 1 0 400)
+				global91._send('say:', 17, 0, 0, 1, 0, 400)
 			#end:else
 		#end:match
 	#end:method
@@ -190,13 +190,13 @@ class holeOnWall(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 18 global11)
-				(global1 handsOff:)
-				(kernel.ScriptID(30, 0) holeIsUp: 1 holeWall: register)
+				global0._send('put:', 18, global11)
+				global1._send('handsOff:')
+				kernel.ScriptID(30, 0)._send('holeIsUp:', 1, 'holeWall:', register)
 				if (global11 == 400):
-					(kernel.ScriptID(30, 0) holeCoords: (kernel.ScriptID(30, 0) labCoords:))
+					kernel.ScriptID(30, 0)._send('holeCoords:', kernel.ScriptID(30, 0)._send('labCoords:'))
 				else:
-					(kernel.ScriptID(30, 0) holeCoords: global11)
+					kernel.ScriptID(30, 0)._send('holeCoords:', global11)
 				#endif
 				match register
 					case 2:
@@ -212,18 +212,18 @@ class holeOnWall(Script):
 						local2 = 173
 					#end:case
 				#end:match
-				(global0 setMotion: PolyPath local1 local2 self)
+				global0._send('setMotion:', PolyPath, local1, local2, self)
 			#end:case
 			case 1:
 				match register
 					case 2:
-						(global0 setHeading: 45)
+						global0._send('setHeading:', 45)
 					#end:case
 					case 1:
-						(global0 setHeading: 0)
+						global0._send('setHeading:', 0)
 					#end:case
 					case 4:
-						(global0 setHeading: 270)
+						global0._send('setHeading:', 270)
 					#end:case
 				#end:match
 				cycles = 10
@@ -233,52 +233,52 @@ class holeOnWall(Script):
 					case 2:
 						local1 = 271
 						local2 = 173
-						(global0 setLoop: 0)
+						global0._send('setLoop:', 0)
 					#end:case
 					case 1:
 						local1 = 157
 						local2 = 146
-						(global0 setLoop: 2)
+						global0._send('setLoop:', 2)
 					#end:case
 					case 4:
 						local1 = 48
 						local2 = 173
-						(global0 setLoop: 1)
+						global0._send('setLoop:', 1)
 					#end:case
 				#end:match
-				(global0
-					view: 232
-					normal: 0
-					cel: 0
-					posn: local1 local2
-					cycleSpeed: 6
+				global0._send(
+					'view:', 232,
+					'normal:', 0,
+					'cel:', 0,
+					'posn:', local1, local2,
+					'cycleSpeed:', 6
 				)
 				if (register == 1):
-					(global0 setCycle: CT 4 1 self)
+					global0._send('setCycle:', CT, 4, 1, self)
 				else:
-					(global0 setCycle: CT 5 1 self)
+					global0._send('setCycle:', CT, 5, 1, self)
 				#endif
 			#end:case
 			case 3:
 				match register
 					case 2:
-						(aHole posn: 281 222 setPri: 13 init:)
+						aHole._send('posn:', 281, 222, 'setPri:', 13, 'init:')
 					#end:case
 					case 1:
-						(aHole posn: 159 191 setLoop: 7 setPri: 10 init:)
+						aHole._send('posn:', 159, 191, 'setLoop:', 7, 'setPri:', 10, 'init:')
 					#end:case
 					case 4:
-						(aHole posn: 36 223 setPri: 13 init:)
+						aHole._send('posn:', 36, 223, 'setPri:', 13, 'init:')
 					#end:case
 				#end:match
-				(global0 cel: 6)
+				global0._send('cel:', 6)
 				seconds = 1
 			#end:case
 			case 4:
-				if ((global11 == 409) and ((aHole x:) > 250)):
-					(global91 say: 19 25 55 1 self 400)
+				if ((global11 == 409) and (aHole._send('x:') > 250)):
+					global91._send('say:', 19, 25, 55, 1, self, 400)
 				else:
-					(global91 say: 6 25 0 1 self 400)
+					global91._send('say:', 6, 25, 0, 1, self, 400)
 				#endif
 			#end:case
 			case 5:
@@ -286,23 +286,23 @@ class holeOnWall(Script):
 					(and
 						(global11 == 409)
 						(not proc913_0(1))
-						((aHole x:) > 250)
+						(aHole._send('x:') > 250)
 					)
-					(self cue:)
+					self._send('cue:')
 				else:
-					(global91 say: 6 25 0 2 self 400)
+					global91._send('say:', 6, 25, 0, 2, self, 400)
 				#endif
 			#end:case
 			case 6:
 				match register
 					case 2:
-						(global0 posn: 259 173 reset: 6)
+						global0._send('posn:', 259, 173, 'reset:', 6)
 					#end:case
 					case 1:
-						(global0 posn: 157 144 reset: 3)
+						global0._send('posn:', 157, 144, 'reset:', 3)
 					#end:case
 					case 4:
-						(global0 posn: 59 173 reset: 1)
+						global0._send('posn:', 59, 173, 'reset:', 1)
 					#end:case
 				#end:match
 				cycles = 6
@@ -322,9 +322,9 @@ class holeOnWall(Script):
 						local2 = 173
 					#end:case
 				#end:match
-				(global0
-					setLoop: (global0 cel:)
-					setMotion: MoveTo local1 local2 self
+				global0._send(
+					'setLoop:', global0._send('cel:'),
+					'setMotion:', MoveTo, local1, local2, self
 				)
 			#end:case
 			case 8:
@@ -335,16 +335,16 @@ class holeOnWall(Script):
 					(and
 						(global11 == 409)
 						(not proc913_0(1))
-						((aHole x:) > 250)
+						(aHole._send('x:') > 250)
 					)
-					(global105 number: 483 setLoop: 1 play:)
-					(aHole
-						yStep: 6
-						setCycle: Fwd
-						setMotion: MoveTo (aHole x:) 5 self
+					global105._send('number:', 483, 'setLoop:', 1, 'play:')
+					aHole._send(
+						'yStep:', 6,
+						'setCycle:', Fwd,
+						'setMotion:', MoveTo, aHole._send('x:'), 5, self
 					)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 10:
@@ -352,11 +352,11 @@ class holeOnWall(Script):
 					(and
 						(global11 == 409)
 						(not proc913_0(1))
-						((aHole x:) > 250)
+						(aHole._send('x:') > 250)
 					)
-					(global91 say: 19 25 55 2 self 400)
+					global91._send('say:', 19, 25, 55, 2, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 11:
@@ -364,17 +364,17 @@ class holeOnWall(Script):
 					(and
 						(global11 == 409)
 						(not proc913_0(1))
-						((aHole x:) > 250)
+						(aHole._send('x:') > 250)
 					)
-					(global91 say: 19 25 55 3 self 400)
+					global91._send('say:', 19, 25, 55, 3, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 12:
-				(global1 handsOn:)
-				(global0 setLoop: -1)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('setLoop:', -1)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -391,14 +391,14 @@ class lookInHole(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				(cond
-					case ((aHole x:) < 82):
+					case (aHole._send('x:') < 82):
 						register = 4
 						local1 = 58
 						local2 = 172
 					#end:case
-					case ((aHole x:) < 233):
+					case (aHole._send('x:') < 233):
 						register = 1
 						local1 = 157
 						local2 = 144
@@ -409,18 +409,18 @@ class lookInHole(Script):
 						local2 = 170
 					#end:else
 				)
-				(global0 setMotion: PolyPath local1 local2 self)
+				global0._send('setMotion:', PolyPath, local1, local2, self)
 			#end:case
 			case 1:
 				match register
 					case 4:
-						(global0 setHeading: 270)
+						global0._send('setHeading:', 270)
 					#end:case
 					case 1:
-						(global0 setHeading: 0)
+						global0._send('setHeading:', 0)
 					#end:case
 					case 2:
-						(global0 setHeading: 90)
+						global0._send('setHeading:', 90)
 					#end:case
 				#end:match
 				cycles = 12
@@ -430,44 +430,44 @@ class lookInHole(Script):
 					case 4:
 						local1 = 47
 						local2 = 172
-						(global0 setPri: 14 setLoop: 4)
+						global0._send('setPri:', 14, 'setLoop:', 4)
 					#end:case
 					case 1:
 						local1 = 157
 						local2 = 146
-						(global0 setPri: 11 setLoop: 5)
+						global0._send('setPri:', 11, 'setLoop:', 5)
 					#end:case
 					case 2:
 						local1 = 268
 						local2 = 171
-						(global0 setPri: 14 setLoop: 3)
+						global0._send('setPri:', 14, 'setLoop:', 3)
 					#end:case
 				#end:match
-				(global0
-					view: 232
-					cel: 0
-					normal: 0
-					posn: local1 local2
-					cycleSpeed: 6
-					setCycle: End self
+				global0._send(
+					'view:', 232,
+					'cel:', 0,
+					'normal:', 0,
+					'posn:', local1, local2,
+					'cycleSpeed:', 6,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
-				(global91 say: 17 1 0 0 self 400)
+				global91._send('say:', 17, 1, 0, 0, self, 400)
 			#end:case
 			case 4:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
 				match register
 					case 4:
-						(global0 posn: 58 172 reset: 1)
+						global0._send('posn:', 58, 172, 'reset:', 1)
 					#end:case
 					case 1:
-						(global0 posn: 157 144 reset: 3)
+						global0._send('posn:', 157, 144, 'reset:', 3)
 					#end:case
 					case 2:
-						(global0 posn: 259 170 reset: 0)
+						global0._send('posn:', 259, 170, 'reset:', 0)
 					#end:case
 				#end:match
 				cycles = 6
@@ -487,15 +487,15 @@ class lookInHole(Script):
 						local2 = 170
 					#end:case
 				#end:match
-				(global0
-					setLoop: (global0 cel:)
-					setMotion: PolyPath local1 local2 self
+				global0._send(
+					'setLoop:', global0._send('cel:'),
+					'setMotion:', PolyPath, local1, local2, self
 				)
 			#end:case
 			case 7:
-				(global1 handsOn:)
-				(global0 reset:)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -512,14 +512,14 @@ class getHole(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				(cond
-					case ((aHole x:) < 82):
+					case (aHole._send('x:') < 82):
 						register = 4
 						local1 = 59
 						local2 = 173
 					#end:case
-					case ((aHole x:) < 233):
+					case (aHole._send('x:') < 233):
 						register = 1
 						local1 = 157
 						local2 = 144
@@ -530,56 +530,56 @@ class getHole(Script):
 						local2 = 173
 					#end:else
 				)
-				(global0 setMotion: PolyPath local1 local2 self)
+				global0._send('setMotion:', PolyPath, local1, local2, self)
 			#end:case
 			case 1:
 				match register
 					case 4:
-						(global0 setHeading: 270)
+						global0._send('setHeading:', 270)
 					#end:case
 					case 1:
-						(global0 setHeading: 0)
+						global0._send('setHeading:', 0)
 					#end:case
 					case 2:
-						(global0 setHeading: 45)
+						global0._send('setHeading:', 45)
 					#end:case
 				#end:match
 				cycles = 10
 			#end:case
 			case 2:
-				(global91 say: 17 5 0 1 self 400)
+				global91._send('say:', 17, 5, 0, 1, self, 400)
 			#end:case
 			case 3:
 				match register
 					case 2:
-						(global0 posn: 268 173 setLoop: 0)
+						global0._send('posn:', 268, 173, 'setLoop:', 0)
 					#end:case
 					case 1:
-						(global0 posn: 157 146 setLoop: 2)
+						global0._send('posn:', 157, 146, 'setLoop:', 2)
 					#end:case
 					case 4:
 						local1 = 48
 						local2 = 173
-						(global0 posn: 48 173 setLoop: 1)
+						global0._send('posn:', 48, 173, 'setLoop:', 1)
 					#end:case
 				#end:match
-				(global0 view: 232 normal: 0 cel: 6)
+				global0._send('view:', 232, 'normal:', 0, 'cel:', 6)
 				cycles = 3
 			#end:case
 			case 4:
-				(aHole dispose:)
-				(global0 cycleSpeed: 6 setCycle: Beg self)
+				aHole._send('dispose:')
+				global0._send('cycleSpeed:', 6, 'setCycle:', Beg, self)
 			#end:case
 			case 5:
 				match register
 					case 2:
-						(global0 posn: 259 170 reset: 6)
+						global0._send('posn:', 259, 170, 'reset:', 6)
 					#end:case
 					case 1:
-						(global0 posn: 157 144 reset: 3)
+						global0._send('posn:', 157, 144, 'reset:', 3)
 					#end:case
 					case 4:
-						(global0 posn: 58 172 reset: 1)
+						global0._send('posn:', 58, 172, 'reset:', 1)
 					#end:case
 				#end:match
 				cycles = 6
@@ -602,17 +602,17 @@ class getHole(Script):
 				ticks = 6
 			#end:case
 			case 7:
-				(global0
-					setLoop: (global0 cel:)
-					setMotion: MoveTo local1 local2 self
+				global0._send(
+					'setLoop:', global0._send('cel:'),
+					'setMotion:', MoveTo, local1, local2, self
 				)
 			#end:case
 			case 8:
-				(global1 handsOn:)
-				(global0 setLoop: -1 get: 18)
-				(kernel.ScriptID(30, 0) holeCoords: 0)
-				(kernel.ScriptID(30, 0) holeWall: 0)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('setLoop:', -1, 'get:', 18)
+				kernel.ScriptID(30, 0)._send('holeCoords:', 0)
+				kernel.ScriptID(30, 0)._send('holeWall:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

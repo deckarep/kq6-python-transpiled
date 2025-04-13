@@ -28,7 +28,7 @@ class Tutorial(Script):
 				proc921_0(param3)
 			#end:case
 			case (argc > 3):
-				(global91 say: param3 param4 param5 param6 param7)
+				global91._send('say:', param3, param4, param5, param6, param7)
 			#end:case
 		)
 	#end:method
@@ -42,7 +42,7 @@ class Tutorial(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		numTries = 0
-		(super cue: &rest)
+		super._send('cue:', &rest)
 	#end:method
 
 #end:class or instance

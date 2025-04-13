@@ -38,7 +38,7 @@ class InvI(IconI):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return ((super onMe: param1) and (not (signal & 0x0004)))
+		return (super._send('onMe:', param1) and (not (signal & 0x0004)))
 	#end:method
 
 	@classmethod
@@ -50,18 +50,18 @@ class InvI(IconI):
 			modNum = global11
 		#endif
 		if (global90 and kernel.Message(0, modNum, noun, param1, 0, 1)):
-			(global91 say: noun param1 0 0 0 modNum)
+			global91._send('say:', noun, param1, 0, 0, 0, modNum)
 		#endif
-		if (temp0 = (global1 script:) and (temp0 isKindOf: Tutorial)):
+		if (temp0 = global1._send('script:') and temp0._send('isKindOf:', Tutorial)):
 			(cond
-				case ((temp0 nextItem:) != self):
-					(temp0 report: self)
+				case (temp0._send('nextItem:') != self):
+					temp0._send('report:', self)
 				#end:case
-				case ((temp0 nextAction:) != param1):
-					(temp0 report: param1)
+				case (temp0._send('nextAction:') != param1):
+					temp0._send('report:', param1)
 				#end:case
 				else:
-					(temp0 cue:)
+					temp0._send('cue:')
 				#end:else
 			)
 		#endif
@@ -110,7 +110,7 @@ class InvI(IconI):
 
 		owner = param1
 		if (value and (param1 == global0)):
-			(global1 changeScore: value)
+			global1._send('changeScore:', value)
 			value = 0
 		#endif
 		return self
@@ -134,18 +134,18 @@ class Inv(IconBar):
 
 		global170 = 0
 		temp0 = temp1 = temp2 = temp3 = temp4 = temp5 = 0
-		temp8 = (self first:)
+		temp8 = self._send('first:')
 		while temp8: # inline for
-			if (temp9 = kernel.NodeValue(temp8) isKindOf: InvI):
-				if (temp9 ownedBy: param1):
-					(temp9 signal: ((temp9 signal:) & 0xfffb))
+			if temp9 = kernel.NodeValue(temp8)._send('isKindOf:', InvI):
+				if temp9._send('ownedBy:', param1):
+					temp9._send('signal:', (temp9._send('signal:') & 0xfffb))
 					temp0.post('++')
 					if 
 						(>
 							(= temp6
-								kernel.CelWide((temp9 view:), (temp9 loop:), (temp9
-									cel:
-								))
+								kernel.CelWide(temp9._send('view:'), temp9._send(
+									'loop:'
+								), temp9._send('cel:'))
 							)
 							temp2
 						)
@@ -154,24 +154,24 @@ class Inv(IconBar):
 					if 
 						(>
 							(= temp7
-								kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9
-									cel:
-								))
+								kernel.CelHigh(temp9._send('view:'), temp9._send(
+									'loop:'
+								), temp9._send('cel:'))
 							)
 							temp1
 						)
 						temp1 = temp7
 					#endif
 				else:
-					(temp9 signal: (| (temp9 signal:) 0x0004))
+					temp9._send('signal:', (| temp9._send('signal:') 0x0004))
 				#endif
 			else:
 				temp3.post('++')
-				(temp5 += kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:)))
+				(temp5 += kernel.CelWide(temp9._send('view:'), temp9._send('loop:'), temp9._send('cel:')))
 				if 
 					(>
 						(= temp7
-							kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
+							kernel.CelHigh(temp9._send('view:'), temp9._send('loop:'), temp9._send('cel:'))
 						)
 						temp4
 					)
@@ -179,10 +179,10 @@ class Inv(IconBar):
 				#endif
 			#endif
 			# for:reinit
-			temp8 = (self next: temp8)
+			temp8 = self._send('next:', temp8)
 		#end:loop
 		if (not temp0):
-			(Print addTextF: r"""%s %s""" normalHeading empty init:)
+			Print._send('addTextF:', r"""%s %s""", normalHeading, empty, 'init:')
 			return 0
 		#endif
 		if ((temp16 = kernel.Sqrt(temp0) * temp16) > temp0):
@@ -201,16 +201,16 @@ class Inv(IconBar):
 		temp13 = ((320 - temp10) / 2)
 		temp14 = (temp12 + temp11)
 		temp15 = (temp13 + temp10)
-		if temp21 = (self window:):
-			(temp21 top: temp12 left: temp13 right: temp15 bottom: temp14 open:)
+		if temp21 = self._send('window:'):
+			temp21._send('top:', temp12, 'left:', temp13, 'right:', temp15, 'bottom:', temp14, 'open:')
 		#endif
 		temp20 = local0
 		if temp0:
 			(= temp18
 				(+
 					2
-					if (temp21 respondsTo: #yOffset):
-						(temp21 yOffset:)
+					if temp21._send('respondsTo:', #yOffset):
+						temp21._send('yOffset:')
 					#endif
 				)
 			)
@@ -218,55 +218,53 @@ class Inv(IconBar):
 				(= temp17
 					(+
 						4
-						if (temp21 respondsTo: #xOffset):
-							(temp21 xOffset:)
+						if temp21._send('respondsTo:', #xOffset):
+							temp21._send('xOffset:')
 						#endif
 					)
 				)
 			)
-			temp8 = (self first:)
+			temp8 = self._send('first:')
 			while temp8: # inline for
 				if 
 					(and
-						(not ((temp9 = kernel.NodeValue(temp8) signal:) & 0x0004))
-						(temp9 isKindOf: InvI)
+						(not (temp9 = kernel.NodeValue(temp8)._send('signal:') & 0x0004))
+						temp9._send('isKindOf:', InvI)
 					)
-					if (not ((temp9 signal:) & 0x0080)):
-						(temp9
-							nsLeft:
-								(+
+					if (not (temp9._send('signal:') & 0x0080)):
+						temp9._send(
+							'nsLeft:', (+
 									temp17
 									(/
 										(-
 											temp2
 											(= temp6
-												kernel.CelWide((temp9 view:), (temp9
-													loop:
-												), (temp9 cel:))
+												kernel.CelWide(temp9._send('view:'), temp9._send(
+													'loop:'
+												), temp9._send('cel:'))
 											)
 										)
 										2
 									)
-								)
-							nsTop:
-								(+
+								),
+							'nsTop:', (+
 									temp18
 									(/
 										(-
 											temp1
 											(= temp7
-												kernel.CelHigh((temp9 view:), (temp9
-													loop:
-												), (temp9 cel:))
+												kernel.CelHigh(temp9._send('view:'), temp9._send(
+													'loop:'
+												), temp9._send('cel:'))
 											)
 										)
 										2
 									)
 								)
 						)
-						(temp9
-							nsRight: ((temp9 nsLeft:) + temp6)
-							nsBottom: ((temp9 nsTop:) + temp7)
+						temp9._send(
+							'nsRight:', (temp9._send('nsLeft:') + temp6),
+							'nsBottom:', (temp9._send('nsTop:') + temp7)
 						)
 						if temp20.post('--'):
 							(temp17 += temp2)
@@ -276,44 +274,44 @@ class Inv(IconBar):
 							temp17 = temp19
 						#endif
 					else:
-						temp17 = (temp9 nsLeft:)
-						temp18 = (temp9 nsTop:)
+						temp17 = temp9._send('nsLeft:')
+						temp18 = temp9._send('nsTop:')
 					#endif
-					(temp9 show:)
+					temp9._send('show:')
 					if (temp9 == param2):
-						(temp9 highlight:)
+						temp9._send('highlight:')
 					#endif
 				#endif
 				# for:reinit
-				temp8 = (self next: temp8)
+				temp8 = self._send('next:', temp8)
 			#end:loop
 		#endif
-		temp17 = ((((temp21 right:) - (temp21 left:)) - temp5) / 2)
-		temp11 = ((temp21 bottom:) - (temp21 top:))
+		temp17 = (((temp21._send('right:') - temp21._send('left:')) - temp5) / 2)
+		temp11 = (temp21._send('bottom:') - temp21._send('top:'))
 		temp18 = 32767
-		temp8 = (self first:)
+		temp8 = self._send('first:')
 		while temp8: # inline for
-			if (not (temp9 = kernel.NodeValue(temp8) isKindOf: InvI)):
-				(temp9 nsTop: 0)
-				temp6 = kernel.CelWide((temp9 view:), (temp9 loop:), (temp9 cel:))
-				temp7 = kernel.CelHigh((temp9 view:), (temp9 loop:), (temp9 cel:))
-				if (not ((temp9 signal:) & 0x0080)):
+			if (not temp9 = kernel.NodeValue(temp8)._send('isKindOf:', InvI)):
+				temp9._send('nsTop:', 0)
+				temp6 = kernel.CelWide(temp9._send('view:'), temp9._send('loop:'), temp9._send('cel:'))
+				temp7 = kernel.CelHigh(temp9._send('view:'), temp9._send('loop:'), temp9._send('cel:'))
+				if (not (temp9._send('signal:') & 0x0080)):
 					if (temp18 == 32767):
 						temp18 = (temp11 - temp7)
 					#endif
-					(temp9
-						nsLeft: temp17
-						nsTop: temp18
-						nsBottom: temp11
-						nsRight: (temp17 + temp6)
+					temp9._send(
+						'nsLeft:', temp17,
+						'nsTop:', temp18,
+						'nsBottom:', temp11,
+						'nsRight:', (temp17 + temp6)
 					)
 				#endif
-				temp17 = ((temp9 nsLeft:) + temp6)
-				temp18 = (temp9 nsTop:)
-				(temp9 signal: ((temp9 signal:) & 0xfffb) show:)
+				temp17 = (temp9._send('nsLeft:') + temp6)
+				temp18 = temp9._send('nsTop:')
+				temp9._send('signal:', (temp9._send('signal:') & 0xfffb), 'show:')
 			#endif
 			# for:reinit
-			temp8 = (self next: temp8)
+			temp8 = self._send('next:', temp8)
 		#end:loop
 		return 1
 	#end:method
@@ -331,7 +329,7 @@ class Inv(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self firstTrue: #ownedBy param1)
+		self._send('firstTrue:', #ownedBy, param1)
 	#end:method
 
 	@classmethod
@@ -339,26 +337,26 @@ class Inv(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global8 pause:)
-		if (global77 and (global77 respondsTo: #stop)):
-			(global77 stop:)
+		global8._send('pause:')
+		if (global77 and global77._send('respondsTo:', #stop)):
+			global77._send('stop:')
 		#endif
-		if (global69 height:):
-			(global69 hide:)
+		if global69._send('height:'):
+			global69._send('hide:')
 		#endif
 		if (not window):
-			window = (SysWindow new:)
+			window = SysWindow._send('new:')
 		#endif
-		if (window window:):
-			(window dispose:)
+		if window._send('window:'):
+			window._send('dispose:')
 			window = 0
 		#endif
 		if (not okButton):
-			okButton = kernel.NodeValue((self first:))
+			okButton = kernel.NodeValue(self._send('first:'))
 		#endif
 		curIcon = 0
-		if (self show: (param1 if argc else global0)):
-			(self doit:)
+		if self._send('show:', (param1 if argc else global0)):
+			self._send('doit:')
 		#endif
 	#end:method
 
@@ -367,12 +365,11 @@ class Inv(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1
-			setCursor:
-				if curIcon:
-					(curIcon cursor:)
+		global1._send(
+			'setCursor:', if curIcon:
+					curIcon._send('cursor:')
 				else:
-					(selectIcon cursor:)
+					selectIcon._send('cursor:')
 				#endif
 		)
 		temp0 = kernel.PicNotValid()
@@ -381,10 +378,10 @@ class Inv(IconBar):
 		if 
 			(not
 				(= temp1
-					(self
-						drawInvWindow:
-							(param1 if argc else global0)
-							(global69 curIcon:)
+					self._send(
+						'drawInvWindow:', (param1 if argc else global0), global69._send(
+								'curIcon:'
+							)
 					)
 				)
 			)
@@ -400,13 +397,12 @@ class Inv(IconBar):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (param1 if argc else 1)
-		temp2 = (self indexOf: highlightedIcon)
+		temp2 = self._send('indexOf:', highlightedIcon)
 		temp3 = (temp1 + temp2)
 		while True: #repeat
 			(= temp0
-				(self
-					at:
-						if (temp3 <= size):
+				self._send(
+					'at:', if (temp3 <= size):
 							temp3
 						else:
 							(mod temp3 (size - 1))
@@ -414,15 +410,15 @@ class Inv(IconBar):
 				)
 			)
 			if (not kernel.IsObject(temp0)):
-				temp0 = kernel.NodeValue((self first:))
+				temp0 = kernel.NodeValue(self._send('first:'))
 			#endif
-			if (not ((temp0 signal:) & 0x0004)):
+			if (not (temp0._send('signal:') & 0x0004)):
 				(break)
 			else:
 				temp3.post('++')
 			#endif
 		#end:loop
-		(self highlight: temp0 1)
+		self._send('highlight:', temp0, 1)
 	#end:method
 
 	@classmethod
@@ -431,19 +427,19 @@ class Inv(IconBar):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = (param1 if argc else 1)
-		temp3 = (temp2 = (self indexOf: highlightedIcon) - temp1)
+		temp3 = (temp2 = self._send('indexOf:', highlightedIcon) - temp1)
 		while True: #repeat
-			temp0 = (self at: temp3)
+			temp0 = self._send('at:', temp3)
 			if (not kernel.IsObject(temp0)):
-				temp0 = kernel.NodeValue((self last:))
+				temp0 = kernel.NodeValue(self._send('last:'))
 			#endif
-			if (not ((temp0 signal:) & 0x0004)):
+			if (not (temp0._send('signal:') & 0x0004)):
 				(break)
 			else:
 				temp3.post('--')
 			#endif
 		#end:loop
-		(self highlight: temp0 1)
+		self._send('highlight:', temp0, 1)
 	#end:method
 
 	(procedure (localproc_0param1 = None, param2 = None, param3 = None, *rest):
@@ -451,20 +447,18 @@ class Inv(IconBar):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp2
-			((((param1 nsRight:) - (param1 nsLeft:)) / 2) + (param1 nsLeft:))
+			(((param1._send('nsRight:') - param1._send('nsLeft:')) / 2) + param1._send('nsLeft:'))
 		)
 		temp1 = param2
 		while (kernel.Abs((temp1 - param3)) >= 4):
 
 			if 
 				(= temp0
-					(self
-						firstTrue:
-							#onMe
-							(((global80 curEvent:) new:)
-								x: temp2
-								y: temp1
-								yourself:
+					self._send(
+						'firstTrue:', #onMe, global80._send('curEvent:')._send('new:')._send(
+								'x:', temp2,
+								'y:', temp1,
+								'yourself:'
 							)
 					)
 				)
@@ -483,19 +477,19 @@ class Inv(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		while (temp1 = ((global80 curEvent:) new:) type:):
+		while temp1 = global80._send('curEvent:')._send('new:')._send('type:'):
 
 		#end:loop
 		while (state & 0x0020):
 
-			temp1 = ((global80 curEvent:) new:)
-			global70 = (temp1 x:)
-			global71 = (temp1 y:)
-			temp2 = (temp1 type:)
-			temp3 = (temp1 message:)
-			temp4 = (temp1 modifiers:)
+			temp1 = global80._send('curEvent:')._send('new:')
+			global70 = temp1._send('x:')
+			global71 = temp1._send('y:')
+			temp2 = temp1._send('type:')
+			temp3 = temp1._send('message:')
+			temp4 = temp1._send('modifiers:')
 			temp9 = 0
-			(temp1 localize:)
+			temp1._send('localize:')
 			if 
 				(and
 					curIcon
@@ -508,44 +502,44 @@ class Inv(IconBar):
 					)
 					(or
 						(curIcon != helpIconItem)
-						((helpIconItem signal:) & 0x0010)
+						(helpIconItem._send('signal:') & 0x0010)
 					)
 				)
-				(temp1 type: 16384 message: (curIcon message:))
+				temp1._send('type:', 16384, 'message:', curIcon._send('message:'))
 			#endif
 			kernel.MapKeyToDir(temp1)
-			temp2 = (temp1 type:)
-			temp3 = (temp1 message:)
+			temp2 = temp1._send('type:')
+			temp3 = temp1._send('message:')
 			if global170:
-				(temp1 claimed: 1)
+				temp1._send('claimed:', 1)
 				global170 = 0
 				(break)
 			#endif
 			if global18:
-				(global18 eachElementDo: #doit)
+				global18._send('eachElementDo:', #doit)
 			#endif
-			if (temp60 = (global1 script:) and (temp60 isKindOf: Tutorial)):
-				(temp60 doit:)
+			if (temp60 = global1._send('script:') and temp60._send('isKindOf:', Tutorial)):
+				temp60._send('doit:')
 			#endif
 			if global84:
-				(global84 eachElementDo: #doit)
+				global84._send('eachElementDo:', #doit)
 				global88 = (global86 + kernel.GetTime())
 				if global84:
-					(global84 handleEvent: temp1)
+					global84._send('handleEvent:', temp1)
 				#endif
 			else:
 				if ((temp2 == 1) and temp4):
-					(self advanceCurIcon:)
-					(temp1 claimed: 1)
+					self._send('advanceCurIcon:')
+					temp1._send('claimed:', 1)
 					(continue)
 				#endif
 				if 
 					(and
 						(temp2 == 0)
-						temp0 = (self firstTrue: #onMe temp1)
+						temp0 = self._send('firstTrue:', #onMe, temp1)
 						(temp0 != highlightedIcon)
 					)
-					(self highlight: temp0)
+					self._send('highlight:', temp0)
 					(continue)
 				#endif
 				(cond
@@ -558,38 +552,38 @@ class Inv(IconBar):
 						if 
 							(and
 								kernel.IsObject(highlightedIcon)
-								(self select: highlightedIcon (temp2 == 1))
+								self._send('select:', highlightedIcon, (temp2 == 1))
 							)
 							if (highlightedIcon == okButton):
-								(temp1 claimed: 1)
+								temp1._send('claimed:', 1)
 								(break)
 							#endif
 							if (highlightedIcon == helpIconItem):
-								if ((highlightedIcon cursor:) != -1):
-									(global1 setCursor: (helpIconItem cursor:))
+								if (highlightedIcon._send('cursor:') != -1):
+									global1._send('setCursor:', helpIconItem._send('cursor:'))
 								#endif
 								if (state & 0x0800):
-									(self noClickHelp:)
+									self._send('noClickHelp:')
 									(continue)
 								#endif
 								if helpIconItem:
-									(helpIconItem
-										signal: (| (helpIconItem signal:) 0x0010)
+									helpIconItem._send(
+										'signal:', (| helpIconItem._send('signal:') 0x0010)
 									)
 								#endif
 								(continue)
 							#endif
 							curIcon = highlightedIcon
-							(global1 setCursor: (curIcon cursor:))
+							global1._send('setCursor:', curIcon._send('cursor:'))
 						#endif
 					#end:case
 					case (temp2 & 0x0040):
 						match temp3
 							case 3:
-								(self advance:)
+								self._send('advance:')
 							#end:case
 							case 7:
-								(self retreat:)
+								self._send('retreat:')
 							#end:case
 							case 1:
 								if 
@@ -597,14 +591,14 @@ class Inv(IconBar):
 										highlightedIcon
 										(= temp0
 											localproc_0(highlightedIcon, (-
-												(highlightedIcon nsTop:)
+												highlightedIcon._send('nsTop:')
 												1
 											), 0)
 										)
 									)
-									(self highlight: temp0 1)
+									self._send('highlight:', temp0, 1)
 								else:
-									(self retreat:)
+									self._send('retreat:')
 								#endif
 							#end:case
 							case 5:
@@ -613,19 +607,19 @@ class Inv(IconBar):
 										highlightedIcon
 										(= temp0
 											localproc_0(highlightedIcon, (+
-												(highlightedIcon nsBottom:)
+												highlightedIcon._send('nsBottom:')
 												1
-											), (window bottom:))
+											), window._send('bottom:'))
 										)
 									)
-									(self highlight: temp0 1)
+									self._send('highlight:', temp0, 1)
 								else:
-									(self advance:)
+									self._send('advance:')
 								#endif
 							#end:case
 							case 0:
 								if (temp2 & 0x0004):
-									(self advanceCurIcon:)
+									self._send('advanceCurIcon:')
 								#endif
 							#end:case
 						#end:match
@@ -633,10 +627,10 @@ class Inv(IconBar):
 					case (temp2 == 4):
 						match temp3
 							case 9:
-								(self advance:)
+								self._send('advance:')
 							#end:case
 							case 3840:
-								(self retreat:)
+								self._send('retreat:')
 							#end:case
 							case 27:
 								(break)
@@ -646,72 +640,72 @@ class Inv(IconBar):
 					case 
 						(and
 							(temp2 & 0x4000)
-							temp0 = (self firstTrue: #onMe temp1)
+							temp0 = self._send('firstTrue:', #onMe, temp1)
 						):
 						if (temp2 & 0x2000):
 							if 
 								(and
 									temp0
-									(temp0 noun:)
-									kernel.Message(0, (temp0 modNum:), (temp0
-										noun:
-									), (temp0 helpVerb:), 0, 1, @temp10)
+									temp0._send('noun:')
+									kernel.Message(0, temp0._send('modNum:'), temp0._send(
+										'noun:'
+									), temp0._send('helpVerb:'), 0, 1, @temp10)
 								)
-								if (global38 respondsTo: #eraseOnly):
-									temp7 = (global38 eraseOnly:)
-									(global38 eraseOnly: 1)
+								if global38._send('respondsTo:', #eraseOnly):
+									temp7 = global38._send('eraseOnly:')
+									global38._send('eraseOnly:', 1)
 									proc921_0(@temp10)
-									(global38 eraseOnly: temp7)
+									global38._send('eraseOnly:', temp7)
 								else:
 									proc921_0(@temp10)
 								#endif
 							#endif
-							(helpIconItem
-								signal: ((helpIconItem signal:) & 0xffef)
+							helpIconItem._send(
+								'signal:', (helpIconItem._send('signal:') & 0xffef)
 							)
-							(global1 setCursor: 999)
+							global1._send('setCursor:', 999)
 							(continue)
 						#endif
 						if (temp0 == okButton):
-							(temp1 claimed: 1)
+							temp1._send('claimed:', 1)
 							(break)
 						#endif
-						if (not (temp0 isKindOf: InvI)):
-							if (self select: temp0 (not temp9)):
+						if (not temp0._send('isKindOf:', InvI)):
+							if self._send('select:', temp0, (not temp9)):
 								curIcon = temp0
-								(global1 setCursor: (curIcon cursor:))
+								global1._send('setCursor:', curIcon._send('cursor:'))
 								if (temp0 == helpIconItem):
 									if (state & 0x0800):
-										(self noClickHelp:)
+										self._send('noClickHelp:')
 										(continue)
 									#endif
-									(helpIconItem
-										signal: (| (helpIconItem signal:) 0x0010)
+									helpIconItem._send(
+										'signal:', (| helpIconItem._send('signal:') 0x0010)
 									)
 								#endif
 							#endif
 							(continue)
 						#endif
 						if curIcon:
-							(temp1 claimed: 1)
-							if (global38 respondsTo: #eraseOnly):
-								temp7 = (global38 eraseOnly:)
-								(global38 eraseOnly: 1)
+							temp1._send('claimed:', 1)
+							if global38._send('respondsTo:', #eraseOnly):
+								temp7 = global38._send('eraseOnly:')
+								global38._send('eraseOnly:', 1)
 							#endif
-							if (curIcon isKindOf: InvI):
-								(temp0 doVerb: (curIcon message:))
+							if curIcon._send('isKindOf:', InvI):
+								temp0._send('doVerb:', curIcon._send('message:'))
 							else:
-								(temp0 doVerb: (temp1 message:))
+								temp0._send('doVerb:', temp1._send('message:'))
 							#endif
-							if (global38 respondsTo: #eraseOnly):
-								(global38 eraseOnly: temp7)
+							if global38._send('respondsTo:', #eraseOnly):
+								global38._send('eraseOnly:', temp7)
 							#endif
 						#endif
 					#end:case
 				)
 			#endif
 		#end:loop
-		(self hide:)
+		self._send('hide:')
 	#end:method
 
 	@classmethod
@@ -720,26 +714,25 @@ class Inv(IconBar):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
-			(global8 pause: 0)
+			global8._send('pause:', 0)
 			(state &= 0xffdf)
 		#endif
 		if window:
-			(window dispose:)
+			window._send('dispose:')
 		#endif
-		if (kernel.IsObject(curIcon) and (curIcon isKindOf: InvI)):
-			if (not (global69 curInvIcon:)):
-				(global69 enable: (global69 useIconItem:))
+		if (kernel.IsObject(curIcon) and curIcon._send('isKindOf:', InvI)):
+			if (not global69._send('curInvIcon:')):
+				global69._send('enable:', global69._send('useIconItem:'))
 			#endif
-			(global69
-				curIcon:
-					((global69 useIconItem:)
-						cursor: (curIcon cursor:)
-						yourself:
-					)
-				curInvIcon: curIcon
+			global69._send(
+				'curIcon:', global69._send('useIconItem:')._send(
+						'cursor:', curIcon._send('cursor:'),
+						'yourself:'
+					),
+				'curInvIcon:', curIcon
 			)
-			if temp0 = ((global69 curIcon:) cursor:):
-				(global1 setCursor: temp0)
+			if temp0 = global69._send('curIcon:')._send('cursor:'):
+				global1._send('setCursor:', temp0)
 			#endif
 		#endif
 	#end:method

@@ -63,8 +63,8 @@ def proc913_4(param1 = None, param2 = None, param3 = None, param4 = None, *rest)
 
 	temp3 = 0
 	if kernel.IsObject(param2):
-		temp1 = (param2 x:)
-		temp2 = (param2 y:)
+		temp1 = param2._send('x:')
+		temp2 = param2._send('y:')
 		if (argc == 3):
 			temp3 = param3
 		#endif
@@ -75,7 +75,7 @@ def proc913_4(param1 = None, param2 = None, param3 = None, param4 = None, *rest)
 			temp3 = param4
 		#endif
 	#endif
-	temp0 = kernel.GetAngle((param1 x:), (param1 y:), temp1, temp2)
-	(param1 setHeading: temp0 (kernel.IsObject(temp3) and temp3))
+	temp0 = kernel.GetAngle(param1._send('x:'), param1._send('y:'), temp1, temp2)
+	param1._send('setHeading:', temp0, (kernel.IsObject(temp3) and temp3))
 #end:procedure
 

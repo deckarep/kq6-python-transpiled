@@ -40,7 +40,7 @@ def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(param1 sightAngle: proc255_1(r"""sight angle?""", 40))
+	param1._send('sightAngle:', proc255_1(r"""sight angle?""", 40))
 #end:procedure
 
 @SCI.procedure
@@ -49,32 +49,32 @@ def localproc_1(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	proc921_0(r"""Click left mouse button on top left corner""")
-	while ((temp0 = (Event new:) type:) != 1):
+	while (temp0 = Event._send('new:')._send('type:') != 1):
 
-		(temp0 dispose:)
+		temp0._send('dispose:')
 	#end:loop
 	kernel.GlobalToLocal(temp0)
-	temp3 = (temp0 y:)
-	temp4 = (temp0 x:)
-	(temp0 dispose:)
+	temp3 = temp0._send('y:')
+	temp4 = temp0._send('x:')
+	temp0._send('dispose:')
 	proc921_0(r"""Click left mouse button on bottom right corner""")
-	while ((temp0 = (Event new:) type:) != 1):
+	while (temp0 = Event._send('new:')._send('type:') != 1):
 
-		(temp0 dispose:)
+		temp0._send('dispose:')
 	#end:loop
 	kernel.GlobalToLocal(temp0)
-	temp5 = (temp0 y:)
-	temp6 = (temp0 x:)
-	(temp0 dispose:)
+	temp5 = temp0._send('y:')
+	temp6 = temp0._send('x:')
+	temp0._send('dispose:')
 	temp1 = (((temp6 - temp4) / 2) + temp4)
 	temp2 = (((temp5 - temp3) / 2) + temp3)
-	(param1
-		x: temp1
-		y: temp2
-		nsLeft: temp4
-		nsTop: temp3
-		nsBottom: temp5
-		nsRight: temp6
+	param1._send(
+		'x:', temp1,
+		'y:', temp2,
+		'nsLeft:', temp4,
+		'nsTop:', temp3,
+		'nsBottom:', temp5,
+		'nsRight:', temp6
 	)
 	if local388:
 		kernel.Graph(4, temp3, temp4, temp3, temp6, 1, 0)
@@ -90,25 +90,25 @@ def localproc_2(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(param1
-		view: proc255_1(r"""View?""", (global2 curPic:))
-		loop: proc255_1(r"""Loop?""", 0)
-		cel: proc255_1(r"""Cel?""", 0)
-		signal: 16400
-		priority: 15
-		init:
+	param1._send(
+		'view:', proc255_1(r"""View?""", global2._send('curPic:')),
+		'loop:', proc255_1(r"""Loop?""", 0),
+		'cel:', proc255_1(r"""Cel?""", 0),
+		'signal:', 16400,
+		'priority:', 15,
+		'init:'
 	)
-	if (param1 respondsTo: #illegalBits):
-		(param1 illegalBits: 0)
+	if param1._send('respondsTo:', #illegalBits):
+		param1._send('illegalBits:', 0)
 	#endif
-	while ((temp0 = (Event new:) type:) != 1):
+	while (temp0 = Event._send('new:')._send('type:') != 1):
 
 		kernel.GlobalToLocal(temp0)
-		(param1 posn: (temp0 x:) (temp0 y:))
-		kernel.Animate((global5 elements:), 0)
-		(temp0 dispose:)
+		param1._send('posn:', temp0._send('x:'), temp0._send('y:'))
+		kernel.Animate(global5._send('elements:'), 0)
+		temp0._send('dispose:')
 	#end:loop
-	(temp0 dispose:)
+	temp0._send('dispose:')
 #end:procedure
 
 @SCI.procedure
@@ -117,57 +117,57 @@ def localproc_3(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if 
-		(Print
-			addText: r"""Where should the approach point be?"""
-			addButton: 1 r"""Select with mouse""" 0 20
-			addButton: 0 r"""Default to x, y""" 0 34
-			init:
+		Print._send(
+			'addText:', r"""Where should the approach point be?""",
+			'addButton:', 1, r"""Select with mouse""", 0, 20,
+			'addButton:', 0, r"""Default to x, y""", 0, 34,
+			'init:'
 		)
-		while ((temp0 = (Event new:) type:) != 1):
+		while (temp0 = Event._send('new:')._send('type:') != 1):
 
-			(temp0 dispose:)
+			temp0._send('dispose:')
 		#end:loop
 		kernel.GlobalToLocal(temp0)
-		(param1 approachX: temp1 = (temp0 x:) approachY: temp2 = (temp0 y:))
-		(temp0 dispose:)
+		param1._send('approachX:', temp1 = temp0._send('x:'), 'approachY:', temp2 = temp0._send('y:'))
+		temp0._send('dispose:')
 		kernel.Graph(4, (temp2 - 1), (temp1 - 1), (temp2 - 1), (temp1 + 1), 7)
 		kernel.Graph(4, temp2, (temp1 - 1), temp2, (temp1 + 1), 7)
 		kernel.Graph(4, (temp2 + 1), (temp1 - 1), (temp2 + 1), (temp1 + 1), 7)
 		kernel.Graph(4, temp2, temp1, temp2, temp1, 0)
 		kernel.Graph(12, (temp2 - 1), (temp1 - 1), (temp2 + 2), (temp1 + 2), 1)
 	else:
-		(param1 approachX: (param1 x:) approachY: (param1 y:))
+		param1._send('approachX:', param1._send('x:'), 'approachY:', param1._send('y:'))
 	#endif
 	temp3 = 0
 	(= temp13
-		(Print
-			addText: r"""How far away must ego""" 0 1
-			addText: r"""be before he tries to approach?""" 0 12
-			addEdit: @temp3 5 -50 13
-			addButton: 1 r"""Select with mouse""" 0 32
-			addButton: 0 r"""Always approach""" 0 45
-			init:
+		Print._send(
+			'addText:', r"""How far away must ego""", 0, 1,
+			'addText:', r"""be before he tries to approach?""", 0, 12,
+			'addEdit:', @temp3, 5, -50, 13,
+			'addButton:', 1, r"""Select with mouse""", 0, 32,
+			'addButton:', 0, r"""Always approach""", 0, 45,
+			'init:'
 		)
 	)
 	(cond
 		case temp3:
-			(param1 approachDist: kernel.ReadNumber(@temp3))
+			param1._send('approachDist:', kernel.ReadNumber(@temp3))
 		#end:case
 		case (not temp13):
-			(param1 approachDist: 0)
+			param1._send('approachDist:', 0)
 		#end:case
 		else:
-			while ((temp0 = (Event new:) type:) != 1):
+			while (temp0 = Event._send('new:')._send('type:') != 1):
 
-				(temp0 dispose:)
+				temp0._send('dispose:')
 			#end:loop
 			kernel.GlobalToLocal(temp0)
-			temp1 = (temp0 x:)
-			temp2 = (temp0 y:)
-			(param1
-				approachDist: kernel.GetDistance((param1 x:), (param1 y:), temp1, temp2)
+			temp1 = temp0._send('x:')
+			temp2 = temp0._send('y:')
+			param1._send(
+				'approachDist:', kernel.GetDistance(param1._send('x:'), param1._send('y:'), temp1, temp2)
 			)
-			(temp0 dispose:)
+			temp0._send('dispose:')
 			kernel.Graph(4, (temp2 - 1), (temp1 - 1), (temp2 - 1), (temp1 + 1), 28)
 			kernel.Graph(4, temp2, (temp1 - 1), temp2, (temp1 + 1), 28)
 			kernel.Graph(4, (temp2 + 1), (temp1 - 1), (temp2 + 1), (temp1 + 1), 28)
@@ -183,11 +183,11 @@ def localproc_4():
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(= local391
-		(Print
-			addText: r"""doVerb method?"""
-			addButton: 1 r"""YES""" 0 12
-			addButton: 0 r"""NO""" 50 12
-			init:
+		Print._send(
+			'addText:', r"""doVerb method?""",
+			'addButton:', 1, r"""YES""", 0, 12,
+			'addButton:', 0, r"""NO""", 50, 12,
+			'init:'
 		)
 	)
 #end:procedure
@@ -197,7 +197,7 @@ def localproc_5(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(local393 name: @global42 writeString: param1 close:)
+	local393._send('name:', @global42, 'writeString:', param1, 'close:')
 #end:procedure
 
 class Class_948_0
@@ -207,32 +207,32 @@ class Class_948_0
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 setCursor: 999)
+		global1._send('setCursor:', 999)
 		local392 = global38
 		global38 = wfWin
 		if (not local389):
 			temp0 = 0
-			kernel.Format(@temp0, r"""%d.fea""", (global2 curPic:))
+			kernel.Format(@temp0, r"""%d.fea""", global2._send('curPic:'))
 			if (not proc921_2(@temp0, 30, r"""Enter path and filename""")):
 				return
 			else:
 				kernel.Format(@global42, @temp0)
 				(= local388
-					(Print
-						addText: r"""Outline Features?"""
-						addTitle: r"""Feature Write V1.0"""
-						addButton: 1 r"""YES""" 0 12
-						addButton: 0 r"""NO""" 50 12
-						init:
+					Print._send(
+						'addText:', r"""Outline Features?""",
+						'addTitle:', r"""Feature Write V1.0""",
+						'addButton:', 1, r"""YES""", 0, 12,
+						'addButton:', 0, r"""NO""", 50, 12,
+						'init:'
 					)
 				)
 				(= local387
-					(Print
-						addText: r"""Display code to screen? (but not doVerb)"""
-						addTitle: r"""Feature Write V1.0"""
-						addButton: 0 r"""NO""" 0 18
-						addButton: 1 r"""YES""" 50 18
-						init:
+					Print._send(
+						'addText:', r"""Display code to screen? (but not doVerb)""",
+						'addTitle:', r"""Feature Write V1.0""",
+						'addButton:', 0, r"""NO""", 0, 18,
+						'addButton:', 1, r"""YES""", 50, 18,
+						'init:'
 					)
 				)
 				local389 = 1
@@ -241,20 +241,20 @@ class Class_948_0
 		if 
 			(not
 				(= local390
-					(Print
-						addText: r"""Class?"""
-						addTitle: r"""Feature Writer V1.0"""
-						addButton: Feature r"""Feature""" 0 12
-						addButton: View r"""View""" 73 12
-						addButton: Prop r"""Prop""" 113 12
-						addButton: Actor r"""Actor""" 153 12
-						init:
+					Print._send(
+						'addText:', r"""Class?""",
+						'addTitle:', r"""Feature Writer V1.0""",
+						'addButton:', Feature, r"""Feature""", 0, 12,
+						'addButton:', View, r"""View""", 73, 12,
+						'addButton:', Prop, r"""Prop""", 113, 12,
+						'addButton:', Actor, r"""Actor""", 153, 12,
+						'init:'
 					)
 				)
 			)
 			return
 		#endif
-		temp15 = (local390 new:)
+		temp15 = local390._send('new:')
 		local0 = 0
 		proc921_2(@local0, 30, r"""Name?""")
 		local50 = 0
@@ -267,29 +267,29 @@ class Class_948_0
 		#endif
 		localproc_3(temp15)
 		if 
-			(Print
-				addText: r"""Z property"""
-				addTitle: r"""Feature Writer V1.0"""
-				addButton: 0 r"""NO""" 0 12
-				addButton: 1 r"""YES""" 50 12
-				init:
+			Print._send(
+				'addText:', r"""Z property""",
+				'addTitle:', r"""Feature Writer V1.0""",
+				'addButton:', 0, r"""NO""", 0, 12,
+				'addButton:', 1, r"""YES""", 50, 12,
+				'init:'
 			)
-			(Print
-				addText: r"""Click mouse on object's projection"""
-				addText: r"""onto the ground""" 0 12
-				init:
+			Print._send(
+				'addText:', r"""Click mouse on object's projection""",
+				'addText:', r"""onto the ground""", 0, 12,
+				'init:'
 			)
-			while ((temp16 = (Event new:) type:) != 1):
+			while (temp16 = Event._send('new:')._send('type:') != 1):
 
-				(temp16 dispose:)
+				temp16._send('dispose:')
 			#end:loop
 			kernel.GlobalToLocal(temp16)
-			(temp15 z: ((temp16 y:) - (temp15 y:)))
-			(temp15 y: (temp16 y:))
-			(temp16 dispose:)
+			temp15._send('z:', (temp16._send('y:') - temp15._send('y:')))
+			temp15._send('y:', temp16._send('y:'))
+			temp16._send('dispose:')
 		#endif
 		localproc_4()
-		(Class_948_1 doit: temp15)
+		Class_948_1._send('doit:', temp15)
 		global38 = local392
 	#end:method
 
@@ -307,12 +307,12 @@ class Class_948_1
 			if 
 				(not
 					(= temp491
-						(Print
-							addText: @temp492
-							addButton: 1 r"""Replace""" 0 20
-							addButton: 2 r"""Append""" 73 20
-							addButton: 0 r"""Cancel""" 133 20
-							init:
+						Print._send(
+							'addText:', @temp492,
+							'addButton:', 1, r"""Replace""", 0, 20,
+							'addButton:', 2, r"""Append""", 73, 20,
+							'addButton:', 0, r"""Cancel""", 133, 20,
+							'init:'
 						)
 					)
 				)
@@ -320,20 +320,22 @@ class Class_948_1
 			#endif
 		#endif
 		temp490 = (2 if (temp491 == 1) else 0)
-		if (not (local393 = (File new:) name: @global42 open: temp490)):
+		if (not local393 = File._send('new:')._send('name:', @global42, 'open:', temp490)):
 			kernel.Format(@temp0, r"""Error opening '%s'""", @global42)
 			proc921_0(@temp0)
-			(local393 dispose:)
+			local393._send('dispose:')
 			return 0
 		#endif
 		temp0 = 0
-		if (param1 isMemberOf: Feature):
-			kernel.Format(@temp400, r""" \t\tnsLeft\t\t\t%d\0d\n\t\tnsTop\t\t\t\t%d\0d\n\t\tnsBottom\t\t\t%d\0d\n\t\tnsRight\t\t\t%d\0d\n""", (param1
-				nsLeft:
-			), (param1 nsTop:), (param1 nsBottom:), (param1 nsRight:))
-			kernel.Format(@temp592, r"""..\\msg\\%d.shm""", (global2 curPic:))
-			(shmFile name: @temp592)
-			if (not (shmFile open: 1)):
+		if param1._send('isMemberOf:', Feature):
+			kernel.Format(@temp400, r""" \t\tnsLeft\t\t\t%d\0d\n\t\tnsTop\t\t\t\t%d\0d\n\t\tnsBottom\t\t\t%d\0d\n\t\tnsRight\t\t\t%d\0d\n""", param1._send(
+				'nsLeft:'
+			), param1._send('nsTop:'), param1._send('nsBottom:'), param1._send(
+				'nsRight:'
+			))
+			kernel.Format(@temp592, r"""..\\msg\\%d.shm""", global2._send('curPic:'))
+			shmFile._send('name:', @temp592)
+			if (not shmFile._send('open:', 1)):
 				temp604 = 0
 			else:
 				temp605 = 0
@@ -346,7 +348,7 @@ class Class_948_1
 					temp605.post('++')
 				#end:loop
 				temp604 = 0
-				while (kernel.FileIO(5, @temp552, 80, (shmFile handle:)) != -1):
+				while (kernel.FileIO(5, @temp552, 80, shmFile._send('handle:')) != -1):
 
 					if (not kernel.StrCmp(@temp552, r"""(define""", 6)):
 						temp605 = 0
@@ -375,46 +377,48 @@ class Class_948_1
 						(break)
 					#endif
 				#end:loop
-				(shmFile close:)
+				shmFile._send('close:')
 			#endif
-			temp627 = (Feature new:)
-			(temp627
-				init:
-				setName: @local0
-				nsLeft: (param1 nsLeft:)
-				nsTop: (param1 nsTop:)
-				nsBottom: (param1 nsBottom:)
-				nsRight: (param1 nsRight:)
-				x: (param1 x:)
-				y: (param1 y:)
-				z: (param1 z:)
-				heading: (param1 heading:)
-				sightAngle: (param1 sightAngle:)
-				approachX: (param1 approachX:)
-				approachY: (param1 approachY:)
-				noun: temp604
+			temp627 = Feature._send('new:')
+			temp627._send(
+				'init:',
+				'setName:', @local0,
+				'nsLeft:', param1._send('nsLeft:'),
+				'nsTop:', param1._send('nsTop:'),
+				'nsBottom:', param1._send('nsBottom:'),
+				'nsRight:', param1._send('nsRight:'),
+				'x:', param1._send('x:'),
+				'y:', param1._send('y:'),
+				'z:', param1._send('z:'),
+				'heading:', param1._send('heading:'),
+				'sightAngle:', param1._send('sightAngle:'),
+				'approachX:', param1._send('approachX:'),
+				'approachY:', param1._send('approachY:'),
+				'noun:', temp604
 			)
 		else:
-			kernel.Format(@temp400, r""" \t\tview\t\t\t%d\0d\n\t\tloop\t\t\t%d\0d\n\t\tcel\t\t\t%d\0d\n""", (param1
-				view:
-			), (param1 loop:), (param1 cel:))
+			kernel.Format(@temp400, r""" \t\tview\t\t\t%d\0d\n\t\tloop\t\t\t%d\0d\n\t\tcel\t\t\t%d\0d\n""", param1._send(
+				'view:'
+			), param1._send('loop:'), param1._send('cel:'))
 		#endif
-		kernel.Format(@temp440, r""" \t\tapproachX\t\t%d\0d\n\t\tapproachY\t\t%d\0d\n\t\tapproachDist\t%d\0d\n\t\t\_approachVerbs\t$%x\0d\n""", (param1
-			approachX:
-		), (param1 approachY:), (param1 approachDist:), (param1 _approachVerbs:))
-		kernel.Format(@temp0, r""" \0d\n(instance %s of %s\0d\n\t(properties\0d\n\t\tx\t\t\t\t\t%d\0d\n\t\ty\t\t\t\t\t%d\0d\n\t\tz\t\t\t\t\t%d\0d\n\t\theading\t\t\t%d\0d\n%s \t\tsightAngle\t\t%d\0d\n%s \t\tnoun\t\t\t\t%s\0d\n\t)\0d\n""", @local0, ((param1
-				-super-:
-			)
-			name:
-		), (param1 x:), (param1 y:), (param1 z:), (param1 heading:), @temp400, (param1
-			sightAngle:
-		), @temp440, @local50)
+		kernel.Format(@temp440, r""" \t\tapproachX\t\t%d\0d\n\t\tapproachY\t\t%d\0d\n\t\tapproachDist\t%d\0d\n\t\t\_approachVerbs\t$%x\0d\n""", param1._send(
+			'approachX:'
+		), param1._send('approachY:'), param1._send('approachDist:'), param1._send(
+			'_approachVerbs:'
+		))
+		kernel.Format(@temp0, r""" \0d\n(instance %s of %s\0d\n\t(properties\0d\n\t\tx\t\t\t\t\t%d\0d\n\t\ty\t\t\t\t\t%d\0d\n\t\tz\t\t\t\t\t%d\0d\n\t\theading\t\t\t%d\0d\n%s \t\tsightAngle\t\t%d\0d\n%s \t\tnoun\t\t\t\t%s\0d\n\t)\0d\n""", @local0, param1._send(
+				'-super-:'
+			)._send(
+			'name:'
+		), param1._send('x:'), param1._send('y:'), param1._send('z:'), param1._send(
+			'heading:'
+		), @temp400, param1._send('sightAngle:'), @temp440, @local50)
 		if local387:
-			(Print
-				font: 999
-				addText: @temp0
-				addTitle: r"""Feature Writer V1.0"""
-				init:
+			Print._send(
+				'font:', 999,
+				'addText:', @temp0,
+				'addTitle:', r"""Feature Writer V1.0""",
+				'init:'
 			)
 		#endif
 		localproc_5(@temp0)
@@ -438,12 +442,12 @@ class Class_948_1
 		#endif
 		kernel.StrCpy(@temp0, r""")\0d\n""")
 		localproc_5(@temp0)
-		if (param1 isMemberOf: Feature):
-			(param1 dispose:)
+		if param1._send('isMemberOf:', Feature):
+			param1._send('dispose:')
 		else:
-			(param1 addToPic:)
+			param1._send('addToPic:')
 		#endif
-		(local393 close: dispose:)
+		local393._send('close:', 'dispose:')
 		kernel.DisposeScript(993)
 		return kernel.DisposeScript(948)
 	#end:method
@@ -453,8 +457,8 @@ class Class_948_1
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param1 eachElementDo: #perform self)
-		(Class_948_0 doit:)
+		param1._send('eachElementDo:', #perform, self)
+		Class_948_0._send('doit:')
 		kernel.DisposeScript(948)
 	#end:method
 
@@ -470,12 +474,12 @@ class selectorI(DSelector):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super handleEvent: param1)
-		temp0 = (param1 type:)
-		temp1 = (param1 message:)
+		super._send('handleEvent:', param1)
+		temp0 = param1._send('type:')
+		temp1 = param1._send('message:')
 		if 
 			(or
-				((temp0 == 1) and (param1 claimed:))
+				((temp0 == 1) and param1._send('claimed:'))
 				((temp0 == 4) and (temp1 == 32))
 			)
 			if (kernel.StrAt(cursor, 0) == 62):
@@ -483,10 +487,10 @@ class selectorI(DSelector):
 			else:
 				kernel.StrAt(cursor, 0, 62)
 			#endif
-			(self draw:)
-			(param1 claimed: 1)
+			self._send('draw:')
+			param1._send('claimed:', 1)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 #end:class or instance
@@ -508,7 +512,7 @@ class clearBut(DButton):
 			# for:reinit
 			temp0.post('++')
 		#end:loop
-		(selectorI draw:)
+		selectorI._send('draw:')
 	#end:method
 
 #end:class or instance
@@ -531,7 +535,7 @@ class allBut(DButton):
 			# for:reinit
 			temp0.post('++')
 		#end:loop
-		(selectorI draw:)
+		selectorI._send('draw:')
 	#end:method
 
 #end:class or instance

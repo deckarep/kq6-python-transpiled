@@ -39,15 +39,15 @@ class rm425(LabRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc402_1()
-		(super init: &rest)
-		(westDoor addToPic:)
-		(westWing addToPic:)
-		(kernel.ScriptID(30, 3) init:)
-		(kernel.ScriptID(30, 0) initCrypt: 1)
-		(kernel.ScriptID(30, 6) addToPic:)
-		(kernel.ScriptID(30, 10) addToPic:)
-		(kernel.ScriptID(30, 8) addToPic:)
-		(global2 setScript: kernel.ScriptID(30, 1) self)
+		super._send('init:', &rest)
+		westDoor._send('addToPic:')
+		westWing._send('addToPic:')
+		kernel.ScriptID(30, 3)._send('init:')
+		kernel.ScriptID(30, 0)._send('initCrypt:', 1)
+		kernel.ScriptID(30, 6)._send('addToPic:')
+		kernel.ScriptID(30, 10)._send('addToPic:')
+		kernel.ScriptID(30, 8)._send('addToPic:')
+		global2._send('setScript:', kernel.ScriptID(30, 1), self)
 	#end:method
 
 	@classmethod
@@ -56,25 +56,27 @@ class rm425(LabRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not proc913_0(1)):
-			match (kernel.ScriptID(30, 0) timesGenieHasAppeared:)
+			match kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:')
 				case 0:
-					(genie init: setScript: genieMeeting)
-					(kernel.ScriptID(30, 0) geniePresent: 1)
+					genie._send('init:', 'setScript:', genieMeeting)
+					kernel.ScriptID(30, 0)._send('geniePresent:', 1)
 				#end:case
 				case 1:
-					(genieMeeting start: 12)
-					(genie init: setScript: genieMeeting)
-					(kernel.ScriptID(30, 0) geniePresent: 1)
+					genieMeeting._send('start:', 12)
+					genie._send('init:', 'setScript:', genieMeeting)
+					kernel.ScriptID(30, 0)._send('geniePresent:', 1)
 				#end:case
 				case 2:
-					(genieMeeting start: 22)
-					(genie init: setScript: genieMeeting)
-					(kernel.ScriptID(30, 0) geniePresent: 1)
+					genieMeeting._send('start:', 22)
+					genie._send('init:', 'setScript:', genieMeeting)
+					kernel.ScriptID(30, 0)._send('geniePresent:', 1)
 				#end:case
 				else:
-					(kernel.ScriptID(30, 0)
-						timesGenieHasAppeared:
-							((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
+					kernel.ScriptID(30, 0)._send(
+						'timesGenieHasAppeared:', (+
+								kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:')
+								1
+							)
 					)
 				#end:else
 			#end:match
@@ -86,12 +88,12 @@ class rm425(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(westDoor addToPic:)
-		(westWing addToPic:)
-		(kernel.ScriptID(30, 6) addToPic:)
-		(kernel.ScriptID(30, 10) addToPic:)
-		(kernel.ScriptID(30, 8) addToPic:)
-		(kernel.ScriptID(30, 3) show:)
+		westDoor._send('addToPic:')
+		westWing._send('addToPic:')
+		kernel.ScriptID(30, 6)._send('addToPic:')
+		kernel.ScriptID(30, 10)._send('addToPic:')
+		kernel.ScriptID(30, 8)._send('addToPic:')
+		kernel.ScriptID(30, 3)._send('show:')
 	#end:method
 
 	@classmethod
@@ -99,8 +101,8 @@ class rm425(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(30, 0) geniePresent: 0)
-		(super dispose:)
+		kernel.ScriptID(30, 0)._send('geniePresent:', 0)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -115,189 +117,195 @@ class genieMeeting(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				seconds = 3
 			#end:case
 			case 1:
-				if ((global0 x:) < 130):
-					(global0 setMotion: PolyPath 130 (global0 y:) self)
+				if (global0._send('x:') < 130):
+					global0._send('setMotion:', PolyPath, 130, global0._send('y:'), self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 2:
-				(kernel.ScriptID(30, 0)
-					timesGenieHasAppeared:
-						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
+				kernel.ScriptID(30, 0)._send(
+					'timesGenieHasAppeared:', (+
+							kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:')
+							1
+						)
 				)
-				temp1 = kernel.GetAngle((global0 x:), (global0 y:), 85, 158)
-				(global0 setHeading: temp1)
+				temp1 = kernel.GetAngle(global0._send('x:'), global0._send('y:'), 85, 158)
+				global0._send('setHeading:', temp1)
 				local0 = 1
-				(genie
-					posn: 26 158
-					init:
-					setCycle: Walk
-					setMotion: PolyPath 85 158 self
+				genie._send(
+					'posn:', 26, 158,
+					'init:',
+					'setCycle:', Walk,
+					'setMotion:', PolyPath, 85, 158, self
 				)
 			#end:case
 			case 3:
-				(glint init:)
+				glint._send('init:')
 			#end:case
 			case 4:
-				(genie view: 442 setLoop: 6 cel: 0 setCycle: End self)
+				genie._send('view:', 442, 'setLoop:', 6, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 5:
 				seconds = 2
 			#end:case
 			case 6:
-				(genie setCycle: Beg self)
+				genie._send('setCycle:', Beg, self)
 			#end:case
 			case 7:
-				(global91 say: 1 0 20 0 self 400)
+				global91._send('say:', 1, 0, 20, 0, self, 400)
 			#end:case
 			case 8:
-				(genie view: 442 setLoop: 3 cel: 0 setCycle: End self)
+				genie._send('view:', 442, 'setLoop:', 3, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 9:
-				(genie view: 442 setLoop: 4 cel: 0)
+				genie._send('view:', 442, 'setLoop:', 4, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 10:
-				(genie
-					view: 364
-					setLoop: -1
-					setCycle: Walk
-					setMotion: PolyPath 26 164 self
+				genie._send(
+					'view:', 364,
+					'setLoop:', -1,
+					'setCycle:', Walk,
+					'setMotion:', PolyPath, 26, 164, self
 				)
 			#end:case
 			case 11:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				seconds = 30
 			#end:case
 			case 12:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				seconds = 3
 			#end:case
 			case 13:
-				(genie posn: 26 158)
+				genie._send('posn:', 26, 158)
 				cycles = 2
 			#end:case
 			case 14:
-				if ((global0 x:) < 130):
-					(global0 setMotion: PolyPath 130 (global0 y:) self)
+				if (global0._send('x:') < 130):
+					global0._send('setMotion:', PolyPath, 130, global0._send('y:'), self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 15:
-				(kernel.ScriptID(30, 0)
-					timesGenieHasAppeared:
-						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
+				kernel.ScriptID(30, 0)._send(
+					'timesGenieHasAppeared:', (+
+							kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:')
+							1
+						)
 				)
-				temp1 = kernel.GetAngle((global0 x:), (global0 y:), 85, 158)
-				(global0 setHeading: temp1)
+				temp1 = kernel.GetAngle(global0._send('x:'), global0._send('y:'), 85, 158)
+				global0._send('setHeading:', temp1)
 				local0 = 1
-				(genie setCycle: Walk setMotion: PolyPath 85 158 self)
+				genie._send('setCycle:', Walk, 'setMotion:', PolyPath, 85, 158, self)
 			#end:case
 			case 16:
-				(glint init:)
+				glint._send('init:')
 			#end:case
 			case 17:
-				(genie view: 442 setLoop: 6 cel: 0)
+				genie._send('view:', 442, 'setLoop:', 6, 'cel:', 0)
 				cycles = 10
 			#end:case
 			case 18:
-				(global91 say: 1 0 21 1 self 400)
+				global91._send('say:', 1, 0, 21, 1, self, 400)
 			#end:case
 			case 19:
-				(genie
-					view: 442
-					setLoop: 2
-					cel: 0
-					cycleSpeed: 10
-					setCycle: End self
+				genie._send(
+					'view:', 442,
+					'setLoop:', 2,
+					'cel:', 0,
+					'cycleSpeed:', 10,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 20:
-				(genie
-					view: 364
-					setLoop: -1
-					setCycle: Walk
-					setMotion: PolyPath 26 164 self
+				genie._send(
+					'view:', 364,
+					'setLoop:', -1,
+					'setCycle:', Walk,
+					'setMotion:', PolyPath, 26, 164, self
 				)
 			#end:case
 			case 21:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				seconds = 30
 			#end:case
 			case 22:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				seconds = 3
 			#end:case
 			case 23:
-				(genie posn: 26 164)
+				genie._send('posn:', 26, 164)
 				cycles = 2
 			#end:case
 			case 24:
-				if ((global0 x:) < 130):
-					(global0 setMotion: PolyPath 130 (global0 y:) self)
+				if (global0._send('x:') < 130):
+					global0._send('setMotion:', PolyPath, 130, global0._send('y:'), self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 25:
-				(kernel.ScriptID(30, 0)
-					timesGenieHasAppeared:
-						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) + 1)
+				kernel.ScriptID(30, 0)._send(
+					'timesGenieHasAppeared:', (+
+							kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:')
+							1
+						)
 				)
-				temp1 = kernel.GetAngle((global0 x:), (global0 y:), 85, 158)
-				(global0 setHeading: temp1)
+				temp1 = kernel.GetAngle(global0._send('x:'), global0._send('y:'), 85, 158)
+				global0._send('setHeading:', temp1)
 				local0 = 1
-				(genie setCycle: Walk setMotion: PolyPath 85 158 self)
+				genie._send('setCycle:', Walk, 'setMotion:', PolyPath, 85, 158, self)
 			#end:case
 			case 26:
-				(glint init:)
+				glint._send('init:')
 			#end:case
 			case 27:
-				(genie view: 442 setLoop: 6 cel: 0)
+				genie._send('view:', 442, 'setLoop:', 6, 'cel:', 0)
 				cycles = 10
 			#end:case
 			case 28:
-				(global91 say: 1 0 22 1 self 400)
+				global91._send('say:', 1, 0, 22, 1, self, 400)
 			#end:case
 			case 29:
-				(genie
-					view: 442
-					setLoop: 5
-					cel: 0
-					cycleSpeed: 10
-					setCycle: End self
+				genie._send(
+					'view:', 442,
+					'setLoop:', 5,
+					'cel:', 0,
+					'cycleSpeed:', 10,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 30:
-				(genie setCycle: Beg self)
+				genie._send('setCycle:', Beg, self)
 			#end:case
 			case 31:
-				(genie
-					view: 442
-					setLoop: 2
-					cel: 0
-					cycleSpeed: 10
-					setCycle: End self
+				genie._send(
+					'view:', 442,
+					'setLoop:', 2,
+					'cel:', 0,
+					'cycleSpeed:', 10,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 32:
-				(genie
-					view: 364
-					setLoop: -1
-					cycleSpeed: 6
-					setCycle: Walk
-					setMotion: PolyPath 26 164 self
+				genie._send(
+					'view:', 364,
+					'setLoop:', -1,
+					'cycleSpeed:', 6,
+					'setCycle:', Walk,
+					'setMotion:', PolyPath, 26, 164, self
 				)
 			#end:case
 			case 33:
-				(global1 handsOn:)
-				(genie dispose:)
+				global1._send('handsOn:')
+				genie._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -314,18 +322,18 @@ class backOut(Script):
 
 		match state = param1
 			case 0:
-				(global0 setHeading: 270 self)
+				global0._send('setHeading:', 270, self)
 			#end:case
 			case 1:
-				(global0
-					setLoop: 1
-					setCycle: Walk
-					setMotion: MoveTo ((global0 x:) + 20) (global0 y:) self
+				global0._send(
+					'setLoop:', 1,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, (global0._send('x:') + 20), global0._send('y:'), self
 				)
 			#end:case
 			case 2:
-				(global0 reset: 1)
-				(self dispose:)
+				global0._send('reset:', 1)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -351,12 +359,12 @@ class glint(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			posn: ((genie x:) + 3) ((genie y:) - 44)
-			setPri: 15
-			setCycle: End self
+		self._send(
+			'posn:', (genie._send('x:') + 3), (genie._send('y:') - 44),
+			'setPri:', 15,
+			'setCycle:', End, self
 		)
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -365,10 +373,10 @@ class glint(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (cel > 0):
-			(self setCycle: Beg self)
+			self._send('setCycle:', Beg, self)
 		else:
-			(self dispose:)
-			(genieMeeting cue:)
+			self._send('dispose:')
+			genieMeeting._send('cue:')
 		#endif
 	#end:method
 
@@ -392,10 +400,10 @@ class exitSouth(View):
 
 		match param1
 			case 1:
-				(global91 say: 6 1 9 0 0 400)
+				global91._send('say:', 6, 1, 9, 0, 0, 400)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -418,9 +426,9 @@ class westDoor(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self stopUpd:)
-		(westWing init: stopUpd:)
-		(super init:)
+		self._send('stopUpd:')
+		westWing._send('init:', 'stopUpd:')
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -431,27 +439,27 @@ class westDoor(View):
 		match param1
 			case 1:
 				if local0:
-					(global91 say: 14 1 25 1 0 400)
+					global91._send('say:', 14, 1, 25, 1, 0, 400)
 				else:
-					(global91 say: 4 1 0 1 0 400)
+					global91._send('say:', 4, 1, 0, 1, 0, 400)
 				#endif
 			#end:case
 			case 5:
 				if local0:
-					(global91 say: 14 5 25 1 0 400)
+					global91._send('say:', 14, 5, 25, 1, 0, 400)
 				else:
-					(global91 say: 4 5 0 1 0 400)
+					global91._send('say:', 4, 5, 0, 1, 0, 400)
 				#endif
 			#end:case
 			case 2:
 				if local0:
-					(global91 say: 14 2 25 0 0 400)
+					global91._send('say:', 14, 2, 25, 0, 0, 400)
 				else:
-					(global91 say: 4 2 0 1 0 400)
+					global91._send('say:', 4, 2, 0, 1, 0, 400)
 				#endif
 			#end:case
 			else:
-				(global91 say: 4 0 0 1 0 400)
+				global91._send('say:', 4, 0, 0, 1, 0, 400)
 			#end:else
 		#end:match
 	#end:method
@@ -474,7 +482,7 @@ class westWing(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(westDoor doVerb: param1 &rest)
+		westDoor._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance

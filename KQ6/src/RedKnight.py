@@ -31,7 +31,7 @@ class WhiteKnight(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: 0 0 tWhtMouth &rest)
+		super._send('init:', 0, 0, tWhtMouth, &rest)
 	#end:method
 
 #end:class or instance
@@ -52,7 +52,7 @@ class RedKnight(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: 0 0 tRedMouth &rest)
+		super._send('init:', 0, 0, tRedMouth, &rest)
 	#end:method
 
 #end:class or instance

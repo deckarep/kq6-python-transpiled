@@ -262,7 +262,7 @@ def proc0_1(param1 = None, *rest):
 
 	global160 = param1
 	proc913_1(44)
-	(global2 newRoom: 640)
+	global2._send('newRoom:', 640)
 #end:procedure
 
 @SCI.procedure
@@ -292,9 +292,9 @@ class Kq6Points(Kq6Sound):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super check: &rest)
+		super._send('check:', &rest)
 		if (prevSignal == -1):
-			(self dispose:)
+			self._send('dispose:')
 		#endif
 	#end:method
 
@@ -313,7 +313,7 @@ class ego(Body):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		(scaleSignal |= 0x0004)
 		(state |= 0x0002)
 	#end:method
@@ -323,10 +323,10 @@ class ego(Body):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 type:) & 0x0040):
+		if (param1._send('type:') & 0x0040):
 			return 0
 		else:
-			(super handleEvent: param1 &rest)
+			super._send('handleEvent:', param1, &rest)
 		#endif
 	#end:method
 
@@ -337,76 +337,76 @@ class ego(Body):
 
 		match param1
 			case 19:
-				(global2 setScript: 908)
+				global2._send('setScript:', 908)
 			#end:case
 			case 14:
 				if ((global11 != 280) and proc913_0(153)):
-					(global91 say: 1 14 18 0 0 0)
+					global91._send('say:', 1, 14, 18, 0, 0, 0)
 				else:
-					(global2 setScript: 87)
+					global2._send('setScript:', 87)
 				#endif
 			#end:case
 			case 31:
-				(global2 setScript: 85)
+				global2._send('setScript:', 85)
 			#end:case
 			case 42:
-				(global2 setScript: 88)
+				global2._send('setScript:', 88)
 			#end:case
 			case 27:
-				(global2 setScript: 90)
+				global2._send('setScript:', 90)
 			#end:case
 			case 83:
 				if proc913_0(151):
-					(global91 say: 1 83 17 0 0 0)
+					global91._send('say:', 1, 83, 17, 0, 0, 0)
 				else:
-					(global2 setScript: 92)
+					global2._send('setScript:', 92)
 				#endif
 			#end:case
 			case 37:
-				(global2 setScript: 93)
+				global2._send('setScript:', 93)
 			#end:case
 			case 28:
-				(global2 setScript: 190)
+				global2._send('setScript:', 190)
 			#end:case
 			case 32:
-				if (global2 script:):
-					(global91 say: 7 0 16 0 0 0)
+				if global2._send('script:'):
+					global91._send('say:', 7, 0, 16, 0, 0, 0)
 				else:
-					(global2 setScript: 97)
+					global2._send('setScript:', 97)
 				#endif
 			#end:case
 			case 65:
-				if (global2 script:):
-					(global91 say: 7 0 16 0 0 0)
+				if global2._send('script:'):
+					global91._send('say:', 7, 0, 16, 0, 0, 0)
 				else:
-					(global2 setScript: 96)
+					global2._send('setScript:', 96)
 				#endif
 			#end:case
 			case 61:
-				if (global2 script:):
-					(global91 say: 7 0 16 0 0 0)
+				if global2._send('script:'):
+					global91._send('say:', 7, 0, 16, 0, 0, 0)
 				else:
-					(global2 setScript: 101)
+					global2._send('setScript:', 101)
 				#endif
 			#end:case
 			case 67:
-				(global0 put: 31 0)
-				(global91 say: noun param1 0 1 0 0)
+				global0._send('put:', 31, 0)
+				global91._send('say:', noun, param1, 0, 1, 0, 0)
 			#end:case
 			case 24:
-				(global0 put: 40 0)
-				(global91 say: noun param1 0 1 0 0)
+				global0._send('put:', 40, 0)
+				global91._send('say:', noun, param1, 0, 1, 0, 0)
 			#end:case
 			case 62:
-				(global0 put: 22 470)
-				(global91 say: noun param1 0 1 0 0)
+				global0._send('put:', 22, 470)
+				global91._send('say:', noun, param1, 0, 1, 0, 0)
 			#end:case
 			case 63:
-				(global0 put: 23 280)
-				(global91 say: noun param1 0 1 0 0)
+				global0._send('put:', 23, 280)
+				global91._send('say:', noun, param1, 0, 1, 0, 0)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -427,7 +427,7 @@ class NewSound(Sound):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		prevSignal = -1
 	#end:method
 
@@ -444,9 +444,9 @@ class NewSound(Sound):
 			#endif
 		#endif
 		if (prevSignal == -1):
-			(self cue:)
+			self._send('cue:')
 		else:
-			(self client: self fade: volSwitch fadeTicks fadeStep 1)
+			self._send('client:', self, 'fade:', volSwitch, fadeTicks, fadeStep, 1)
 		#endif
 	#end:method
 
@@ -456,11 +456,11 @@ class NewSound(Sound):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (prevSignal == -1):
-			(self
-				number: newPiece
-				loop: newLoop
-				play: volSwitch
-				fade: 127 fadeTicks fadeStep 0
+			self._send(
+				'number:', newPiece,
+				'loop:', newLoop,
+				'play:', volSwitch,
+				'fade:', 127, fadeTicks, fadeStep, 0
 			)
 		#endif
 	#end:method
@@ -528,13 +528,15 @@ class Kq6(Game):
 		RandCycle
 		Conversation
 		Scaler
-		(super init: &rest)
-		(global7
-			add:
-				(emberTimer client: emberTimer yourself:)
-				(beastTimer client: beastTimer yourself:)
-				(CharonTimer client: CharonTimer yourself:)
-				(lettuceTimer client: lettuceTimer yourself:)
+		super._send('init:', &rest)
+		global7._send(
+			'add:', emberTimer._send('client:', emberTimer, 'yourself:'), beastTimer._send(
+					'client:', beastTimer,
+					'yourself:'
+				), CharonTimer._send('client:', CharonTimer, 'yourself:'), lettuceTimer._send(
+					'client:', lettuceTimer,
+					'yourself:'
+				)
 		)
 		if (kernel.FileIO(10, r"""KQ6CD""") and kernel.DoAudio(9)):
 			global90 = 2
@@ -548,10 +550,10 @@ class Kq6(Game):
 		global21 = theWaitCursor
 		global20 = arrowCursor
 		global22 = 4
-		(self setCursor: (global21 posn: 300 180 yourself:))
+		self._send('setCursor:', global21._send('posn:', 300, 180, 'yourself:'))
 		global89 = Kq6Narrator
 		global91 = Kq6Messager
-		(kernel.ScriptID(902) init:)
+		kernel.ScriptID(902)._send('init:')
 		kernel.DisposeScript(902)
 		global151 = EgoGroop
 		global34 = 1
@@ -559,17 +561,17 @@ class Kq6(Game):
 		global65 = kq6DoVerbCode
 		global64 = kq6FtrInit
 		global66 = kq6ApproachCode
-		(global72 = kq6KeyDownHandler add:)
-		(global73 = kq6MouseDownHandler add:)
-		(global74 = kq6DirectionHandler add:)
-		(global93 = kq6WalkHandler add:)
+		global72 = kq6KeyDownHandler._send('add:')
+		global73 = kq6MouseDownHandler._send('add:')
+		global74 = kq6DirectionHandler._send('add:')
+		global93 = kq6WalkHandler._send('add:')
 		global77 = kq6PseudoMouse
 		global0 = ego
-		(User alterEgo: global0 canControl: 0 canInput: 0)
-		(global102 = globalSound owner: self init:)
-		(global103 = globalSound2 owner: self init:)
-		(global104 = globalSound3 owner: self init:)
-		(global105 = globalSound4 owner: self init:)
+		User._send('alterEgo:', global0, 'canControl:', 0, 'canInput:', 0)
+		global102 = globalSound._send('owner:', self, 'init:')
+		global103 = globalSound2._send('owner:', self, 'init:')
+		global104 = globalSound3._send('owner:', self, 'init:')
+		global105 = globalSound4._send('owner:', self, 'init:')
 		global16 = 231
 		global27 = r"""x.yyy.zzz"""
 		kernel.Format(@temp0, 0, 0, 911)
@@ -581,33 +583,32 @@ class Kq6(Game):
 		if ((kernel.Platform(4) == 2) and (global107 == 256)):
 			global169 = 1
 		#endif
-		(global0 setSpeed: 6 currentSpeed: 6)
+		global0._send('setSpeed:', 6, 'currentSpeed:', 6)
 		global108 = kernel.DoSound(3)
-		(global69 = Kq6IconBar
-			add:
-				(icon0 cursor: cIcon0 yourself:)
-				(icon1 cursor: cIcon1 yourself:)
-				(icon2 cursor: cIcon2 yourself:)
-				(icon3 cursor: cIcon3 yourself:)
-				icon4
-				icon5
-				icon6
-			eachElementDo: #init
-			eachElementDo: #highlightColor 0
-			eachElementDo: #lowlightColor 53
-			curIcon: icon0
-			useIconItem: icon4
-			walkIconItem: icon0
-			disable: icon4
-			disable:
+		global69 = Kq6IconBar._send(
+			'add:', icon0._send('cursor:', cIcon0, 'yourself:'), icon1._send(
+					'cursor:', cIcon1,
+					'yourself:'
+				), icon2._send('cursor:', cIcon2, 'yourself:'), icon3._send(
+					'cursor:', cIcon3,
+					'yourself:'
+				), icon4, icon5, icon6,
+			'eachElementDo:', #init,
+			'eachElementDo:', #highlightColor, 0,
+			'eachElementDo:', #lowlightColor, 53,
+			'curIcon:', icon0,
+			'useIconItem:', icon4,
+			'walkIconItem:', icon0,
+			'disable:', icon4,
+			'disable:'
 		)
-		(icon5 message: (3840 if kernel.HaveMouse() else 9))
-		(kernel.ScriptID(907) init:)
+		icon5._send('message:', (3840 if kernel.HaveMouse() else 9))
+		kernel.ScriptID(907)._send('init:')
 		global136 = (200 if kernel.GameIsRestarting() else 100)
 		global79 = 2
 		kernel.Load(128, 998)
 		kernel.Lock(128, 998, 1)
-		(self newRoom: 99)
+		self._send('newRoom:', 99)
 	#end:method
 
 	@classmethod
@@ -624,9 +625,9 @@ class Kq6(Game):
 		#endif
 		if kernel.IsObject(param1):
 			if argc:
-				(global19 = param1 init:)
+				global19 = param1._send('init:')
 			#endif
-			(param1 init:)
+			param1._send('init:')
 		else:
 			kernel.SetCursor(param1, 0, 0)
 		#endif
@@ -639,17 +640,17 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not proc913_0(49)) and (kernel.MemoryInfo(0) >= 1500)):
-			(super save: &rest)
-			(self
-				setCursor:
-					if ((global80 canControl:) or (global80 canInput:)):
-						((global69 curIcon:) cursor:)
+			super._send('save:', &rest)
+			self._send(
+				'setCursor:', if 
+						(global80._send('canControl:') or global80._send('canInput:'))
+						global69._send('curIcon:')._send('cursor:')
 					else:
 						global21
 					#endif
 			)
 		else:
-			(global91 say: 7 0 15 0 0 0)
+			global91._send('say:', 7, 0, 15, 0, 0, 0)
 		#endif
 	#end:method
 
@@ -659,19 +660,18 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((not proc913_0(49)) or (kernel.MemoryInfo(0) >= 1500)):
-			(super restore: &rest)
-			(self
-				setCursor:
-					(cond
-						case ((global80 canControl:) or (global80 canInput:)):
-							((global69 curIcon:) cursor:)
+			super._send('restore:', &rest)
+			self._send(
+				'setCursor:', (cond
+						case (global80._send('canControl:') or global80._send('canInput:')):
+							global69._send('curIcon:')._send('cursor:')
 						#end:case
 						case proc913_0(44): global20#end:case
 						else: global21#end:else
 					)
 			)
 		else:
-			(global91 say: 7 0 15 0 0 0)
+			global91._send('say:', 7, 0, 15, 0, 0, 0)
 		#endif
 	#end:method
 
@@ -680,12 +680,12 @@ class Kq6(Game):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (User canInput:):
+		if User._send('canInput:'):
 			temp0 = kernel.Random(1, 3)
-			if ((global66 doit: param1) == -32768):
+			if (global66._send('doit:', param1) == -32768):
 				param1 = 0
 			#endif
-			(global91 say: 0 param1 0 temp0 0 0)
+			global91._send('say:', 0, param1, 0, temp0, 0, 0)
 		#endif
 	#end:method
 
@@ -695,8 +695,8 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 and argc):
-			if (global84 and (not ((global9 state:) & 0x0020))):
-				kernel.Animate((global5 elements:), 0)
+			if (global84 and (not (global9._send('state:') & 0x0020))):
+				kernel.Animate(global5._send('elements:'), 0)
 			#endif
 		else:
 			global170 = 1
@@ -709,7 +709,7 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
 		if 
 			(or
@@ -719,22 +719,22 @@ class Kq6(Game):
 			kernel.DoAudio(10, 3)
 			global4 = 1
 		else:
-			temp0 = (global1 setCursor: global20)
+			temp0 = global1._send('setCursor:', global20)
 			if 
 				(not
 					(= global4
-						(KQ6Print
-							posn: 59 70
-							font: 4
-							addButton: 1 4 0 12 0 0 36 0
-							addButton: 0 4 0 11 0 85 36 0
-							font: 1
-							say: 1 4 0 0 0 0 0 0
-							init:
+						KQ6Print._send(
+							'posn:', 59, 70,
+							'font:', 4,
+							'addButton:', 1, 4, 0, 12, 0, 0, 36, 0,
+							'addButton:', 0, 4, 0, 11, 0, 85, 36, 0,
+							'font:', 1,
+							'say:', 1, 4, 0, 0, 0, 0, 0, 0,
+							'init:'
 						)
 					)
 				)
-				(global1 setCursor: temp0)
+				global1._send('setCursor:', temp0)
 			#endif
 		#endif
 	#end:method
@@ -745,28 +745,28 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
 		if (not argc):
-			temp1 = (global1 setCursor: global20)
+			temp1 = global1._send('setCursor:', global20)
 			if 
 				(= temp0
-					(KQ6Print
-						posn: 59 70
-						font: 4
-						addButton: 1 5 0 13 0 0 36 0
-						addButton: 0 5 0 14 0 115 36 0
-						font: 1
-						say: 1 5 0 0 0 0 0 0
-						init:
+					KQ6Print._send(
+						'posn:', 59, 70,
+						'font:', 4,
+						'addButton:', 1, 5, 0, 13, 0, 0, 36, 0,
+						'addButton:', 0, 5, 0, 14, 0, 115, 36, 0,
+						'font:', 1,
+						'say:', 1, 5, 0, 0, 0, 0, 0, 0,
+						'init:'
 					)
 				)
-				(super restart: &rest)
+				super._send('restart:', &rest)
 			else:
-				(global1 setCursor: temp1)
+				global1._send('setCursor:', temp1)
 			#endif
 		else:
-			(super restart: &rest)
+			super._send('restart:', &rest)
 		#endif
 	#end:method
 
@@ -781,9 +781,9 @@ class Kq6(Game):
 			#endif
 		)
 		if global77:
-			(global77 stop:)
+			global77._send('stop:')
 		#endif
-		(kernel.ScriptID(919) doit: param1)
+		kernel.ScriptID(919)._send('doit:', param1)
 		if temp0:
 			kernel.Portrait(2, 0)
 		#endif
@@ -794,12 +794,12 @@ class Kq6(Game):
 				(u> kernel.MemoryInfo(1) (10 + kernel.MemoryInfo(0)))
 				((kernel.MemoryInfo(1) - 2) != kernel.MemoryInfo(0))
 				match
-					(Print
-						font: global22
-						addText: r"""*** Memory fragmented."""
-						addButton: 0 r"""Who cares""" 0 20
-						addButton: 1 r"""Debug""" 0 34
-						init:
+					Print._send(
+						'font:', global22,
+						'addText:', r"""*** Memory fragmented.""",
+						'addButton:', 0, r"""Who cares""", 0, 20,
+						'addButton:', 1, r"""Debug""", 0, 34,
+						'init:'
 					)
 					case 0:
 						proc913_1(38)
@@ -816,55 +816,55 @@ class Kq6(Game):
 		(cond
 			case proc999_5(param1, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290):
 				kernel.ScriptID(10)
-				(kernel.ScriptID(param1) setRegions: 10)
+				kernel.ScriptID(param1)._send('setRegions:', 10)
 			#end:case
 			case proc999_5(param1, 300, 310, 320, 330, 340, 350, 370, 380, 390):
 				kernel.ScriptID(20)
 				if proc999_5(param1, 300, 320):
 					kernel.ScriptID(21)
-					(kernel.ScriptID(param1) setRegions: 21)
+					kernel.ScriptID(param1)._send('setRegions:', 21)
 				#endif
-				(kernel.ScriptID(param1) setRegions: 20)
+				kernel.ScriptID(param1)._send('setRegions:', 20)
 			#end:case
 			case 
 				proc999_5(param1, 400, 405, 410, 415, 420, 425, 430, 435, 440, 406, 407, 408, 409, 411):
 				kernel.ScriptID(30)
-				(kernel.ScriptID(param1) setRegions: 30)
+				kernel.ScriptID(param1)._send('setRegions:', 30)
 			#end:case
 			case proc999_5(param1, 450, 460, 461, 470, 475, 480, 490):
 				kernel.ScriptID(40)
-				(kernel.ScriptID(param1) setRegions: 40)
+				kernel.ScriptID(param1)._send('setRegions:', 40)
 			#end:case
 			case proc999_5(param1, 500, 510, 520, 530, 540):
 				kernel.ScriptID(50)
-				(kernel.ScriptID(param1) setRegions: 50)
+				kernel.ScriptID(param1)._send('setRegions:', 50)
 			#end:case
 			case proc999_5(param1, 550, 560, 570, 580):
 				kernel.ScriptID(60)
-				(kernel.ScriptID(param1) setRegions: 60)
+				kernel.ScriptID(param1)._send('setRegions:', 60)
 			#end:case
 			case proc999_5(param1, 600, 605, 615, 620, 630, 640, 650, 660, 670, 680, 690):
 				kernel.ScriptID(70)
-				(kernel.ScriptID(param1) setRegions: 70)
+				kernel.ScriptID(param1)._send('setRegions:', 70)
 			#end:case
 			case 
 				proc999_5(param1, 700, 710, 720, 730, 740, 750, 760, 770, 780, 781, 790, 800, 810, 820, 840, 850, 860, 870, 880, 180, 743):
 				kernel.ScriptID(80)
 				if proc999_5(param1, 840, 710, 720, 770, 820, 780):
 					kernel.ScriptID(81)
-					(kernel.ScriptID(param1) setRegions: 81)
+					kernel.ScriptID(param1)._send('setRegions:', 81)
 				#endif
-				(kernel.ScriptID(param1) setRegions: 80)
+				kernel.ScriptID(param1)._send('setRegions:', 80)
 			#end:case
 			else: 0#end:else
 		)
-		(super startRoom: param1)
-		(CueObj client: 0 state: 0)
-		if ((global5 contains: global0) and (not (global0 looper:))):
-			(global0 setLoop: EgoGroop)
+		super._send('startRoom:', param1)
+		CueObj._send('client:', 0, 'state:', 0)
+		if (global5._send('contains:', global0) and (not global0._send('looper:'))):
+			global0._send('setLoop:', EgoGroop)
 		#endif
 		if temp0:
-			(kernel.ScriptID(109, 0) doit: param1)
+			kernel.ScriptID(109, 0)._send('doit:', param1)
 		#endif
 	#end:method
 
@@ -875,38 +875,38 @@ class Kq6(Game):
 
 		isHandsOn = 0
 		if (not argc):
-			(global0 setMotion: 0)
+			global0._send('setMotion:', 0)
 		#endif
 		if (not oldCurIcon):
-			oldCurIcon = (global69 curIcon:)
+			oldCurIcon = global69._send('curIcon:')
 		#endif
-		(global0 oldXStep: (global0 xStep:))
-		(global0 oldYStep: (global0 yStep:))
+		global0._send('oldXStep:', global0._send('xStep:'))
+		global0._send('oldYStep:', global0._send('yStep:'))
 		if 
 			(and
-				((global0 scaleSignal:) & 0x0003)
-				(not (global0 oldScaleSignal:))
+				(global0._send('scaleSignal:') & 0x0003)
+				(not global0._send('oldScaleSignal:'))
 			)
-			(global0 oldScaleSignal: ((global0 scaleSignal:) & 0xfffb))
+			global0._send('oldScaleSignal:', (global0._send('scaleSignal:') & 0xfffb))
 			(cond
-				case ((global0 oldScaleSignal:) & 0x0002):
-					(global0 oldMaxScale: (global0 maxScale:))
+				case (global0._send('oldScaleSignal:') & 0x0002):
+					global0._send('oldMaxScale:', global0._send('maxScale:'))
 				#end:case
-				case kernel.IsObject((global0 scaler:)):
-					(global0
-						oldMaxScale: ((global0 scaler:) frontSize:)
-						oldBackSize: ((global0 scaler:) backSize:)
-						oldFrontY: ((global0 scaler:) frontY:)
-						oldBackY: ((global0 scaler:) backY:)
+				case kernel.IsObject(global0._send('scaler:')):
+					global0._send(
+						'oldMaxScale:', global0._send('scaler:')._send('frontSize:'),
+						'oldBackSize:', global0._send('scaler:')._send('backSize:'),
+						'oldFrontY:', global0._send('scaler:')._send('frontY:'),
+						'oldBackY:', global0._send('scaler:')._send('backY:')
 					)
 				#end:case
 			)
 		#endif
-		(global69 disable: (global69 at: 0) icon1 icon2 icon3 icon4 icon5)
-		(User canControl: 0 canInput: 0)
-		(global1 setCursor: global21)
+		global69._send('disable:', global69._send('at:', 0), icon1, icon2, icon3, icon4, icon5)
+		User._send('canControl:', 0, 'canInput:', 0)
+		global1._send('setCursor:', global21)
 		if global77:
-			(global77 stop:)
+			global77._send('stop:')
 		#endif
 	#end:method
 
@@ -916,16 +916,16 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		isHandsOn = 1
-		(User canControl: 1 canInput: 1)
+		User._send('canControl:', 1, 'canInput:', 1)
 		if kernel.IsObject(oldCurIcon):
-			(global69 curIcon: oldCurIcon)
+			global69._send('curIcon:', oldCurIcon)
 		#endif
 		oldCurIcon = 0
-		(global69 enable: (global69 at: 0) icon1 icon2 icon3 icon4 icon5)
-		if (not (global69 curInvIcon:)):
-			(global69 disable: icon4)
+		global69._send('enable:', global69._send('at:', 0), icon1, icon2, icon3, icon4, icon5)
+		if (not global69._send('curInvIcon:')):
+			global69._send('disable:', icon4)
 		#endif
-		(global1 setCursor: ((global69 curIcon:) cursor:))
+		global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 	#end:method
 
 	@classmethod
@@ -934,7 +934,7 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global15 += param1)
-		((Kq6Points new:) flags: 1 number: 900 play:)
+		Kq6Points._send('new:')._send('flags:', 1, 'number:', 900, 'play:')
 	#end:method
 
 	@classmethod
@@ -944,10 +944,10 @@ class Kq6(Game):
 
 		global1 = self
 		global29 = kernel.GetSaveDir()
-		(self init:)
+		self._send('init:')
 		while (not global4):
 
-			(self doit:)
+			self._send('doit:')
 		#end:loop
 	#end:method
 
@@ -956,57 +956,57 @@ class Kq6(Game):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (param1 claimed:):
+		if param1._send('claimed:'):
 			return 1
 		#endif
 		if global100:
-			match (param1 type:)
+			match param1._send('type:')
 				case 4:
-					match (param1 message:)
+					match param1._send('message:')
 						case 9:
-							if (not ((icon5 signal:) & 0x0004)):
-								(kernel.ScriptID(907, 1) init: global0)
-								(param1 claimed: 1)
+							if (not (icon5._send('signal:') & 0x0004)):
+								kernel.ScriptID(907, 1)._send('init:', global0)
+								param1._send('claimed:', 1)
 							#endif
 						#end:case
 						case 3840:
-							if (not ((icon5 signal:) & 0x0004)):
-								(kernel.ScriptID(907, 1) init: global0)
-								(param1 claimed: 1)
+							if (not (icon5._send('signal:') & 0x0004)):
+								kernel.ScriptID(907, 1)._send('init:', global0)
+								param1._send('claimed:', 1)
 							#endif
 						#end:case
 						case 17:
-							(global1 quitGame:)
-							(param1 claimed: 1)
+							global1._send('quitGame:')
+							param1._send('claimed:', 1)
 						#end:case
 						case 15360:
 							(cond
-								case (global1 masterVolume:):
-									(self masterVolume: 0)
+								case global1._send('masterVolume:'):
+									self._send('masterVolume:', 0)
 								#end:case
 								case (global108 > 1):
-									(self masterVolume: 15)
+									self._send('masterVolume:', 15)
 								#end:case
 								else:
-									(self masterVolume: 1)
+									self._send('masterVolume:', 1)
 								#end:else
 							)
-							(param1 claimed: 1)
+							param1._send('claimed:', 1)
 						#end:case
 						case 16128:
-							(self save:)
-							(param1 claimed: 1)
+							self._send('save:')
+							param1._send('claimed:', 1)
 						#end:case
 						case 16640:
-							(self restore:)
-							(param1 claimed: 1)
+							self._send('restore:')
+							param1._send('claimed:', 1)
 						#end:case
 						case 17152:
-							(self restart:)
-							(param1 claimed: 1)
+							self._send('restart:')
+							param1._send('claimed:', 1)
 						#end:case
 						else:
-							(param1 claimed: 1)
+							param1._send('claimed:', 1)
 							if 
 								(and
 									global100
@@ -1014,9 +1014,9 @@ class Kq6(Game):
 										proc999_5(global11, 440, 450, 480, 270, 280, 470, 490, 670, 750, 740)
 									)
 								)
-								(param1 claimed: 0)
-								(kernel.ScriptID(911) handleEvent: param1)
-								(kernel.ScriptID(911) dispose:)
+								param1._send('claimed:', 0)
+								kernel.ScriptID(911)._send('handleEvent:', param1)
+								kernel.ScriptID(911)._send('dispose:')
 								kernel.DisposeScript(911)
 							#endif
 						#end:else
@@ -1025,13 +1025,13 @@ class Kq6(Game):
 			#end:match
 		#endif
 		(cond
-			case (param1 claimed:): 1#end:case
-			case (script and (script handleEvent: param1)): 1#end:case
-			case ((param1 type:) & 0x4000):
-				(self pragmaFail: (param1 message:))
+			case param1._send('claimed:'): 1#end:case
+			case (script and script._send('handleEvent:', param1)): 1#end:case
+			case (param1._send('type:') & 0x4000):
+				self._send('pragmaFail:', param1._send('message:'))
 			#end:case
 		)
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -1040,14 +1040,14 @@ class Kq6(Game):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc and param1):
-			(global8 eachElementDo: #pause 1)
+			global8._send('eachElementDo:', #pause, 1)
 			global163 = global8
-			(global8 = globalSounds add:)
+			global8 = globalSounds._send('add:')
 		else:
-			(globalSounds dispose:)
+			globalSounds._send('dispose:')
 			global8 = global163
 			global163 = 0
-			(global8 eachElementDo: #pause 0)
+			global8._send('eachElementDo:', #pause, 0)
 		#endif
 	#end:method
 
@@ -1329,7 +1329,7 @@ class Kq6Messager(Messager):
 			)
 			return
 		else:
-			(super findTalker: param1)
+			super._send('findTalker:', param1)
 		#endif
 	#end:method
 
@@ -1346,13 +1346,13 @@ class kq6DoVerbCode(Code):
 		(cond
 			case 
 				(and
-					((kq6ApproachCode doit: param1) == -32768)
-					kernel.Message(0, (param2 modNum:), (param2 noun:), 0, 0, 1)
+					(kq6ApproachCode._send('doit:', param1) == -32768)
+					kernel.Message(0, param2._send('modNum:'), param2._send('noun:'), 0, 0, 1)
 				):
-				(global91 say: (param2 noun:) 0 0 0 0 (param2 modNum:))
+				global91._send('say:', param2._send('noun:'), 0, 0, 0, 0, param2._send('modNum:'))
 			#end:case
-			case (not (global2 doVerb: param1)):
-				(global1 pragmaFail: param1)
+			case (not global2._send('doVerb:', param1)):
+				global1._send('pragmaFail:', param1)
 			#end:case
 		)
 	#end:method
@@ -1367,18 +1367,18 @@ class kq6FtrInit(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 sightAngle:) == 26505):
-			(param1 sightAngle: 90)
+		if (param1._send('sightAngle:') == 26505):
+			param1._send('sightAngle:', 90)
 		#endif
-		if ((param1 actions:) == 26505):
-			(param1 actions: 0)
+		if (param1._send('actions:') == 26505):
+			param1._send('actions:', 0)
 		#endif
 		if 
 			(and
-				((param1 onMeCheck:) != 26505)
-				(not kernel.IsObject((param1 onMeCheck:)))
+				(param1._send('onMeCheck:') != 26505)
+				(not kernel.IsObject(param1._send('onMeCheck:')))
 			)
-			(param1 state: (| (param1 state:) 0x0004))
+			param1._send('state:', (| param1._send('state:') 0x0004))
 		#endif
 	#end:method
 
@@ -1413,11 +1413,11 @@ class kq6PseudoMouse(PseudoMouse):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 type:) & 0x0040):
-			temp0 = (global69 curIcon:)
-			(global69 curIcon: 0)
-			(super handleEvent: param1)
-			(global69 curIcon: temp0)
+		if (param1._send('type:') & 0x0040):
+			temp0 = global69._send('curIcon:')
+			global69._send('curIcon:', 0)
+			super._send('handleEvent:', param1)
+			global69._send('curIcon:', temp0)
 		#endif
 	#end:method
 
@@ -1439,7 +1439,7 @@ class icon0(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1460,7 +1460,7 @@ class icon1(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1481,7 +1481,7 @@ class icon2(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1502,7 +1502,7 @@ class icon3(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1523,7 +1523,7 @@ class icon4(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1545,7 +1545,7 @@ class icon5(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -1553,7 +1553,7 @@ class icon5(Kq6IconItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(907, 1) init: global0)
+		kernel.ScriptID(907, 1)._send('init:', global0)
 	#end:method
 
 #end:class or instance
@@ -1574,7 +1574,7 @@ class icon6(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		maskView = view = 980
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -1582,10 +1582,10 @@ class icon6(Kq6IconItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((Cursor hidden:) and (kernel.MemoryInfo(0) >= 1500)):
-			(kernel.ScriptID(903) init: show: dispose:)
+		if (Cursor._send('hidden:') and (kernel.MemoryInfo(0) >= 1500)):
+			kernel.ScriptID(903)._send('init:', 'show:', 'dispose:')
 		else:
-			(global91 say: 7 0 15 0 0 0)
+			global91._send('say:', 7, 0, 15, 0, 0, 0)
 		#endif
 	#end:method
 
@@ -1595,9 +1595,9 @@ class icon6(Kq6IconItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
-			if (super select: &rest):
-				(global1 setCursor: global21)
-				(global69 hide:)
+			if super._send('select:', &rest):
+				global1._send('setCursor:', global21)
+				global69._send('hide:')
 				1
 			else:
 				0
@@ -1678,7 +1678,7 @@ class emberTimer(Timer):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
-			(super doit: &rest)
+			super._send('doit:', &rest)
 		#endif
 	#end:method
 
@@ -1687,7 +1687,7 @@ class emberTimer(Timer):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		client = self
 	#end:method
 
@@ -1699,7 +1699,7 @@ class emberTimer(Timer):
 		if (not client):
 			client = self
 		#endif
-		(super delete:)
+		super._send('delete:')
 	#end:method
 
 #end:class or instance
@@ -1713,7 +1713,7 @@ class beastTimer(Timer):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
-			(super doit: &rest)
+			super._send('doit:', &rest)
 		#endif
 	#end:method
 
@@ -1722,7 +1722,7 @@ class beastTimer(Timer):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		client = self
 	#end:method
 
@@ -1737,7 +1737,7 @@ class CharonTimer(Timer):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
-			(super doit: &rest)
+			super._send('doit:', &rest)
 		#endif
 	#end:method
 
@@ -1746,7 +1746,7 @@ class CharonTimer(Timer):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		client = self
 	#end:method
 
@@ -1761,7 +1761,7 @@ class lettuceTimer(Timer):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client != self):
-			(super doit: &rest)
+			super._send('doit:', &rest)
 		#endif
 	#end:method
 
@@ -1770,7 +1770,7 @@ class lettuceTimer(Timer):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		client = self
 	#end:method
 
@@ -1782,7 +1782,7 @@ class lettuceTimer(Timer):
 		if (not client):
 			client = self
 		#endif
-		(super delete:)
+		super._send('delete:')
 	#end:method
 
 #end:class or instance

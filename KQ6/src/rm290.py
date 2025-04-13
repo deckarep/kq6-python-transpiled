@@ -32,84 +32,38 @@ class rm290(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						142
-						120
-						98
-						120
-						79
-						133
-						27
-						133
-						7
-						159
-						106
-						159
-						119
-						172
-						119
-						184
-						184
-						184
-						183
-						161
-						309
-						161
-						248
-						128
-						224
-						128
-						208
-						118
-						157
-						118
-						157
-						1
-						319
-						1
-						319
-						189
-						0
-						189
-						0
-						1
-						142
-						1
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 164 138 182 132 203 141 184 146
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 120 127 137 136 118 145 102 137
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 142 150 142 140 161 140 161 150
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 142, 120, 98, 120, 79, 133, 27, 133, 7, 159, 106, 159, 119, 172, 119, 184, 184, 184, 183, 161, 309, 161, 248, 128, 224, 128, 208, 118, 157, 118, 157, 1, 319, 1, 319, 189, 0, 189, 0, 1, 142, 1,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 164, 138, 182, 132, 203, 141, 184, 146,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 120, 127, 137, 136, 118, 145, 102, 137,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 142, 150, 142, 140, 161, 140, 161, 150,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		kernel.Load(128, 291)
-		(global0 init: reset: 2 posn: 151 119 setScale: 0)
-		(global93 addToFront: self)
-		(ferryman init:)
-		(door init: cel: 5 setCycle: Beg door)
-		(genericFeatures init:)
-		(table init:)
-		if (((global9 at: 34) owner:) == global11):
-			(rabbitsFoot init:)
+		global0._send('init:', 'reset:', 2, 'posn:', 151, 119, 'setScale:', 0)
+		global93._send('addToFront:', self)
+		ferryman._send('init:')
+		door._send('init:', 'cel:', 5, 'setCycle:', Beg, door)
+		genericFeatures._send('init:')
+		table._send('init:')
+		if (global9._send('at:', 34)._send('owner:') == global11):
+			rabbitsFoot._send('init:')
 		#endif
-		(global2 setScript: enterScr)
-		(global102 number: 290 loop: -1 play:)
+		global2._send('setScript:', enterScr)
+		global102._send('number:', 290, 'loop:', -1, 'play:')
 	#end:method
 
 	@classmethod
@@ -119,10 +73,10 @@ class rm290(KQ6Room):
 
 		match param1
 			case 3:
-				(global2 setScript: leaveScr)
+				global2._send('setScript:', leaveScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -132,8 +86,8 @@ class rm290(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 fade:)
-		(super dispose: &rest)
+		global102._send('fade:')
+		super._send('dispose:', &rest)
 		proc913_1(17)
 	#end:method
 
@@ -142,7 +96,7 @@ class rm290(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global91 say: 0 0 34 0 0 899)
+		global91._send('say:', 0, 0, 34, 0, 0, 899)
 		return 0
 	#end:method
 
@@ -159,43 +113,43 @@ class enterScr(Script):
 		match state = param1
 			case 0:
 				if (not proc913_0(17)):
-					(global1 givePoints: 2)
+					global1._send('givePoints:', 2)
 				#endif
-				(ferryman setMotion: PolyPath 138 137 self)
+				ferryman._send('setMotion:', PolyPath, 138, 137, self)
 			#end:case
 			case 1:
-				(ferryman
-					posn: 128 147
-					view: 294
-					loop: 2
-					cel: 0
-					setCycle: End self
+				ferryman._send(
+					'posn:', 128, 147,
+					'view:', 294,
+					'loop:', 2,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(ferryman stopUpd:)
-				(global0 setSpeed: 6 setMotion: MoveTo 160 140 self)
+				ferryman._send('stopUpd:')
+				global0._send('setSpeed:', 6, 'setMotion:', MoveTo, 160, 140, self)
 			#end:case
 			case 3:
-				(global0
-					view: 291
-					setLoop: 0
-					posn: 176 144
-					normal: 0
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'view:', 291,
+					'setLoop:', 0,
+					'posn:', 176, 144,
+					'normal:', 0,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(global0 stopUpd:)
-				(global91 say: 1 0 (9 if proc913_0(17) else 8) 0 self)
+				global0._send('stopUpd:')
+				global91._send('say:', 1, 0, (9 if proc913_0(17) else 8), 0, self)
 			#end:case
 			case 6:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -212,46 +166,46 @@ class leaveScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global93 delete: global2)
-				(ferryman hide:)
-				(global0
-					view: 291
-					loop: 3
-					posn: 178 144
-					cel: 0
-					normal: 0
-					setCycle: CT 8 1 self
+				global1._send('handsOff:')
+				global93._send('delete:', global2)
+				ferryman._send('hide:')
+				global0._send(
+					'view:', 291,
+					'loop:', 3,
+					'posn:', 178, 144,
+					'cel:', 0,
+					'normal:', 0,
+					'setCycle:', CT, 8, 1, self
 				)
 			#end:case
 			case 1:
-				(global91 say: 6 5 (13 if proc913_0(17) else 12) 0 self)
+				global91._send('say:', 6, 5, (13 if proc913_0(17) else 12), 0, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(ferryman view: 291 loop: 4 cel: 0 posn: 134 145 show:)
-				(global0 reset: 7 posn: 167 142 ignoreActors: setScale: 0)
+				ferryman._send('view:', 291, 'loop:', 4, 'cel:', 0, 'posn:', 134, 145, 'show:')
+				global0._send('reset:', 7, 'posn:', 167, 142, 'ignoreActors:', 'setScale:', 0)
 				cycles = 2
 			#end:case
 			case 5:
-				(global0 setMotion: PolyPath 148 116 self)
+				global0._send('setMotion:', PolyPath, 148, 116, self)
 			#end:case
 			case 6:
-				(global0 setHeading: 0 self)
+				global0._send('setHeading:', 0, self)
 			#end:case
 			case 7:
-				(ferryman setCycle: End self)
-				(door setCycle: End self)
-				(global105 number: 901 loop: 1 play:)
+				ferryman._send('setCycle:', End, self)
+				door._send('setCycle:', End, self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
 			#end:case
 			case 8: 0#end:case
 			case 9:
-				(global2 newRoom: 260)
+				global2._send('newRoom:', 260)
 			#end:case
 		#end:match
 	#end:method
@@ -273,8 +227,8 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self stopUpd:)
-		(global105 number: 902 loop: 1 play:)
+		self._send('stopUpd:')
+		global105._send('number:', 902, 'loop:', 1, 'play:')
 	#end:method
 
 	@classmethod
@@ -284,10 +238,10 @@ class door(Prop):
 
 		match param1
 			case 5:
-				(global2 setScript: leaveScr)
+				global2._send('setScript:', leaveScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -304,7 +258,7 @@ class ferrymanTalkScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if (global158 < 5):
 					global158.post('++')
 				#endif
@@ -345,17 +299,17 @@ class ferrymanTalkScr(Script):
 			#end:case
 			case 1:
 				if (global158 == 5):
-					(global91 say: 3 2 17 1 self)
+					global91._send('say:', 3, 2, 17, 1, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 2:
-				(global91 say: 3 2 register 0 self)
+				global91._send('say:', 3, 2, register, 0, self)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -376,11 +330,11 @@ class ferryman(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self
-			setStep: (global0 xStep:) (global0 yStep:)
-			setCycle: Walk
-			signal: (| signal 0x1000)
+		super._send('init:', &rest)
+		self._send(
+			'setStep:', global0._send('xStep:'), global0._send('yStep:'),
+			'setCycle:', Walk,
+			'signal:', (| signal 0x1000)
 		)
 	#end:method
 
@@ -391,10 +345,10 @@ class ferryman(Actor):
 
 		match param1
 			case 2:
-				(global2 setScript: ferrymanTalkScr)
+				global2._send('setScript:', ferrymanTalkScr)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -411,28 +365,28 @@ class getRabbitsFoot(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 get: 34)
-				(global91 say: 4 5 0 0 self)
+				global1._send('handsOff:')
+				global0._send('get:', 34)
+				global91._send('say:', 4, 5, 0, 0, self)
 			#end:case
 			case 1:
-				(global0 loop: 2 cel: 0 setPri: 11 setCycle: CT 3 1 self)
+				global0._send('loop:', 2, 'cel:', 0, 'setPri:', 11, 'setCycle:', CT, 3, 1, self)
 			#end:case
 			case 2:
-				(rabbitsFoot dispose:)
+				rabbitsFoot._send('dispose:')
 				cycles = 2
 			#end:case
 			case 3:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(global0 cel: 0)
+				global0._send('cel:', 0)
 				cycles = 1
 			#end:case
 			case 5:
-				(global1 givePoints: 1)
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('givePoints:', 1)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -456,10 +410,10 @@ class rabbitsFoot(View):
 
 		match param1
 			case 5:
-				(global2 setScript: getRabbitsFoot)
+				global2._send('setScript:', getRabbitsFoot)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -469,8 +423,8 @@ class rabbitsFoot(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setPri: 11 stopUpd: ignoreActors:)
+		super._send('init:', &rest)
+		self._send('setPri:', 11, 'stopUpd:', 'ignoreActors:')
 	#end:method
 
 #end:class or instance
@@ -487,11 +441,11 @@ class table(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 1):
-			(global91
-				say: noun param1 (21 if (global5 contains: rabbitsFoot) else 11)
+			global91._send(
+				'say:', noun, param1, (21 if global5._send('contains:', rabbitsFoot) else 11)
 			)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -507,7 +461,7 @@ class genericFeatures(Feature):
 
 		(return
 			(= noun
-				match temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
+				match temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
 					case 2: 15#end:case
 					case 8: 7#end:case
 					case 16: 8#end:case

@@ -43,35 +43,35 @@ class egoDrinks(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff: killSound: 1)
-				(global69 disable:)
-				(global91 say: 1 14 0 1 self 0)
+				global1._send('handsOff:', 'killSound:', 1)
+				global69._send('disable:')
+				global91._send('say:', 1, 14, 0, 1, self, 0)
 			#end:case
 			case 1:
-				(global0
-					cycleSpeed: 10
-					view: 935
-					setPri: 14
-					cel: 0
-					setLoop: 0
-					setCycle: End self
+				global0._send(
+					'cycleSpeed:', 10,
+					'view:', 935,
+					'setPri:', 14,
+					'cel:', 0,
+					'setLoop:', 0,
+					'setCycle:', End, self
 				)
-				(localMusic number: 925 play: loop: 1)
+				localMusic._send('number:', 925, 'play:', 'loop:', 1)
 			#end:case
 			case 2:
 				seconds = 2
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
 				cycles = 15
 			#end:case
 			case 5:
-				(global91 say: 1 14 0 2 self 0)
+				global91._send('say:', 1, 14, 0, 2, self, 0)
 			#end:case
 			case 6:
-				(client setScript: kernel.ScriptID(87, 1))
+				client._send('setScript:', kernel.ScriptID(87, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -95,34 +95,34 @@ class drinkMeScript(Script):
 				local4 = global72
 				local5 = global74
 				local6 = global93
-				local7 = (global2 obstacles:)
-				(global2 obstacles: ((List new:) add: yourself:))
-				(global5 = (EventHandler new:) name: r"""newCast""" add:)
-				(global32 = (EventHandler new:)
-					name: r"""newFeatures"""
-					add: self
+				local7 = global2._send('obstacles:')
+				global2._send('obstacles:', List._send('new:')._send('add:', 'yourself:'))
+				global5 = EventHandler._send('new:')._send('name:', r"""newCast""", 'add:')
+				global32 = EventHandler._send('new:')._send(
+					'name:', r"""newFeatures""",
+					'add:', self
 				)
-				(global10 = (EventHandler new:) name: r"""newATPs""" add:)
-				(global73 = (EventHandler new:) name: r"""newMH""" add: self)
-				(global72 = (EventHandler new:) name: r"""newKH""" add: self)
-				(global74 = (EventHandler new:) name: r"""newDH""" add: self)
-				(global93 = (EventHandler new:) name: r"""newWH""" add:)
+				global10 = EventHandler._send('new:')._send('name:', r"""newATPs""", 'add:')
+				global73 = EventHandler._send('new:')._send('name:', r"""newMH""", 'add:', self)
+				global72 = EventHandler._send('new:')._send('name:', r"""newKH""", 'add:', self)
+				global74 = EventHandler._send('new:')._send('name:', r"""newDH""", 'add:', self)
+				global93 = EventHandler._send('new:')._send('name:', r"""newWH""", 'add:')
 				kernel.DrawPic(981, 9)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 14 0 3 self 0)
+				global91._send('say:', 1, 14, 0, 3, self, 0)
 			#end:case
 			case 2:
-				(localMusic number: 926 play: self)
-				(newEgo
-					init:
-					posn: 147 118
-					setLoop: 1
-					cel: 0
-					setPri: 14
-					cycleSpeed: 12
-					setCycle: End self
+				localMusic._send('number:', 926, 'play:', self)
+				newEgo._send(
+					'init:',
+					'posn:', 147, 118,
+					'setLoop:', 1,
+					'cel:', 0,
+					'setPri:', 14,
+					'cycleSpeed:', 12,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
@@ -130,12 +130,12 @@ class drinkMeScript(Script):
 			#end:case
 			case 4:
 				kernel.Palette(1, 97)
-				if ((localMusic prevSignal:) == -1):
+				if (localMusic._send('prevSignal:') == -1):
 					cycles = 1
 				#endif
 			#end:case
 			case 5:
-				if ((localMusic prevSignal:) == 10):
+				if (localMusic._send('prevSignal:') == 10):
 					(state -= 3)
 				#endif
 				cycles = 1
@@ -148,41 +148,41 @@ class drinkMeScript(Script):
 				seconds = 4
 			#end:case
 			case 8:
-				(global91 say: 1 14 0 4 self 0)
+				global91._send('say:', 1, 14, 0, 4, self, 0)
 			#end:case
 			case 9:
 				seconds = 5
 			#end:case
 			case 10:
-				(global91 say: 1 14 0 5 self 0)
+				global91._send('say:', 1, 14, 0, 5, self, 0)
 			#end:case
 			case 11:
-				(localMusic number: 927 play: self)
+				localMusic._send('number:', 927, 'play:', self)
 			#end:case
 			case 12:
-				(global91 say: 1 14 0 6 self 0)
+				global91._send('say:', 1, 14, 0, 6, self, 0)
 			#end:case
 			case 13:
-				(newEgo cel: 0 setLoop: 2 setCycle: End self)
+				newEgo._send('cel:', 0, 'setLoop:', 2, 'setCycle:', End, self)
 			#end:case
 			case 14:
-				(newEgo cel: 0 setLoop: 3 setCycle: End self)
+				newEgo._send('cel:', 0, 'setLoop:', 3, 'setCycle:', End, self)
 			#end:case
 			case 15:
-				(global5
-					eachElementDo: #dispose
-					eachElementDo: #delete
-					release:
-					dispose:
+				global5._send(
+					'eachElementDo:', #dispose,
+					'eachElementDo:', #delete,
+					'release:',
+					'dispose:'
 				)
-				(global10 dispose:)
-				(global32 delete: self dispose:)
-				(global73 delete: self dispose:)
-				(global72 delete: self dispose:)
-				(global74 delete: self dispose:)
-				(global93 delete: self dispose:)
-				((global2 obstacles:) dispose:)
-				(global2 obstacles: local7)
+				global10._send('dispose:')
+				global32._send('delete:', self, 'dispose:')
+				global73._send('delete:', self, 'dispose:')
+				global72._send('delete:', self, 'dispose:')
+				global74._send('delete:', self, 'dispose:')
+				global93._send('delete:', self, 'dispose:')
+				global2._send('obstacles:')._send('dispose:')
+				global2._send('obstacles:', local7)
 				global5 = local0
 				global32 = local1
 				global73 = local3
@@ -190,25 +190,25 @@ class drinkMeScript(Script):
 				global74 = local5
 				global93 = local6
 				global10 = local2
-				kernel.DrawPic((global2 picture:), 9)
-				(global0 reset: 2)
+				kernel.DrawPic(global2._send('picture:'), 9)
+				global0._send('reset:', 2)
 				cycles = 3
 			#end:case
 			case 16:
 				cycles = 3
 			#end:case
 			case 17:
-				(global91 say: 1 14 0 7 self 0)
+				global91._send('say:', 1, 14, 0, 7, self, 0)
 			#end:case
 			case 18:
-				(global91 say: 1 14 0 8 self 0)
+				global91._send('say:', 1, 14, 0, 8, self, 0)
 			#end:case
 			case 19:
-				(global69 enable:)
-				(global1 handsOn: killSound: 0)
+				global69._send('enable:')
+				global1._send('handsOn:', 'killSound:', 0)
 				proc913_1(153)
-				(localMusic stop: dispose:)
-				(self dispose:)
+				localMusic._send('stop:', 'dispose:')
+				self._send('dispose:')
 				proc958_0(0, 87)
 			#end:case
 		#end:match

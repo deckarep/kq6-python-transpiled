@@ -51,7 +51,7 @@ class rm680Messager(Kq6Messager):
 			)
 			return
 		else:
-			(super findTalker: param1)
+			super._send('findTalker:', param1)
 		#endif
 	#end:method
 
@@ -70,51 +70,16 @@ class rm680(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable:)
-		(global1 handsOff:)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						149
-						108
-						145
-						122
-						144
-						147
-						131
-						173
-						113
-						183
-						95
-						189
-						0
-						189
-						0
-						-10
-						319
-						-10
-						319
-						189
-						199
-						189
-						196
-						184
-						168
-						160
-						158
-						132
-						155
-						108
-						158
-						86
-						152
-						86
-					yourself:
+		global69._send('enable:')
+		global1._send('handsOff:')
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 149, 108, 145, 122, 144, 147, 131, 173, 113, 183, 95, 189, 0, 189, 0, -10, 319, -10, 319, 189, 199, 189, 196, 184, 168, 160, 158, 132, 155, 108, 158, 86, 152, 86,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		kernel.UnLoad(128, 670)
 		kernel.UnLoad(128, 671)
 		kernel.UnLoad(128, 672)
@@ -123,67 +88,67 @@ class rm680(KQ6Room):
 		kernel.UnLoad(128, 692)
 		local0 = global91
 		global91 = rm680Messager
-		(flame1 init: setCycle: RandCycle)
-		(flame2 init: setCycle: RandCycle)
-		(flame3 init: setCycle: RandCycle)
-		(flame4 init: setCycle: RandCycle)
-		(flame5 init: setCycle: RandCycle)
-		(flame6 init: setCycle: RandCycle)
-		(flame7 init: setCycle: RandCycle)
-		(flame8 init: setCycle: RandCycle)
-		(flame9 init: setCycle: RandCycle)
-		(flame10 init: setCycle: RandCycle)
-		(flame11 init: setCycle: RandCycle)
-		(flame12 init: setCycle: RandCycle)
+		flame1._send('init:', 'setCycle:', RandCycle)
+		flame2._send('init:', 'setCycle:', RandCycle)
+		flame3._send('init:', 'setCycle:', RandCycle)
+		flame4._send('init:', 'setCycle:', RandCycle)
+		flame5._send('init:', 'setCycle:', RandCycle)
+		flame6._send('init:', 'setCycle:', RandCycle)
+		flame7._send('init:', 'setCycle:', RandCycle)
+		flame8._send('init:', 'setCycle:', RandCycle)
+		flame9._send('init:', 'setCycle:', RandCycle)
+		flame10._send('init:', 'setCycle:', RandCycle)
+		flame11._send('init:', 'setCycle:', RandCycle)
+		flame12._send('init:', 'setCycle:', RandCycle)
 		if (global12 == 670):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 			if (global87 > 1):
-				(lordGhoul init: setScript: lordGhoulScript)
-				(poolGhoulRight init: ignoreActors: 1 setScript: pgrScript)
-				(poolGhoulLeft init: ignoreActors: 1 setScript: pglScript)
-				(rArm init:)
-				(lArm init:)
+				lordGhoul._send('init:', 'setScript:', lordGhoulScript)
+				poolGhoulRight._send('init:', 'ignoreActors:', 1, 'setScript:', pgrScript)
+				poolGhoulLeft._send('init:', 'ignoreActors:', 1, 'setScript:', pglScript)
+				rArm._send('init:')
+				lArm._send('init:')
 			#endif
-			(rGuard view: 683 init: setScale: Scaler 100 69 189 90)
-			(lGuard view: 683 init: setScale: Scaler 100 69 189 90)
-			(global0
-				init:
-				reset: 3
-				setScale: Scaler 100 69 189 90
-				posn: 153 185
+			rGuard._send('view:', 683, 'init:', 'setScale:', Scaler, 100, 69, 189, 90)
+			lGuard._send('view:', 683, 'init:', 'setScale:', Scaler, 100, 69, 189, 90)
+			global0._send(
+				'init:',
+				'reset:', 3,
+				'setScale:', Scaler, 100, 69, 189, 90,
+				'posn:', 153, 185
 			)
-			(lord init:)
-			(path init:)
-			(sea init:)
-			(global102 number: 680 loop: -1 play:)
+			lord._send('init:')
+			path._send('init:')
+			sea._send('init:')
+			global102._send('number:', 680, 'loop:', -1, 'play:')
 		else:
-			(global0
-				init:
-				posn: 125 82
-				setScale: Scaler 100 54 189 92
-				setPri: 4
-				setLoop: -1
-				loop: 4
+			global0._send(
+				'init:',
+				'posn:', 125, 82,
+				'setScale:', Scaler, 100, 54, 189, 92,
+				'setPri:', 4,
+				'setLoop:', -1,
+				'loop:', 4
 			)
-			(rGuard
-				view: 6804
-				init:
-				setPri: 7
-				setLoop: 1
-				setScale: Scaler 100 69 189 90
-				addToPic:
+			rGuard._send(
+				'view:', 6804,
+				'init:',
+				'setPri:', 7,
+				'setLoop:', 1,
+				'setScale:', Scaler, 100, 69, 189, 90,
+				'addToPic:'
 			)
-			(lGuard
-				view: 6804
-				init:
-				setPri: 7
-				setLoop: 0
-				setScale: Scaler 100 69 189 90
-				addToPic:
+			lGuard._send(
+				'view:', 6804,
+				'init:',
+				'setPri:', 7,
+				'setLoop:', 0,
+				'setScale:', Scaler, 100, 69, 189, 90,
+				'addToPic:'
 			)
-			(self setScript: wonDeadScript)
+			self._send('setScript:', wonDeadScript)
 		#endif
-		(global5 eachElementDo: #checkDetail)
+		global5._send('eachElementDo:', #checkDetail)
 	#end:method
 
 	@classmethod
@@ -193,12 +158,12 @@ class rm680(KQ6Room):
 
 		(cond
 			case script: 0#end:case
-			case ((global0 y:) <= 168):
-				(global1 handsOff:)
-				(self setScript: takeHimAway)
+			case (global0._send('y:') <= 168):
+				global1._send('handsOff:')
+				self._send('setScript:', takeHimAway)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -207,10 +172,10 @@ class rm680(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 670):
-			(global1 handsOff:)
-			(self setScript: dontGoAlex)
+			global1._send('handsOff:')
+			self._send('setScript:', dontGoAlex)
 		else:
-			(super newRoom: param1)
+			super._send('newRoom:', param1)
 		#endif
 	#end:method
 
@@ -220,7 +185,7 @@ class rm680(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global91 = local0
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(942)
 	#end:method
 
@@ -515,15 +480,15 @@ class rGuard(Actor):
 
 		(cond
 			case proc999_5(param1, 5, 1):
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case (param1 == 2):
-				(global1 handsOff:)
-				(global2 setScript: talkGuards)
+				global1._send('handsOff:')
+				global2._send('setScript:', talkGuards)
 			#end:case
 			else:
-				(global1 handsOff:)
-				(global2 setScript: giveGuards)
+				global1._send('handsOff:')
+				global2._send('setScript:', giveGuards)
 			#end:else
 		)
 	#end:method
@@ -546,15 +511,15 @@ class lGuard(Actor):
 
 		(cond
 			case proc999_5(param1, 5, 1):
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case (param1 == 2):
-				(global1 handsOff:)
-				(global2 setScript: talkGuards)
+				global1._send('handsOff:')
+				global2._send('setScript:', talkGuards)
 			#end:case
 			else:
-				(global1 handsOff:)
-				(global2 setScript: giveGuards)
+				global1._send('handsOff:')
+				global2._send('setScript:', giveGuards)
 			#end:else
 		)
 	#end:method
@@ -574,21 +539,21 @@ class pgrScript(Script):
 				seconds = kernel.Random(3, 10)
 			#end:case
 			case 1:
-				(client show: setLoop: 4 cel: 0 setCycle: End self)
+				client._send('show:', 'setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 2:
 				cycles = kernel.Random(5, 10)
 			#end:case
 			case 3:
-				(rArm setCycle: End self)
+				rArm._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(rArm cel: 0)
-				(client setLoop: 5 cel: 0 setCycle: End self)
+				rArm._send('cel:', 0)
+				client._send('setLoop:', 5, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 5:
-				(client hide:)
-				(self init:)
+				client._send('hide:')
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -608,21 +573,21 @@ class pglScript(Script):
 				seconds = kernel.Random(3, 10)
 			#end:case
 			case 1:
-				(client show: setLoop: 3 cel: 0 setCycle: End self)
+				client._send('show:', 'setLoop:', 3, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 2:
 				cycles = kernel.Random(5, 10)
 			#end:case
 			case 3:
-				(lArm setCycle: End self)
+				lArm._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(lArm cel: 0)
-				(client setLoop: 6 cel: 0 setCycle: End self)
+				lArm._send('cel:', 0)
+				client._send('setLoop:', 6, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 5:
-				(client hide:)
-				(self init:)
+				client._send('hide:')
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -642,14 +607,14 @@ class lordGhoulScript(Script):
 				seconds = kernel.Random(10, 30)
 			#end:case
 			case 1:
-				(client show: setLoop: 0 cel: 0 setCycle: End self)
+				client._send('show:', 'setLoop:', 0, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(client setLoop: 1 cel: 0 setCycle: End self)
+				client._send('setLoop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(client hide:)
-				(self init:)
+				client._send('hide:')
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -666,16 +631,16 @@ class dontGoAlex(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 1 0 5 1 self)
+				global91._send('say:', 1, 0, 5, 1, self)
 			#end:case
 			case 1:
-				(global0
-					setMotion: PolyPath (global0 x:) ((global0 y:) - 10) self
+				global0._send(
+					'setMotion:', PolyPath, global0._send('x:'), (global0._send('y:') - 10), self
 				)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -692,13 +657,13 @@ class talkGuards(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 6 2 0 1 self)
+				global91._send('say:', 6, 2, 0, 1, self)
 			#end:case
 			case 1:
-				(global91 say: 6 2 0 2 self)
+				global91._send('say:', 6, 2, 0, 2, self)
 			#end:case
 			case 2:
-				(self setScript: takeHimAway)
+				self._send('setScript:', takeHimAway)
 			#end:case
 		#end:match
 	#end:method
@@ -715,13 +680,13 @@ class giveGuards(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 6 0 0 1 self)
+				global91._send('say:', 6, 0, 0, 1, self)
 			#end:case
 			case 1:
-				(global91 say: 6 0 0 2 self)
+				global91._send('say:', 6, 0, 0, 2, self)
 			#end:case
 			case 2:
-				(self setScript: takeHimAway)
+				self._send('setScript:', takeHimAway)
 			#end:case
 		#end:match
 	#end:method
@@ -739,36 +704,36 @@ class takeHimAway(Script):
 		match state = param1
 			case 0:
 				if (client == global2):
-					(global91 say: 3 3 4 0 self)
+					global91._send('say:', 3, 3, 4, 0, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 155 153 self)
+				global0._send('setMotion:', PolyPath, 155, 153, self)
 			#end:case
 			case 2:
-				(rGuard setCycle: End self)
-				(lGuard setCycle: End self)
+				rGuard._send('setCycle:', End, self)
+				lGuard._send('setCycle:', End, self)
 			#end:case
 			case 3: 0#end:case
 			case 4:
-				(rGuard
-					setLoop: 0
-					setCycle: Walk
-					setMotion: MoveTo ((rGuard x:) - 20) ((rGuard y:) - 20)
+				rGuard._send(
+					'setLoop:', 0,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, (rGuard._send('x:') - 20), (rGuard._send('y:') - 20)
 				)
-				(lGuard
-					setLoop: 0
-					setCycle: Walk
-					setMotion: MoveTo ((lGuard x:) + 20) ((lGuard y:) - 20)
+				lGuard._send(
+					'setLoop:', 0,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, (lGuard._send('x:') + 20), (lGuard._send('y:') - 20)
 				)
-				(global0
-					setMotion: PolyPath (global0 x:) ((global0 y:) - 20) self
+				global0._send(
+					'setMotion:', PolyPath, global0._send('x:'), (global0._send('y:') - 20), self
 				)
 			#end:case
 			case 5:
-				(global2 newRoom: 690)
+				global2._send('newRoom:', 690)
 			#end:case
 		#end:match
 	#end:method
@@ -788,178 +753,176 @@ class wonDeadScript(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				local1 = (global89 x:)
-				local2 = (global89 y:)
-				local3 = (global89 talkWidth:)
-				(global89 x: 10 y: 10 talkWidth: 100)
-				(lArm
-					init:
-					view: 684
-					loop: 3
-					cel: 0
-					x: 147
-					y: 10
-					setPri: 6
-					setScale: 0
-					cycleSpeed: 10
-					ignoreActors: 1
-					ignoreHorizon: 1
-					setCycle: MCyc @local4 self 1
+				local1 = global89._send('x:')
+				local2 = global89._send('y:')
+				local3 = global89._send('talkWidth:')
+				global89._send('x:', 10, 'y:', 10, 'talkWidth:', 100)
+				lArm._send(
+					'init:',
+					'view:', 684,
+					'loop:', 3,
+					'cel:', 0,
+					'x:', 147,
+					'y:', 10,
+					'setPri:', 6,
+					'setScale:', 0,
+					'cycleSpeed:', 10,
+					'ignoreActors:', 1,
+					'ignoreHorizon:', 1,
+					'setCycle:', MCyc, @local4, self, 1
 				)
 			#end:case
 			case 2:
 				cycles = 5
 			#end:case
 			case 3:
-				(global91 say: 1 0 2 1 self)
+				global91._send('say:', 1, 0, 2, 1, self)
 			#end:case
 			case 4:
 				cycles = 5
 			#end:case
 			case 5:
-				(sfx number: 687 loop: 1 play:)
-				(rArm
-					init:
-					view: 684
-					setLoop: 5
-					cel: 0
-					posn: 161 56
-					ignoreActors: 1
+				sfx._send('number:', 687, 'loop:', 1, 'play:')
+				rArm._send(
+					'init:',
+					'view:', 684,
+					'setLoop:', 5,
+					'cel:', 0,
+					'posn:', 161, 56,
+					'ignoreActors:', 1
 				)
-				(lordGhoul
-					init:
-					view: 684
-					setLoop: 2
-					cel: 0
-					setPri: 5
-					posn: 147 80
-					ignoreActors: 1
-					setCycle: Fwd
+				lordGhoul._send(
+					'init:',
+					'view:', 684,
+					'setLoop:', 2,
+					'cel:', 0,
+					'setPri:', 5,
+					'posn:', 147, 80,
+					'ignoreActors:', 1,
+					'setCycle:', Fwd
 				)
 				seconds = 1
 			#end:case
 			case 6:
-				(lArm setLoop: 4 cel: 0 setCycle: End self)
+				lArm._send('setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 7:
 				proc913_2(91)
-				(lordGhoul dispose:)
-				(rArm dispose:)
+				lordGhoul._send('dispose:')
+				rArm._send('dispose:')
 				cycles = 2
 			#end:case
 			case 8:
-				(global91 say: 1 0 2 2 self)
+				global91._send('say:', 1, 0, 2, 2, self)
 			#end:case
 			case 9:
-				(global91 say: 1 0 2 3 self)
+				global91._send('say:', 1, 0, 2, 3, self)
 			#end:case
 			case 10:
-				(poolGhoulRight
-					init:
-					view: 6801
-					setLoop: 0
-					cel: 0
-					setPri: 8
-					posn: -33 68
-					cycleSpeed: 10
-					moveSpeed: 10
-					setStep: 10 10
-					ignoreActors: 1
-					setCycle: Fwd
-					setMotion: MoveTo 73 129 self
+				poolGhoulRight._send(
+					'init:',
+					'view:', 6801,
+					'setLoop:', 0,
+					'cel:', 0,
+					'setPri:', 8,
+					'posn:', -33, 68,
+					'cycleSpeed:', 10,
+					'moveSpeed:', 10,
+					'setStep:', 10, 10,
+					'ignoreActors:', 1,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 73, 129, self
 				)
 			#end:case
 			case 11:
-				(sfx number: 346 loop: 1 play:)
-				(poolGhoulRight setMotion: MoveTo 124 166 self)
+				sfx._send('number:', 346, 'loop:', 1, 'play:')
+				poolGhoulRight._send('setMotion:', MoveTo, 124, 166, self)
 			#end:case
 			case 12:
-				(poolGhoulRight view: 685 setLoop: 0 setCycle: End self)
+				poolGhoulRight._send('view:', 685, 'setLoop:', 0, 'setCycle:', End, self)
 				kernel.UnLoad(128, 6801)
 			#end:case
 			case 13:
-				(poolGhoulRight
-					setLoop: 4
-					cel: 0
-					posn: ((poolGhoulRight x:) + 34) ((poolGhoulRight y:) + 7)
+				poolGhoulRight._send(
+					'setLoop:', 4,
+					'cel:', 0,
+					'posn:', (poolGhoulRight._send('x:') + 34), (poolGhoulRight._send('y:') + 7)
 				)
 				seconds = 1
 			#end:case
 			case 14:
-				(global91 say: 1 0 2 4 self)
+				global91._send('say:', 1, 0, 2, 4, self)
 			#end:case
 			case 15:
-				(global91 say: 1 0 2 5 self)
+				global91._send('say:', 1, 0, 2, 5, self)
 			#end:case
 			case 16:
-				(global91 say: 1 0 2 6 self)
+				global91._send('say:', 1, 0, 2, 6, self)
 			#end:case
 			case 17:
-				(global91 say: 1 0 2 7 self)
+				global91._send('say:', 1, 0, 2, 7, self)
 			#end:case
 			case 18:
-				(lArm
-					view: 687
-					setLoop: 0
-					setCycle: Walk
-					setScale: -1 global0
-					setPri: ((poolGhoulRight priority:) - 1)
-					setSpeed: (global0 currentSpeed:)
-					setStep: 5 4
-					posn: (lArm x:) ((lArm y:) + 20)
-					setMotion:
-						PolyPath
-						((poolGhoulRight x:) - 10)
-						((poolGhoulRight y:) - 10)
-						self
+				lArm._send(
+					'view:', 687,
+					'setLoop:', 0,
+					'setCycle:', Walk,
+					'setScale:', -1, global0,
+					'setPri:', (poolGhoulRight._send('priority:') - 1),
+					'setSpeed:', global0._send('currentSpeed:'),
+					'setStep:', 5, 4,
+					'posn:', lArm._send('x:'), (lArm._send('y:') + 20),
+					'setMotion:', PolyPath, (poolGhoulRight._send('x:') - 10), (-
+							poolGhoulRight._send('y:')
+							10
+						), self
 				)
-				(global0
-					setPri: ((poolGhoulRight priority:) - 1)
-					setMotion:
-						PolyPath
-						((poolGhoulRight x:) - 20)
-						((poolGhoulRight y:) - 20)
+				global0._send(
+					'setPri:', (poolGhoulRight._send('priority:') - 1),
+					'setMotion:', PolyPath, (poolGhoulRight._send('x:') - 20), (-
+							poolGhoulRight._send('y:')
+							20
+						)
 				)
 			#end:case
 			case 19:
-				(poolGhoulRight setLoop: 2 setCycle: End self)
+				poolGhoulRight._send('setLoop:', 2, 'setCycle:', End, self)
 			#end:case
 			case 20:
-				(poolGhoulRight setLoop: 3 cel: 0 setCycle: End self)
-				(lArm dispose:)
+				poolGhoulRight._send('setLoop:', 3, 'cel:', 0, 'setCycle:', End, self)
+				lArm._send('dispose:')
 			#end:case
 			case 21:
-				(poolGhoulRight setLoop: 5 cel: 0)
-				(global0
-					setPri: 7
-					ignoreActors: 1
-					setMotion:
-						MoveTo
-						((poolGhoulRight x:) - 11)
-						((poolGhoulRight y:) - 10)
-						self
+				poolGhoulRight._send('setLoop:', 5, 'cel:', 0)
+				global0._send(
+					'setPri:', 7,
+					'ignoreActors:', 1,
+					'setMotion:', MoveTo, (poolGhoulRight._send('x:') - 11), (-
+							poolGhoulRight._send('y:')
+							10
+						), self
 				)
 			#end:case
 			case 22:
-				(global0
-					normal: 0
-					view: 685
-					setLoop: 1
-					cel: 0
-					setPri: ((poolGhoulRight priority:) + 1)
-					posn: (poolGhoulRight x:) (poolGhoulRight y:)
-					setScale: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 685,
+					'setLoop:', 1,
+					'cel:', 0,
+					'setPri:', (poolGhoulRight._send('priority:') + 1),
+					'posn:', poolGhoulRight._send('x:'), poolGhoulRight._send('y:'),
+					'setScale:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 23:
-				(poolGhoulRight dispose:)
-				(global89 x: local1 y: local2 talkWidth: local3)
-				(global102 number: 155 loop: -1 play:)
+				poolGhoulRight._send('dispose:')
+				global89._send('x:', local1, 'y:', local2, 'talkWidth:', local3)
+				global102._send('number:', 155, 'loop:', -1, 'play:')
 				seconds = 3
 			#end:case
 			case 24:
-				(global2 newRoom: 155)
+				global2._send('newRoom:', 155)
 			#end:case
 		#end:match
 	#end:method

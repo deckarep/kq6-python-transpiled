@@ -29,7 +29,7 @@ class Oracle(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: 0 tEyes tMouth &rest)
+		super._send('init:', 0, tEyes, tMouth, &rest)
 	#end:method
 
 #end:class or instance

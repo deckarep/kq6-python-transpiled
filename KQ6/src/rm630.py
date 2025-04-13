@@ -49,20 +49,19 @@ def localproc_0(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (global2 obstacles:):
-		((global2 obstacles:) dispose:)
+	if global2._send('obstacles:'):
+		global2._send('obstacles:')._send('dispose:')
 	#endif
-	(global2
-		addObstacle:
-			match (local73 if (not argc) else param1)
+	global2._send(
+		'addObstacle:', match (local73 if (not argc) else param1)
 				case 0:
-					(roomPoly type: 2 points: @local165 size: 22 yourself:)
+					roomPoly._send('type:', 2, 'points:', @local165, 'size:', 22, 'yourself:')
 				#end:case
 				case 1:
-					(roomPoly type: 3 points: @local79 size: 23 yourself:)
+					roomPoly._send('type:', 3, 'points:', @local79, 'size:', 23, 'yourself:')
 				#end:case
 				case 2:
-					(roomPoly type: 3 points: @local125 size: 20 yourself:)
+					roomPoly._send('type:', 3, 'points:', @local125, 'size:', 20, 'yourself:')
 				#end:case
 			#end:match
 	)
@@ -81,50 +80,50 @@ class rm630(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
-		(super init: &rest)
+		global1._send('handsOff:')
+		super._send('init:', &rest)
 		if (global12 == 640):
 			local73 = 2
-			(global0
-				init:
-				reset: 5
-				setScale: Scaler 40 20 140 80
-				posn: 178 92
-				setPri: 8
+			global0._send(
+				'init:',
+				'reset:', 5,
+				'setScale:', Scaler, 40, 20, 140, 80,
+				'posn:', 178, 92,
+				'setPri:', 8
 			)
-			(global2 setScript: fromEntranceScr)
+			global2._send('setScript:', fromEntranceScr)
 		else:
 			local73 = 0
-			(global0 init: reset: 3 posn: 225 188 setScale: FixedScaler 100)
-			(global1 handsOn:)
+			global0._send('init:', 'reset:', 3, 'posn:', 225, 188, 'setScale:', FixedScaler, 100)
+			global1._send('handsOn:')
 		#endif
 		localproc_0()
-		(bats
-			init:
-			illegalBits: 0
-			ignoreActors: 1
-			ignoreHorizon: 1
-			setCycle: MCyc @local209 bats
+		bats._send(
+			'init:',
+			'illegalBits:', 0,
+			'ignoreActors:', 1,
+			'ignoreHorizon:', 1,
+			'setCycle:', MCyc, @local209, bats
 		)
-		(zombie
-			init:
-			illegalBits: 0
-			ignoreActors: 1
-			ignoreHorizon: 1
-			setCycle: Walk
-			hide:
-			setScript: zombieScript 0 600
+		zombie._send(
+			'init:',
+			'illegalBits:', 0,
+			'ignoreActors:', 1,
+			'ignoreHorizon:', 1,
+			'setCycle:', Walk,
+			'hide:',
+			'setScript:', zombieScript, 0, 600
 		)
-		(global32 add: moon sky uWorldEntrance myPath eachElementDo: #init)
-		if (not (global0 has: 17)):
-			(motherGhost
-				init:
-				ignoreActors: 1
-				illegalBits: 0
-				ignoreHorizon: 1
-				setScript: motherGhostScript
+		global32._send('add:', moon, sky, uWorldEntrance, myPath, 'eachElementDo:', #init)
+		if (not global0._send('has:', 17)):
+			motherGhost._send(
+				'init:',
+				'ignoreActors:', 1,
+				'illegalBits:', 0,
+				'ignoreHorizon:', 1,
+				'setScript:', motherGhostScript
 			)
-			(global102 number: 630 loop: -1 play:)
+			global102._send('number:', 630, 'loop:', -1, 'play:')
 		#endif
 	#end:method
 
@@ -133,30 +132,30 @@ class rm630(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit: &rest)
+		super._send('doit:', &rest)
 		if (not script):
-			match temp0 = (global0 onControl: 1)
+			match temp0 = global0._send('onControl:', 1)
 				case 16384:
-					(self setScript: toEntranceScr)
+					self._send('setScript:', toEntranceScr)
 				#end:case
 				case 8192:
 					if (local73 == 0):
-						(self setScript: downToMidScr)
+						self._send('setScript:', downToMidScr)
 					#endif
 				#end:case
 				case 4096:
 					if (local73 == 1):
-						(self setScript: downToBottomScr)
+						self._send('setScript:', downToBottomScr)
 					#endif
 				#end:case
 				case 2048:
 					if (local73 == 1):
-						(self setScript: upToTopScr)
+						self._send('setScript:', upToTopScr)
 					#endif
 				#end:case
 				case 1024:
 					if (local73 == 2):
-						(self setScript: upToMidScr)
+						self._send('setScript:', upToMidScr)
 					#endif
 				#end:case
 			#end:match
@@ -168,10 +167,10 @@ class rm630(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global102 number:) == 630):
-			(global102 fade:)
+		if (global102._send('number:') == 630):
+			global102._send('fade:')
 		#endif
-		(super newRoom: param1)
+		super._send('newRoom:', param1)
 	#end:method
 
 	@classmethod
@@ -179,7 +178,7 @@ class rm630(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		proc958_0(0, 942, 964)
 	#end:method
 
@@ -204,7 +203,7 @@ class FixedScaler(Code):
 
 		backSize = (frontSize = param2 - 1)
 		param2 = ((param2 * 128) / 100)
-		(param1 scaleX: param2 scaleY: param2)
+		param1._send('scaleX:', param2, 'scaleY:', param2)
 	#end:method
 
 #end:class or instance
@@ -219,57 +218,54 @@ class downToMidScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 mover:) and ((global0 mover:) isKindOf: PolyPath)):
-					local74 = ((global0 mover:) finalX:)
-					local75 = ((global0 mover:) finalY:)
-					local76 = ((global0 mover:) caller:)
+				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
+					local74 = global0._send('mover:')._send('finalX:')
+					local75 = global0._send('mover:')._send('finalY:')
+					local76 = global0._send('mover:')._send('caller:')
 				#endif
-				(global1 handsOff:)
-				(global0 setMotion: 0)
+				global1._send('handsOff:')
+				global0._send('setMotion:', 0)
 				cycles = 1
 			#end:case
 			case 1:
-				(global0
-					setScale:
-						Scaler
-						(((global0 scaleX:) * 100) / 128)
-						((((global0 scaleX:) * 100) / 128) - 1)
-						(global0 x:)
-						((global0 x:) - 1)
-					setPri: 9
-					setLoop: 7
-					setMotion:
-						MoveTo
-						((global0 x:) - 20)
-						((global0 y:) + 50)
-						self
+				global0._send(
+					'setScale:', Scaler, ((global0._send('scaleX:') * 100) / 128), (-
+							((global0._send('scaleX:') * 100) / 128)
+							1
+						), global0._send('x:'), (global0._send('x:') - 1),
+					'setPri:', 9,
+					'setLoop:', 7,
+					'setMotion:', MoveTo, (global0._send('x:') - 20), (+
+							global0._send('y:')
+							50
+						), self
 				)
 			#end:case
 			case 2:
-				(global0 setLoop: -1 setScale: FixedScaler 65)
+				global0._send('setLoop:', -1, 'setScale:', FixedScaler, 65)
 				localproc_0(1)
 				seconds = 2
 			#end:case
 			case 3:
-				(global0 posn: 136 175 setMotion: MoveTo 139 151 self)
+				global0._send('posn:', 136, 175, 'setMotion:', MoveTo, 139, 151, self)
 			#end:case
 			case 4:
 				local73 = 1
 				if (not local76):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
 				if local74:
 					if 
 						(>
-							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
+							kernel.GetDistance(global0._send('x:'), global0._send('y:'), local74, local75)
 							15
 						)
-						(global0 setMotion: PolyPath local74 local75 local76)
+						global0._send('setMotion:', PolyPath, local74, local75, local76)
 					#endif
 					local74 = 0
 					local76 = 0
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -286,53 +282,51 @@ class downToBottomScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 mover:) and ((global0 mover:) isKindOf: PolyPath)):
-					local74 = ((global0 mover:) finalX:)
-					local75 = ((global0 mover:) finalY:)
-					local76 = ((global0 mover:) caller:)
+				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
+					local74 = global0._send('mover:')._send('finalX:')
+					local75 = global0._send('mover:')._send('finalY:')
+					local76 = global0._send('mover:')._send('caller:')
 				#endif
-				(global1 handsOff:)
-				(global0 setMotion: 0)
+				global1._send('handsOff:')
+				global0._send('setMotion:', 0)
 				cycles = 1
 			#end:case
 			case 1:
-				(global0
-					setScale:
-						Scaler
-						(((global0 scaleX:) * 100) / 128)
-						((((global0 scaleX:) * 100) / 128) - 1)
-						(global0 x:)
-						((global0 x:) - 1)
-					setPri: 8
-					setLoop: 3
-					setMotion: MoveTo 160 167 self
+				global0._send(
+					'setScale:', Scaler, ((global0._send('scaleX:') * 100) / 128), (-
+							((global0._send('scaleX:') * 100) / 128)
+							1
+						), global0._send('x:'), (global0._send('x:') - 1),
+					'setPri:', 8,
+					'setLoop:', 3,
+					'setMotion:', MoveTo, 160, 167, self
 				)
 			#end:case
 			case 2:
-				(global0 setLoop: -1 setScale: Scaler 40 20 140 80)
+				global0._send('setLoop:', -1, 'setScale:', Scaler, 40, 20, 140, 80)
 				localproc_0(2)
 				seconds = 2
 			#end:case
 			case 3:
-				(global0 posn: 161 151 setMotion: MoveTo 160 134 self)
+				global0._send('posn:', 161, 151, 'setMotion:', MoveTo, 160, 134, self)
 			#end:case
 			case 4:
 				local73 = 2
 				if (not local76):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
 				if local74:
 					if 
 						(>
-							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
+							kernel.GetDistance(global0._send('x:'), global0._send('y:'), local74, local75)
 							10
 						)
-						(global0 setMotion: PolyPath local74 local75 local76)
+						global0._send('setMotion:', PolyPath, local74, local75, local76)
 					#endif
 					local74 = 0
 					local76 = 0
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -349,22 +343,21 @@ class upToTopScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 mover:) and ((global0 mover:) isKindOf: PolyPath)):
-					local74 = ((global0 mover:) finalX:)
-					local75 = ((global0 mover:) finalY:)
-					local76 = ((global0 mover:) caller:)
+				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
+					local74 = global0._send('mover:')._send('finalX:')
+					local75 = global0._send('mover:')._send('finalY:')
+					local76 = global0._send('mover:')._send('caller:')
 				#endif
-				(global1 handsOff:)
-				(global0 setMotion: 0)
+				global1._send('handsOff:')
+				global0._send('setMotion:', 0)
 				cycles = 1
 			#end:case
 			case 1:
-				(global0
-					setMotion:
-						MoveTo
-						((global0 x:) - 10)
-						((global0 y:) + 35)
-						self
+				global0._send(
+					'setMotion:', MoveTo, (global0._send('x:') - 10), (+
+							global0._send('y:')
+							35
+						), self
 				)
 			#end:case
 			case 2:
@@ -372,33 +365,33 @@ class upToTopScr(Script):
 				seconds = 2
 			#end:case
 			case 3:
-				(global0
-					setScale: FixedScaler 100
-					setLoop: 2
-					posn: 133 191
-					setMotion: MoveTo 167 151 self
+				global0._send(
+					'setScale:', FixedScaler, 100,
+					'setLoop:', 2,
+					'posn:', 133, 191,
+					'setMotion:', MoveTo, 167, 151, self
 				)
 			#end:case
 			case 4:
-				(global0 setPri: -1 setLoop: -1 setMotion: MoveTo 175 156 self)
+				global0._send('setPri:', -1, 'setLoop:', -1, 'setMotion:', MoveTo, 175, 156, self)
 			#end:case
 			case 5:
 				local73 = 0
 				if (not local76):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
 				if local74:
 					if 
 						(>
-							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
+							kernel.GetDistance(global0._send('x:'), global0._send('y:'), local74, local75)
 							20
 						)
-						(global0 setMotion: PolyPath local74 local75 local76)
+						global0._send('setMotion:', PolyPath, local74, local75, local76)
 					#endif
 					local74 = 0
 					local76 = 0
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -415,60 +408,59 @@ class upToMidScr(Script):
 
 		match state = param1
 			case 0:
-				if ((global0 mover:) and ((global0 mover:) isKindOf: PolyPath)):
-					local74 = ((global0 mover:) finalX:)
-					local75 = ((global0 mover:) finalY:)
-					local76 = ((global0 mover:) caller:)
+				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
+					local74 = global0._send('mover:')._send('finalX:')
+					local75 = global0._send('mover:')._send('finalY:')
+					local76 = global0._send('mover:')._send('caller:')
 				#endif
-				(global1 handsOff:)
-				(global0 setMotion: 0)
+				global1._send('handsOff:')
+				global0._send('setMotion:', 0)
 				cycles = 1
 			#end:case
 			case 1:
-				(global0
-					setMotion:
-						MoveTo
-						((global0 x:) + 3)
-						((global0 y:) + 24)
-						self
+				global0._send(
+					'setMotion:', MoveTo, (global0._send('x:') + 3), (+
+							global0._send('y:')
+							24
+						), self
 				)
 			#end:case
 			case 2:
 				seconds = 2
 			#end:case
 			case 3:
-				(global0
-					setScale: FixedScaler 65
-					setLoop: 2
-					posn: 172 165
-					setMotion: MoveTo 162 136 self
+				global0._send(
+					'setScale:', FixedScaler, 65,
+					'setLoop:', 2,
+					'posn:', 172, 165,
+					'setMotion:', MoveTo, 162, 136, self
 				)
 			#end:case
 			case 4:
-				(global0
-					setLoop: -1
-					setPri: ((global0 priority:) + 1)
-					setMotion: MoveTo 154 141 self
+				global0._send(
+					'setLoop:', -1,
+					'setPri:', (global0._send('priority:') + 1),
+					'setMotion:', MoveTo, 154, 141, self
 				)
 			#end:case
 			case 5:
 				local73 = 1
 				localproc_0()
 				if (not local76):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
 				if local74:
 					if 
 						(>
-							kernel.GetDistance((global0 x:), (global0 y:), local74, local75)
+							kernel.GetDistance(global0._send('x:'), global0._send('y:'), local74, local75)
 							15
 						)
-						(global0 setMotion: PolyPath local74 local75 local76)
+						global0._send('setMotion:', PolyPath, local74, local75, local76)
 					#endif
 					local74 = 0
 					local76 = 0
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -485,11 +477,11 @@ class fromEntranceScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: DPath 176 91 140 103 176 108 self)
+				global0._send('setMotion:', DPath, 176, 91, 140, 103, 176, 108, self)
 			#end:case
 			case 1:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -506,15 +498,15 @@ class toEntranceScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: DPath 140 103 176 91 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', DPath, 140, 103, 176, 91, self)
 			#end:case
 			case 1:
-				(global0 setMotion: 0)
+				global0._send('setMotion:', 0)
 				cycles = 2
 			#end:case
 			case 2:
-				(global2 newRoom: (global2 north:))
+				global2._send('newRoom:', global2._send('north:'))
 			#end:case
 		#end:match
 	#end:method
@@ -536,13 +528,13 @@ class zombie(Actor):
 
 		if (param1 == 5):
 			if local73:
-				(global91 say: noun param1 7 1)
+				global91._send('say:', noun, param1, 7, 1)
 			else:
-				(global1 handsOff:)
-				(global2 setScript: egoDeadScript 0 self)
+				global1._send('handsOff:')
+				global2._send('setScript:', egoDeadScript, 0, self)
 			#endif
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -553,16 +545,16 @@ class zombie(Actor):
 
 		if 
 			(and
-				(not (global2 script:))
-				((motherGhost script:) != getHankyScript)
-				((global0 distanceTo: self) <= 10)
+				(not global2._send('script:'))
+				(motherGhost._send('script:') != getHankyScript)
+				(global0._send('distanceTo:', self) <= 10)
 				(not local73)
 			)
-			(global1 handsOff:)
+			global1._send('handsOff:')
 			local78 = 1
-			(global2 setScript: egoDeadScript 0 self)
+			global2._send('setScript:', egoDeadScript, 0, self)
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 #end:class or instance
@@ -591,22 +583,10 @@ class zombieScript(Script):
 				seconds = kernel.Random(20, 30)
 			#end:case
 			case 1:
-				(client
-					view: register
-					show:
-					setMotion:
-						DPath
-						343
-						258
-						299
-						187
-						234
-						183
-						165
-						186
-						165
-						242
-						self
+				client._send(
+					'view:', register,
+					'show:',
+					'setMotion:', DPath, 343, 258, 299, 187, 234, 183, 165, 186, 165, 242, self
 				)
 				register.post('++')
 				if (register == 602):
@@ -617,8 +597,8 @@ class zombieScript(Script):
 				#endif
 			#end:case
 			case 2:
-				(client hide:)
-				(self init:)
+				client._send('hide:')
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -635,11 +615,11 @@ class egoDeadScript(Script):
 
 		match state = param1
 			case 0:
-				(zombie setMotion: 0)
+				zombie._send('setMotion:', 0)
 				if local78:
-					(global91 say: 9 0 5 1 self)
+					global91._send('say:', 9, 0, 5, 1, self)
 				else:
-					(global91 say: 11 5 0 1 self)
+					global91._send('say:', 11, 5, 0, 1, self)
 				#endif
 			#end:case
 			case 1:
@@ -647,43 +627,39 @@ class egoDeadScript(Script):
 					case local78:
 						cycles = 1
 					#end:case
-					case ((global0 x:) > (register x:)):
-						(global0
-							setMotion:
-								PolyPath
-								((register x:) + 20)
-								(register y:)
-								self
+					case (global0._send('x:') > register._send('x:')):
+						global0._send(
+							'setMotion:', PolyPath, (register._send('x:') + 20), register._send(
+									'y:'
+								), self
 						)
 					#end:case
 					else:
-						(global0
-							setMotion:
-								PolyPath
-								((register x:) - 20)
-								(register y:)
-								self
+						global0._send(
+							'setMotion:', PolyPath, (register._send('x:') - 20), register._send(
+									'y:'
+								), self
 						)
 					#end:else
 				)
-				(global102 stop:)
-				(global103 number: 601 loop: 1 play:)
+				global102._send('stop:')
+				global103._send('number:', 601, 'loop:', 1, 'play:')
 			#end:case
 			case 2:
 				if local78:
-					(global91 say: 9 0 5 2 self)
+					global91._send('say:', 9, 0, 5, 2, self)
 				else:
-					(global91 say: 11 5 0 2 self)
+					global91._send('say:', 11, 5, 0, 2, self)
 				#endif
 			#end:case
 			case 3:
-				(global0
-					view: 606
-					normal: 0
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 15
-					setCycle: End self
+				global0._send(
+					'view:', 606,
+					'normal:', 0,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 15,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 4:
@@ -704,14 +680,14 @@ class ghoul1Scr(Script):
 
 		match state = param1
 			case 0:
-				(client show: setCycle: MCyc @local0 self)
+				client._send('show:', 'setCycle:', MCyc, @local0, self)
 			#end:case
 			case 1:
-				(client hide:)
+				client._send('hide:')
 				seconds = kernel.Random(20, 30)
 			#end:case
 			case 2:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -739,13 +715,13 @@ class uWorldEntrance(Feature):
 
 		match param1
 			case 2:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case 1:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			else:
-				(super doVerb: 5 &rest)
+				super._send('doVerb:', 5, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -773,16 +749,16 @@ class moon(Feature):
 
 		match param1
 			case 2:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case 1:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case 5:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			else:
-				(global91 say: noun 0 0 0)
+				global91._send('say:', noun, 0, 0, 0)
 			#end:else
 		#end:match
 	#end:method
@@ -802,15 +778,15 @@ class bats(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(ghoul1
-			init:
-			setPri: 10
-			cycleSpeed: 15
-			ignoreActors: 1
-			ignoreHorizon: 1
-			setScript: ghoul1Scr
+		ghoul1._send(
+			'init:',
+			'setPri:', 10,
+			'cycleSpeed:', 15,
+			'ignoreActors:', 1,
+			'ignoreHorizon:', 1,
+			'setScript:', ghoul1Scr
 		)
-		(self dispose:)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -829,15 +805,15 @@ class motherGhost(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		if 
 			(and
-				(not (global2 script:))
-				((script state:) == 0)
-				(script register:)
+				(not global2._send('script:'))
+				(script._send('state:') == 0)
+				script._send('register:')
 			)
-			(global1 handsOff:)
-			(self setScript: getHankyScript)
+			global1._send('handsOff:')
+			self._send('setScript:', getHankyScript)
 		#endif
 	#end:method
 
@@ -849,28 +825,28 @@ class motherGhost(Actor):
 		match param1
 			case 2:
 				(cond
-					case (global0 has: 17):
-						(global91 say: 2 2 1)
+					case global0._send('has:', 17):
+						global91._send('say:', 2, 2, 1)
 					#end:case
-					case ((script state:) != 0):
-						(global1 handsOff:)
-						(script register: 1)
+					case (script._send('state:') != 0):
+						global1._send('handsOff:')
+						script._send('register:', 1)
 					#end:case
 					else:
-						(global1 handsOff:)
-						(self setScript: getHankyScript)
+						global1._send('handsOff:')
+						self._send('setScript:', getHankyScript)
 					#end:else
 				)
 			#end:case
 			case 1:
-				if (global0 has: 17):
-					(global91 say: noun param1 1)
+				if global0._send('has:', 17):
+					global91._send('say:', noun, param1, 1)
 				else:
-					(global91 say: noun param1 2)
+					global91._send('say:', noun, param1, 2)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -887,17 +863,17 @@ class motherGhostScript(Script):
 
 		match state = param1
 			case 0:
-				(client loop: 0 posn: 109 82 cycleSpeed: 20 setCycle: Fwd)
+				client._send('loop:', 0, 'posn:', 109, 82, 'cycleSpeed:', 20, 'setCycle:', Fwd)
 				seconds = kernel.Random(5, 15)
 			#end:case
 			case 1:
-				(global91 say: 9 0 4 1 self)
+				global91._send('say:', 9, 0, 4, 1, self)
 			#end:case
 			case 2:
-				(client cycleSpeed: 5 setCycle: MCyc @local322 self)
+				client._send('cycleSpeed:', 5, 'setCycle:', MCyc, @local322, self)
 			#end:case
 			case 3:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -914,83 +890,83 @@ class getHankyScript(Script):
 
 		match state = param1
 			case 0:
-				local77 = (zombie mover:)
-				(zombie mover: 0)
-				(global0 setMotion: PolyPath 205 162 self)
+				local77 = zombie._send('mover:')
+				zombie._send('mover:', 0)
+				global0._send('setMotion:', PolyPath, 205, 162, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 315 self)
+				global0._send('setHeading:', 315, self)
 			#end:case
 			case 2:
-				(theConv
-					add: -1 2 2 2 1
-					add: -1 2 2 2 2
-					add: -1 2 2 2 3
-					add: -1 2 2 2 4
-					add: -1 2 2 2 5
-					add: -1 2 2 2 6
-					add: -1 2 2 2 7
-					init: self
+				theConv._send(
+					'add:', -1, 2, 2, 2, 1,
+					'add:', -1, 2, 2, 2, 2,
+					'add:', -1, 2, 2, 2, 3,
+					'add:', -1, 2, 2, 2, 4,
+					'add:', -1, 2, 2, 2, 5,
+					'add:', -1, 2, 2, 2, 6,
+					'add:', -1, 2, 2, 2, 7,
+					'init:', self
 				)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(global91 say: 2 2 2 8 self)
+				global91._send('say:', 2, 2, 2, 8, self)
 			#end:case
 			case 5:
-				(global91 say: 2 2 2 9 self)
+				global91._send('say:', 2, 2, 2, 9, self)
 			#end:case
 			case 6:
-				(motherGhost cycleSpeed: 15 setCycle: MCyc @local375 self)
+				motherGhost._send('cycleSpeed:', 15, 'setCycle:', MCyc, @local375, self)
 			#end:case
 			case 7:
-				(motherGhost setLoop: 2 cel: 0 posn: 138 69)
-				(global0
-					normal: 0
-					view: 633
-					setLoop: 5
-					cel: 0
-					posn: ((global0 x:) - 11) ((global0 y:) - 1)
+				motherGhost._send('setLoop:', 2, 'cel:', 0, 'posn:', 138, 69)
+				global0._send(
+					'normal:', 0,
+					'view:', 633,
+					'setLoop:', 5,
+					'cel:', 0,
+					'posn:', (global0._send('x:') - 11), (global0._send('y:') - 1)
 				)
 				cycles = 10
 			#end:case
 			case 8:
-				(motherGhost cel: 1 posn: 159 87)
-				(global0 cel: 1)
+				motherGhost._send('cel:', 1, 'posn:', 159, 87)
+				global0._send('cel:', 1)
 				cycles = 10
 			#end:case
 			case 9:
-				(motherGhost cel: 2 posn: 163 106)
-				(global0 cel: 2)
+				motherGhost._send('cel:', 2, 'posn:', 163, 106)
+				global0._send('cel:', 2)
 				cycles = 10
 			#end:case
 			case 10:
-				(motherGhost setCycle: MCyc @local457 self)
-				(global0 cel: 3)
+				motherGhost._send('setCycle:', MCyc, @local457, self)
+				global0._send('cel:', 3)
 				cycles = 3
 			#end:case
 			case 11:
-				(global1 givePoints: 1)
-				(global0
-					get: 17
-					oldScaleSignal: 0
-					reset: 7
-					setScale: FixedScaler 100
-					posn: 210 167
+				global1._send('givePoints:', 1)
+				global0._send(
+					'get:', 17,
+					'oldScaleSignal:', 0,
+					'reset:', 7,
+					'setScale:', FixedScaler, 100,
+					'posn:', 210, 167
 				)
 			#end:case
 			case 12:
-				(motherGhost view: 632 setLoop: 0 cel: 0 setCycle: End self)
-				(global102 fade:)
+				motherGhost._send('view:', 632, 'setLoop:', 0, 'cel:', 0, 'setCycle:', End, self)
+				global102._send('fade:')
 			#end:case
 			case 13:
-				(global102 number: 600 loop: -1 play:)
-				(global1 handsOn:)
-				(motherGhost dispose:)
+				global102._send('number:', 600, 'loop:', -1, 'play:')
+				global1._send('handsOn:')
+				motherGhost._send('dispose:')
 				if local77:
-					(zombie mover: local77)
+					zombie._send('mover:', local77)
 				#endif
 				local77 = 0
 			#end:case

@@ -25,20 +25,20 @@ class ROsc(Cycle):
 		if (argc >= 5):
 			caller = param5
 		#endif
-		(super init: param1)
+		super._send('init:', param1)
 		if (argc >= 3):
 			firstC = param3
 			if (argc >= 4):
 				if param4:
 					lastC = param4
 				else:
-					lastC = (client lastCel:)
+					lastC = client._send('lastCel:')
 				#endif
 			else:
-				lastC = (client lastCel:)
+				lastC = client._send('lastCel:')
 			#endif
 		#endif
-		(client cel: firstC)
+		client._send('cel:', firstC)
 	#end:method
 
 	@classmethod
@@ -46,11 +46,11 @@ class ROsc(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((temp0 = (self nextCel:) > lastC) or (temp0 < firstC)):
+		if ((temp0 = self._send('nextCel:') > lastC) or (temp0 < firstC)):
 			cycleDir = -cycleDir
-			(self cycleDone:)
+			self._send('cycleDone:')
 		else:
-			(client cel: temp0)
+			client._send('cel:', temp0)
 		#endif
 	#end:method
 
@@ -60,13 +60,13 @@ class ROsc(Cycle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if cycles:
-			(client cel: (self nextCel:))
+			client._send('cel:', self._send('nextCel:'))
 			if (cycles > 0):
 				cycles.post('--')
 			#endif
 		else:
 			completed = 1
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 

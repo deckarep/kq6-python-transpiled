@@ -33,66 +33,66 @@ class ownerTalkScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 4 2 13 1 self)
+				global91._send('say:', 4, 2, 13, 1, self)
 			#end:case
 			case 3:
-				(global91 say: 4 2 13 2 self)
+				global91._send('say:', 4, 2, 13, 2, self)
 			#end:case
 			case 4:
-				(kernel.ScriptID(280, 2)
-					view: 286
-					posn: 236 127
-					loop: 1
-					cel: 0
-					setPri: 11
-					setCycle: End self
+				kernel.ScriptID(280, 2)._send(
+					'view:', 286,
+					'posn:', 236, 127,
+					'loop:', 1,
+					'cel:', 0,
+					'setPri:', 11,
+					'setCycle:', End, self
 				)
-				((global9 at: 0) owner: -1)
+				global9._send('at:', 0)._send('owner:', -1)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
-				(global91 say: 4 2 13 3 self)
+				global91._send('say:', 4, 2, 13, 3, self)
 			#end:case
 			case 7:
-				(global91 say: 4 2 13 4 self)
+				global91._send('say:', 4, 2, 13, 4, self)
 			#end:case
 			case 8:
-				(global91 say: 4 2 13 5 self)
+				global91._send('say:', 4, 2, 13, 5, self)
 			#end:case
 			case 9:
-				(global91 say: 4 2 13 6 self)
+				global91._send('say:', 4, 2, 13, 6, self)
 			#end:case
 			case 10:
-				(kernel.ScriptID(280, 2) loop: 2 cel: 0 setCycle: CT 4 1 self)
+				kernel.ScriptID(280, 2)._send('loop:', 2, 'cel:', 0, 'setCycle:', CT, 4, 1, self)
 			#end:case
 			case 11:
-				(kernel.ScriptID(280, 1) init:)
-				(kernel.ScriptID(280, 2) setCycle: End self)
+				kernel.ScriptID(280, 1)._send('init:')
+				kernel.ScriptID(280, 2)._send('setCycle:', End, self)
 			#end:case
 			case 12:
-				(kernel.ScriptID(280, 2) setPri: -1 view: 280 loop: 8 cel: 0)
+				kernel.ScriptID(280, 2)._send('setPri:', -1, 'view:', 280, 'loop:', 8, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 13:
 				kernel.UnLoad(128, 286)
-				(global91 say: 4 2 13 7 self oneOnly: 0)
+				global91._send('say:', 4, 2, 13, 7, self, 'oneOnly:', 0)
 			#end:case
 			case 14:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -102,7 +102,7 @@ class ownerTalkScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
 
@@ -118,9 +118,9 @@ class ringMapNotOutScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
@@ -128,43 +128,43 @@ class ringMapNotOutScr(Script):
 			#end:case
 			case 2:
 				(= register
-					if (kernel.ScriptID(10, 0) isSet: 1):
-						(self setScript: kernel.ScriptID(286, 2) self)
+					if kernel.ScriptID(10, 0)._send('isSet:', 1):
+						self._send('setScript:', kernel.ScriptID(286, 2), self)
 						36
 					else:
-						(kernel.ScriptID(10, 0) setIt: 1)
-						(self setScript: kernel.ScriptID(286, 1) self 16384)
+						kernel.ScriptID(10, 0)._send('setIt:', 1)
+						self._send('setScript:', kernel.ScriptID(286, 1), self, 16384)
 						18
 					#endif
 				)
 			#end:case
 			case 3:
-				(global91
-					say: 4 70 register 1 (self if (register == 36) else script)
+				global91._send(
+					'say:', 4, 70, register, 1, (self if (register == 36) else script)
 				)
 			#end:case
 			case 4:
-				(global91 say: 4 70 register 2 script)
+				global91._send('say:', 4, 70, register, 2, script)
 			#end:case
 			case 5:
 				if (register == 36):
 					(state += 2)
 					cycles = 2
 				else:
-					(global91 say: 4 70 register 3 self)
+					global91._send('say:', 4, 70, register, 3, self)
 				#endif
 			#end:case
 			case 6:
-				(self setScript: kernel.ScriptID(286, 0) self)
+				self._send('setScript:', kernel.ScriptID(286, 0), self)
 			#end:case
 			case 7:
-				(global91 say: 4 70 register 4 self)
+				global91._send('say:', 4, 70, register, 4, self)
 			#end:case
 			case 8:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -174,7 +174,7 @@ class ringMapNotOutScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
 
@@ -190,71 +190,71 @@ class ringForMapActIScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 39 global11)
-				(global1 handsOff:)
+				global0._send('put:', 39, global11)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global1 givePoints: 5)
-				(self setScript: kernel.ScriptID(286, 1) self 16384)
+				global1._send('givePoints:', 5)
+				self._send('setScript:', kernel.ScriptID(286, 1), self, 16384)
 			#end:case
 			case 3:
 				kernel.UnLoad(128, 2811)
 				kernel.UnLoad(128, 284)
-				(global91 say: 4 70 19 1 kernel.ScriptID(286, 1))
+				global91._send('say:', 4, 70, 19, 1, kernel.ScriptID(286, 1))
 			#end:case
 			case 4:
-				(global91 say: 4 70 19 2 kernel.ScriptID(286, 1))
+				global91._send('say:', 4, 70, 19, 2, kernel.ScriptID(286, 1))
 			#end:case
 			case 5:
-				(global91 say: 4 70 19 3 self)
+				global91._send('say:', 4, 70, 19, 3, self)
 			#end:case
 			case 6:
-				(global91 say: 4 70 19 4 self)
+				global91._send('say:', 4, 70, 19, 4, self)
 			#end:case
 			case 7:
-				(global91 say: 4 70 19 5 self)
+				global91._send('say:', 4, 70, 19, 5, self)
 			#end:case
 			case 8:
-				(global91 say: 4 70 19 6 self)
+				global91._send('say:', 4, 70, 19, 6, self)
 			#end:case
 			case 9:
-				(global91 say: 4 70 19 7 self)
+				global91._send('say:', 4, 70, 19, 7, self)
 			#end:case
 			case 10:
-				(global91 say: 4 70 19 8 self)
+				global91._send('say:', 4, 70, 19, 8, self)
 			#end:case
 			case 11:
-				(global91 say: 4 70 19 9 self)
+				global91._send('say:', 4, 70, 19, 9, self)
 			#end:case
 			case 12:
 				proc913_3()
-				(self setScript: kernel.ScriptID(286, 3) self)
+				self._send('setScript:', kernel.ScriptID(286, 3), self)
 			#end:case
 			case 13:
 				kernel.UnLoad(128, 286)
-				(self setScript: kernel.ScriptID(282, 2) self)
+				self._send('setScript:', kernel.ScriptID(282, 2), self)
 				cycles = 1
 			#end:case
 			case 14:
-				(global0
-					reset:
-					setSpeed: 6
-					setLoop: 0
-					setCycle: Rev
-					setMotion: MoveTo ((global0 x:) - 10) (global0 y:) self
+				global0._send(
+					'reset:',
+					'setSpeed:', 6,
+					'setLoop:', 0,
+					'setCycle:', Rev,
+					'setMotion:', MoveTo, (global0._send('x:') - 10), global0._send('y:'), self
 				)
 			#end:case
 			case 15:
-				(global0 setCycle: Walk)
+				global0._send('setCycle:', Walk)
 			#end:case
 			case 16:
-				(global2 newRoom: 145)
+				global2._send('newRoom:', 145)
 			#end:case
 		#end:match
 	#end:method
@@ -264,7 +264,7 @@ class ringForMapActIScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
 
@@ -280,38 +280,38 @@ class ringForMapNotActIScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 get: 0 put: 39 global11)
-				(global1 handsOff:)
+				global0._send('get:', 0, 'put:', 39, global11)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 4 70 21 1 self)
+				global91._send('say:', 4, 70, 21, 1, self)
 			#end:case
 			case 3:
-				(global91 say: 4 70 21 2 self)
+				global91._send('say:', 4, 70, 21, 2, self)
 			#end:case
 			case 4:
-				(self setScript: kernel.ScriptID(286, 1) self -32768)
+				self._send('setScript:', kernel.ScriptID(286, 1), self, -32768)
 			#end:case
 			case 5:
-				(script cue:)
+				script._send('cue:')
 			#end:case
 			case 6:
 				ticks = 15
 			#end:case
 			case 7:
-				(self setScript: kernel.ScriptID(286, 3) self)
+				self._send('setScript:', kernel.ScriptID(286, 3), self)
 			#end:case
 			case 8:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -321,7 +321,7 @@ class ringForMapNotActIScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
 
@@ -337,40 +337,40 @@ class ringForPearlScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 put: 39 get: 30)
-				(global1 handsOff:)
+				global0._send('put:', 39, 'get:', 30)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 4 70 20 1 self)
+				global91._send('say:', 4, 70, 20, 1, self)
 			#end:case
 			case 3:
-				(global91 say: 4 70 20 2 self)
+				global91._send('say:', 4, 70, 20, 2, self)
 			#end:case
 			case 4:
-				(self setScript: kernel.ScriptID(286, 1) self)
+				self._send('setScript:', kernel.ScriptID(286, 1), self)
 			#end:case
 			case 5:
-				(script cue:)
+				script._send('cue:')
 			#end:case
 			case 6:
 				ticks = 120
 			#end:case
 			case 7:
-				(self setScript: kernel.ScriptID(286, 0) self)
+				self._send('setScript:', kernel.ScriptID(286, 0), self)
 			#end:case
 			case 8:
-				(global91 say: 4 70 20 3 self)
+				global91._send('say:', 4, 70, 20, 3, self)
 			#end:case
 			case 9:
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -380,7 +380,7 @@ class ringForPearlScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
 
@@ -396,37 +396,32 @@ class talkAfterActI(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 4 2 47 1 self)
+				global91._send('say:', 4, 2, 47, 1, self)
 			#end:case
 			case 3:
-				(global91
-					say:
-						4
-						2
-						match kernel.Random(0, 4)
+				global91._send(
+					'say:', 4, 2, match kernel.Random(0, 4)
 							case 0: 15#end:case
 							case 1: 37#end:case
 							case 2: 44#end:case
 							case 3: 45#end:case
 							case 4: 46#end:case
-						#end:match
-						1
-						self
+						#end:match, 1, self
 				)
 			#end:case
 			case 4:
-				(global0 reset: 0)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 0)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -436,7 +431,7 @@ class talkAfterActI(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
 

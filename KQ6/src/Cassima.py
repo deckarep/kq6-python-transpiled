@@ -35,48 +35,48 @@ class Cassima(Kq6Talker):
 		(cond
 			case (proc913_0(59) and (global11 == 140)):
 				cel = 1
-				(self x: 94 y: 87 textX: -60 textY: 30)
-				(super init: 0 0 tMouth140 &rest)
+				self._send('x:', 94, 'y:', 87, 'textX:', -60, 'textY:', 30)
+				super._send('init:', 0, 0, tMouth140, &rest)
 			#end:case
 			case proc913_0(59):
 				cel = 1
-				(super init: 0 0 0 &rest)
+				super._send('init:', 0, 0, 0, &rest)
 			#end:case
-			case (((global2 curPic:) == 165) and (global11 == 740)):
-				(self cel: 1 x: 214 y: 78 textX: -60 textY: 50 talkWidth: 120)
-				(super init: 0 tEyes740 tMouth740 &rest)
+			case ((global2._send('curPic:') == 165) and (global11 == 740)):
+				self._send('cel:', 1, 'x:', 214, 'y:', 78, 'textX:', -60, 'textY:', 50, 'talkWidth:', 120)
+				super._send('init:', 0, tEyes740, tMouth740, &rest)
 			#end:case
 			case proc913_0(99):
-				(self cel: 1 x: 172 y: 54 talkWidth: 135 textX: -2 textY: 58)
-				(super init: 0 0 wedMouth &rest)
+				self._send('cel:', 1, 'x:', 172, 'y:', 54, 'talkWidth:', 135, 'textX:', -2, 'textY:', 58)
+				super._send('init:', 0, 0, wedMouth, &rest)
 			#end:case
 			case proc913_0(102):
-				(self cel: 1 x: 132 y: 67 textX: -112 textY: -47 talkWidth: 92)
-				(tEyes view: 7832 loop: 10 cel: 0 nsLeft: 0 nsTop: 0)
-				(tMouth view: 7832 loop: 9 cel: 0 nsLeft: -4 nsTop: 3)
-				(super init: 0 tEyes tMouth &rest)
+				self._send('cel:', 1, 'x:', 132, 'y:', 67, 'textX:', -112, 'textY:', -47, 'talkWidth:', 92)
+				tEyes._send('view:', 7832, 'loop:', 10, 'cel:', 0, 'nsLeft:', 0, 'nsTop:', 0)
+				tMouth._send('view:', 7832, 'loop:', 9, 'cel:', 0, 'nsLeft:', -4, 'nsTop:', 3)
+				super._send('init:', 0, tEyes, tMouth, &rest)
 			#end:case
 			case (global11 == 870):
-				(self cel: 1 textX: 58 textY: 57 talkWidth: 100)
-				(super init: 0 0 0 &rest)
+				self._send('cel:', 1, 'textX:', 58, 'textY:', 57, 'talkWidth:', 100)
+				super._send('init:', 0, 0, 0, &rest)
 			#end:case
 			else:
 				if ((global11 == 750) or (global11 == 740)):
 					winPosn = 0
 				#endif
-				(self
-					view: 891
-					loop: 0
-					cel: 0
-					x: 5
-					y: 5
-					textX: 79
-					textY: 8
-					talkWidth: 213
+				self._send(
+					'view:', 891,
+					'loop:', 0,
+					'cel:', 0,
+					'x:', 5,
+					'y:', 5,
+					'textX:', 79,
+					'textY:', 8,
+					'talkWidth:', 213
 				)
-				(tEyes view: 891 loop: 2 nsTop: 30 nsLeft: 26)
-				(tMouth view: 891 loop: 1 nsTop: 40 nsLeft: 27)
-				(super init: tBust tEyes tMouth &rest)
+				tEyes._send('view:', 891, 'loop:', 2, 'nsTop:', 30, 'nsLeft:', 26)
+				tMouth._send('view:', 891, 'loop:', 1, 'nsTop:', 40, 'nsLeft:', 27)
+				super._send('init:', tBust, tEyes, tMouth, &rest)
 			#end:else
 		)
 	#end:method

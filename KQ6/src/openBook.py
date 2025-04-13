@@ -53,25 +53,25 @@ class openBook(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				local616 = (global0 cel:)
+				global1._send('handsOff:')
+				local616 = global0._send('cel:')
 				seconds = 2
 			#end:case
 			case 1:
-				(global0
-					normal: 0
-					view: 903
-					cel: 0
-					setLoop: 2
-					cycleSpeed: 5
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 903,
+					'cel:', 0,
+					'setLoop:', 2,
+					'cycleSpeed:', 5,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 cel: 0 setLoop: 0 setCycle: End self)
+				global0._send('cel:', 0, 'setLoop:', 0, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(client setScript: kernel.ScriptID(190, 1))
+				client._send('setScript:', kernel.ScriptID(190, 1))
 			#end:case
 		#end:match
 	#end:method
@@ -86,8 +86,8 @@ class spellBookScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
-		(User canInput: 1)
+		global1._send('handsOff:')
+		User._send('canInput:', 1)
 		local0 = global5
 		local1 = global32
 		local2 = global10
@@ -95,22 +95,22 @@ class spellBookScr(Script):
 		local4 = global72
 		local5 = global74
 		local6 = global93
-		local7 = (global2 obstacles:)
-		(global2 obstacles: ((List new:) add: yourself:))
-		(global5 = (EventHandler new:) name: r"""newCast""" add:)
-		(global32 = (EventHandler new:) name: r"""newFeatures""" add: self)
-		(global10 = (EventHandler new:) name: r"""newATPs""" add:)
-		(global73 = (EventHandler new:) name: r"""newMH""" add: self)
-		(global72 = (EventHandler new:) name: r"""newKH""" add: self)
-		(global74 = (EventHandler new:) name: r"""newDH""" add: self)
-		(global93 = (EventHandler new:) name: r"""newWH""" add:)
+		local7 = global2._send('obstacles:')
+		global2._send('obstacles:', List._send('new:')._send('add:', 'yourself:'))
+		global5 = EventHandler._send('new:')._send('name:', r"""newCast""", 'add:')
+		global32 = EventHandler._send('new:')._send('name:', r"""newFeatures""", 'add:', self)
+		global10 = EventHandler._send('new:')._send('name:', r"""newATPs""", 'add:')
+		global73 = EventHandler._send('new:')._send('name:', r"""newMH""", 'add:', self)
+		global72 = EventHandler._send('new:')._send('name:', r"""newKH""", 'add:', self)
+		global74 = EventHandler._send('new:')._send('name:', r"""newDH""", 'add:', self)
+		global93 = EventHandler._send('new:')._send('name:', r"""newWH""", 'add:')
 		if register:
-			(global9 hide:)
+			global9._send('hide:')
 			register = 0
 		#endif
-		(global69 disable:)
+		global69._send('disable:')
 		kernel.DrawPic(98, 10)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -118,7 +118,7 @@ class spellBookScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit: &rest)
+		super._send('doit:', &rest)
 		if local15:
 			return
 		#endif
@@ -127,10 +127,10 @@ class spellBookScr(Script):
 				(and
 					(&
 						(= temp0
-							kernel.OnControl(4, ((User curEvent:) x:), ((User
-									curEvent:
-								)
-								y:
+							kernel.OnControl(4, User._send('curEvent:')._send('x:'), User._send(
+									'curEvent:'
+								)._send(
+								'y:'
 							))
 						)
 						0x0002
@@ -152,12 +152,12 @@ class spellBookScr(Script):
 			#end:case
 			case ((temp0 & 0x4000) and (local8 != 1)):
 				local8 = 1
-				(global1 setCursor: ((global69 at: 2) cursor:))
+				global1._send('setCursor:', global69._send('at:', 2)._send('cursor:'))
 			#end:case
 			case ((not (temp0 & 0x400e)) and (local8 != 5)):
 				local8 = 5
-				(global69 curIcon: (global69 at: 0))
-				(global1 setCursor: ((global69 curIcon:) cursor:))
+				global69._send('curIcon:', global69._send('at:', 0))
+				global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 			#end:case
 		)
 	#end:method
@@ -169,60 +169,54 @@ class spellBookScr(Script):
 
 		if 
 			(and
-				(not (param1 modifiers:))
+				(not param1._send('modifiers:'))
 				(or
-					((param1 type:) & 0x0001)
-					(((param1 type:) == 4) and ((param1 message:) == 13))
+					(param1._send('type:') & 0x0001)
+					((param1._send('type:') == 4) and (param1._send('message:') == 13))
 				)
-				(not (param1 claimed:))
+				(not param1._send('claimed:'))
 			)
 			match local8
 				case 1:
-					(global91
-						say:
-							match local9
+					global91._send(
+						'say:', match local9
 								case 0: 4#end:case
 								case 1: 5#end:case
 								case 2: 6#end:case
-							#end:match
-							1
-							0
-							0
-							0
-							190
+							#end:match, 1, 0, 0, 0, 190
 					)
 				#end:case
 				case 2:
 					if (local9 > 0):
-						(global1 handsOff:)
+						global1._send('handsOff:')
 						local9.post('--')
 						state = -1
-						(self cue:)
+						self._send('cue:')
 					else:
-						(global91 say: 2 5 0 0 0 190)
+						global91._send('say:', 2, 5, 0, 0, 0, 190)
 					#endif
 				#end:case
 				case 3:
 					if (local9 < 2):
-						(global1 handsOff:)
+						global1._send('handsOff:')
 						local9.post('++')
 						state = -1
-						(self cue:)
+						self._send('cue:')
 					else:
-						(global91 say: 1 5 0 0 0 190)
+						global91._send('say:', 1, 5, 0, 0, 0, 190)
 					#endif
 				#end:case
 				case 4:
-					(self cue:)
+					self._send('cue:')
 				#end:case
 				case 5:
-					(self dispose:)
+					self._send('dispose:')
 				#end:case
 			#end:match
 			local8 = -1
-			(param1 claimed: 1)
+			param1._send('claimed:', 1)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -288,7 +282,7 @@ class spellBookScr(Script):
 			#end:case
 			case 3:
 				kernel.DrawPic(190, 10)
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 4:
 				kernel.Display(@local416, 100, 45, 30, 106, local14, 102, 98, 105, 1111)
@@ -300,7 +294,7 @@ class spellBookScr(Script):
 				kernel.Display(@local16, 100, 45, temp1, 106, local14, 102, 98, 105, 1111)
 				kernel.Display(r"""INCANTATION:""", 100, 178, 27, 106, 100, 102, 98, 105, 1111)
 				kernel.Display(@local216, 100, 178, 37, 106, 100, 102, 98, 105, 1111)
-				(User canInput: 1 canControl: 1)
+				User._send('canInput:', 1, 'canControl:', 1)
 				local8 = 999
 				local15 = 0
 			#end:case
@@ -314,14 +308,14 @@ class spellBookScr(Script):
 								(not proc913_0(23))
 								(proc913_0(23) and proc913_0(24))
 							)
-							(global91 say: 4 2 5 0 0 190)
+							global91._send('say:', 4, 2, 5, 0, 0, 190)
 						else:
 							register = 1
-							(self dispose:)
+							self._send('dispose:')
 						#endif
 					#end:case
 					case 2:
-						temp0 = ((global9 at: 11) state:)
+						temp0 = global9._send('at:', 11)._send('state:')
 						(cond
 							case 
 								(and
@@ -331,42 +325,42 @@ class spellBookScr(Script):
 										(and
 											(global11 == 340)
 											(not
-												(local0
-													contains: kernel.ScriptID(344, 2)
+												local0._send(
+													'contains:', kernel.ScriptID(344, 2)
 												)
 											)
 										)
 									)
 								):
-								(global91 say: 6 2 2 0 0 190)
+								global91._send('say:', 6, 2, 2, 0, 0, 190)
 							#end:case
 							case 
 								(and
 									proc999_5(temp0, 15, 7)
 									(global11 == 340)
-									(local0 contains: kernel.ScriptID(344, 2))
+									local0._send('contains:', kernel.ScriptID(344, 2))
 								):
 								register = 1
-								(self dispose:)
+								self._send('dispose:')
 							#end:case
 							else:
-								(global91 say: 6 2 11 0 0 190)
+								global91._send('say:', 6, 2, 11, 0, 0, 190)
 							#end:else
 						)
 					#end:case
 					case 1:
 						(cond
-							case ((global0 has: 19) and (global161 == 15)):
-								(global91 say: 5 2 23 0 0 190)
+							case (global0._send('has:', 19) and (global161 == 15)):
+								global91._send('say:', 5, 2, 23, 0, 0, 190)
 							#end:case
 							case (global161 == 7):
 								(global161 |= 0x0008)
 								register = 4660
 								proc913_1(31)
-								(self dispose:)
+								self._send('dispose:')
 							#end:case
 							else:
-								(global91 say: 5 2 11 0 0 190)
+								global91._send('say:', 5, 2, 11, 0, 0, 190)
 							#end:else
 						)
 					#end:case
@@ -380,22 +374,22 @@ class spellBookScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 setCursor: global21)
-		(super dispose:)
-		(global5
-			eachElementDo: #dispose
-			eachElementDo: #delete
-			release:
-			dispose:
+		global1._send('setCursor:', global21)
+		super._send('dispose:')
+		global5._send(
+			'eachElementDo:', #dispose,
+			'eachElementDo:', #delete,
+			'release:',
+			'dispose:'
 		)
-		(global10 dispose:)
-		(global32 delete: self dispose:)
-		(global73 delete: self dispose:)
-		(global72 delete: self dispose:)
-		(global74 delete: self dispose:)
-		(global93 delete: self dispose:)
-		((global2 obstacles:) dispose:)
-		(global2 obstacles: local7)
+		global10._send('dispose:')
+		global32._send('delete:', self, 'dispose:')
+		global73._send('delete:', self, 'dispose:')
+		global72._send('delete:', self, 'dispose:')
+		global74._send('delete:', self, 'dispose:')
+		global93._send('delete:', self, 'dispose:')
+		global2._send('obstacles:')._send('dispose:')
+		global2._send('obstacles:', local7)
 		global5 = local0
 		global32 = local1
 		global73 = local3
@@ -403,37 +397,37 @@ class spellBookScr(Script):
 		global74 = local5
 		global93 = local6
 		global10 = local2
-		(global0 reset: 2)
+		global0._send('reset:', 2)
 		if (global11 == 781):
-			(global0 setPri: 13)
+			global0._send('setPri:', 13)
 		#endif
-		kernel.DrawPic((global2 picture:), 100)
+		kernel.DrawPic(global2._send('picture:'), 100)
 		if global10:
-			(global10 doit:)
+			global10._send('doit:')
 		#endif
-		(global69 enable:)
-		(global1 handsOn:)
+		global69._send('enable:')
+		global1._send('handsOn:')
 		match register
 			case 1:
-				kernel.Animate((global5 elements:), 1)
+				kernel.Animate(global5._send('elements:'), 1)
 				if 
 					(not
 						(and
 							(local9 == 2)
-							(not (((global9 at: 11) state:) & 0x0008))
+							(not (global9._send('at:', 11)._send('state:') & 0x0008))
 						)
 					)
-					(global1 givePoints: 3)
+					global1._send('givePoints:', 3)
 				#endif
-				(global2 notify:)
+				global2._send('notify:')
 			#end:case
 			case 4660:
-				(global1 givePoints: 3)
-				kernel.Animate((global5 elements:), 1)
-				(global2 setScript: kernel.ScriptID(190, 2))
+				global1._send('givePoints:', 3)
+				kernel.Animate(global5._send('elements:'), 1)
+				global2._send('setScript:', kernel.ScriptID(190, 2))
 			#end:case
 		#end:match
-		if ((global2 script:) != makeRainScript):
+		if (global2._send('script:') != makeRainScript):
 			kernel.DisposeScript(190)
 		#endif
 	#end:method
@@ -455,53 +449,53 @@ class makeRainScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc913_1(59)
-				(global91 say: 3 0 9 1 self 0)
+				global91._send('say:', 3, 0, 9, 1, self, 0)
 			#end:case
 			case 1:
-				(KQ6Print say: 0 3 0 9 2 0 0 0 posn: 10 10 width: 289 init:)
-				(global0
-					normal: 0
-					view: 586
-					cel: 0
-					setLoop: 0
-					cycleSpeed: 5
-					setCycle: Fwd
+				KQ6Print._send('say:', 0, 3, 0, 9, 2, 0, 0, 0, 'posn:', 10, 10, 'width:', 289, 'init:')
+				global0._send(
+					'normal:', 0,
+					'view:', 586,
+					'cel:', 0,
+					'setLoop:', 0,
+					'cycleSpeed:', 5,
+					'setCycle:', Fwd
 				)
 				seconds = 13
 			#end:case
 			case 2:
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
-				(localSound number: 945 loop: 1 play:)
-				(global0 cel: 0 setLoop: 1 setCycle: CT 2 1 self)
+				localSound._send('number:', 945, 'loop:', 1, 'play:')
+				global0._send('cel:', 0, 'setLoop:', 1, 'setCycle:', CT, 2, 1, self)
 			#end:case
 			case 3:
-				(global0 setCycle: CT 0 -1 self)
+				global0._send('setCycle:', CT, 0, -1, self)
 			#end:case
 			case 4:
-				(global0 setCycle: CT 2 1 self)
+				global0._send('setCycle:', CT, 2, 1, self)
 			#end:case
 			case 5:
-				(global0 setCycle: CT 0 -1 self)
+				global0._send('setCycle:', CT, 0, -1, self)
 			#end:case
 			case 6:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 7:
-				(global91 say: 3 0 9 3 self 0)
+				global91._send('say:', 3, 0, 9, 3, self, 0)
 			#end:case
 			case 8:
 				proc913_2(59)
-				(global0 reset: local616)
+				global0._send('reset:', local616)
 				if (global11 == 781):
-					(global0 setPri: 13)
+					global0._send('setPri:', 13)
 				#endif
-				(localSound stop: dispose:)
-				(global1 handsOn:)
-				(self dispose:)
+				localSound._send('stop:', 'dispose:')
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -511,7 +505,7 @@ class makeRainScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(190)
 	#end:method
 

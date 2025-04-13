@@ -19,9 +19,9 @@ class NewFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 addToFront: self)
-		(global73 addToFront: self)
-		(super init: &rest)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -29,9 +29,9 @@ class NewFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(global73 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -42,16 +42,16 @@ class NewFeature(Feature):
 		if 
 			(and
 				(not normal)
-				((param1 type:) & 0x4000)
-				(self onMe: param1)
-				(_approachVerbs & (global66 doit: (param1 message:)))
+				(param1._send('type:') & 0x4000)
+				self._send('onMe:', param1)
+				(_approachVerbs & global66._send('doit:', param1._send('message:')))
 			)
-			(CueObj state: 0 cycles: 0 client: self theVerb: (param1 message:))
-			(self doSpecial: (CueObj theVerb:))
-			(param1 claimed: 1)
+			CueObj._send('state:', 0, 'cycles:', 0, 'client:', self, 'theVerb:', param1._send('message:'))
+			self._send('doSpecial:', CueObj._send('theVerb:'))
+			param1._send('claimed:', 1)
 			return
 		else:
-			(super handleEvent: param1)
+			super._send('handleEvent:', param1)
 		#endif
 	#end:method
 
@@ -60,7 +60,7 @@ class NewFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self cue:)
+		self._send('cue:')
 	#end:method
 
 	@classmethod
@@ -68,7 +68,7 @@ class NewFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 setMotion: PolyPath approachX approachY CueObj)
+		global0._send('setMotion:', PolyPath, approachX, approachY, CueObj)
 	#end:method
 
 #end:class or instance

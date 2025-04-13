@@ -29,125 +29,34 @@ class rm415(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (((global9 at: 11) owner:) == global11):
-			(theSkull init: stopUpd:)
-			(global2
-				addObstacle:
-					((Polygon new:)
-						type: 2
-						init:
-							0
-							189
-							0
-							0
-							319
-							0
-							319
-							189
-							190
-							189
-							190
-							185
-							276
-							185
-							264
-							172
-							261
-							178
-							237
-							178
-							198
-							155
-							206
-							152
-							240
-							151
-							205
-							151
-							190
-							143
-							117
-							143
-							117
-							153
-							90
-							164
-							72
-							157
-							38
-							185
-							130
-							185
-							130
-							189
-						yourself:
-					)
-					((Polygon new:)
-						type: 2
-						init: 196 152 180 152 176 149 181 146 195 146 200 149
-						yourself:
+		if (global9._send('at:', 11)._send('owner:') == global11):
+			theSkull._send('init:', 'stopUpd:')
+			global2._send(
+				'addObstacle:', Polygon._send('new:')._send(
+						'type:', 2,
+						'init:', 0, 189, 0, 0, 319, 0, 319, 189, 190, 189, 190, 185, 276, 185, 264, 172, 261, 178, 237, 178, 198, 155, 206, 152, 240, 151, 205, 151, 190, 143, 117, 143, 117, 153, 90, 164, 72, 157, 38, 185, 130, 185, 130, 189,
+						'yourself:'
+					), Polygon._send('new:')._send(
+						'type:', 2,
+						'init:', 196, 152, 180, 152, 176, 149, 181, 146, 195, 146, 200, 149,
+						'yourself:'
 					)
 			)
 		else:
-			(global2
-				addObstacle:
-					((Polygon new:)
-						type: 2
-						init:
-							0
-							189
-							0
-							0
-							319
-							0
-							319
-							189
-							190
-							189
-							190
-							185
-							276
-							185
-							264
-							172
-							261
-							178
-							237
-							178
-							198
-							155
-							206
-							152
-							240
-							151
-							205
-							151
-							190
-							143
-							117
-							143
-							117
-							153
-							90
-							164
-							72
-							157
-							38
-							185
-							130
-							185
-							130
-							189
-						yourself:
+			global2._send(
+				'addObstacle:', Polygon._send('new:')._send(
+						'type:', 2,
+						'init:', 0, 189, 0, 0, 319, 0, 319, 189, 190, 189, 190, 185, 276, 185, 264, 172, 261, 178, 237, 178, 198, 155, 206, 152, 240, 151, 205, 151, 190, 143, 117, 143, 117, 153, 90, 164, 72, 157, 38, 185, 130, 185, 130, 189,
+						'yourself:'
 					)
 			)
 		#endif
-		(skelton1 init: stopUpd:)
-		(skelton2 init: stopUpd:)
-		(skelton3 init: stopUpd:)
-		(super init: &rest)
-		(global2 setScript: kernel.ScriptID(30, 1))
-		(kernel.ScriptID(30, 0) initCrypt: 1)
+		skelton1._send('init:', 'stopUpd:')
+		skelton2._send('init:', 'stopUpd:')
+		skelton3._send('init:', 'stopUpd:')
+		super._send('init:', &rest)
+		global2._send('setScript:', kernel.ScriptID(30, 1))
+		kernel.ScriptID(30, 0)._send('initCrypt:', 1)
 	#end:method
 
 	@classmethod
@@ -155,7 +64,7 @@ class rm415(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(kernel.ScriptID(30, 3) show:)
+		kernel.ScriptID(30, 3)._send('show:')
 	#end:method
 
 #end:class or instance
@@ -179,10 +88,10 @@ class theSkull(View):
 
 		match param1
 			case 5:
-				(global2 setScript: getSkull)
+				global2._send('setScript:', getSkull)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -206,9 +115,9 @@ class skelton1(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 0):
-			(global91 say: 10 5 0 1)
+			global91._send('say:', 10, 5, 0, 1)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -232,9 +141,9 @@ class skelton2(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 0):
-			(global91 say: 10 5 0 1)
+			global91._send('say:', 10, 5, 0, 1)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -258,9 +167,9 @@ class skelton3(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 0):
-			(global91 say: 10 5 0 1)
+			global91._send('say:', 10, 5, 0, 1)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -276,88 +185,43 @@ class getSkull(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 204 151 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 204, 151, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 270)
+				global0._send('setHeading:', 270)
 				cycles = 8
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 401
-					setLoop: 1
-					cycleSpeed: 6
-					posn: 193 153
-					setCycle: CT 3 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 401,
+					'setLoop:', 1,
+					'cycleSpeed:', 6,
+					'posn:', 193, 153,
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 3:
-				(global91 say: 12 5 0 1 self 400)
+				global91._send('say:', 12, 5, 0, 1, self, 400)
 			#end:case
 			case 4:
-				(global1 givePoints: 1)
-				(theSkull dispose:)
-				(global0 setCycle: End self)
+				global1._send('givePoints:', 1)
+				theSkull._send('dispose:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 5:
-				((global2 obstacles:) dispose:)
-				(global1 handsOn:)
-				(global0 posn: 204 151 get: 11 reset: 1)
-				(global2
-					addObstacle:
-						((Polygon new:)
-							type: 2
-							init:
-								0
-								189
-								0
-								0
-								319
-								0
-								319
-								189
-								190
-								189
-								190
-								185
-								276
-								185
-								264
-								172
-								261
-								178
-								237
-								178
-								198
-								155
-								206
-								152
-								240
-								151
-								205
-								151
-								190
-								143
-								117
-								143
-								117
-								153
-								90
-								164
-								72
-								157
-								38
-								185
-								130
-								185
-								130
-								189
-							yourself:
+				global2._send('obstacles:')._send('dispose:')
+				global1._send('handsOn:')
+				global0._send('posn:', 204, 151, 'get:', 11, 'reset:', 1)
+				global2._send(
+					'addObstacle:', Polygon._send('new:')._send(
+							'type:', 2,
+							'init:', 0, 189, 0, 0, 319, 0, 319, 189, 190, 189, 190, 185, 276, 185, 264, 172, 261, 178, 237, 178, 198, 155, 206, 152, 240, 151, 205, 151, 190, 143, 117, 143, 117, 153, 90, 164, 72, 157, 38, 185, 130, 185, 130, 189,
+							'yourself:'
 						)
 				)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

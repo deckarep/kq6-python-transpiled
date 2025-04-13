@@ -50,10 +50,10 @@ class IconI(Obj):
 		#endif
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 		if (signal & 0x0004):
-			(self mask:)
+			self._send('mask:')
 		#endif
-		if (global77 and (global77 respondsTo: #stop)):
-			(global77 stop:)
+		if (global77 and global77._send('respondsTo:', #stop)):
+			global77._send('stop:')
 		#endif
 	#end:method
 
@@ -84,10 +84,10 @@ class IconI(Obj):
 
 		(return
 			(and
-				((param1 x:) >= nsLeft)
-				((param1 y:) >= nsTop)
-				((param1 x:) <= nsRight)
-				((param1 y:) <= nsBottom)
+				(param1._send('x:') >= nsLeft)
+				(param1._send('y:') >= nsTop)
+				(param1._send('x:') <= nsRight)
+				(param1._send('y:') <= nsBottom)
 			)
 		)
 	#end:method
@@ -123,11 +123,11 @@ class IconI(Obj):
 				case (argc and param1 and (signal & 0x0001)):
 					kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1)
 					kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
-					while ((temp0 = (Event new:) type:) != 2):
+					while (temp0 = Event._send('new:')._send('type:') != 2):
 
-						(temp0 localize:)
+						temp0._send('localize:')
 						(cond
-							case (self onMe: temp0):
+							case self._send('onMe:', temp0):
 								if (not temp1):
 									kernel.DrawCel(view, loop, temp1 = 1, nsLeft, nsTop, -1)
 									kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
@@ -138,34 +138,34 @@ class IconI(Obj):
 								kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 							#end:case
 						)
-						(temp0 dispose:)
+						temp0._send('dispose:')
 					#end:loop
-					(temp0 dispose:)
+					temp0._send('dispose:')
 					if (temp1 == 1):
 						kernel.DrawCel(view, loop, 0, nsLeft, nsTop, -1)
 						kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
 					#endif
 					if 
 						(and
-							temp2 = (global1 script:)
-							(temp2 isKindOf: Tutorial)
+							temp2 = global1._send('script:')
+							temp2._send('isKindOf:', Tutorial)
 						)
 						(cond
 							case 
 								(and
-									((temp2 nextItem:) == self)
+									(temp2._send('nextItem:') == self)
 									(!=
-										(temp2 nextAction:)
-										((global69 helpIconItem:) message:)
+										temp2._send('nextAction:')
+										global69._send('helpIconItem:')._send('message:')
 									)
 								):
-								(temp2 cue:)
+								temp2._send('cue:')
 							#end:case
 							case (not temp1):
 								return 0
 							#end:case
 							else:
-								(temp2 report:)
+								temp2._send('report:')
 								return 0
 							#end:else
 						)
@@ -175,20 +175,20 @@ class IconI(Obj):
 				else:
 					if 
 						(and
-							temp2 = (global1 script:)
-							(temp2 isKindOf: Tutorial)
+							temp2 = global1._send('script:')
+							temp2._send('isKindOf:', Tutorial)
 						)
 						if 
 							(and
-								((temp2 nextItem:) == self)
+								(temp2._send('nextItem:') == self)
 								(!=
-									(temp2 nextAction:)
-									((global69 helpIconItem:) message:)
+									temp2._send('nextAction:')
+									global69._send('helpIconItem:')._send('message:')
 								)
 							)
-							(temp2 cue:)
+							temp2._send('cue:')
 						else:
-							(temp2 report:)
+							temp2._send('report:')
 							return 0
 						#endif
 					#endif
@@ -226,8 +226,8 @@ class IconBar(Set):
 
 		temp0 = 0
 		while (temp0 < size): # inline for
-			temp1 = (self at: temp0)
-			if ((temp1 message:) == param1):
+			temp1 = self._send('at:', temp0)
+			if (temp1._send('message:') == param1):
 				return temp1
 			#endif
 			# for:reinit
@@ -243,54 +243,49 @@ class IconBar(Set):
 
 		temp1 = temp2 = 0
 		temp3 = kernel.GetPort()
-		temp4 = (global38 eraseOnly:)
-		(global38 eraseOnly: 1)
-		while (not (temp0 = ((global80 curEvent:) new:) type:)):
+		temp4 = global38._send('eraseOnly:')
+		global38._send('eraseOnly:', 1)
+		while (not temp0 = global80._send('curEvent:')._send('new:')._send('type:')):
 
-			if (not (self isMemberOf: IconBar)):
-				(temp0 localize:)
+			if (not self._send('isMemberOf:', IconBar)):
+				temp0._send('localize:')
 			#endif
 			(cond
-				case temp2 = (self firstTrue: #onMe temp0):
-					if ((temp2 != temp1) and (temp2 helpVerb:)):
+				case temp2 = self._send('firstTrue:', #onMe, temp0):
+					if ((temp2 != temp1) and temp2._send('helpVerb:')):
 						temp1 = temp2
 						if global25:
-							(global25 dispose:)
+							global25._send('dispose:')
 						#endif
-						(Print
-							font: global22
-							width: 250
-							addText:
-								(temp2 noun:)
-								(temp2 helpVerb:)
-								0
-								1
-								0
-								0
-								(temp2 modNum:)
-							modeless: 1
-							init:
+						Print._send(
+							'font:', global22,
+							'width:', 250,
+							'addText:', temp2._send('noun:'), temp2._send('helpVerb:'), 0, 1, 0, 0, temp2._send(
+									'modNum:'
+								),
+							'modeless:', 1,
+							'init:'
 						)
 						kernel.SetPort(temp3)
 					#endif
 				#end:case
 				case global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#end:case
 				else:
 					temp1 = 0
 				#end:else
 			)
-			(temp0 dispose:)
+			temp0._send('dispose:')
 		#end:loop
-		(global38 eraseOnly: temp4)
-		(global1 setCursor: 999 1)
+		global38._send('eraseOnly:', temp4)
+		global1._send('setCursor:', 999, 1)
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
 		kernel.SetPort(temp3)
-		if (not (helpIconItem onMe: temp0)):
-			(self dispatchEvent: temp0)
+		if (not helpIconItem._send('onMe:', temp0)):
+			self._send('dispatchEvent:', temp0)
 		#endif
 	#end:method
 
@@ -299,8 +294,8 @@ class IconBar(Set):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param1 localize:)
-		temp1 = (param1 type:)
+		param1._send('localize:')
+		temp1 = param1._send('type:')
 		(cond
 			case (state & 0x0004):#end:case
 			case 
@@ -308,115 +303,107 @@ class IconBar(Set):
 					(and
 						(not temp1)
 						(state & 0x0400)
-						(<= -10 (param1 y:) height)
-						(<= 0 (param1 x:) 320)
+						(<= -10 param1._send('y:') height)
+						(<= 0 param1._send('x:') 320)
 						(not temp0 = 0)
 					)
 					(and
 						(temp1 == 4)
 						(or
-							((param1 message:) == 27)
-							((param1 message:) == 21248)
+							(param1._send('message:') == 27)
+							(param1._send('message:') == 21248)
 						)
 						temp0 = 1
 					)
 				):
-				(param1 globalize:)
-				oldMouseX = (param1 x:)
-				oldMouseY = (param1 y:)
+				param1._send('globalize:')
+				oldMouseX = param1._send('x:')
+				oldMouseY = param1._send('y:')
 				temp4 = global19
 				temp5 = curIcon
 				temp6 = curInvIcon
-				(self show:)
-				(global1 setCursor: 999)
+				self._send('show:')
+				global1._send('setCursor:', 999)
 				if temp0:
-					(global1
-						setCursor:
-							global19
-							1
-							(+
-								(curIcon nsLeft:)
-								(((curIcon nsRight:) - (curIcon nsLeft:)) / 2)
-							)
-							((curIcon nsBottom:) - 3)
+					global1._send(
+						'setCursor:', global19, 1, (+
+								curIcon._send('nsLeft:')
+								((curIcon._send('nsRight:') - curIcon._send('nsLeft:')) / 2)
+							), (curIcon._send('nsBottom:') - 3)
 					)
 				#endif
-				(self doit:)
+				self._send('doit:')
 				(= temp3
-					if ((global80 canControl:) or (global80 canInput:)):
-						(curIcon cursor:)
+					if (global80._send('canControl:') or global80._send('canInput:')):
+						curIcon._send('cursor:')
 					else:
 						global21
 					#endif
 				)
 				if temp0:
-					(global1 setCursor: temp3 1 oldMouseX oldMouseY)
+					global1._send('setCursor:', temp3, 1, oldMouseX, oldMouseY)
 				else:
-					(global1
-						setCursor:
-							temp3
-							1
-							((param1 new:) x:)
-							proc999_3((param1 y:), (1 + height))
+					global1._send(
+						'setCursor:', temp3, 1, param1._send('new:')._send('x:'), proc999_3(param1._send(
+								'y:'
+							), (1 + height))
 					)
 				#endif
-				(self hide:)
+				self._send('hide:')
 			#end:case
 			case (temp1 & 0x0004):
-				match (param1 message:)
+				match param1._send('message:')
 					case 13:
 						(cond
 							case (not kernel.IsObject(curIcon)):#end:case
 							case ((curIcon != useIconItem) or curInvIcon):
-								(param1
-									type: (curIcon type:)
-									message:
-										if (curIcon == useIconItem):
-											(curInvIcon message:)
+								param1._send(
+									'type:', curIcon._send('type:'),
+									'message:', if (curIcon == useIconItem):
+											curInvIcon._send('message:')
 										else:
-											(curIcon message:)
+											curIcon._send('message:')
 										#endif
 								)
 							#end:case
 							else:
-								(param1 type: 0)
+								param1._send('type:', 0)
 							#end:else
 						)
 					#end:case
 					case 20992:
-						if (global80 canControl:):
-							(self swapCurIcon:)
+						if global80._send('canControl:'):
+							self._send('swapCurIcon:')
 						#endif
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 					#end:case
 					case 0:
-						if ((param1 type:) & 0x0040):
-							(self advanceCurIcon:)
-							(param1 claimed: 1)
+						if (param1._send('type:') & 0x0040):
+							self._send('advanceCurIcon:')
+							param1._send('claimed:', 1)
 						#endif
 					#end:case
 				#end:match
 			#end:case
 			case (temp1 & 0x0001):
 				(cond
-					case ((param1 modifiers:) & 0x0003):
-						(self advanceCurIcon:)
-						(param1 claimed: 1)
+					case (param1._send('modifiers:') & 0x0003):
+						self._send('advanceCurIcon:')
+						param1._send('claimed:', 1)
 					#end:case
-					case ((param1 modifiers:) & 0x0004):
-						if (global80 canControl:):
-							(self swapCurIcon:)
+					case (param1._send('modifiers:') & 0x0004):
+						if global80._send('canControl:'):
+							self._send('swapCurIcon:')
 						#endif
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 					#end:case
 					case kernel.IsObject(curIcon):
-						(param1
-							type: (curIcon type:)
-							message:
-								if (curIcon == useIconItem):
-									(curInvIcon message:)
+						param1._send(
+							'type:', curIcon._send('type:'),
+							'message:', if (curIcon == useIconItem):
+									curInvIcon._send('message:')
 								else:
-									(curIcon message:)
+									curIcon._send('message:')
 								#endif
 						)
 					#end:case
@@ -437,16 +424,16 @@ class IconBar(Set):
 					if kernel.IsObject(param1[temp0]):
 						param1[temp0]
 					else:
-						(self at: param1[temp0])
+						self._send('at:', param1[temp0])
 					#endif
 				)
-				(temp1 signal: (| (temp1 signal:) 0x0004))
+				temp1._send('signal:', (| temp1._send('signal:') 0x0004))
 				(cond
 					case (temp1 == curIcon):
-						(self advanceCurIcon:)
+						self._send('advanceCurIcon:')
 					#end:case
 					case (temp1 == highlightedIcon):
-						(self advance:)
+						self._send('advance:')
 					#end:case
 				)
 				# for:reinit
@@ -469,10 +456,10 @@ class IconBar(Set):
 					if kernel.IsObject(param1[temp0]):
 						param1[temp0]
 					else:
-						(self at: param1[temp0])
+						self._send('at:', param1[temp0])
 					#endif
 				)
-				(temp1 signal: ((temp1 signal:) & 0xfffb))
+				temp1._send('signal:', (temp1._send('signal:') & 0xfffb))
 				# for:reinit
 				temp0.post('++')
 			#end:loop
@@ -486,11 +473,11 @@ class IconBar(Set):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global8 pause:)
+		global8._send('pause:')
 		(state |= 0x0020)
-		(global1 setCursor: 999 1)
+		global1._send('setCursor:', 999, 1)
 		(= height
-			kernel.CelHigh((temp0 = (self at: 0) view:), (temp0 loop:), (temp0 cel:))
+			kernel.CelHigh(temp0 = self._send('at:', 0)._send('view:'), temp0._send('loop:'), temp0._send('cel:'))
 		)
 		port = kernel.GetPort()
 		kernel.SetPort(-1)
@@ -505,29 +492,29 @@ class IconBar(Set):
 			if (not kernel.IsObject(temp7 = kernel.NodeValue(temp5))):
 				return
 			#endif
-			if ((temp7 nsRight:) <= 0):
-				(temp7 show: temp3 temp4)
-				temp3 = (temp7 nsRight:)
+			if (temp7._send('nsRight:') <= 0):
+				temp7._send('show:', temp3, temp4)
+				temp3 = temp7._send('nsRight:')
 			else:
-				(temp7 show:)
+				temp7._send('show:')
 			#endif
 			# for:reinit
 			temp5 = temp6
 		#end:loop
 		if curInvIcon:
-			if (global0 has: (global9 indexOf: curInvIcon)):
+			if global0._send('has:', global9._send('indexOf:', curInvIcon)):
 				(= temp3
 					(+
 						(/
 							(-
-								((useIconItem nsRight:) - (useIconItem nsLeft:))
-								kernel.CelWide((curInvIcon view:), (curInvIcon
-									loop:
-								), (curInvIcon cel:))
+								(useIconItem._send('nsRight:') - useIconItem._send('nsLeft:'))
+								kernel.CelWide(curInvIcon._send('view:'), curInvIcon._send(
+									'loop:'
+								), curInvIcon._send('cel:'))
 							)
 							2
 						)
-						(useIconItem nsLeft:)
+						useIconItem._send('nsLeft:')
 					)
 				)
 				(= temp4
@@ -535,21 +522,21 @@ class IconBar(Set):
 						y
 						(/
 							(-
-								((useIconItem nsBottom:) - (useIconItem nsTop:))
-								kernel.CelHigh((curInvIcon view:), (curInvIcon
-									loop:
-								), (curInvIcon cel:))
+								(useIconItem._send('nsBottom:') - useIconItem._send('nsTop:'))
+								kernel.CelHigh(curInvIcon._send('view:'), curInvIcon._send(
+									'loop:'
+								), curInvIcon._send('cel:'))
 							)
 							2
 						)
-						(useIconItem nsTop:)
+						useIconItem._send('nsTop:')
 					)
 				)
-				kernel.DrawCel((curInvIcon view:), (curInvIcon loop:), (curInvIcon
-					cel:
+				kernel.DrawCel(curInvIcon._send('view:'), curInvIcon._send('loop:'), curInvIcon._send(
+					'cel:'
 				), temp3, temp4, -1)
-				if ((useIconItem signal:) & 0x0004):
-					(useIconItem mask:)
+				if (useIconItem._send('signal:') & 0x0004):
+					useIconItem._send('mask:')
 				#endif
 			else:
 				curInvIcon = 0
@@ -557,7 +544,7 @@ class IconBar(Set):
 		#endif
 		kernel.PicNotValid(temp1)
 		kernel.Graph(12, y, 0, (y + height), 320, 1)
-		(self highlight: curIcon)
+		self._send('highlight:', curIcon)
 	#end:method
 
 	@classmethod
@@ -566,7 +553,7 @@ class IconBar(Set):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state & 0x0020):
-			(global8 pause: 0)
+			global8._send('pause:', 0)
 			(state &= 0xffdf)
 			temp0 = kernel.FirstNode(elements)
 			while temp0: # inline for
@@ -574,7 +561,7 @@ class IconBar(Set):
 				if (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))):
 					return
 				#endif
-				(temp2 = kernel.NodeValue(temp0) signal: ((temp2 signal:) & 0xffdf))
+				temp2 = kernel.NodeValue(temp0)._send('signal:', (temp2._send('signal:') & 0xffdf))
 				# for:reinit
 				temp0 = temp1
 			#end:loop
@@ -582,9 +569,9 @@ class IconBar(Set):
 				(and
 					(not (state & 0x0800))
 					kernel.IsObject(helpIconItem)
-					((helpIconItem signal:) & 0x0010)
+					(helpIconItem._send('signal:') & 0x0010)
 				)
-				(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
+				helpIconItem._send('signal:', (helpIconItem._send('signal:') & 0xffef))
 			#endif
 			kernel.Graph(8, underBits)
 			kernel.Graph(12, y, 0, (y + height), 320, 1)
@@ -599,36 +586,36 @@ class IconBar(Set):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		while ((state & 0x0020) and temp0 = ((global80 curEvent:) new:)):
+		while ((state & 0x0020) and temp0 = global80._send('curEvent:')._send('new:')):
 
-			temp1 = (temp0 type:)
-			temp2 = (temp0 message:)
-			temp3 = (temp0 modifiers:)
+			temp1 = temp0._send('type:')
+			temp2 = temp0._send('message:')
+			temp3 = temp0._send('modifiers:')
 			kernel.Wait(1)
 			global88 = (global86 + kernel.GetTime())
 			if global18:
-				(global18 eachElementDo: #doit)
+				global18._send('eachElementDo:', #doit)
 			#endif
-			if (temp4 = (global1 script:) and (temp4 isKindOf: Tutorial)):
-				(temp4 doit:)
+			if (temp4 = global1._send('script:') and temp4._send('isKindOf:', Tutorial)):
+				temp4._send('doit:')
 			#endif
 			if (temp1 == 256):
 				temp1 = 4
 				temp2 = (27 if (temp3 & 0x0003) else 13)
 				temp3 = 0
-				(temp0 type: temp1 message: temp2 modifiers: 0)
+				temp0._send('type:', temp1, 'message:', temp2, 'modifiers:', 0)
 			#endif
-			(temp0 localize:)
+			temp0._send('localize:')
 			if 
 				(and
 					((temp1 == 1) or ((temp1 == 4) and (temp2 == 13)))
 					kernel.IsObject(helpIconItem)
-					((helpIconItem signal:) & 0x0010)
+					(helpIconItem._send('signal:') & 0x0010)
 				)
-				(temp0 type: 24576 message: (helpIconItem message:))
+				temp0._send('type:', 24576, 'message:', helpIconItem._send('message:'))
 			#endif
 			kernel.MapKeyToDir(temp0)
-			(breakif (self dispatchEvent: temp0))
+			(breakif self._send('dispatchEvent:', temp0))
 		#end:loop
 	#end:method
 
@@ -637,23 +624,23 @@ class IconBar(Set):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp1 = (param1 x:)
-		temp0 = (param1 y:)
-		temp2 = (param1 type:)
-		temp3 = (param1 message:)
-		temp5 = (param1 claimed:)
-		if temp4 = (self firstTrue: #onMe param1):
-			temp57 = (temp4 cursor:)
-			temp58 = (temp4 signal:)
+		temp1 = param1._send('x:')
+		temp0 = param1._send('y:')
+		temp2 = param1._send('type:')
+		temp3 = param1._send('message:')
+		temp5 = param1._send('claimed:')
+		if temp4 = self._send('firstTrue:', #onMe, param1):
+			temp57 = temp4._send('cursor:')
+			temp58 = temp4._send('signal:')
 			temp59 = (temp4 == helpIconItem)
 		#endif
 		if (temp2 & 0x0040):
 			match temp3
 				case 3:
-					(self advance:)
+					self._send('advance:')
 				#end:case
 				case 7:
-					(self retreat:)
+					self._send('retreat:')
 				#end:case
 			#end:match
 		else:
@@ -669,7 +656,7 @@ class IconBar(Set):
 									(state & 0x0400)
 									(or
 										(not kernel.IsObject(helpIconItem))
-										(not ((helpIconItem signal:) & 0x0010))
+										(not (helpIconItem._send('signal:') & 0x0010))
 									)
 								)
 								oldMouseY = 0
@@ -678,27 +665,27 @@ class IconBar(Set):
 						#end:case
 						case (temp4 and (temp4 != highlightedIcon)):
 							oldMouseY = 0
-							(self highlight: temp4)
+							self._send('highlight:', temp4)
 						#end:case
 					)
 				#end:case
 				case 1:
-					if (temp4 and (self select: temp4 1)):
+					if (temp4 and self._send('select:', temp4, 1)):
 						if temp59:
 							if temp57:
-								(global1 setCursor: temp57)
+								global1._send('setCursor:', temp57)
 							#endif
 							if (state & 0x0800):
-								(self noClickHelp:)
+								self._send('noClickHelp:')
 							else:
-								(helpIconItem
-									signal: (| (helpIconItem signal:) 0x0010)
+								helpIconItem._send(
+									'signal:', (| helpIconItem._send('signal:') 0x0010)
 								)
 							#endif
 						else:
 							temp5 = (temp58 & 0x0040)
 						#endif
-						(temp4 doit:)
+						temp4._send('doit:')
 					#endif
 				#end:case
 				case 4:
@@ -716,57 +703,54 @@ class IconBar(Set):
 							(cond
 								case (temp4 and (temp4 == helpIconItem)):
 									if (temp57 != -1):
-										(global1 setCursor: temp57)
+										global1._send('setCursor:', temp57)
 									#endif
 									if helpIconItem:
-										(helpIconItem
-											signal:
-												(| (helpIconItem signal:) 0x0010)
+										helpIconItem._send(
+											'signal:', (|
+													helpIconItem._send('signal:')
+													0x0010
+												)
 										)
 									#endif
 								#end:case
-								case (kernel.IsObject(temp4) and (self select: temp4)):
-									(temp4 doit:)
+								case (kernel.IsObject(temp4) and self._send('select:', temp4)):
+									temp4._send('doit:')
 									temp5 = (temp58 & 0x0040)
 								#end:case
 							)
 						#end:case
 						case 3840:
-							(self retreat:)
+							self._send('retreat:')
 						#end:case
 						case 9:
-							(self advance:)
+							self._send('advance:')
 						#end:case
 					#end:match
 				#end:case
 				case 24576:
-					if (temp4 and (temp4 helpVerb:)):
+					if (temp4 and temp4._send('helpVerb:')):
 						if (not kernel.HaveMouse()):
-							temp60 = (global1 setCursor: 996)
+							temp60 = global1._send('setCursor:', 996)
 						#endif
 						temp6 = kernel.GetPort()
-						(Print
-							font: global22
-							width: 250
-							addText:
-								(temp4 noun:)
-								(temp4 helpVerb:)
-								0
-								1
-								0
-								0
-								(temp4 modNum:)
-							init:
+						Print._send(
+							'font:', global22,
+							'width:', 250,
+							'addText:', temp4._send('noun:'), temp4._send('helpVerb:'), 0, 1, 0, 0, temp4._send(
+									'modNum:'
+								),
+							'init:'
 						)
 						kernel.SetPort(temp6)
 						if (not kernel.HaveMouse()):
-							(global1 setCursor: temp60)
+							global1._send('setCursor:', temp60)
 						#endif
 					#endif
 					if helpIconItem:
-						(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
+						helpIconItem._send('signal:', (helpIconItem._send('signal:') & 0xffef))
 					#endif
-					(global1 setCursor: 999)
+					global1._send('setCursor:', 999)
 				#end:case
 			#end:match
 		#endif
@@ -781,16 +765,16 @@ class IconBar(Set):
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
-				(self at: (mod (temp1 + (self indexOf: highlightedIcon)) size))
+				self._send('at:', (mod (temp1 + self._send('indexOf:', highlightedIcon)) size))
 			)
 			if (not kernel.IsObject(temp0)):
-				temp0 = kernel.NodeValue((self first:))
+				temp0 = kernel.NodeValue(self._send('first:'))
 			#endif
-			(breakif (not ((temp0 signal:) & 0x0004)))
+			(breakif (not (temp0._send('signal:') & 0x0004)))
 			# for:reinit
 			temp1 = (mod (temp1 + 1) size)
 		#end:loop
-		(self highlight: temp0 (state & 0x0020))
+		self._send('highlight:', temp0, (state & 0x0020))
 	#end:method
 
 	@classmethod
@@ -801,16 +785,16 @@ class IconBar(Set):
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
-				(self at: (mod ((self indexOf: highlightedIcon) - temp1) size))
+				self._send('at:', (mod (self._send('indexOf:', highlightedIcon) - temp1) size))
 			)
 			if (not kernel.IsObject(temp0)):
-				temp0 = kernel.NodeValue((self last:))
+				temp0 = kernel.NodeValue(self._send('last:'))
 			#endif
-			(breakif (not ((temp0 signal:) & 0x0004)))
+			(breakif (not (temp0._send('signal:') & 0x0004)))
 			# for:reinit
 			temp1 = (mod (temp1 + 1) size)
 		#end:loop
-		(self highlight: temp0 (state & 0x0020))
+		self._send('highlight:', temp0, (state & 0x0020))
 	#end:method
 
 	@classmethod
@@ -819,8 +803,8 @@ class IconBar(Set):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(return
-			if (param1 select: ((argc >= 2) and param2)):
-				if (not ((param1 signal:) & 0x0002)):
+			if param1._send('select:', ((argc >= 2) and param2)):
+				if (not (param1._send('signal:') & 0x0002)):
 					curIcon = param1
 				#endif
 				1
@@ -833,23 +817,19 @@ class IconBar(Set):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (not ((param1 signal:) & 0x0004)):
+		if (not (param1._send('signal:') & 0x0004)):
 			if kernel.IsObject(highlightedIcon):
-				(highlightedIcon highlight: 0)
+				highlightedIcon._send('highlight:', 0)
 			#endif
 			highlightedIcon = param1
-			(highlightedIcon highlight: 1)
+			highlightedIcon._send('highlight:', 1)
 		#endif
 		if ((argc >= 2) and param2):
-			(global1
-				setCursor:
-					global19
-					1
-					(+
-						(param1 nsLeft:)
-						(((param1 nsRight:) - (param1 nsLeft:)) / 2)
-					)
-					((param1 nsBottom:) - 3)
+			global1._send(
+				'setCursor:', global19, 1, (+
+						param1._send('nsLeft:')
+						((param1._send('nsRight:') - param1._send('nsLeft:')) / 2)
+					), (param1._send('nsBottom:') - 3)
 			)
 		#endif
 	#end:method
@@ -866,8 +846,8 @@ class IconBar(Set):
 		temp1 = 0
 		while
 			(&
-				(temp0 = (self at: (mod ((self indexOf: temp0) + 1) size))
-					signal:
+				temp0 = self._send('at:', (mod (self._send('indexOf:', temp0) + 1) size))._send(
+					'signal:'
 				)
 				0x0006
 			):
@@ -879,7 +859,7 @@ class IconBar(Set):
 			#endif
 		#end:loop
 		curIcon = temp0
-		(global1 setCursor: (curIcon cursor:) 1)
+		global1._send('setCursor:', curIcon._send('cursor:'), 1)
 	#end:method
 
 	@classmethod
@@ -893,17 +873,17 @@ class IconBar(Set):
 			#end:case
 			case 
 				(and
-					(curIcon != temp0 = kernel.NodeValue((self first:)))
-					(not ((temp0 signal:) & 0x0004))
+					(curIcon != temp0 = kernel.NodeValue(self._send('first:')))
+					(not (temp0._send('signal:') & 0x0004))
 				):
 				prevIcon = curIcon
-				curIcon = kernel.NodeValue((self first:))
+				curIcon = kernel.NodeValue(self._send('first:'))
 			#end:case
-			case (prevIcon and (not ((prevIcon signal:) & 0x0004))):
+			case (prevIcon and (not (prevIcon._send('signal:') & 0x0004))):
 				curIcon = prevIcon
 			#end:case
 		)
-		(global1 setCursor: (curIcon cursor:) 1)
+		global1._send('setCursor:', curIcon._send('cursor:'), 1)
 	#end:method
 
 #end:class or instance

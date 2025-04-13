@@ -47,7 +47,7 @@ class ScaleTo(Scaler):
 			#endif
 		#endif
 		saveWaitCount = waitCount
-		scaleDir = (1 if ((client maxScale:) <= endScale) else <<NO ELSE CLAUSE>>)
+		scaleDir = (1 if (client._send('maxScale:') <= endScale) else <<NO ELSE CLAUSE>>)
 	#end:method
 
 	@classmethod
@@ -58,20 +58,20 @@ class ScaleTo(Scaler):
 		if ((global88 - waitCount) > 0):
 			(= temp0
 				if scaleDir:
-					((client maxScale:) + step)
+					(client._send('maxScale:') + step)
 				else:
-					((client maxScale:) - step)
+					(client._send('maxScale:') - step)
 				#endif
 			)
-			(client maxScale: temp0 scaleX: temp0 scaleY: temp0)
+			client._send('maxScale:', temp0, 'scaleX:', temp0, 'scaleY:', temp0)
 			(cond
 				case scaleDir:
-					if ((client maxScale:) >= endScale):
-						(self dispose:)
+					if (client._send('maxScale:') >= endScale):
+						self._send('dispose:')
 					#endif
 				#end:case
-				case ((client maxScale:) <= endScale):
-					(self dispose:)
+				case (client._send('maxScale:') <= endScale):
+					self._send('dispose:')
 				#end:case
 			)
 			waitCount = (saveWaitCount + global88)
@@ -86,13 +86,13 @@ class ScaleTo(Scaler):
 		endScale = 0
 		step = 6
 		waitCount = 1
-		(client scaler: 0)
+		client._send('scaler:', 0)
 		if caller:
 			temp0 = caller
 			caller = 0
-			(temp0 cue:)
+			temp0._send('cue:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance

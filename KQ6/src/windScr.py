@@ -31,15 +31,15 @@ class windScr(Script):
 				seconds = kernel.Random(2, 10)
 			#end:case
 			case 1:
-				(client startUpd:)
+				client._send('startUpd:')
 				cycles = 1
 			#end:case
 			case 2:
 				minWindSpeed = kernel.Random(3, 12)
 				curWindSpeed = minWindSpeed
 				intervalDuration = kernel.Random(10, 30)
-				(client cycleSpeed: curWindSpeed setCycle: Fwd)
-				(self cue:)
+				client._send('cycleSpeed:', curWindSpeed, 'setCycle:', Fwd)
+				self._send('cue:')
 			#end:case
 			case 3:
 				cycles = intervalDuration
@@ -50,24 +50,24 @@ class windScr(Script):
 					if (curWindSpeed == -1):
 						loopDir = 0
 					else:
-						(client cycleSpeed: curWindSpeed)
+						client._send('cycleSpeed:', curWindSpeed)
 					#endif
 				else:
 					curWindSpeed.post('++')
 					if (curWindSpeed == (minWindSpeed + 1)):
 						loopDir = 1
 					else:
-						(client cycleSpeed: curWindSpeed)
+						client._send('cycleSpeed:', curWindSpeed)
 					#endif
 				#endif
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 5:
 				cycles = intervalDuration
 			#end:case
 			case 6:
-				(client setCycle: 0)
-				(client stopUpd:)
+				client._send('setCycle:', 0)
+				client._send('stopUpd:')
 				state = -1
 				cycles = 2
 			#end:case

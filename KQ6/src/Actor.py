@@ -42,20 +42,20 @@ class View(Feature):
 
 		temp0 = (global10 if (signal & 0x0020) else global5)
 		(signal &= 0x7fff)
-		if (not (temp0 contains: self)):
+		if (not temp0._send('contains:', self)):
 			lsRight = lsBottom = lsLeft = lsTop = 0
 			(signal &= 0xff77)
 		#endif
 		kernel.BaseSetter(self)
-		(temp0 add: self)
+		temp0._send('add:', self)
 		if (temp0 == global10):
 			if (not (signal & 0x0010)):
 				priority = kernel.CoordPri(y)
 			#endif
 			kernel.SetNowSeen(self)
-			(temp0 doit:)
+			temp0._send('doit:')
 		#endif
-		(self initialize: checkDetail:)
+		self._send('initialize:', 'checkDetail:')
 	#end:method
 
 	@classmethod
@@ -73,7 +73,7 @@ class View(Feature):
 			#endif
 		#endif
 		kernel.BaseSetter(self)
-		(self forceUpd:)
+		self._send('forceUpd:')
 	#end:method
 
 	@classmethod
@@ -81,7 +81,7 @@ class View(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self startUpd: hide:)
+		self._send('startUpd:', 'hide:')
 		(signal |= 0x8000)
 	#end:method
 
@@ -109,26 +109,26 @@ class View(Feature):
 		if (signal & 0x8000):
 			(signal &= 0x7fff)
 			(cond
-				case (global10 contains: self):
-					(global10 delete: self)
+				case global10._send('contains:', self):
+					global10._send('delete:', self)
 					(signal &= 0xffdf)
 				#end:case
 				case (signal & 0x0020):
-					(global5 delete: self)
-					(global10 add: self)
+					global5._send('delete:', self)
+					global10._send('add:', self)
 					return
 				#end:case
 				else:
-					(global5 delete: self)
+					global5._send('delete:', self)
 				#end:else
 			)
 			if underBits:
 				kernel.UnLoad(133, underBits)
 				underBits = 0
 			#endif
-			(super dispose:)
+			super._send('dispose:')
 			if kernel.IsObject(actions):
-				(actions dispose:)
+				actions._send('dispose:')
 			#endif
 			actions = 0
 		#endif
@@ -177,7 +177,7 @@ class View(Feature):
 				(signal |= 0x0010)
 			#end:else
 		)
-		(self forceUpd:)
+		self._send('forceUpd:')
 	#end:method
 
 	@classmethod
@@ -197,7 +197,7 @@ class View(Feature):
 				(signal |= 0x0800)
 			#end:else
 		)
-		(self forceUpd:)
+		self._send('forceUpd:')
 	#end:method
 
 	@classmethod
@@ -210,15 +210,15 @@ class View(Feature):
 			case (param1 == -1): 0#end:case
 			else:
 				(= cel
-					if (param1 >= (self lastCel:)):
-						(self lastCel:)
+					if (param1 >= self._send('lastCel:')):
+						self._send('lastCel:')
 					else:
 						param1
 					#endif
 				)
 			#end:else
 		)
-		(self forceUpd:)
+		self._send('forceUpd:')
 	#end:method
 
 	@classmethod
@@ -238,11 +238,11 @@ class View(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: self):
+		if global5._send('contains:', self):
 			(signal |= 0x8021)
 		else:
 			(signal |= 0x0020)
-			(self init:)
+			self._send('init:')
 		#endif
 	#end:method
 
@@ -259,7 +259,7 @@ class View(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print addText: name addIcon: view loop cel init:)
+		Print._send('addText:', name, 'addIcon:', view, loop, cel, 'init:')
 	#end:method
 
 	@classmethod
@@ -282,8 +282,8 @@ class View(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(param1):
-			temp0 = (param1 x:)
-			temp1 = (param1 y:)
+			temp0 = param1._send('x:')
+			temp1 = param1._send('y:')
 		else:
 			temp0 = param1
 			temp1 = param2
@@ -309,7 +309,7 @@ class View(Feature):
 					#endif
 				#end:case
 				else:
-					(super onMe: temp0 temp1)
+					super._send('onMe:', temp0, temp1)
 				#end:else
 			)
 		)
@@ -328,11 +328,11 @@ class View(Feature):
 			case (not param1):
 				(scaleSignal &= 0xfffc)
 			#end:case
-			case (param1 < (global2 vanishingY:)):
+			case (param1 < global2._send('vanishingY:')):
 				proc921_1(r"""<%s setScale:> y value less than vanishingY""", name)
 			#end:case
 			else:
-				temp0 = (param1 - (global2 vanishingY:))
+				temp0 = (param1 - global2._send('vanishingY:'))
 				temp2 = (((temp1 = (190 - param1) * 100) / temp0) + 100)
 				(scaleSignal |= 0x0003)
 				maxScale = ((temp2 * 128) / 100)
@@ -361,16 +361,16 @@ class Prop(View):
 			return
 		#endif
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
 		if ((signal & 0x0004) and (not (signal & 0x0002))):
 			return
 		#endif
 		if cycler:
-			(cycler doit:)
+			cycler._send('doit:')
 		#endif
 		if scaler:
-			(scaler doit:)
+			scaler._send('doit:')
 		#endif
 	#end:method
 
@@ -380,9 +380,9 @@ class Prop(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script handleEvent: param1)
+			script._send('handleEvent:', param1)
 		#endif
-		(super handleEvent: param1)
+		super._send('handleEvent:', param1)
 	#end:method
 
 	@classmethod
@@ -391,18 +391,18 @@ class Prop(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if cycler:
-			(cycler dispose:)
+			cycler._send('dispose:')
 		#endif
 		if param1:
-			(self startUpd:)
+			self._send('startUpd:')
 			(= cycler
-				if ((param1 -info-:) & 0x8000):
-					(param1 new:)
+				if (param1._send('-info-:') & 0x8000):
+					param1._send('new:')
 				else:
 					param1
 				#endif
 			)
-			(cycler init: self &rest)
+			cycler._send('init:', self, &rest)
 		else:
 			cycler = 0
 		#endif
@@ -414,15 +414,15 @@ class Prop(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (signal & 0x8000):
-			(self setScript: 0 setCycle: 0)
+			self._send('setScript:', 0, 'setCycle:', 0)
 			if timer:
-				(timer dispose:)
+				timer._send('dispose:')
 			#endif
 			if kernel.IsObject(scaler):
-				(scaler dispose:)
+				scaler._send('dispose:')
 				scaler = 0
 			#endif
-			(super delete:)
+			super._send('delete:')
 		#endif
 	#end:method
 
@@ -432,7 +432,7 @@ class Prop(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script cue:)
+			script._send('cue:')
 		#endif
 	#end:method
 
@@ -442,10 +442,10 @@ class Prop(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		if param1:
-			(param1 init: self &rest)
+			param1._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -454,8 +454,8 @@ class Prop(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (cycler and (cycler completed:)):
-			(cycler motionCue:)
+		if (cycler and cycler._send('completed:')):
+			cycler._send('motionCue:')
 		#endif
 	#end:method
 
@@ -471,14 +471,14 @@ class Prop(View):
 					if argc:
 						param1
 					else:
-						(global1 detailLevel:)
+						global1._send('detailLevel:')
 					#endif
 					detailLevel
 				):
-				(self stopUpd:)
+				self._send('stopUpd:')
 			#end:case
 			case cycler:
-				(self startUpd:)
+				self._send('startUpd:')
 			#end:case
 		)
 	#end:method
@@ -489,36 +489,36 @@ class Prop(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if scaler:
-			(scaler dispose:)
+			scaler._send('dispose:')
 			scaler = 0
 		#endif
 		(cond
 			case (not argc):
-				(super setScale:)
+				super._send('setScale:')
 			#end:case
 			case kernel.IsObject(param1):
 				(scaleSignal |= 0x0001)
 				(scaleSignal &= 0xfffd)
 				(= scaler
-					if ((param1 -info-:) & 0x8000):
-						(param1 new:)
+					if (param1._send('-info-:') & 0x8000):
+						param1._send('new:')
 					else:
 						param1
 					#endif
 				)
-				(scaler init: self param2 &rest)
+				scaler._send('init:', self, param2, &rest)
 			#end:case
 			case (param1 == -1):
-				if (param2 scaleSignal:):
-					scaleSignal = (param2 scaleSignal:)
-					maxScale = (param2 maxScale:)
-					if kernel.IsObject((param2 scaler:)):
-						(scaler = ((param2 scaler:) new:) client: self)
+				if param2._send('scaleSignal:'):
+					scaleSignal = param2._send('scaleSignal:')
+					maxScale = param2._send('maxScale:')
+					if kernel.IsObject(param2._send('scaler:')):
+						scaler = param2._send('scaler:')._send('new:')._send('client:', self)
 					#endif
 				#endif
 			#end:case
 			else:
-				(super setScale: param1)
+				super._send('setScale:', param1)
 			#end:else
 		)
 	#end:method
@@ -546,7 +546,7 @@ class Actor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		xLast = x
 		yLast = y
 	#end:method
@@ -560,19 +560,19 @@ class Actor(Prop):
 			return
 		#endif
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
 		if code:
-			(code doit: self)
+			code._send('doit:', self)
 		#endif
 		if ((signal & 0x0004) and (not (signal & 0x0002))):
 			return
 		#endif
 		if viewer:
-			(viewer doit: self)
+			viewer._send('doit:', self)
 		#endif
 		if avoider:
-			(avoider doit:)
+			avoider._send('doit:')
 		#endif
 		if mover:
 			if ((scaleSignal & 0x0001) and (not (scaleSignal & 0x0004))):
@@ -581,22 +581,22 @@ class Actor(Prop):
 				temp3 = (temp7 if temp7 = ((temp5 * scaleX) / 128) else 1)
 				temp4 = (temp7 if temp7 = ((temp6 * scaleY) / 128) else 1)
 				if ((temp3 != xStep) or (temp4 != yStep)):
-					(self setStep: temp3 temp4 1)
+					self._send('setStep:', temp3, temp4, 1)
 				#endif
 			#endif
 			if mover:
-				(mover doit:)
+				mover._send('doit:')
 			#endif
 		#endif
 		if scaler:
-			(scaler doit:)
+			scaler._send('doit:')
 		#endif
 		if cycler:
 			temp1 = brLeft
 			temp2 = brRight
-			(cycler doit:)
+			cycler._send('doit:')
 			if baseSetter:
-				(baseSetter doit: self)
+				baseSetter._send('doit:', self)
 			else:
 				kernel.BaseSetter(self)
 			#endif
@@ -610,7 +610,7 @@ class Actor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super posn: param1 param2 &rest)
+		super._send('posn:', param1, param2, &rest)
 		xLast = param1
 		yLast = param2
 	#end:method
@@ -621,18 +621,18 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (mover and (mover != -1)):
-			(mover dispose:)
+			mover._send('dispose:')
 		#endif
 		if param1:
-			(self startUpd:)
+			self._send('startUpd:')
 			(= mover
-				if ((param1 -info-:) & 0x8000):
-					(param1 new:)
+				if (param1._send('-info-:') & 0x8000):
+					param1._send('new:')
 				else:
 					param1
 				#endif
 			)
-			(mover init: self &rest)
+			mover._send('init:', self, &rest)
 		else:
 			mover = 0
 		#endif
@@ -644,17 +644,17 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if avoider:
-			(avoider dispose:)
+			avoider._send('dispose:')
 		#endif
 		(= avoider
-			if (kernel.IsObject(param1) and ((param1 -info-:) & 0x8000)):
-				(param1 new:)
+			if (kernel.IsObject(param1) and (param1._send('-info-:') & 0x8000)):
+				param1._send('new:')
 			else:
 				param1
 			#endif
 		)
 		if avoider:
-			(avoider init: self &rest)
+			avoider._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -666,7 +666,7 @@ class Actor(Prop):
 		(return
 			(or
 				(not kernel.IsObject(mover))
-				((x == (mover xLast:)) and (y == (mover yLast:)))
+				((x == mover._send('xLast:')) and (y == mover._send('yLast:')))
 			)
 		)
 	#end:method
@@ -686,34 +686,34 @@ class Actor(Prop):
 
 		if (signal & 0x8000):
 			if (mover != -1):
-				(self setMotion: 0)
+				self._send('setMotion:', 0)
 			#endif
-			(self setAvoider: 0)
+			self._send('setAvoider:', 0)
 			if baseSetter:
-				(baseSetter dispose:)
+				baseSetter._send('dispose:')
 				baseSetter = 0
 			#endif
 			if looper:
-				(looper dispose:)
+				looper._send('dispose:')
 				looper = 0
 			#endif
 			if viewer:
-				(viewer dispose:)
+				viewer._send('dispose:')
 				viewer = 0
 			#endif
 			if blocks:
-				(blocks dispose:)
+				blocks._send('dispose:')
 				blocks = 0
 			#endif
 			if code:
-				(code dispose:)
+				code._send('dispose:')
 				code = 0
 			#endif
 			if kernel.IsObject(actions):
-				(actions dispose:)
+				actions._send('dispose:')
 				actions = 0
 			#endif
-			(super delete:)
+			super._send('delete:')
 		#endif
 	#end:method
 
@@ -761,9 +761,9 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not blocks):
-			blocks = (Set new:)
+			blocks = Set._send('new:')
 		#endif
-		(blocks add: &rest)
+		blocks._send('add:', &rest)
 	#end:method
 
 	@classmethod
@@ -772,9 +772,9 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if blocks:
-			(blocks delete: &rest)
-			if (blocks isEmpty:):
-				(blocks dispose:)
+			blocks._send('delete:', &rest)
+			if blocks._send('isEmpty:'):
+				blocks._send('dispose:')
 				blocks = 0
 			#endif
 		#endif
@@ -785,7 +785,7 @@ class Actor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		kernel.GetDistance(x, y, (param1 x:), (param1 y:), global31)
+		kernel.GetDistance(x, y, param1._send('x:'), param1._send('y:'), global31)
 	#end:method
 
 	@classmethod
@@ -794,22 +794,22 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if baseSetter:
-			(baseSetter doit: self)
+			baseSetter._send('doit:', self)
 		else:
 			kernel.BaseSetter(self)
 		#endif
 		(= temp0
 			(cond
-				case kernel.CantBeHere(self, (global5 elements:)):#end:case
+				case kernel.CantBeHere(self, global5._send('elements:')):#end:case
 				case 
 					(and
 						(not (signal & 0x2000))
 						kernel.IsObject(global2)
-						(y < (global2 horizon:))
+						(y < global2._send('horizon:'))
 					):
 					-1
 				#end:case
-				case (blocks and (not (blocks allTrue: #doit self))): -2#end:case
+				case (blocks and (not blocks._send('allTrue:', #doit, self))): -2#end:case
 			)
 		)
 	#end:method
@@ -855,9 +855,9 @@ class Actor(Prop):
 		if 
 			(and
 				kernel.IsObject(mover)
-				((mover isMemberOf: MoveTo) or (mover isMemberOf: PolyPath))
+				(mover._send('isMemberOf:', MoveTo) or mover._send('isMemberOf:', PolyPath))
 			)
-			(mover init:)
+			mover._send('init:')
 		#endif
 	#end:method
 
@@ -867,10 +867,10 @@ class Actor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp0
-			if (temp1 = (global2 vanishingY:) == -30000):
+			if (temp1 = global2._send('vanishingY:') == -30000):
 				x
 			else:
-				(global2 vanishingX:)
+				global2._send('vanishingX:')
 			#endif
 		)
 		if ((xStep == 0) and (yStep == 0)):
@@ -879,7 +879,7 @@ class Actor(Prop):
 		temp5 = (32000 / proc999_3(xStep, yStep))
 		match param1
 			case 0:
-				(self setMotion: 0)
+				self._send('setMotion:', 0)
 				return
 			#end:case
 			case 1:
@@ -913,11 +913,11 @@ class Actor(Prop):
 			(temp2 *= 5)
 			(temp3 *= 5)
 		#end:loop
-		if (temp7 = (global2 obstacles:) and global67):
+		if (temp7 = global2._send('obstacles:') and global67):
 			(= temp6
-				kernel.AvoidPath(x, y, (x + temp2), (y + temp3), (temp7
-					elements:
-				), (temp7 size:), 0)
+				kernel.AvoidPath(x, y, (x + temp2), (y + temp3), temp7._send(
+					'elements:'
+				), temp7._send('size:'), 0)
 			)
 			temp2 = (proc999_6(temp6, 2) - x)
 			temp3 = (proc999_6(temp6, 3) - y)
@@ -925,13 +925,13 @@ class Actor(Prop):
 		#endif
 		(cond
 			case (temp2 or temp3):
-				(self setMotion: MoveTo (x + temp2) (y + temp3))
+				self._send('setMotion:', MoveTo, (x + temp2), (y + temp3))
 			#end:case
 			case param1:
-				(self setMotion: 0 setHeading: ((param1 - 1) * 45))
+				self._send('setMotion:', 0, 'setHeading:', ((param1 - 1) * 45))
 			#end:case
 			else:
-				(self setMotion: 0)
+				self._send('setMotion:', 0)
 			#end:else
 		)
 	#end:method
@@ -941,10 +941,10 @@ class Actor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (mover and (mover completed:)):
-			(mover motionCue:)
+		if (mover and mover._send('completed:')):
+			mover._send('motionCue:')
 		#endif
-		(super motionCue:)
+		super._send('motionCue:')
 	#end:method
 
 	@classmethod
@@ -956,23 +956,23 @@ class Actor(Prop):
 			(= temp0
 				(cond
 					case (argc == 0):
-						(super setLoop:)
+						super._send('setLoop:')
 						0
 					#end:case
 					case (not kernel.IsObject(param1)):
-						(super setLoop: param1 &rest)
+						super._send('setLoop:', param1, &rest)
 						0
 					#end:case
-					case ((param1 -info-:) & 0x8000):
-						(param1 new:)
+					case (param1._send('-info-:') & 0x8000):
+						param1._send('new:')
 					#end:case
 					else: param1#end:else
 				)
 			)
 			if looper:
-				(looper dispose:)
+				looper._send('dispose:')
 			#endif
-			(looper = temp0 init: self &rest)
+			looper = temp0._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -988,14 +988,14 @@ class Actor(Prop):
 					if argc:
 						param1
 					else:
-						(global1 detailLevel:)
+						global1._send('detailLevel:')
 					#endif
 					detailLevel
 				):
-				(self stopUpd:)
+				self._send('stopUpd:')
 			#end:case
 			case (cycler or mover):
-				(self startUpd:)
+				self._send('startUpd:')
 			#end:case
 		)
 	#end:method
@@ -1009,11 +1009,11 @@ class Actor(Prop):
 			heading = param1
 		#endif
 		if looper:
-			(looper doit: self heading ((argc >= 2) and param2))
+			looper._send('doit:', self, heading, ((argc >= 2) and param2))
 		else:
 			kernel.DirLoop(self, heading)
 			if ((argc >= 2) and kernel.IsObject(param2)):
-				(param2 cue: &rest)
+				param2._send('cue:', &rest)
 			#endif
 		#endif
 		return heading

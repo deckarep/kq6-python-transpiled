@@ -32,18 +32,18 @@ class Caliphim(Kq6Talker):
 
 		if proc913_0(91):
 			view = 8991
-			(tBust view: 8991)
-			(tEyes view: 8991 nsLeft: 31 nsTop: 34)
-			(tMouth view: 8991 nsLeft: 33 nsTop: 43)
+			tBust._send('view:', 8991)
+			tEyes._send('view:', 8991, 'nsLeft:', 31, 'nsTop:', 34)
+			tMouth._send('view:', 8991, 'nsLeft:', 33, 'nsTop:', 43)
 			raveName = r"""CALIPHID"""
 		else:
 			view = 899
-			(tBust view: 899)
-			(tEyes view: 899 nsLeft: 28 nsTop: 29)
-			(tMouth view: 899 nsLeft: 29 nsTop: 38)
+			tBust._send('view:', 899)
+			tEyes._send('view:', 899, 'nsLeft:', 28, 'nsTop:', 29)
+			tMouth._send('view:', 899, 'nsLeft:', 29, 'nsTop:', 38)
 			raveName = r"""CALIPHIM"""
 		#endif
-		(super init: tBust tEyes tMouth &rest)
+		super._send('init:', tBust, tEyes, tMouth, &rest)
 	#end:method
 
 #end:class or instance

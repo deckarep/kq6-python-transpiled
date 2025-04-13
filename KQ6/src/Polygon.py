@@ -34,7 +34,7 @@ class Polygon(Obj):
 		if (dynamic and points):
 			kernel.Memory(3, points)
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance

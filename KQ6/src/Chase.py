@@ -30,7 +30,7 @@ class Chase(Motion):
 				#endif
 			#endif
 		#endif
-		(super init: client (who x:) (who y:) caller)
+		super._send('init:', client, who._send('x:'), who._send('y:'), caller)
 	#end:method
 
 	@classmethod
@@ -38,7 +38,7 @@ class Chase(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return ((client distanceTo: who) <= distance)
+		return (client._send('distanceTo:', who) <= distance)
 	#end:method
 
 	@classmethod
@@ -48,10 +48,10 @@ class Chase(Motion):
 
 		(cond
 			case argc:
-				(super setTarget: &rest)
+				super._send('setTarget:', &rest)
 			#end:case
-			case (not (self onTarget:)):
-				(super setTarget: (who x:) (who y:))
+			case (not self._send('onTarget:')):
+				super._send('setTarget:', who._send('x:'), who._send('y:'))
 			#end:case
 		)
 	#end:method
@@ -61,12 +61,12 @@ class Chase(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (self onTarget:):
-			(self moveDone:)
+		if self._send('onTarget:'):
+			self._send('moveDone:')
 		else:
-			(super doit:)
+			super._send('doit:')
 			if (b-moveCnt == 0):
-				(super init: client (who x:) (who y:) caller)
+				super._send('init:', client, who._send('x:'), who._send('y:'), caller)
 			#endif
 		#endif
 	#end:method

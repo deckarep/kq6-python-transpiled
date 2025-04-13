@@ -35,7 +35,7 @@ class WingedOne1(Kq6Talker):
 		if (global11 == 380):
 			winPosn = 0
 		#endif
-		(super init: tBust1 tEyes1 tMouth1 &rest)
+		super._send('init:', tBust1, tEyes1, tMouth1, &rest)
 	#end:method
 
 #end:class or instance
@@ -83,7 +83,7 @@ class WingedOne2(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: tBust2 tEyes2 tMouth2 &rest)
+		super._send('init:', tBust2, tEyes2, tMouth2, &rest)
 	#end:method
 
 #end:class or instance

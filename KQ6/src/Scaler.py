@@ -38,7 +38,7 @@ class Scaler(Code):
 			return 0
 		#endif
 		const = (backSize - ((slopeNum * backY) / slopeDen))
-		(self doit:)
+		self._send('doit:')
 	#end:method
 
 	@classmethod
@@ -47,7 +47,7 @@ class Scaler(Code):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (temp0 = (client y:) < backY):
+			case (temp0 = client._send('y:') < backY):
 				temp1 = backSize
 			#end:case
 			case (temp0 > frontY):
@@ -58,7 +58,7 @@ class Scaler(Code):
 			#end:else
 		)
 		temp1 = ((temp1 * 128) / 100)
-		(client scaleX: temp1 scaleY: temp1)
+		client._send('scaleX:', temp1, 'scaleY:', temp1)
 	#end:method
 
 #end:class or instance

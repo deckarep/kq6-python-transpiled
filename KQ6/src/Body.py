@@ -37,9 +37,9 @@ class Body(Ego):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
-			(super setScale: param1 &rest)
+			super._send('setScale:', param1, &rest)
 		else:
-			(super setScale:)
+			super._send('setScale:')
 		#endif
 		(scaleSignal |= 0x0004)
 	#end:method
@@ -49,19 +49,19 @@ class Body(Ego):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		(cond
-			case (self isStopped:):
+			case self._send('isStopped:'):
 				if 
 					(and
 						(temp0 = loop != temp1 = (kernel.NumLoops(self) - 1))
-						(global5 contains: self)
-						(((global0 view:) == 900) or ((global0 view:) == 308))
+						global5._send('contains:', self)
+						((global0._send('view:') == 900) or (global0._send('view:') == 308))
 						kernel.IsObject(cycler)
-						(not (cycler isKindOf: Grycler))
+						(not cycler._send('isKindOf:', Grycler))
 						normal
 					)
-					(self loop: temp1 cel: temp0)
+					self._send('loop:', temp1, 'cel:', temp0)
 				#endif
 			#end:case
 			case 
@@ -70,7 +70,7 @@ class Body(Ego):
 					(loop == (kernel.NumLoops(self) - 1))
 					(not (signal & 0x0800))
 				):
-				(self loop: cel)
+				self._send('loop:', cel)
 			#end:case
 		)
 	#end:method
@@ -83,7 +83,7 @@ class Body(Ego):
 		temp0 = (temp2 if temp2 = (scaleX / 15) else 1)
 		temp1 = (temp2 if temp2 = (scaleY / 63) else 1)
 		if ((temp0 != xStep) or (temp1 != yStep)):
-			(self setStep: temp0 temp1 1)
+			self._send('setStep:', temp0, temp1, 1)
 		#endif
 	#end:method
 
@@ -95,8 +95,8 @@ class Body(Ego):
 		(= oldScaleSignal
 			oldMaxScale = oldBackSize = oldFrontY = oldBackY = 0
 		)
-		(self setScale: 0)
-		(super dispose:)
+		self._send('setScale:', 0)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -108,20 +108,20 @@ class Body(Ego):
 			(= temp0
 				(cond
 					case (argc == 0):
-						(super setLoop:)
+						super._send('setLoop:')
 						0
 					#end:case
 					case (not kernel.IsObject(param1)):
-						(super setLoop: param1 &rest)
+						super._send('setLoop:', param1, &rest)
 						0
 					#end:case
 					else: param1#end:else
 				)
 			)
 			if looper:
-				(looper dispose:)
+				looper._send('dispose:')
 			#endif
-			(looper = temp0 init: self &rest)
+			looper = temp0._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -131,23 +131,23 @@ class Body(Ego):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (argc > 0):
-			(global0 loop: param1)
+			global0._send('loop:', param1)
 		#endif
-		(global0
-			view: (param2 if (argc > 1) else 900)
-			signal: 4096
-			z: 0
-			setLoop: -1
-			setLoop: global151
-			setPri: -1
-			setMotion: 0
-			illegalBits: 0
-			ignoreActors: 0
-			ignoreHorizon: 1
-			setStep: oldXStep oldYStep
-			setCycle: Walk
-			normal: 1
-			setSpeed: currentSpeed
+		global0._send(
+			'view:', (param2 if (argc > 1) else 900),
+			'signal:', 4096,
+			'z:', 0,
+			'setLoop:', -1,
+			'setLoop:', global151,
+			'setPri:', -1,
+			'setMotion:', 0,
+			'illegalBits:', 0,
+			'ignoreActors:', 0,
+			'ignoreHorizon:', 1,
+			'setStep:', oldXStep, oldYStep,
+			'setCycle:', Walk,
+			'normal:', 1,
+			'setSpeed:', currentSpeed
 		)
 		if (oldScaleSignal and (view == 900)):
 			(cond
@@ -156,17 +156,12 @@ class Body(Ego):
 					maxScale = oldMaxScale
 				#end:case
 				case (oldMaxScale or oldBackSize or oldFrontY or oldBackY):
-					(global0
-						setScale:
-							Scaler
-							oldMaxScale
-							oldBackSize
-							oldFrontY
-							oldBackY
+					global0._send(
+						'setScale:', Scaler, oldMaxScale, oldBackSize, oldFrontY, oldBackY
 					)
 				#end:case
 				else:
-					(global0 setScale:)
+					global0._send('setScale:')
 				#end:else
 			)
 			(= oldScaleSignal
@@ -180,8 +175,8 @@ class Body(Ego):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super put: &rest)
-		(global69 curIcon: (global69 walkIconItem:))
+		super._send('put:', &rest)
+		global69._send('curIcon:', global69._send('walkIconItem:'))
 	#end:method
 
 	@classmethod
@@ -194,19 +189,19 @@ class Body(Ego):
 		#endif
 		(cond
 			case setHeadingCode:
-				(setHeadingCode doit: heading &rest)
+				setHeadingCode._send('doit:', heading, &rest)
 			#end:case
 			case 
 				(and
-					kernel.IsObject((global0 looper:))
-					((global0 looper:) isKindOf: EgoGroop)
-					(not (looper dontHead:))
+					kernel.IsObject(global0._send('looper:'))
+					global0._send('looper:')._send('isKindOf:', EgoGroop)
+					(not looper._send('dontHead:'))
 				):
-				(looper doit: self heading ((argc >= 2) and param1[1]))
+				looper._send('doit:', self, heading, ((argc >= 2) and param1[1]))
 			#end:case
 			else:
-				if kernel.IsObject((global0 looper:)):
-					if (not ((global0 looper:) isKindOf: EgoGroop)):
+				if kernel.IsObject(global0._send('looper:')):
+					if (not global0._send('looper:')._send('isKindOf:', EgoGroop)):
 						temp0 = 1
 					else:
 						temp0 = 0
@@ -218,7 +213,7 @@ class Body(Ego):
 					kernel.DirLoop(self, heading)
 				#endif
 				if ((argc >= 2) and kernel.IsObject(param1[1])):
-					(param1[1] cue: &rest)
+					param1[1]._send('cue:', &rest)
 				#endif
 			#end:else
 		)

@@ -28,12 +28,12 @@ class tlkGyoungBoy(Narrator):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		if (global11 == 260):
 			x = 110
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

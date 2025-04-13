@@ -28,11 +28,11 @@ class Widow(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
-			(self x: 81 y: 13)
+			self._send('x:', 81, 'y:', 13)
 		else:
-			(self x: 80 y: 100)
+			self._send('x:', 80, 'y:', 100)
 		#endif
-		(super init: 0 0 0 &rest)
+		super._send('init:', 0, 0, 0, &rest)
 	#end:method
 
 #end:class or instance

@@ -84,7 +84,7 @@ def proc999_4(param1 = None, param2 = None, param3 = None, param4 = None, param5
 			(<=
 				param1
 				if (argc < 6):
-					(param5 x:)
+					param5._send('x:')
 				else:
 					param5
 				#endif
@@ -93,7 +93,7 @@ def proc999_4(param1 = None, param2 = None, param3 = None, param4 = None, param5
 			(<=
 				param2
 				if (argc < 6):
-					(param5 y:)
+					param5._send('y:')
 				else:
 					param6
 				#endif
@@ -132,7 +132,7 @@ def proc999_7(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(param1 param2: &rest)
+	param1._send('param2:', &rest)
 #end:procedure
 
 class Obj
@@ -177,7 +177,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		proc921_0((self showStr: @temp0))
+		proc921_0(self._send('showStr:', @temp0))
 	#end:method
 
 	@classmethod
@@ -185,7 +185,7 @@ class Obj
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param1 doit: self &rest)
+		param1._send('doit:', self, &rest)
 	#end:method
 
 	@classmethod
@@ -205,9 +205,9 @@ class Obj
 			(or
 				(param1 == self)
 				(and
-					((param1 -info-:) & 0x8000)
+					(param1._send('-info-:') & 0x8000)
 					(not (-info- & 0x8000))
-					(-propDict- == (param1 -propDict-:))
+					(-propDict- == param1._send('-propDict-:'))
 				)
 			)
 		)
@@ -221,13 +221,13 @@ class Obj
 		(return
 			(or
 				(and
-					(-propDict- == (param1 -propDict-:))
-					(-classScript- == (param1 -classScript-:))
+					(-propDict- == param1._send('-propDict-:'))
+					(-classScript- == param1._send('-classScript-:'))
 				)
 				(and
-					temp0 = (self -super-:)
+					temp0 = self._send('-super-:')
 					kernel.IsObject(temp0)
-					(temp0 isKindOf: param1)
+					temp0._send('isKindOf:', param1)
 				)
 			)
 		)
@@ -260,7 +260,7 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #doit &rest)
+		self._send('eachElementDo:', #doit, &rest)
 	#end:method
 
 	@classmethod
@@ -276,8 +276,8 @@ class Collect(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		proc921_0((self showStr: @temp0))
-		(self eachElementDo: #showSelf)
+		proc921_0(self._send('showStr:', @temp0))
+		self._send('eachElementDo:', #showSelf)
 	#end:method
 
 	@classmethod
@@ -290,7 +290,7 @@ class Collect(Obj):
 		#endif
 		temp1 = 0
 		while (temp1 < argc): # inline for
-			if (not (self isDuplicate: param1[temp1])):
+			if (not self._send('isDuplicate:', param1[temp1])):
 				kernel.AddToEnd(elements, kernel.NewNode(param1[temp1], param1[temp1]))
 				size.post('++')
 			#endif
@@ -322,11 +322,11 @@ class Collect(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if elements:
-			(self eachElementDo: #dispose)
+			self._send('eachElementDo:', #dispose)
 			kernel.DisposeList(elements)
 		#endif
 		size = elements = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -372,7 +372,7 @@ class Collect(Obj):
 			if (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))):
 				return
 			#endif
-			(temp2 param1: &rest)
+			temp2._send('param1:', &rest)
 			# for:reinit
 			temp0 = temp1
 		#end:loop
@@ -387,7 +387,7 @@ class Collect(Obj):
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
 			temp2 = kernel.NodeValue(temp0)
-			if (temp2 param1: &rest):
+			if temp2._send('param1:', &rest):
 				return temp2
 			#endif
 			# for:reinit
@@ -405,7 +405,7 @@ class Collect(Obj):
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
 			temp2 = kernel.NodeValue(temp0)
-			if (not (temp2 param1: &rest)):
+			if (not temp2._send('param1:', &rest)):
 				return 0
 			#endif
 			# for:reinit
@@ -422,7 +422,7 @@ class Collect(Obj):
 		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
-			(self delete: kernel.NodeValue(temp0))
+			self._send('delete:', kernel.NodeValue(temp0))
 			# for:reinit
 			temp0 = temp1
 		#end:loop
@@ -497,7 +497,7 @@ class List(Collect):
 		#endif
 		temp0 = (argc - 1)
 		while (0 <= temp0): # inline for
-			if (not (self isDuplicate: param1[temp0])):
+			if (not self._send('isDuplicate:', param1[temp0])):
 				kernel.AddToFront(elements, kernel.NewNode(param1[temp0], param1[temp0]))
 				size.post('++')
 			#endif
@@ -517,7 +517,7 @@ class List(Collect):
 		#endif
 		temp0 = 0
 		while (temp0 < argc): # inline for
-			if (not (self isDuplicate: param1[temp0])):
+			if (not self._send('isDuplicate:', param1[temp0])):
 				kernel.AddToEnd(elements, kernel.NewNode(param1[temp0], param1[temp0]))
 				size.post('++')
 			#endif
@@ -536,7 +536,7 @@ class List(Collect):
 			argc.post('--')
 			temp0 = 0
 			while (temp0 < argc): # inline for
-				if (not (self isDuplicate: param2[temp0])):
+				if (not self._send('isDuplicate:', param2[temp0])):
 					(= temp2
 						kernel.AddAfter(elements, temp2, kernel.NewNode([param2
 							temp0
@@ -586,7 +586,7 @@ class Set(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self contains: param1)
+		self._send('contains:', param1)
 	#end:method
 
 #end:class or instance
@@ -601,17 +601,17 @@ class EventHandler(Set):
 		temp3 = kernel.Clone(param1)
 		
 			(temp0 = kernel.FirstNode(elements))
-			(temp0 and (not (temp3 claimed:)))
+			(temp0 and (not temp3._send('claimed:')))
 			(temp0 = temp1)
 			
 			temp1 = kernel.NextNode(temp0)
 			(breakif (not kernel.IsObject(temp2 = kernel.NodeValue(temp0))))
-			(temp2 handleEvent: temp3)
+			temp2._send('handleEvent:', temp3)
 			# for:reinit
 			temp0 = temp1
 		#end:loop
-		temp4 = (temp3 claimed:)
-		(temp3 dispose:)
+		temp4 = temp3._send('claimed:')
+		temp3._send('dispose:')
 		return temp4
 	#end:method
 
@@ -639,12 +639,12 @@ class Script(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
 		(cond
 			case cycles:
 				if (not cycles.post('--')):
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case seconds:
@@ -652,13 +652,13 @@ class Script(Obj):
 				if (lastSeconds != temp0):
 					lastSeconds = temp0
 					if (not seconds.post('--')):
-						(self cue:)
+						self._send('cue:')
 					#endif
 				#endif
 			#end:case
 			case (ticks and ((ticks -= kernel.Abs((global88 - lastTicks))) <= 0)):
 				ticks = 0
-				(self cue:)
+				self._send('cue:')
 			#end:case
 		)
 		lastTicks = global88
@@ -671,7 +671,7 @@ class Script(Obj):
 
 		lastTicks = global88
 		if (argc >= 1):
-			(client = param1 script: self)
+			client = param1._send('script:', self)
 			if (argc >= 2):
 				caller = param2
 				if (argc >= 3):
@@ -680,7 +680,7 @@ class Script(Obj):
 			#endif
 		#endif
 		state = (start - 1)
-		(self cue:)
+		self._send('cue:')
 	#end:method
 
 	@classmethod
@@ -689,15 +689,14 @@ class Script(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		if kernel.IsObject(timer):
-			(timer dispose:)
+			timer._send('dispose:')
 		#endif
 		if kernel.IsObject(client):
-			(client
-				script:
-					(= temp0
+			client._send(
+				'script:', (= temp0
 						(cond
 							case kernel.IsObject(next): next#end:case
 							case next:
@@ -709,18 +708,18 @@ class Script(Obj):
 			(cond
 				case (not temp0): 0#end:case
 				case (global13 == global11):
-					(temp0 init: client)
+					temp0._send('init:', client)
 				#end:case
 				else:
-					(temp0 dispose:)
+					temp0._send('dispose:')
 				#end:else
 			)
 		#endif
 		if (kernel.IsObject(caller) and (global13 == global11)):
-			(caller cue: register)
+			caller._send('cue:', register)
 		#endif
 		script = timer = client = next = caller = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -737,7 +736,7 @@ class Script(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if client:
-			(self changeState: (state + 1) &rest)
+			self._send('changeState:', (state + 1), &rest)
 		#endif
 	#end:method
 
@@ -747,10 +746,10 @@ class Script(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		if param1:
-			(param1 init: self &rest)
+			param1._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -760,9 +759,9 @@ class Script(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script handleEvent: param1)
+			script._send('handleEvent:', param1)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 #end:class or instance
@@ -782,7 +781,7 @@ class Event(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (super new:)
+		temp0 = super._send('new:')
 		kernel.GetEvent((param1 if argc else 32767), temp0)
 		return temp0
 	#end:method
@@ -872,7 +871,7 @@ class Cursor(Obj):
 
 		hotSpotX = param1
 		hotSpotY = param2
-		(self init:)
+		self._send('init:')
 	#end:method
 
 	@classmethod
@@ -881,7 +880,7 @@ class Cursor(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		loop = param1
-		(self init:)
+		self._send('init:')
 	#end:method
 
 	@classmethod
@@ -890,7 +889,7 @@ class Cursor(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		cel = param1
-		(self init:)
+		self._send('init:')
 	#end:method
 
 	@classmethod

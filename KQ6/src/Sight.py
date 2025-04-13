@@ -22,7 +22,7 @@ def proc982_0(param1 = None, *rest):
 
 	(return
 		(not
-			((<= 0 (param1 x:) 319) and (<= 0 ((param1 y:) - (param1 z:)) 189))
+			((<= 0 param1._send('x:') 319) and (<= 0 (param1._send('y:') - param1._send('z:')) 189))
 		)
 	)
 #end:procedure
@@ -45,24 +45,24 @@ def proc982_1(param1 = None, param2 = None, param3 = None, param4 = None, *rest)
 				(-
 					360
 					if (temp0 == global0):
-						(2 * (temp0 sightAngle:))
+						(2 * temp0._send('sightAngle:'))
 					#endif
 				)
 			)
 		#endif
 	#endif
-	temp3 = (param1 x:)
-	temp4 = (param1 y:)
-	temp5 = (temp0 x:)
-	temp6 = (temp0 y:)
+	temp3 = param1._send('x:')
+	temp4 = param1._send('y:')
+	temp5 = temp0._send('x:')
+	temp6 = temp0._send('y:')
 	(return
 		(and
 			(param1 != temp0)
 			(or
 				(<
 					(temp1 / 2)
-					kernel.Abs(proc982_2(kernel.GetAngle(temp5, temp6, temp3, temp4), (temp0
-						heading:
+					kernel.Abs(proc982_2(kernel.GetAngle(temp5, temp6, temp3, temp4), temp0._send(
+						'heading:'
 					)))
 				)
 				(temp2 < kernel.GetDistance(temp5, temp6, temp3, temp4, global31))

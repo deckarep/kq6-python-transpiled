@@ -34,17 +34,17 @@ class speedRoom(Rm):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
+		super._send('init:')
 		temp0 = kernel.FileIO(0, r"""version""", 1)
 		kernel.FileIO(5, global27, 10, temp0)
 		kernel.FileIO(1, temp0)
 		if global100:
-			(global69 enable:)
-			(global1 handsOn:)
+			global69._send('enable:')
+			global1._send('handsOn:')
 			proc911_1()
-			(global1 handsOff:)
+			global1._send('handsOff:')
 		else:
-			(self setScript: speedTest)
+			self._send('setScript:', speedTest)
 		#endif
 	#end:method
 
@@ -53,7 +53,7 @@ class speedRoom(Rm):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		temp0 = 0
 		while (temp0 < 500): # inline for
 		#end:loop
@@ -81,16 +81,16 @@ class speedTest(Script):
 			#end:case
 			case 1:
 				local1 = kernel.GetTime()
-				(fred
-					view: 99
-					setLoop: 0
-					illegalBits: 0
-					posn: 20 99
-					setStep: 1 1
-					setSpeed: 0
-					setCycle: Fwd
-					init:
-					setMotion: MoveTo 100 100 self
+				fred._send(
+					'view:', 99,
+					'setLoop:', 0,
+					'illegalBits:', 0,
+					'posn:', 20, 99,
+					'setStep:', 1, 1,
+					'setSpeed:', 0,
+					'setCycle:', Fwd,
+					'init:',
+					'setMotion:', MoveTo, 100, 100, self
 				)
 			#end:case
 			case 2:
@@ -103,7 +103,7 @@ class speedTest(Script):
 				seconds = 5
 			#end:case
 			case 4:
-				(startGame doit:)
+				startGame._send('doit:')
 			#end:case
 		#end:match
 	#end:method
@@ -150,15 +150,14 @@ class startGame(Code):
 				else: 1#end:else
 			)
 		)
-		(global1
-			detailLevel:
-				match global87
+		global1._send(
+			'detailLevel:', match global87
 					case 0: 0#end:case
 					case 1: 2#end:case
 					else: 3#end:else
 				#end:match
 		)
-		(global2 newRoom: 100)
+		global2._send('newRoom:', 100)
 	#end:method
 
 #end:class or instance

@@ -58,74 +58,57 @@ class rm820(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc958_0(128, 825, 822)
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 3
-					init:
-						10
-						166
-						10
-						174
-						301
-						174
-						301
-						161
-						280
-						147
-						147
-						147
-						147
-						132
-						95
-						132
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 3,
+					'init:', 10, 166, 10, 174, 301, 174, 301, 161, 280, 147, 147, 147, 147, 132, 95, 132,
+					'yourself:'
 				)
 		)
-		(kernel.ScriptID(1015, 6) x: 19 y: 41)
-		(kernel.ScriptID(1015, 7) x: 19 y: 77)
-		(global32 add: bed torch gargoyle eachElementDo: #init)
-		(super init: &rest)
-		(flame setCycle: Fwd init:)
-		(wallReflection setCycle: RandCycle init:)
-		(dungeonDoor cel: 3 setPri: 10 init: stopUpd:)
-		(extraView addToPic:)
-		(ant init: setScript: antScript)
-		(global0
-			init:
-			reset: 0
-			posn: 43 143
-			setPri: 9
-			setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
+		kernel.ScriptID(1015, 6)._send('x:', 19, 'y:', 41)
+		kernel.ScriptID(1015, 7)._send('x:', 19, 'y:', 77)
+		global32._send('add:', bed, torch, gargoyle, 'eachElementDo:', #init)
+		super._send('init:', &rest)
+		flame._send('setCycle:', Fwd, 'init:')
+		wallReflection._send('setCycle:', RandCycle, 'init:')
+		dungeonDoor._send('cel:', 3, 'setPri:', 10, 'init:', 'stopUpd:')
+		extraView._send('addToPic:')
+		ant._send('init:', 'setScript:', antScript)
+		global0._send(
+			'init:',
+			'reset:', 0,
+			'posn:', 43, 143,
+			'setPri:', 9,
+			'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY
 		)
-		((global0 scaler:) doit:)
-		if (kernel.ScriptID(80, 0) tstFlag: 709 8192):
-			if (global5 contains: kernel.ScriptID(80, 5)):
-				(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
-				(kernel.ScriptID(80, 5) dispose:)
+		global0._send('scaler:')._send('doit:')
+		if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8192):
+			if global5._send('contains:', kernel.ScriptID(80, 5)):
+				kernel.ScriptID(81, 0)._send('resetGuard:', kernel.ScriptID(80, 5), 1)
+				kernel.ScriptID(80, 5)._send('dispose:')
 			#endif
-			if (global5 contains: kernel.ScriptID(80, 6)):
-				(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
-				(kernel.ScriptID(80, 6) dispose:)
+			if global5._send('contains:', kernel.ScriptID(80, 6)):
+				kernel.ScriptID(81, 0)._send('resetGuard:', kernel.ScriptID(80, 6), 2)
+				kernel.ScriptID(80, 6)._send('dispose:')
 			#endif
-			(kernel.ScriptID(81, 0) clrFlag: 709 1 2)
-			(self setScript: kernel.ScriptID(821, 0))
-			(global102 fadeTo: 824 -1)
+			kernel.ScriptID(81, 0)._send('clrFlag:', 709, 1, 2)
+			self._send('setScript:', kernel.ScriptID(821, 0))
+			global102._send('fadeTo:', 824, -1)
 			local0 = 1
 		else:
-			(self setScript: enterDungeon)
+			self._send('setScript:', enterDungeon)
 			if 
 				(and
-					proc999_5((kernel.ScriptID(80, 0) dungeonEntered:), 1, 2)
-					(not (kernel.ScriptID(80, 0) tstFlag: 709 -32768))
+					proc999_5(kernel.ScriptID(80, 0)._send('dungeonEntered:'), 1, 2)
+					(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, -32768))
 				)
-				(global102 fadeTo: 820 -1)
-				if (not (global0 has: 17)):
-					(dungeonDoor approachX: 111)
+				global102._send('fadeTo:', 820, -1)
+				if (not global0._send('has:', 17)):
+					dungeonDoor._send('approachX:', 111)
 				#endif
-				(enterDungeon next: kernel.ScriptID(822, 0))
+				enterDungeon._send('next:', kernel.ScriptID(822, 0))
 			else:
-				(global102 fadeTo: 824 -1)
+				global102._send('fadeTo:', 824, -1)
 			#endif
 		#endif
 	#end:method
@@ -138,12 +121,12 @@ class rm820(CastleRoom):
 		if 
 			(and
 				(param1 == 2)
-				proc999_5((kernel.ScriptID(80, 0) dungeonEntered:), 1, 2)
-				(not (kernel.ScriptID(80, 0) tstFlag: 709 -32768))
+				proc999_5(kernel.ScriptID(80, 0)._send('dungeonEntered:'), 1, 2)
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, -32768))
 			)
-			(global91 say: 3 2 20 1)
+			global91._send('say:', 3, 2, 20, 1)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -152,8 +135,8 @@ class rm820(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 setPri: -1)
-		(super dispose: &rest)
+		global0._send('setPri:', -1)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(991)
 		kernel.DisposeScript(964)
 	#end:method
@@ -170,52 +153,50 @@ class enterDungeon(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 1
 			#end:case
 			case 1:
-				(global0
-					setMotion:
-						MoveTo
-						(dungeonDoor approachX:)
-						(dungeonDoor approachY:)
-						self
+				global0._send(
+					'setMotion:', MoveTo, dungeonDoor._send('approachX:'), dungeonDoor._send(
+							'approachY:'
+						), self
 				)
 			#end:case
 			case 2:
-				(dungeonDoor setCycle: Beg self)
+				dungeonDoor._send('setCycle:', Beg, self)
 			#end:case
 			case 3:
-				(global105 number: 822 loop: 1 play:)
-				(dungeonDoor setPri: -1 stopUpd:)
+				global105._send('number:', 822, 'loop:', 1, 'play:')
+				dungeonDoor._send('setPri:', -1, 'stopUpd:')
 				if 
 					(or
-						(kernel.ScriptID(81, 0) tstFlag: 709 1)
-						(kernel.ScriptID(81, 0) tstFlag: 709 2)
+						kernel.ScriptID(81, 0)._send('tstFlag:', 709, 1)
+						kernel.ScriptID(81, 0)._send('tstFlag:', 709, 2)
 					)
-					(global91 say: 1 0 7 1 self)
+					global91._send('say:', 1, 0, 7, 1, self)
 				else:
 					cycles = 2
 				#endif
-				if (global5 contains: kernel.ScriptID(80, 5)):
-					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
-					(kernel.ScriptID(80, 5) dispose:)
+				if global5._send('contains:', kernel.ScriptID(80, 5)):
+					kernel.ScriptID(81, 0)._send('resetGuard:', kernel.ScriptID(80, 5), 1)
+					kernel.ScriptID(80, 5)._send('dispose:')
 				#endif
-				if (global5 contains: kernel.ScriptID(80, 6)):
-					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
-					(kernel.ScriptID(80, 6) dispose:)
+				if global5._send('contains:', kernel.ScriptID(80, 6)):
+					kernel.ScriptID(81, 0)._send('resetGuard:', kernel.ScriptID(80, 6), 2)
+					kernel.ScriptID(80, 6)._send('dispose:')
 				#endif
-				(kernel.ScriptID(81, 0) clrFlag: 709 1 2)
+				kernel.ScriptID(81, 0)._send('clrFlag:', 709, 1, 2)
 			#end:case
 			case 4:
 				if (not next):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				else:
 					next = 0
-					(kernel.ScriptID(822, 1) init:)
+					kernel.ScriptID(822, 1)._send('init:')
 				#endif
-				(global0 reset: 0)
-				(self dispose:)
+				global0._send('reset:', 0)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -230,11 +211,11 @@ class exitDungeon(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		if ((state == 1) and (temp0 & 0x4000)):
-			(self cue:)
+			self._send('cue:')
 		#endif
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -244,45 +225,45 @@ class exitDungeon(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(dungeonDoor hide:)
-				(global0
-					normal: 0
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					view: 821
-					loop: 4
-					cel: 0
-					posn: 56 109
-					setCycle: CT 2 1 self
+				global1._send('handsOff:')
+				dungeonDoor._send('hide:')
+				global0._send(
+					'normal:', 0,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'view:', 821,
+					'loop:', 4,
+					'cel:', 0,
+					'posn:', 56, 109,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 1:
-				(global105 number: 821 loop: 1 play:)
-				(dungeonDoor setPri: 10 cel: 3)
-				(global0 setCycle: End self)
+				global105._send('number:', 821, 'loop:', 1, 'play:')
+				dungeonDoor._send('setPri:', 10, 'cel:', 3)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(dungeonDoor show: stopUpd:)
-				(global105 stop:)
-				(global0
-					posn: (dungeonDoor approachX:) (dungeonDoor approachY:)
-					reset: 1
-					setPri: 9
-					setMotion: MoveTo 0 143 self
+				dungeonDoor._send('show:', 'stopUpd:')
+				global105._send('stop:')
+				global0._send(
+					'posn:', dungeonDoor._send('approachX:'), dungeonDoor._send('approachY:'),
+					'reset:', 1,
+					'setPri:', 9,
+					'setMotion:', MoveTo, 0, 143, self
 				)
 			#end:case
 			case 3:
-				(global0 hide:)
-				(dungeonDoor setCycle: Beg self)
+				global0._send('hide:')
+				dungeonDoor._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(global105 number: 822 loop: 1 play: self)
-				(global0 setPri: -1)
+				global105._send('number:', 822, 'loop:', 1, 'play:', self)
+				global0._send('setPri:', -1)
 			#end:case
 			case 5:
-				(global2 newRoom: 710)
+				global2._send('newRoom:', 710)
 			#end:case
 		#end:match
 	#end:method
@@ -301,22 +282,22 @@ class antScript(Script):
 			case 0:
 				register = 0
 				(state += (kernel.Random(0, 1) * 3))
-				(ant hide: setPri: 15 ignoreActors: setCycle: Walk)
+				ant._send('hide:', 'setPri:', 15, 'ignoreActors:', 'setCycle:', Walk)
 				seconds = kernel.Random(7, 25)
 			#end:case
 			case 1:
-				(ant show:)
+				ant._send('show:')
 				if register = kernel.Random(0, 1):
-					(ant
-						setLoop: 6
-						posn: 220 201 0
-						setMotion: MoveTo 172 167 self
+					ant._send(
+						'setLoop:', 6,
+						'posn:', 220, 201, 0,
+						'setMotion:', MoveTo, 172, 167, self
 					)
 				else:
-					(ant
-						setLoop: 5
-						posn: 106 195 0
-						setMotion: MoveTo 155 169 self
+					ant._send(
+						'setLoop:', 5,
+						'posn:', 106, 195, 0,
+						'setMotion:', MoveTo, 155, 169, self
 					)
 				#endif
 			#end:case
@@ -325,27 +306,27 @@ class antScript(Script):
 			#end:case
 			case 3:
 				state = -1
-				(ant setPri: 14)
+				ant._send('setPri:', 14)
 				if register:
-					(ant
-						setLoop: 8
-						posn: 164 195 28
-						setMotion: MoveTo 164 213 self
+					ant._send(
+						'setLoop:', 8,
+						'posn:', 164, 195, 28,
+						'setMotion:', MoveTo, 164, 213, self
 					)
 				else:
-					(ant
-						setLoop: 7
-						posn: 162 195 24
-						setMotion: MoveTo 162 209 self
+					ant._send(
+						'setLoop:', 7,
+						'posn:', 162, 195, 24,
+						'setMotion:', MoveTo, 162, 209, self
 					)
 				#endif
 			#end:case
 			case 4:
-				(ant
-					show:
-					setLoop: 5
-					posn: 0 189 0
-					setMotion: MoveTo 44 172 self
+				ant._send(
+					'show:',
+					'setLoop:', 5,
+					'posn:', 0, 189, 0,
+					'setMotion:', MoveTo, 44, 172, self
 				)
 			#end:case
 			case 5:
@@ -353,7 +334,7 @@ class antScript(Script):
 			#end:case
 			case 6:
 				state = -1
-				(ant loop: 7 setMotion: MoveTo 88 197 self)
+				ant._send('loop:', 7, 'setMotion:', MoveTo, 88, 197, self)
 			#end:case
 		#end:match
 	#end:method
@@ -370,86 +351,86 @@ class noWayOut(Script):
 
 		match state = param1
 			case 0:
-				(ant setScript: 0)
-				(global1 handsOff:)
-				(global102 fadeTo: 823 1)
+				ant._send('setScript:', 0)
+				global1._send('handsOff:')
+				global102._send('fadeTo:', 823, 1)
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 90 144 self)
+				global0._send('setMotion:', PolyPath, 90, 144, self)
 			#end:case
 			case 2:
-				(global0
-					view: 821
-					normal: 0
-					setPri: 12
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					posn: 93 144
-					loop: 5
-					cel: 0
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'view:', 821,
+					'normal:', 0,
+					'setPri:', 12,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'posn:', 93, 144,
+					'loop:', 5,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
-				(global105 number: 825 setLoop: -1 play:)
-				(global0 loop: 6 cel: 0 setCycle: Fwd)
+				global105._send('number:', 825, 'setLoop:', -1, 'play:')
+				global0._send('loop:', 6, 'cel:', 0, 'setCycle:', Fwd)
 				seconds = 4
 			#end:case
 			case 4:
-				(global105 stop:)
-				(global0 setCycle: 0)
+				global105._send('stop:')
+				global0._send('setCycle:', 0)
 				cycles = 3
 			#end:case
 			case 5:
-				(global91 say: 1 0 2 1 self)
+				global91._send('say:', 1, 0, 2, 1, self)
 			#end:case
 			case 6:
-				(global91 say: 1 0 2 2 self)
+				global91._send('say:', 1, 0, 2, 2, self)
 			#end:case
 			case 7:
-				(global5 eachElementDo: #hide)
-				(global2 drawPic: 98 10)
+				global5._send('eachElementDo:', #hide)
+				global2._send('drawPic:', 98, 10)
 				kernel.Message(1, @temp1)
 				kernel.Display(@temp1, 100, 30, 11, 106, 260, 102, 16, 105, global22, 101, 1)
 				kernel.Display(@temp1, 100, 29, 10, 106, 260, 102, 47, 105, global22, 101, 1)
-				(global0
-					view: 8901
-					loop: 0
-					cel: 0
-					normal: 0
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					posn: 160 43
-					setMotion: 0
-					show:
+				global0._send(
+					'view:', 8901,
+					'loop:', 0,
+					'cel:', 0,
+					'normal:', 0,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'posn:', 160, 43,
+					'setMotion:', 0,
+					'show:'
 				)
-				(global102 number: 970 loop: 1 play:)
+				global102._send('number:', 970, 'loop:', 1, 'play:')
 				cycles = 2
 			#end:case
 			case 8:
-				(global1 setCursor: global20)
+				global1._send('setCursor:', global20)
 				while True: #repeat
 					match
 						(= temp0
-							(Print
-								window: DeathWindow
-								addText: r"""Please select:""" 60 0
-								posn: 70 130
-								addButton: 1 r"""Restore""" 0 15
-								addButton: 2 r"""Restart""" 70 15
-								addButton: 3 r"""Quit""" 140 15
-								init:
+							Print._send(
+								'window:', DeathWindow,
+								'addText:', r"""Please select:""", 60, 0,
+								'posn:', 70, 130,
+								'addButton:', 1, r"""Restore""", 0, 15,
+								'addButton:', 2, r"""Restart""", 70, 15,
+								'addButton:', 3, r"""Quit""", 140, 15,
+								'init:'
 							)
 						)
 						case 1:
-							(global1 restore:)
+							global1._send('restore:')
 						#end:case
 						case 2:
-							(global1 restart: 1)
+							global1._send('restart:', 1)
 						#end:case
 						case 3:
 							global4 = 1
@@ -473,42 +454,42 @@ class doorLocked(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 90 144 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 90, 144, self)
 			#end:case
 			case 1:
-				(global0
-					view: 821
-					normal: 0
-					setPri: 12
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					posn: 93 144
-					loop: 5
-					cel: 0
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'view:', 821,
+					'normal:', 0,
+					'setPri:', 12,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'posn:', 93, 144,
+					'loop:', 5,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 loop: 6 cel: 0 setCycle: Fwd)
+				global0._send('loop:', 6, 'cel:', 0, 'setCycle:', Fwd)
 				seconds = 4
 			#end:case
 			case 3:
-				(global0 setCycle: 0)
+				global0._send('setCycle:', 0)
 				cycles = 3
 			#end:case
 			case 4:
-				(global91 say: 5 5 15 0 self)
+				global91._send('say:', 5, 5, 15, 0, self)
 			#end:case
 			case 5:
-				(global0 loop: 5 cel: 2 cycleSpeed: 8 setCycle: Beg self)
+				global0._send('loop:', 5, 'cel:', 2, 'cycleSpeed:', 8, 'setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(global0 reset: 1 posn: 90 144)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 1, 'posn:', 90, 144)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -525,36 +506,36 @@ class unlockDoor(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(dungeonDoor hide:)
-				(global0
-					normal: 0
-					setScale: 0
-					view: 823
-					loop: 0
-					cel: 0
-					cycleSpeed: 8
-					posn: 56 109
-					setCycle: CT 5 1 self
+				global1._send('handsOff:')
+				dungeonDoor._send('hide:')
+				global0._send(
+					'normal:', 0,
+					'setScale:', 0,
+					'view:', 823,
+					'loop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'posn:', 56, 109,
+					'setCycle:', CT, 5, 1, self
 				)
 			#end:case
 			case 1:
 				cycles = 50
 			#end:case
 			case 2:
-				(global0 cel: 6)
-				(global104 number: 781 loop: 1 play: self)
+				global0._send('cel:', 6)
+				global104._send('number:', 781, 'loop:', 1, 'play:', self)
 			#end:case
 			case 3:
-				(global91 say: 5 35 15 0 self)
+				global91._send('say:', 5, 35, 15, 0, self)
 			#end:case
 			case 4:
-				(global0 loop: 1 cel: 0 setCycle: End self)
-				(global104 number: 821 loop: 1 play:)
+				global0._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
+				global104._send('number:', 821, 'loop:', 1, 'play:')
 			#end:case
 			case 5:
-				(kernel.ScriptID(80, 0) setFlag: 709 4096)
-				(global2 newRoom: 710)
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 4096)
+				global2._send('newRoom:', 710)
 			#end:case
 		#end:match
 	#end:method
@@ -571,34 +552,34 @@ class lookOutDoor(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 90 144 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 90, 144, self)
 			#end:case
 			case 1:
-				(global0
-					view: 821
-					normal: 0
-					setPri: 12
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					posn: 93 144
-					loop: 5
-					cel: 0
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'view:', 821,
+					'normal:', 0,
+					'setPri:', 12,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'posn:', 93, 144,
+					'loop:', 5,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global91 say: 7 1 0 0 self)
+				global91._send('say:', 7, 1, 0, 0, self)
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(global0 reset: 1 posn: 90 144)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:', 1, 'posn:', 90, 144)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -618,15 +599,15 @@ class extraView(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		match (kernel.ScriptID(80, 0) dungeonEntered:)
+		match kernel.ScriptID(80, 0)._send('dungeonEntered:')
 			case 3:
-				(self cel: 1 x: 211 y: 125 noun: 8)
+				self._send('cel:', 1, 'x:', 211, 'y:', 125, 'noun:', 8)
 			#end:case
 			else:
-				(self cel: 0 x: 159 y: 108 noun: 9 onMeCheck: 26505)
+				self._send('cel:', 0, 'x:', 159, 'y:', 108, 'noun:', 9, 'onMeCheck:', 26505)
 			#end:else
 		#end:match
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -644,7 +625,7 @@ class flame(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(torch doVerb: param1)
+		torch._send('doVerb:', param1)
 	#end:method
 
 #end:class or instance
@@ -681,8 +662,8 @@ class dungeonDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 35 2)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 35, 2)
 	#end:method
 
 	@classmethod
@@ -690,12 +671,12 @@ class dungeonDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 x:)
-		temp1 = (param1 y:)
+		temp0 = param1._send('x:')
+		temp1 = param1._send('y:')
 		if 
 			(and
-				((global69 curIcon:) == (global69 at: 4))
-				((global69 curInvIcon:) == (global9 at: 44))
+				(global69._send('curIcon:') == global69._send('at:', 4))
+				(global69._send('curInvIcon:') == global9._send('at:', 44))
 			)
 			approachX = 82
 			approachY = 144
@@ -710,7 +691,7 @@ class dungeonDoor(Prop):
 		else:
 			noun = 5
 		#endif
-		return (super onMe: param1)
+		return super._send('onMe:', param1)
 	#end:method
 
 	@classmethod
@@ -723,40 +704,40 @@ class dungeonDoor(Prop):
 				case 35:
 					(cond
 						case (not local0):
-							(global91 say: noun param1 14)
+							global91._send('say:', noun, param1, 14)
 						#end:case
-						case (kernel.ScriptID(80, 0) tstFlag: 709 8192):
-							(kernel.ScriptID(80, 0) setFlag: 709 4096)
+						case kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8192):
+							kernel.ScriptID(80, 0)._send('setFlag:', 709, 4096)
 							local0 = 0
-							(global2 setScript: unlockDoor)
+							global2._send('setScript:', unlockDoor)
 						#end:case
 					)
 				#end:case
 				case 5:
 					if (not local0):
-						(global2 setScript: exitDungeon)
+						global2._send('setScript:', exitDungeon)
 					else:
-						(global2 setScript: doorLocked)
+						global2._send('setScript:', doorLocked)
 					#endif
 				#end:case
 				case 2:
-					(global91
-						say:
-							noun
-							param1
-							(14 + (kernel.ScriptID(80, 0) tstFlag: 709 8192))
+					global91._send(
+						'say:', noun, param1, (+
+								14
+								kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8192)
+							)
 					)
 				#end:case
 				else:
-					if ((global66 doit: param1) == -32768):
-						(global91
-							say:
-								noun
-								0
-								(14 + (kernel.ScriptID(80, 0) tstFlag: 709 8192))
+					if (global66._send('doit:', param1) == -32768):
+						global91._send(
+							'say:', noun, 0, (+
+									14
+									kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8192)
+								)
 						)
 					else:
-						(super doVerb: param1)
+						super._send('doVerb:', param1)
 					#endif
 				#end:else
 			#end:match
@@ -764,17 +745,17 @@ class dungeonDoor(Prop):
 			match param1
 				case 2:
 					if local0:
-						(global91 say: noun param1 15)
+						global91._send('say:', noun, param1, 15)
 					else:
-						(global91 say: noun param1 14)
+						global91._send('say:', noun, param1, 14)
 					#endif
 				#end:case
 				case 1:
-					(global2 setScript: lookOutDoor)
+					global2._send('setScript:', lookOutDoor)
 				#end:case
 				else:
 					noun = 5
-					(self doVerb: param1)
+					self._send('doVerb:', param1)
 				#end:else
 			#end:match
 		#endif
@@ -814,10 +795,10 @@ class torch(Feature):
 
 		match param1
 			case 5:
-				(global91 say: noun param1 (14 + local0))
+				global91._send('say:', noun, param1, (14 + local0))
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -842,7 +823,7 @@ class roomConv(Conversation):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		caller = 0
 	#end:method
 
@@ -858,7 +839,7 @@ class DeathWindow(SysWindow):
 
 		color = 47
 		back = 0
-		(super open: &rest)
+		super._send('open:', &rest)
 	#end:method
 
 #end:class or instance

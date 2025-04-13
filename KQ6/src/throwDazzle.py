@@ -40,7 +40,7 @@ class throwDazzle(Script):
 					global106 = global0
 				#endif
 				if (global106 == global0):
-					(global1 handsOff:)
+					global1._send('handsOff:')
 				#endif
 				kernel.Load(132, 708)
 				kernel.Load(132, 707)
@@ -48,13 +48,12 @@ class throwDazzle(Script):
 			#end:case
 			case 1:
 				(= temp2
-					kernel.GetAngle((register x:), (register y:), (global106 x:), (global106
-						y:
-					), 60)
+					kernel.GetAngle(register._send('x:'), register._send('y:'), global106._send(
+						'x:'
+					), global106._send('y:'), 60)
 				)
-				(register
-					loop:
-						(cond
+				register._send(
+					'loop:', (cond
 							case (<= 338 temp2 23): 3#end:case
 							case (<= 23 temp2 75): 6#end:case
 							case (<= 75 temp2 105): 0#end:case
@@ -65,92 +64,90 @@ class throwDazzle(Script):
 							else: 7#end:else
 						)
 				)
-				kernel.UnLoad(128, (register view:))
+				kernel.UnLoad(128, register._send('view:'))
 				temp0 = (kernel.NumCels(register) - 1)
-				(register cel: temp0)
+				register._send('cel:', temp0)
 				kernel.SetNowSeen(register)
-				if ((register loop:) != 3):
-					(projectile
-						priority: (register priority:)
-						y:
-							(-
-								(register nsBottom:)
+				if (register._send('loop:') != 3):
+					projectile._send(
+						'priority:', register._send('priority:'),
+						'y:', (-
+								register._send('nsBottom:')
 								(/
 									(*
-										local8[(register loop:)]
+										local8[register._send('loop:')]
 										(-
-											(register nsBottom:)
-											(register nsTop:)
+											register._send('nsBottom:')
+											register._send('nsTop:')
 										)
 									)
 									100
 								)
-							)
-						setLoop: local0[(register loop:)]
+							),
+						'setLoop:', local0[register._send('loop:')]
 					)
-					(projectile
-						x:
-							if (local16[(register loop:)] >= 0):
-								if local16[(register loop:)]:
-									(register nsRight:)
+					projectile._send(
+						'x:', if (local16[register._send('loop:')] >= 0):
+								if local16[register._send('loop:')]:
+									register._send('nsRight:')
 								else:
-									(register nsLeft:)
+									register._send('nsLeft:')
 								#endif
 							else:
-								(register x:)
+								register._send('x:')
 							#endif
 					)
 				#endif
-				(register cel: 0 setCycle: End self)
-				if ((global103 number:) != 707):
-					(global103 number: 0 stop:)
-					(global103 number: 707 setLoop: 1 play:)
+				register._send('cel:', 0, 'setCycle:', End, self)
+				if (global103._send('number:') != 707):
+					global103._send('number:', 0, 'stop:')
+					global103._send('number:', 707, 'setLoop:', 1, 'play:')
 				#endif
 			#end:case
 			case 2:
-				(global106 setMotion: 0 stopUpd:)
-				(global103 number: 0 stop:)
-				(global103 number: 708 setLoop: 1 play:)
-				if ((register loop:) != 3):
+				global106._send('setMotion:', 0, 'stopUpd:')
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 708, 'setLoop:', 1, 'play:')
+				if (register._send('loop:') != 3):
 					(= temp1
 						(-
-							(global106 y:)
-							((75 * ((global106 y:) - (global106 nsTop:))) / 100)
+							global106._send('y:')
+							((75 * (global106._send('y:') - global106._send('nsTop:'))) / 100)
 						)
 					)
-					temp0 = (global106 x:)
-					(projectile
-						init:
-						setCycle: Fwd
-						setMotion: MoveTo temp0 temp1 self
+					temp0 = global106._send('x:')
+					projectile._send(
+						'init:',
+						'setCycle:', Fwd,
+						'setMotion:', MoveTo, temp0, temp1, self
 					)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 3:
-				if ((register loop:) != 3):
-					(global103 number: 0 stop:)
-					(global103 number: 709 setLoop: 1 play:)
-					(projectile loop: 15 cel: 0 setCycle: End self)
+				if (register._send('loop:') != 3):
+					global103._send('number:', 0, 'stop:')
+					global103._send('number:', 709, 'setLoop:', 1, 'play:')
+					projectile._send('loop:', 15, 'cel:', 0, 'setCycle:', End, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 4:
 				if (global106 == global0):
-					(global103 number: 0 stop:)
-					(global102 number: 705 setLoop: 1 play:)
+					global103._send('number:', 0, 'stop:')
+					global102._send('number:', 705, 'setLoop:', 1, 'play:')
 				#endif
-				(projectile dispose:)
+				projectile._send('dispose:')
 				(cond
 					case kernel.IsObject(global156):
-						(self setScript: global156 self)
+						self._send('setScript:', global156, self)
 						global156 = 0
 					#end:case
 					case (global106 == global0):
-						(global102 client: self)
-						(self setScript: getEgo 0 caller)
+						global102._send('client:', self)
+						self._send('setScript:', getEgo, 0, caller)
 					#end:case
 					else:
 						cycles = 1
@@ -158,13 +155,13 @@ class throwDazzle(Script):
 				)
 			#end:case
 			case 5:
-				(register setCycle: Beg self)
+				register._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
 				cycles = 3
 			#end:case
 			case 7:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -181,33 +178,32 @@ class getEgo(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					view: 749
-					normal: 0
-					cel: 0
-					loop: (mod (global0 cel:) 4)
-					cycleSpeed: 8
-					setCycle: CT 2 1 self
+				global0._send(
+					'view:', 749,
+					'normal:', 0,
+					'cel:', 0,
+					'loop:', (mod global0._send('cel:') 4),
+					'cycleSpeed:', 8,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 1:
-				(global0
-					loop:
-						match (global0 loop:)
+				global0._send(
+					'loop:', match global0._send('loop:')
 							case 0: 3#end:case
 							case 1: 2#end:case
 							case 2: 1#end:case
 							case 3: 0#end:case
 						#end:match
 				)
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				if ((global0 loop:) > 2):
-					(global0
-						loop: (4 + ((global0 loop:) == 3))
-						cycleSpeed: 10
-						setCycle: End self
+				if (global0._send('loop:') > 2):
+					global0._send(
+						'loop:', (4 + (global0._send('loop:') == 3)),
+						'cycleSpeed:', 10,
+						'setCycle:', End, self
 					)
 				else:
 					cycles = 1
@@ -215,7 +211,7 @@ class getEgo(Script):
 			#end:case
 			case 3:
 				if register:
-					(self dispose:)
+					self._send('dispose:')
 				else:
 					proc0_1(18)
 				#endif
@@ -239,29 +235,29 @@ class geniePoofIn(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global103 number: 0 stop:)
-				(global103 number: 943 setLoop: 1 play:)
-				(smoke
-					scaleSignal: 1
-					scaleX: (register scaleX:)
-					scaleY: (register scaleY:)
-					priority: (register priority:)
-					posn: (register x:) ((register y:) + 1) 1
-					init:
-					cycleSpeed: 8
-					setCycle: CT 2 1 self
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 943, 'setLoop:', 1, 'play:')
+				smoke._send(
+					'scaleSignal:', 1,
+					'scaleX:', register._send('scaleX:'),
+					'scaleY:', register._send('scaleY:'),
+					'priority:', register._send('priority:'),
+					'posn:', register._send('x:'), (register._send('y:') + 1), 1,
+					'init:',
+					'cycleSpeed:', 8,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 2:
-				(register init: show:)
-				(smoke cycleSpeed: 10 setCycle: End self)
+				register._send('init:', 'show:')
+				smoke._send('cycleSpeed:', 10, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(smoke dispose:)
+				smoke._send('dispose:')
 				cycles = 2
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -281,28 +277,28 @@ class geniePoofOut(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global103 number: 0 stop:)
-				(global103 number: 943 setLoop: 1 play:)
-				(smoke
-					scaleSignal: 1
-					scaleX: (register scaleX:)
-					scaleY: (register scaleY:)
-					priority: (register priority:)
-					posn: (register x:) ((register y:) + 1) 1
-					init:
-					setCycle: CT 2 1 self
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 943, 'setLoop:', 1, 'play:')
+				smoke._send(
+					'scaleSignal:', 1,
+					'scaleX:', register._send('scaleX:'),
+					'scaleY:', register._send('scaleY:'),
+					'priority:', register._send('priority:'),
+					'posn:', register._send('x:'), (register._send('y:') + 1), 1,
+					'init:',
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 2:
-				(register hide:)
-				(smoke setCycle: End self)
+				register._send('hide:')
+				smoke._send('setCycle:', End, self)
 			#end:case
 			case 3:
-				(smoke dispose:)
+				smoke._send('dispose:')
 				cycles = 2
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -338,7 +334,7 @@ class projectile(Actor):
 		else:
 			view = 702
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

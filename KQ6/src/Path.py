@@ -24,14 +24,14 @@ class Path(MoveTo):
 			caller = (param2 if (argc >= 2) else 0)
 			intermediate = (param3 if (argc == 3) else 0)
 			value = -1
-			x = (client x:)
-			y = (client y:)
+			x = client._send('x:')
+			y = client._send('y:')
 		#endif
-		if (self atEnd:):
-			(self moveDone:)
+		if self._send('atEnd:'):
+			self._send('moveDone:')
 		else:
-			(self next:)
-			(super init: client x y)
+			self._send('next:')
+			super._send('init:', client, x, y)
 		#endif
 	#end:method
 
@@ -40,14 +40,14 @@ class Path(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (self atEnd:):
-			(super moveDone:)
+		if self._send('atEnd:'):
+			super._send('moveDone:')
 		else:
 			if intermediate:
-				(intermediate cue: (value / 2))
+				intermediate._send('cue:', (value / 2))
 			#endif
-			(self next:)
-			(super init: client x y)
+			self._send('next:')
+			super._send('init:', client, x, y)
 		#endif
 	#end:method
 
@@ -56,8 +56,8 @@ class Path(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		x = (self at: value.post('++'))
-		y = (self at: value.post('++'))
+		x = self._send('at:', value.post('++'))
+		y = self._send('at:', value.post('++'))
 	#end:method
 
 	@classmethod
@@ -67,8 +67,8 @@ class Path(MoveTo):
 
 		(return
 			(or
-				((self at: (value + 1)) == -32768)
-				((self at: (value + 2)) == -32768)
+				(self._send('at:', (value + 1)) == -32768)
+				(self._send('at:', (value + 2)) == -32768)
 			)
 		)
 	#end:method
@@ -78,7 +78,7 @@ class Path(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print addTextF: r"""%s needs an 'at:' method.""" name init:)
+		Print._send('addTextF:', r"""%s needs an 'at:' method.""", name, 'init:')
 		return 0
 	#end:method
 
@@ -91,8 +91,8 @@ class RelPath(Path):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(x += (self at: value.post('++')))
-		(y += (self at: value.post('++')))
+		(x += self._send('at:', value.post('++')))
+		(y += self._send('at:', value.post('++')))
 	#end:method
 
 #end:class or instance

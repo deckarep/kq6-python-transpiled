@@ -45,22 +45,22 @@ class rm135(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global69 disable:)
-		(Seagull init:)
+		super._send('init:', &rest)
+		global69._send('disable:')
+		Seagull._send('init:')
 		proc913_1(59)
-		(water init: setCycle: Fwd)
-		(water2 init: setCycle: Fwd)
-		(water3 init: setCycle: Fwd)
+		water._send('init:', 'setCycle:', Fwd)
+		water2._send('init:', 'setCycle:', Fwd)
+		water3._send('init:', 'setCycle:', Fwd)
 		if (global160 == 35):
-			(global102 number: 921 setLoop: 1 play:)
-			(self setScript: gnomesDeath)
+			global102._send('number:', 921, 'setLoop:', 1, 'play:')
+			self._send('setScript:', gnomesDeath)
 		else:
 			if proc913_0(79):
 				local0 = 1
 			#endif
-			(localMusic number: 920 setLoop: 1 play:)
-			(self setScript: egoDrowns)
+			localMusic._send('number:', 920, 'setLoop:', 1, 'play:')
+			self._send('setScript:', egoDrowns)
 		#endif
 	#end:method
 
@@ -76,104 +76,104 @@ class gnomesDeath(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					init:
-					normal: 0
-					view: 4543
-					setLoop: 0
-					cycleSpeed: 9
-					moveSpeed: 0
-					posn: 153 -10
-					setPri: 15
-					setStep: 15 12
-					ignoreHorizon: 1
-					illegalBits: 0
-					ignoreActors: 1
-					setCycle: Fwd
-					setMotion: MoveTo 140 155 self
+				global0._send(
+					'init:',
+					'normal:', 0,
+					'view:', 4543,
+					'setLoop:', 0,
+					'cycleSpeed:', 9,
+					'moveSpeed:', 0,
+					'posn:', 153, -10,
+					'setPri:', 15,
+					'setStep:', 15, 12,
+					'ignoreHorizon:', 1,
+					'illegalBits:', 0,
+					'ignoreActors:', 1,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 140, 155, self
 				)
 			#end:case
 			case 1:
-				(localMusic number: 923 setLoop: 1 play:)
-				(global0 setCel: 0 setLoop: 1 setCycle: CT 4 1 self)
+				localMusic._send('number:', 923, 'setLoop:', 1, 'play:')
+				global0._send('setCel:', 0, 'setLoop:', 1, 'setCycle:', CT, 4, 1, self)
 			#end:case
 			case 2:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0 setLoop: 3 setCel: 0)
+				global0._send('setLoop:', 3, 'setCel:', 0)
 				seconds = 4
 			#end:case
 			case 4:
-				(global91 say: 1 0 4 0 self)
+				global91._send('say:', 1, 0, 4, 0, self)
 			#end:case
 			case 5:
-				(localMusic number: 920 setLoop: 1 play:)
-				(global0
-					setScale: Scaler 100 26 159 80
-					setLoop: 2
-					ignoreActors: 1
-					ignoreHorizon: 1
-					illegalBits: 0
-					posn: 143 135
-					moveSpeed: 0
-					cycleSpeed: 8
-					setStep: 3 2
-					setMotion: MoveTo 140 83
-					setCycle: End self
+				localMusic._send('number:', 920, 'setLoop:', 1, 'play:')
+				global0._send(
+					'setScale:', Scaler, 100, 26, 159, 80,
+					'setLoop:', 2,
+					'ignoreActors:', 1,
+					'ignoreHorizon:', 1,
+					'illegalBits:', 0,
+					'posn:', 143, 135,
+					'moveSpeed:', 0,
+					'cycleSpeed:', 8,
+					'setStep:', 3, 2,
+					'setMotion:', MoveTo, 140, 83,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 7:
-				(localMusic number: 920 setLoop: 1 play:)
-				(global0 setCycle: End self)
+				localMusic._send('number:', 920, 'setLoop:', 1, 'play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 8:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 9:
-				(localMusic number: 920 setLoop: 1 play:)
-				(global0 setCycle: End self)
+				localMusic._send('number:', 920, 'setLoop:', 1, 'play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 10:
 				cycles = 1
 			#end:case
 			case 11:
-				(localMusic number: 919 loop: -1 play:)
-				(global0 cel: 0 setLoop: 3 setCycle: End self)
+				localMusic._send('number:', 919, 'loop:', -1, 'play:')
+				global0._send('cel:', 0, 'setLoop:', 3, 'setCycle:', End, self)
 			#end:case
 			case 12:
-				(Seagull dispose:)
+				Seagull._send('dispose:')
 				cycles = 2
 			#end:case
 			case 13:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 14:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 15:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 16:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 17:
-				(global0 setLoop: 3 setCycle: End self)
+				global0._send('setLoop:', 3, 'setCycle:', End, self)
 			#end:case
 			case 18:
-				(Seagull dispose:)
+				Seagull._send('dispose:')
 				seconds = 4
 			#end:case
 			case 19:
-				(global0 hide:)
+				global0._send('hide:')
 				cycles = 2
 			#end:case
 			case 20:
 				proc958_0(0, 942)
-				(Sounds eachElementDo: #stop)
+				Sounds._send('eachElementDo:', #stop)
 				proc0_1(global160)
 			#end:case
 		#end:match
@@ -192,74 +192,74 @@ class egoDrowns(Script):
 		match state = param1
 			case 0:
 				if local0:
-					(genie init: setCycle: Fwd cycleSpeed: 5)
+					genie._send('init:', 'setCycle:', Fwd, 'cycleSpeed:', 5)
 				#endif
-				(localMusic flags: 1 number: 920 loop: -1 play:)
-				(global0
-					setScale: Scaler 100 26 159 80
-					normal: 0
-					view: 4543
-					setLoop: 2
-					ignoreActors: 1
-					ignoreHorizon: 1
-					illegalBits: 0
-					posn: 143 135
-					moveSpeed: 6
-					cycleSpeed: 8
-					init:
-					setMotion: MoveTo 140 83
-					setCycle: End self
+				localMusic._send('flags:', 1, 'number:', 920, 'loop:', -1, 'play:')
+				global0._send(
+					'setScale:', Scaler, 100, 26, 159, 80,
+					'normal:', 0,
+					'view:', 4543,
+					'setLoop:', 2,
+					'ignoreActors:', 1,
+					'ignoreHorizon:', 1,
+					'illegalBits:', 0,
+					'posn:', 143, 135,
+					'moveSpeed:', 6,
+					'cycleSpeed:', 8,
+					'init:',
+					'setMotion:', MoveTo, 140, 83,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 2:
 				if local0:
-					(global91 say: 1 0 2 1 self)
+					global91._send('say:', 1, 0, 2, 1, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 3:
 				if local0:
-					(global91 say: 1 0 2 2 self)
+					global91._send('say:', 1, 0, 2, 2, self)
 				else:
-					(global91 say: 1 0 1 1 self)
+					global91._send('say:', 1, 0, 1, 1, self)
 				#endif
 			#end:case
 			case 4:
 				if local0:
-					(global91 say: 1 0 2 3 self)
+					global91._send('say:', 1, 0, 2, 3, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 5:
-				(localMusic number: 920 loop: 1 play:)
-				(global0 setCycle: End self)
+				localMusic._send('number:', 920, 'loop:', 1, 'play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 6:
-				(localMusic number: 919 loop: -1 play:)
-				(global0 setCycle: Beg self)
+				localMusic._send('number:', 919, 'loop:', -1, 'play:')
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 7:
 				if local0:
-					(global91 say: 1 0 2 4 self)
+					global91._send('say:', 1, 0, 2, 4, self)
 				else:
-					(global91 say: 1 0 1 2 self)
+					global91._send('say:', 1, 0, 1, 2, self)
 				#endif
 			#end:case
 			case 8:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 9:
-				(global0 cel: 0 setLoop: 3 setCycle: End self)
+				global0._send('cel:', 0, 'setLoop:', 3, 'setCycle:', End, self)
 			#end:case
 			case 10:
-				(Seagull dispose:)
-				(global0 hide:)
-				(Sounds eachElementDo: #stop)
+				Seagull._send('dispose:')
+				global0._send('hide:')
+				Sounds._send('eachElementDo:', #stop)
 				cycles = 2
 			#end:case
 			case 11:
@@ -285,8 +285,8 @@ class Seagull(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self ignoreActors: 1 ignoreHorizon: 1 illegalBits: 0 fly:)
+		super._send('init:', &rest)
+		self._send('ignoreActors:', 1, 'ignoreHorizon:', 1, 'illegalBits:', 0, 'fly:')
 	#end:method
 
 	@classmethod
@@ -297,33 +297,33 @@ class Seagull(Actor):
 		match kernel.Random(1, 4)
 			case 1:
 				if (local1 == 1):
-					(self cue:)
+					self._send('cue:')
 				else:
-					(self setCycle: MCyc @local2 self)
+					self._send('setCycle:', MCyc, @local2, self)
 					local1 = 1
 				#endif
 			#end:case
 			case 2:
 				if (local1 == 2):
-					(self cue:)
+					self._send('cue:')
 				else:
-					(self setCycle: MCyc @local147 self)
+					self._send('setCycle:', MCyc, @local147, self)
 					local1 = 2
 				#endif
 			#end:case
 			case 3:
 				if (local1 == 3):
-					(self cue:)
+					self._send('cue:')
 				else:
-					(self setCycle: MCyc @local228 self)
+					self._send('setCycle:', MCyc, @local228, self)
 					local1 = 3
 				#endif
 			#end:case
 			case 4:
 				if (local1 == 4):
-					(self cue:)
+					self._send('cue:')
 				else:
-					(self setCycle: MCyc @local389 self)
+					self._send('setCycle:', MCyc, @local389, self)
 					local1 = 4
 				#endif
 			#end:case
@@ -335,7 +335,7 @@ class Seagull(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self fly:)
+		self._send('fly:')
 	#end:method
 
 #end:class or instance

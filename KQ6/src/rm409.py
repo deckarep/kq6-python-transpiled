@@ -47,94 +47,43 @@ class rm409(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (rLab hiddenDoorOpen:):
+		if rLab._send('hiddenDoorOpen:'):
 			local0 = 54
-			(global2
-				addObstacle:
-					((Polygon new:)
-						type: 2
-						init:
-							232
-							144
-							83
-							144
-							26
-							185
-							130
-							185
-							130
-							189
-							0
-							189
-							0
-							0
-							319
-							4
-							319
-							171
-							238
-							171
-							242
-							154
-						yourself:
-					)
-					((Polygon new:)
-						type: 2
-						init: 319 189 192 189 192 184 319 184
-						yourself:
+			global2._send(
+				'addObstacle:', Polygon._send('new:')._send(
+						'type:', 2,
+						'init:', 232, 144, 83, 144, 26, 185, 130, 185, 130, 189, 0, 189, 0, 0, 319, 4, 319, 171, 238, 171, 242, 154,
+						'yourself:'
+					), Polygon._send('new:')._send(
+						'type:', 2,
+						'init:', 319, 189, 192, 189, 192, 184, 319, 184,
+						'yourself:'
 					)
 			)
 		else:
-			if (rLab seenSecretLatch:):
+			if rLab._send('seenSecretLatch:'):
 				local0 = 53
 			else:
 				local0 = 55
 			#endif
-			(global2
-				addObstacle:
-					((Polygon new:)
-						type: 2
-						init:
-							0
-							189
-							0
-							0
-							319
-							0
-							319
-							189
-							190
-							189
-							190
-							185
-							266
-							185
-							237
-							161
-							235
-							143
-							86
-							143
-							39
-							185
-							130
-							185
-							130
-							189
-						yourself:
+			global2._send(
+				'addObstacle:', Polygon._send('new:')._send(
+						'type:', 2,
+						'init:', 0, 189, 0, 0, 319, 0, 319, 189, 190, 189, 190, 185, 266, 185, 237, 161, 235, 143, 86, 143, 39, 185, 130, 185, 130, 189,
+						'yourself:'
 					)
 			)
 		#endif
-		(super init: &rest)
-		if ((kernel.ScriptID(30, 0) holeCoords:) == global11):
+		super._send('init:', &rest)
+		if (kernel.ScriptID(30, 0)._send('holeCoords:') == global11):
 			proc404_1()
 		#endif
-		(kernel.ScriptID(30, 0) initCrypt: 1)
-		(tapestry init:)
-		(openDoor init:)
-		(door init:)
-		(myTorch init:)
-		(self setScript: walkIn)
+		kernel.ScriptID(30, 0)._send('initCrypt:', 1)
+		tapestry._send('init:')
+		openDoor._send('init:')
+		door._send('init:')
+		myTorch._send('init:')
+		self._send('setScript:', walkIn)
 	#end:method
 
 	@classmethod
@@ -143,17 +92,17 @@ class rm409(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (global2 script:):#end:case
-			case (global0 inRect: 287 167 319 189):
-				(kernel.ScriptID(30, 0) prevEdgeHit: 2)
-				(global2 setScript: walkOut)
+			case global2._send('script:'):#end:case
+			case global0._send('inRect:', 287, 167, 319, 189):
+				kernel.ScriptID(30, 0)._send('prevEdgeHit:', 2)
+				global2._send('setScript:', walkOut)
 			#end:case
-			case ((global0 edgeHit:) == 3):
-				(kernel.ScriptID(30, 0) prevEdgeHit: 3)
-				(global2 setScript: walkOut)
+			case (global0._send('edgeHit:') == 3):
+				kernel.ScriptID(30, 0)._send('prevEdgeHit:', 3)
+				global2._send('setScript:', walkOut)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -164,16 +113,16 @@ class rm409(KQ6Room):
 		(return
 			match param1
 				case 1:
-					if (rLab hiddenDoorOpen:):
-						(global91 say: 2 1 54 1 0 400)
+					if rLab._send('hiddenDoorOpen:'):
+						global91._send('say:', 2, 1, 54, 1, 0, 400)
 						1
 					else:
-						(global91 say: 2 1 53 1 0 400)
+						global91._send('say:', 2, 1, 53, 1, 0, 400)
 						1
 					#endif
 				#end:case
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#end:else
 			#end:match
 		)
@@ -199,8 +148,8 @@ class tapestry(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self stopUpd:)
-		(super init:)
+		self._send('stopUpd:')
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -210,21 +159,21 @@ class tapestry(Prop):
 
 		match param1
 			case 0:
-				if (rLab seenSecretLatch:):
+				if rLab._send('seenSecretLatch:'):
 					0
 				else:
-					(global91 say: 19 0 55 1 0 400)
+					global91._send('say:', 19, 0, 55, 1, 0, 400)
 				#endif
 			#end:case
 			case 5:
-				if (rLab hiddenDoorOpen:):
-					(global2 setScript: lookAtTapestry)
+				if rLab._send('hiddenDoorOpen:'):
+					global2._send('setScript:', lookAtTapestry)
 				else:
-					(global2 setScript: liftTapestry)
+					global2._send('setScript:', liftTapestry)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -251,13 +200,13 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 5)
-		if (rLab hiddenDoorOpen:):
-			(self cel: 5 stopUpd:)
+		self._send('approachVerbs:', 5)
+		if rLab._send('hiddenDoorOpen:'):
+			self._send('cel:', 5, 'stopUpd:')
 		else:
-			(self cel: 0 stopUpd:)
+			self._send('cel:', 0, 'stopUpd:')
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -270,45 +219,45 @@ class door(Prop):
 				proc404_0(2)
 			#end:case
 			case 1:
-				(global91 say: 19 1 local0 1 0 400)
+				global91._send('say:', 19, 1, local0, 1, 0, 400)
 			#end:case
 			case 5:
-				(global91 say: 19 5 local0 1 0 400)
+				global91._send('say:', 19, 5, local0, 1, 0, 400)
 			#end:case
 			case 2:
 				(cond
-					case (not (rLab seenSecretLatch:)):
-						(global91 say: 19 2 55 1 0 400)
+					case (not rLab._send('seenSecretLatch:')):
+						global91._send('say:', 19, 2, 55, 1, 0, 400)
 					#end:case
 					case 
 						(and
-							(rLab seenSecretLatch:)
-							(not (rLab hiddenDoorOpen:))
+							rLab._send('seenSecretLatch:')
+							(not rLab._send('hiddenDoorOpen:'))
 						):
-						(global91 say: 19 2 53 1 0 400)
+						global91._send('say:', 19, 2, 53, 1, 0, 400)
 					#end:case
-					case ((rLab hiddenDoorOpen:) and (not proc913_0(1))):
-						(global91 say: 19 2 56 1 0 400)
+					case (rLab._send('hiddenDoorOpen:') and (not proc913_0(1))):
+						global91._send('say:', 19, 2, 56, 1, 0, 400)
 					#end:case
 					case proc913_0(1):
-						(global91 say: 19 2 57 1 0 400)
+						global91._send('say:', 19, 2, 57, 1, 0, 400)
 					#end:case
 				)
 			#end:case
 			else:
 				(cond
-					case (not (rLab seenSecretLatch:)):
-						(global91 say: 19 0 55 1 0 400)
+					case (not rLab._send('seenSecretLatch:')):
+						global91._send('say:', 19, 0, 55, 1, 0, 400)
 					#end:case
 					case 
 						(and
-							(rLab seenSecretLatch:)
-							(not (rLab hiddenDoorOpen:))
+							rLab._send('seenSecretLatch:')
+							(not rLab._send('hiddenDoorOpen:'))
 						):
-						(global91 say: 19 0 53 1 0 400)
+						global91._send('say:', 19, 0, 53, 1, 0, 400)
 					#end:case
 					else:
-						(global91 say: 19 0 54 1 0 400)
+						global91._send('say:', 19, 0, 54, 1, 0, 400)
 					#end:else
 				)
 			#end:else
@@ -337,9 +286,9 @@ class openDoor(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 5)
-		(self stopUpd:)
-		(super init:)
+		self._send('approachVerbs:', 5)
+		self._send('stopUpd:')
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -347,7 +296,7 @@ class openDoor(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(door doVerb: param1 &rest)
+		door._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -370,10 +319,10 @@ class myTorch(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self stopUpd:)
-		(super init:)
-		(myFlame init:)
-		(myFlick init:)
+		self._send('stopUpd:')
+		super._send('init:')
+		myFlame._send('init:')
+		myFlick._send('init:')
 	#end:method
 
 #end:class or instance
@@ -394,8 +343,8 @@ class myFlame(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCycle: Fwd checkDetail:)
-		(super init:)
+		self._send('setCycle:', Fwd, 'checkDetail:')
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -417,8 +366,8 @@ class myFlick(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCycle: RandCycle checkDetail:)
-		(super init:)
+		self._send('setCycle:', RandCycle, 'checkDetail:')
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -445,24 +394,24 @@ class walkIn(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				match (kernel.ScriptID(30, 0) prevEdgeHit:)
+				global1._send('handsOff:')
+				match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 					case 4:
-						(global0
-							posn: 282 164
-							init:
-							setMotion: PolyPath 247 164 self
+						global0._send(
+							'posn:', 282, 164,
+							'init:',
+							'setMotion:', PolyPath, 247, 164, self
 						)
 					#end:case
 					case 1:
-						(global0
-							posn: 158 225
-							init:
-							setMotion: PolyPath 158 187 self
+						global0._send(
+							'posn:', 158, 225,
+							'init:',
+							'setMotion:', PolyPath, 158, 187, self
 						)
 					#end:case
 					else:
-						(global0 posn: 160 160 loop: 2 init:)
+						global0._send('posn:', 160, 160, 'loop:', 2, 'init:')
 						ticks = 6
 					#end:else
 				#end:match
@@ -473,15 +422,15 @@ class walkIn(Script):
 			case 2:
 				if ((global12 == 440) and (not proc913_0(1))):
 					proc913_1(142)
-					(global91 say: 1 0 50 1 self 400)
+					global91._send('say:', 1, 0, 50, 1, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global69 enable: 6)
-				(self dispose:)
+				global1._send('handsOn:')
+				global69._send('enable:', 6)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -498,23 +447,23 @@ class walkOut(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				match (kernel.ScriptID(30, 0) prevEdgeHit:)
+				global1._send('handsOff:')
+				match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 					case 3:
-						(global0 setMotion: PolyPath (global0 x:) 250 self)
+						global0._send('setMotion:', PolyPath, global0._send('x:'), 250, self)
 					#end:case
 					case 2:
-						(global0 setMotion: PolyPath 315 (global0 y:) self)
+						global0._send('setMotion:', PolyPath, 315, global0._send('y:'), self)
 					#end:case
 				#end:match
 			#end:case
 			case 1:
-				match (kernel.ScriptID(30, 0) prevEdgeHit:)
+				match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 					case 3:
-						(global2 newRoom: 400)
+						global2._send('newRoom:', 400)
 					#end:case
 					case 2:
-						(global2 newRoom: 440)
+						global2._send('newRoom:', 440)
 					#end:case
 				#end:match
 			#end:case
@@ -533,19 +482,19 @@ class lookAtTapestry(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 235 149 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 235, 149, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 90)
+				global0._send('setHeading:', 90)
 				cycles = 6
 			#end:case
 			case 2:
-				(global91 say: 18 5 54 1 self 400)
+				global91._send('say:', 18, 5, 54, 1, self, 400)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -562,239 +511,215 @@ class liftTapestry(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 229 146 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 229, 146, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 90)
+				global0._send('setHeading:', 90)
 				cycles = 6
 			#end:case
 			case 2:
-				if (rLab seenSecretLatch:):
+				if rLab._send('seenSecretLatch:'):
 					local1 = 1
 					local0 = 53
-					(global91 say: 18 5 53 1 self 400)
+					global91._send('say:', 18, 5, 53, 1, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 3:
-				(global0
-					view: 401
-					setLoop: 3
-					cel: 0
-					normal: 0
-					illegalBits: 0
-					ignoreActors: 1
-					cycleSpeed: 12
-					posn: ((global0 x:) + 6) ((global0 y:) + 3)
-					setCycle: CT 3 1 self
+				global0._send(
+					'view:', 401,
+					'setLoop:', 3,
+					'cel:', 0,
+					'normal:', 0,
+					'illegalBits:', 0,
+					'ignoreActors:', 1,
+					'cycleSpeed:', 12,
+					'posn:', (global0._send('x:') + 6), (global0._send('y:') + 3),
+					'setCycle:', CT, 3, 1, self
 				)
 			#end:case
 			case 4:
-				(global0 cel: 4)
-				(tapestry startUpd: cel: 1)
+				global0._send('cel:', 4)
+				tapestry._send('startUpd:', 'cel:', 1)
 				cycles = 2
 			#end:case
 			case 5:
-				(global0 cel: 5)
-				(tapestry cel: 2)
+				global0._send('cel:', 5)
+				tapestry._send('cel:', 2)
 				cycles = 2
 			#end:case
 			case 6:
 				if local1:
-					(global0
-						setLoop: 4
-						cel: 0
-						posn: ((global0 x:) + 3) (global0 y:)
-						setCycle: CT 5 1 self
+					global0._send(
+						'setLoop:', 4,
+						'cel:', 0,
+						'posn:', (global0._send('x:') + 3), global0._send('y:'),
+						'setCycle:', CT, 5, 1, self
 					)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 7:
 				if local1:
-					(global0 cel: 6)
+					global0._send('cel:', 6)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 8:
 				if local1:
-					(global0 cel: 5)
+					global0._send('cel:', 5)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 9:
 				if local1:
-					(global0 cel: 4)
+					global0._send('cel:', 4)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 10:
 				if local1:
-					(global0 cel: 5)
+					global0._send('cel:', 5)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 11:
 				if local1:
-					(global91 say: 18 5 53 2 self 400)
+					global91._send('say:', 18, 5, 53, 2, self, 400)
 				else:
-					(global91 say: 18 5 55 1 self 400)
+					global91._send('say:', 18, 5, 55, 1, self, 400)
 				#endif
 			#end:case
 			case 12:
 				if local1:
-					(global0 cel: 4)
+					global0._send('cel:', 4)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 13:
 				if local1:
-					(global0 cel: 5)
+					global0._send('cel:', 5)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 14:
 				if local1:
-					(global0 cel: 4)
+					global0._send('cel:', 4)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 15:
 				if local1:
-					(global105 number: 408 setLoop: 1 play:)
-					(global0 cel: 5)
+					global105._send('number:', 408, 'setLoop:', 1, 'play:')
+					global0._send('cel:', 5)
 					cycles = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 16:
 				if local1:
-					(global91 say: 18 5 53 3 self 400)
+					global91._send('say:', 18, 5, 53, 3, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 17:
 				if local1:
-					(global0 cel: 6)
-					(tapestry setCycle: Beg self)
+					global0._send('cel:', 6)
+					tapestry._send('setCycle:', Beg, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 18:
 				if local1:
-					(global105 number: 909 setLoop: 1 play:)
-					(door setCycle: End self)
-					(rLab hiddenDoorOpen: 1)
-					((global2 obstacles:) dispose:)
+					global105._send('number:', 909, 'setLoop:', 1, 'play:')
+					door._send('setCycle:', End, self)
+					rLab._send('hiddenDoorOpen:', 1)
+					global2._send('obstacles:')._send('dispose:')
 					local0 = 54
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 19:
 				if local1:
-					(door dispose:)
-					(global2
-						addObstacle:
-							((Polygon new:)
-								type: 2
-								init:
-									232
-									144
-									83
-									144
-									26
-									185
-									130
-									185
-									130
-									189
-									0
-									189
-									0
-									0
-									319
-									4
-									319
-									171
-									238
-									171
-									242
-									154
-								yourself:
-							)
-							((Polygon new:)
-								type: 2
-								init: 319 189 192 189 192 184 319 184
-								yourself:
+					door._send('dispose:')
+					global2._send(
+						'addObstacle:', Polygon._send('new:')._send(
+								'type:', 2,
+								'init:', 232, 144, 83, 144, 26, 185, 130, 185, 130, 189, 0, 189, 0, 0, 319, 4, 319, 171, 238, 171, 242, 154,
+								'yourself:'
+							), Polygon._send('new:')._send(
+								'type:', 2,
+								'init:', 319, 189, 192, 189, 192, 184, 319, 184,
+								'yourself:'
 							)
 					)
-					(global91 say: 18 5 53 4 self 400)
+					global91._send('say:', 18, 5, 53, 4, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 20:
 				if local1:
-					(global1 givePoints: 1)
-					(self cue:)
+					global1._send('givePoints:', 1)
+					self._send('cue:')
 				else:
-					(tapestry cel: 1)
-					(global0 setLoop: 3 cel: 5)
+					tapestry._send('cel:', 1)
+					global0._send('setLoop:', 3, 'cel:', 5)
 					cycles = 2
 				#endif
 			#end:case
 			case 21:
 				if local1:
-					(self cue:)
+					self._send('cue:')
 				else:
-					(tapestry cel: 0)
-					(global0 cel: 4)
+					tapestry._send('cel:', 0)
+					global0._send('cel:', 4)
 					cycles = 2
 				#endif
 			#end:case
 			case 22:
 				if local1:
-					(self cue:)
+					self._send('cue:')
 				else:
-					(global0 setCycle: Beg self)
+					global0._send('setCycle:', Beg, self)
 				#endif
 			#end:case
 			case 23:
-				(global1 handsOn:)
-				(tapestry stopUpd:)
+				global1._send('handsOn:')
+				tapestry._send('stopUpd:')
 				if local1:
-					(global0
-						posn: ((global0 x:) - 9) ((global0 y:) - 3)
-						reset: 0
+					global0._send(
+						'posn:', (global0._send('x:') - 9), (global0._send('y:') - 3),
+						'reset:', 0
 					)
 				else:
-					(global0
-						posn: ((global0 x:) - 6) ((global0 y:) - 3)
-						reset: 0
+					global0._send(
+						'posn:', (global0._send('x:') - 6), (global0._send('y:') - 3),
+						'reset:', 0
 					)
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

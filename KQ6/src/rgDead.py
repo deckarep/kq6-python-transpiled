@@ -25,12 +25,12 @@ def proc70_1(param1 = None, param2 = None, *rest):
 	temp0 = -1
 	while temp1 = proc999_6(param2, temp0.post('++')):
 
-		(kernel.Clone(param1)
-			posn: temp1 proc999_6(param2, temp0.post('++'))
-			loop: proc999_6(param2, temp0.post('++'))
-			cel: kernel.Random(0, 3)
-			setCycle: RandCycle
-			init:
+		kernel.Clone(param1)._send(
+			'posn:', temp1, proc999_6(param2, temp0.post('++')),
+			'loop:', proc999_6(param2, temp0.post('++')),
+			'cel:', kernel.Random(0, 3),
+			'setCycle:', RandCycle,
+			'init:'
 		)
 	#end:loop
 #end:procedure
@@ -75,7 +75,7 @@ class rgDead(Rgn):
 
 		keep = proc999_5(param1, 600, 605, 615, 620, 630, 640, 650, 660, 670, 680, 690)
 		initialized = 0
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -83,7 +83,7 @@ class rgDead(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super cue:)
+		super._send('cue:')
 		proc913_1(121)
 	#end:method
 

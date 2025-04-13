@@ -118,13 +118,13 @@ def localproc_3(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(Print
-		width: 240
-		font: 999
-		mode: param2
-		addText: param1
-		addTitle: r"""Polygon Editor 1.11"""
-		init:
+	Print._send(
+		'width:', 240,
+		'font:', 999,
+		'mode:', param2,
+		'addText:', param1,
+		'addTitle:', r"""Polygon Editor 1.11""",
+		'init:'
 	)
 #end:procedure
 
@@ -172,24 +172,24 @@ class ClickMenu(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 type:) != 1):
+		if (param1._send('type:') != 1):
 			return 0
 		#endif
-		if ((param1 y:) >= 10):
+		if (param1._send('y:') >= 10):
 			return 0
 		#endif
 		temp0 = array
 		temp1 = 0
 		while kernel.Memory(5, temp0):
 
-			if (((param1 x:) < kernel.Memory(5, (temp0 + 4))) and temp1):
-				(param1 type: 4 message: kernel.Memory(5, (temp0 + 2)))
+			if ((param1._send('x:') < kernel.Memory(5, (temp0 + 4))) and temp1):
+				param1._send('type:', 4, 'message:', kernel.Memory(5, (temp0 + 2)))
 				return 0
 			#endif
 			temp1.post('++')
 			(temp0 += 6)
 		#end:loop
-		(param1 claimed: 1)
+		param1._send('claimed:', 1)
 	#end:method
 
 	@classmethod
@@ -198,7 +198,7 @@ class ClickMenu(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Memory(3, text)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -211,7 +211,7 @@ class editMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local46)
+		super._send('init:', @local46)
 	#end:method
 
 #end:class or instance
@@ -224,7 +224,7 @@ class addMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local71)
+		super._send('init:', @local71)
 	#end:method
 
 #end:class or instance
@@ -263,7 +263,7 @@ class Class_943_1
 			temp0 = 0
 			temp1 = -1
 		#endif
-		kernel.Graph(4, y, x, (param1 y:), (param1 x:), temp0, -1, temp1)
+		kernel.Graph(4, y, x, param1._send('y:'), param1._send('x:'), temp0, -1, temp1)
 	#end:method
 
 	@classmethod
@@ -271,7 +271,7 @@ class Class_943_1
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		localproc_0(x, y, (param1 x:), (param1 y:))
+		localproc_0(x, y, param1._send('x:'), param1._send('y:'))
 		if underBits:
 			kernel.UnLoad(133, underBits)
 		#endif
@@ -323,14 +323,14 @@ class _EditablePolygon(List):
 
 		if 
 			(= temp0
-				(Print
-					addTitle: r"""Polygon access type"""
-					addButton: 1 r"""Total""" 0 0
-					addButton: 2 r""" Near """ 60 0
-					addButton: 3 r""" Barred """ 120 0
-					addButton: 4 r""" Container """ 195 0
-					first: type
-					init:
+				Print._send(
+					'addTitle:', r"""Polygon access type""",
+					'addButton:', 1, r"""Total""", 0, 0,
+					'addButton:', 2, r""" Near """, 60, 0,
+					'addButton:', 3, r""" Barred """, 120, 0,
+					'addButton:', 4, r""" Container """, 195, 0,
+					'first:', type,
+					'init:'
 				)
 			)
 			type = (temp0 - 1)
@@ -343,41 +343,37 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param2 == srcList):
-			(param1
-				writeString:
-					r"""\t\t\t((Polygon new:)\0d\n"""
-					r"""\t\t\t\ttype:\t\t"""
-					match type
+			param1._send(
+				'writeString:', r"""\t\t\t((Polygon new:)\0d\n""", r"""\t\t\t\ttype:\t\t""", match type
 						case 0: r"""PTotalAccess"""#end:case
 						case 1: r"""PNearestAccess"""#end:case
 						case 2: r"""PBarredAccess"""#end:case
 						case 3: r"""PContainedAccess"""#end:case
-					#end:match
-					r""",\0d\n"""
+					#end:match, r""",\0d\n"""
 			)
-			(param1 writeString: r"""\t\t\t\tinit:\t\t""")
+			param1._send('writeString:', r"""\t\t\t\tinit:\t\t""")
 			temp14 = 1
 			temp0 = 17
 			temp3 = kernel.FirstNode(elements)
 			while temp3: # inline for
 				temp2 = kernel.NodeValue(temp3)
-				kernel.Format(@temp4, 943, 0, (temp2 x:), (temp2 y:))
+				kernel.Format(@temp4, 943, 0, temp2._send('x:'), temp2._send('y:'))
 				if ((temp0 += temp1 = (kernel.StrLen(@temp4) + 1)) >= 80):
-					(param1 writeString: r"""\0d\n\t\t\t\t\t\t""")
+					param1._send('writeString:', r"""\0d\n\t\t\t\t\t\t""")
 					temp14 = 1
 					temp0 = (17 + temp1)
 				#endif
 				if (not temp14):
-					(param1 writeString: r""" """)
+					param1._send('writeString:', r""" """)
 				#endif
-				(param1 writeString: @temp4)
+				param1._send('writeString:', @temp4)
 				temp14 = 0
 				# for:reinit
 				temp3 = kernel.NextNode(temp3)
 			#end:loop
-			(param1 writeString: r""",\0d\n""")
-			(param1
-				writeString: r"""\t\t\t\tyourself:\0d\n""" r"""\t\t\t)\0d\n"""
+			param1._send('writeString:', r""",\0d\n""")
+			param1._send(
+				'writeString:', r"""\t\t\t\tyourself:\0d\n""", r"""\t\t\t)\0d\n"""
 			)
 		#endif
 	#end:method
@@ -387,7 +383,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (self first:)
+		temp0 = self._send('first:')
 		while temp0: # inline for
 			temp2 = kernel.NodeValue(temp0)
 			temp15 = kernel.NextNode(temp0)
@@ -395,12 +391,12 @@ class _EditablePolygon(List):
 				temp16 = kernel.NodeValue(temp15)
 				if 
 					(and
-						((temp2 x:) == (temp16 x:))
-						((temp2 y:) == (temp16 y:))
+						(temp2._send('x:') == temp16._send('x:'))
+						(temp2._send('y:') == temp16._send('y:'))
 					)
 					temp15 = kernel.PrevNode(temp15)
-					(self delete: temp16)
-					(temp16 dispose:)
+					self._send('delete:', temp16)
+					temp16._send('dispose:')
 				#endif
 				# for:reinit
 				temp15 = kernel.NextNode(temp15)
@@ -412,12 +408,12 @@ class _EditablePolygon(List):
 		temp9 = 0
 		temp7 = 0
 		temp8 = 1
-		temp0 = temp6 = (self first:)
+		temp0 = temp6 = self._send('first:')
 		while 1: # inline for
 			temp2 = kernel.NodeValue(temp0)
-			temp1 = (self next: temp0)
+			temp1 = self._send('next:', temp0)
 			temp3 = kernel.NodeValue(temp1)
-			temp4 = kernel.ATan((temp2 x:), (temp2 y:), (temp3 x:), (temp3 y:))
+			temp4 = kernel.ATan(temp2._send('x:'), temp2._send('y:'), temp3._send('x:'), temp3._send('y:'))
 			if (not temp8):
 				(cond
 					case (temp5 = (temp4 - temp9) > 180):
@@ -440,20 +436,20 @@ class _EditablePolygon(List):
 		#endif
 		(cond
 			case (temp7 == -360):
-				temp0 = (self first:)
+				temp0 = self._send('first:')
 				
-					(temp10 = (self last:))
+					(temp10 = self._send('last:'))
 					((temp0 != temp10) and (temp0 != kernel.NextNode(temp10)))
 					(temp10 = kernel.PrevNode(temp10))
 					
 					temp2 = kernel.NodeValue(temp0)
 					temp11 = kernel.NodeValue(temp10)
-					temp12 = (temp2 x:)
-					temp13 = (temp2 y:)
-					(temp2 x: (temp11 x:))
-					(temp2 y: (temp11 y:))
-					(temp11 x: temp12)
-					(temp11 y: temp13)
+					temp12 = temp2._send('x:')
+					temp13 = temp2._send('y:')
+					temp2._send('x:', temp11._send('x:'))
+					temp2._send('y:', temp11._send('y:'))
+					temp11._send('x:', temp12)
+					temp11._send('y:', temp13)
 					temp0 = kernel.NextNode(temp0)
 					# for:reinit
 					temp10 = kernel.PrevNode(temp10)
@@ -476,32 +472,30 @@ class _EditablePolygon(List):
 		temp0 = temp1
 		while temp2: # inline for
 			temp3 = kernel.NodeValue(temp2)
-			kernel.Memory(6, temp0, (temp3 x:))
-			kernel.Memory(6, (temp0 + 2), (temp3 y:))
+			kernel.Memory(6, temp0, temp3._send('x:'))
+			kernel.Memory(6, (temp0 + 2), temp3._send('y:'))
 			temp2 = kernel.NextNode(temp2)
 			# for:reinit
 			(temp0 += 4)
 		#end:loop
 		if (srcList == 1):
-			(global95
-				add:
-					((Polygon new:)
-						type: type
-						points: temp1
-						size: size
-						dynamic: 1
-						yourself:
+			global95._send(
+				'add:', Polygon._send('new:')._send(
+						'type:', type,
+						'points:', temp1,
+						'size:', size,
+						'dynamic:', 1,
+						'yourself:'
 					)
 			)
 		else:
-			(global2
-				addObstacle:
-					((Polygon new:)
-						type: type
-						points: temp1
-						size: size
-						dynamic: 1
-						yourself:
+			global2._send(
+				'addObstacle:', Polygon._send('new:')._send(
+						'type:', type,
+						'points:', temp1,
+						'size:', size,
+						'dynamic:', 1,
+						'yourself:'
 					)
 			)
 		#endif
@@ -512,7 +506,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(curPt x: param1 y: param2)
+		curPt._send('x:', param1, 'y:', param2)
 	#end:method
 
 	@classmethod
@@ -520,7 +514,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachLineDo: #restore)
+		self._send('eachLineDo:', #restore)
 	#end:method
 
 	@classmethod
@@ -528,7 +522,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachLineDo: #save)
+		self._send('eachLineDo:', #save)
 	#end:method
 
 	@classmethod
@@ -536,7 +530,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachLineDo: #draw srcList)
+		self._send('eachLineDo:', #draw, srcList)
 	#end:method
 
 	@classmethod
@@ -544,10 +538,10 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super
-			add: curPt = ((Class_943_1 new:) x: param1 y: param2 yourself:)
+		super._send(
+			'add:', curPt = Class_943_1._send('new:')._send('x:', param1, 'y:', param2, 'yourself:')
 		)
-		(self setCur: kernel.FindKey(elements, curPt) param3)
+		self._send('setCur:', kernel.FindKey(elements, curPt), param3)
 	#end:method
 
 	@classmethod
@@ -555,7 +549,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCur: (self next: curNode))
+		self._send('setCur:', self._send('next:', curNode))
 	#end:method
 
 	@classmethod
@@ -563,7 +557,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCur: (self prev: curNode))
+		self._send('setCur:', self._send('prev:', curNode))
 	#end:method
 
 	@classmethod
@@ -574,7 +568,7 @@ class _EditablePolygon(List):
 		if curNode = param1:
 			curPt = kernel.NodeValue(curNode)
 			if ((argc < 2) or param2):
-				(global1 setCursor: 999 1 (curPt x:) (curPt y:))
+				global1._send('setCursor:', 999, 1, curPt._send('x:'), curPt._send('y:'))
 			#endif
 		#endif
 	#end:method
@@ -584,7 +578,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCur: kernel.FindKey(elements, closestPt) param1)
+		self._send('setCur:', kernel.FindKey(elements, closestPt), param1)
 	#end:method
 
 	@classmethod
@@ -592,19 +586,19 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if temp0 = (self next: curNode):
+		if temp0 = self._send('next:', curNode):
 			temp3 = kernel.NodeValue(temp0)
 		else:
 			temp3 = curPt
 		#endif
-		if temp1 = (self prev: curNode):
+		if temp1 = self._send('prev:', curNode):
 			temp4 = kernel.NodeValue(temp1)
 		else:
 			temp4 = curPt
 		#endif
-		localproc_0((temp4 x:), (temp4 y:), (curPt x:), (curPt y:), (temp3 x:), (temp3
-			y:
-		))
+		localproc_0(temp4._send('x:'), temp4._send('y:'), curPt._send('x:'), curPt._send(
+			'y:'
+		), temp3._send('x:'), temp3._send('y:'))
 		lsTop = local42
 		lsLeft = local43
 		lsBottom = local44
@@ -616,7 +610,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		localproc_0((curPt x:), (curPt y:), lsLeft, lsTop, lsRight, lsBottom)
+		localproc_0(curPt._send('x:'), curPt._send('y:'), lsLeft, lsTop, lsRight, lsBottom)
 		kernel.Graph(12, local42, local43, local44, local45, local0)
 	#end:method
 
@@ -626,21 +620,21 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp4 = 32767
-		temp1 = (self first:)
-		temp0 = (self last:)
+		temp1 = self._send('first:')
+		temp0 = self._send('last:')
 		while 1:
 
 			temp2 = kernel.NodeValue(temp1)
 			if 
 				(<
-					temp3 = kernel.GetDistance(param1, param2, (temp2 x:), (temp2 y:))
+					temp3 = kernel.GetDistance(param1, param2, temp2._send('x:'), temp2._send('y:'))
 					temp4
 				)
 				temp4 = temp3
 				closestPt = temp2
 			#endif
 			(breakif (temp1 == temp0))
-			temp1 = (self next: temp1)
+			temp1 = self._send('next:', temp1)
 		#end:loop
 		return temp4
 	#end:method
@@ -651,22 +645,22 @@ class _EditablePolygon(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (size < 2):
-			return (self getDistToPt: param1 param2 &rest)
+			return self._send('getDistToPt:', param1, param2, &rest)
 		#endif
 		temp4 = 32767
-		temp1 = (self first:)
-		temp0 = (self last:)
+		temp1 = self._send('first:')
+		temp0 = self._send('last:')
 		while 1:
 
 			temp2 = kernel.NodeValue(temp1)
-			temp6 = (self next: temp1)
+			temp6 = self._send('next:', temp1)
 			temp5 = kernel.NodeValue(temp6)
 			if 
 				(<
 					(= temp3
-						localproc_2((temp2 x:), (temp2 y:), (temp5 x:), (temp5
-							y:
-						), param1, param2)
+						localproc_2(temp2._send('x:'), temp2._send('y:'), temp5._send(
+							'x:'
+						), temp5._send('y:'), param1, param2)
 					)
 					temp4
 				)
@@ -684,9 +678,9 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = ((Class_943_1 new:) x: param1 y: param2 yourself:)
-		(self addAfter: closestPt temp0)
-		(self setCur: kernel.FindKey(elements, temp0))
+		temp0 = Class_943_1._send('new:')._send('x:', param1, 'y:', param2, 'yourself:')
+		self._send('addAfter:', closestPt, temp0)
+		self._send('setCur:', kernel.FindKey(elements, temp0))
 	#end:method
 
 	@classmethod
@@ -694,14 +688,14 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (self first:)
-		temp4 = (self last:)
+		temp0 = self._send('first:')
+		temp4 = self._send('last:')
 		while ((temp0 != temp4) or closed):
 
-			temp1 = (self next: temp0)
+			temp1 = self._send('next:', temp0)
 			temp2 = kernel.NodeValue(temp0)
 			temp3 = kernel.NodeValue(temp1)
-			(temp2 param1: temp3 &rest)
+			temp2._send('param1:', temp3, &rest)
 			(breakif (temp0 == temp4))
 			temp0 = temp1
 		#end:loop
@@ -712,12 +706,12 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (curNode == temp0 = (self prev: curNode)):
+		if (curNode == temp0 = self._send('prev:', curNode)):
 			temp0 = 0
 		#endif
-		(self delete: curPt)
-		(curPt dispose:)
-		(self setCur: temp0)
+		self._send('delete:', curPt)
+		curPt._send('dispose:')
+		self._send('setCur:', temp0)
 	#end:method
 
 	@classmethod
@@ -725,9 +719,9 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (super next: param1)
+		temp0 = super._send('next:', param1)
 		if (closed and (not temp0)):
-			return (super first:)
+			return super._send('first:')
 		#endif
 		return temp0
 	#end:method
@@ -737,9 +731,9 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (super prev: param1)
+		temp0 = super._send('prev:', param1)
 		if (closed and (not temp0)):
-			return (super last:)
+			return super._send('last:')
 		#endif
 		return temp0
 	#end:method
@@ -754,14 +748,14 @@ class _EditablePolygon(List):
 		(temp1 += 2)
 		kernel.Memory(6, temp1, size)
 		(temp1 += 2)
-		kernel.Memory(6, temp1, (self indexOf: curPt))
+		kernel.Memory(6, temp1, self._send('indexOf:', curPt))
 		(temp1 += 2)
-		temp2 = (self first:)
+		temp2 = self._send('first:')
 		while temp2:
 
 			temp3 = kernel.NodeValue(temp2)
-			kernel.Memory(6, temp1, (temp3 x:))
-			kernel.Memory(6, (temp1 += 2), (temp3 y:))
+			kernel.Memory(6, temp1, temp3._send('x:'))
+			kernel.Memory(6, (temp1 += 2), temp3._send('y:'))
 			temp2 = kernel.NextNode(temp2)
 			(temp1 += 2)
 		#end:loop
@@ -773,7 +767,7 @@ class _EditablePolygon(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #dispose release:)
+		self._send('eachElementDo:', #dispose, 'release:')
 		closed = kernel.Memory(5, param1)
 		(param1 += 2)
 		temp1 = kernel.Memory(5, param1)
@@ -783,11 +777,11 @@ class _EditablePolygon(List):
 		temp2 = 0
 		while (temp2 < temp1):
 
-			(self add: kernel.Memory(5, param1) kernel.Memory(5, (param1 += 2)) 0)
+			self._send('add:', kernel.Memory(5, param1), kernel.Memory(5, (param1 += 2)), 0)
 			temp2.post('++')
 			(param1 += 2)
 		#end:loop
-		(self setCur: kernel.FindKey(elements, (self at: temp3)) 0)
+		self._send('setCur:', kernel.FindKey(elements, self._send('at:', temp3)), 0)
 	#end:method
 
 #end:class or instance
@@ -800,20 +794,20 @@ class readObstacle(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp2 = (PolyEdit add:)
+		temp2 = PolyEdit._send('add:')
 		temp0 = 0
-		temp1 = (param1 points:)
-		while (temp0 < (param1 size:)): # inline for
-			(temp2
-				add: kernel.Memory(5, temp1) kernel.Memory(5, (temp1 + 2)) 0
-				type: (param1 type:)
-				srcList: param2
+		temp1 = param1._send('points:')
+		while (temp0 < param1._send('size:')): # inline for
+			temp2._send(
+				'add:', kernel.Memory(5, temp1), kernel.Memory(5, (temp1 + 2)), 0,
+				'type:', param1._send('type:'),
+				'srcList:', param2
 			)
 			temp0.post('++')
 			# for:reinit
 			(temp1 += 4)
 		#end:loop
-		(temp2 closed: 1)
+		temp2._send('closed:', 1)
 	#end:method
 
 #end:class or instance
@@ -840,9 +834,9 @@ class PolyEdit(List):
 
 		temp1 = x
 		temp2 = y
-		x = (param1 x:)
-		y = (param1 y:)
-		match (param1 type:)
+		x = param1._send('x:')
+		y = param1._send('y:')
+		match param1._send('type:')
 			case 0:
 				if curPolygon:
 					if 
@@ -852,16 +846,16 @@ class PolyEdit(List):
 							((kernel.Abs((temp1 - x)) + kernel.Abs((temp2 - y))) > 1)
 						)
 						if (state != 3):
-							(self saveForUndo:)
+							self._send('saveForUndo:')
 						#endif
-						(self changeState: 2)
+						self._send('changeState:', 2)
 					#endif
 					if 
 						(and
 							proc999_5(state, 2, 0)
 							((temp1 != x) or (temp2 != y))
 						)
-						(self movePt: x y)
+						self._send('movePt:', x, y)
 					#endif
 					if (state == 2):
 						kernel.DrawStatus(kernel.Format(@temp3, 943, 2, x, y))
@@ -869,93 +863,93 @@ class PolyEdit(List):
 				#endif
 			#end:case
 			case 1:
-				temp0 = (param1 modifiers:)
+				temp0 = param1._send('modifiers:')
 				isMouseDown = 1
 				(cond
 					case (temp0 & 0x0004):
 						if (state == 0):
-							(self finishAdding:)
+							self._send('finishAdding:')
 							isMouseDown = 0
 						else:
-							(self insertPt:)
+							self._send('insertPt:')
 						#endif
 					#end:case
 					case (temp0 & 0x0003):
 						if (state != 0):
-							(self deletePt:)
+							self._send('deletePt:')
 						#endif
 						isMouseDown = 0
 					#end:case
 					case (state == 0):
-						(self addPt:)
+						self._send('addPt:')
 					#end:case
 					else:
-						(self selectPt:)
+						self._send('selectPt:')
 					#end:else
 				)
 			#end:case
 			case 2:
 				isMouseDown = 0
 				if proc999_5(state, 2, 3):
-					(self changeState: 1)
+					self._send('changeState:', 1)
 				#endif
 			#end:case
 			case 4:
-				match (param1 message:)
+				match param1._send('message:')
 					case 63:
-						(param1 message: 104)
+						param1._send('message:', 104)
 					#end:case
 					case 19:
-						(param1 message: 120)
+						param1._send('message:', 120)
 					#end:case
 					case 15360:
-						(param1 message: 12032)
+						param1._send('message:', 12032)
 					#end:case
 					case 15872:
-						(param1 message: 11776)
+						param1._send('message:', 11776)
 					#end:case
 				#end:match
-				match (param1 message:)
+				match param1._send('message:')
 					case 9:
 						if ((state == 1) and curPolygon):
-							(self advanceRetreat: 65 126)
+							self._send('advanceRetreat:', 65, 126)
 						#endif
 					#end:case
 					case 3840:
 						if ((state == 1) and curPolygon):
-							(self advanceRetreat: 130 129)
+							self._send('advanceRetreat:', 130, 129)
 						#endif
 					#end:case
 					case 32:
 						if ((state == 1) and curPolygon):
-							(curPolygon advance:)
+							curPolygon._send('advance:')
 						#endif
 					#end:case
 					case 8:
 						if ((state == 1) and curPolygon):
-							(curPolygon retreat:)
+							curPolygon._send('retreat:')
 						#endif
 					#end:case
 					case 99:
 						if (state == 1):
-							(self changeState: 0)
+							self._send('changeState:', 0)
 							curPolygon = 0
 						#endif
 					#end:case
 					case 116:
 						if (curPolygon and (state == 1)):
-							(curPolygon getAccessType:)
+							curPolygon._send('getAccessType:')
 						#endif
 					#end:case
 					case 100:
 						(cond
 							case (state == 1):
 								if curPolygon:
-									(self deletePt:)
+									self._send('deletePt:')
 								#endif
 							#end:case
 							case (state == 0):
-								(self finishAdding:)
+								self._send('finishAdding:')
 							#end:case
 						)
 					#end:case
@@ -970,32 +964,32 @@ class PolyEdit(List):
 						#end:match
 					#end:case
 					case 117:
-						(self undo:)
+						self._send('undo:')
 					#end:case
 					case 109:
-						(self showMap: -1)
+						self._send('showMap:', -1)
 					#end:case
 					case 12032:
-						(self showMap: 1)
+						self._send('showMap:', 1)
 					#end:case
 					case 11776:
-						(self showMap: 4)
+						self._send('showMap:', 4)
 					#end:case
 					case 97:
 						localproc_3(r""" by\0d\n\0d\nMark Wilden\0d\n\0d\nOriginal program by Chad Bye """, 1)
 					#end:case
 					case 114:
 						if (state == 1):
-							(self draw:)
+							self._send('draw:')
 						#endif
 					#end:case
 					case 120:
-						(self exit:)
+						self._send('exit:')
 						return
 					#end:case
 					case 27:
 						if (state == 0):
-							(self finishAdding:)
+							self._send('finishAdding:')
 						#endif
 					#end:case
 				#end:match
@@ -1010,7 +1004,7 @@ class PolyEdit(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if curMenu:
-			(curMenu dispose:)
+			curMenu._send('dispose:')
 		#endif
 		(= curMenu
 			match state = param1
@@ -1021,7 +1015,7 @@ class PolyEdit(List):
 			#end:match
 		)
 		if curMenu:
-			(curMenu init:)
+			curMenu._send('init:')
 		#endif
 	#end:method
 
@@ -1030,11 +1024,11 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global2 obstacles:):
-			((global2 obstacles:) eachElementDo: #perform readObstacle 0)
+		if global2._send('obstacles:'):
+			global2._send('obstacles:')._send('eachElementDo:', #perform, readObstacle, 0)
 		#endif
 		if global95:
-			(global95 eachElementDo: #perform readObstacle 1)
+			global95._send('eachElementDo:', #perform, readObstacle, 1)
 		#endif
 	#end:method
 
@@ -1043,10 +1037,10 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global2 obstacles:):
-			((global2 obstacles:) eachElementDo: #dispose release:)
+		if global2._send('obstacles:'):
+			global2._send('obstacles:')._send('eachElementDo:', #dispose, 'release:')
 		#endif
-		(self eachElementDo: #writeObstacle)
+		self._send('eachElementDo:', #writeObstacle)
 	#end:method
 
 	@classmethod
@@ -1054,7 +1048,7 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super add: curPolygon = (_EditablePolygon new:))
+		super._send('add:', curPolygon = _EditablePolygon._send('new:'))
 		return curPolygon
 	#end:method
 
@@ -1063,9 +1057,9 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #restore)
-		(self eachElementDo: #save)
-		(self eachElementDo: #draw)
+		self._send('eachElementDo:', #restore)
+		self._send('eachElementDo:', #save)
+		self._send('eachElementDo:', #draw)
 		kernel.Graph(12, 0, 0, 190, 320, local0)
 	#end:method
 
@@ -1074,12 +1068,12 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self select: 486 1)
-		temp0 = (Event new:)
+		self._send('select:', 486, 1)
+		temp0 = Event._send('new:')
 		kernel.GlobalToLocal(temp0)
-		x = (temp0 x:)
-		y = (temp0 y:)
-		(temp0 dispose:)
+		x = temp0._send('x:')
+		y = temp0._send('y:')
+		temp0._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -1087,12 +1081,12 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self saveForUndo:)
+		self._send('saveForUndo:')
 		if (not curPolygon):
-			(self add:)
-			(curPolygon add: x y 0)
+			self._send('add:')
+			curPolygon._send('add:', x, y, 0)
 		#endif
-		(curPolygon add: x y)
+		curPolygon._send('add:', x, y)
 	#end:method
 
 	@classmethod
@@ -1102,23 +1096,23 @@ class PolyEdit(List):
 
 		(cond
 			case curPolygon:
-				(curPolygon closed: 1)
-				if ((curPolygon size:) > 1):
-					(curPolygon deletePt: (curPolygon last:) advance:)
+				curPolygon._send('closed:', 1)
+				if (curPolygon._send('size:') > 1):
+					curPolygon._send('deletePt:', curPolygon._send('last:'), 'advance:')
 				#endif
-				(self draw:)
-				(curPolygon getAccessType:)
+				self._send('draw:')
+				curPolygon._send('getAccessType:')
 			#end:case
-			case (not temp0 = (self first:)):
+			case (not temp0 = self._send('first:')):
 				curPolygon = 0
 			#end:case
 			else:
 				curPolygon = kernel.NodeValue(temp0)
-				(self draw:)
+				self._send('draw:')
 			#end:else
 		)
 		if curPolygon:
-			(self changeState: 1)
+			self._send('changeState:', 1)
 		#endif
 	#end:method
 
@@ -1127,12 +1121,12 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(curPolygon startRedraw:)
-		(self eachElementDo: #restore)
-		(curPolygon movePt: param1 param2)
-		(self eachElementDo: #save)
-		(self eachElementDo: #draw)
-		(curPolygon endRedraw:)
+		curPolygon._send('startRedraw:')
+		self._send('eachElementDo:', #restore)
+		curPolygon._send('movePt:', param1, param2)
+		self._send('eachElementDo:', #save)
+		self._send('eachElementDo:', #draw)
+		curPolygon._send('endRedraw:')
 	#end:method
 
 	@classmethod
@@ -1140,13 +1134,13 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #restore)
-		(self select: 485 0)
-		(self saveForUndo:)
-		(curPolygon insertPt: x y)
-		(self changeState: 3)
-		(self eachElementDo: #save)
-		(self eachElementDo: #draw)
+		self._send('eachElementDo:', #restore)
+		self._send('select:', 485, 0)
+		self._send('saveForUndo:')
+		curPolygon._send('insertPt:', x, y)
+		self._send('changeState:', 3)
+		self._send('eachElementDo:', #save)
+		self._send('eachElementDo:', #draw)
 		kernel.Graph(12, 0, 0, 190, 320, local0)
 	#end:method
 
@@ -1156,12 +1150,12 @@ class PolyEdit(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = curPolygon
-		(self advanceRetreat: 130 65)
+		self._send('advanceRetreat:', 130, 65)
 		if (curPolygon == temp0):
 			curPolygon = 0
 		#endif
-		(super delete: temp0 &rest)
-		(temp0 dispose:)
+		super._send('delete:', temp0, &rest)
+		temp0._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -1169,18 +1163,18 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #restore)
-		(self select: 486 0)
-		(self saveForUndo:)
-		(curPolygon deletePt:)
-		if (not (curPolygon size:)):
-			(self delete: curPolygon)
+		self._send('eachElementDo:', #restore)
+		self._send('select:', 486, 0)
+		self._send('saveForUndo:')
+		curPolygon._send('deletePt:')
+		if (not curPolygon._send('size:')):
+			self._send('delete:', curPolygon)
 			if (not size):
-				(self changeState: 0)
+				self._send('changeState:', 0)
 			#endif
 		#endif
-		(self eachElementDo: #save)
-		(self eachElementDo: #draw)
+		self._send('eachElementDo:', #save)
+		self._send('eachElementDo:', #draw)
 		kernel.Graph(12, 0, 0, 190, 320, local0)
 	#end:method
 
@@ -1194,14 +1188,14 @@ class PolyEdit(List):
 		temp4 = kernel.FirstNode(elements)
 		while temp4: # inline for
 			temp3 = kernel.NodeValue(temp4)
-			if (temp2 = (temp3 param1: x y) < temp0):
+			if (temp2 = temp3._send('param1:', x, y) < temp0):
 				temp0 = temp2
 				temp1 = temp3
 			#endif
 			# for:reinit
 			temp4 = kernel.NextNode(temp4)
 		#end:loop
-		(curPolygon = temp1 setCurClosest: param2)
+		curPolygon = temp1._send('setCurClosest:', param2)
 	#end:method
 
 	@classmethod
@@ -1212,13 +1206,13 @@ class PolyEdit(List):
 		temp1 = kernel.FindKey(elements, curPolygon)
 		if 
 			(and
-				(not temp0 = (self param1: temp1))
-				(not temp0 = (self param2: temp1))
+				(not temp0 = self._send('param1:', temp1))
+				(not temp0 = self._send('param2:', temp1))
 			)
 			temp0 = temp1
 		#endif
 		curPolygon = kernel.NodeValue(temp0)
-		(curPolygon setCur: (curPolygon curNode:))
+		curPolygon._send('setCur:', curPolygon._send('curNode:'))
 	#end:method
 
 	@classmethod
@@ -1227,11 +1221,11 @@ class PolyEdit(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if undoPoly = curPolygon:
-			undoPrvPoly = (self prev: undoPoly)
+			undoPrvPoly = self._send('prev:', undoPoly)
 			if (((not argc) or param1) and undoPolyBuf):
 				kernel.Memory(3, undoPolyBuf)
 			#endif
-			undoPolyBuf = (curPolygon saveForUndo:)
+			undoPolyBuf = curPolygon._send('saveForUndo:')
 		#endif
 		undoX = x
 		undoY = y
@@ -1253,29 +1247,29 @@ class PolyEdit(List):
 		temp4 = undoX
 		temp5 = undoY
 		temp6 = undoState
-		(self saveForUndo: 0)
-		(self eachElementDo: #restore)
+		self._send('saveForUndo:', 0)
+		self._send('eachElementDo:', #restore)
 		if curPolygon = temp1:
-			if (not (self contains: curPolygon)):
-				curPolygon = (self add:)
+			if (not self._send('contains:', curPolygon)):
+				curPolygon = self._send('add:')
 				if temp2:
-					(self addAfter: temp2 curPolygon)
+					self._send('addAfter:', temp2, curPolygon)
 				else:
-					(self addToFront: curPolygon)
+					self._send('addToFront:', curPolygon)
 				#endif
 			#endif
-			(curPolygon undo: temp3)
+			curPolygon._send('undo:', temp3)
 		else:
-			curPolygon = (self add:)
+			curPolygon = self._send('add:')
 		#endif
 		kernel.Memory(3, temp3)
 		x = temp4
 		y = temp5
-		(self changeState: temp6)
-		(self eachElementDo: #save)
-		(self eachElementDo: #draw)
+		self._send('changeState:', temp6)
+		self._send('eachElementDo:', #save)
+		self._send('eachElementDo:', #draw)
 		kernel.Graph(12, 0, 0, 190, 320, local0)
-		(global1 setCursor: 999 1 x y)
+		global1._send('setCursor:', 999, 1, x, y)
 	#end:method
 
 	@classmethod
@@ -1291,10 +1285,10 @@ class PolyEdit(List):
 			#endif
 		#endif
 		if (local0 != param1):
-			(self eachElementDo: #restore)
+			self._send('eachElementDo:', #restore)
 			local0 = param1
-			(self eachElementDo: #save)
-			(self eachElementDo: #draw)
+			self._send('eachElementDo:', #save)
+			self._send('eachElementDo:', #draw)
 			kernel.Graph(12, 0, 0, 190, 320, local0)
 		#endif
 	#end:method
@@ -1304,20 +1298,20 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		kernel.DrawPic((global2 curPic:), 100, 1)
+		kernel.DrawPic(global2._send('curPic:'), 100, 1)
 		if (global36 != -1):
 			kernel.DrawPic(global36, 100, 0)
 		#endif
-		(global10 doit:)
-		(global5 eachElementDo: #stopUpd)
-		kernel.Animate((global5 elements:), 0)
+		global10._send('doit:')
+		global5._send('eachElementDo:', #stopUpd)
+		kernel.Animate(global5._send('elements:'), 0)
 		local1 = global38
 		global38 = SysWindow
 		local0 = 1
-		(global1 setCursor: 999 1)
-		(self readObstacles:)
-		(self changeState: (1 if size else 0))
-		(self draw:)
+		global1._send('setCursor:', 999, 1)
+		self._send('readObstacles:')
+		self._send('changeState:', (1 if size else 0))
+		self._send('draw:')
 	#end:method
 
 	@classmethod
@@ -1325,17 +1319,17 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self init:)
+		self._send('init:')
 		while True: #repeat
-			temp0 = (Event new:)
-			if (not (curMenu and (curMenu handleEvent: temp0))):
+			temp0 = Event._send('new:')
+			if (not (curMenu and curMenu._send('handleEvent:', temp0))):
 				kernel.GlobalToLocal(temp0)
-				(breakif (self handleEvent: temp0))
+				(breakif self._send('handleEvent:', temp0))
 			#endif
-			(temp0 dispose:)
+			temp0._send('dispose:')
 		#end:loop
-		(temp0 dispose:)
-		(self dispose:)
+		temp0._send('dispose:')
+		self._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -1344,27 +1338,27 @@ class PolyEdit(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (state == 0):
-			(self finishAdding:)
+			self._send('finishAdding:')
 		#endif
-		(self showMap: 1)
+		self._send('showMap:', 1)
 		if (not curPolygon):
 			return 1
 		#endif
-		(self eachElementDo: #check)
+		self._send('eachElementDo:', #check)
 		if (not local2):
-			kernel.Format(@local2, 943, 3, (global2 curPic:))
+			kernel.Format(@local2, 943, 3, global2._send('curPic:'))
 		#endif
 		if 
 			(not
 				(= temp100
-					(Print
-						addTitle: r"""Save Polygons"""
-						addText: r"""File:"""
-						addEdit: @local2 25 50 0 @local2
-						addButton: 1 r""" Save """ 5 12
-						addButton: 2 r"""Abandon""" 70 12
-						addButton: 0 r"""Cancel""" 150 12
-						init:
+					Print._send(
+						'addTitle:', r"""Save Polygons""",
+						'addText:', r"""File:""",
+						'addEdit:', @local2, 25, 50, 0, @local2,
+						'addButton:', 1, r""" Save """, 5, 12,
+						'addButton:', 2, r"""Abandon""", 70, 12,
+						'addButton:', 0, r"""Cancel""", 150, 12,
+						'init:'
 					)
 				)
 			)
@@ -1378,13 +1372,13 @@ class PolyEdit(List):
 			if 
 				(not
 					(= temp100
-						(Print
-							width: 210
-							addText: @temp0
-							addButton: 1 r"""Replace""" 5 12
-							addButton: 2 r"""Append""" 85 12
-							addButton: 0 r"""Cancel""" 150 12
-							init:
+						Print._send(
+							'width:', 210,
+							'addText:', @temp0,
+							'addButton:', 1, r"""Replace""", 5, 12,
+							'addButton:', 2, r"""Append""", 85, 12,
+							'addButton:', 0, r"""Cancel""", 150, 12,
+							'init:'
 						)
 					)
 				)
@@ -1392,24 +1386,25 @@ class PolyEdit(List):
 			#endif
 		#endif
 		temp102 = (2 if (temp100 == 1) else 0)
-		if (not (temp101 = (File new:) name: @local2 open: temp102)):
-			kernel.Format(@temp0, 943, 5, (temp101 name:))
+		if (not temp101 = File._send('new:')._send('name:', @local2, 'open:', temp102)):
+			kernel.Format(@temp0, 943, 5, temp101._send('name:'))
 			proc921_0(@temp0)
-			(temp101 dispose:)
+			temp101._send('dispose:')
 			return 0
 		#endif
-		(temp101 writeString: kernel.Format(@temp0, 943, 6, r"""Polygon Editor 1.11"""))
-		(temp101
-			writeString:
-				kernel.Format(@temp0, 943, 7, r"""Dynamic Obstacles""", (global2 curPic:))
+		temp101._send('writeString:', kernel.Format(@temp0, 943, 6, r"""Polygon Editor 1.11"""))
+		temp101._send(
+			'writeString:', kernel.Format(@temp0, 943, 7, r"""Dynamic Obstacles""", global2._send(
+					'curPic:'
+				))
 		)
-		(temp101 writeString: r"""\t\t(curRoom addObstacle:\0d\n""")
-		(self eachElementDo: #writeFile temp101 0)
-		(temp101 writeString: r"""\t\t)\0d\n\0d\n""")
-		(temp101 writeString: r"""\t\t(altPolyList add:\0d\n""")
-		(self eachElementDo: #writeFile temp101 1)
-		(temp101 writeString: r"""\t\t)\0d\n""")
-		(temp101 dispose:)
+		temp101._send('writeString:', r"""\t\t(curRoom addObstacle:\0d\n""")
+		self._send('eachElementDo:', #writeFile, temp101, 0)
+		temp101._send('writeString:', r"""\t\t)\0d\n\0d\n""")
+		temp101._send('writeString:', r"""\t\t(altPolyList add:\0d\n""")
+		self._send('eachElementDo:', #writeFile, temp101, 1)
+		temp101._send('writeString:', r"""\t\t)\0d\n""")
+		temp101._send('dispose:')
 		return 1
 	#end:method
 
@@ -1418,9 +1413,9 @@ class PolyEdit(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self writeObstacles:)
+		self._send('writeObstacles:')
 		if curMenu:
-			(curMenu dispose:)
+			curMenu._send('dispose:')
 			curMenu = 0
 		#endif
 		if undoPolyBuf:
@@ -1429,25 +1424,25 @@ class PolyEdit(List):
 		#endif
 		kernel.DrawStatus(r""" """, 0, 0)
 		kernel.DrawStatus(0)
-		(global5 eachElementDo: #startUpd)
-		kernel.Animate((global5 elements:), 0)
-		(self eachElementDo: #draw)
+		global5._send('eachElementDo:', #startUpd)
+		kernel.Animate(global5._send('elements:'), 0)
+		self._send('eachElementDo:', #draw)
 		if 
-			(Print
-				addText: r"""Erase polygon outlines?"""
-				addButton: 1 r"""Yes """ 30 12
-				addButton: 0 r""" No """ 85 12
-				init:
+			Print._send(
+				'addText:', r"""Erase polygon outlines?""",
+				'addButton:', 1, r"""Yes """, 30, 12,
+				'addButton:', 0, r""" No """, 85, 12,
+				'init:'
 			)
-			kernel.DrawPic((global2 curPic:), 100, 1)
+			kernel.DrawPic(global2._send('curPic:'), 100, 1)
 			if (global36 != -1):
 				kernel.DrawPic(global36, 100, 0)
 			#endif
-			(global10 doit:)
+			global10._send('doit:')
 		#endif
 		global38 = local1
 		kernel.DisposeScript(993)
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(943)
 	#end:method
 

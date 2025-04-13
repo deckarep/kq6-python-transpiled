@@ -22,7 +22,7 @@ class readPoem(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(97)
 	#end:method
 
@@ -33,13 +33,13 @@ class readPoem(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 30 5 0 0 self 907)
+				global91._send('say:', 30, 5, 0, 0, self, 907)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

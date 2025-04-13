@@ -26,11 +26,11 @@ class Oyster(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
-			(self view: 890 loop: 0 cel: 1 x: 255 y: 5 textX: -239 textY: 8)
-			(super init: 0 0 0 &rest)
+			self._send('view:', 890, 'loop:', 0, 'cel:', 1, 'x:', 255, 'y:', 5, 'textX:', -239, 'textY:', 8)
+			super._send('init:', 0, 0, 0, &rest)
 		else:
-			(self view: 4531 loop: 3 x: 58 y: 127 textX: -40 textY: -105)
-			(super init: 0 0 tMouth &rest)
+			self._send('view:', 4531, 'loop:', 3, 'x:', 58, 'y:', 127, 'textX:', -40, 'textY:', -105)
+			super._send('init:', 0, 0, tMouth, &rest)
 		#endif
 	#end:method
 

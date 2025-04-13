@@ -17,7 +17,7 @@ class ForwardCounter(Fwd):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1)
+		super._send('init:', param1)
 		if (argc >= 2):
 			count = param2
 			if (argc >= 3):
@@ -32,10 +32,10 @@ class ForwardCounter(Fwd):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if count.post('--'):
-			(super cycleDone:)
+			super._send('cycleDone:')
 		else:
 			completed = 1
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 

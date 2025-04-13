@@ -30,7 +30,7 @@ def localproc_0(param1 = None, *rest):
 			kernel.DeviceInfo(3, @temp41)
 			(or
 				kernel.DeviceInfo(2, @temp1, @temp41)
-				(not kernel.DeviceInfo(6, (global1 name:)))
+				(not kernel.DeviceInfo(6, global1._send('name:')))
 			)
 		)
 		kernel.Message(0, 994, 6, 0, 0, 1, @temp82)
@@ -46,20 +46,20 @@ def localproc_0(param1 = None, *rest):
 			(==
 				(= temp0
 					if param1:
-						(Print
-							font: 0
-							addText: temp81
-							addButton: 1 @temp82 0 40
-							addButton: 0 @temp122 30 40
-							addButton: 2 @temp132
-							init:
+						Print._send(
+							'font:', 0,
+							'addText:', temp81,
+							'addButton:', 1, @temp82, 0, 40,
+							'addButton:', 0, @temp122, 30, 40,
+							'addButton:', 2, @temp132,
+							'init:'
 						)
 					else:
-						(Print
-							font: 0
-							addText: temp81
-							addButton: 1 @temp82 0 40
-							init:
+						Print._send(
+							'font:', 0,
+							'addText:', temp81,
+							'addButton:', 1, @temp82, 0, 40,
+							'init:'
 						)
 					#endif
 				)
@@ -94,7 +94,7 @@ class Sounds(EventHandler):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #perform mayPause (param1 if argc else 1))
+		self._send('eachElementDo:', #perform, mayPause, (param1 if argc else 1))
 	#end:method
 
 #end:class or instance
@@ -107,8 +107,8 @@ class mayPause(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (not ((param1 flags:) & 0x0001)):
-			(param1 pause: param2)
+		if (not (param1._send('flags:') & 0x0001)):
+			param1._send('pause:', param2)
 		#endif
 	#end:method
 
@@ -127,7 +127,7 @@ class addToPics(EventHandler):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self eachElementDo: #perform aTOC)
+		self._send('eachElementDo:', #perform, aTOC)
 		kernel.AddToPic(elements)
 	#end:method
 
@@ -169,13 +169,13 @@ class Cue(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global18 delete: self)
-		if (global18 isEmpty:):
-			(global18 dispose:)
+		global18._send('delete:', self)
+		if global18._send('isEmpty:'):
+			global18._send('dispose:')
 			global18 = 0
 		#endif
-		(cuee cue: register cuer)
-		(self dispose:)
+		cuee._send('cue:', register, cuer)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -188,22 +188,25 @@ class aTOC(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (not ((param1 signal:) & 0x4000)):
-			temp0 = ((global0 xStep:) + (kernel.CelWide((global0 view:), 2, 0) / 2))
-			temp1 = ((global0 yStep:) * 2)
-			(global2
-				addObstacle:
-					((Polygon new:)
-						init:
-							((param1 brLeft:) - temp0)
-							(kernel.CoordPri(1, kernel.CoordPri((param1 y:))) - temp1)
-							((param1 brRight:) + temp0)
-							(kernel.CoordPri(1, kernel.CoordPri((param1 y:))) - temp1)
-							((param1 brRight:) + temp0)
-							((param1 y:) + temp1)
-							((param1 brLeft:) - temp0)
-							((param1 y:) + temp1)
-						yourself:
+		if (not (param1._send('signal:') & 0x4000)):
+			temp0 = (global0._send('xStep:') + (kernel.CelWide(global0._send('view:'), 2, 0) / 2))
+			temp1 = (global0._send('yStep:') * 2)
+			global2._send(
+				'addObstacle:', Polygon._send('new:')._send(
+						'init:', (param1._send('brLeft:') - temp0), (-
+								kernel.CoordPri(1, kernel.CoordPri(param1._send('y:')))
+								temp1
+							), (param1._send('brRight:') + temp0), (-
+								kernel.CoordPri(1, kernel.CoordPri(param1._send('y:')))
+								temp1
+							), (param1._send('brRight:') + temp0), (+
+								param1._send('y:')
+								temp1
+							), (param1._send('brLeft:') - temp0), (+
+								param1._send('y:')
+								temp1
+							),
+						'yourself:'
 					)
 			)
 		#endif
@@ -228,11 +231,11 @@ class Game(Obj):
 
 		global1 = self
 		global29 = kernel.GetSaveDir()
-		(self setCursor: global21 1 init:)
-		(self setCursor: global20 1)
+		self._send('setCursor:', global21, 1, 'init:')
+		self._send('setCursor:', global20, 1)
 		while (not global4):
 
-			(self doit:)
+			self._send('doit:')
 		#end:loop
 	#end:method
 
@@ -265,7 +268,7 @@ class Game(Obj):
 
 		if argc:
 			_detailLevel = param1
-			(global5 eachElementDo: #checkDetail)
+			global5._send('eachElementDo:', #checkDetail)
 		#endif
 		return _detailLevel
 	#end:method
@@ -276,43 +279,43 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global24:
-			(global24 dispose:)
+			global24._send('dispose:')
 		#endif
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
-		(global5 eachElementDo: #perform RU)
-		(global1 setCursor: global21 1)
+		global5._send('eachElementDo:', #perform, RU)
+		global1._send('setCursor:', global21, 1)
 		(= temp0
-			if (not proc999_5((global2 style:), -1, 11, 12, 13, 14)):
-				(global2 style:)
+			if (not proc999_5(global2._send('style:'), -1, 11, 12, 13, 14)):
+				global2._send('style:')
 			else:
 				100
 			#endif
 		)
-		kernel.DrawPic((global2 curPic:), temp0, 1)
+		kernel.DrawPic(global2._send('curPic:'), temp0, 1)
 		if (global36 != -1):
 			kernel.DrawPic(global36, 100, 0)
 		#endif
-		(global10 doit:)
+		global10._send('doit:')
 		(cond
-			case ((not (global80 canControl:)) and (not (global80 canInput:))):
-				(global1 setCursor: global21)
+			case ((not global80._send('canControl:')) and (not global80._send('canInput:'))):
+				global1._send('setCursor:', global21)
 			#end:case
-			case (global69 and (global69 curIcon:)):
-				(global1 setCursor: ((global69 curIcon:) cursor:))
+			case (global69 and global69._send('curIcon:')):
+				global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 			#end:case
 			else:
-				(global1 setCursor: global20)
+				global1._send('setCursor:', global20)
 			#end:else
 		)
-		(SL doit:)
+		SL._send('doit:')
 		kernel.DoSound(2)
-		(global8 pause: 0)
+		global8._send('pause:', 0)
 		global86 = (global88 - kernel.GetTime())
 		while (not global4):
 
-			(self doit:)
+			self._send('doit:')
 		#end:loop
 	#end:method
 
@@ -323,24 +326,24 @@ class Game(Obj):
 
 		Motion
 		Sound
-		(global5 = cast add:)
-		(global32 = features add:)
-		(global8 = Sounds add:)
-		(global6 = regions add:)
-		(global10 = addToPics add:)
-		(global7 = timers add:)
-		(global78 = theDoits add:)
-		(global73 = mouseDownHandler add:)
-		(global72 = keyDownHandler add:)
-		(global74 = directionHandler add:)
-		(global93 = walkHandler add:)
+		global5 = cast._send('add:')
+		global32 = features._send('add:')
+		global8 = Sounds._send('add:')
+		global6 = regions._send('add:')
+		global10 = addToPics._send('add:')
+		global7 = timers._send('add:')
+		global78 = theDoits._send('add:')
+		global73 = mouseDownHandler._send('add:')
+		global72 = keyDownHandler._send('add:')
+		global74 = directionHandler._send('add:')
+		global93 = walkHandler._send('add:')
 		global84 = 0
 		global29 = kernel.GetSaveDir()
-		(Inv init:)
+		Inv._send('init:')
 		if (not global80):
 			global80 = User
 		#endif
-		(global80 init:)
+		global80._send('init:')
 	#end:method
 
 	@classmethod
@@ -358,54 +361,54 @@ class Game(Obj):
 		if global84:
 			while global84:
 
-				(global84 eachElementDo: #doit)
-				if ((temp0 = (Event new:) type:) and global84):
-					(global84 firstTrue: #handleEvent temp0)
+				global84._send('eachElementDo:', #doit)
+				if (temp0 = Event._send('new:')._send('type:') and global84):
+					global84._send('firstTrue:', #handleEvent, temp0)
 				#endif
-				(temp0 dispose:)
+				temp0._send('dispose:')
 				global88 = (global86 + kernel.GetTime())
-				(global8 eachElementDo: #check)
+				global8._send('eachElementDo:', #check)
 			#end:loop
 		#endif
 		if global92:
-			(global92 eachElementDo: #doit)
+			global92._send('eachElementDo:', #doit)
 			if (not global25):
-				if ((temp0 = (Event new:) type:) and global92):
-					(global92 firstTrue: #handleEvent temp0)
+				if (temp0 = Event._send('new:')._send('type:') and global92):
+					global92._send('firstTrue:', #handleEvent, temp0)
 				#endif
-				(temp0 dispose:)
+				temp0._send('dispose:')
 				global88 = (global86 + kernel.GetTime())
 				return
 			#endif
 		#endif
-		(global8 eachElementDo: #check)
-		(global7 eachElementDo: #doit)
-		if (global25 and (global25 check:)):
-			(global25 dispose:)
+		global8._send('eachElementDo:', #check)
+		global7._send('eachElementDo:', #doit)
+		if (global25 and global25._send('check:')):
+			global25._send('dispose:')
 		#endif
-		kernel.Animate((global5 elements:), 1)
+		kernel.Animate(global5._send('elements:'), 1)
 		if global37:
 			global37 = 0
-			(global5 eachElementDo: #motionCue)
+			global5._send('eachElementDo:', #motionCue)
 		#endif
 		if global18:
-			(global18 eachElementDo: #doit)
+			global18._send('eachElementDo:', #doit)
 		#endif
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
-		(global6 eachElementDo: #doit)
+		global6._send('eachElementDo:', #doit)
 		if global84:
 			return
 		#endif
 		if (global13 == global11):
-			(global80 doit:)
+			global80._send('doit:')
 		#endif
-		(global78 doit:)
+		global78._send('doit:')
 		if (global13 != global11):
-			(self newRoom: global13)
+			self._send('newRoom:', global13)
 		#endif
-		(global7 eachElementDo: #delete)
+		global7._send('eachElementDo:', #delete)
 		kernel.GameIsRestarting(0)
 	#end:method
 
@@ -414,23 +417,23 @@ class Game(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global10 eachElementDo: #dispose eachElementDo: #delete release:)
-		(global32 eachElementDo: #perform fDC release:)
-		(global5 eachElementDo: #dispose eachElementDo: #delete)
-		(global7 eachElementDo: #delete)
-		(global6 eachElementDo: #perform DNKR release:)
-		(global78 release:)
+		global10._send('eachElementDo:', #dispose, 'eachElementDo:', #delete, 'release:')
+		global32._send('eachElementDo:', #perform, fDC, 'release:')
+		global5._send('eachElementDo:', #dispose, 'eachElementDo:', #delete)
+		global7._send('eachElementDo:', #delete)
+		global6._send('eachElementDo:', #perform, DNKR, 'release:')
+		global78._send('release:')
 		kernel.Animate(0)
 		global12 = global11
 		global11 = param1
 		global13 = param1
 		kernel.FlushResources(param1)
-		(self startRoom: global11)
-		while (temp5 = (Event new: 3) type:):
+		self._send('startRoom:', global11)
+		while temp5 = Event._send('new:', 3)._send('type:'):
 
-			(temp5 dispose:)
+			temp5._send('dispose:')
 		#end:loop
-		(temp5 dispose:)
+		temp5._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -441,8 +444,8 @@ class Game(Obj):
 		if global14:
 			kernel.SetDebug()
 		#endif
-		(global6 addToFront: global2 = kernel.ScriptID(param1))
-		(global2 init:)
+		global6._send('addToFront:', global2 = kernel.ScriptID(param1))
+		global2._send('init:')
 	#end:method
 
 	@classmethod
@@ -451,13 +454,13 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (param1 claimed:): 1#end:case
-			case (script and (script handleEvent: param1)): 1#end:case
-			case ((param1 type:) & 0x4000):
-				(self pragmaFail:)
+			case param1._send('claimed:'): 1#end:case
+			case (script and script._send('handleEvent:', param1)): 1#end:case
+			case (param1._send('type:') & 0x4000):
+				self._send('pragmaFail:')
 			#end:case
 		)
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -466,7 +469,7 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(global15 += param1)
-		(SL doit:)
+		SL._send('doit:')
 	#end:method
 
 	@classmethod
@@ -475,7 +478,7 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
 		kernel.RestartGame()
 	#end:method
@@ -488,34 +491,34 @@ class Game(Obj):
 		if (not kernel.ValidPath(global29)):
 			kernel.Message(0, 994, 9, 0, 0, 1, @temp22)
 			kernel.Format(@temp127, @temp22, global29)
-			(Print font: 0 addText: @temp127 init:)
+			Print._send('font:', 0, 'addText:', @temp127, 'init:')
 			proc990_0(global29)
 		#endif
 		kernel.Load(135, global23)
 		kernel.ScriptID(990)
-		temp21 = (self setCursor: global20)
-		(global8 pause: 1)
+		temp21 = self._send('setCursor:', global20)
+		global8._send('pause:', 1)
 		if localproc_0(1):
 			if global25:
-				(global25 dispose:)
+				global25._send('dispose:')
 			#endif
-			if (temp20 = (Save doit: @temp0) != -1):
-				temp21 = (self setCursor: global21 1)
+			if (temp20 = Save._send('doit:', @temp0) != -1):
+				temp21 = self._send('setCursor:', global21, 1)
 				if (not kernel.SaveGame(name, temp20, @temp0, global27)):
 					kernel.Message(0, 994, 1, 0, 0, 1, @temp22)
 					kernel.Message(0, 994, 2, 0, 0, 1, @temp122)
-					(Print
-						font: 0
-						addText: @temp22
-						addButton: 1 @temp122 0 40
-						init:
+					Print._send(
+						'font:', 0,
+						'addText:', @temp22,
+						'addButton:', 1, @temp122, 0, 40,
+						'init:'
 					)
 				#endif
-				(self setCursor: temp21 kernel.HaveMouse())
+				self._send('setCursor:', temp21, kernel.HaveMouse())
 			#endif
 			localproc_0(0)
 		#endif
-		(global8 pause: 0)
+		global8._send('pause:', 0)
 	#end:method
 
 	@classmethod
@@ -526,36 +529,36 @@ class Game(Obj):
 		if (not kernel.ValidPath(global29)):
 			kernel.Message(0, 994, 9, 0, 0, 1, @temp22)
 			kernel.Format(@temp127, @temp22, global29)
-			(Print font: 0 addText: @temp127 init:)
+			Print._send('font:', 0, 'addText:', @temp127, 'init:')
 			proc990_0(global29)
 		#endif
 		kernel.Load(135, global23)
 		kernel.ScriptID(990)
-		temp21 = (self setCursor: global20)
-		(global8 pause: 1)
+		temp21 = self._send('setCursor:', global20)
+		global8._send('pause:', 1)
 		if localproc_0(1):
 			if global25:
-				(global25 dispose:)
+				global25._send('dispose:')
 			#endif
-			if (temp20 = (Restore doit: &rest) != -1):
-				(self setCursor: global21 1)
+			if (temp20 = Restore._send('doit:', &rest) != -1):
+				self._send('setCursor:', global21, 1)
 				if kernel.CheckSaveGame(name, temp20, global27):
 					kernel.RestoreGame(name, temp20, global27)
 				else:
 					kernel.Message(0, 994, 3, 0, 0, 1, @temp22)
 					kernel.Message(0, 994, 2, 0, 0, 1, @temp122)
-					(Print
-						font: 0
-						addText: @temp22
-						addButton: 1 @temp122 0 40
-						init:
+					Print._send(
+						'font:', 0,
+						'addText:', @temp22,
+						'addButton:', 1, @temp122, 0, 40,
+						'init:'
 					)
-					(self setCursor: temp21 kernel.HaveMouse())
+					self._send('setCursor:', temp21, kernel.HaveMouse())
 				#endif
 			#endif
 			localproc_0(0)
 		#endif
-		(global8 pause: 0)
+		global8._send('pause:', 0)
 	#end:method
 
 	@classmethod
@@ -566,7 +569,7 @@ class Game(Obj):
 		temp0 = global19
 		if kernel.IsObject(param1):
 			global19 = param1
-			(param1 init:)
+			param1._send('init:')
 		else:
 			kernel.SetCursor(param1, 0, 0)
 		#endif
@@ -591,7 +594,7 @@ class Game(Obj):
 			kernel.MemoryInfo(3)
 			0x0006
 		), kernel.MemoryInfo(2))
-		(Print addText: @temp0 init:)
+		Print._send('addText:', @temp0, 'init:')
 	#end:method
 
 	@classmethod
@@ -606,10 +609,10 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		if param1:
-			(param1 init: self &rest)
+			param1._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -619,7 +622,7 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script cue:)
+			script._send('cue:')
 		#endif
 	#end:method
 
@@ -629,11 +632,11 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handsOffCode:
-			(handsOffCode doit: &rest)
+			handsOffCode._send('doit:', &rest)
 		else:
-			(User canControl: 0 canInput: 0)
+			User._send('canControl:', 0, 'canInput:', 0)
 			if kernel.IsObject(global0):
-				(global0 setMotion: 0)
+				global0._send('setMotion:', 0)
 			#endif
 		#endif
 	#end:method
@@ -644,9 +647,9 @@ class Game(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handsOnCode:
-			(handsOnCode doit: &rest)
+			handsOnCode._send('doit:', &rest)
 		else:
-			(User canControl: 1 canInput: 1)
+			User._send('canControl:', 1, 'canInput:', 1)
 		#endif
 	#end:method
 
@@ -669,10 +672,10 @@ class Rgn(Obj):
 
 		if (not initialized):
 			initialized = 1
-			if (not (global6 contains: self)):
-				(global6 addToEnd: self)
+			if (not global6._send('contains:', self)):
+				global6._send('addToEnd:', self)
 			#endif
-			(super init:)
+			super._send('init:')
 		#endif
 	#end:method
 
@@ -682,7 +685,7 @@ class Rgn(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
 	#end:method
 
@@ -692,20 +695,20 @@ class Rgn(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (param1 claimed:): 1#end:case
-			case ((param1 type:) & 0x0040): 0#end:case
+			case param1._send('claimed:'): 1#end:case
+			case (param1._send('type:') & 0x0040): 0#end:case
 			case 
 				(not
 					(and
 						script
-						((script handleEvent: param1) or 1)
-						(param1 claimed:)
+						(script._send('handleEvent:', param1) or 1)
+						param1._send('claimed:')
 					)
 				):
-				(param1 claimed: (self doVerb: (param1 message:)))
+				param1._send('claimed:', self._send('doVerb:', param1._send('message:')))
 			#end:case
 		)
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -718,7 +721,7 @@ class Rgn(Obj):
 		#endif
 		(return
 			if kernel.Message(0, modNum, noun, param1, 0, 1):
-				(global91 say: noun param1 0 0 0 modNum)
+				global91._send('say:', noun, param1, 0, 0, 0, modNum)
 				1
 			else:
 				0
@@ -731,14 +734,14 @@ class Rgn(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global6 delete: self)
+		global6._send('delete:', self)
 		if kernel.IsObject(script):
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		if kernel.IsObject(timer):
-			(timer dispose: delete:)
+			timer._send('dispose:', 'delete:')
 		#endif
-		(global8 eachElementDo: #clean self)
+		global8._send('eachElementDo:', #clean, self)
 		kernel.DisposeScript(number)
 	#end:method
 
@@ -748,10 +751,10 @@ class Rgn(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(script):
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		if param1:
-			(param1 init: self &rest)
+			param1._send('init:', self, &rest)
 		#endif
 	#end:method
 
@@ -761,7 +764,7 @@ class Rgn(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script cue:)
+			script._send('cue:')
 		#endif
 	#end:method
 
@@ -798,10 +801,10 @@ class Rm(Rgn):
 		number = global11
 		global31 = picAngle
 		if picture:
-			(self drawPic: picture)
+			self._send('drawPic:', picture)
 		#endif
-		(self reflectPosn: (global80 alterEgo:) ((global80 alterEgo:) edgeHit:))
-		((global80 alterEgo:) edgeHit: 0)
+		self._send('reflectPosn:', global80._send('alterEgo:'), global80._send('alterEgo:')._send('edgeHit:'))
+		global80._send('alterEgo:')._send('edgeHit:', 0)
 	#end:method
 
 	@classmethod
@@ -811,16 +814,16 @@ class Rm(Rgn):
 
 		match param2
 			case 1:
-				(param1 y: 188)
+				param1._send('y:', 188)
 			#end:case
 			case 4:
-				(param1 x: (319 - (param1 xStep:)))
+				param1._send('x:', (319 - param1._send('xStep:')))
 			#end:case
 			case 3:
-				(param1 y: (horizon + (param1 yStep:)))
+				param1._send('y:', (horizon + param1._send('yStep:')))
 			#end:case
 			case 2:
-				(param1 x: 1)
+				param1._send('x:', 1)
 			#end:case
 		#end:match
 	#end:method
@@ -831,10 +834,10 @@ class Rm(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
-		if temp0 = (self edgeToRoom: ((global80 alterEgo:) edgeHit:)):
-			(self newRoom: temp0)
+		if temp0 = self._send('edgeToRoom:', global80._send('alterEgo:')._send('edgeHit:')):
+			self._send('newRoom:', temp0)
 		#endif
 	#end:method
 
@@ -874,9 +877,9 @@ class Rm(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if obstacles:
-			(obstacles dispose:)
+			obstacles._send('dispose:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -884,8 +887,8 @@ class Rm(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		((inset and (inset handleEvent: param1)) or (super handleEvent: param1))
-		(param1 claimed:)
+		((inset and inset._send('handleEvent:', param1)) or super._send('handleEvent:', param1))
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -894,14 +897,15 @@ class Rm(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if inset:
-			(inset dispose:)
+			inset._send('dispose:')
 		#endif
 		if (argc and param1):
-			(param1
-				init:
-					(param2 if (argc >= 2) else 0)
-					self
-					(param3 if (argc >= 3) else 0)
+			param1._send(
+				'init:', (param2 if (argc >= 2) else 0), self, if (argc >= 3):
+						param3
+					else:
+						0
+					#endif
 			)
 		#endif
 	#end:method
@@ -915,10 +919,10 @@ class Rm(Rgn):
 		while (temp0 < argc): # inline for
 			temp1 = param1[temp0]
 			temp2 = kernel.ScriptID(temp1)
-			(temp2 number: temp1)
-			(global6 add: temp2)
-			if (not (temp2 initialized:)):
-				(temp2 init:)
+			temp2._send('number:', temp1)
+			global6._send('add:', temp2)
+			if (not temp2._send('initialized:')):
+				temp2._send('init:')
 			#endif
 			# for:reinit
 			temp0.post('++')
@@ -931,9 +935,9 @@ class Rm(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not kernel.IsObject(obstacles)):
-			obstacles = (List new:)
+			obstacles = List._send('new:')
 		#endif
-		(obstacles add: param1 &rest)
+		obstacles._send('add:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -941,9 +945,9 @@ class Rm(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global6 delete: self eachElementDo: #newRoom param1 addToFront: self)
+		global6._send('delete:', self, 'eachElementDo:', #newRoom, param1, 'addToFront:', self)
 		global13 = param1
-		(super newRoom: param1)
+		super._send('newRoom:', param1)
 	#end:method
 
 	@classmethod
@@ -952,7 +956,7 @@ class Rm(Rgn):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global10:
-			(global10 eachElementDo: #dispose release:)
+			global10._send('eachElementDo:', #dispose, 'release:')
 		#endif
 		curPic = param1
 		global36 = -1
@@ -990,7 +994,7 @@ class SL(Obj):
 
 		if code:
 			temp0 = kernel.Memory(1, 150)
-			(code doit: temp0)
+			code._send('doit:', temp0)
 			kernel.DrawStatus((temp0 if state else 0))
 			kernel.Memory(3, temp0)
 		#endif
@@ -1002,7 +1006,7 @@ class SL(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		state = 1
-		(self doit:)
+		self._send('doit:')
 	#end:method
 
 	@classmethod
@@ -1011,7 +1015,7 @@ class SL(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		state = 0
-		(self doit:)
+		self._send('doit:')
 	#end:method
 
 #end:class or instance
@@ -1024,9 +1028,9 @@ class RU(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (param1 underBits:):
-			temp0 = (temp0 = (| temp0 = (param1 signal:) 0x0001) & 0xfffb)
-			(param1 underBits: 0 signal: temp0)
+		if param1._send('underBits:'):
+			temp0 = (temp0 = (| temp0 = param1._send('signal:') 0x0001) & 0xfffb)
+			param1._send('underBits:', 0, 'signal:', temp0)
 		#endif
 	#end:method
 
@@ -1040,8 +1044,8 @@ class DNKR(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (not (param1 keep:)):
-			(param1 dispose:)
+		if (not param1._send('keep:')):
+			param1._send('dispose:')
 		#endif
 	#end:method
 
@@ -1055,10 +1059,10 @@ class fDC(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (param1 respondsTo: #delete):
-			(param1 signal: ((param1 signal:) & 0xffdf) dispose: delete:)
+		if param1._send('respondsTo:', #delete):
+			param1._send('signal:', (param1._send('signal:') & 0xffdf), 'dispose:', 'delete:')
 		else:
-			(param1 dispose:)
+			param1._send('dispose:')
 		#endif
 	#end:method
 

@@ -66,13 +66,13 @@ def localproc_0():
 
 	temp0 = 0
 	while (temp0 < 8): # inline for
-		(local63[temp0] = (aCat new:)
-			view: local89[temp0]
-			loop: local97[temp0]
-			x: local73[temp0]
-			y: local81[temp0]
-			signal: 20480
-			addToPic:
+		local63[temp0] = aCat._send('new:')._send(
+			'view:', local89[temp0],
+			'loop:', local97[temp0],
+			'x:', local73[temp0],
+			'y:', local81[temp0],
+			'signal:', 20480,
+			'addToPic:'
 		)
 		# for:reinit
 		temp0.post('++')
@@ -86,14 +86,14 @@ def localproc_1():
 
 	temp0 = 0
 	while (temp0 < 3): # inline for
-		(local105[temp0] = (aCat new:)
-			view: local116[temp0]
-			loop: local119[temp0]
-			x: local110[temp0]
-			y: local113[temp0]
-			signal: 20480 9
-			init:
-			stopUpd:
+		local105[temp0] = aCat._send('new:')._send(
+			'view:', local116[temp0],
+			'loop:', local119[temp0],
+			'x:', local110[temp0],
+			'y:', local113[temp0],
+			'signal:', 20480, 9,
+			'init:',
+			'stopUpd:'
 		)
 		# for:reinit
 		temp0.post('++')
@@ -105,10 +105,10 @@ def localproc_2():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global103 number: 473 setLoop: -1 play:)
+	global103._send('number:', 473, 'setLoop:', -1, 'play:')
 	temp0 = 0
 	while (temp0 < 3): # inline for
-		(local105[temp0] setCycle: Fwd)
+		local105[temp0]._send('setCycle:', Fwd)
 		# for:reinit
 		temp0.post('++')
 	#end:loop
@@ -119,10 +119,10 @@ def localproc_3():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global103 stop:)
+	global103._send('stop:')
 	temp0 = 0
 	while (temp0 < 3): # inline for
-		(local105[temp0] setCycle: Beg)
+		local105[temp0]._send('setCycle:', Beg)
 		# for:reinit
 		temp0.post('++')
 	#end:loop
@@ -135,7 +135,7 @@ def localproc_4():
 
 	temp0 = 0
 	while (temp0 < 3): # inline for
-		(local105[temp0] stopUpd:)
+		local105[temp0]._send('stopUpd:')
 		# for:reinit
 		temp0.post('++')
 	#end:loop
@@ -161,135 +161,90 @@ class rm470(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global100 and (global12 == 99) and kernel.FileIO(10, r"""g""")):
-			(global0 get: 49 get: 46 get: 19 get: 11 get: 8)
+			global0._send('get:', 49, 'get:', 46, 'get:', 19, 'get:', 11, 'get:', 8)
 		#endif
-		(super init: &rest)
-		(global1 handsOn:)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init: 223 189 129 165 141 151 213 151 319 170 319 189
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						189
-						0
-						140
-						85
-						161
-						88
-						167
-						53
-						170
-						54
-						174
-						121
-						174
-						137
-						181
-						131
-						189
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						319
-						129
-						124
-						129
-						172
-						148
-						89
-						148
-						52
-						132
-						70
-						126
-						67
-						124
-						44
-						126
-						39
-						135
-						0
-						131
-						0
-						0
-						319
-						0
-					yourself:
+		super._send('init:', &rest)
+		global1._send('handsOn:')
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 223, 189, 129, 165, 141, 151, 213, 151, 319, 170, 319, 189,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 189, 0, 140, 85, 161, 88, 167, 53, 170, 54, 174, 121, 174, 137, 181, 131, 189,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 319, 129, 124, 129, 172, 148, 89, 148, 52, 132, 70, 126, 67, 124, 44, 126, 39, 135, 0, 131, 0, 0, 319, 0,
+					'yourself:'
 				)
 		)
-		(global102 number: 470 setLoop: -1 play:)
-		(global32
-			add: swamp1 swamp2 farTrees pathage milkers dogTree log
-			eachElementDo: #init
+		global102._send('number:', 470, 'setLoop:', -1, 'play:')
+		global32._send(
+			'add:', swamp1, swamp2, farTrees, pathage, milkers, dogTree, log,
+			'eachElementDo:', #init
 		)
 		localproc_0()
 		localproc_1()
-		(bump init: stopUpd:)
+		bump._send('init:', 'stopUpd:')
 		(cond
 			case 
 				(and
 					(not proc913_0(127))
-					(((global9 at: 49) owner:) == global11)
+					(global9._send('at:', 49)._send('owner:') == global11)
 				):
-				(mater
-					view: 475
-					z: 60
-					posn: 274 189
-					setLoop: 5
-					cel: 6
-					setPri: 5
-					init:
-					stopUpd:
+				mater._send(
+					'view:', 475,
+					'z:', 60,
+					'posn:', 274, 189,
+					'setLoop:', 5,
+					'cel:', 6,
+					'setPri:', 5,
+					'init:',
+					'stopUpd:'
 				)
-				(local37[0] = (slimeBall new:)
-					x: 31
-					y: 148
-					setLoop: 0
-					cel: 3
-					setPri: 15
-					init:
-					addToPic:
+				local37[0] = slimeBall._send('new:')._send(
+					'x:', 31,
+					'y:', 148,
+					'setLoop:', 0,
+					'cel:', 3,
+					'setPri:', 15,
+					'init:',
+					'addToPic:'
 				)
-				(local37[1] = (slimeBall new:)
-					x: 32
-					y: 154
-					setLoop: 1
-					cel: 3
-					setPri: 15
-					init:
-					addToPic:
+				local37[1] = slimeBall._send('new:')._send(
+					'x:', 32,
+					'y:', 154,
+					'setLoop:', 1,
+					'cel:', 3,
+					'setPri:', 15,
+					'init:',
+					'addToPic:'
 				)
 				global167 = 5
 				global168 = 5
-				(stick init: cue: 1)
+				stick._send('init:', 'cue:', 1)
 				local55 = 2
 			#end:case
-			case (proc913_0(127) and (((global9 at: 49) owner:) == global11)):
+			case (proc913_0(127) and (global9._send('at:', 49)._send('owner:') == global11)):
 				global167 = 5
 				global168 = 5
-				(stick init: cue: 1)
+				stick._send('init:', 'cue:', 1)
 				local55 = 2
 			#end:case
 			case proc913_0(134):
-				(stick init: cue: 0)
+				stick._send('init:', 'cue:', 0)
 				local55 = 1
 			#end:case
 			else:
-				(stick init: cue: 1)
+				stick._send('init:', 'cue:', 1)
 				local55 = 0
 			#end:else
 		)
-		(doggy init: stopUpd:)
-		(global0 init: scaleSignal: 4 scaleX: 128 scaleY: 128 maxScale: 128)
-		(global2 setScript: egoEnters)
+		doggy._send('init:', 'stopUpd:')
+		global0._send('init:', 'scaleSignal:', 4, 'scaleX:', 128, 'scaleY:', 128, 'maxScale:', 128)
+		global2._send('setScript:', egoEnters)
 	#end:method
 
 	@classmethod
@@ -297,19 +252,19 @@ class rm470(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
+		super._send('doit:')
 		(cond
-			case (global2 script:):#end:case
-			case ((global0 edgeHit:) == 3):
-				(global2 setScript: walkOut 0 1)
+			case global2._send('script:'):#end:case
+			case (global0._send('edgeHit:') == 3):
+				global2._send('setScript:', walkOut, 0, 1)
 			#end:case
-			case ((global0 x:) <= 8):
-				(global2 setScript: walkOut 0 0)
+			case (global0._send('x:') <= 8):
+				global2._send('setScript:', walkOut, 0, 0)
 			#end:case
-			case ((global0 onControl: 1) == 2):
-				(global2 setScript: quagmire)
+			case (global0._send('onControl:', 1) == 2):
+				global2._send('setScript:', quagmire)
 			#end:case
-			case ((global0 inRect: 104 142 190 167) and (not local2)):
+			case (global0._send('inRect:', 104, 142, 190, 167) and (not local2)):
 				local2 = 1
 				kernel.Load(128, 4731)
 				kernel.Load(143, 470)
@@ -317,8 +272,8 @@ class rm470(KQ6Room):
 			case ((local0 == 5) and (local1 == 5)):
 				local0 = 6
 				local1 = 6
-				(global1 handsOff:)
-				(local140 = (Prop new:) view: 476 init: setScript: stepOnFrog)
+				global1._send('handsOff:')
+				local140 = Prop._send('new:')._send('view:', 476, 'init:', 'setScript:', stepOnFrog)
 			#end:case
 		)
 		kernel.Palette(6, 64, 68, -10)
@@ -330,7 +285,7 @@ class rm470(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.DisposeScript(939)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -378,8 +333,8 @@ class dogTree(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 5)
-		(super init:)
+		self._send('approachVerbs:', 5)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -390,19 +345,19 @@ class dogTree(Feature):
 		match param1
 			case 1:
 				local0.post('++')
-				(global91 say: 5 1 0 1)
+				global91._send('say:', 5, 1, 0, 1)
 			#end:case
 			case 0:
-				(global91 say: 5 0 0 1)
+				global91._send('say:', 5, 0, 0, 1)
 			#end:case
 			case 2:
-				(global2 setScript: bowWow 0 param1)
+				global2._send('setScript:', bowWow, 0, param1)
 			#end:case
 			case 5:
-				(global2 setScript: bowWow 0 param1)
+				global2._send('setScript:', bowWow, 0, param1)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -424,13 +379,13 @@ class swamp1(Feature):
 
 		match param1
 			case 44:
-				(global91 say: 6 44 10 1)
+				global91._send('say:', 6, 44, 10, 1)
 			#end:case
 			case 0:
-				(global91 say: 6 0 0 1)
+				global91._send('say:', 6, 0, 0, 1)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -454,21 +409,21 @@ class swamp2(Feature):
 			case 44:
 				(cond
 					case proc913_0(68):
-						(global91 say: 6 44 12 1)
+						global91._send('say:', 6, 44, 12, 1)
 					#end:case
 					case (local55 == 2):
-						(global91 say: 6 44 11)
+						global91._send('say:', 6, 44, 11)
 					#end:case
 					case local55 = 1:
-						(global2 setScript: teaParty)
+						global2._send('setScript:', teaParty)
 					#end:case
 				)
 			#end:case
 			case 0:
-				(global91 say: 6 0 0 1)
+				global91._send('say:', 6, 0, 0, 1)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -493,15 +448,15 @@ class milkers(Feature):
 
 		match param1
 			case 5:
-				if (global0 has: 22):
+				if global0._send('has:', 22):
 					local1.post('++')
-					(global91 say: 9 5 20 1)
+					global91._send('say:', 9, 5, 20, 1)
 				else:
-					(global2 setScript: getMilk)
+					global2._send('setScript:', getMilk)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -536,14 +491,14 @@ class milkWeed(View):
 
 		match param1
 			case 5:
-				if (global0 has: 22):
-					(global91 say: 9 5 20 1)
+				if global0._send('has:', 22):
+					global91._send('say:', 9, 5, 20, 1)
 				else:
-					(global91 say: 9 5 19 1)
+					global91._send('say:', 9, 5, 19, 1)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -569,8 +524,8 @@ class bump(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 2 setPri: 15)
-		(super init:)
+		self._send('approachVerbs:', 2, 'setPri:', 15)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -582,87 +537,87 @@ class bump(Prop):
 			case 44:
 				match local55
 					case 0:
-						(global91 say: 7 44 13 1)
+						global91._send('say:', 7, 44, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 7 44 14 1)
+						global91._send('say:', 7, 44, 14, 1)
 					#end:case
 					else:
-						(global91 say: 7 44 15 1)
+						global91._send('say:', 7, 44, 15, 1)
 					#end:else
 				#end:match
 			#end:case
 			case 1:
 				match local55
 					case 0:
-						(global91 say: 7 1 13 1)
+						global91._send('say:', 7, 1, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 7 1 14 1)
+						global91._send('say:', 7, 1, 14, 1)
 					#end:case
 					else:
-						(global91 say: 7 1 15 1)
+						global91._send('say:', 7, 1, 15, 1)
 					#end:else
 				#end:match
 			#end:case
 			case 5:
 				match local55
 					case 0:
-						(global91 say: 7 5 13 1)
+						global91._send('say:', 7, 5, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 7 5 14 1)
+						global91._send('say:', 7, 5, 14, 1)
 					#end:case
 					else:
-						(global91 say: 7 5 15 1)
+						global91._send('say:', 7, 5, 15, 1)
 					#end:else
 				#end:match
 			#end:case
 			case 2:
 				(cond
 					case (local55 == 2):
-						(global91 say: 7 5 15 1)
+						global91._send('say:', 7, 5, 15, 1)
 					#end:case
 					case (local55 == 0):
-						(global91 say: 7 2 13 1)
+						global91._send('say:', 7, 2, 13, 1)
 					#end:case
 					case (global167.post('++') == 1):
-						(self setScript: fightTalk self)
+						self._send('setScript:', fightTalk, self)
 					#end:case
 					case (global167 == 2):
-						(global91 say: 7 2 26 0 stick)
+						global91._send('say:', 7, 2, 26, 0, stick)
 					#end:case
 					else:
-						(global91 say: 7 2 17 0 stick)
+						global91._send('say:', 7, 2, 17, 0, stick)
 					#end:else
 				)
 			#end:case
 			case 34:
-				if (kernel.ScriptID(40, 0) stickTalk:):
+				if kernel.ScriptID(40, 0)._send('stickTalk:'):
 					global168 = 3
-					(global0 put: 49 bump)
-					(global2 setScript: bumpMaterToss)
+					global0._send('put:', 49, bump)
+					global2._send('setScript:', bumpMaterToss)
 				else:
-					(global91 say: 7 34 18 1)
+					global91._send('say:', 7, 34, 18, 1)
 				#endif
 			#end:case
 			case 34:
 				if (local55 == 1):
-					(global91 say: 7 8 14 1)
+					global91._send('say:', 7, 8, 14, 1)
 				else:
-					(global91 say: 7 0 13 1)
+					global91._send('say:', 7, 0, 13, 1)
 				#endif
 			#end:case
 			else:
 				match local55
 					case 0:
-						(global91 say: 7 0 13 1)
+						global91._send('say:', 7, 0, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 7 0 14 0)
+						global91._send('say:', 7, 0, 14, 0)
 					#end:case
 					else:
-						(global91 say: 7 5 15 1)
+						global91._send('say:', 7, 5, 15, 1)
 					#end:else
 				#end:match
 			#end:else
@@ -704,15 +659,15 @@ class stick(Prop):
 
 		if 
 			(and
-				(kernel.ScriptID(40, 0) stickTalk:)
-				(((global9 at: 49) owner:) != global11)
+				kernel.ScriptID(40, 0)._send('stickTalk:')
+				(global9._send('at:', 49)._send('owner:') != global11)
 			)
-			(self view: 475 setLoop: 1)
+			self._send('view:', 475, 'setLoop:', 1)
 			local55 = 1
 		else:
-			(self cue:)
+			self._send('cue:')
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -720,7 +675,7 @@ class stick(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self view: 4700 setLoop: 2 cel: param1 stopUpd:)
+		self._send('view:', 4700, 'setLoop:', 2, 'cel:', param1, 'stopUpd:')
 	#end:method
 
 	@classmethod
@@ -732,69 +687,69 @@ class stick(Prop):
 			case 5:
 				match local55
 					case 0:
-						(global91 say: 10 5 13 1)
+						global91._send('say:', 10, 5, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 10 5 14 1)
+						global91._send('say:', 10, 5, 14, 1)
 					#end:case
 					else:
-						(global91 say: 10 5 15 1)
+						global91._send('say:', 10, 5, 15, 1)
 					#end:else
 				#end:match
 			#end:case
 			case 1:
 				match local55
 					case 0:
-						(global91 say: 10 1 13 1)
+						global91._send('say:', 10, 1, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 10 1 14 1)
+						global91._send('say:', 10, 1, 14, 1)
 					#end:case
 					else:
-						(global91 say: 10 1 15 1)
+						global91._send('say:', 10, 1, 15, 1)
 					#end:else
 				#end:match
 			#end:case
 			case 2:
-				(global2 setScript: sTalkToStick)
+				global2._send('setScript:', sTalkToStick)
 			#end:case
 			case 34:
 				(cond
 					case (local55 == 0):
-						(global91 say: 10 0 13 1)
+						global91._send('say:', 10, 0, 13, 1)
 					#end:case
 					case local56:
-						(global0 put: 49 470)
-						(global2 setScript: egoMaterThrowAway)
+						global0._send('put:', 49, 470)
+						global2._send('setScript:', egoMaterThrowAway)
 					#end:case
 					else:
-						(global2 setScript: egoMaterToss)
+						global2._send('setScript:', egoMaterToss)
 					#end:else
 				)
 			#end:case
 			case 44:
 				match local55
 					case 0:
-						(global91 say: 10 44 13 1)
+						global91._send('say:', 10, 44, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 10 44 14 1)
+						global91._send('say:', 10, 44, 14, 1)
 					#end:case
 					else:
-						(global91 say: 10 44 15 1)
+						global91._send('say:', 10, 44, 15, 1)
 					#end:else
 				#end:match
 			#end:case
 			else:
 				match local55
 					case 0:
-						(global91 say: 10 0 13 1)
+						global91._send('say:', 10, 0, 13, 1)
 					#end:case
 					case 1:
-						(global91 say: 10 0 14 0)
+						global91._send('say:', 10, 0, 14, 0)
 					#end:case
 					else:
-						(global91 say: 10 0 15 1)
+						global91._send('say:', 10, 0, 15, 1)
 					#end:else
 				#end:match
 			#end:else
@@ -816,48 +771,48 @@ class fightTalk(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(myConv add: -1 7 2 16 1 add: -1 7 2 16 2 init: self)
+				myConv._send('add:', -1, 7, 2, 16, 1, 'add:', -1, 7, 2, 16, 2, 'init:', self)
 			#end:case
 			case 2:
-				(global0 cel: 2)
+				global0._send('cel:', 2)
 				cycles = 2
 			#end:case
 			case 3:
-				(global91 say: 7 2 16 3 self)
+				global91._send('say:', 7, 2, 16, 3, self)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(global91 say: 7 2 16 4 self)
+				global91._send('say:', 7, 2, 16, 4, self)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(global91 say: 7 2 16 5 self)
+				global91._send('say:', 7, 2, 16, 5, self)
 			#end:case
 			case 8:
 				cycles = 2
 			#end:case
 			case 9:
-				(global91 say: 7 2 16 6 self)
+				global91._send('say:', 7, 2, 16, 6, self)
 			#end:case
 			case 10:
 				cycles = 2
 			#end:case
 			case 11:
-				(global91 say: 7 2 16 7 self)
+				global91._send('say:', 7, 2, 16, 7, self)
 			#end:case
 			case 12:
 				cycles = 2
 			#end:case
 			case 13:
-				(global91 say: 7 2 16 8 self)
+				global91._send('say:', 7, 2, 16, 8, self)
 			#end:case
 			case 14:
-				(global0 reset:)
-				(self dispose:)
+				global0._send('reset:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -874,20 +829,20 @@ class stickTalking(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(myConv add: -1 10 2 22 1 add: -1 10 2 22 2 init: self)
+				global1._send('handsOff:')
+				myConv._send('add:', -1, 10, 2, 22, 1, 'add:', -1, 10, 2, 22, 2, 'init:', self)
 			#end:case
 			case 1:
-				(global0 cel: 2)
+				global0._send('cel:', 2)
 				cycles = 2
 			#end:case
 			case 2:
-				(global91 say: 10 2 22 3 self)
+				global91._send('say:', 10, 2, 22, 3, self)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global0 reset:)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -910,8 +865,8 @@ class slimeBall(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 5 9)
-		(super init: &rest)
+		self._send('approachVerbs:', 5, 9)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -922,13 +877,13 @@ class slimeBall(Prop):
 		match param1
 			case 44:
 				if (not proc913_0(68)):
-					(global2 setScript: getOoze)
+					global2._send('setScript:', getOoze)
 				else:
-					(global91 say: 6 44 12 1)
+					global91._send('say:', 6, 44, 12, 1)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -948,13 +903,13 @@ class aCat(Prop):
 
 		match param1
 			case 2:
-				(global2 setScript: doPussy 0 2)
+				global2._send('setScript:', doPussy, 0, 2)
 			#end:case
 			case 5:
-				(global2 setScript: doPussy 0 5)
+				global2._send('setScript:', doPussy, 0, 5)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -1005,49 +960,49 @@ class egoEnters(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				match global12
 					case 450:
-						(global0
-							setLoop: 3
-							posn: 162 249
-							setMotion: MoveTo 165 185 self
+						global0._send(
+							'setLoop:', 3,
+							'posn:', 162, 249,
+							'setMotion:', MoveTo, 165, 185, self
 						)
 						if (not kernel.Random(0, 1)):
-							(local142 = (Prop new:)
-								view: 476
-								init:
-								setScript: kernel.Clone(sFrogX)
+							local142 = Prop._send('new:')._send(
+								'view:', 476,
+								'init:',
+								'setScript:', kernel.Clone(sFrogX)
 							)
 						#endif
 					#end:case
 					else:
-						(global0
-							setLoop: 0
-							posn: -10 135
-							setMotion: MoveTo 10 139 self
+						global0._send(
+							'setLoop:', 0,
+							'posn:', -10, 135,
+							'setMotion:', MoveTo, 10, 139, self
 						)
 						if (not kernel.Random(0, 1)):
-							(local141 = (Prop new:)
-								view: 476
-								init:
-								setScript: kernel.Clone(sFrogY)
+							local141 = Prop._send('new:')._send(
+								'view:', 476,
+								'init:',
+								'setScript:', kernel.Clone(sFrogY)
 							)
 						#endif
 						if (not kernel.Random(0, 1)):
-							(local142 = (Prop new:)
-								view: 476
-								init:
-								setScript: kernel.Clone(sFrogX)
+							local142 = Prop._send('new:')._send(
+								'view:', 476,
+								'init:',
+								'setScript:', kernel.Clone(sFrogX)
 							)
 						#endif
 					#end:else
 				#end:match
 			#end:case
 			case 1:
-				(global1 handsOn:)
-				(global0 reset:)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1064,18 +1019,18 @@ class walkOut(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if register:
-					(global0 setMotion: MoveTo (global0 x:) 255 self)
+					global0._send('setMotion:', MoveTo, global0._send('x:'), 255, self)
 				else:
-					(global0 setMotion: MoveTo -25 (global0 y:) self)
+					global0._send('setMotion:', MoveTo, -25, global0._send('y:'), self)
 				#endif
 			#end:case
 			case 1:
 				if register:
-					(global2 newRoom: 450)
+					global2._send('newRoom:', 450)
 				else:
-					(global2 newRoom: 480)
+					global2._send('newRoom:', 480)
 				#endif
 			#end:case
 		#end:match
@@ -1093,57 +1048,57 @@ class getMilk(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(stick stopUpd:)
-				(bump stopUpd:)
-				(global0 setMotion: PolyPath 64 141 self)
+				global1._send('handsOff:')
+				stick._send('stopUpd:')
+				bump._send('stopUpd:')
+				global0._send('setMotion:', PolyPath, 64, 141, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 0)
+				global0._send('setHeading:', 0)
 				kernel.UnLoad(128, 474)
 				kernel.UnLoad(128, 475)
 				ticks = 6
 			#end:case
 			case 2:
-				(global0
-					view: 472
-					normal: 0
-					loop: 1
-					cel: 0
-					posn: 64 141
-					setCycle: End self
+				global0._send(
+					'view:', 472,
+					'normal:', 0,
+					'loop:', 1,
+					'cel:', 0,
+					'posn:', 64, 141,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
-				(global91 say: 9 5 19 1 self)
+				global91._send('say:', 9, 5, 19, 1, self)
 			#end:case
 			case 4:
 				if (not proc913_0(130)):
 					proc913_1(130)
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global0
-					reset: 6
-					posn: 53 133
-					get: 22
-					setMotion: PolyPath 79 145 self
+				global0._send(
+					'reset:', 6,
+					'posn:', 53, 133,
+					'get:', 22,
+					'setMotion:', PolyPath, 79, 145, self
 				)
 			#end:case
 			case 5:
-				(global0 setHeading: 335)
+				global0._send('setHeading:', 335)
 				cycles = 8
 			#end:case
 			case 6:
-				(self setScript: bowWow self 99)
+				self._send('setScript:', bowWow, self, 99)
 			#end:case
 			case 7:
-				(global91 say: 9 5 19 2 self)
+				global91._send('say:', 9, 5, 19, 2, self)
 			#end:case
 			case 8:
-				(global1 handsOn:)
-				(global0 reset: 3)
+				global1._send('handsOn:')
+				global0._send('reset:', 3)
 				kernel.UnLoad(128, 472)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1160,36 +1115,36 @@ class getOoze(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setHeading: 270 self)
+				global1._send('handsOff:')
+				global0._send('setHeading:', 270, self)
 			#end:case
 			case 1:
 				if (not proc913_0(68)):
 					proc913_1(68)
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global0
-					view: 474
-					setLoop: 10
-					posn: 71 189
-					cel: 0
-					normal: 0
-					setCycle: End self
+				global0._send(
+					'view:', 474,
+					'setLoop:', 10,
+					'posn:', 71, 189,
+					'cel:', 0,
+					'normal:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global91 say: 8 44 0 1 self)
+				global91._send('say:', 8, 44, 0, 1, self)
 			#end:case
 			case 3:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(global0 posn: 87 181 reset: 1 setMotion: MoveTo 107 167 self)
+				global0._send('posn:', 87, 181, 'reset:', 1, 'setMotion:', MoveTo, 107, 167, self)
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(global0 setHeading: 180)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('setHeading:', 180)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1206,77 +1161,77 @@ class doPussy(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if (register == 5):
-					(global91 say: 4 5 0 1 self)
+					global91._send('say:', 4, 5, 0, 1, self)
 				else:
-					(global91 say: 4 2 0 1 self)
+					global91._send('say:', 4, 2, 0, 1, self)
 				#endif
 			#end:case
 			case 1:
 				if (register == 5):
-					(global0 setMotion: PolyPath 205 186 self)
+					global0._send('setMotion:', PolyPath, 205, 186, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 2:
 				if (register == 5):
-					(global0 setHeading: 135)
+					global0._send('setHeading:', 135)
 					ticks = 6
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 3:
-				(global103 number: 473 setLoop: 1 play:)
-				(local105[0] view: 4701 startUpd: setCycle: End self)
+				global103._send('number:', 473, 'setLoop:', 1, 'play:')
+				local105[0]._send('view:', 4701, 'startUpd:', 'setCycle:', End, self)
 			#end:case
 			case 4:
-				(global103 number: 473 setLoop: 1 play:)
-				(local105[0] setCycle: Beg)
-				(local105[1] view: 4701 startUpd: setCycle: End self)
+				global103._send('number:', 473, 'setLoop:', 1, 'play:')
+				local105[0]._send('setCycle:', Beg)
+				local105[1]._send('view:', 4701, 'startUpd:', 'setCycle:', End, self)
 			#end:case
 			case 5:
-				(global103 number: 473 setLoop: 1 play:)
-				(local105[1] setCycle: Beg)
-				(local105[2] view: 4701 startUpd: setCycle: End self)
+				global103._send('number:', 473, 'setLoop:', 1, 'play:')
+				local105[1]._send('setCycle:', Beg)
+				local105[2]._send('view:', 4701, 'startUpd:', 'setCycle:', End, self)
 			#end:case
 			case 6:
 				if (local62 < 3):
 					local62.post('++')
-					(local105[2] setCycle: Beg)
+					local105[2]._send('setCycle:', Beg)
 					(state -= 4)
-					(self cue:)
+					self._send('cue:')
 				else:
-					(local105[2] setCycle: Beg self)
+					local105[2]._send('setCycle:', Beg, self)
 				#endif
 			#end:case
 			case 7:
 				localproc_4()
 				if (register == 5):
-					(global0 setHeading: 315)
+					global0._send('setHeading:', 315)
 				#endif
 				cycles = 10
 			#end:case
 			case 8:
 				if (register == 5):
-					(self setScript: bowWow self 99)
+					self._send('setScript:', bowWow, self, 99)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 9:
 				if (register == 5):
-					(global91 say: 4 5 0 2 self)
+					global91._send('say:', 4, 5, 0, 2, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 10:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				local62 = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1293,106 +1248,106 @@ class teaParty(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(40, 0) stickTalk: 1)
+				kernel.ScriptID(40, 0)._send('stickTalk:', 1)
 				(cond
 					case (local57 >= 3):
-						(global91 say: 6 44 11 1)
-						(self dispose:)
+						global91._send('say:', 6, 44, 11, 1)
+						self._send('dispose:')
 					#end:case
 					case proc913_0(68):
-						(global91 say: 6 44 12 1)
-						(self dispose:)
+						global91._send('say:', 6, 44, 12, 1)
+						self._send('dispose:')
 					#end:case
 					else:
-						(global1 handsOff:)
+						global1._send('handsOff:')
 						ticks = 4
 					#end:else
 				)
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 132 155 self)
+				global0._send('setMotion:', PolyPath, 132, 155, self)
 			#end:case
 			case 2:
-				(global0
-					view: 472
-					setLoop: 0
-					normal: 0
-					cel: 0
-					posn: ((global0 x:) + 6) ((global0 y:) + 4)
-					cycleSpeed: 6
-					setCycle: CT 2 1 self
+				global0._send(
+					'view:', 472,
+					'setLoop:', 0,
+					'normal:', 0,
+					'cel:', 0,
+					'posn:', (global0._send('x:') + 6), (global0._send('y:') + 4),
+					'cycleSpeed:', 6,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 3:
-				(global103 number: 924 setLoop: 1 play:)
-				(global0 setCycle: End self)
+				global103._send('number:', 924, 'setLoop:', 1, 'play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(global0 posn: ((global0 x:) - 11) ((global0 y:) - 8) reset: 4)
+				global0._send('posn:', (global0._send('x:') - 11), (global0._send('y:') - 8), 'reset:', 4)
 				ticks = 4
 			#end:case
 			case 5:
-				(global0
-					setLoop: 4
-					setMotion: MoveTo ((global0 x:) - 6) ((global0 y:) - 4)
+				global0._send(
+					'setLoop:', 4,
+					'setMotion:', MoveTo, (global0._send('x:') - 6), (global0._send('y:') - 4)
 				)
-				(stick view: 475 setLoop: 1 setCycle: End self)
+				stick._send('view:', 475, 'setLoop:', 1, 'setCycle:', End, self)
 			#end:case
 			case 6:
-				(stick setCycle: Beg self)
+				stick._send('setCycle:', Beg, self)
 			#end:case
 			case 7:
 				if (local57 == 0):
-					(myConv
-						add: -1 6 44 4 1
-						add: -1 6 44 4 2
-						add: -1 6 44 4 3
-						init: self
+					myConv._send(
+						'add:', -1, 6, 44, 4, 1,
+						'add:', -1, 6, 44, 4, 2,
+						'add:', -1, 6, 44, 4, 3,
+						'init:', self
 					)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 8:
 				match temp0 = kernel.Random(0, 2)
 					case 0:
-						(global91 say: 6 44 8 1 self)
+						global91._send('say:', 6, 44, 8, 1, self)
 					#end:case
 					case 1:
-						(global91 say: 6 44 9 1 self)
+						global91._send('say:', 6, 44, 9, 1, self)
 					#end:case
 					case 2:
-						(global91 say: 6 44 7 1 self)
+						global91._send('say:', 6, 44, 7, 1, self)
 					#end:case
 				#end:match
 			#end:case
 			case 9:
 				match local57
 					case 0:
-						(self setScript: teaTalk self 1)
+						self._send('setScript:', teaTalk, self, 1)
 					#end:case
 					case 1:
-						(self setScript: teaTalk self 2)
+						self._send('setScript:', teaTalk, self, 2)
 					#end:case
 					case 2:
-						(self setScript: teaTalk self 3)
+						self._send('setScript:', teaTalk, self, 3)
 					#end:case
 				#end:match
 			#end:case
 			case 10:
 				local57.post('++')
-				(global0 reset:)
-				(stick setLoop: 2 setCycle: Osc 1 self)
+				global0._send('reset:')
+				stick._send('setLoop:', 2, 'setCycle:', Osc, 1, self)
 				cycles = 1
 			#end:case
 			case 11:
-				(global103 number: 478 setLoop: 1 play:)
+				global103._send('number:', 478, 'setLoop:', 1, 'play:')
 			#end:case
 			case 12:
-				(global1 handsOn:)
-				(stick cue: 0)
+				global1._send('handsOn:')
+				stick._send('cue:', 0)
 				proc913_1(134)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1414,13 +1369,13 @@ class teaTalk(Script):
 			case 1:
 				match register
 					case 1:
-						(global91 say: 6 44 4 4 self)
+						global91._send('say:', 6, 44, 4, 4, self)
 					#end:case
 					case 2:
-						(global91 say: 6 44 5 1 self)
+						global91._send('say:', 6, 44, 5, 1, self)
 					#end:case
 					case 3:
-						(global91 say: 6 44 28 1 self)
+						global91._send('say:', 6, 44, 28, 1, self)
 					#end:case
 				#end:match
 			#end:case
@@ -1430,13 +1385,13 @@ class teaTalk(Script):
 			case 3:
 				match register
 					case 1:
-						(global91 say: 6 44 4 5 self)
+						global91._send('say:', 6, 44, 4, 5, self)
 					#end:case
 					case 2:
-						(global91 say: 6 44 5 2 self)
+						global91._send('say:', 6, 44, 5, 2, self)
 					#end:case
 					case 3:
-						(global91 say: 6 44 28 2 self)
+						global91._send('say:', 6, 44, 28, 2, self)
 					#end:case
 				#end:match
 			#end:case
@@ -1446,18 +1401,18 @@ class teaTalk(Script):
 			case 5:
 				match register
 					case 1:
-						(global91 say: 6 44 4 6 self)
+						global91._send('say:', 6, 44, 4, 6, self)
 					#end:case
 					case 2:
-						(global91 say: 6 44 5 3 self)
+						global91._send('say:', 6, 44, 5, 3, self)
 					#end:case
 					case 3:
-						(global91 say: 6 44 28 3 self)
+						global91._send('say:', 6, 44, 28, 3, self)
 					#end:case
 				#end:match
 			#end:case
 			case 6:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1474,19 +1429,19 @@ class backOut(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 155 186 self)
+				global0._send('setMotion:', PolyPath, 155, 186, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 0)
+				global0._send('setHeading:', 0)
 				cycles = 2
 			#end:case
 			case 2:
-				(global0 view: 4702 setLoop: 2 normal: 0 setCycle: 0)
+				global0._send('view:', 4702, 'setLoop:', 2, 'normal:', 0, 'setCycle:', 0)
 				cycles = 2
 			#end:case
 			case 3:
 				kernel.Load(128, 475)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1504,80 +1459,80 @@ class materTossSlime(Script):
 		match state = param1
 			case 0:
 				kernel.UnLoad(128, 474)
-				(mater setLoop: 8 cel: 0 z: 0 posn: 275 129 setCycle: End self)
+				mater._send('setLoop:', 8, 'cel:', 0, 'z:', 0, 'posn:', 275, 129, 'setCycle:', End, self)
 			#end:case
 			case 1:
-				(mater cel: 0)
-				(global103 number: 0 stop:)
+				mater._send('cel:', 0)
+				global103._send('number:', 0, 'stop:')
 				ticks = 4
 			#end:case
 			case 2:
-				(global103 number: 476 setLoop: 1 play:)
-				(materSlime
-					view: 475
-					posn: 217 111
-					ignoreActors:
-					init:
-					setLoop: 10
-					cel: 0
-					setPri: 15
+				global103._send('number:', 476, 'setLoop:', 1, 'play:')
+				materSlime._send(
+					'view:', 475,
+					'posn:', 217, 111,
+					'ignoreActors:',
+					'init:',
+					'setLoop:', 10,
+					'cel:', 0,
+					'setPri:', 15
 				)
 				ticks = 4
 			#end:case
 			case 3:
-				(materSlime posn: 172 109 forceUpd:)
+				materSlime._send('posn:', 172, 109, 'forceUpd:')
 				ticks = 2
 			#end:case
 			case 4:
-				(materSlime
-					view: 4702
-					setLoop: 1
-					cel: 0
-					posn: 121 108
-					forceUpd:
+				materSlime._send(
+					'view:', 4702,
+					'setLoop:', 1,
+					'cel:', 0,
+					'posn:', 121, 108,
+					'forceUpd:'
 				)
 				ticks = 2
 			#end:case
 			case 5:
-				(materSlime posn: 87 119 forceUpd:)
+				materSlime._send('posn:', 87, 119, 'forceUpd:')
 				ticks = 2
 			#end:case
 			case 6:
-				(materSlime cel: 0 posn: 87 119 forceUpd:)
+				materSlime._send('cel:', 0, 'posn:', 87, 119, 'forceUpd:')
 				ticks = 4
 			#end:case
 			case 7:
-				(local49[local59] = (slimeBall new:)
-					x: 31
-					y: 189
-					z: 41
-					setLoop: 0
-					priority: 15
-					init:
-					setCycle: End self
+				local49[local59] = slimeBall._send('new:')._send(
+					'x:', 31,
+					'y:', 189,
+					'z:', 41,
+					'setLoop:', 0,
+					'priority:', 15,
+					'init:',
+					'setCycle:', End, self
 				)
-				(materSlime setCycle: 0 hide: dispose:)
+				materSlime._send('setCycle:', 0, 'hide:', 'dispose:')
 			#end:case
 			case 8:
-				(local49[local59] addToPic:)
+				local49[local59]._send('addToPic:')
 				if (local59 < 2):
 					local59.post('++')
 					(state -= 9)
 				#endif
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 9:
-				(mater
-					view: 475
-					setLoop: 5
-					cel: 6
-					x: 274
-					y: 189
-					z: 60
-					setPri: 5
-					stopUpd:
+				mater._send(
+					'view:', 475,
+					'setLoop:', 5,
+					'cel:', 6,
+					'x:', 274,
+					'y:', 189,
+					'z:', 60,
+					'setPri:', 5,
+					'stopUpd:'
 				)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1594,20 +1549,20 @@ class egoMaterToss(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 55 172 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 55, 172, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 225)
+				global0._send('setHeading:', 225)
 				cycles = 8
 			#end:case
 			case 2:
-				(global91 say: 10 34 24 0 self)
+				global91._send('say:', 10, 34, 24, 0, self)
 			#end:case
 			case 3:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				local56 = 1
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1624,45 +1579,45 @@ class egoMaterThrowAway(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc913_1(127)
-				(global91 say: 10 34 25 1 self)
+				global91._send('say:', 10, 34, 25, 1, self)
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 108 149 self)
+				global0._send('setMotion:', PolyPath, 108, 149, self)
 			#end:case
 			case 2:
-				(global0 view: 472 normal: 0 setLoop: 2 setCycle: End self)
-				(global103 number: 0 stop:)
-				(global103 number: 474 setLoop: 1 play:)
+				global0._send('view:', 472, 'normal:', 0, 'setLoop:', 2, 'setCycle:', End, self)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 474, 'setLoop:', 1, 'play:')
 			#end:case
 			case 3:
-				(global0 posn: 108 149 reset: 0)
-				(self setScript: egoMaterFlight self)
+				global0._send('posn:', 108, 149, 'reset:', 0)
+				self._send('setScript:', egoMaterFlight, self)
 			#end:case
 			case 4:
 				cycles = 8
 			#end:case
 			case 5:
-				(myConv
-					add: -1 10 34 25 3
-					add: -1 10 34 25 4
-					add: -1 10 34 25 5
-					add: -1 10 34 25 6
-					add: -1 10 34 25 7
-					add: -1 10 34 25 8
-					add: -1 10 34 25 9
-					add: -1 10 34 25 10
-					add: -1 10 34 25 11
-					init: self
+				myConv._send(
+					'add:', -1, 10, 34, 25, 3,
+					'add:', -1, 10, 34, 25, 4,
+					'add:', -1, 10, 34, 25, 5,
+					'add:', -1, 10, 34, 25, 6,
+					'add:', -1, 10, 34, 25, 7,
+					'add:', -1, 10, 34, 25, 8,
+					'add:', -1, 10, 34, 25, 9,
+					'add:', -1, 10, 34, 25, 10,
+					'add:', -1, 10, 34, 25, 11,
+					'init:', self
 				)
 			#end:case
 			case 6:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				local55 = 2
-				(stick cue: 1)
+				stick._send('cue:', 1)
 				global168 = 2
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1679,59 +1634,59 @@ class egoMaterFlight(Script):
 
 		match state = param1
 			case 0:
-				(mater posn: ((global0 x:) + 36) ((global0 y:) - 61) init:)
+				mater._send('posn:', (global0._send('x:') + 36), (global0._send('y:') - 61), 'init:')
 				ticks = 4
 			#end:case
 			case 1:
-				(mater posn: ((mater x:) + 31) ((mater y:) - 10))
+				mater._send('posn:', (mater._send('x:') + 31), (mater._send('y:') - 10))
 				ticks = 4
 			#end:case
 			case 2:
-				(mater posn: ((mater x:) + 31) ((mater y:) + 2))
+				mater._send('posn:', (mater._send('x:') + 31), (mater._send('y:') + 2))
 				ticks = 4
 			#end:case
 			case 3:
-				(mater posn: ((mater x:) + 28) ((mater y:) + 10))
+				mater._send('posn:', (mater._send('x:') + 28), (mater._send('y:') + 10))
 				ticks = 4
 			#end:case
 			case 4:
-				(mater posn: ((mater x:) + 18) ((mater y:) + 13))
+				mater._send('posn:', (mater._send('x:') + 18), (mater._send('y:') + 13))
 				ticks = 4
 			#end:case
 			case 5:
-				(mater posn: ((mater x:) + 6) ((mater y:) + 16))
+				mater._send('posn:', (mater._send('x:') + 6), (mater._send('y:') + 16))
 				ticks = 4
 			#end:case
 			case 6:
-				(global103 number: 0 stop:)
-				(global103 number: 475 setLoop: 1 play:)
-				(mater posn: 266 131)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 475, 'setLoop:', 1, 'play:')
+				mater._send('posn:', 266, 131)
 				ticks = 12
 			#end:case
 			case 7:
-				(mater setLoop: 5 posn: 274 130 cel: 0 setCycle: End self)
+				mater._send('setLoop:', 5, 'posn:', 274, 130, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 8:
-				(mater setLoop: 6 posn: 266 131 startUpd: forceUpd:)
+				mater._send('setLoop:', 6, 'posn:', 266, 131, 'startUpd:', 'forceUpd:')
 				cycles = 4
 			#end:case
 			case 9:
-				(global91 say: 10 34 25 2 self)
+				global91._send('say:', 10, 34, 25, 2, self)
 			#end:case
 			case 10:
-				(mater setLoop: 6 setMotion: MoveTo 270 140 self)
+				mater._send('setLoop:', 6, 'setMotion:', MoveTo, 270, 140, self)
 			#end:case
 			case 11:
-				(mater setLoop: 9 posn: 279 139 cel: 0 setCycle: End self)
-				(global103 number: 477 setLoop: 1 play:)
+				mater._send('setLoop:', 9, 'posn:', 279, 139, 'cel:', 0, 'setCycle:', End, self)
+				global103._send('number:', 477, 'setLoop:', 1, 'play:')
 			#end:case
 			case 12:
-				(mater dispose:)
+				mater._send('dispose:')
 				ticks = 4
 			#end:case
 			case 13:
-				(global103 number: 0 stop:)
-				(self dispose:)
+				global103._send('number:', 0, 'stop:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1748,48 +1703,48 @@ class bowWow(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				match register
 					case 2:
-						(global91 say: 5 2 0 1 self)
+						global91._send('say:', 5, 2, 0, 1, self)
 					#end:case
 					case 5:
-						(global91 say: 5 5 0 1 self)
+						global91._send('say:', 5, 5, 0, 1, self)
 					#end:case
 					else:
-						(self cue:)
+						self._send('cue:')
 					#end:else
 				#end:match
 			#end:case
 			case 1:
-				(doggy setCycle: End self)
+				doggy._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(global103 number: 0 stop:)
-				(global103 number: 472 setLoop: 1 play:)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 472, 'setLoop:', 1, 'play:')
 				ticks = 30
 			#end:case
 			case 3:
-				(doggy setCel: 1)
+				doggy._send('setCel:', 1)
 				if local61.post('--'):
 					(state -= 3)
 				else:
-					(doggy setCycle: Beg)
+					doggy._send('setCycle:', Beg)
 				#endif
 				ticks = 30
 			#end:case
 			case 4:
 				if (register == 5):
-					(global91 say: 5 5 0 2 self)
+					global91._send('say:', 5, 5, 0, 2, self)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(doggy stopUpd:)
+				global1._send('handsOn:')
+				doggy._send('stopUpd:')
 				local61 = 3
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1806,32 +1761,32 @@ class theBattle(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				local58.post('++')
-				(stick view: 475 setLoop: 4 cel: 0 setCycle: End self)
+				stick._send('view:', 475, 'setLoop:', 4, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 1:
-				(global103 number: 0 stop:)
-				(global103 number: 476 setLoop: 1 play:)
-				(slime
-					posn: kernel.Random(248, 252) kernel.Random(88, 92)
-					illegalBits: 0
-					ignoreActors:
-					init:
-					setLoop: 3
-					cel: 0
-					setPri: 15
-					setCycle: Fwd
-					setMotion: MoveTo kernel.Random(180, 185) kernel.Random(60, 65) self
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 476, 'setLoop:', 1, 'play:')
+				slime._send(
+					'posn:', kernel.Random(248, 252), kernel.Random(88, 92),
+					'illegalBits:', 0,
+					'ignoreActors:',
+					'init:',
+					'setLoop:', 3,
+					'cel:', 0,
+					'setPri:', 15,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, kernel.Random(180, 185), kernel.Random(60, 65), self
 				)
 			#end:case
 			case 2:
-				(slime setMotion: MoveTo kernel.Random(115, 122) kernel.Random(75, 82) self)
+				slime._send('setMotion:', MoveTo, kernel.Random(115, 122), kernel.Random(75, 82), self)
 			#end:case
 			case 3:
-				(slime
-					cel: 1
-					setMotion: MoveTo kernel.Random(68, 74) kernel.Random(110, 115) self
+				slime._send(
+					'cel:', 1,
+					'setMotion:', MoveTo, kernel.Random(68, 74), kernel.Random(110, 115), self
 				)
 			#end:case
 			case 4:
@@ -1840,34 +1795,34 @@ class theBattle(Script):
 				else:
 					temp0 = 1
 				#endif
-				(local37[local58] = (slimeBall new:)
-					view: 474
-					x: (31 if temp0 else 28)
-					y: (189 if temp0 else 188)
-					z: (41 if temp0 else 35)
-					setLoop: (0 if temp0 else 1)
-					priority: 15
-					init:
+				local37[local58] = slimeBall._send('new:')._send(
+					'view:', 474,
+					'x:', (31 if temp0 else 28),
+					'y:', (189 if temp0 else 188),
+					'z:', (41 if temp0 else 35),
+					'setLoop:', (0 if temp0 else 1),
+					'priority:', 15,
+					'init:'
 				)
 				if temp0:
-					(local37[local58] setCycle: End self)
+					local37[local58]._send('setCycle:', End, self)
 				else:
 					cycles = 4
 				#endif
-				(slime setCycle: 0 dispose:)
-				(stick cel: 0)
+				slime._send('setCycle:', 0, 'dispose:')
+				stick._send('cel:', 0)
 			#end:case
 			case 5:
 				if (local58 < 2):
-					(local37[local58] ignoreActors: 1 addToPic:)
-					(self init:)
+					local37[local58]._send('ignoreActors:', 1, 'addToPic:')
+					self._send('init:')
 				else:
-					(global103 stop:)
-					(global0 reset: 3)
-					(stick cue: 0)
+					global103._send('stop:')
+					global0._send('reset:', 3)
+					stick._send('cue:', 0)
 					local60 = 1
 					local55 = 2
-					(self dispose:)
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -1885,89 +1840,89 @@ class bumpMaterToss(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if (not proc913_0(139)):
 					proc913_1(139)
-					(global1 givePoints: 3)
+					global1._send('givePoints:', 3)
 				#endif
-				(global0 setMotion: PolyPath 87 177 self)
+				global0._send('setMotion:', PolyPath, 87, 177, self)
 			#end:case
 			case 1:
-				(global0
-					view: 474
-					setLoop: 4
-					cel: 0
-					posn: 70 185
-					normal: 0
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'view:', 474,
+					'setLoop:', 4,
+					'cel:', 0,
+					'posn:', 70, 185,
+					'normal:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(bumpArm
-					init:
-					view: 474
-					setLoop: 5
-					setCel: 0
-					cycleSpeed: 6
-					setCycle: CT 2 1 self
+				bumpArm._send(
+					'init:',
+					'view:', 474,
+					'setLoop:', 5,
+					'setCel:', 0,
+					'cycleSpeed:', 6,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 3:
-				(global0 reset: 1)
-				(bumpArm setCycle: End self)
+				global0._send('reset:', 1)
+				bumpArm._send('setCycle:', End, self)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(myConv
-					add: -1 7 34 14 1
-					add: -1 7 34 14 2
-					add: -1 7 34 14 3
-					add: -1 7 34 14 4
-					add: -1 7 34 14 5
-					add: -1 7 34 14 6
-					init: self
+				myConv._send(
+					'add:', -1, 7, 34, 14, 1,
+					'add:', -1, 7, 34, 14, 2,
+					'add:', -1, 7, 34, 14, 3,
+					'add:', -1, 7, 34, 14, 4,
+					'add:', -1, 7, 34, 14, 5,
+					'add:', -1, 7, 34, 14, 6,
+					'init:', self
 				)
 			#end:case
 			case 6:
-				(global0 setScript: backOut self)
+				global0._send('setScript:', backOut, self)
 			#end:case
 			case 7:
-				(self setScript: bumpMaterFlight self)
+				self._send('setScript:', bumpMaterFlight, self)
 			#end:case
 			case 8:
-				(mater setScript: materTossSlime self)
-				(self setScript: theBattle self)
+				mater._send('setScript:', materTossSlime, self)
+				self._send('setScript:', theBattle, self)
 			#end:case
 			case 9:#end:case
 			case 10:
-				(stick cue: 0)
+				stick._send('cue:', 0)
 				kernel.UnLoad(128, 474)
 				kernel.UnLoad(128, 475)
-				(myConv
-					add: -1 7 34 14 7
-					add: -1 7 34 14 8
-					add: -1 7 34 14 9
-					add: -1 7 34 14 10
-					add: -1 7 34 14 11
-					init: self
+				myConv._send(
+					'add:', -1, 7, 34, 14, 7,
+					'add:', -1, 7, 34, 14, 8,
+					'add:', -1, 7, 34, 14, 9,
+					'add:', -1, 7, 34, 14, 10,
+					'add:', -1, 7, 34, 14, 11,
+					'init:', self
 				)
 			#end:case
 			case 11:
-				((global9 at: 49) owner: global11)
-				(global103 number: 961 setLoop: 1 play:)
-				(mater init: view: 4700 setLoop: 1 cel: 2)
-				(slimeBall addToPic:)
+				global9._send('at:', 49)._send('owner:', global11)
+				global103._send('number:', 961, 'setLoop:', 1, 'play:')
+				mater._send('init:', 'view:', 4700, 'setLoop:', 1, 'cel:', 2)
+				slimeBall._send('addToPic:')
 				ticks = 120
 			#end:case
 			case 12:
-				(global1 handsOn:)
-				(mater cel: 1 forceUpd:)
-				(stick cue: 1)
+				global1._send('handsOn:')
+				mater._send('cel:', 1, 'forceUpd:')
+				stick._send('cue:', 1)
 				global168 = 2
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1984,89 +1939,89 @@ class bumpMaterFlight(Script):
 
 		match state = param1
 			case 0:
-				(bump hide:)
-				(bumpArm
-					view: 4741
-					init:
-					posn: 29 154
-					setLoop: 0
-					cel: 0
-					setPri: 15
-					ignoreActors: 1
-					setCycle: End self
+				bump._send('hide:')
+				bumpArm._send(
+					'view:', 4741,
+					'init:',
+					'posn:', 29, 154,
+					'setLoop:', 0,
+					'cel:', 0,
+					'setPri:', 15,
+					'ignoreActors:', 1,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
 				ticks = 30
 			#end:case
 			case 2:
-				(bumpArm setLoop: 1 setCycle: Fwd)
+				bumpArm._send('setLoop:', 1, 'setCycle:', Fwd)
 				seconds = 3
 			#end:case
 			case 3:
-				(bumpArm setLoop: 2 cel: 0 setCycle: End self)
+				bumpArm._send('setLoop:', 2, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 4:
-				(global103 number: 474 setLoop: 1 play:)
-				(mater view: 475 loop: 6 posn: 61 145 init:)
-				(bump show:)
-				(bumpArm dispose:)
+				global103._send('number:', 474, 'setLoop:', 1, 'play:')
+				mater._send('view:', 475, 'loop:', 6, 'posn:', 61, 145, 'init:')
+				bump._send('show:')
+				bumpArm._send('dispose:')
 				ticks = 4
 			#end:case
 			case 5:
-				(mater posn: 85 118)
+				mater._send('posn:', 85, 118)
 				ticks = 4
 			#end:case
 			case 6:
-				(mater posn: 121 97)
+				mater._send('posn:', 121, 97)
 				ticks = 4
 			#end:case
 			case 7:
-				(mater posn: 153 82)
+				mater._send('posn:', 153, 82)
 				ticks = 4
 			#end:case
 			case 8:
-				(mater posn: 193 78)
+				mater._send('posn:', 193, 78)
 				ticks = 4
 			#end:case
 			case 9:
-				(mater posn: 230 83)
+				mater._send('posn:', 230, 83)
 				ticks = 4
 			#end:case
 			case 10:
-				(mater posn: 260 90)
+				mater._send('posn:', 260, 90)
 				ticks = 4
 			#end:case
 			case 11:
-				(global103 number: 0 stop:)
-				(global103 number: 475 setLoop: 1 play:)
-				(stick view: 475 setLoop: 11 cel: 0 setCycle: Fwd)
-				(mater posn: 280 97)
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 475, 'setLoop:', 1, 'play:')
+				stick._send('view:', 475, 'setLoop:', 11, 'cel:', 0, 'setCycle:', Fwd)
+				mater._send('posn:', 280, 97)
 				ticks = 4
 			#end:case
 			case 12:
-				(mater posn: 270 108)
+				mater._send('posn:', 270, 108)
 				ticks = 4
 			#end:case
 			case 13:
-				(mater posn: 263 131)
+				mater._send('posn:', 263, 131)
 				ticks = 4
 			#end:case
 			case 14:
-				(stick view: 475 setLoop: 1 cel: 0 stopUpd:)
-				(mater setLoop: 5 posn: 274 129 setCycle: End self)
+				stick._send('view:', 475, 'setLoop:', 1, 'cel:', 0, 'stopUpd:')
+				mater._send('setLoop:', 5, 'posn:', 274, 129, 'setCycle:', End, self)
 			#end:case
 			case 15:
-				(mater
-					view: 475
-					setLoop: 5
-					cel: 6
-					x: 274
-					y: 189
-					z: 60
-					setPri: 5
+				mater._send(
+					'view:', 475,
+					'setLoop:', 5,
+					'cel:', 6,
+					'x:', 274,
+					'y:', 189,
+					'z:', 60,
+					'setPri:', 5
 				)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -2083,19 +2038,19 @@ class sTalkToStick(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				if (((global0 x:) != 121) and ((global0 y:) != 147)):
-					(global0 setMotion: PolyPath 121 147 self)
+				global1._send('handsOff:')
+				if ((global0._send('x:') != 121) and (global0._send('y:') != 147)):
+					global0._send('setMotion:', PolyPath, 121, 147, self)
 				else:
 					cycles = 2
 				#endif
 			#end:case
 			case 1:
-				register = kernel.GetAngle((global0 x:), (global0 y:), 292, 135)
+				register = kernel.GetAngle(global0._send('x:'), global0._send('y:'), 292, 135)
 				cycles = 2
 			#end:case
 			case 2:
-				if ((global0 heading:) != register):
+				if (global0._send('heading:') != register):
 					proc913_4(global0, 292, 135, self)
 				else:
 					cycles = 2
@@ -2109,30 +2064,30 @@ class sTalkToStick(Script):
 				(cond
 					case (local55 == 0):
 						global168.post('--')
-						(global91 say: 10 2 13 1 self)
+						global91._send('say:', 10, 2, 13, 1, self)
 					#end:case
 					case (global168 == 1):
-						(self setScript: stickTalking self)
+						self._send('setScript:', stickTalking, self)
 					#end:case
 					case (global168 == 2):
-						(global91 say: 10 2 27 0 self)
+						global91._send('say:', 10, 2, 27, 0, self)
 					#end:case
-					case (((global9 at: 49) owner:) != global11):
-						(global91 say: 10 2 23 0 self)
+					case (global9._send('at:', 49)._send('owner:') != global11):
+						global91._send('say:', 10, 2, 23, 0, self)
 					#end:case
 					else:
-						(global91 say: 10 2 15 1 self)
+						global91._send('say:', 10, 2, 15, 1, self)
 					#end:else
 				)
 			#end:case
 			case 5:
 				if (local55 == 1):
-					(stick cue: 0)
+					stick._send('cue:', 0)
 				else:
-					(stick cue: 1)
+					stick._send('cue:', 1)
 				#endif
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -2149,43 +2104,43 @@ class quagmire(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 view: 4731 normal: 0 setLoop: 0 cel: 0 posn: 151 160)
+				global1._send('handsOff:')
+				global0._send('view:', 4731, 'normal:', 0, 'setLoop:', 0, 'cel:', 0, 'posn:', 151, 160)
 				ticks = 10
 			#end:case
 			case 1:
-				(global0
-					cycleSpeed: 8
-					moveSpeed: 15
-					setCycle: End self
-					setMotion: MoveTo 211 131
+				global0._send(
+					'cycleSpeed:', 8,
+					'moveSpeed:', 15,
+					'setCycle:', End, self,
+					'setMotion:', MoveTo, 211, 131
 				)
 				cycles = 2
 			#end:case
 			case 2:#end:case
 			case 3:
-				(global91 say: 6 3 0 1 self)
+				global91._send('say:', 6, 3, 0, 1, self)
 			#end:case
 			case 4:
-				(global103 number: 0 stop:)
-				(global103 number: 477 setLoop: -1 play:)
-				(global0
-					view: 473
-					setMotion: 0
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 12
+				global103._send('number:', 0, 'stop:')
+				global103._send('number:', 477, 'setLoop:', -1, 'play:')
+				global0._send(
+					'view:', 473,
+					'setMotion:', 0,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 12
 				)
 				cycles = 2
 			#end:case
 			case 5:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 6:
-				(global0 setLoop: 1 cel: 0 cycleSpeed: 15 setCycle: End self)
+				global0._send('setLoop:', 1, 'cel:', 0, 'cycleSpeed:', 15, 'setCycle:', End, self)
 			#end:case
 			case 7:
-				(global91 say: 6 3 0 2 self)
+				global91._send('say:', 6, 3, 0, 2, self)
 			#end:case
 			case 8:
 				proc0_1(36)
@@ -2206,12 +2161,12 @@ class sFrogY(Script):
 		match state = param1
 			case 0:
 				register = kernel.Random(0, 3)
-				(client
-					loop: 2
-					cel: 0
-					x: local122[register]
-					y: local126[register]
-					signal: 26640
+				client._send(
+					'loop:', 2,
+					'cel:', 0,
+					'x:', local122[register],
+					'y:', local126[register],
+					'signal:', 26640
 				)
 				cycles = 1
 			#end:case
@@ -2219,17 +2174,17 @@ class sFrogY(Script):
 				cycles = kernel.Random(4, 8)
 			#end:case
 			case 2:
-				(client setCycle: CT 3 1 self)
+				client._send('setCycle:', CT, 3, 1, self)
 			#end:case
 			case 3:
-				(client posn: (client x:) ((client y:) + 15) setCycle: End self)
+				client._send('posn:', client._send('x:'), (client._send('y:') + 15), 'setCycle:', End, self)
 			#end:case
 			case 4:
-				if ((client y:) < 195):
+				if (client._send('y:') < 195):
 					state = 0
 					cycles = 1
 				else:
-					(client dispose:)
+					client._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -2248,12 +2203,12 @@ class sFrogX(Script):
 		match state = param1
 			case 0:
 				register = kernel.Random(0, 4)
-				(client
-					loop: 1
-					cel: 0
-					x: local130[register]
-					y: local135[register]
-					signal: 26640
+				client._send(
+					'loop:', 1,
+					'cel:', 0,
+					'x:', local130[register],
+					'y:', local135[register],
+					'signal:', 26640
 				)
 				cycles = 1
 			#end:case
@@ -2262,21 +2217,21 @@ class sFrogX(Script):
 			#end:case
 			case 2:
 				if proc999_5(register, 0, 1):
-					(client setCycle: CT 9 1 self)
+					client._send('setCycle:', CT, 9, 1, self)
 				else:
 					(state += 2)
-					(client setCycle: End self)
+					client._send('setCycle:', End, self)
 				#endif
 			#end:case
 			case 3:
-				(client posn: ((client x:) + 66) ((client y:) - 8) cel: 0)
+				client._send('posn:', (client._send('x:') + 66), (client._send('y:') - 8), 'cel:', 0)
 				cycles = kernel.Random(2, 4)
 			#end:case
 			case 4:
-				(client setCycle: End self)
+				client._send('setCycle:', End, self)
 			#end:case
 			case 5:
-				(client dispose:)
+				client._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -2293,23 +2248,23 @@ class stepOnFrog(Script):
 
 		match state = param1
 			case 0:
-				(client posn: 46 168 cel: 0 setLoop: 1 setCycle: CT 9 1 self)
+				client._send('posn:', 46, 168, 'cel:', 0, 'setLoop:', 1, 'setCycle:', CT, 9, 1, self)
 			#end:case
 			case 1:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 103 160 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 103, 160, self)
 			#end:case
 			case 2:
-				(global103 number: 475 setLoop: 1 play:)
-				(client
-					setLoop: 3
-					posn: 109 164
-					setPri: 1
-					ignoreActors: 1
-					addToPic:
+				global103._send('number:', 475, 'setLoop:', 1, 'play:')
+				client._send(
+					'setLoop:', 3,
+					'posn:', 109, 164,
+					'setPri:', 1,
+					'ignoreActors:', 1,
+					'addToPic:'
 				)
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

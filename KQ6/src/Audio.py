@@ -34,10 +34,10 @@ class Audio(Obj):
 				if kernel.IsObject(param1):
 					local0 = param1
 				#endif
-				(self check:)
+				self._send('check:')
 			#end:case
 			case (kernel.IsObject(param1) and (local0 = param1 != 0)):
-				(local0 cue:)
+				local0._send('cue:')
 			#end:case
 		)
 	#end:method
@@ -58,7 +58,7 @@ class Audio(Obj):
 
 		if (not paused):
 			kernel.DoAudio(4)
-			(self paused: 1)
+			self._send('paused:', 1)
 		#endif
 	#end:method
 
@@ -69,7 +69,7 @@ class Audio(Obj):
 
 		if paused:
 			kernel.DoAudio(5)
-			(self paused: 0)
+			self._send('paused:', 0)
 		#endif
 	#end:method
 
@@ -78,7 +78,7 @@ class Audio(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self loop: param1)
+		self._send('loop:', param1)
 	#end:method
 
 	@classmethod
@@ -102,11 +102,11 @@ class Audio(Obj):
 			if (local0 != 0):
 				temp0 = local0
 				local0 = 0
-				(temp0 cue:)
+				temp0._send('cue:')
 			#endif
 		#endif
 		if ((not stopped) and (kernel.DoAudio(6) == -1) and ((loop > 1) or (loop == -1))):
-			(self play:)
+			self._send('play:')
 		#endif
 	#end:method
 

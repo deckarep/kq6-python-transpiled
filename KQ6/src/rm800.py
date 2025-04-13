@@ -53,29 +53,40 @@ def localproc_0(param1 = None, *rest):
 	if (argc == 1):
 		local0 = param1[0]
 	#endif
-	if (global2 obstacles:):
-		((global2 obstacles:) dispose:)
-		(global2 obstacles: 0)
+	if global2._send('obstacles:'):
+		global2._send('obstacles:')._send('dispose:')
+		global2._send('obstacles:', 0)
 	#endif
-	(mainPoly type: 2)
+	mainPoly._send('type:', 2)
 	match local0
 		case 1:
-			(global2
-				addObstacle:
-					(mainPoly type: 3 points: @local49 size: 4 yourself:)
-					(Poly1 type: 2 points: @local25 size: 4 yourself:)
-					(Poly2 type: 2 points: @local33 size: 8 yourself:)
+			global2._send(
+				'addObstacle:', mainPoly._send(
+						'type:', 3,
+						'points:', @local49,
+						'size:', 4,
+						'yourself:'
+					), Poly1._send('type:', 2, 'points:', @local25, 'size:', 4, 'yourself:'), Poly2._send(
+						'type:', 2,
+						'points:', @local33,
+						'size:', 8,
+						'yourself:'
+					)
 			)
 		#end:case
 		case 2:
-			(backPost setPri: 0 stopUpd:)
-			(global2
-				addObstacle:
-					(mainPoly type: 3 points: @local91 size: 12 yourself:)
+			backPost._send('setPri:', 0, 'stopUpd:')
+			global2._send(
+				'addObstacle:', mainPoly._send(
+						'type:', 3,
+						'points:', @local91,
+						'size:', 12,
+						'yourself:'
+					)
 			)
 		#end:case
 		case 3:
-			(global2 addObstacle: (mainPoly points: @local57 size: 17 yourself:))
+			global2._send('addObstacle:', mainPoly._send('points:', @local57, 'size:', 17, 'yourself:'))
 		#end:case
 	#end:match
 #end:procedure
@@ -85,22 +96,22 @@ def proc800_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(global2 drawPic: (global2 picture:))
+	global2._send('drawPic:', global2._send('picture:'))
 	if (local0 == 3):
-		(upHallleft addToPic:)
-		(upHalleft2 addToPic:)
-		(upStairs addToPic:)
-		(upStairs2 addToPic:)
+		upHallleft._send('addToPic:')
+		upHalleft2._send('addToPic:')
+		upStairs._send('addToPic:')
+		upStairs2._send('addToPic:')
 	else:
-		(downStairs addToPic:)
-		(downUpperHalf addToPic:)
-		(downFloor addToPic:)
-		(backPost show: stopUpd:)
+		downStairs._send('addToPic:')
+		downUpperHalf._send('addToPic:')
+		downFloor._send('addToPic:')
+		backPost._send('show:', 'stopUpd:')
 	#endif
-	(stoneDoor show: stopUpd:)
-	(beam show:)
-	(chink show: stopUpd:)
-	(global0 show:)
+	stoneDoor._send('show:', 'stopUpd:')
+	beam._send('show:')
+	chink._send('show:', 'stopUpd:')
+	global0._send('show:')
 	localproc_0()
 #end:procedure
 
@@ -127,51 +138,51 @@ class rm800(CastleRoom):
 			#end:else
 		#end:match
 		localproc_0()
-		(walls init:)
-		(super init: &rest)
-		(stoneDoor init:)
+		walls._send('init:')
+		super._send('init:', &rest)
+		stoneDoor._send('init:')
 		match global12
 			case 810:
-				(upHallleft addToPic:)
-				(upHalleft2 addToPic:)
-				(upStairs addToPic:)
-				(upStairs2 addToPic:)
-				(climbStairs register: 3)
-				(global0 posn: 30 165)
-				(self setScript: firstTimeOnSecondLevel)
+				upHallleft._send('addToPic:')
+				upHalleft2._send('addToPic:')
+				upStairs._send('addToPic:')
+				upStairs2._send('addToPic:')
+				climbStairs._send('register:', 3)
+				global0._send('posn:', 30, 165)
+				self._send('setScript:', firstTimeOnSecondLevel)
 			#end:case
 			else:
-				(downStairs addToPic:)
-				(downUpperHalf addToPic:)
-				(downFloor addToPic:)
-				(backPost init: stopUpd:)
+				downStairs._send('addToPic:')
+				downUpperHalf._send('addToPic:')
+				downFloor._send('addToPic:')
+				backPost._send('init:', 'stopUpd:')
 				local131 = 2
-				(secretDoorMove register: 1)
-				(stoneDoor posn: 110 189)
-				(self setScript: secretDoorMove)
-				(global0 reset: 3 posn: 183 184)
-				if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
-					(kernel.ScriptID(80, 0) setFlag: 711 4)
+				secretDoorMove._send('register:', 1)
+				stoneDoor._send('posn:', 110, 189)
+				self._send('setScript:', secretDoorMove)
+				global0._send('reset:', 3, 'posn:', 183, 184)
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 32)):
+					kernel.ScriptID(80, 0)._send('setFlag:', 711, 4)
 					if (not script):
-						(self setScript: firstEntry)
+						self._send('setScript:', firstEntry)
 					else:
-						(script next: firstEntry)
+						script._send('next:', firstEntry)
 					#endif
 				#endif
 			#end:else
 		#end:match
-		(chink init: show: stopUpd:)
-		(beam init: addToPic:)
-		(global0 init: reset:)
+		chink._send('init:', 'show:', 'stopUpd:')
+		beam._send('init:', 'addToPic:')
+		global0._send('init:', 'reset:')
 		if (global12 == 810):
-			(global0 loop: 9 cel: 0)
+			global0._send('loop:', 9, 'cel:', 0)
 		#endif
-		(global0 setScale: 0 scaleX: 128 scaleY: 128 ignoreHorizon:)
+		global0._send('setScale:', 0, 'scaleX:', 128, 'scaleY:', 128, 'ignoreHorizon:')
 		if (not script):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
-		if ((global102 number:) != 810):
-			(global102 fadeTo: 810 -1)
+		if (global102._send('number:') != 810):
+			global102._send('fadeTo:', 810, -1)
 		#endif
 	#end:method
 
@@ -180,18 +191,18 @@ class rm800(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		local135 = (global0 onControl: 1)
+		local135 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case ((local0 == 1) and (local135 & 0x4000)):
-				(self setScript: getOnStairs 0 1)
+				self._send('setScript:', getOnStairs, 0, 1)
 				localproc_0(2)
 			#end:case
-			case ((local0 == 3) and ((global0 y:) <= 149) and (local135 & 0x1000)):
-				(self setScript: changeLandings)
+			case ((local0 == 3) and (global0._send('y:') <= 149) and (local135 & 0x1000)):
+				self._send('setScript:', changeLandings)
 			#end:case
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -202,11 +213,11 @@ class rm800(CastleRoom):
 		(return
 			match param1
 				case 1:
-					(global91 say: noun param1 (14 + (local0 == 3)))
+					global91._send('say:', noun, param1, (14 + (local0 == 3)))
 					1
 				#end:case
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#end:else
 			#end:match
 		)
@@ -227,11 +238,11 @@ class firstEntry(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 0 self)
+				global91._send('say:', 1, 0, 1, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -251,22 +262,22 @@ class firstTimeOnSecondLevel(Script):
 				cycles = 10
 			#end:case
 			case 1:
-				if (not (kernel.ScriptID(80, 0) tstFlag: 711 8)):
-					(kernel.ScriptID(80, 0) setFlag: 711 8)
-					(roomConv add: -1 1 0 3)
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 8)):
+					kernel.ScriptID(80, 0)._send('setFlag:', 711, 8)
+					roomConv._send('add:', -1, 1, 0, 3)
 				#endif
-				if (not (kernel.ScriptID(80, 0) tstFlag: 710 256)):
-					(roomConv add: -1 1 0 6)
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 256)):
+					roomConv._send('add:', -1, 1, 0, 6)
 				#endif
-				if (roomConv size:):
-					(roomConv init: self)
+				if roomConv._send('size:'):
+					roomConv._send('init:', self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -283,17 +294,17 @@ class changeLandings(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				match local0
 					case 2:
-						(backPost startUpd:)
-						(global0 setMotion: MoveTo 207 9 self)
+						backPost._send('startUpd:')
+						global0._send('setMotion:', MoveTo, 207, 9, self)
 					#end:case
 					case 3:
-						(global0
-							setPri: 1
-							setLoop: 1
-							setMotion: MoveTo 157 164 self
+						global0._send(
+							'setPri:', 1,
+							'setLoop:', 1,
+							'setMotion:', MoveTo, 157, 164, self
 						)
 					#end:case
 				#end:match
@@ -302,50 +313,50 @@ class changeLandings(Script):
 				if (local0 == 3):
 					localproc_0(2)
 				else:
-					(backPost dispose:)
-					(chink startUpd:)
+					backPost._send('dispose:')
+					chink._send('startUpd:')
 					localproc_0(3)
 				#endif
-				(global10 eachElementDo: #dispose release:)
-				(global2 drawPic: 800 10)
+				global10._send('eachElementDo:', #dispose, 'release:')
+				global2._send('drawPic:', 800, 10)
 				match local0
 					case 3:
-						(upHallleft addToPic:)
-						(upHalleft2 addToPic:)
-						(upStairs addToPic:)
-						(upStairs2 addToPic:)
-						(global0 setPri: 1 posn: 157 164)
+						upHallleft._send('addToPic:')
+						upHalleft2._send('addToPic:')
+						upStairs._send('addToPic:')
+						upStairs2._send('addToPic:')
+						global0._send('setPri:', 1, 'posn:', 157, 164)
 					#end:case
 					else:
-						(downStairs addToPic:)
-						(downUpperHalf addToPic:)
-						(downFloor addToPic:)
-						(backPost init: stopUpd:)
-						(global0 posn: 207 9)
+						downStairs._send('addToPic:')
+						downUpperHalf._send('addToPic:')
+						downFloor._send('addToPic:')
+						backPost._send('init:', 'stopUpd:')
+						global0._send('posn:', 207, 9)
 					#end:else
 				#end:match
-				(stoneDoor init: stopUpd:)
-				(beam addToPic:)
-				(chink show: stopUpd:)
+				stoneDoor._send('init:', 'stopUpd:')
+				beam._send('addToPic:')
+				chink._send('show:', 'stopUpd:')
 				cycles = 3
 			#end:case
 			case 2:
 				match local0
 					case 3:
 						next = firstTimeOnSecondLevel
-						(global0 setMotion: MoveTo 191 145 self)
+						global0._send('setMotion:', MoveTo, 191, 145, self)
 					#end:case
 					else:
-						(global0 setLoop: -1)
-						next = (climbStairs register: 3 yourself:)
-						(global0 setMotion: MoveTo 168 34 self)
+						global0._send('setLoop:', -1)
+						next = climbStairs._send('register:', 3, 'yourself:')
+						global0._send('setMotion:', MoveTo, 168, 34, self)
 					#end:else
 				#end:match
 			#end:case
 			case 3:
 				if (local0 != 3):
-					if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
-						(global91 say: 1 0 1 0 self)
+					if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 32)):
+						global91._send('say:', 1, 0, 1, 0, self)
 					else:
 						cycles = 1
 					#endif
@@ -355,10 +366,10 @@ class changeLandings(Script):
 			#end:case
 			case 4:
 				if (local0 != 3):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
-				(global0 reset:)
-				(self dispose:)
+				global0._send('reset:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -375,20 +386,20 @@ class getOnStairs(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if register:
-					(global0 setMotion: MoveTo 167 136 self)
+					global0._send('setMotion:', MoveTo, 167, 136, self)
 				else:
-					(global0 setMotion: MoveTo 198 155 self)
+					global0._send('setMotion:', MoveTo, 198, 155, self)
 				#endif
 			#end:case
 			case 1:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				if register:
-					(client setScript: climbStairs)
+					client._send('setScript:', climbStairs)
 				else:
-					(backPost setPri: -1 stopUpd:)
-					(self dispose:)
+					backPost._send('setPri:', -1, 'stopUpd:')
+					self._send('dispose:')
 				#endif
 			#end:case
 		#end:match
@@ -406,9 +417,9 @@ class climbStairs(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global74 addToFront: self)
-		(global73 addToFront: self)
-		(super init: &rest)
+		global74._send('addToFront:', self)
+		global73._send('addToFront:', self)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -416,9 +427,9 @@ class climbStairs(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global74 delete: self)
-		(global73 delete: self)
-		(super dispose:)
+		global74._send('delete:', self)
+		global73._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -436,14 +447,14 @@ class climbStairs(Script):
 
 		(cond
 			case ((local0 == 2) and (local135 & 0x1000)):
-				(client setScript: getOnStairs 0 0)
+				client._send('setScript:', getOnStairs, 0, 0)
 				localproc_0(1)
 			#end:case
-			case ((global0 edgeHit:) == 1):
-				(client setScript: changeLandings)
+			case (global0._send('edgeHit:') == 1):
+				client._send('setScript:', changeLandings)
 			#end:case
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -451,19 +462,19 @@ class climbStairs(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (((param1 type:) != 16384) and (not (param1 modifiers:))):
-			if ((param1 type:) & 0x0001):
+		if ((param1._send('type:') != 16384) and (not param1._send('modifiers:'))):
+			if (param1._send('type:') & 0x0001):
 				local134 = 1
 			#endif
-			if ((param1 type:) & 0x0040):
-				(param1 claimed: 1)
+			if (param1._send('type:') & 0x0040):
+				param1._send('claimed:', 1)
 				if local134:
 					local134 = 0
-					register = (2 + ((((global0 y:) <= 77) * 2) - 1))
+					register = (2 + (((global0._send('y:') <= 77) * 2) - 1))
 				#endif
 				(cond
-					case proc999_5((param1 message:), 1, 5):
-						match (param1 message:)
+					case proc999_5(param1._send('message:'), 1, 5):
+						match param1._send('message:')
 							case 1:
 								if (register < 3):
 									register.post('++')
@@ -475,20 +486,19 @@ class climbStairs(Script):
 								#endif
 							#end:case
 						#end:match
-						(global0
-							setMotion:
-								PolyPath
-								local117[(register * 2)]
-								local117[((register * 2) + 1)]
+						global0._send(
+							'setMotion:', PolyPath, local117[(register * 2)], [local117
+									((register * 2) + 1)
+								]
 						)
 					#end:case
-					case (not proc999_5((param1 message:), 8, 2, 6, 4)):
-						(param1 claimed: 0)
+					case (not proc999_5(param1._send('message:'), 8, 2, 6, 4)):
+						param1._send('claimed:', 0)
 					#end:case
 				)
 			#endif
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 #end:class or instance
@@ -505,15 +515,15 @@ class secretDoorMove(Script):
 
 		register = (((register == -1) * 2) - 1)
 		if (register == -1):
-			(global2 south: 0)
-			((global2 obstacles:)
-				delete: mainPoly
-				add: (mainPoly type: 3 points: @local49 size: 4 yourself:)
+			global2._send('south:', 0)
+			global2._send('obstacles:')._send(
+				'delete:', mainPoly,
+				'add:', mainPoly._send('type:', 3, 'points:', @local49, 'size:', 4, 'yourself:')
 			)
 		else:
-			(global1 handsOff:)
+			global1._send('handsOff:')
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -522,13 +532,13 @@ class secretDoorMove(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (register == 1):
-			(global2 south: 720)
+			global2._send('south:', 720)
 			next = exitRoom
 		#endif
 		if (not next):
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -541,7 +551,7 @@ class secretDoorMove(Script):
 				cycles = 1
 			#end:case
 			case 1:
-				(global105 number: 909 loop: 1 play:)
+				global105._send('number:', 909, 'loop:', 1, 'play:')
 				ticks = 1
 			#end:case
 			case 2:
@@ -549,18 +559,18 @@ class secretDoorMove(Script):
 					state.post('--')
 					local132 = local125[(local131 * 2)]
 					local133 = local125[((local131 * 2) + 1)]
-					(stoneDoor
-						moveSpeed: 4
-						setMotion: MoveTo local132 local133 self
+					stoneDoor._send(
+						'moveSpeed:', 4,
+						'setMotion:', MoveTo, local132, local133, self
 					)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 3:
-				(global105 stop:)
-				(stoneDoor stopUpd:)
-				(self dispose:)
+				global105._send('stop:')
+				stoneDoor._send('stopUpd:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -577,10 +587,10 @@ class exitRoom(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: MoveTo (global0 x:) 200 self)
+				global0._send('setMotion:', MoveTo, global0._send('x:'), 200, self)
 			#end:case
 			case 1:
-				(global2 newRoom: 720)
+				global2._send('newRoom:', 720)
 			#end:case
 		#end:match
 	#end:method
@@ -604,8 +614,8 @@ class stoneDoor(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachX: 188 approachY: 183 approachVerbs: 5 stopUpd:)
+		super._send('init:', &rest)
+		self._send('approachX:', 188, 'approachY:', 183, 'approachVerbs:', 5, 'stopUpd:')
 	#end:method
 
 	@classmethod
@@ -617,8 +627,8 @@ class stoneDoor(Actor):
 			(and
 				(local131 != 3)
 				(local0 != 3)
-				(super onMe: param1)
-				((param1 x:) > 115)
+				super._send('onMe:', param1)
+				(param1._send('x:') > 115)
 			)
 		)
 	#end:method
@@ -631,11 +641,11 @@ class stoneDoor(Actor):
 		match param1
 			case 5:
 				if (not script):
-					(self setScript: secretDoorMove)
+					self._send('setScript:', secretDoorMove)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -656,11 +666,11 @@ class chink(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (local0 != 3):
-			(self posn: 289 128)
+			self._send('posn:', 289, 128)
 		else:
-			(self posn: 258 122)
+			self._send('posn:', 258, 122)
 		#endif
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -668,8 +678,8 @@ class chink(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 1)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 1)
 	#end:method
 
 	@classmethod
@@ -679,7 +689,7 @@ class chink(View):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
 					(and
 						(local0 == 3)
@@ -699,21 +709,21 @@ class chink(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (((global66 doit: param1) == -32768) and (not param1 = 0)):
-				(global91 say: 7 param1)
+			case ((global66._send('doit:', param1) == -32768) and (not param1 = 0)):
+				global91._send('say:', 7, param1)
 			#end:case
 			case proc999_5(param1, 5, 1):
 				match noun
 					case 4:
-						(global2 setScript: kernel.ScriptID(801))
+						global2._send('setScript:', kernel.ScriptID(801))
 					#end:case
 					else:
-						(global2 setScript: kernel.ScriptID(802))
+						global2._send('setScript:', kernel.ScriptID(802))
 					#end:else
 				#end:match
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		)
 	#end:method
@@ -734,7 +744,7 @@ class beam(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		cel = (kernel.NumCels(self) - 1)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -742,20 +752,20 @@ class beam(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((not (signal & 0x0008)) and ((global0 view:) != 802)):
+		if ((not (signal & 0x0008)) and (global0._send('view:') != 802)):
 			if 
 				(and
-					((global0 x:) >= local115)
-					(>= (y + 2) (global0 y:) (y - 2))
+					(global0._send('x:') >= local115)
+					(>= (y + 2) global0._send('y:') (y - 2))
 				)
-				cel = (((x - (global0 x:)) / 7) - 1)
-				priority = ((global0 priority:) - 1)
+				cel = (((x - global0._send('x:')) / 7) - 1)
+				priority = (global0._send('priority:') - 1)
 			else:
 				priority = kernel.CoordPri(y)
 				cel = local116
 			#endif
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -764,9 +774,9 @@ class beam(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (local0 != 3):
-			(self posn: 289 128 0 loop: 4)
+			self._send('posn:', 289, 128, 0, 'loop:', 4)
 		else:
-			(self posn: 258 122 0 loop: 6)
+			self._send('posn:', 258, 122, 0, 'loop:', 6)
 		#endif
 		cel = (kernel.NumCels(self) - 1)
 		local116 = cel
@@ -791,8 +801,8 @@ class Stair(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global93 add: self)
+		super._send('init:', &rest)
+		global93._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -800,8 +810,8 @@ class Stair(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(super dispose:)
+		global93._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -812,15 +822,15 @@ class Stair(View):
 		if 
 			(and
 				(local0 != 2)
-				((param1 type:) != 16384)
-				(not (param1 modifiers:))
-				((param1 type:) & 0x1000)
-				(self onMe: param1)
+				(param1._send('type:') != 16384)
+				(not param1._send('modifiers:'))
+				(param1._send('type:') & 0x1000)
+				self._send('onMe:', param1)
 			)
-			(param1 claimed: 1)
-			(global0 setMotion: PolyPath 188 151)
+			param1._send('claimed:', 1)
+			global0._send('setMotion:', PolyPath, 188, 151)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -830,9 +840,9 @@ class Stair(View):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
-					(((global69 curIcon:) == (global69 at: 2)) and noun = 10)
+					((global69._send('curIcon:') == global69._send('at:', 2)) and noun = 10)
 					noun = 11
 				)
 			)
@@ -946,14 +956,14 @@ class walls(Feature):
 
 		match param1
 			case 1:
-				(roomConv add: -1 noun param1 26)
-				if (((User curEvent:) x:) >= 214):
-					(roomConv add: -1 noun param1 27)
+				roomConv._send('add:', -1, noun, param1, 26)
+				if (User._send('curEvent:')._send('x:') >= 214):
+					roomConv._send('add:', -1, noun, param1, 27)
 				#endif
-				(roomConv init:)
+				roomConv._send('init:')
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method

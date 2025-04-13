@@ -46,136 +46,75 @@ class rm520(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.Load(128, 308)
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						223
-						166
-						217
-						175
-						139
-						173
-						103
-						169
-						109
-						163
-						164
-						153
-						166
-						134
-						166
-						103
-						155
-						94
-						130
-						66
-						129
-						65
-						319
-						13
-						319
-						189
-						285
-						189
-						269
-						165
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						189
-						0
-						8
-						122
-						65
-						98
-						80
-						129
-						90
-						114
-						102
-						122
-						112
-						97
-						141
-						79
-						160
-						47
-						165
-						31
-						173
-						45
-						183
-						71
-						189
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 199 189 168 189 176 185 194 186
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 158 186 144 186 141 183 145 180 157 180 164 183
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 120 181 104 181 99 176 108 174 119 174 127 177
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 223, 166, 217, 175, 139, 173, 103, 169, 109, 163, 164, 153, 166, 134, 166, 103, 155, 94, 130, 66, 129, 65, 319, 13, 319, 189, 285, 189, 269, 165,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 189, 0, 8, 122, 65, 98, 80, 129, 90, 114, 102, 122, 112, 97, 141, 79, 160, 47, 165, 31, 173, 45, 183, 71, 189,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 199, 189, 168, 189, 176, 185, 194, 186,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 158, 186, 144, 186, 141, 183, 145, 180, 157, 180, 164, 183,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 120, 181, 104, 181, 99, 176, 108, 174, 119, 174, 127, 177,
+					'yourself:'
 				)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 		if (global12 == north):
-			(global0 init: reset: 2 posn: 130 90)
+			global0._send('init:', 'reset:', 2, 'posn:', 130, 90)
 		else:
-			(global0 init: reset: 3 posn: 105 187)
+			global0._send('init:', 'reset:', 3, 'posn:', 105, 187)
 		#endif
 		if (not proc913_0(13)):
-			(boilingPond
-				init:
-				signal: (| (boilingPond signal:) 0x1000)
-				setCycle: Fwd
-				setPri: 9
-				ignoreActors: 1
-				cycleSpeed: 12
+			boilingPond._send(
+				'init:',
+				'signal:', (| boilingPond._send('signal:') 0x1000),
+				'setCycle:', Fwd,
+				'setPri:', 9,
+				'ignoreActors:', 1,
+				'cycleSpeed:', 12
 			)
-			(boilFx play:)
+			boilFx._send('play:')
 		else:
-			(boilingPond
-				init:
-				view: 525
-				setLoop: 0
-				setPri: 9
-				posn: 141 125
-				cycleSpeed: 12
-				ignoreActors: 1
-				setCycle: Fwd
+			boilingPond._send(
+				'init:',
+				'view:', 525,
+				'setLoop:', 0,
+				'setPri:', 9,
+				'posn:', 141, 125,
+				'cycleSpeed:', 12,
+				'ignoreActors:', 1,
+				'setCycle:', Fwd
 			)
 		#endif
-		(finishedPond init:)
-		(mushrooms init:)
-		(frontPath init:)
-		(backPath init:)
-		(banks init:)
-		(rocks init:)
-		(trees init:)
+		finishedPond._send('init:')
+		mushrooms._send('init:')
+		frontPath._send('init:')
+		backPath._send('init:')
+		banks._send('init:')
+		rocks._send('init:')
+		trees._send('init:')
 		if (<= temp0 kernel.Random(1, 100) 500):
-			(bunny init: setScript: bunnyScript)
+			bunny._send('init:', 'setScript:', bunnyScript)
 		else:
-			(squirrel init:)
+			squirrel._send('init:')
 		#endif
-		if (((global9 at: 19) owner:) == global11):
-			(theHuntersLamp init:)
+		if (global9._send('at:', 19)._send('owner:') == global11):
+			theHuntersLamp._send('init:')
 		#endif
-		(global0 setScale: Scaler 100 50 184 72)
-		((global0 scaler:) doit:)
-		(global1 handsOn:)
+		global0._send('setScale:', Scaler, 100, 50, 184, 72)
+		global0._send('scaler:')._send('doit:')
+		global1._send('handsOn:')
 	#end:method
 
 	@classmethod
@@ -184,18 +123,18 @@ class rm520(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.GameIsRestarting() and (not proc913_0(13))):
-			(boilFx play:)
+			boilFx._send('play:')
 		#endif
-		(super doit: &rest)
-		temp0 = (global0 onControl: 1)
+		super._send('doit:', &rest)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x4000):
-				(global2 newRoom: north)
+				global2._send('newRoom:', north)
 			#end:case
 			case ((temp0 & 0x0002) and local0):
-				(global1 handsOff:)
-				(self setScript: bravePond)
+				global1._send('handsOff:')
+				self._send('setScript:', bravePond)
 			#end:case
 		)
 	#end:method
@@ -209,15 +148,15 @@ class rm520(KQ6Room):
 			match param1
 				case 1:
 					if proc913_0(13):
-						(global91 say: noun param1 4)
+						global91._send('say:', noun, param1, 4)
 						1
 					else:
-						(global91 say: noun param1 3)
+						global91._send('say:', noun, param1, 3)
 						1
 					#endif
 				#end:case
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#end:else
 			#end:match
 		)
@@ -258,25 +197,25 @@ class theHuntersLamp(Prop):
 
 		match param1
 			case 1:
-				(global91 say: noun param1)
+				global91._send('say:', noun, param1)
 			#end:case
 			case 5:
 				if proc913_0(13):
-					(global1 handsOff:)
+					global1._send('handsOff:')
 					local1 = 1
-					(global0 setScript: getLamp)
+					global0._send('setScript:', getLamp)
 				else:
-					(global91 say: noun param1 3)
+					global91._send('say:', noun, param1, 3)
 				#endif
 			#end:case
 			case 2:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			else:
 				if proc913_0(13):
-					(global91 say: noun 0 4)
+					global91._send('say:', noun, 0, 4)
 				else:
-					(global91 say: noun 0 3)
+					global91._send('say:', noun, 0, 3)
 				#endif
 			#end:else
 		#end:match
@@ -295,8 +234,8 @@ class splash(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self x: ((global0 x:) + 16) y: ((global0 y:) - 32))
-		(super init:)
+		self._send('x:', (global0._send('x:') + 16), 'y:', (global0._send('y:') - 32))
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -314,35 +253,35 @@ class finishedPond(Feature):
 
 		(cond
 			case (param1 == 5):
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				local2 = 1
-				(global0 setScript: feelPond)
+				global0._send('setScript:', feelPond)
 			#end:case
 			case proc999_5(param1, 1, 2):
 				if proc913_0(13):
-					(global91 say: noun param1 4)
+					global91._send('say:', noun, param1, 4)
 				else:
-					(global91 say: noun param1 3)
+					global91._send('say:', noun, param1, 3)
 				#endif
 			#end:case
 			case proc999_5(param1, 28, 25, 43, 94, 44, 34):
-				(global91 say: noun param1 0)
+				global91._send('say:', noun, param1, 0)
 			#end:case
 			case (param1 == 54):
 				if proc913_0(13):
-					(global91 say: noun param1 4)
+					global91._send('say:', noun, param1, 4)
 				else:
-					(global91 say: noun param1 3)
+					global91._send('say:', noun, param1, 3)
 				#endif
 			#end:case
 			case proc999_5(param1, 52, 53):
-				(global0 setScript: throwLettuceInPond 0 param1)
+				global0._send('setScript:', throwLettuceInPond, 0, param1)
 			#end:case
 			case proc913_0(13):
-				(global91 say: noun 0 4)
+				global91._send('say:', noun, 0, 4)
 			#end:case
 			else:
-				(global91 say: noun 0 3)
+				global91._send('say:', noun, 0, 3)
 			#end:else
 		)
 	#end:method
@@ -362,7 +301,7 @@ class boilingPond(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(finishedPond doVerb: param1 &rest)
+		finishedPond._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -381,8 +320,8 @@ class bunny(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self ignoreActors: 1 setLoop: (self loop:))
-		(super init: &rest)
+		self._send('ignoreActors:', 1, 'setLoop:', self._send('loop:'))
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -397,34 +336,34 @@ class feelPond(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: MoveTo 99 148 self)
+				global0._send('setMotion:', MoveTo, 99, 148, self)
 			#end:case
 			case 1:
-				(global0
-					view: 521
-					normal: 0
-					cycleSpeed: 10
-					setLoop: 3
-					posn: 110 154
-					cel: 0
-					setCycle: End self
+				global0._send(
+					'view:', 521,
+					'normal:', 0,
+					'cycleSpeed:', 10,
+					'setLoop:', 3,
+					'posn:', 110, 154,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 reset: posn: 99 148)
+				global0._send('reset:', 'posn:', 99, 148)
 				cycles = 2
 			#end:case
 			case 3:
 				if proc913_0(13):
-					(global91 say: 3 5 4 0 self)
+					global91._send('say:', 3, 5, 4, 0, self)
 				else:
-					(global91 say: 3 5 3 0 self)
+					global91._send('say:', 3, 5, 3, 0, self)
 				#endif
 			#end:case
 			case 4:
 				local2 = 0
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -441,30 +380,30 @@ class getLamp(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 119 99 self)
+				global0._send('setMotion:', PolyPath, 119, 99, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 315)
-				(theHuntersLamp dispose:)
-				(global0
-					normal: 0
-					view: 523
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 10
-					setCycle: End self
+				global0._send('setHeading:', 315)
+				theHuntersLamp._send('dispose:')
+				global0._send(
+					'normal:', 0,
+					'view:', 523,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 10,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global91 say: 4 5 4 1 self)
+				global91._send('say:', 4, 5, 4, 1, self)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global0 reset: 1)
-				(global0 get: 19)
-				(global1 givePoints: 1)
+				global1._send('handsOn:')
+				global0._send('reset:', 1)
+				global0._send('get:', 19)
+				global1._send('givePoints:', 1)
 				local1 = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -481,67 +420,67 @@ class throwLettuceInPond(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 113 159 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 113, 159, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 0)
+				global0._send('setHeading:', 0)
 				ticks = 6
 			#end:case
 			case 2:
 				if proc913_0(13):
-					(global91 say: 3 52 4 1 self)
+					global91._send('say:', 3, 52, 4, 1, self)
 				else:
-					(global91 say: 3 52 3 1 self)
+					global91._send('say:', 3, 52, 3, 1, self)
 				#endif
 			#end:case
 			case 3:
-				(global0
-					view: 521
-					normal: 0
-					setLoop: 1
-					cel: 0
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'view:', 521,
+					'normal:', 0,
+					'setLoop:', 1,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 4:
-				(splash init: setPri: 10 setCycle: CT 3 1 self)
+				splash._send('init:', 'setPri:', 10, 'setCycle:', CT, 3, 1, self)
 			#end:case
 			case 5:
-				(pondWalk number: 923 loop: 1 play:)
-				(splash setCycle: End self)
+				pondWalk._send('number:', 923, 'loop:', 1, 'play:')
+				splash._send('setCycle:', End, self)
 			#end:case
 			case 6:
-				(splash dispose:)
-				(global0 put: 21 global11 reset: 3)
-				(kernel.ScriptID(0, 7) dispose:)
+				splash._send('dispose:')
+				global0._send('put:', 21, global11, 'reset:', 3)
+				kernel.ScriptID(0, 7)._send('dispose:')
 				ticks = 12
 			#end:case
 			case 7:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				if proc913_0(13):
-					(global91 say: 3 52 4 2 self)
-					(self dispose:)
+					global91._send('say:', 3, 52, 4, 2, self)
+					self._send('dispose:')
 				else:
 					proc913_1(13)
-					(global1 givePoints: 4)
-					(boilingPond
-						setLoop: 1
-						cel: 0
-						posn: 92 150
-						cycleSpeed: 24
-						setCycle: End self
+					global1._send('givePoints:', 4)
+					boilingPond._send(
+						'setLoop:', 1,
+						'cel:', 0,
+						'posn:', 92, 150,
+						'cycleSpeed:', 24,
+						'setCycle:', End, self
 					)
-					(boilFx stop:)
+					boilFx._send('stop:')
 				#endif
 			#end:case
 			case 8:
-				(global91 say: 3 52 3 2 self)
+				global91._send('say:', 3, 52, 3, 2, self)
 			#end:case
 			case 9:
-				(boilingPond view: 525 setLoop: 0 posn: 141 125 setCycle: Fwd)
-				(self dispose:)
+				boilingPond._send('view:', 525, 'setLoop:', 0, 'posn:', 141, 125, 'setCycle:', Fwd)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -571,7 +510,7 @@ class bravePond(Script):
 						cycles = 1
 					#end:case
 					case (not proc913_0(83)):
-						(global91 say: 3 3 5 1 self)
+						global91._send('say:', 3, 3, 5, 1, self)
 					#end:case
 					else:
 						cycles = 1
@@ -580,43 +519,43 @@ class bravePond(Script):
 			#end:case
 			case 1:
 				if proc913_0(13):
-					(global0
-						illegalBits: 0
-						view: 521
-						setPri: 14
-						setSpeed: 6
-						ignoreActors: 1
+					global0._send(
+						'illegalBits:', 0,
+						'view:', 521,
+						'setPri:', 14,
+						'setSpeed:', 6,
+						'ignoreActors:', 1
 					)
-					if ((global0 y:) < 110):
-						(global0 setLoop: 5 setMotion: PolyPath 110 143 self)
+					if (global0._send('y:') < 110):
+						global0._send('setLoop:', 5, 'setMotion:', PolyPath, 110, 143, self)
 					else:
-						(global0 setLoop: 4 setMotion: PolyPath 137 107 self)
+						global0._send('setLoop:', 4, 'setMotion:', PolyPath, 137, 107, self)
 					#endif
-					(pondWalk number: 920 loop: -1 play:)
+					pondWalk._send('number:', 920, 'loop:', -1, 'play:')
 				else:
-					(self setScript: egoBoilsScript)
+					self._send('setScript:', egoBoilsScript)
 				#endif
 			#end:case
 			case 2:
-				(pondWalk stop:)
-				if ((global0 loop:) == 5):
-					(global0 reset: setMotion: PolyPath 94 154 self)
+				pondWalk._send('stop:')
+				if (global0._send('loop:') == 5):
+					global0._send('reset:', 'setMotion:', PolyPath, 94, 154, self)
 				else:
-					(global0 reset: setMotion: PolyPath 139 102 self)
+					global0._send('reset:', 'setMotion:', PolyPath, 139, 102, self)
 				#endif
 			#end:case
 			case 3:
 				if proc913_0(83):
 					cycles = 1
 				else:
-					(global91 say: 3 3 5 2 self)
+					global91._send('say:', 3, 3, 5, 2, self)
 				#endif
 			#end:case
 			case 4:
-				(global0 reset:)
+				global0._send('reset:')
 				if (not proc913_0(83)):
 					proc913_1(83)
-					(global91 say: 3 3 5 3 self)
+					global91._send('say:', 3, 3, 5, 3, self)
 				else:
 					cycles = 1
 				#endif
@@ -624,18 +563,18 @@ class bravePond(Script):
 			case 5:
 				(cond
 					case local1:
-						(global1 handsOff:)
-						(global0 setScript: getLamp)
+						global1._send('handsOff:')
+						global0._send('setScript:', getLamp)
 					#end:case
 					case local2:
-						(global1 handsOff:)
-						(global0 setScript: feelPond)
+						global1._send('handsOff:')
+						global0._send('setScript:', feelPond)
 					#end:case
 					else:
-						(global1 handsOn:)
+						global1._send('handsOn:')
 					#end:else
 				)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -652,28 +591,27 @@ class egoBoilsScript(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 3 3 3 1 self)
+				global91._send('say:', 3, 3, 3, 1, self)
 			#end:case
 			case 1:
-				(global0
-					view: 521
-					normal: 0
-					setLoop: 4
-					cycleSpeed: 12
-					setMotion:
-						PolyPath
-						((global0 x:) + 2)
-						((global0 y:) - 3)
-						self
+				global0._send(
+					'view:', 521,
+					'normal:', 0,
+					'setLoop:', 4,
+					'cycleSpeed:', 12,
+					'setMotion:', PolyPath, (global0._send('x:') + 2), (-
+							global0._send('y:')
+							3
+						), self
 				)
 			#end:case
 			case 2:
-				(boilDeath play:)
-				(global0 setLoop: 0 cel: 0 cycleSpeed: 24 setCycle: End self)
+				boilDeath._send('play:')
+				global0._send('setLoop:', 0, 'cel:', 0, 'cycleSpeed:', 24, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(global0 hide:)
-				(global91 say: 3 3 3 2 self)
+				global0._send('hide:')
+				global91._send('say:', 3, 3, 3, 2, self)
 			#end:case
 			case 4:
 				local0 = 0
@@ -729,13 +667,13 @@ class rocks(Feature):
 
 		(cond
 			case (param1 == 1):
-				(global91 say: noun param1 2 0 0 0)
+				global91._send('say:', noun, param1, 2, 0, 0, 0)
 			#end:case
 			case proc999_5(param1, 1, 2, 5):
-				(global91 say: noun param1 0 0 0 0)
+				global91._send('say:', noun, param1, 0, 0, 0, 0)
 			#end:case
 			else:
-				(global91 say: noun 0 0 0 0 0)
+				global91._send('say:', noun, 0, 0, 0, 0, 0)
 			#end:else
 		)
 	#end:method
@@ -763,11 +701,11 @@ class squirrel(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if proc913_0(13):
-			(self setScript: squirrelScript)
+			self._send('setScript:', squirrelScript)
 		else:
-			(self stopUpd:)
+			self._send('stopUpd:')
 		#endif
 	#end:method
 
@@ -786,11 +724,11 @@ class squirrelScript(Script):
 				seconds = 10
 			#end:case
 			case 1:
-				(client setCycle: End self)
+				client._send('setCycle:', End, self)
 			#end:case
 			case 2:
-				(client dispose:)
-				(self dispose:)
+				client._send('dispose:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -807,19 +745,19 @@ class bunnyScript(Script):
 
 		match state = param1
 			case 0:
-				(bunny setCycle: Fwd setMotion: MoveTo 206 179 self)
+				bunny._send('setCycle:', Fwd, 'setMotion:', MoveTo, 206, 179, self)
 			#end:case
 			case 1:
-				(bunny setLoop: 3 setCycle: End self)
+				bunny._send('setLoop:', 3, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(bunny setCycle: End self)
+				bunny._send('setCycle:', End, self)
 			#end:case
 			case 3:
-				(bunny setLoop: 2 setCycle: Fwd setMotion: MoveTo 244 207 self)
+				bunny._send('setLoop:', 2, 'setCycle:', Fwd, 'setMotion:', MoveTo, 244, 207, self)
 			#end:case
 			case 4:
-				(client dispose:)
+				client._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

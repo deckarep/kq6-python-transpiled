@@ -37,29 +37,28 @@ class Grooper(Code):
 		if (argc >= 3):
 			caller = param3
 		#endif
-		if ((client signal:) & 0x0800):
+		if (client._send('signal:') & 0x0800):
 			if caller:
-				(caller cue:)
+				caller._send('cue:')
 			#endif
 			caller = 0
 			return
 		#endif
 		temp1 = (4 if (kernel.NumLoops(client) < 8) else 8)
-		if ((not (global5 contains: client)) or ((argc >= 4) and param4)):
-			(client
-				loop:
-					[local8
+		if ((not global5._send('contains:', client)) or ((argc >= 4) and param4)):
+			client._send(
+				'loop:', [local8
 						(*
 							(2 if (temp1 == 4) else 1)
 							(/
-								proc999_1(((client heading:) + (180 / temp1)), 360)
+								proc999_1((client._send('heading:') + (180 / temp1)), 360)
 								(360 / temp1)
 							)
 						)
 					]
 			)
 			if caller:
-				(caller cue:)
+				caller._send('cue:')
 			#endif
 			caller = 0
 			return
@@ -67,38 +66,38 @@ class Grooper(Code):
 		(= temp0
 			if 
 				(and
-					((client loop:) == (kernel.NumLoops(client) - 1))
-					((client cycler:) isKindOf: StopWalk)
-					(((client cycler:) vStopped:) == -1)
+					(client._send('loop:') == (kernel.NumLoops(client) - 1))
+					client._send('cycler:')._send('isKindOf:', StopWalk)
+					(client._send('cycler:')._send('vStopped:') == -1)
 				)
-				local0[(client cel:)]
+				local0[client._send('cel:')]
 			else:
-				local0[(client loop:)]
+				local0[client._send('loop:')]
 			#endif
 		)
 		if oldMover:
-			(oldMover dispose:)
+			oldMover._send('dispose:')
 			oldMover = 0
 		#endif
 		if 
 			(and
 				kernel.IsObject(oldCycler)
 				(or
-					(oldCycler isMemberOf: Grycler)
-					(not ((client cycler:) isMemberOf: Grycler))
+					oldCycler._send('isMemberOf:', Grycler)
+					(not client._send('cycler:')._send('isMemberOf:', Grycler))
 				)
 			)
-			(oldCycler dispose:)
+			oldCycler._send('dispose:')
 			oldCycler = 0
 		#endif
 		if (not oldCycler):
-			oldCycler = (client cycler:)
+			oldCycler = client._send('cycler:')
 		#endif
-		if ((client cycler:) and ((client cycler:) isMemberOf: Grycler)):
-			((client cycler:) dispose:)
+		if (client._send('cycler:') and client._send('cycler:')._send('isMemberOf:', Grycler)):
+			client._send('cycler:')._send('dispose:')
 		#endif
-		oldMover = (client mover:)
-		(client cycler: 0 mover: 0 setMotion: 0 setCycle: Grycler self temp0)
+		oldMover = client._send('mover:')
+		client._send('cycler:', 0, 'mover:', 0, 'setMotion:', 0, 'setCycle:', Grycler, self, temp0)
 	#end:method
 
 	@classmethod
@@ -106,16 +105,16 @@ class Grooper(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (not kernel.IsObject((client mover:))):
-			(client mover: oldMover)
+		if (not kernel.IsObject(client._send('mover:'))):
+			client._send('mover:', oldMover)
 		#endif
 		if kernel.IsObject(oldCycler):
-			(client cycler: oldCycler)
+			client._send('cycler:', oldCycler)
 		#endif
 		temp0 = caller
 		caller = oldMover = oldCycler = 0
 		if temp0:
-			(temp0 cue: &rest)
+			temp0._send('cue:', &rest)
 		#endif
 	#end:method
 
@@ -125,17 +124,17 @@ class Grooper(Code):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(oldCycler):
-			(oldCycler dispose:)
+			oldCycler._send('dispose:')
 			oldCycler = 0
 		#endif
 		if kernel.IsObject(oldMover):
-			(oldMover dispose:)
+			oldMover._send('dispose:')
 			oldMover = 0
 		#endif
 		if client:
-			(client looper: 0)
+			client._send('looper:', 0)
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -150,20 +149,20 @@ class Grycler(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1)
+		super._send('init:', param1)
 		caller = param2
 		numOfLoops = (4 if (kernel.NumLoops(client) < 8) else 8)
-		cycleDir = -proc999_0(proc982_2((param3 * 45), (param1 heading:)))
+		cycleDir = -proc999_0(proc982_2((param3 * 45), param1._send('heading:')))
 		loopIndex = param3
-		if (self loopIsCorrect:):
+		if self._send('loopIsCorrect:'):
 			if 
 				(and
-					(((client looper:) oldCycler:) isKindOf: StopWalk)
-					((((client looper:) oldCycler:) vStopped:) == -1)
+					client._send('looper:')._send('oldCycler:')._send('isKindOf:', StopWalk)
+					(client._send('looper:')._send('oldCycler:')._send('vStopped:') == -1)
 				)
-				(client loop: local8[loopIndex])
+				client._send('loop:', local8[loopIndex])
 			#endif
-			(self cycleDone:)
+			self._send('cycleDone:')
 		#endif
 	#end:method
 
@@ -172,9 +171,9 @@ class Grycler(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(client loop: (self nextCel:))
-		if (self loopIsCorrect:):
-			(self cycleDone:)
+		client._send('loop:', self._send('nextCel:'))
+		if self._send('loopIsCorrect:'):
+			self._send('cycleDone:')
 		#endif
 	#end:method
 
@@ -193,7 +192,7 @@ class Grycler(Cycle):
 
 		(return
 			(<
-				kernel.Abs(proc982_2((loopIndex * 45), (client heading:)))
+				kernel.Abs(proc982_2((loopIndex * 45), client._send('heading:')))
 				((180 / numOfLoops) + 1)
 			)
 		)
@@ -207,10 +206,10 @@ class Grycler(Cycle):
 		(return
 			if 
 				(or
-					(kernel.Abs((global88 - cycleCnt)) < (client cycleSpeed:))
-					(self loopIsCorrect:)
+					(kernel.Abs((global88 - cycleCnt)) < client._send('cycleSpeed:'))
+					self._send('loopIsCorrect:')
 				)
-				(client loop:)
+				client._send('loop:')
 			else:
 				cycleCnt = global88
 				(loopIndex += (cycleDir * (8 / numOfLoops)))

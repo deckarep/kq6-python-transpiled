@@ -60,15 +60,15 @@ class startOfCredits(Script):
 				else:
 					local428 = 1
 				#endif
-				(global102 loop: 1 number: 111 play:)
-				(kq init:)
+				global102._send('loop:', 1, 'number:', 111, 'play:')
+				kq._send('init:')
 				cycles = 2
 			#end:case
 			case 1:
 				if local428:
 					seconds = 2
 				else:
-					(fadeThePic doit: 0 self)
+					fadeThePic._send('doit:', 0, self)
 				#endif
 			#end:case
 			case 2:
@@ -78,25 +78,25 @@ class startOfCredits(Script):
 				if local428:
 					seconds = 2
 				else:
-					(fadeThePic doit: 1 self)
+					fadeThePic._send('doit:', 1, self)
 				#endif
 			#end:case
 			case 4:
-				(kq dispose:)
-				(self setScript: openingCredits self)
+				kq._send('dispose:')
+				self._send('setScript:', openingCredits, self)
 			#end:case
 			case 5:
-				if ((global102 prevSignal:) == -1):
-					(self cue:)
+				if (global102._send('prevSignal:') == -1):
+					self._send('cue:')
 				else:
-					(global102 client: self)
+					global102._send('client:', self)
 				#endif
 			#end:case
 			case 6:
 				cycles = 4
 			#end:case
 			case 7:
-				(self dispose:)
+				self._send('dispose:')
 				kernel.DisposeScript(107)
 			#end:case
 		#end:match
@@ -117,7 +117,7 @@ class openingCredits(Script):
 				kernel.Display(107, 0, 108, local400)
 				kernel.Display(107, 0, 108, local401)
 				if (local403[local402] == 0):
-					(self dispose:)
+					self._send('dispose:')
 				else:
 					cycles = 1
 				#endif
@@ -125,7 +125,7 @@ class openingCredits(Script):
 			case 1:
 				local427.post('++')
 				kernel.Message(0, 94, 0, 0, 0, local403[local402], @local0)
-				temp1 = (findSize doit: @local0)
+				temp1 = findSize._send('doit:', @local0)
 				local402.post('++')
 				(= local400
 					kernel.Display(@local0, 102, 7, 100, 60, temp1, 106, 200, 105, 3110, 101, 1, 107)
@@ -141,7 +141,7 @@ class openingCredits(Script):
 				if local428:
 					seconds = 2
 				else:
-					(fadeThePic doit: 0 self)
+					fadeThePic._send('doit:', 0, self)
 				#endif
 			#end:case
 			case 3:
@@ -151,11 +151,11 @@ class openingCredits(Script):
 				if local428:
 					seconds = 2
 				else:
-					(fadeThePic doit: 1 self)
+					fadeThePic._send('doit:', 1, self)
 				#endif
 			#end:case
 			case 5:
-				(self changeState: 0)
+				self._send('changeState:', 0)
 			#end:case
 		#end:match
 	#end:method
@@ -204,7 +204,7 @@ class fadeThePic(Code):
 		#endif
 		temp2 = param2
 		param2 = 0
-		(temp2 cue:)
+		temp2._send('cue:')
 	#end:method
 
 #end:class or instance

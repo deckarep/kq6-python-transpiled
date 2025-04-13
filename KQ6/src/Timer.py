@@ -24,11 +24,11 @@ class Timer(Obj):
 		temp0 = client
 		client = 0
 		if kernel.IsObject(temp0):
-			if (temp0 respondsTo: #timer):
-				(temp0 timer: 0)
+			if temp0._send('respondsTo:', #timer):
+				temp0._send('timer:', 0)
 			#endif
-			if (temp0 respondsTo: #cue):
-				(temp0 cue:)
+			if temp0._send('respondsTo:', #cue):
+				temp0._send('cue:')
 			#endif
 		#endif
 	#end:method
@@ -40,7 +40,7 @@ class Timer(Obj):
 
 		(return
 			if (self == Timer):
-				(super new:)
+				super._send('new:')
 			else:
 				self
 			#endif
@@ -53,12 +53,12 @@ class Timer(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		client = param1
-		(global7 add: self)
-		if (param1 respondsTo: #timer):
-			if kernel.IsObject((param1 timer:)):
-				((param1 timer:) dispose:)
+		global7._send('add:', self)
+		if param1._send('respondsTo:', #timer):
+			if kernel.IsObject(param1._send('timer:')):
+				param1._send('timer:')._send('dispose:')
 			#endif
-			(param1 timer: self)
+			param1._send('timer:', self)
 		#endif
 	#end:method
 
@@ -92,8 +92,8 @@ class Timer(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (kernel.IsObject(client) and (client respondsTo: #timer)):
-			(client timer: 0)
+		if (kernel.IsObject(client) and client._send('respondsTo:', #timer)):
+			client._send('timer:', 0)
 		#endif
 		client = 0
 	#end:method
@@ -104,8 +104,8 @@ class Timer(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (client == 0):
-			(global7 delete: self)
-			(super dispose:)
+			global7._send('delete:', self)
+			super._send('dispose:')
 		#endif
 	#end:method
 
@@ -116,12 +116,12 @@ class Timer(Obj):
 
 		(= temp0
 			if (-info- & 0x8000):
-				(self new:)
+				self._send('new:')
 			else:
 				self
 			#endif
 		)
-		(temp0 init: param1 cycleCnt: param2)
+		temp0._send('init:', param1, 'cycleCnt:', param2)
 		return temp0
 	#end:method
 
@@ -142,12 +142,12 @@ class Timer(Obj):
 		#endif
 		(= temp0
 			if (-info- & 0x8000):
-				(self new:)
+				self._send('new:')
 			else:
 				self
 			#endif
 		)
-		(temp0 init: param1 cycleCnt: temp1)
+		temp0._send('init:', param1, 'cycleCnt:', temp1)
 		return temp0
 	#end:method
 
@@ -165,12 +165,12 @@ class Timer(Obj):
 		#endif
 		(= temp0
 			if (-info- & 0x8000):
-				(self new:)
+				self._send('new:')
 			else:
 				self
 			#endif
 		)
-		(temp0 init: param1 seconds: temp1)
+		temp0._send('init:', param1, 'seconds:', temp1)
 		return temp0
 	#end:method
 
@@ -181,12 +181,12 @@ class Timer(Obj):
 
 		(= temp0
 			if (-info- & 0x8000):
-				(self new:)
+				self._send('new:')
 			else:
 				self
 			#endif
 		)
-		(temp0 ticks: (global88 + param1) init: param2)
+		temp0._send('ticks:', (global88 + param1), 'init:', param2)
 		return temp0
 	#end:method
 

@@ -28,30 +28,30 @@ class egoScr(Script):
 
 		match state = param1
 			case 0:
-				(global0
-					setSpeed: 6
-					ignoreActors:
-					posn: 75 100
-					setPri: 2
-					show:
-					setMotion: MoveTo 107 94 self
+				global0._send(
+					'setSpeed:', 6,
+					'ignoreActors:',
+					'posn:', 75, 100,
+					'setPri:', 2,
+					'show:',
+					'setMotion:', MoveTo, 107, 94, self
 				)
 			#end:case
 			case 1:
-				(global0
-					setPri: -1
-					setScale: Scaler 100 94 189 95
-					setMotion: DPath 118 107 120 111 123 121 self
+				global0._send(
+					'setPri:', -1,
+					'setScale:', Scaler, 100, 94, 189, 95,
+					'setMotion:', DPath, 118, 107, 120, 111, 123, 121, self
 				)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(global0 setHeading: 0 self)
+				global0._send('setHeading:', 0, self)
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -68,26 +68,26 @@ class seenVizierScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 hide:)
+				global0._send('hide:')
 				proc913_1(72)
-				(kernel.ScriptID(220, 5) setCycle: End self)
+				kernel.ScriptID(220, 5)._send('setCycle:', End, self)
 			#end:case
 			case 1:
-				(self setScript: egoScr)
+				self._send('setScript:', egoScr)
 				ticks = 30
 			#end:case
 			case 2:
-				(kernel.ScriptID(220, 6) init: setMotion: MoveTo 105 94 self)
+				kernel.ScriptID(220, 6)._send('init:', 'setMotion:', MoveTo, 105, 94, self)
 			#end:case
 			case 3:
-				(kernel.ScriptID(220, 6)
-					setPri: -1
-					setScale: Scaler 100 94 189 95
-					setMotion: DPath 115 107 117 111 118 115 self
+				kernel.ScriptID(220, 6)._send(
+					'setPri:', -1,
+					'setScale:', Scaler, 100, 94, 189, 95,
+					'setMotion:', DPath, 115, 107, 117, 111, 118, 115, self
 				)
 			#end:case
 			case 4:
-				(kernel.ScriptID(220, 6) setHeading: 180 self)
+				kernel.ScriptID(220, 6)._send('setHeading:', 180, self)
 			#end:case
 			case 5:
 				if script:
@@ -99,38 +99,38 @@ class seenVizierScr(Script):
 				cycles = 2
 			#end:case
 			case 7:
-				(global91 say: 1 0 5 1 self)
+				global91._send('say:', 1, 0, 5, 1, self)
 			#end:case
 			case 8:
-				(global91 say: 1 0 5 2 self)
+				global91._send('say:', 1, 0, 5, 2, self)
 			#end:case
 			case 9:
-				(kernel.ScriptID(220, 6) setMotion: MoveTo 117 111 self)
+				kernel.ScriptID(220, 6)._send('setMotion:', MoveTo, 117, 111, self)
 			#end:case
 			case 10:
 				cycles = 2
 			#end:case
 			case 11:
-				(global91 say: 1 0 5 3 self)
+				global91._send('say:', 1, 0, 5, 3, self)
 			#end:case
 			case 12:
-				(kernel.ScriptID(220, 6) setMotion: DPath 115 107 105 94 self)
+				kernel.ScriptID(220, 6)._send('setMotion:', DPath, 115, 107, 105, 94, self)
 			#end:case
 			case 13:
-				(kernel.ScriptID(220, 6) cue: self)
+				kernel.ScriptID(220, 6)._send('cue:', self)
 			#end:case
 			case 14:
-				(kernel.ScriptID(220, 6) dispose:)
-				(self setScript: kernel.ScriptID(220, 2) self)
+				kernel.ScriptID(220, 6)._send('dispose:')
+				self._send('setScript:', kernel.ScriptID(220, 2), self)
 			#end:case
 			case 15:
-				(global91 say: 1 0 5 4 self)
+				global91._send('say:', 1, 0, 5, 4, self)
 			#end:case
 			case 16:
-				(global0 reset: 3)
-				(global1 handsOn:)
-				(kernel.ScriptID(220, 5) stopUpd:)
-				(self dispose:)
+				global0._send('reset:', 3)
+				global1._send('handsOn:')
+				kernel.ScriptID(220, 5)._send('stopUpd:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -140,7 +140,7 @@ class seenVizierScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(221)
 	#end:method
 

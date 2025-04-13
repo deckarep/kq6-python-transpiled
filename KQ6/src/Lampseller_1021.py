@@ -33,18 +33,18 @@ class Lampseller(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
-			(tBust cel: 1)
+			tBust._send('cel:', 1)
 			cel = 1
-			(super init: tBust 0 0 &rest)
+			super._send('init:', tBust, 0, 0, &rest)
 			textY = textX = 0
 			y = x = 10
 		else:
-			(tBust cel: 0)
+			tBust._send('cel:', 0)
 			cel = 1
 			textX = 76
 			textY = 8
 			y = x = 5
-			(super init: tBust tEyes tMouth &rest)
+			super._send('init:', tBust, tEyes, tMouth, &rest)
 		#endif
 	#end:method
 

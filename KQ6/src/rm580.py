@@ -51,7 +51,7 @@ class rm580Messager(Kq6Messager):
 			)
 			return
 		else:
-			(super findTalker: param1)
+			super._send('findTalker:', param1)
 		#endif
 	#end:method
 
@@ -102,69 +102,22 @@ class rm580(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		local1 = global91
 		global91 = rm580Messager
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						89
-						165
-						42
-						185
-						0
-						185
-						0
-						0
-						319
-						0
-						319
-						189
-						249
-						189
-						208
-						167
-						261
-						154
-						255
-						120
-						213
-						119
-						166
-						119
-						126
-						122
-						56
-						138
-						49
-						153
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						214
-						129
-						206
-						147
-						137
-						147
-						123
-						129
-						151
-						130
-						174
-						121
-						185
-						130
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 153 158 127 171 82 156 106 147 144 149
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 89, 165, 42, 185, 0, 185, 0, 0, 319, 0, 319, 189, 249, 189, 208, 167, 261, 154, 255, 120, 213, 119, 166, 119, 126, 122, 56, 138, 49, 153,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 214, 129, 206, 147, 137, 147, 123, 129, 151, 130, 174, 121, 185, 130,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 153, 158, 127, 171, 82, 156, 106, 147, 144, 149,
+					'yourself:'
 				)
 		)
 		if ((not proc913_0(25)) and (not proc913_0(74))):
@@ -175,50 +128,50 @@ class rm580(KQ6Room):
 			local0 = 2
 		#endif
 		if local0:
-			(global69
-				enable:
-				disable: 0 1 2 3 4 5 6
-				height: -100
-				activateHeight: -100
+			global69._send(
+				'enable:',
+				'disable:', 0, 1, 2, 3, 4, 5, 6,
+				'height:', -100,
+				'activateHeight:', -100
 			)
-			(Cursor showCursor: 0)
-			(global102 number: 569 loop: -1 flags: 1 play: hold: 10)
-			(global103 stop:)
+			Cursor._send('showCursor:', 0)
+			global102._send('number:', 569, 'loop:', -1, 'flags:', 1, 'play:', 'hold:', 10)
+			global103._send('stop:')
 			if (local0 == 1):
-				(druid init: setScale: Scaler 100 70 190 112 setPri: 14)
-				(druid2 setScale: Scaler 100 70 190 112 init:)
+				druid._send('init:', 'setScale:', Scaler, 100, 70, 190, 112, 'setPri:', 14)
+				druid2._send('setScale:', Scaler, 100, 70, 190, 112, 'init:')
 			#endif
-			(druid3 init: setScale: Scaler 100 70 190 112)
-			(druid4
-				init:
-				setScale: Scaler 100 70 190 112
-				ignoreActors: 1
-				stopUpd:
+			druid3._send('init:', 'setScale:', Scaler, 100, 70, 190, 112)
+			druid4._send(
+				'init:',
+				'setScale:', Scaler, 100, 70, 190, 112,
+				'ignoreActors:', 1,
+				'stopUpd:'
 			)
-			(headDruid init: setScale: Scaler 100 70 190 112)
-			(fire init: setCycle: RandCycle)
-			(smoke init:)
-			(fireSound play:)
-			(rope init: stopUpd:)
-			(cage init: setPri: 14 ignoreActors: 1 stopUpd:)
-			(cageRope init: setPri: 14 ignoreActors: 1 stopUpd:)
+			headDruid._send('init:', 'setScale:', Scaler, 100, 70, 190, 112)
+			fire._send('init:', 'setCycle:', RandCycle)
+			smoke._send('init:')
+			fireSound._send('play:')
+			rope._send('init:', 'stopUpd:')
+			cage._send('init:', 'setPri:', 14, 'ignoreActors:', 1, 'stopUpd:')
+			cageRope._send('init:', 'setPri:', 14, 'ignoreActors:', 1, 'stopUpd:')
 		else:
-			(global102 number: 570 loop: -1 flags: 1 play: hold: 10)
-			(fire init: setLoop: 2 posn: 167 137 setCycle: RandCycle)
-			(cage init: setPri: 12 ignoreActors: 1 addToPic:)
-			(cageRope init: setPri: 12 ignoreActors: 1 addToPic:)
+			global102._send('number:', 570, 'loop:', -1, 'flags:', 1, 'play:', 'hold:', 10)
+			fire._send('init:', 'setLoop:', 2, 'posn:', 167, 137, 'setCycle:', RandCycle)
+			cage._send('init:', 'setPri:', 12, 'ignoreActors:', 1, 'addToPic:')
+			cageRope._send('init:', 'setPri:', 12, 'ignoreActors:', 1, 'addToPic:')
 		#endif
-		(bonfire init:)
-		(circleOfStones init:)
-		(trees init:)
-		(global0 init: setScale: Scaler 100 70 190 112)
+		bonfire._send('init:')
+		circleOfStones._send('init:')
+		trees._send('init:')
+		global0._send('init:', 'setScale:', Scaler, 100, 70, 190, 112)
 		if (global12 == 560):
-			(global0 posn: 9 187)
+			global0._send('posn:', 9, 187)
 		else:
-			(global0 posn: 164 212)
+			global0._send('posn:', 164, 212)
 		#endif
-		(global1 handsOff:)
-		(self setScript: egoEnters)
+		global1._send('handsOff:')
+		self._send('setScript:', egoEnters)
 	#end:method
 
 	@classmethod
@@ -226,9 +179,9 @@ class rm580(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 fade:)
+		global102._send('fade:')
 		global91 = local1
-		(super newRoom: param1)
+		super._send('newRoom:', param1)
 	#end:method
 
 	@classmethod
@@ -236,7 +189,7 @@ class rm580(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(939)
 		kernel.Palette(4, 0, 255, 100)
 	#end:method
@@ -255,44 +208,44 @@ class egoEnters(Script):
 			case 0:
 				(cond
 					case (local0 == 2):
-						(global0
-							view: 5806
-							posn: 148 235
-							setLoop: 0
-							setMotion: MoveTo 162 160 self
-							setPri: 14
-							setSpeed: 3
-							setCycle: Walk
+						global0._send(
+							'view:', 5806,
+							'posn:', 148, 235,
+							'setLoop:', 0,
+							'setMotion:', MoveTo, 162, 160, self,
+							'setPri:', 14,
+							'setSpeed:', 3,
+							'setCycle:', Walk
 						)
 					#end:case
 					case (global12 == 560):
-						(global0 setMotion: MoveTo 162 (global0 y:) self)
+						global0._send('setMotion:', MoveTo, 162, global0._send('y:'), self)
 					#end:case
 					else:
-						(global0 setMotion: MoveTo 162 170 self)
+						global0._send('setMotion:', MoveTo, 162, 170, self)
 					#end:else
 				)
 			#end:case
 			case 1:
 				match local0
 					case 0:
-						(global1 handsOn:)
-						(self dispose:)
+						global1._send('handsOn:')
+						self._send('dispose:')
 					#end:case
 					case 1:
 						if (global12 == 560):
-							(global0 setMotion: MoveTo 162 170 self)
+							global0._send('setMotion:', MoveTo, 162, 170, self)
 						else:
 							ticks = 1
 						#endif
 					#end:case
 					case 2:
-						(global2 setScript: meetDruidsTwo)
+						global2._send('setScript:', meetDruidsTwo)
 					#end:case
 				#end:match
 			#end:case
 			case 2:
-				(global2 setScript: meetDruidsOne)
+				global2._send('setScript:', meetDruidsOne)
 			#end:case
 		#end:match
 	#end:method
@@ -309,64 +262,64 @@ class getEmbers(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 208 130 self)
+				global0._send('setMotion:', PolyPath, 208, 130, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 225 self)
+				global0._send('setHeading:', 225, self)
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 5803
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 10
-					posn: 206 131
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 5803,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 10,
+					'posn:', 206, 131,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
-				(global0 reset: 5 posn: 211 129)
+				global0._send('reset:', 5, 'posn:', 211, 129)
 				cycles = 2
 			#end:case
 			case 4:
 				if (not proc913_1(140)):
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
 				(cond
 					case 
 						(and
-							(temp1 = ((global9 at: 11) state:) & 0x0004)
+							(temp1 = global9._send('at:', 11)._send('state:') & 0x0004)
 							(not (temp1 & 0x0001))
 							(not (temp1 & 0x0002))
 						):
-						(global91 say: 4 51 13 1 self)
+						global91._send('say:', 4, 51, 13, 1, self)
 					#end:case
 					case 
 						(and
 							(temp1 & 0x0004)
 							((temp1 & 0x0001) or (temp1 & 0x0002))
 						):
-						(global91 say: 4 51 14 1 self)
+						global91._send('say:', 4, 51, 14, 1, self)
 					#end:case
 					else:
-						(global91 say: 4 51 11 1 self)
+						global91._send('say:', 4, 51, 11, 1, self)
 					#end:else
 				)
 			#end:case
 			case 5:
-				(global0 reset: 2)
-				temp0 = (global9 at: 11)
-				(kernel.ScriptID(0, 4) setReal: temp0 0 5 0)
-				(temp0
-					setCursor: 990 0 9
-					loop: 0
-					cel: 10
-					state: (| (temp0 state:) 0x000c)
+				global0._send('reset:', 2)
+				temp0 = global9._send('at:', 11)
+				kernel.ScriptID(0, 4)._send('setReal:', temp0, 0, 5, 0)
+				temp0._send(
+					'setCursor:', 990, 0, 9,
+					'loop:', 0,
+					'cel:', 10,
+					'state:', (| temp0._send('state:') 0x000c)
 				)
-				((temp0 cursor:) loop: 0 cel: 9)
-				(global1 setCursor: (temp0 cursor:) handsOn:)
-				(self dispose:)
+				temp0._send('cursor:')._send('loop:', 0, 'cel:', 9)
+				global1._send('setCursor:', temp0._send('cursor:'), 'handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -384,58 +337,56 @@ class meetDruidsOne(Script):
 		match state = param1
 			case 0:
 				proc913_1(14)
-				(global91 say: 1 0 1 1 self)
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 2 self)
+				global91._send('say:', 1, 0, 1, 2, self)
 			#end:case
 			case 2:
-				(global91 say: 1 0 1 3 self)
+				global91._send('say:', 1, 0, 1, 3, self)
 			#end:case
 			case 3:
-				(druid
-					setPri: 14
-					setCycle: Walk
-					setSpeed: 0
-					xStep: 6
-					setMotion:
-						MoveTo
-						((global0 x:) - 25)
-						((global0 y:) + 3)
-						self
-					ignoreActors: 1
-					illegalBits: 0
+				druid._send(
+					'setPri:', 14,
+					'setCycle:', Walk,
+					'setSpeed:', 0,
+					'xStep:', 6,
+					'setMotion:', MoveTo, (global0._send('x:') - 25), (+
+							global0._send('y:')
+							3
+						), self,
+					'ignoreActors:', 1,
+					'illegalBits:', 0
 				)
-				(druid2
-					setCycle: Walk
-					setSpeed: 0
-					xStep: 6
-					setMotion:
-						MoveTo
-						((global0 x:) + 24)
-						((global0 y:) + 4)
-						self
-					ignoreActors: 1
-					illegalBits: 0
+				druid2._send(
+					'setCycle:', Walk,
+					'setSpeed:', 0,
+					'xStep:', 6,
+					'setMotion:', MoveTo, (global0._send('x:') + 24), (+
+							global0._send('y:')
+							4
+						), self,
+					'ignoreActors:', 1,
+					'illegalBits:', 0
 				)
 			#end:case
 			case 4: 0#end:case
 			case 5:
-				(druid hide:)
-				(druid2 hide:)
-				(global0
-					view: 554
-					normal: 0
-					setPri: 14
-					setLoop: 0
-					setCel: 0
-					posn: ((global0 x:) - 2) (global0 y:)
-					setCycle: End self
+				druid._send('hide:')
+				druid2._send('hide:')
+				global0._send(
+					'view:', 554,
+					'normal:', 0,
+					'setPri:', 14,
+					'setLoop:', 0,
+					'setCel:', 0,
+					'posn:', (global0._send('x:') - 2), global0._send('y:'),
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
-				(global0 view: 5806 setLoop: 0 setCycle: Walk)
-				(global2 setScript: continueDruids)
+				global0._send('view:', 5806, 'setLoop:', 0, 'setCycle:', Walk)
+				global2._send('setScript:', continueDruids)
 			#end:case
 		#end:match
 	#end:method
@@ -452,37 +403,37 @@ class meetDruidsTwo(Script):
 
 		match state = param1
 			case 0:
-				(druid
-					view: 553
-					posn: 0 0
-					init:
-					setPri: 14
-					ignoreActors: 1
-					illegalBits: 0
-					hide:
+				druid._send(
+					'view:', 553,
+					'posn:', 0, 0,
+					'init:',
+					'setPri:', 14,
+					'ignoreActors:', 1,
+					'illegalBits:', 0,
+					'hide:'
 				)
-				(druid2
-					view: 553
-					posn: 0 0
-					init:
-					ignoreActors: 1
-					illegalBits: 0
-					hide:
+				druid2._send(
+					'view:', 553,
+					'posn:', 0, 0,
+					'init:',
+					'ignoreActors:', 1,
+					'illegalBits:', 0,
+					'hide:'
 				)
 				proc913_1(14)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 1 self)
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 2:
-				(global91 say: 1 0 8 1 self)
+				global91._send('say:', 1, 0, 8, 1, self)
 			#end:case
 			case 3:
-				(global91 say: 1 0 8 2 self)
+				global91._send('say:', 1, 0, 8, 2, self)
 			#end:case
 			case 4:
-				(global2 setScript: continueDruids)
+				global2._send('setScript:', continueDruids)
 			#end:case
 		#end:match
 	#end:method
@@ -499,159 +450,159 @@ class continueDruids(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 1 0 1 4 self)
+				global91._send('say:', 1, 0, 1, 4, self)
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 5 self)
+				global91._send('say:', 1, 0, 1, 5, self)
 			#end:case
 			case 2:
-				(global91 say: 1 0 1 6 self)
+				global91._send('say:', 1, 0, 1, 6, self)
 			#end:case
 			case 3:
-				(global102 hold: 20)
-				(cage signal: (| (cage signal:) 0x6000))
+				global102._send('hold:', 20)
+				cage._send('signal:', (| cage._send('signal:') 0x6000))
 				cycles = 2
 			#end:case
 			case 4:
-				(global0 setMotion: MoveTo 177 158 self)
+				global0._send('setMotion:', MoveTo, 177, 158, self)
 			#end:case
 			case 5:
 				kernel.UnLoad(128, 554)
-				(global0
-					view: 588
-					setLoop: 0
-					cel: 0
-					setSpeed: 3
-					setPri: ((cage priority:) - 1)
-					posn: ((global0 x:) - 18) ((global0 y:) + 2)
-					setCycle: End self
+				global0._send(
+					'view:', 588,
+					'setLoop:', 0,
+					'cel:', 0,
+					'setSpeed:', 3,
+					'setPri:', (cage._send('priority:') - 1),
+					'posn:', (global0._send('x:') - 18), (global0._send('y:') + 2),
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
-				(global0 view: 581 setLoop: 1 setPri: -1 setCycle: End self)
+				global0._send('view:', 581, 'setLoop:', 1, 'setPri:', -1, 'setCycle:', End, self)
 			#end:case
 			case 7:
-				(cage view: 5807 setLoop: 0 cel: 0 posn: 146 124 setPri: 14)
-				(cageRope view: 5807 setLoop: 1 cel: 0 setPri: 14)
-				(global0 view: 553 hide:)
+				cage._send('view:', 5807, 'setLoop:', 0, 'cel:', 0, 'posn:', 146, 124, 'setPri:', 14)
+				cageRope._send('view:', 5807, 'setLoop:', 1, 'cel:', 0, 'setPri:', 14)
+				global0._send('view:', 553, 'hide:')
 				kernel.UnLoad(128, 580)
 				kernel.UnLoad(128, 581)
-				(druid
-					show:
-					posn: ((global0 x:) - 12) ((global0 y:) - 4)
-					setLoop: -1
-					setCycle: Walk
+				druid._send(
+					'show:',
+					'posn:', (global0._send('x:') - 12), (global0._send('y:') - 4),
+					'setLoop:', -1,
+					'setCycle:', Walk
 				)
-				(druid2
-					show:
-					posn: ((global0 x:) - 37) ((global0 y:) - 10)
-					setLoop: -1
-					setCycle: Walk
+				druid2._send(
+					'show:',
+					'posn:', (global0._send('x:') - 37), (global0._send('y:') - 10),
+					'setLoop:', -1,
+					'setCycle:', Walk
 				)
 				cycles = 2
 			#end:case
 			case 8:
-				(global91 say: 1 0 1 7 self)
+				global91._send('say:', 1, 0, 1, 7, self)
 			#end:case
 			case 9:
-				(druid setMotion: MoveTo (druid x:) ((druid y:) + 10) self)
-				(druid2 setMotion: MoveTo 222 180 self)
+				druid._send('setMotion:', MoveTo, druid._send('x:'), (druid._send('y:') + 10), self)
+				druid2._send('setMotion:', MoveTo, 222, 180, self)
 			#end:case
 			case 10:
-				(druid setMotion: MoveTo 85 178 self)
+				druid._send('setMotion:', MoveTo, 85, 178, self)
 			#end:case
 			case 11: 0#end:case
 			case 12:
-				(headDruid view: 587 setLoop: 0 cel: 0 setCycle: End self)
+				headDruid._send('view:', 587, 'setLoop:', 0, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 13:
-				(headDruid view: 5808)
-				(druid
-					setLoop: 4
-					cel: 3
-					setLoop: -1
-					setPri: ((cage priority:) + 1)
+				headDruid._send('view:', 5808)
+				druid._send(
+					'setLoop:', 4,
+					'cel:', 3,
+					'setLoop:', -1,
+					'setPri:', (cage._send('priority:') + 1)
 				)
-				(druid2 setLoop: 4 cel: 3 setLoop: -1)
-				(druid3
-					setPri: ((rope priority:) - 1)
-					setLoop: -1
-					setCycle: Walk
-					setMotion: PolyPath 194 131 self
-					ignoreActors: 1
+				druid2._send('setLoop:', 4, 'cel:', 3, 'setLoop:', -1)
+				druid3._send(
+					'setPri:', (rope._send('priority:') - 1),
+					'setLoop:', -1,
+					'setCycle:', Walk,
+					'setMotion:', PolyPath, 194, 131, self,
+					'ignoreActors:', 1
 				)
 			#end:case
 			case 14:
-				(druid5
-					init:
-					setLoop: -1
-					setScale: Scaler 100 70 190 112
-					setCycle: Walk
-					setMotion: MoveTo 224 130 self
+				druid5._send(
+					'init:',
+					'setLoop:', -1,
+					'setScale:', Scaler, 100, 70, 190, 112,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 224, 130, self
 				)
 			#end:case
 			case 15:
-				(fx0 number: 563 loop: -1 play:)
-				(druid3
-					view: 5804
-					setLoop: 0
-					posn: 208 133
-					setCycle: Fwd
-					setPri: -1
+				fx0._send('number:', 563, 'loop:', -1, 'play:')
+				druid3._send(
+					'view:', 5804,
+					'setLoop:', 0,
+					'posn:', 208, 133,
+					'setCycle:', Fwd,
+					'setPri:', -1
 				)
-				(rope dispose:)
-				(druid5 dispose:)
-				(cageRope setCel: 1)
-				(cage posn: 147 124)
+				rope._send('dispose:')
+				druid5._send('dispose:')
+				cageRope._send('setCel:', 1)
+				cage._send('posn:', 147, 124)
 				cycles = 5
 			#end:case
 			case 16:
-				(cageRope setCel: 2)
-				(cage posn: 152 117)
+				cageRope._send('setCel:', 2)
+				cage._send('posn:', 152, 117)
 				cycles = 5
 			#end:case
 			case 17:
-				(cageRope setCel: 3)
-				(cage posn: 166 107)
+				cageRope._send('setCel:', 3)
+				cage._send('posn:', 166, 107)
 				cycles = 5
 			#end:case
 			case 18:
-				(cageRope dispose:)
-				(cage
-					view: 5801
-					setPri: 14
-					setCel: 0
-					setLoop: 0
-					cycleSpeed: 5
-					posn: 170 54
-					setCycle: End self
+				cageRope._send('dispose:')
+				cage._send(
+					'view:', 5801,
+					'setPri:', 14,
+					'setCel:', 0,
+					'setLoop:', 0,
+					'cycleSpeed:', 5,
+					'posn:', 170, 54,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 19:
-				(fx0 stop:)
+				fx0._send('stop:')
 				kernel.UnLoad(128, 5807)
-				(cage cel: 0 setCycle: End self)
+				cage._send('cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 20:
-				(druid3 setCycle: 0 setPri: 12 stopUpd:)
-				(cage setLoop: 1 cel: 6 setCycle: End self)
+				druid3._send('setCycle:', 0, 'setPri:', 12, 'stopUpd:')
+				cage._send('setLoop:', 1, 'cel:', 6, 'setCycle:', End, self)
 			#end:case
 			case 21:
-				(cage cel: 0 setCycle: End self)
+				cage._send('cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 22:
-				(cage view: 5802 setLoop: 0 setCel: 0)
+				cage._send('view:', 5802, 'setLoop:', 0, 'setCel:', 0)
 				kernel.UnLoad(128, 5801)
 				cycles = 2
 			#end:case
 			case 23:
-				(global91 say: 1 0 1 8 self)
+				global91._send('say:', 1, 0, 1, 8, self)
 			#end:case
 			case 24:
-				(cage setPri: 12 stopUpd:)
-				(smoke dispose:)
-				(global2 setInset: cageInset)
-				(self dispose:)
+				cage._send('setPri:', 12, 'stopUpd:')
+				smoke._send('dispose:')
+				global2._send('setInset:', cageInset)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -671,47 +622,47 @@ class inTheCage(Script):
 				seconds = 5
 			#end:case
 			case 1:
-				(global102 hold: 30)
-				(inEgo view: 583 setLoop: 0 cel: 1)
+				global102._send('hold:', 30)
+				inEgo._send('view:', 583, 'setLoop:', 0, 'cel:', 1)
 				ticks = 12
 			#end:case
 			case 2:
-				(inEgo stopUpd:)
-				(global91 say: 1 0 2 0 self)
+				inEgo._send('stopUpd:')
+				global91._send('say:', 1, 0, 2, 0, self)
 			#end:case
 			case 3:
 				seconds = 5
 			#end:case
 			case 4:
-				(global102 hold: 0)
-				(inEgo cel: 2)
+				global102._send('hold:', 0)
+				inEgo._send('cel:', 2)
 				ticks = 12
 			#end:case
 			case 5:
-				(inEgo stopUpd:)
-				(global91 say: 1 0 3 0 self)
+				inEgo._send('stopUpd:')
+				global91._send('say:', 1, 0, 3, 0, self)
 			#end:case
 			case 6:
 				seconds = 3
 			#end:case
 			case 7:
-				(inEgo cel: 3)
+				inEgo._send('cel:', 3)
 				seconds = 2
 			#end:case
 			case 8:
 				if (not global161):
-					(global91 say: 1 0 4 0 self)
+					global91._send('say:', 1, 0, 4, 0, self)
 				else:
 					state.post('++')
-					(global91 say: 1 0 7 0 self)
+					global91._send('say:', 1, 0, 7, 0, self)
 				#endif
 			#end:case
 			case 9:
-				(global91 say: 1 0 7 0 self)
+				global91._send('say:', 1, 0, 7, 0, self)
 			#end:case
 			case 10:
-				(global102 number: 561 loop: 1 play: self)
-				(inEgo setLoop: 1 cel: 0 setCycle: End)
+				global102._send('number:', 561, 'loop:', 1, 'play:', self)
+				inEgo._send('setLoop:', 1, 'cel:', 0, 'setCycle:', End)
 			#end:case
 			case 11:
 				temp0 = 100
@@ -723,18 +674,18 @@ class inTheCage(Script):
 				cycles = 1
 			#end:case
 			case 12:
-				(cageInset dispose: 0)
+				cageInset._send('dispose:', 0)
 				cycles = 2
 			#end:case
 			case 13:
-				(global2 drawPic: 98)
-				(global5 eachElementDo: #dispose)
+				global2._send('drawPic:', 98)
+				global5._send('eachElementDo:', #dispose)
 				cycles = 2
 			#end:case
 			case 14:
 				kernel.Palette(4, 0, 255, 100)
-				(global69 height: 0 activateHeight: 0 enable: 6)
-				(Cursor showCursor: 1)
+				global69._send('height:', 0, 'activateHeight:', 0, 'enable:', 6)
+				Cursor._send('showCursor:', 1)
 				if (global153 == 5):
 					proc0_1(11)
 				else:
@@ -759,144 +710,144 @@ class makeRain(Script):
 				seconds = 5
 			#end:case
 			case 1:
-				(global102 hold: 30)
-				(inEgo cel: 1)
+				global102._send('hold:', 30)
+				inEgo._send('cel:', 1)
 				ticks = 12
 			#end:case
 			case 2:
-				(inEgo stopUpd:)
-				(global91 say: 1 0 2 0 self)
+				inEgo._send('stopUpd:')
+				global91._send('say:', 1, 0, 2, 0, self)
 			#end:case
 			case 3:
 				seconds = 5
 			#end:case
 			case 4:
-				(global102 hold: 0)
-				(inEgo cel: 2)
+				global102._send('hold:', 0)
+				inEgo._send('cel:', 2)
 				ticks = 12
 			#end:case
 			case 5:
-				(inEgo stopUpd:)
-				(global91 say: 1 0 3 0 self)
+				inEgo._send('stopUpd:')
+				global91._send('say:', 1, 0, 3, 0, self)
 				seconds = 5
 			#end:case
 			case 6:
-				(global91 say: 1 0 6 0 self)
+				global91._send('say:', 1, 0, 6, 0, self)
 			#end:case
 			case 7:
-				(global91 say: 1 0 9 1)
-				(fx0 number: 562 loop: -1 play:)
-				(inFlame show: setCycle: RandCycle)
+				global91._send('say:', 1, 0, 9, 1)
+				fx0._send('number:', 562, 'loop:', -1, 'play:')
+				inFlame._send('show:', 'setCycle:', RandCycle)
 				seconds = 2
 			#end:case
 			case 8:
-				(fx1 number: 568 loop: 1 play:)
-				(inEgo
-					view: 585
-					setLoop: 1
-					cel: 0
-					cycleSpeed: 15
-					setCycle: End self
+				fx1._send('number:', 568, 'loop:', 1, 'play:')
+				inEgo._send(
+					'view:', 585,
+					'setLoop:', 1,
+					'cel:', 0,
+					'cycleSpeed:', 15,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 9:
-				(inEgo setCycle: End self)
+				inEgo._send('setCycle:', End, self)
 			#end:case
 			case 10:
-				(inFlame dispose:)
-				(fx0 stop:)
-				(inEgo setCycle: End self)
+				inFlame._send('dispose:')
+				fx0._send('stop:')
+				inEgo._send('setCycle:', End, self)
 			#end:case
 			case 11:
-				(global0 put: 5 580)
-				if (proc913_0(112) and (not (global0 has: 4))):
-					(global91 say: 1 0 15 1 self)
-					(global1 givePoints: 1)
-					(global0 get: 4)
+				global0._send('put:', 5, 580)
+				if (proc913_0(112) and (not global0._send('has:', 4))):
+					global91._send('say:', 1, 0, 15, 1, self)
+					global1._send('givePoints:', 1)
+					global0._send('get:', 4)
 				else:
-					(global91 say: 1 0 9 2 self)
+					global91._send('say:', 1, 0, 9, 2, self)
 				#endif
 			#end:case
 			case 12:
-				(inEgo view: 583 setLoop: 0 cel: 2 setCycle: 0)
+				inEgo._send('view:', 583, 'setLoop:', 0, 'cel:', 2, 'setCycle:', 0)
 				kernel.UnLoad(128, 585)
 				cycles = 2
 			#end:case
 			case 13:
-				(global91 say: 1 0 9 3 self)
+				global91._send('say:', 1, 0, 9, 3, self)
 			#end:case
 			case 14:
 				seconds = 2
 			#end:case
 			case 15:
-				(fx0 number: 520 loop: -1 play:)
-				(inEgo
-					view: 582
-					setLoop: 7
-					cel: 0
-					cycleSpeed: 15
-					setCycle: Osc 2 self
+				fx0._send('number:', 520, 'loop:', -1, 'play:')
+				inEgo._send(
+					'view:', 582,
+					'setLoop:', 7,
+					'cel:', 0,
+					'cycleSpeed:', 15,
+					'setCycle:', Osc, 2, self
 				)
 			#end:case
 			case 16:
-				(inEgo setCycle: 0 stopUpd:)
-				(global91 say: 1 0 9 4 self)
+				inEgo._send('setCycle:', 0, 'stopUpd:')
+				global91._send('say:', 1, 0, 9, 4, self)
 			#end:case
 			case 17:
 				seconds = 2
 			#end:case
 			case 18:
-				(inEgo setCycle: Osc 2 self)
+				inEgo._send('setCycle:', Osc, 2, self)
 			#end:case
 			case 19:
-				(inEgo setCycle: 0 stopUpd:)
-				(global91 say: 1 0 9 5 self)
+				inEgo._send('setCycle:', 0, 'stopUpd:')
+				global91._send('say:', 1, 0, 9, 5, self)
 			#end:case
 			case 20:
 				seconds = 2
 			#end:case
 			case 21:
-				(inEgo setCycle: Osc 2 self)
+				inEgo._send('setCycle:', Osc, 2, self)
 			#end:case
 			case 22:
-				(inEgo setCycle: 0 stopUpd:)
-				(global91 say: 1 0 9 6 self)
+				inEgo._send('setCycle:', 0, 'stopUpd:')
+				global91._send('say:', 1, 0, 9, 6, self)
 			#end:case
 			case 23:
-				(global1 givePoints: 2)
-				(inEgo view: 5821 setLoop: 0 cel: 0 setCycle: End self)
+				global1._send('givePoints:', 2)
+				inEgo._send('view:', 5821, 'setLoop:', 0, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 24:
-				(inEgo view: 582 setLoop: 5 cycleSpeed: 2 setCycle: End self)
+				inEgo._send('view:', 582, 'setLoop:', 5, 'cycleSpeed:', 2, 'setCycle:', End, self)
 			#end:case
 			case 25:
-				(inEgo setCycle: End self)
+				inEgo._send('setCycle:', End, self)
 			#end:case
 			case 26:
-				(inEgo setCycle: End self)
+				inEgo._send('setCycle:', End, self)
 			#end:case
 			case 27:
-				(inEgo setCycle: End self)
+				inEgo._send('setCycle:', End, self)
 			#end:case
 			case 28:
-				(inEgo cel: 0 setCycle: End self)
+				inEgo._send('cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 29:
-				(inEgo setLoop: 6 setCycle: End self)
+				inEgo._send('setLoop:', 6, 'setCycle:', End, self)
 			#end:case
 			case 30:
-				(inEgo setCycle: 0 stopUpd:)
-				(global91 say: 1 0 9 7 self)
+				inEgo._send('setCycle:', 0, 'stopUpd:')
+				global91._send('say:', 1, 0, 9, 7, self)
 			#end:case
 			case 31:
-				(global91 say: 1 0 9 8 self)
+				global91._send('say:', 1, 0, 9, 8, self)
 			#end:case
 			case 32:
-				(fx1 number: 565 loop: -1 play:)
-				(inBillow show: setCycle: End self)
+				fx1._send('number:', 565, 'loop:', -1, 'play:')
+				inBillow._send('show:', 'setCycle:', End, self)
 			#end:case
 			case 33:
-				(inBillow setLoop: 1 cel: 0 setCycle: Fwd)
+				inBillow._send('setLoop:', 1, 'cel:', 0, 'setCycle:', Fwd)
 				seconds = 3
 			#end:case
 			case 34:
@@ -904,15 +855,15 @@ class makeRain(Script):
 				cycles = 3
 			#end:case
 			case 35:
-				(fx0 stop:)
-				(fx1 stop:)
-				(global102 fade:)
-				(fx2 number: 566 loop: 1 play:)
+				fx0._send('stop:')
+				fx1._send('stop:')
+				global102._send('fade:')
+				fx2._send('number:', 566, 'loop:', 1, 'play:')
 				kernel.Palette(1, 5801)
 				seconds = 2
 			#end:case
 			case 36:
-				(fx2 play:)
+				fx2._send('play:')
 				kernel.Palette(1, 580)
 				cycles = 3
 			#end:case
@@ -921,7 +872,7 @@ class makeRain(Script):
 				cycles = 10
 			#end:case
 			case 38:
-				(fx2 play:)
+				fx2._send('play:')
 				kernel.Palette(1, 580)
 				cycles = 3
 			#end:case
@@ -930,11 +881,11 @@ class makeRain(Script):
 				cycles = 30
 			#end:case
 			case 40:
-				(global91 say: 1 0 9 9 self)
+				global91._send('say:', 1, 0, 9, 9, self)
 			#end:case
 			case 41:
-				(rainSound play:)
-				(fireSound stop:)
+				rainSound._send('play:')
+				fireSound._send('stop:')
 				cycles = 2
 			#end:case
 			case 42:
@@ -947,17 +898,17 @@ class makeRain(Script):
 				cycles = 1
 			#end:case
 			case 43:
-				(cageInset dispose:)
-				(druid3 dispose:)
-				(druid4 dispose:)
-				(smoke dispose:)
-				(headDruid posn: (headDruid x:) (headDruid y:) 1000)
-				(druid posn: (druid x:) (druid y:) 1000)
-				(druid2 posn: (druid2 x:) (druid2 y:) 1000)
-				(fire posn: (fire x:) (fire y:) 1000)
-				(global0 posn: (global0 x:) (global0 y:) 1000)
-				(cage posn: (cage x:) (cage y:) 1000)
-				(global2 drawPic: 98)
+				cageInset._send('dispose:')
+				druid3._send('dispose:')
+				druid4._send('dispose:')
+				smoke._send('dispose:')
+				headDruid._send('posn:', headDruid._send('x:'), headDruid._send('y:'), 1000)
+				druid._send('posn:', druid._send('x:'), druid._send('y:'), 1000)
+				druid2._send('posn:', druid2._send('x:'), druid2._send('y:'), 1000)
+				fire._send('posn:', fire._send('x:'), fire._send('y:'), 1000)
+				global0._send('posn:', global0._send('x:'), global0._send('y:'), 1000)
+				cage._send('posn:', cage._send('x:'), cage._send('y:'), 1000)
+				global2._send('drawPic:', 98)
 				cycles = 2
 			#end:case
 			case 44:
@@ -965,122 +916,122 @@ class makeRain(Script):
 				seconds = 3
 			#end:case
 			case 45:
-				(fx2 play:)
+				fx2._send('play:')
 				seconds = 2
 			#end:case
 			case 46:
-				(rainSound play:)
-				(global91 say: 1 0 9 10 self)
+				rainSound._send('play:')
+				global91._send('say:', 1, 0, 9, 10, self)
 				proc913_1(74)
 			#end:case
 			case 47:
 				seconds = 3
 			#end:case
 			case 48:
-				(global2 drawPic: 98 12)
+				global2._send('drawPic:', 98, 12)
 				kernel.Message(0, 580, 1, 0, 9, 11, @temp1)
 				kernel.Display(@temp1, 100, 82, 85, 102, 14, 105, 0)
 				cycles = 1
 			#end:case
 			case 49:
-				(rainSound stop:)
+				rainSound._send('stop:')
 				cycles = 1
 			#end:case
 			case 50:
-				(global102 number: 570 loop: -1 play:)
+				global102._send('number:', 570, 'loop:', -1, 'play:')
 				seconds = 5
 			#end:case
 			case 51:
-				(global2 drawPic: 580 11)
-				(cage
-					view: 580
-					loop: 0
-					cel: 0
-					ignoreActors: 1
-					ignoreHorizon: 1
-					posn: 147 124 0
-					setPri: 12
-					addToPic:
+				global2._send('drawPic:', 580, 11)
+				cage._send(
+					'view:', 580,
+					'loop:', 0,
+					'cel:', 0,
+					'ignoreActors:', 1,
+					'ignoreHorizon:', 1,
+					'posn:', 147, 124, 0,
+					'setPri:', 12,
+					'addToPic:'
 				)
-				(cageRope
-					view: 580
-					init:
-					loop: 1
-					cel: 0
-					ignoreHorizon: 1
-					ignoreActors: 1
-					posn: 170 54
-					setPri: 12
-					addToPic:
+				cageRope._send(
+					'view:', 580,
+					'init:',
+					'loop:', 1,
+					'cel:', 0,
+					'ignoreHorizon:', 1,
+					'ignoreActors:', 1,
+					'posn:', 170, 54,
+					'setPri:', 12,
+					'addToPic:'
 				)
-				(fire posn: 167 137 0 setLoop: 2)
-				(global0
-					reset: 1
-					setScale: Scaler 100 70 190 112
-					posn: 131 135 0
+				fire._send('posn:', 167, 137, 0, 'setLoop:', 2)
+				global0._send(
+					'reset:', 1,
+					'setScale:', Scaler, 100, 70, 190, 112,
+					'posn:', 131, 135, 0
 				)
-				(headDruid posn: (headDruid x:) (headDruid y:) 0)
-				(druid posn: (druid x:) (druid y:) 0)
-				(druid2 posn: (druid2 x:) (druid2 y:) 0)
+				headDruid._send('posn:', headDruid._send('x:'), headDruid._send('y:'), 0)
+				druid._send('posn:', druid._send('x:'), druid._send('y:'), 0)
+				druid2._send('posn:', druid2._send('x:'), druid2._send('y:'), 0)
 				cycles = 2
 			#end:case
 			case 52:
-				(druidConv
-					add: -1 1 0 10 1
-					add: -1 1 0 10 2
-					add: -1 1 0 10 3
-					add: -1 1 0 10 4
-					add: -1 1 0 10 5
-					add: -1 1 0 10 6
-					add: -1 1 0 10 7
-					add: -1 1 0 10 8
-					add: -1 1 0 10 9
-					add: -1 1 0 10 10
-					add: -1 1 0 10 11
-					add: -1 1 0 10 12
-					add: -1 1 0 10 13
-					init: self
+				druidConv._send(
+					'add:', -1, 1, 0, 10, 1,
+					'add:', -1, 1, 0, 10, 2,
+					'add:', -1, 1, 0, 10, 3,
+					'add:', -1, 1, 0, 10, 4,
+					'add:', -1, 1, 0, 10, 5,
+					'add:', -1, 1, 0, 10, 6,
+					'add:', -1, 1, 0, 10, 7,
+					'add:', -1, 1, 0, 10, 8,
+					'add:', -1, 1, 0, 10, 9,
+					'add:', -1, 1, 0, 10, 10,
+					'add:', -1, 1, 0, 10, 11,
+					'add:', -1, 1, 0, 10, 12,
+					'add:', -1, 1, 0, 10, 13,
+					'init:', self
 				)
 			#end:case
 			case 53:
-				(global91 say: 1 0 10 14 self)
+				global91._send('say:', 1, 0, 10, 14, self)
 			#end:case
 			case 54:
-				(global91 say: 1 0 10 15 self)
+				global91._send('say:', 1, 0, 10, 15, self)
 			#end:case
 			case 55:
-				(global91 say: 1 0 10 16 self)
+				global91._send('say:', 1, 0, 10, 16, self)
 			#end:case
 			case 56:
-				(global91 say: 1 0 10 17 self)
+				global91._send('say:', 1, 0, 10, 17, self)
 			#end:case
 			case 57:
-				(global91 say: 1 0 10 18 self)
+				global91._send('say:', 1, 0, 10, 18, self)
 			#end:case
 			case 58:
-				(global91 say: 1 0 10 19 self)
+				global91._send('say:', 1, 0, 10, 19, self)
 			#end:case
 			case 59:
-				(headDruid
-					view: 584
-					setLoop: 0
-					setCycle: Walk
-					setMotion: MoveTo 50 (headDruid y:) self
+				headDruid._send(
+					'view:', 584,
+					'setLoop:', 0,
+					'setCycle:', Walk,
+					'setMotion:', MoveTo, 50, headDruid._send('y:'), self
 				)
-				(druid setMotion: PolyPath -20 189 self)
-				(druid2 setMotion: PolyPath -20 189 self)
+				druid._send('setMotion:', PolyPath, -20, 189, self)
+				druid2._send('setMotion:', PolyPath, -20, 189, self)
 			#end:case
 			case 60: 0#end:case
 			case 61: 0#end:case
 			case 62:
-				(headDruid dispose:)
-				(druid dispose:)
-				(druid2 dispose:)
-				(global69 height: 0 activateHeight: 0 enable: 6)
-				(Cursor showCursor: 1)
+				headDruid._send('dispose:')
+				druid._send('dispose:')
+				druid2._send('dispose:')
+				global69._send('height:', 0, 'activateHeight:', 0, 'enable:', 6)
+				Cursor._send('showCursor:', 1)
 				global161 = 0
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1102,7 +1053,7 @@ class fire(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(bonfire doVerb: param1 &rest)
+		bonfire._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -1122,8 +1073,8 @@ class smoke(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit: &rest)
-		cel = (fire cel:)
+		super._send('doit:', &rest)
+		cel = fire._send('cel:')
 	#end:method
 
 #end:class or instance
@@ -1228,19 +1179,19 @@ class bonfire(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 57, 58, 59, 60, 96):
-			(global91 say: noun 56 0)
+			global91._send('say:', noun, 56, 0)
 		else:
 			match param1
 				case 51:
-					if (((global9 at: 11) state:) & 0x0008):
-						(global91 say: noun 51 16 1)
+					if (global9._send('at:', 11)._send('state:') & 0x0008):
+						global91._send('say:', noun, 51, 16, 1)
 					else:
-						(global1 handsOff:)
-						(global2 setScript: getEmbers)
+						global1._send('handsOff:')
+						global2._send('setScript:', getEmbers)
 					#endif
 				#end:case
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#end:else
 			#end:match
 		#endif
@@ -1278,15 +1229,15 @@ class cageInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(inEgo init: setPri: 14)
-		(inFire init: setCycle: Fwd cycleSpeed: 10 setPri: 14)
-		(inFlame init: setPri: 13 hide:)
-		(inBillow init: setPri: 14 hide:)
-		if ((global0 has: 19) and (global161 == 15)):
-			(global2 setScript: makeRain)
+		super._send('init:', &rest)
+		inEgo._send('init:', 'setPri:', 14)
+		inFire._send('init:', 'setCycle:', Fwd, 'cycleSpeed:', 10, 'setPri:', 14)
+		inFlame._send('init:', 'setPri:', 13, 'hide:')
+		inBillow._send('init:', 'setPri:', 14, 'hide:')
+		if (global0._send('has:', 19) and (global161 == 15)):
+			global2._send('setScript:', makeRain)
 		else:
-			(global2 setScript: inTheCage)
+			global2._send('setScript:', inTheCage)
 		#endif
 	#end:method
 
@@ -1309,17 +1260,17 @@ class cageInset(Inset):
 		#endif
 		if view:
 			(= insetView
-				((inView new:)
-					view: view
-					loop: loop
-					cel: cel
-					x: x
-					y: y
-					setPri: priority
-					ignoreActors: 1
-					init:
-					addToPic:
-					yourself:
+				inView._send('new:')._send(
+					'view:', view,
+					'loop:', loop,
+					'cel:', cel,
+					'x:', x,
+					'y:', y,
+					'setPri:', priority,
+					'ignoreActors:', 1,
+					'init:',
+					'addToPic:',
+					'yourself:'
 				)
 			)
 		#endif
@@ -1330,11 +1281,11 @@ class cageInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(inEgo dispose:)
-		(inFire dispose:)
-		(inBillow dispose:)
-		(global10 eachElementDo: #dispose eachElementDo: #delete)
-		(super dispose:)
+		inEgo._send('dispose:')
+		inFire._send('dispose:')
+		inBillow._send('dispose:')
+		global10._send('eachElementDo:', #dispose, 'eachElementDo:', #delete)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance

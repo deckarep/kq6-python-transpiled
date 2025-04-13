@@ -47,20 +47,20 @@ class Cat(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (super handleEvent: param1):#end:case
-			case (active and ((param1 type:) == 2)):
+			case super._send('handleEvent:', param1):#end:case
+			case (active and (param1._send('type:') == 2)):
 				active = 0
-				(param1 claimed: 1)
+				param1._send('claimed:', 1)
 				kernel.LocalToGlobal(param1)
-				(self posn: ((param1 x:) + dx) ((param1 y:) + dy) z)
+				self._send('posn:', (param1._send('x:') + dx), (param1._send('y:') + dy), z)
 				kernel.GlobalToLocal(param1)
 				if caller:
-					(caller cue: self)
+					caller._send('cue:', self)
 				#endif
 			#end:case
 			case proc255_2(self, param1):
-				(param1 claimed: 1)
-				(self track: param1)
+				param1._send('claimed:', 1)
+				self._send('track:', param1)
 			#end:case
 		)
 	#end:method
@@ -71,25 +71,25 @@ class Cat(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		kernel.LocalToGlobal(param1)
-		dx = (x - (param1 x:))
-		dy = (y - (param1 y:))
+		dx = (x - param1._send('x:'))
+		dy = (y - param1._send('y:'))
 		if doCast:
 			active = 1
 		else:
-			(temp0 = (Collect new:) add: self)
+			temp0 = Collect._send('new:')._send('add:', self)
 			while
 				(and
-					(2 != (param1 type:))
-					(outOfTouch or proc255_2(self, (param1 type: 1 yourself:)))
+					(2 != param1._send('type:'))
+					(outOfTouch or proc255_2(self, param1._send('type:', 1, 'yourself:')))
 				):
 
-				(self posn: ((param1 x:) + dx) ((param1 y:) + dy) z)
-				kernel.Animate((temp0 elements:), 1)
+				self._send('posn:', (param1._send('x:') + dx), (param1._send('y:') + dy), z)
+				kernel.Animate(temp0._send('elements:'), 1)
 				kernel.GetEvent(32767, param1)
 			#end:loop
-			(temp0 release: dispose:)
+			temp0._send('release:', 'dispose:')
 			if caller:
-				(caller cue: self)
+				caller._send('cue:', self)
 			#endif
 			kernel.GlobalToLocal(param1)
 		#endif
@@ -105,11 +105,11 @@ class Cat(Actor):
 				active = 0
 			#end:case
 			case active:
-				temp0 = (global80 curEvent:)
-				(self posn: ((temp0 x:) + dx) ((temp0 y:) + dy) z)
+				temp0 = global80._send('curEvent:')
+				self._send('posn:', (temp0._send('x:') + dx), (temp0._send('y:') + dy), z)
 			#end:case
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -155,7 +155,7 @@ class Cat(Actor):
 			x = proc999_3(left, proc999_2(right, x))
 			y = proc999_3(top, proc999_2(bottom, y))
 		#endif
-		(super posn: x y z)
+		super._send('posn:', x, y, z)
 	#end:method
 
 #end:class or instance

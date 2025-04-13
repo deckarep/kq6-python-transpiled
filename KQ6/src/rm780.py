@@ -50,73 +50,32 @@ class rm780(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc958_0(128, 7881, 789, 788)
-		(global0 init: posn: 20 157 setScale: Scaler 100 70 190 140)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						-10
-						-10
-						329
-						-10
-						329
-						180
-						319
-						180
-						301
-						169
-						282
-						169
-						259
-						152
-						218
-						152
-						218
-						147
-						200
-						147
-						200
-						144
-						134
-						144
-						134
-						149
-						69
-						149
-						57
-						155
-						45
-						155
-						35
-						159
-						35
-						163
-						0
-						178
-						-10
-						178
-					yourself:
+		global0._send('init:', 'posn:', 20, 157, 'setScale:', Scaler, 100, 70, 190, 140)
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', -10, -10, 329, -10, 329, 180, 319, 180, 301, 169, 282, 169, 259, 152, 218, 152, 218, 147, 200, 147, 200, 144, 134, 144, 134, 149, 69, 149, 57, 155, 45, 155, 35, 159, 35, 163, 0, 178, -10, 178,
+					'yourself:'
 				)
 		)
-		(global32 add: chandelierF rugF eachElementDo: #init)
-		(super init: &rest)
-		if (((global9 at: 25) owner:) != 750):
-			(theClown init:)
+		global32._send('add:', chandelierF, rugF, 'eachElementDo:', #init)
+		super._send('init:', &rest)
+		if (global9._send('at:', 25)._send('owner:') != 750):
+			theClown._send('init:')
 		#endif
-		(candles init:)
-		(door init: stopUpd:)
-		(doorJam1 addToPic:)
-		(doorJam2 addToPic:)
-		(fireplace addToPic:)
-		(otherFireplace addToPic:)
-		(bed addToPic:)
-		(chair init:)
-		(fire setCycle: Fwd init:)
-		((global0 scaler:) doit:)
-		(self setScript: enterRoom)
+		candles._send('init:')
+		door._send('init:', 'stopUpd:')
+		doorJam1._send('addToPic:')
+		doorJam2._send('addToPic:')
+		fireplace._send('addToPic:')
+		otherFireplace._send('addToPic:')
+		bed._send('addToPic:')
+		chair._send('init:')
+		fire._send('setCycle:', Fwd, 'init:')
+		global0._send('scaler:')._send('doit:')
+		self._send('setScript:', enterRoom)
 		if proc913_0(10):
-			(global102 fadeTo: 780 -1)
+			global102._send('fadeTo:', 780, -1)
 		#endif
 	#end:method
 
@@ -125,14 +84,14 @@ class rm780(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x4000):
-				(global2 newRoom: 840)
+				global2._send('newRoom:', 840)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -153,12 +112,12 @@ class rm780(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if local3:
-			(kernel.ScriptID(80, 0) weddingRemind: 1)
+			kernel.ScriptID(80, 0)._send('weddingRemind:', 1)
 		#endif
-		if (not (kernel.ScriptID(80, 0) tstFlag: 710 512)):
-			(kernel.ScriptID(80, 0) setFlag: 710 512)
+		if (not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 512)):
+			kernel.ScriptID(80, 0)._send('setFlag:', 710, 512)
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(964)
 	#end:method
 
@@ -175,26 +134,26 @@ class enterRoom(Script):
 		match state = param1
 			case 0:
 				if proc913_0(10):
-					(global0 setMotion: MoveTo 44 157 self)
+					global0._send('setMotion:', MoveTo, 44, 157, self)
 				else:
-					(global0 setMotion: MoveTo 64 157 self)
+					global0._send('setMotion:', MoveTo, 64, 157, self)
 				#endif
 			#end:case
 			case 1:
-				(door setCycle: Beg self)
+				door._send('setCycle:', Beg, self)
 			#end:case
 			case 2:
-				(global105 number: 902 setLoop: 1 play:)
-				(door stopUpd:)
+				global105._send('number:', 902, 'setLoop:', 1, 'play:')
+				door._send('stopUpd:')
 				register = 0
-				if (global5 contains: kernel.ScriptID(80, 5)):
-					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 5) 1)
-					(kernel.ScriptID(80, 5) dispose:)
+				if global5._send('contains:', kernel.ScriptID(80, 5)):
+					kernel.ScriptID(81, 0)._send('resetGuard:', kernel.ScriptID(80, 5), 1)
+					kernel.ScriptID(80, 5)._send('dispose:')
 					register = 1
 				#endif
-				if (global5 contains: kernel.ScriptID(80, 6)):
-					(kernel.ScriptID(81, 0) resetGuard: kernel.ScriptID(80, 6) 2)
-					(kernel.ScriptID(80, 6) dispose:)
+				if global5._send('contains:', kernel.ScriptID(80, 6)):
+					kernel.ScriptID(81, 0)._send('resetGuard:', kernel.ScriptID(80, 6), 2)
+					kernel.ScriptID(80, 6)._send('dispose:')
 					register = 1
 				#endif
 				if (not (register and proc913_0(10))):
@@ -203,90 +162,88 @@ class enterRoom(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(global91 say: 1 0 19 0 self)
+				global91._send('say:', 1, 0, 19, 0, self)
 			#end:case
 			case 4:
 				(cond
 					case (not proc913_0(10)):
-						(global2 setScript: callGuards)
+						global2._send('setScript:', callGuards)
 					#end:case
-					case (not (kernel.ScriptID(80, 0) tstFlag: 710 512)):
+					case (not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 512)):
 						local2 = 1
-						(self setScript: turnClownAround self)
+						self._send('setScript:', turnClownAround, self)
 					#end:case
 					else:
-						(global1 handsOn:)
-						(self dispose:)
+						global1._send('handsOn:')
+						self._send('dispose:')
 					#end:else
 				)
 			#end:case
 			case 5:
-				(global0
-					setMotion:
-						PolyPath
-						(theClown approachX:)
-						(theClown approachY:)
-						self
+				global0._send(
+					'setMotion:', PolyPath, theClown._send('approachX:'), theClown._send(
+							'approachY:'
+						), self
 				)
 			#end:case
 			case 6:
 				cycles = 10
 			#end:case
 			case 7:
-				if (kernel.ScriptID(80, 0) tstFlag: 710 256):
-					if (kernel.ScriptID(80, 0) tstFlag: 711 32):
-						(roomConv add: -1 1 0 16)
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 710, 256):
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 32):
+						roomConv._send('add:', -1, 1, 0, 16)
 					else:
-						(roomConv add: -1 1 0 9 1)
+						roomConv._send('add:', -1, 1, 0, 9, 1)
 					#endif
 					proc913_1(155)
-					(roomConv
-						add: -1 1 0 9 2
-						add: -1 1 0 9 3
-						add: -1 1 0 9 4
-						add: -1 1 0 9 5
-						add: -1 1 0 9 6
-						add: -1 1 0 9 7
+					roomConv._send(
+						'add:', -1, 1, 0, 9, 2,
+						'add:', -1, 1, 0, 9, 3,
+						'add:', -1, 1, 0, 9, 4,
+						'add:', -1, 1, 0, 9, 5,
+						'add:', -1, 1, 0, 9, 6,
+						'add:', -1, 1, 0, 9, 7
 					)
 					if proc913_0(52):
-						(roomConv add: -1 1 0 4)
+						roomConv._send('add:', -1, 1, 0, 4)
 					else:
-						(roomConv add: -1 1 0 10)
+						roomConv._send('add:', -1, 1, 0, 10)
 					#endif
 				else:
-					if (kernel.ScriptID(80, 0) tstFlag: 711 32):
-						(roomConv add: -1 1 0 16)
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 32):
+						roomConv._send('add:', -1, 1, 0, 16)
 					else:
-						(roomConv add: -1 1 0 8 1)
+						roomConv._send('add:', -1, 1, 0, 8, 1)
 					#endif
-					(roomConv
-						add: -1 1 0 8 2
-						add: -1 1 0 8 3
-						add: -1 1 0 8 4
-						add: -1 1 0 8 5
-						add: -1 1 0 8 6
-						add: -1 1 0 8 7
-						add: -1 1 0 8 8
-						add: -1 1 0 8 9
-						add: -1 1 0 8 10
-						add: -1 1 0 8 11
+					roomConv._send(
+						'add:', -1, 1, 0, 8, 2,
+						'add:', -1, 1, 0, 8, 3,
+						'add:', -1, 1, 0, 8, 4,
+						'add:', -1, 1, 0, 8, 5,
+						'add:', -1, 1, 0, 8, 6,
+						'add:', -1, 1, 0, 8, 7,
+						'add:', -1, 1, 0, 8, 8,
+						'add:', -1, 1, 0, 8, 9,
+						'add:', -1, 1, 0, 8, 10,
+						'add:', -1, 1, 0, 8, 11
 					)
 					if proc913_0(52):
-						(roomConv add: -1 1 0 2)
+						roomConv._send('add:', -1, 1, 0, 2)
 					else:
-						(roomConv add: -1 1 0 10)
+						roomConv._send('add:', -1, 1, 0, 10)
 					#endif
 				#endif
-				(roomConv init: self)
+				roomConv._send('init:', self)
 			#end:case
 			case 8:
-				(chair priority: 1)
-				(theClown priority: 0 loop: 2 cel: 2 setCycle: Beg self)
+				chair._send('priority:', 1)
+				theClown._send('priority:', 0, 'loop:', 2, 'cel:', 2, 'setCycle:', Beg, self)
 			#end:case
 			case 9:
 				local2 = 0
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -303,14 +260,14 @@ class turnClownAround(Script):
 
 		match state = param1
 			case 0:
-				(theClown loop: 2 cel: 0 setCycle: CT 2 1 self)
+				theClown._send('loop:', 2, 'cel:', 0, 'setCycle:', CT, 2, 1, self)
 			#end:case
 			case 1:
-				(chair priority: 0)
-				(theClown priority: 1 setCycle: End self)
+				chair._send('priority:', 0)
+				theClown._send('priority:', 1, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -327,48 +284,48 @@ class callGuards(Script):
 
 		match state = param1
 			case 0:
-				(self setScript: callGuardsConvScr self)
+				self._send('setScript:', callGuardsConvScr, self)
 			#end:case
 			case 1:
 				if proc913_0(154):
-					(roomConv add: -1 1 0 18 1 add: -1 1 0 18 2 init: self)
+					roomConv._send('add:', -1, 1, 0, 18, 1, 'add:', -1, 1, 0, 18, 2, 'init:', self)
 				else:
-					(roomConv add: -1 1 0 1 1 add: -1 1 0 1 2 init: self)
+					roomConv._send('add:', -1, 1, 0, 1, 1, 'add:', -1, 1, 0, 1, 2, 'init:', self)
 				#endif
 			#end:case
 			case 2:
-				(self setScript: callGuardsConvScr self)
+				self._send('setScript:', callGuardsConvScr, self)
 			#end:case
 			case 3:
 				if proc913_0(154):
-					(roomConv add: -1 1 0 18 3 init: self)
+					roomConv._send('add:', -1, 1, 0, 18, 3, 'init:', self)
 				else:
-					(roomConv add: -1 1 0 1 3 init: self)
+					roomConv._send('add:', -1, 1, 0, 1, 3, 'init:', self)
 				#endif
 			#end:case
 			case 4:
-				(self setScript: callGuardsConvScr self)
+				self._send('setScript:', callGuardsConvScr, self)
 			#end:case
 			case 5:
 				if proc913_0(154):
-					(roomConv
-						add: -1 1 0 18 4
-						add: -1 1 0 18 5
-						add: -1 1 0 18 6
-						init: self
+					roomConv._send(
+						'add:', -1, 1, 0, 18, 4,
+						'add:', -1, 1, 0, 18, 5,
+						'add:', -1, 1, 0, 18, 6,
+						'init:', self
 					)
 				else:
-					(roomConv
-						add: -1 1 0 1 4
-						add: -1 1 0 1 5
-						add: -1 1 0 1 6
-						init: self
+					roomConv._send(
+						'add:', -1, 1, 0, 1, 4,
+						'add:', -1, 1, 0, 1, 5,
+						'add:', -1, 1, 0, 1, 6,
+						'init:', self
 					)
 				#endif
 			#end:case
 			case 6:
 				proc913_1(154)
-				(global2 spotEgo: kernel.ScriptID(80, 5))
+				global2._send('spotEgo:', kernel.ScriptID(80, 5))
 			#end:case
 		#end:match
 	#end:method
@@ -384,7 +341,7 @@ class callGuardsConvScr(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		start = (state + 1)
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -394,62 +351,62 @@ class callGuardsConvScr(Script):
 
 		match state = param1
 			case 0:
-				(chair hide:)
-				(theClown
-					view: 7881
-					loop: 0
-					cel: 0
-					posn: 242 154 0
-					setCycle: End self
+				chair._send('hide:')
+				theClown._send(
+					'view:', 7881,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', 242, 154, 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
-				(chair
-					view: 7881
-					loop: 3
-					cel: 0
-					posn: 266 149
-					setPri: 14
-					show:
-					stopUpd:
+				chair._send(
+					'view:', 7881,
+					'loop:', 3,
+					'cel:', 0,
+					'posn:', 266, 149,
+					'setPri:', 14,
+					'show:',
+					'stopUpd:'
 				)
-				(theClown loop: 1 cel: 0 posn: 227 152 0 setCycle: CT 4 1 self)
+				theClown._send('loop:', 1, 'cel:', 0, 'posn:', 227, 152, 0, 'setCycle:', CT, 4, 1, self)
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 3:
-				(theClown setCycle: End self)
+				theClown._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(theClown loop: 2 cel: 6 posn: 221 151 setCycle: CT 3 -1 self)
+				theClown._send('loop:', 2, 'cel:', 6, 'posn:', 221, 151, 'setCycle:', CT, 3, -1, self)
 			#end:case
 			case 5:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 6:
-				(theClown loop: 2 cel: 3 setCycle: Beg self)
+				theClown._send('loop:', 2, 'cel:', 3, 'setCycle:', Beg, self)
 			#end:case
 			case 7:
 				cycles = 10
 			#end:case
 			case 8:
-				(global105 number: 901 loop: 1 play:)
-				(door setCycle: End self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				door._send('setCycle:', End, self)
 			#end:case
 			case 9:
-				(global105 stop:)
-				(kernel.ScriptID(80, 5)
-					setScale:
-					scaleX: 110
-					scaleY: 110
-					posn: 13 158
-					init:
-					setMotion: MoveTo 39 158 self
+				global105._send('stop:')
+				kernel.ScriptID(80, 5)._send(
+					'setScale:',
+					'scaleX:', 110,
+					'scaleY:', 110,
+					'posn:', 13, 158,
+					'init:',
+					'setMotion:', MoveTo, 39, 158, self
 				)
 			#end:case
 			case 10:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -466,24 +423,24 @@ class jolloScr(Script):
 
 		match state = param1
 			case 0:
-				(theClown loop: 2 cel: 0 setCycle: CT 2 1 self)
+				theClown._send('loop:', 2, 'cel:', 0, 'setCycle:', CT, 2, 1, self)
 			#end:case
 			case 1:
-				(theClown doVerb: register)
+				theClown._send('doVerb:', register)
 			#end:case
 			case 2:
-				(chair priority: 1)
-				(theClown
-					loop: 2
-					cel: 2
-					priority: 0
-					posn: 232 144
-					setCycle: Beg self
+				chair._send('priority:', 1)
+				theClown._send(
+					'loop:', 2,
+					'cel:', 2,
+					'priority:', 0,
+					'posn:', 232, 144,
+					'setCycle:', Beg, self
 				)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -500,10 +457,9 @@ class showLamp(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					loop:
-						match register
+				global1._send('handsOff:')
+				global0._send(
+					'loop:', match register
 							case 43: 2#end:case
 							case 57: 1#end:case
 							case 58: 2#end:case
@@ -513,57 +469,57 @@ class showLamp(Script):
 							case 56: 0#end:case
 						#end:match
 				)
-				(global0
-					normal: 0
-					view: 789
-					setScale:
-					scaleX: 104
-					scaleY: 104
-					cel: 0
-					cycleSpeed: 8
+				global0._send(
+					'normal:', 0,
+					'view:', 789,
+					'setScale:',
+					'scaleX:', 104,
+					'scaleY:', 104,
+					'cel:', 0,
+					'cycleSpeed:', 8
 				)
-				cycles = (theClown cycleSpeed:)
+				cycles = theClown._send('cycleSpeed:')
 			#end:case
 			case 1:
-				if (not (kernel.ScriptID(80, 0) tstFlag: 709 16)):
-					(chair priority: 0)
-					(theClown loop: 5 cel: 0 posn: 225 142 priority: 1)
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 16)):
+					chair._send('priority:', 0)
+					theClown._send('loop:', 5, 'cel:', 0, 'posn:', 225, 142, 'priority:', 1)
 				#endif
-				cycles = (theClown cycleSpeed:)
+				cycles = theClown._send('cycleSpeed:')
 			#end:case
 			case 2:
-				if (kernel.ScriptID(80, 0) tstFlag: 709 16):
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 16):
 					if proc999_5(register, 43, 57):
-						(roomConv add: -1 4 register 12)
+						roomConv._send('add:', -1, 4, register, 12)
 					else:
 						cycles = 1
 					#endif
 				else:
-					(kernel.ScriptID(80, 0) setFlag: 709 16)
+					kernel.ScriptID(80, 0)._send('setFlag:', 709, 16)
 					match register
 						case 43:
-							(roomConv add: -1 4 register 11 0)
+							roomConv._send('add:', -1, 4, register, 11, 0)
 						#end:case
 						case 57:
-							(self setScript: gaveNewLamp self register)
+							self._send('setScript:', gaveNewLamp, self, register)
 						#end:case
 						else:
-							(global1 givePoints: 3)
-							(self setScript: gaveReplicaLamp self register)
+							global1._send('givePoints:', 3)
+							self._send('setScript:', gaveReplicaLamp, self, register)
 						#end:else
 					#end:match
 				#endif
-				if (roomConv size:):
-					(roomConv init: self)
+				if roomConv._send('size:'):
+					roomConv._send('init:', self)
 				#endif
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global0
-					reset: 0
-					posn: (theClown approachX:) (theClown approachY:)
+				global1._send('handsOn:')
+				global0._send(
+					'reset:', 0,
+					'posn:', theClown._send('approachX:'), theClown._send('approachY:')
 				)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -580,16 +536,16 @@ class gaveNewLamp(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 4 register 11 1 self)
+				global91._send('say:', 4, register, 11, 1, self)
 			#end:case
 			case 1:
-				(self setScript: badLampConvScr self)
+				self._send('setScript:', badLampConvScr, self)
 			#end:case
 			case 2:
-				(global91 say: 4 register 11 2 self oneOnly: 0)
+				global91._send('say:', 4, register, 11, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 3:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -606,19 +562,19 @@ class gaveReplicaLamp(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 4 register 11 1 self)
+				global91._send('say:', 4, register, 11, 1, self)
 			#end:case
 			case 1:
-				(self setScript: goodLampConvScr self)
+				self._send('setScript:', goodLampConvScr, self)
 			#end:case
 			case 2:
-				(global91 say: 4 register 11 2 self oneOnly: 0)
+				global91._send('say:', 4, register, 11, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 3:
-				(self setScript: goodLampConvScr self)
+				self._send('setScript:', goodLampConvScr, self)
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -634,7 +590,7 @@ class goodLampConvScr(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		start = (state + 1)
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -644,76 +600,73 @@ class goodLampConvScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setCycle: CT 1 1 self)
+				global0._send('setCycle:', CT, 1, 1, self)
 			#end:case
 			case 1:
-				(chair priority: 0)
-				(theClown
-					view: 788
-					loop: 5
-					cel: 0
-					priority: 1
-					setCycle: End self
+				chair._send('priority:', 0)
+				theClown._send(
+					'view:', 788,
+					'loop:', 5,
+					'cel:', 0,
+					'priority:', 1,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0 cel: 3)
-				(theClown setCycle: CT 2 -1 self)
+				global0._send('cel:', 3)
+				theClown._send('setCycle:', CT, 2, -1, self)
 			#end:case
 			case 3:
-				(global0 setCycle: End)
-				(theClown loop: 9 setCycle: End self)
+				global0._send('setCycle:', End)
+				theClown._send('loop:', 9, 'setCycle:', End, self)
 			#end:case
 			case 4:
-				(global0
-					reset: 0
-					posn: (theClown approachX:) (theClown approachY:)
+				global0._send(
+					'reset:', 0,
+					'posn:', theClown._send('approachX:'), theClown._send('approachY:')
 				)
 				seconds = 3
 			#end:case
 			case 5:
-				(theClown loop: 6 setCycle: CT 5 1 self)
+				theClown._send('loop:', 6, 'setCycle:', CT, 5, 1, self)
 			#end:case
 			case 6:
-				(theClown loop: 5 cel: 0)
-				(self dispose:)
+				theClown._send('loop:', 5, 'cel:', 0)
+				self._send('dispose:')
 			#end:case
 			case 7:
-				(theClown
-					view: 717
-					setCycle: StopWalk -1
-					posn: 218 151 0
-					setPri: -1
-					setScale:
-						Scaler
-						(global2 maxScaleSize:)
-						(global2 minScaleSize:)
-						(global2 maxScaleY:)
-						(global2 minScaleY:)
-					cycleSpeed: 6
-					moveSpeed: 6
-					setStep: 5 3
-					setMotion: DPath 205 157 42 158 self
+				theClown._send(
+					'view:', 717,
+					'setCycle:', StopWalk, -1,
+					'posn:', 218, 151, 0,
+					'setPri:', -1,
+					'setScale:', Scaler, global2._send('maxScaleSize:'), global2._send(
+							'minScaleSize:'
+						), global2._send('maxScaleY:'), global2._send('minScaleY:'),
+					'cycleSpeed:', 6,
+					'moveSpeed:', 6,
+					'setStep:', 5, 3,
+					'setMotion:', DPath, 205, 157, 42, 158, self
 				)
 			#end:case
 			case 8:
-				(global105 number: 901 loop: 1 play:)
-				(door setCycle: End self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				door._send('setCycle:', End, self)
 			#end:case
 			case 9:
-				(global105 stop:)
-				(theClown setMotion: MoveTo 12 158 self)
+				global105._send('stop:')
+				theClown._send('setMotion:', MoveTo, 12, 158, self)
 			#end:case
 			case 10:
-				(theClown hide:)
-				(door setCycle: Beg self)
+				theClown._send('hide:')
+				door._send('setCycle:', Beg, self)
 			#end:case
 			case 11:
-				(global105 number: 902 loop: 1 play:)
-				(theClown setScript: followTimer)
-				(global1 handsOn:)
-				(global0 put: 25 750)
-				(self dispose:)
+				global105._send('number:', 902, 'loop:', 1, 'play:')
+				theClown._send('setScript:', followTimer)
+				global1._send('handsOn:')
+				global0._send('put:', 25, 750)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -730,12 +683,12 @@ class followTimer(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 0) setFlag: 711 -32768)
+				kernel.ScriptID(80, 0)._send('setFlag:', 711, -32768)
 				seconds = 11
 			#end:case
 			case 1:
-				(kernel.ScriptID(80, 0) clrFlag: 711 -32768)
-				(theClown dispose:)
+				kernel.ScriptID(80, 0)._send('clrFlag:', 711, -32768)
+				theClown._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -752,22 +705,22 @@ class badLampConvScr(Script):
 
 		match state = param1
 			case 0:
-				(global0 setCycle: CT 1 1 self)
+				global0._send('setCycle:', CT, 1, 1, self)
 			#end:case
 			case 1:
-				(global0 setCycle: Beg)
-				(theClown view: 788 loop: 4 cel: 0 setCycle: End self)
+				global0._send('setCycle:', Beg)
+				theClown._send('view:', 788, 'loop:', 4, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(global0
-					reset: 0
-					posn: (theClown approachX:) (theClown approachY:)
+				global0._send(
+					'reset:', 0,
+					'posn:', theClown._send('approachX:'), theClown._send('approachY:')
 				)
-				(theClown cel: 0)
-				cycles = (theClown cycleSpeed:)
+				theClown._send('cel:', 0)
+				cycles = theClown._send('cycleSpeed:')
 			#end:case
 			case 3:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -784,15 +737,15 @@ class lookThruKeyhole(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(82, 1)
-					noun: 5
-					actions: keyHoleActions
-					init: 797 0 0 92 54
+				kernel.ScriptID(82, 1)._send(
+					'noun:', 5,
+					'actions:', keyHoleActions,
+					'init:', 797, 0, 0, 92, 54
 				)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 5 1 14)
+				global91._send('say:', 5, 1, 14)
 			#end:case
 		#end:match
 	#end:method
@@ -818,8 +771,8 @@ class doorJam1(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -827,8 +780,8 @@ class doorJam1(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(door noun: 5)
-		(door doVerb: &rest)
+		door._send('noun:', 5)
+		door._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance
@@ -852,8 +805,8 @@ class doorJam2(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -861,8 +814,8 @@ class doorJam2(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(door noun: 5)
-		(door doVerb: &rest)
+		door._send('noun:', 5)
+		door._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance
@@ -885,8 +838,8 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -896,21 +849,21 @@ class door(Prop):
 
 		match param1
 			case 5:
-				(global1 handsOff:)
-				(global105 number: 901 loop: 1 play:)
-				(door setCycle: End self)
+				global1._send('handsOff:')
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				door._send('setCycle:', End, self)
 			#end:case
 			case 1:
 				if (not local1):
 					local1.post('++')
-					(_approachVerbs |= (global66 doit: 1))
-					(global91 say: noun param1 13 0)
+					(_approachVerbs |= global66._send('doit:', 1))
+					global91._send('say:', noun, param1, 13, 0)
 				else:
-					(global2 setScript: kernel.ScriptID(82) 0 lookThruKeyhole)
+					global2._send('setScript:', kernel.ScriptID(82), 0, lookThruKeyhole)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -920,7 +873,7 @@ class door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global105 stop:)
+		global105._send('stop:')
 		proc80_2(4)
 	#end:method
 
@@ -940,11 +893,11 @@ class bed(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 x:)
-		temp1 = (param1 y:)
+		temp0 = param1._send('x:')
+		temp1 = param1._send('y:')
 		(return
 			(and
-				(super onMe: temp0 temp1)
+				super._send('onMe:', temp0, temp1)
 				(temp0 -= nsLeft)
 				(temp1 -= nsTop)
 				(((temp0 > 82) and noun = 12) or noun = 7)
@@ -969,11 +922,11 @@ class fireplace(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 x:)
-		temp1 = (param1 y:)
+		temp0 = param1._send('x:')
+		temp1 = param1._send('y:')
 		(return
 			(and
-				(super onMe: temp0 temp1)
+				super._send('onMe:', temp0, temp1)
 				(temp0 -= nsLeft)
 				(temp1 -= nsTop)
 				(or
@@ -1012,8 +965,8 @@ class theClown(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 43 56 57 2)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 43, 56, 57, 2)
 	#end:method
 
 	@classmethod
@@ -1023,30 +976,30 @@ class theClown(Actor):
 
 		(cond
 			case proc999_5(param1, 1, 5):
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:case
 			case ((not script) and (not local2)):
-				(global1 handsOff:)
-				(self setScript: jolloScr 0 param1)
+				global1._send('handsOff:')
+				self._send('setScript:', jolloScr, 0, param1)
 			#end:case
 			case proc999_5(param1, 43, 56, 57, 58, 59, 60, 96):
 				param1 = proc999_3(43, proc999_2(57, param1))
-				(script setScript: showLamp jolloScr param1)
+				script._send('setScript:', showLamp, jolloScr, param1)
 			#end:case
 			case 
 				(and
-					(kernel.ScriptID(80, 0) tstFlag: 710 256)
+					kernel.ScriptID(80, 0)._send('tstFlag:', 710, 256)
 					(not proc913_0(155))
 					(param1 == 2)
 				):
 				proc913_1(155)
-				(global91 say: noun param1 15 0 jolloScr)
+				global91._send('say:', noun, param1, 15, 0, jolloScr)
 			#end:case
 			else:
 				if script:
-					(jolloScr cycles: 10)
+					jolloScr._send('cycles:', 10)
 				#endif
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		)
 	#end:method
@@ -1093,8 +1046,8 @@ class candles(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setCycle: Fwd)
-		(super init: &rest)
+		self._send('setCycle:', Fwd)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1144,7 +1097,7 @@ class keyHoleActions(Actions):
 		temp0 = 1
 		match param1
 			case 1:
-				(global91 say: 5 param1 14 2)
+				global91._send('say:', 5, param1, 14, 2)
 			#end:case
 			else:
 				temp0 = 0

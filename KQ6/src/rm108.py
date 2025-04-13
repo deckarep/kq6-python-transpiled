@@ -26,13 +26,13 @@ class rm108(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
-		(global69 disable: height: -100 activateHeight: -100)
-		(global74 addToFront: self)
-		(global72 addToFront: self)
-		(global73 addToFront: self)
-		(super init: &rest)
-		(self setScript: sShowMovieWin)
+		global1._send('handsOff:')
+		global69._send('disable:', 'height:', -100, 'activateHeight:', -100)
+		global74._send('addToFront:', self)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
+		super._send('init:', &rest)
+		self._send('setScript:', sShowMovieWin)
 	#end:method
 
 	@classmethod
@@ -42,8 +42,8 @@ class rm108(KQ6Room):
 
 		kernel.ShowMovie(3)
 		kernel.ShowMovie(6)
-		(global69 disable: height: 0 activateHeight: 0)
-		(global1 restart: 1)
+		global69._send('disable:', 'height:', 0, 'activateHeight:', 0)
+		global1._send('restart:', 1)
 	#end:method
 
 	@classmethod
@@ -51,11 +51,11 @@ class rm108(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global74 delete: self)
-		(global72 delete: self)
-		(global73 delete: self)
-		(global69 disable: height: 0 activateHeight: 0)
-		(super newRoom: &rest)
+		global74._send('delete:', self)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		global69._send('disable:', 'height:', 0, 'activateHeight:', 0)
+		super._send('newRoom:', &rest)
 	#end:method
 
 #end:class or instance
@@ -85,7 +85,7 @@ class sShowMovieWin(Script):
 				cycles = 1
 			#end:case
 			case 3:
-				(global2 newRoom: 200)
+				global2._send('newRoom:', 200)
 			#end:case
 		#end:match
 	#end:method

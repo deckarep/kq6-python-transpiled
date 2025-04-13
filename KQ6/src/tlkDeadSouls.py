@@ -27,13 +27,13 @@ class tlkDeadSouls(Narrator):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (kernel.Random(0, 100) > 50):
-			(self x: 10)
+			self._send('x:', 10)
 		#endif
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
-		(super init: &rest)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

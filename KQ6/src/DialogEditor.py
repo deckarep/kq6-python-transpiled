@@ -49,34 +49,34 @@ def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp0 = (param1 noun:)
-	temp1 = (param1 verb:)
-	temp2 = (param1 case:)
-	temp3 = (param1 seq:)
-	temp4 = (param1 modNum:)
+	temp0 = param1._send('noun:')
+	temp1 = param1._send('verb:')
+	temp2 = param1._send('case:')
+	temp3 = param1._send('seq:')
+	temp4 = param1._send('modNum:')
 	kernel.Format(@temp5, r"""%d""", temp0)
 	kernel.Format(@temp15, r"""%d""", temp1)
 	kernel.Format(@temp25, r"""%d""", temp2)
 	kernel.Format(@temp35, r"""%d""", temp3)
 	kernel.Format(@temp45, r"""%d""", temp4)
 	if 
-		(Print
-			addTitle: @local42
-			font: 0
-			addText: r"""Enter new message parameters:"""
-			addText: r"""Noun""" 5 25
-			addText: r"""Verb""" 85 25
-			addText: r"""Case""" 5 39
-			addText: r"""Seq""" 85 39
-			addText: r"""Module""" 47 53
-			addEdit: @temp5 4 45 25 @temp5
-			addEdit: @temp15 4 125 25 @temp15
-			addEdit: @temp25 4 45 39 @temp25
-			addEdit: @temp35 4 125 39 @temp35
-			addEdit: @temp45 5 101 53 @temp45
-			addButton: 1 r"""___OK___""" 18 67
-			addButton: 0 r"""Cancel""" 91 67
-			init:
+		Print._send(
+			'addTitle:', @local42,
+			'font:', 0,
+			'addText:', r"""Enter new message parameters:""",
+			'addText:', r"""Noun""", 5, 25,
+			'addText:', r"""Verb""", 85, 25,
+			'addText:', r"""Case""", 5, 39,
+			'addText:', r"""Seq""", 85, 39,
+			'addText:', r"""Module""", 47, 53,
+			'addEdit:', @temp5, 4, 45, 25, @temp5,
+			'addEdit:', @temp15, 4, 125, 25, @temp15,
+			'addEdit:', @temp25, 4, 45, 39, @temp25,
+			'addEdit:', @temp35, 4, 125, 39, @temp35,
+			'addEdit:', @temp45, 5, 101, 53, @temp45,
+			'addButton:', 1, r"""___OK___""", 18, 67,
+			'addButton:', 0, r"""Cancel""", 91, 67,
+			'init:'
 		)
 		temp0 = kernel.ReadNumber(@temp5)
 		temp1 = kernel.ReadNumber(@temp15)
@@ -93,12 +93,12 @@ def localproc_1(param1 = None, *rest):
 				return 0
 			#end:case
 			else:
-				(param1
-					noun: temp0
-					verb: temp1
-					case: temp2
-					seq: temp3
-					modNum: temp4
+				param1._send(
+					'noun:', temp0,
+					'verb:', temp1,
+					'case:', temp2,
+					'seq:', temp3,
+					'modNum:', temp4
 				)
 				return 1
 			#end:else
@@ -113,16 +113,16 @@ def localproc_2(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(Print
-		addTitle: @local42
-		font: 0
-		width: 50
-		addText: r"""What kind of text?"""
-		addButton: 1 r""" Literal """ 60 0
-		addButton: 2 r"""MSG file""" 60 14
-		addButton: 0 r"""__Cancel__""" 60 28
-		first: (2 if (param1 seq:) else 1)
-		init:
+	Print._send(
+		'addTitle:', @local42,
+		'font:', 0,
+		'width:', 50,
+		'addText:', r"""What kind of text?""",
+		'addButton:', 1, r""" Literal """, 60, 0,
+		'addButton:', 2, r"""MSG file""", 60, 14,
+		'addButton:', 0, r"""__Cancel__""", 60, 28,
+		'first:', (2 if param1._send('seq:') else 1),
+		'init:'
 	)
 #end:procedure
 
@@ -134,7 +134,7 @@ class mainMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local62)
+		super._send('init:', @local62)
 	#end:method
 
 #end:class or instance
@@ -147,7 +147,7 @@ class editBMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local90)
+		super._send('init:', @local90)
 	#end:method
 
 #end:class or instance
@@ -160,7 +160,7 @@ class editTMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local112)
+		super._send('init:', @local112)
 	#end:method
 
 #end:class or instance
@@ -173,7 +173,7 @@ class editEMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local137)
+		super._send('init:', @local137)
 	#end:method
 
 #end:class or instance
@@ -186,7 +186,7 @@ class editIMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local159)
+		super._send('init:', @local159)
 	#end:method
 
 #end:class or instance
@@ -199,7 +199,7 @@ class editSMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local181)
+		super._send('init:', @local181)
 	#end:method
 
 #end:class or instance
@@ -212,7 +212,7 @@ class editWMenu(ClickMenu):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: @local200)
+		super._send('init:', @local200)
 	#end:method
 
 #end:class or instance
@@ -232,7 +232,7 @@ class DlgWindow(SysWindow):
 
 		type = (4 if title else 0)
 		temp0 = kernel.GetPort()
-		(super open: &rest)
+		super._send('open:', &rest)
 		kernel.SetPort(temp0)
 		local1 = 1
 	#end:method
@@ -242,7 +242,7 @@ class DlgWindow(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		local1 = 0
 	#end:method
 
@@ -256,23 +256,23 @@ class DlgWindow(SysWindow):
 		temp2 = 0
 		temp3 = 0
 		temp4 = 0
-		while (temp4 < (DialogEditor size:)): # inline for
-			temp5 = (DialogEditor at: temp4)
-			temp0 = proc999_2((temp5 nsTop:), temp0)
-			temp1 = proc999_2((temp5 nsLeft:), temp1)
-			temp2 = proc999_3((temp5 nsBottom:), temp2)
-			temp3 = proc999_3((temp5 nsRight:), temp3)
+		while (temp4 < DialogEditor._send('size:')): # inline for
+			temp5 = DialogEditor._send('at:', temp4)
+			temp0 = proc999_2(temp5._send('nsTop:'), temp0)
+			temp1 = proc999_2(temp5._send('nsLeft:'), temp1)
+			temp2 = proc999_3(temp5._send('nsBottom:'), temp2)
+			temp3 = proc999_3(temp5._send('nsRight:'), temp3)
 			# for:reinit
 			temp4.post('++')
 		#end:loop
-		(DialogEditor eachElementDo: #hide)
-		(self dispose:)
+		DialogEditor._send('eachElementDo:', #hide)
+		self._send('dispose:')
 		top = (temp0 - 4)
 		bottom = (temp2 + 4)
 		left = (temp1 - 4)
 		right = (temp3 + 4)
-		(self open:)
-		(DialogEditor eachElementDo: #draw)
+		self._send('open:')
+		DialogEditor._send('eachElementDo:', #draw)
 	#end:method
 
 	@classmethod
@@ -281,17 +281,17 @@ class DlgWindow(SysWindow):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
-		while (temp0 < (DialogEditor size:)): # inline for
-			temp1 = (DialogEditor at: temp0)
-			temp2 = ((temp1 nsLeft:) - left)
-			temp3 = ((temp1 nsTop:) - top)
-			(temp1 hide: moveTo: (param1 + temp2) (param2 + temp3))
+		while (temp0 < DialogEditor._send('size:')): # inline for
+			temp1 = DialogEditor._send('at:', temp0)
+			temp2 = (temp1._send('nsLeft:') - left)
+			temp3 = (temp1._send('nsTop:') - top)
+			temp1._send('hide:', 'moveTo:', (param1 + temp2), (param2 + temp3))
 			# for:reinit
 			temp0.post('++')
 		#end:loop
 		left = param1
 		top = param2
-		(self create:)
+		self._send('create:')
 	#end:method
 
 	@classmethod
@@ -306,7 +306,7 @@ class DlgWindow(SysWindow):
 			title = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
 			kernel.Message(0, modNum, noun, verb, case, seq, title)
 		#endif
-		(self create:)
+		self._send('create:')
 	#end:method
 
 	@classmethod
@@ -316,18 +316,18 @@ class DlgWindow(SysWindow):
 
 		if local1:
 			proc921_0(r"""Click to where the top left of the window should be""")
-			while ((temp0 = (Event new:) type:) != 1):
+			while (temp0 = Event._send('new:')._send('type:') != 1):
 
-				(temp0 dispose:)
+				temp0._send('dispose:')
 			#end:loop
-			temp1 = (temp0 x:)
-			temp2 = ((temp0 y:) - 10)
-			(temp0 dispose:)
+			temp1 = temp0._send('x:')
+			temp2 = (temp0._send('y:') - 10)
+			temp0._send('dispose:')
 			temp3 = (bottom - top)
 			temp4 = (right - left)
 			temp1 = proc999_3(0, proc999_2(temp1, (320 - temp4)))
 			temp2 = proc999_3(0, proc999_2(temp2, (190 - temp3)))
-			(self moveTo: temp1 temp2)
+			self._send('moveTo:', temp1, temp2)
 		else:
 			proc921_0(r"""No window to position!""")
 		#endif
@@ -343,7 +343,7 @@ class DlgWindow(SysWindow):
 				return
 			#end:case
 			case 2:
-				(self editMsg:)
+				self._send('editMsg:')
 				return
 			#end:case
 		#end:match
@@ -355,13 +355,13 @@ class DlgWindow(SysWindow):
 			title = kernel.Memory(1, 50)
 			kernel.StrCpy(title, r"""title""")
 		#endif
-		(Print
-			addTitle: @local42
-			addText: r"""Enter new title:"""
-			addEdit: title 50 0 12 title
-			init:
+		Print._send(
+			'addTitle:', @local42,
+			'addText:', r"""Enter new title:""",
+			'addEdit:', title, 50, 0, 12, title,
+			'init:'
 		)
-		(self create:)
+		self._send('create:')
 	#end:method
 
 #end:class or instance
@@ -375,13 +375,13 @@ class _DItem(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self hide:)
+		self._send('hide:')
 		if param1:
 			(state |= 0x0008)
 		else:
 			(state &= 0xfff7)
 		#endif
-		(self draw:)
+		self._send('draw:')
 	#end:method
 
 	@classmethod
@@ -426,21 +426,21 @@ class _DItem(Class_255_0):
 		kernel.Format(@temp25, r"""%d""", nsTop)
 		if 
 			(= temp30
-				(Print
-					addTitle: @local42
-					addText: r"""Enter new position:"""
-					addText: r"""x = """ 0 12
-					addText: r"""y = """ 65 12
-					addEdit: @temp0 5 25 12 @temp0
-					addEdit: @temp25 6 90 12 @temp25
-					font: 0
-					addButton: 0 r""" Cancel """ 35 26
-					init:
+				Print._send(
+					'addTitle:', @local42,
+					'addText:', r"""Enter new position:""",
+					'addText:', r"""x = """, 0, 12,
+					'addText:', r"""y = """, 65, 12,
+					'addEdit:', @temp0, 5, 25, 12, @temp0,
+					'addEdit:', @temp25, 6, 90, 12, @temp25,
+					'font:', 0,
+					'addButton:', 0, r""" Cancel """, 35, 26,
+					'init:'
 				)
 			)
 			temp31 = proc999_3(4, kernel.ReadNumber(@temp0))
 			temp32 = proc999_3(4, kernel.ReadNumber(@temp25))
-			(self hide: moveTo: temp31 temp32 draw:)
+			self._send('hide:', 'moveTo:', temp31, temp32, 'draw:')
 		#endif
 	#end:method
 
@@ -450,8 +450,8 @@ class _DItem(Class_255_0):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp0 = 0
-		(param1 claimed: 1)
-		temp0 = (self track: param1)
+		param1._send('claimed:', 1)
+		temp0 = self._send('track:', param1)
 	#end:method
 
 	@classmethod
@@ -459,28 +459,28 @@ class _DItem(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((param1 type:) == 1):
-			(self hide:)
+		if (param1._send('type:') == 1):
+			self._send('hide:')
 			while True: #repeat
-				param1 = (Event new: -32768)
-				(param1 localize:)
-				temp0 = (param1 x:)
-				temp1 = (param1 y:)
+				param1 = Event._send('new:', -32768)
+				param1._send('localize:')
+				temp0 = param1._send('x:')
+				temp1 = param1._send('y:')
 				kernel.DrawStatus(kernel.Format(@temp2, r"""DRAGGING: %d, %d""", temp0, temp1))
-				(self moveTo: temp0 temp1)
-				(param1 dispose:)
+				self._send('moveTo:', temp0, temp1)
+				param1._send('dispose:')
 				(breakif (not proc255_0()))
 			#end:loop
 			kernel.DrawStatus(r""" """, 0, 0)
 			kernel.DrawStatus(0)
-			if (DialogEditor curMenu:):
-				((DialogEditor curMenu:) init:)
+			if DialogEditor._send('curMenu:'):
+				DialogEditor._send('curMenu:')._send('init:')
 			#endif
-			kernel.DrawPic((global2 picture:), 100)
+			kernel.DrawPic(global2._send('picture:'), 100)
 			if local1:
-				(DlgWindow create:)
+				DlgWindow._send('create:')
 			else:
-				(DialogEditor eachElementDo: #draw)
+				DialogEditor._send('eachElementDo:', #draw)
 			#endif
 		#endif
 	#end:method
@@ -490,8 +490,8 @@ class _DItem(Class_255_0):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self hide:)
-		(super dispose: &rest)
+		self._send('hide:')
+		super._send('dispose:', &rest)
 	#end:method
 
 #end:class or instance
@@ -527,25 +527,25 @@ class _DText(_DItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp25
-			(Print
-				addTitle: @local42
-				font: 0
-				width: 90
-				addText: r"""Enter new font number:"""
-				addEdit: @temp0 6 0 24
-				addButton: 0 r""" System """ 100 0
-				addButton: global22 r"""__User__""" 100 14
-				addButton: global23 r"""__Small__""" 100 28
-				addButton: global26 r"""___Big___""" 100 42
-				addButton: -1 r""" Cancel """ 100 56
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'font:', 0,
+				'width:', 90,
+				'addText:', r"""Enter new font number:""",
+				'addEdit:', @temp0, 6, 0, 24,
+				'addButton:', 0, r""" System """, 100, 0,
+				'addButton:', global22, r"""__User__""", 100, 14,
+				'addButton:', global23, r"""__Small__""", 100, 28,
+				'addButton:', global26, r"""___Big___""", 100, 42,
+				'addButton:', -1, r""" Cancel """, 100, 56,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if (temp25 != -1):
-			(self hide: font: temp25 setSize: draw:)
+			self._send('hide:', 'font:', temp25, 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -556,32 +556,31 @@ class _DText(_DItem):
 
 		temp0 = 0
 		(= temp25
-			(Print
-				addTitle: @local42
-				font: 0
-				width: 100
-				addText: r"""Enter justification mode:"""
-				addButton: 1 r"""___Left___""" 100 0
-				addButton: 2 r""" Center """ 100 14
-				addButton: 3 r"""__Right__""" 100 28
-				addButton: 0 r""" Cancel """ 100 42
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'font:', 0,
+				'width:', 100,
+				'addText:', r"""Enter justification mode:""",
+				'addButton:', 1, r"""___Left___""", 100, 0,
+				'addButton:', 2, r""" Center """, 100, 14,
+				'addButton:', 3, r"""__Right__""", 100, 28,
+				'addButton:', 0, r""" Cancel """, 100, 42,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if temp25:
-			(self
-				hide:
-				mode:
-					match temp25
+			self._send(
+				'hide:',
+				'mode:', match temp25
 						case 1: 0#end:case
 						case 2: 1#end:case
 						case 3: -1#end:case
-					#end:match
-				setSize:
-				draw:
+					#end:match,
+				'setSize:',
+				'draw:'
 			)
 		#endif
 	#end:method
@@ -596,7 +595,7 @@ class _DText(_DItem):
 			text = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
 			kernel.Message(0, modNum, noun, verb, case, seq, text)
 		#endif
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -609,7 +608,7 @@ class _DText(_DItem):
 				return
 			#end:case
 			case 2:
-				(self editMsg:)
+				self._send('editMsg:')
 				return
 			#end:case
 		#end:match
@@ -619,13 +618,13 @@ class _DText(_DItem):
 			kernel.StrCpy(text, r"""text""")
 			noun = verb = case = seq = modNum = 0
 		#endif
-		(Print
-			addTitle: @local42
-			addText: r"""Enter new text:"""
-			addEdit: text 50 0 12 text
-			init:
+		Print._send(
+			'addTitle:', @local42,
+			'addText:', r"""Enter new text:""",
+			'addEdit:', text, 50, 0, 12, text,
+			'init:'
 		)
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -635,20 +634,20 @@ class _DText(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", width)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new width:"""
-				addEdit: @temp0 6 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new width:""",
+				'addEdit:', @temp0, 6, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if temp25:
-			(self hide: width: temp25 setSize: draw:)
+			self._send('hide:', 'width:', temp25, 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -657,12 +656,11 @@ class _DText(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print
-			font: global22
-			width: 250
-			addText:
-				r"""Text Menu:\n\n__Text - Change the text\n__Font - Change the font of the text\n__Just - Change justification mode\n__Position - Change the position of the text\n__Menu - Return to the Main Menu\n"""
-			init:
+		Print._send(
+			'font:', global22,
+			'width:', 250,
+			'addText:', r"""Text Menu:\n\n__Text - Change the text\n__Font - Change the font of the text\n__Just - Change justification mode\n__Position - Change the position of the text\n__Menu - Return to the Main Menu\n""",
+			'init:'
 		)
 	#end:method
 
@@ -691,13 +689,13 @@ class _DIcon(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", view)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new view number:"""
-				addEdit: @temp0 5 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new view number:""",
+				'addEdit:', @temp0, 5, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
@@ -706,7 +704,7 @@ class _DIcon(_DItem):
 		if temp25:
 			view = temp25
 		#endif
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -716,13 +714,13 @@ class _DIcon(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", loop)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new loop number:"""
-				addEdit: @temp0 5 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new loop number:""",
+				'addEdit:', @temp0, 5, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
@@ -731,7 +729,7 @@ class _DIcon(_DItem):
 		if temp25:
 			loop = temp25
 		#endif
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -741,13 +739,13 @@ class _DIcon(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", cel)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new cel number:"""
-				addEdit: @temp0 5 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new cel number:""",
+				'addEdit:', @temp0, 5, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
@@ -756,7 +754,7 @@ class _DIcon(_DItem):
 		if temp25:
 			cel = temp25
 		#endif
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -764,12 +762,11 @@ class _DIcon(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print
-			font: global22
-			width: 250
-			addText:
-				r"""Icon Menu:\n\n__View - Change the view of the icon\n__Loop - Change the loop of the icon\n__Cel - Change the cel of the icon\n__Position - Change the position of the icon\n__Menu - Return to the Main Menu\n"""
-			init:
+		Print._send(
+			'font:', global22,
+			'width:', 250,
+			'addText:', r"""Icon Menu:\n\n__View - Change the view of the icon\n__Loop - Change the loop of the icon\n__Cel - Change the cel of the icon\n__Position - Change the position of the icon\n__Menu - Return to the Main Menu\n""",
+			'init:'
 		)
 	#end:method
 
@@ -806,25 +803,25 @@ class _DButton(_DItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp25
-			(Print
-				addTitle: @local42
-				font: 0
-				width: 90
-				addText: r"""Enter new font number:"""
-				addEdit: @temp0 6 0 24
-				addButton: 0 r""" System """ 100 0
-				addButton: global22 r"""__User__""" 100 14
-				addButton: global23 r"""__Small__""" 100 28
-				addButton: global26 r"""___Big___""" 100 42
-				addButton: -1 r""" Cancel """ 100 56
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'font:', 0,
+				'width:', 90,
+				'addText:', r"""Enter new font number:""",
+				'addEdit:', @temp0, 6, 0, 24,
+				'addButton:', 0, r""" System """, 100, 0,
+				'addButton:', global22, r"""__User__""", 100, 14,
+				'addButton:', global23, r"""__Small__""", 100, 28,
+				'addButton:', global26, r"""___Big___""", 100, 42,
+				'addButton:', -1, r""" Cancel """, 100, 56,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if (temp25 != -1):
-			(self hide: font: temp25 setSize: draw:)
+			self._send('hide:', 'font:', temp25, 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -838,7 +835,7 @@ class _DButton(_DItem):
 			text = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
 			kernel.Message(0, modNum, noun, verb, case, seq, text)
 		#endif
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -851,7 +848,7 @@ class _DButton(_DItem):
 				return
 			#end:case
 			case 2:
-				(self editMsg:)
+				self._send('editMsg:')
 				return
 			#end:case
 		#end:match
@@ -861,13 +858,13 @@ class _DButton(_DItem):
 			kernel.StrCpy(text, r"""button""")
 			noun = verb = case = seq = modNum = 0
 		#endif
-		(Print
-			addTitle: @local42
-			addText: r"""Enter new text:"""
-			addEdit: text 50 0 12 text
-			init:
+		Print._send(
+			'addTitle:', @local42,
+			'addText:', r"""Enter new text:""",
+			'addEdit:', text, 50, 0, 12, text,
+			'init:'
 		)
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -877,13 +874,13 @@ class _DButton(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", value)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new value:"""
-				addEdit: @temp0 6 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new value:""",
+				'addEdit:', @temp0, 6, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
@@ -899,12 +896,11 @@ class _DButton(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print
-			font: global22
-			width: 250
-			addText:
-				r"""Button Menu:\n\n__Text - Change the button text\n__Font - Change the font of the button text\n__Value - Change the return value of the button\n__Position - Change the position of the button\n__Menu - Return to the Main Menu\n"""
-			init:
+		Print._send(
+			'font:', global22,
+			'width:', 250,
+			'addText:', r"""Button Menu:\n\n__Text - Change the button text\n__Font - Change the font of the button text\n__Value - Change the return value of the button\n__Position - Change the position of the button\n__Menu - Return to the Main Menu\n""",
+			'init:'
 		)
 	#end:method
 
@@ -936,25 +932,25 @@ class _DEdit(_DItem):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= temp25
-			(Print
-				addTitle: @local42
-				font: 0
-				width: 90
-				addText: r"""Enter new font number:"""
-				addEdit: @temp0 6 0 24
-				addButton: 0 r""" System """ 100 0
-				addButton: global22 r"""__User__""" 100 14
-				addButton: global23 r"""__Small__""" 100 28
-				addButton: global26 r"""___Big___""" 100 42
-				addButton: -1 r""" Cancel """ 100 56
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'font:', 0,
+				'width:', 90,
+				'addText:', r"""Enter new font number:""",
+				'addEdit:', @temp0, 6, 0, 24,
+				'addButton:', 0, r""" System """, 100, 0,
+				'addButton:', global22, r"""__User__""", 100, 14,
+				'addButton:', global23, r"""__Small__""", 100, 28,
+				'addButton:', global26, r"""___Big___""", 100, 42,
+				'addButton:', -1, r""" Cancel """, 100, 56,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if (temp25 != -1):
-			(self hide: font: temp25 setSize: draw:)
+			self._send('hide:', 'font:', temp25, 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -965,20 +961,20 @@ class _DEdit(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", max)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new maximum length:"""
-				addEdit: @temp0 5 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new maximum length:""",
+				'addEdit:', @temp0, 5, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if temp25:
-			(self max: temp25 hide: setSize: draw:)
+			self._send('max:', temp25, 'hide:', 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -987,13 +983,13 @@ class _DEdit(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print
-			addTitle: @local42
-			addText: r"""Enter new default text:"""
-			addEdit: text 25 0 12 text
-			init:
+		Print._send(
+			'addTitle:', @local42,
+			'addText:', r"""Enter new default text:""",
+			'addEdit:', text, 25, 0, 12, text,
+			'init:'
 		)
-		(self hide: setSize: draw:)
+		self._send('hide:', 'setSize:', 'draw:')
 	#end:method
 
 	@classmethod
@@ -1001,12 +997,11 @@ class _DEdit(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print
-			font: global22
-			width: 250
-			addText:
-				r"""Edit Menu:\n\n__Font - Change the font of the edit text\n__Length - Change the maximum length of input\n__Position - Change the position of the edit\n__Text - Change the default edit text\n__Menu - Return to the Main Menu\n"""
-			init:
+		Print._send(
+			'font:', global22,
+			'width:', 250,
+			'addText:', r"""Edit Menu:\n\n__Font - Change the font of the edit text\n__Length - Change the maximum length of input\n__Position - Change the position of the edit\n__Text - Change the default edit text\n__Menu - Return to the Main Menu\n""",
+			'init:'
 		)
 	#end:method
 
@@ -1036,20 +1031,20 @@ class _DSelector(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", y)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new length:"""
-				addEdit: @temp0 5 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new length:""",
+				'addEdit:', @temp0, 5, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if temp25:
-			(self y: temp25 hide: setSize: draw:)
+			self._send('y:', temp25, 'hide:', 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -1060,20 +1055,20 @@ class _DSelector(_DItem):
 
 		kernel.Format(@temp0, r"""%d""", x)
 		(= temp25
-			(Print
-				addTitle: @local42
-				addText: r"""Enter new width:"""
-				addEdit: @temp0 5 0 12 @temp0
-				font: 0
-				addButton: 0 r""" Cancel """ 0 26
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""Enter new width:""",
+				'addEdit:', @temp0, 5, 0, 12, @temp0,
+				'font:', 0,
+				'addButton:', 0, r""" Cancel """, 0, 26,
+				'init:'
 			)
 		)
 		if temp0:
 			temp25 = kernel.ReadNumber(@temp0)
 		#endif
 		if temp25:
-			(self x: temp25 hide: setSize: draw:)
+			self._send('x:', temp25, 'hide:', 'setSize:', 'draw:')
 		#endif
 	#end:method
 
@@ -1082,12 +1077,11 @@ class _DSelector(_DItem):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(Print
-			font: global22
-			width: 250
-			addText:
-				r"""Selector Menu:\n\n__Width - Change the selector width (in chars)\n__Length - Change number of selector lines\n__Position - Change the position of the selector\n__Menu - Return to the Main Menu\n"""
-			init:
+		Print._send(
+			'font:', global22,
+			'width:', 250,
+			'addText:', r"""Selector Menu:\n\n__Width - Change the selector width (in chars)\n__Length - Change number of selector lines\n__Position - Change the position of the selector\n__Menu - Return to the Main Menu\n""",
+			'init:'
 		)
 	#end:method
 
@@ -1106,9 +1100,9 @@ class DialogEditor(List):
 
 		local0 = global38
 		kernel.StrCpy(@local42, r"""DialogEditor__v1.1""")
-		(global38 = SysWindow color: 0 back: 255)
-		(global1 setCursor: 999)
-		(self changeState: 0)
+		global38 = SysWindow._send('color:', 0, 'back:', 255)
+		global1._send('setCursor:', 999)
+		self._send('changeState:', 0)
 	#end:method
 
 	@classmethod
@@ -1116,14 +1110,14 @@ class DialogEditor(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(mainMenu dispose:)
-		(DlgWindow dispose:)
+		mainMenu._send('dispose:')
+		DlgWindow._send('dispose:')
 		global38 = local0
-		(global1 setCursor: ((global69 curIcon:) cursor:))
+		global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 		kernel.DrawStatus(r""" """, 0, 0)
 		kernel.DrawStatus(0)
-		(super dispose:)
-		kernel.DrawPic((global2 picture:), 100)
+		super._send('dispose:')
+		kernel.DrawPic(global2._send('picture:'), 100)
 		kernel.DisposeScript(111)
 	#end:method
 
@@ -1133,7 +1127,7 @@ class DialogEditor(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if curMenu:
-			(curMenu dispose:)
+			curMenu._send('dispose:')
 		#endif
 		(= curMenu
 			match state = param1
@@ -1148,7 +1142,7 @@ class DialogEditor(List):
 			#end:match
 		)
 		if curMenu:
-			(curMenu init:)
+			curMenu._send('init:')
 		#endif
 	#end:method
 
@@ -1159,18 +1153,18 @@ class DialogEditor(List):
 
 		if size:
 			if 
-				(Print
-					addText: r"""Delete current item?"""
-					font: 0
-					addButton: 1 r"""Yes""" 0 12
-					addButton: 0 r"""No""" 40 12
-					init:
+				Print._send(
+					'addText:', r"""Delete current item?""",
+					'font:', 0,
+					'addButton:', 1, r"""Yes""", 0, 12,
+					'addButton:', 0, r"""No""", 40, 12,
+					'init:'
 				)
-				(self delete: curItem)
-				(curItem dispose:)
+				self._send('delete:', curItem)
+				curItem._send('dispose:')
 				curItem = 0
 				if size:
-					curItem = (self at: 0)
+					curItem = self._send('at:', 0)
 				#endif
 			#endif
 		else:
@@ -1184,7 +1178,7 @@ class DialogEditor(List):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not local1):
-			(DlgWindow create:)
+			DlgWindow._send('create:')
 		#endif
 		if (not local2):
 			kernel.Format(@local2, r"""%d.dlg""", global11)
@@ -1192,15 +1186,15 @@ class DialogEditor(List):
 		if 
 			(not
 				(= temp100
-					(Print
-						addTitle: @local42
-						addText: r"""Save to: """
-						addEdit: @local2 25 60 0 @local2
-						font: 0
-						addButton: 1 r"""__Save__""" 10 12
-						addButton: 2 r""" Abandon """ 80 12
-						addButton: 0 r""" Cancel """ 151 12
-						init:
+					Print._send(
+						'addTitle:', @local42,
+						'addText:', r"""Save to: """,
+						'addEdit:', @local2, 25, 60, 0, @local2,
+						'font:', 0,
+						'addButton:', 1, r"""__Save__""", 10, 12,
+						'addButton:', 2, r""" Abandon """, 80, 12,
+						'addButton:', 0, r""" Cancel """, 151, 12,
+						'init:'
 					)
 				)
 			)
@@ -1214,14 +1208,14 @@ class DialogEditor(List):
 			if 
 				(not
 					(= temp100
-						(Print
-							addTitle: @local42
-							addText: @temp0
-							font: 0
-							addButton: 1 r""" Replace """ 0 24
-							addButton: 2 r""" Append """ 70 24
-							addButton: 0 r""" Cancel """ 125 24
-							init:
+						Print._send(
+							'addTitle:', @local42,
+							'addText:', @temp0,
+							'font:', 0,
+							'addButton:', 1, r""" Replace """, 0, 24,
+							'addButton:', 2, r""" Append """, 70, 24,
+							'addButton:', 0, r""" Cancel """, 125, 24,
+							'init:'
 						)
 					)
 				)
@@ -1229,53 +1223,53 @@ class DialogEditor(List):
 			#endif
 		#endif
 		temp102 = (2 if (temp100 == 1) else 0)
-		if (not (temp101 = (File new:) name: @local2 open: temp102)):
-			proc921_1(r"""Error opening '%s'""", (temp101 name:))
-			(temp101 dispose:)
+		if (not temp101 = File._send('new:')._send('name:', @local2, 'open:', temp102)):
+			proc921_1(r"""Error opening '%s'""", temp101._send('name:'))
+			temp101._send('dispose:')
 			return 0
 		#endif
-		(temp101
-			writeString: r"""\t\t; DialogEditor v1.0\0d\n"""
-			writeString: r"""\t\t; by Brian K. Hughes\0d\n"""
-			writeString: r"""\t\t(Print\0d\n"""
+		temp101._send(
+			'writeString:', r"""\t\t; DialogEditor v1.0\0d\n""",
+			'writeString:', r"""\t\t; by Brian K. Hughes\0d\n""",
+			'writeString:', r"""\t\t(Print\0d\n"""
 		)
 		if local1:
-			kernel.Format(@temp0, r"""\t\t\tposn:\t\t\t%d %d,\0d\n""", (DlgWindow
-				left:
-			), (DlgWindow top:))
-			(temp101 writeString: @temp0)
-			if (DlgWindow title:):
-				if (DlgWindow seq:):
-					kernel.Format(@temp0, r"""\t\t\taddTitle:\t%d %d %d %d %d,\0d\n""", (DlgWindow
-						noun:
-					), (DlgWindow verb:), (DlgWindow case:), (DlgWindow seq:), (DlgWindow
-						modNum:
-					))
+			kernel.Format(@temp0, r"""\t\t\tposn:\t\t\t%d %d,\0d\n""", DlgWindow._send(
+				'left:'
+			), DlgWindow._send('top:'))
+			temp101._send('writeString:', @temp0)
+			if DlgWindow._send('title:'):
+				if DlgWindow._send('seq:'):
+					kernel.Format(@temp0, r"""\t\t\taddTitle:\t%d %d %d %d %d,\0d\n""", DlgWindow._send(
+						'noun:'
+					), DlgWindow._send('verb:'), DlgWindow._send('case:'), DlgWindow._send(
+						'seq:'
+					), DlgWindow._send('modNum:'))
 				else:
-					kernel.Format(@temp0, r"""\t\t\taddTitle:\t{%s\},\0d\n""", (DlgWindow
-						title:
+					kernel.Format(@temp0, r"""\t\t\taddTitle:\t{%s\},\0d\n""", DlgWindow._send(
+						'title:'
 					))
 				#endif
-				(temp101 writeString: @temp0)
+				temp101._send('writeString:', @temp0)
 			#endif
 		#endif
-		(self writeFile: temp101)
+		self._send('writeFile:', temp101)
 		if 
-			(Print
-				addTitle: @local42
-				addText: r"""This dialog should be..."""
-				font: 0
-				addButton: 0 r"""___Modal___""" 0 24
-				addButton: 1 r""" Modeless """ 0 38
-				init:
+			Print._send(
+				'addTitle:', @local42,
+				'addText:', r"""This dialog should be...""",
+				'font:', 0,
+				'addButton:', 0, r"""___Modal___""", 0, 24,
+				'addButton:', 1, r""" Modeless """, 0, 38,
+				'init:'
 			)
-			(temp101 writeString: r"""\t\t\tmodeless:\tTRUE,\0d\n""")
+			temp101._send('writeString:', r"""\t\t\tmodeless:\tTRUE,\0d\n""")
 		#endif
-		(temp101
-			writeString: r"""\t\t\tinit:\0d\n"""
-			writeString: r"""\t\t)\0d\n"""
+		temp101._send(
+			'writeString:', r"""\t\t\tinit:\0d\n""",
+			'writeString:', r"""\t\t)\0d\n"""
 		)
-		(temp101 dispose:)
+		temp101._send('dispose:')
 		return 1
 	#end:method
 
@@ -1284,17 +1278,17 @@ class DialogEditor(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self init:)
+		self._send('init:')
 		while True: #repeat
-			temp0 = (Event new:)
-			if (not (curMenu handleEvent: temp0)):
+			temp0 = Event._send('new:')
+			if (not curMenu._send('handleEvent:', temp0)):
 				kernel.GlobalToLocal(temp0)
-				(breakif (self handleEvent: temp0))
+				(breakif self._send('handleEvent:', temp0))
 			#endif
-			(temp0 dispose:)
+			temp0._send('dispose:')
 		#end:loop
-		(temp0 dispose:)
-		(self dispose:)
+		temp0._send('dispose:')
+		self._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -1302,73 +1296,73 @@ class DialogEditor(List):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		match (param1 type:)
+		match param1._send('type:')
 			case 0:#end:case
 			case 1:
-				if temp1 = (self firstTrue: #check param1):
-					(param1 claimed: 1)
-					if ((param1 modifiers:) == 3):
-						(temp1 handleEvent: param1)
+				if temp1 = self._send('firstTrue:', #check, param1):
+					param1._send('claimed:', 1)
+					if (param1._send('modifiers:') == 3):
+						temp1._send('handleEvent:', param1)
 					else:
 						if curItem:
-							(curItem select: 0)
+							curItem._send('select:', 0)
 						#endif
-						(curItem = temp1 select: 1)
-						(self changeState: 0)
+						curItem = temp1._send('select:', 1)
+						self._send('changeState:', 0)
 					#endif
 				#endif
 			#end:case
 			case 2:#end:case
 			case 4:
-				match (param1 message:)
+				match param1._send('message:')
 					case 63:
-						(param1 message: 104)
+						param1._send('message:', 104)
 					#end:case
 					case 19:
-						(param1 message: 120)
+						param1._send('message:', 120)
 					#end:case
 				#end:match
-				match (param1 message:)
+				match param1._send('message:')
 					case 9:
-						(curItem select: 0)
-						temp0 = (DialogEditor indexOf: curItem)
-						if (temp0.post('++') == (DialogEditor size:)):
-							curItem = (DialogEditor at: 0)
+						curItem._send('select:', 0)
+						temp0 = DialogEditor._send('indexOf:', curItem)
+						if (temp0.post('++') == DialogEditor._send('size:')):
+							curItem = DialogEditor._send('at:', 0)
 						else:
-							curItem = (DialogEditor at: temp0)
+							curItem = DialogEditor._send('at:', temp0)
 						#endif
-						(curItem select: 1)
-						(DialogEditor changeState: 0)
+						curItem._send('select:', 1)
+						DialogEditor._send('changeState:', 0)
 					#end:case
 					case 3840:
-						(curItem select: 0)
-						if (temp0 = (DialogEditor indexOf: curItem) == 0):
+						curItem._send('select:', 0)
+						if (temp0 = DialogEditor._send('indexOf:', curItem) == 0):
 							(= curItem
-								(DialogEditor at: ((DialogEditor size:) - 1))
+								DialogEditor._send('at:', (DialogEditor._send('size:') - 1))
 							)
 						else:
-							curItem = (DialogEditor at: temp0.post('--'))
+							curItem = DialogEditor._send('at:', temp0.post('--'))
 						#endif
 					#end:case
 					case 32:#end:case
 					case 8:#end:case
 					case 97:
-						(Print
-							addTitle: @local42
-							mode: 1
-							width: 140
-							addText: r"""by Brian K. Hughes\n17 July, 1992"""
-							init:
+						Print._send(
+							'addTitle:', @local42,
+							'mode:', 1,
+							'width:', 140,
+							'addText:', r"""by Brian K. Hughes\n17 July, 1992""",
+							'init:'
 						)
 					#end:case
 					case 99:
 						match state
 							case 4:
-								(curItem editCel:)
+								curItem._send('editCel:')
 							#end:case
 							case 6:
 								if size:
-									(DlgWindow create:)
+									DlgWindow._send('create:')
 								else:
 									proc921_0(r"""Can't create window: no items!""")
 								#endif
@@ -1378,12 +1372,12 @@ class DialogEditor(List):
 					case 100:
 						match state
 							case 0:
-								(self delItem:)
+								self._send('delItem:')
 							#end:case
 							case 6:
 								if local1:
-									(DlgWindow dispose:)
-									(self eachElementDo: #draw)
+									DlgWindow._send('dispose:')
+									self._send('eachElementDo:', #draw)
 								else:
 									proc921_0(r"""No window to delete!""")
 								#endif
@@ -1392,9 +1386,8 @@ class DialogEditor(List):
 					#end:case
 					case 101:
 						if size:
-							(self
-								changeState:
-									match (curItem -super-:)
+							self._send(
+								'changeState:', match curItem._send('-super-:')
 										case _DButton: 1#end:case
 										case _DText: 2#end:case
 										case _DEdit: 3#end:case
@@ -1408,180 +1401,180 @@ class DialogEditor(List):
 					#end:case
 					case 102:
 						if proc999_5(state, 2, 1, 3):
-							(curItem editFont:)
+							curItem._send('editFont:')
 						#endif
 					#end:case
 					case 104:
 						match state
 							case 0:
-								(Print
-									font: global22
-									width: 250
-									addText:
-										r"""Main Menu:\n\n__About - About the DialogEditor\n__Item - Create a new item\n__Edit - Edit properties of the current item\n__Look - View properties of the current item\n__Del - Delete the current item\n__Win - Create a window background\n__Help - You're here!\n__eXit - Exit the DialogEditor (& maybe save)\n"""
-									init:
+								Print._send(
+									'font:', global22,
+									'width:', 250,
+									'addText:', r"""Main Menu:\n\n__About - About the DialogEditor\n__Item - Create a new item\n__Edit - Edit properties of the current item\n__Look - View properties of the current item\n__Del - Delete the current item\n__Win - Create a window background\n__Help - You're here!\n__eXit - Exit the DialogEditor (& maybe save)\n""",
+									'init:'
 								)
 							#end:case
 							case 6:
-								(Print
-									font: global22
-									width: 250
-									addText:
-										r"""Window Menu:\n\n__Create - Draw the window to the correct size\n__Position - Move the window and all items\n__Delete - Remove the window\n__Menu - Return to the Main Menu"""
-									init:
+								Print._send(
+									'font:', global22,
+									'width:', 250,
+									'addText:', r"""Window Menu:\n\n__Create - Draw the window to the correct size\n__Position - Move the window and all items\n__Delete - Remove the window\n__Menu - Return to the Main Menu""",
+									'init:'
 								)
 							#end:case
 							else:
-								(curItem showHelp:)
+								curItem._send('showHelp:')
 							#end:else
 						#end:match
 					#end:case
 					case 105:
 						temp1 = 0
 						match
-							(Print
-								addTitle: @local42
-								width: 65
-								addText:
-									r"""Select the kind of item you want to add to the dialog:"""
-								font: 0
-								addButton: 1 r"""__Button__""" 80 0
-								addButton: 2 r"""___Text___""" 80 14
-								addButton: 3 r"""___Edit___""" 80 28
-								addButton: 4 r"""___Icon___""" 80 42
-								addButton: 6 r""" Selector """ 80 56
-								addButton: 0 r"""__Cancel__""" 80 70
-								init:
+							Print._send(
+								'addTitle:', @local42,
+								'width:', 65,
+								'addText:', r"""Select the kind of item you want to add to the dialog:""",
+								'font:', 0,
+								'addButton:', 1, r"""__Button__""", 80, 0,
+								'addButton:', 2, r"""___Text___""", 80, 14,
+								'addButton:', 3, r"""___Edit___""", 80, 28,
+								'addButton:', 4, r"""___Icon___""", 80, 42,
+								'addButton:', 6, r""" Selector """, 80, 56,
+								'addButton:', 0, r"""__Cancel__""", 80, 70,
+								'init:'
 							)
 							case 1:
 								temp0 = kernel.Memory(1, 50)
 								kernel.StrCpy(temp0, r"""button""")
 								(= temp1
-									((_DButton new:) text: temp0 yourself:)
+									_DButton._send('new:')._send('text:', temp0, 'yourself:')
 								)
 							#end:case
 							case 2:
 								temp0 = kernel.Memory(1, 100)
 								kernel.StrCpy(temp0, r"""text""")
-								temp1 = ((_DText new:) text: temp0 yourself:)
+								temp1 = _DText._send('new:')._send('text:', temp0, 'yourself:')
 							#end:case
 							case 3:
 								temp0 = kernel.Memory(1, 50)
 								kernel.StrCpy(temp0, r"""""")
 								(= temp1
-									((_DEdit new:) text: temp0 max: 5 yourself:)
+									_DEdit._send('new:')._send('text:', temp0, 'max:', 5, 'yourself:')
 								)
 							#end:case
 							case 4:
 								(= temp1
-									((_DIcon new:)
-										view: 0
-										loop: 0
-										cel: 0
-										yourself:
+									_DIcon._send('new:')._send(
+										'view:', 0,
+										'loop:', 0,
+										'cel:', 0,
+										'yourself:'
 									)
 								)
 							#end:case
 							case 6:
 								(= temp1
-									((_DSelector new:) x: 10 y: 1 yourself:)
+									_DSelector._send('new:')._send('x:', 10, 'y:', 1, 'yourself:')
 								)
 							#end:case
 						#end:match
 						if temp1:
 							if curItem:
-								(curItem select: 0)
+								curItem._send('select:', 0)
 							#endif
 							curItem = temp1
 							if local1:
-								(DlgWindow dispose:)
+								DlgWindow._send('dispose:')
 							#endif
-							(self
-								addToEnd:
-									(curItem setSize: moveTo: 4 4 yourself:)
-								eachElementDo: #draw
+							self._send(
+								'addToEnd:', curItem._send(
+										'setSize:',
+										'moveTo:', 4, 4,
+										'yourself:'
+									),
+								'eachElementDo:', #draw
 							)
-							(curItem select: 1)
+							curItem._send('select:', 1)
 						#endif
 					#end:case
 					case 106:
 						if (state == 2):
-							(curItem editJust:)
+							curItem._send('editJust:')
 						#endif
 					#end:case
 					case 108:
 						match state
 							case 0:
 								if curItem:
-									kernel.Format(@temp508, r"""__x:_______%d""", (curItem
-										nsLeft:
+									kernel.Format(@temp508, r"""__x:_______%d""", curItem._send(
+										'nsLeft:'
 									))
-									kernel.Format(@temp538, r"""__y:_______%d""", (curItem
-										nsTop:
+									kernel.Format(@temp538, r"""__y:_______%d""", curItem._send(
+										'nsTop:'
 									))
-									match (curItem -super-:)
+									match curItem._send('-super-:')
 										case _DText:
 											kernel.StrCpy(@temp788, r"""Text Item""")
-											kernel.StrCpy(@temp2, (curItem text:))
+											kernel.StrCpy(@temp2, curItem._send('text:'))
 											kernel.Format(@temp568, r"""__text:___%s""", localproc_0(@temp2, 15))
-											kernel.Format(@temp598, r"""__font:___%d""", (curItem
-												font:
+											kernel.Format(@temp598, r"""__font:___%d""", curItem._send(
+												'font:'
 											))
-											kernel.Format(@temp628, r"""__width:__%d""", (curItem
-												width:
+											kernel.Format(@temp628, r"""__width:__%d""", curItem._send(
+												'width:'
 											))
-											kernel.Format(@temp658, r"""__noun:___%d""", (curItem
-												noun:
+											kernel.Format(@temp658, r"""__noun:___%d""", curItem._send(
+												'noun:'
 											))
-											kernel.Format(@temp678, r"""__verb:___%d""", (curItem
-												verb:
+											kernel.Format(@temp678, r"""__verb:___%d""", curItem._send(
+												'verb:'
 											))
-											kernel.Format(@temp708, r"""__case:___%d""", (curItem
-												case:
+											kernel.Format(@temp708, r"""__case:___%d""", curItem._send(
+												'case:'
 											))
-											kernel.Format(@temp738, r"""__seq:____%d""", (curItem
-												seq:
+											kernel.Format(@temp738, r"""__seq:____%d""", curItem._send(
+												'seq:'
 											))
-											kernel.Format(@temp758, r"""__modNum: %d""", (curItem
-												modNum:
+											kernel.Format(@temp758, r"""__modNum: %d""", curItem._send(
+												'modNum:'
 											))
 										#end:case
 										case _DButton:
 											kernel.StrCpy(@temp788, r"""Button Item""")
-											kernel.StrCpy(@temp2, (curItem text:))
+											kernel.StrCpy(@temp2, curItem._send('text:'))
 											kernel.Format(@temp568, r"""__text:___%s""", localproc_0(@temp2, 15))
-											kernel.Format(@temp598, r"""__font:___%d""", (curItem
-												font:
+											kernel.Format(@temp598, r"""__font:___%d""", curItem._send(
+												'font:'
 											))
-											kernel.Format(@temp628, r"""__value:__%d""", (curItem
-												value:
+											kernel.Format(@temp628, r"""__value:__%d""", curItem._send(
+												'value:'
 											))
-											kernel.Format(@temp658, r"""__noun:___%d""", (curItem
-												noun:
+											kernel.Format(@temp658, r"""__noun:___%d""", curItem._send(
+												'noun:'
 											))
-											kernel.Format(@temp678, r"""__verb:___%d""", (curItem
-												verb:
+											kernel.Format(@temp678, r"""__verb:___%d""", curItem._send(
+												'verb:'
 											))
-											kernel.Format(@temp708, r"""__case:___%d""", (curItem
-												case:
+											kernel.Format(@temp708, r"""__case:___%d""", curItem._send(
+												'case:'
 											))
-											kernel.Format(@temp738, r"""__seq:____%d""", (curItem
-												seq:
+											kernel.Format(@temp738, r"""__seq:____%d""", curItem._send(
+												'seq:'
 											))
-											kernel.Format(@temp758, r"""__modNum: %d""", (curItem
-												modNum:
+											kernel.Format(@temp758, r"""__modNum: %d""", curItem._send(
+												'modNum:'
 											))
 										#end:case
 										case _DIcon:
 											kernel.StrCpy(@temp788, r"""Icon Item""")
-											kernel.Format(@temp568, r"""__view:___%d""", (curItem
-												view:
+											kernel.Format(@temp568, r"""__view:___%d""", curItem._send(
+												'view:'
 											))
-											kernel.Format(@temp598, r"""__loop:___%d""", (curItem
-												loop:
+											kernel.Format(@temp598, r"""__loop:___%d""", curItem._send(
+												'loop:'
 											))
-											kernel.Format(@temp628, r"""__cel:____%d""", (curItem
-												cel:
+											kernel.Format(@temp628, r"""__cel:____%d""", curItem._send(
+												'cel:'
 											))
 											(= temp658
 												(= temp678
@@ -1595,13 +1588,13 @@ class DialogEditor(List):
 										#end:case
 										case _DEdit:
 											kernel.StrCpy(@temp788, r"""Edit Item""")
-											kernel.StrCpy(@temp2, (curItem text:))
+											kernel.StrCpy(@temp2, curItem._send('text:'))
 											kernel.Format(@temp568, r"""__text:___%s""", localproc_0(@temp2, 15))
-											kernel.Format(@temp598, r"""__font:___%d""", (curItem
-												font:
+											kernel.Format(@temp598, r"""__font:___%d""", curItem._send(
+												'font:'
 											))
-											kernel.Format(@temp628, r"""__max:____%d""", (curItem
-												max:
+											kernel.Format(@temp628, r"""__max:____%d""", curItem._send(
+												'max:'
 											))
 											(= temp658
 												(= temp678
@@ -1615,11 +1608,11 @@ class DialogEditor(List):
 										#end:case
 										case _DSelector:
 											kernel.StrCpy(@temp788, r"""Selector Item""")
-											kernel.Format(@temp568, r"""__width:__%d""", (curItem
-												x:
+											kernel.Format(@temp568, r"""__width:__%d""", curItem._send(
+												'x:'
 											))
-											kernel.Format(@temp598, r"""__length: %d""", (curItem
-												y:
+											kernel.Format(@temp598, r"""__length: %d""", curItem._send(
+												'y:'
 											))
 											(= temp628
 												(= temp658
@@ -1634,86 +1627,86 @@ class DialogEditor(List):
 											)
 										#end:case
 									#end:match
-									(Print
-										addTitle: @temp788
-										addText: @temp508
-										addText: @temp538 0 12
-										addText: @temp568 0 24
-										addText: @temp598 0 36
-										addText: @temp628 0 48
-										addText: @temp658 0 60
-										addText: @temp678 0 72
-										addText: @temp708 0 84
-										addText: @temp738 0 96
-										addText: @temp758 0 108
-										init:
+									Print._send(
+										'addTitle:', @temp788,
+										'addText:', @temp508,
+										'addText:', @temp538, 0, 12,
+										'addText:', @temp568, 0, 24,
+										'addText:', @temp598, 0, 36,
+										'addText:', @temp628, 0, 48,
+										'addText:', @temp658, 0, 60,
+										'addText:', @temp678, 0, 72,
+										'addText:', @temp708, 0, 84,
+										'addText:', @temp738, 0, 96,
+										'addText:', @temp758, 0, 108,
+										'init:'
 									)
 									if local1:
-										(DlgWindow create:)
+										DlgWindow._send('create:')
 									#endif
 								else:
 									proc921_0(r"""No item to look at!""")
 								#endif
 							#end:case
 							case 4:
-								(curItem editLoop:)
+								curItem._send('editLoop:')
 							#end:case
 							case 3:
-								(curItem editLength:)
+								curItem._send('editLength:')
 							#end:case
 							case 5:
-								(curItem editLength:)
+								curItem._send('editLength:')
 							#end:case
 						#end:match
 					#end:case
 					case 109:
-						(self changeState: 0)
+						self._send('changeState:', 0)
 					#end:case
 					case 112:
 						match state
 							case 6:
-								(DlgWindow editPosn:)
+								DlgWindow._send('editPosn:')
 							#end:case
 							else:
-								(curItem editPosn:)
+								curItem._send('editPosn:')
 							#end:else
 						#end:match
 					#end:case
 					case 116:
 						match state
 							case 6:
-								(DlgWindow editTitle:)
+								DlgWindow._send('editTitle:')
 							#end:case
 							else:
-								(curItem editText:)
+								curItem._send('editText:')
 							#end:else
 						#end:match
 					#end:case
 					case 118:
 						match state
 							case 4:
-								(curItem editView:)
+								curItem._send('editView:')
 							#end:case
 							case 1:
-								(curItem editValue:)
+								curItem._send('editValue:')
 							#end:case
 						#end:match
 					#end:case
 					case 119:
 						match state
 							case 0:
-								(self changeState: 6)
+								self._send('changeState:', 6)
 							#end:case
 							case 5:
-								(curItem editWidth:)
+								curItem._send('editWidth:')
 							#end:case
 							case 2:
-								(curItem editWidth:)
+								curItem._send('editWidth:')
 							#end:case
 						#end:match
 					#end:case
 					case 120:
-						(self exit:)
+						self._send('exit:')
 						return
 					#end:case
 				#end:match
@@ -1732,95 +1725,97 @@ class DialogEditor(List):
 		temp104 = 0
 		temp0 = 0
 		while (temp0 < size): # inline for
-			temp1 = (self at: temp0)
-			match (temp1 -super-:)
+			temp1 = self._send('at:', temp0)
+			match temp1._send('-super-:')
 				case _DButton:
-					if ((temp1 font:) != temp102):
-						temp102 = (temp1 font:)
+					if (temp1._send('font:') != temp102):
+						temp102 = temp1._send('font:')
 						kernel.Format(@temp2, r"""\t\t\tfont:\t\t\t%d,\0d\n""", temp102)
-						(param1 writeString: @temp2)
+						param1._send('writeString:', @temp2)
 					#endif
-					if (temp1 seq:):
-						kernel.Format(@temp2, r"""\t\t\taddButton:\t%d %d %d %d %d %d %d %d, \0d\n""", (temp1
-							value:
-						), (temp1 noun:), (temp1 verb:), (temp1 case:), (temp1
-							seq:
-						), (((temp1 nsLeft:) - (DlgWindow left:)) - 4), (-
-							((temp1 nsTop:) - (DlgWindow top:))
+					if temp1._send('seq:'):
+						kernel.Format(@temp2, r"""\t\t\taddButton:\t%d %d %d %d %d %d %d %d, \0d\n""", temp1._send(
+							'value:'
+						), temp1._send('noun:'), temp1._send('verb:'), temp1._send(
+							'case:'
+						), temp1._send('seq:'), (-
+							(temp1._send('nsLeft:') - DlgWindow._send('left:'))
 							4
-						), (temp1 modNum:))
+						), ((temp1._send('nsTop:') - DlgWindow._send('top:')) - 4), temp1._send(
+							'modNum:'
+						))
 					else:
-						kernel.Format(@temp2, r"""\t\t\taddButton:\t%d {%s\} %d %d,\0d\n""", (temp1
-							value:
-						), (temp1 text:), (-
-							((temp1 nsLeft:) - (DlgWindow left:))
+						kernel.Format(@temp2, r"""\t\t\taddButton:\t%d {%s\} %d %d,\0d\n""", temp1._send(
+							'value:'
+						), temp1._send('text:'), (-
+							(temp1._send('nsLeft:') - DlgWindow._send('left:'))
 							4
-						), (((temp1 nsTop:) - (DlgWindow top:)) - 4))
+						), ((temp1._send('nsTop:') - DlgWindow._send('top:')) - 4))
 					#endif
-					(param1 writeString: @temp2)
+					param1._send('writeString:', @temp2)
 				#end:case
 				case _DText:
-					if ((temp1 font:) != temp102):
-						temp102 = (temp1 font:)
+					if (temp1._send('font:') != temp102):
+						temp102 = temp1._send('font:')
 						kernel.Format(@temp2, r"""\t\t\tfont:\t\t\t%d,\0d\n""", temp102)
-						(param1 writeString: @temp2)
+						param1._send('writeString:', @temp2)
 					#endif
-					if ((temp1 mode:) != temp103):
-						temp103 = (temp1 mode:)
+					if (temp1._send('mode:') != temp103):
+						temp103 = temp1._send('mode:')
 						kernel.Format(@temp2, r"""\t\t\tmode:\t\t\t%s,\0d\n""", match
-							(temp1 mode:)
+							temp1._send('mode:')
 							case 0: r"""teJustLeft"""#end:case
 							case -1: r"""teJustRight"""#end:case
 							case 1: r"""teJustCenter"""#end:case
 						#end:match)
-						(param1 writeString: @temp2)
+						param1._send('writeString:', @temp2)
 					#endif
-					if ((temp1 width:) != temp104):
-						temp104 = (temp1 width:)
+					if (temp1._send('width:') != temp104):
+						temp104 = temp1._send('width:')
 						kernel.Format(@temp2, r"""\t\t\twidth:\t\t%d, \0d\n""", temp104)
-						(param1 writeString: @temp2)
+						param1._send('writeString:', @temp2)
 					#endif
-					if (temp1 seq:):
-						kernel.Format(@temp2, r"""\t\t\taddText:\t\t%d %d %d %d %d %d %d, \0d\n""", (temp1
-							noun:
-						), (temp1 verb:), (temp1 case:), (temp1 seq:), (-
-							((temp1 nsLeft:) - (DlgWindow left:))
+					if temp1._send('seq:'):
+						kernel.Format(@temp2, r"""\t\t\taddText:\t\t%d %d %d %d %d %d %d, \0d\n""", temp1._send(
+							'noun:'
+						), temp1._send('verb:'), temp1._send('case:'), temp1._send(
+							'seq:'
+						), ((temp1._send('nsLeft:') - DlgWindow._send('left:')) - 4), (-
+							(temp1._send('nsTop:') - DlgWindow._send('top:'))
 							4
-						), (((temp1 nsTop:) - (DlgWindow top:)) - 4), (temp1
-							modNum:
-						))
+						), temp1._send('modNum:'))
 					else:
-						kernel.Format(@temp2, r"""\t\t\taddText:\t\t{%s\} %d %d,\0d\n""", (temp1
-							text:
-						), (((temp1 nsLeft:) - (DlgWindow left:)) - 4), (-
-							((temp1 nsTop:) - (DlgWindow top:))
+						kernel.Format(@temp2, r"""\t\t\taddText:\t\t{%s\} %d %d,\0d\n""", temp1._send(
+							'text:'
+						), ((temp1._send('nsLeft:') - DlgWindow._send('left:')) - 4), (-
+							(temp1._send('nsTop:') - DlgWindow._send('top:'))
 							4
 						))
 					#endif
-					(param1 writeString: @temp2)
+					param1._send('writeString:', @temp2)
 				#end:case
 				case _DEdit:
-					if ((temp1 font:) != temp102):
-						temp102 = (temp1 font:)
+					if (temp1._send('font:') != temp102):
+						temp102 = temp1._send('font:')
 						kernel.Format(@temp2, r"""\t\t\tfont:\t\t\t%d,\0d\n""", temp102)
-						(param1 writeString: @temp2)
+						param1._send('writeString:', @temp2)
 					#endif
-					kernel.Format(@temp2, r"""\t\t\taddEdit:\t\t@str %d %d %d {%s\},\0d\n""", (temp1
-						max:
-					), (((temp1 nsLeft:) - (DlgWindow left:)) - 4), (-
-						((temp1 nsTop:) - (DlgWindow top:))
+					kernel.Format(@temp2, r"""\t\t\taddEdit:\t\t@str %d %d %d {%s\},\0d\n""", temp1._send(
+						'max:'
+					), ((temp1._send('nsLeft:') - DlgWindow._send('left:')) - 4), (-
+						(temp1._send('nsTop:') - DlgWindow._send('top:'))
 						4
-					), (temp1 text:))
-					(param1 writeString: @temp2)
+					), temp1._send('text:'))
+					param1._send('writeString:', @temp2)
 				#end:case
 				case _DIcon:
-					kernel.Format(@temp2, r"""\t\t\taddIcon:\t\t%d %d %d %d %d,\0d\n""", (temp1
-						view:
-					), (temp1 loop:), (temp1 cel:), (-
-						((temp1 nsLeft:) - (DlgWindow left:))
+					kernel.Format(@temp2, r"""\t\t\taddIcon:\t\t%d %d %d %d %d,\0d\n""", temp1._send(
+						'view:'
+					), temp1._send('loop:'), temp1._send('cel:'), (-
+						(temp1._send('nsLeft:') - DlgWindow._send('left:'))
 						4
-					), (((temp1 nsTop:) - (DlgWindow top:)) - 4))
-					(param1 writeString: @temp2)
+					), ((temp1._send('nsTop:') - DlgWindow._send('top:')) - 4))
+					param1._send('writeString:', @temp2)
 				#end:case
 				case _DSelector:#end:case
 			#end:match

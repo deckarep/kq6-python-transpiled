@@ -38,13 +38,11 @@ class kq6Controls(GameControls):
 
 		kernel.Load(128, 947)
 		global63 = self
-		(self
-			window:
-				(controlWin
-					top: (((200 - (kernel.CelHigh(947, 1, 1) + 0)) / 2) - 15)
-					left: (((320 - (+ 157 kernel.CelWide(947, 0, 1) 0)) / 2) - 10)
-					bottom:
-						(-
+		self._send(
+			'window:', controlWin._send(
+					'top:', (((200 - (kernel.CelHigh(947, 1, 1) + 0)) / 2) - 15),
+					'left:', (((320 - (+ 157 kernel.CelWide(947, 0, 1) 0)) / 2) - 10),
+					'bottom:', (-
 							(+
 								kernel.CelHigh(947, 1, 1)
 								0
@@ -52,54 +50,58 @@ class kq6Controls(GameControls):
 								10
 							)
 							5
-						)
-					right:
-						(+
+						),
+					'right:', (+
 							157
 							kernel.CelWide(947, 0, 1)
 							0
 							((320 - (+ 157 kernel.CelWide(947, 0, 1) 0)) / 2)
 							10
-						)
-					back: 19
-					yourself:
-				)
-			add:
-				iconOk
-				(iconTextSwitch
-					theObj: iconTextSwitch
-					selector: #doit
-					yourself:
-				)
-				(iconSave init: theObj: global1 selector: #save yourself:)
-				(iconRestore init: theObj: global1 selector: #restore yourself:)
-				(iconRestart init: theObj: global1 selector: #restart yourself:)
-				(iconQuit init: theObj: global1 selector: #quitGame yourself:)
-				(iconAbout init: selector: #doit yourself:)
-				(detailSlider
-					init:
-					theObj: global1
-					selector: #detailLevel
-					topValue: 3
-					bottomValue: 0
-					yStep: 2
-					yourself:
-				)
-				(volumeSlider
-					init:
-					theObj: global1
-					selector: #masterVolume
-					topValue: 15
-					bottomValue: 0
-					yStep: 2
-					yourself:
-				)
-				(speedSlider init: theObj: 0 selector: #y yStep: 2 yourself:)
-			eachElementDo: #highlightColor 0
-			eachElementDo: #lowlightColor 19
-			curIcon: iconRestore
+						),
+					'back:', 19,
+					'yourself:'
+				),
+			'add:', iconOk, iconTextSwitch._send(
+					'theObj:', iconTextSwitch,
+					'selector:', #doit,
+					'yourself:'
+				), iconSave._send('init:', 'theObj:', global1, 'selector:', #save, 'yourself:'), iconRestore._send(
+					'init:',
+					'theObj:', global1,
+					'selector:', #restore,
+					'yourself:'
+				), iconRestart._send(
+					'init:',
+					'theObj:', global1,
+					'selector:', #restart,
+					'yourself:'
+				), iconQuit._send(
+					'init:',
+					'theObj:', global1,
+					'selector:', #quitGame,
+					'yourself:'
+				), iconAbout._send('init:', 'selector:', #doit, 'yourself:'), detailSlider._send(
+					'init:',
+					'theObj:', global1,
+					'selector:', #detailLevel,
+					'topValue:', 3,
+					'bottomValue:', 0,
+					'yStep:', 2,
+					'yourself:'
+				), volumeSlider._send(
+					'init:',
+					'theObj:', global1,
+					'selector:', #masterVolume,
+					'topValue:', 15,
+					'bottomValue:', 0,
+					'yStep:', 2,
+					'yourself:'
+				), speedSlider._send('init:', 'theObj:', 0, 'selector:', #y, 'yStep:', 2, 'yourself:'),
+			'eachElementDo:', #highlightColor, 0,
+			'eachElementDo:', #lowlightColor, 19,
+			'curIcon:', iconRestore
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -107,7 +109,7 @@ class kq6Controls(GameControls):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		kernel.DisposeScript(934)
 		kernel.DisposeScript(903)
 	#end:method
@@ -122,7 +124,7 @@ class controlWin(Kq6Window):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super open: &rest)
+		super._send('open:', &rest)
 		priority = -1
 		local0 = kernel.PicNotValid()
 		kernel.PicNotValid(1)
@@ -237,7 +239,7 @@ class controlWin(Kq6Window):
 			# for:reinit
 			temp52.post('++')
 		#end:loop
-		(global1 setCursor: global20)
+		global1._send('setCursor:', global20)
 	#end:method
 
 	@classmethod
@@ -248,7 +250,7 @@ class controlWin(Kq6Window):
 		if local1:
 			kernel.Graph(8, local1)
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -271,7 +273,7 @@ class detailSlider(Slider):
 		nsLeft = 79
 		nsTop = 55
 		sRight = 0
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 #end:class or instance
@@ -296,7 +298,7 @@ class volumeSlider(Slider):
 		sliderView = 947
 		nsTop = 55
 		sRight = 0
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -330,8 +332,8 @@ class speedSlider(Slider):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global0 looper:) and ((global0 looper:) == EgoGroop)):
-			topValue = ((global0 looper:) speedState:)
+		if (global0._send('looper:') and (global0._send('looper:') == EgoGroop)):
+			topValue = global0._send('looper:')._send('speedState:')
 			bottomValue = (topValue + 15)
 		else:
 			topValue = 0
@@ -340,7 +342,7 @@ class speedSlider(Slider):
 		nsLeft = 163
 		nsTop = 55
 		sRight = 0
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -349,10 +351,10 @@ class speedSlider(Slider):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if argc:
-			(global0 currentSpeed: param1)
-			(global0 setSpeed: (global0 currentSpeed:))
+			global0._send('currentSpeed:', param1)
+			global0._send('setSpeed:', global0._send('currentSpeed:'))
 		#endif
-		(global0 currentSpeed:)
+		global0._send('currentSpeed:')
 	#end:method
 
 #end:class or instance
@@ -373,7 +375,7 @@ class iconSave(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (3 if (global107 == 256) else 4) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -383,7 +385,7 @@ class iconSave(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (3 if (global107 == 256) else 4) 10)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -404,7 +406,7 @@ class iconRestore(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (23 if (global107 == 256) else 24) 10)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -414,7 +416,7 @@ class iconRestore(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (23 if (global107 == 256) else 24) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 #end:class or instance
@@ -435,7 +437,7 @@ class iconRestart(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (43 if (global107 == 256) else 44) 10)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -445,7 +447,7 @@ class iconRestart(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (43 if (global107 == 256) else 44) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 #end:class or instance
@@ -469,7 +471,7 @@ class iconTextSwitch(ControlIcon):
 		#endif
 		nsLeft = 108
 		nsTop = (+ 0 (103 if (global107 == 256) else 104) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -479,19 +481,17 @@ class iconTextSwitch(ControlIcon):
 
 		(cond
 			case (not kernel.FileIO(10, r"""KQ6CD""")):
-				(Print
-					font: global22
-					addText:
-						r"""This button is reserved for the CD version of King's Quest VI"""
-					init:
+				Print._send(
+					'font:', global22,
+					'addText:', r"""This button is reserved for the CD version of King's Quest VI""",
+					'init:'
 				)
 			#end:case
 			case (not kernel.DoAudio(9)):
-				(Print
-					font: global22
-					addText:
-						r"""Sorry, but a sound card capable of playing samples is required to hear speech"""
-					init:
+				Print._send(
+					'font:', global22,
+					'addText:', r"""Sorry, but a sound card capable of playing samples is required to hear speech""",
+					'init:'
 				)
 			#end:case
 			else:
@@ -506,7 +506,7 @@ class iconTextSwitch(ControlIcon):
 				loop = (8 if (loop == 9) else 9)
 			#end:else
 		)
-		(self show:)
+		self._send('show:')
 	#end:method
 
 #end:class or instance
@@ -527,7 +527,7 @@ class iconQuit(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (63 if (global107 == 256) else 64) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -537,7 +537,7 @@ class iconQuit(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (63 if (global107 == 256) else 64) 10)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -558,7 +558,7 @@ class iconAbout(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (83 if (global107 == 256) else 84) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 	@classmethod
@@ -568,7 +568,7 @@ class iconAbout(ControlIcon):
 
 		nsLeft = 18
 		nsTop = (+ 0 (83 if (global107 == 256) else 84) 10)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -576,12 +576,12 @@ class iconAbout(ControlIcon):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super select: &rest)
-		(global63 hide:)
-		if (global2 script:):
-			(KQ6Print font: global22 say: 0 7 0 16 0 1 0 0 0 init:)
+		super._send('select:', &rest)
+		global63._send('hide:')
+		if global2._send('script:'):
+			KQ6Print._send('font:', global22, 'say:', 0, 7, 0, 16, 0, 1, 0, 0, 0, 'init:')
 		else:
-			(global2 setScript: 905)
+			global2._send('setScript:', 905)
 		#endif
 	#end:method
 
@@ -603,7 +603,7 @@ class iconOk(IconI):
 
 		nsLeft = 18
 		nsTop = (+ 0 (103 if (global107 == 256) else 104) 10)
-		(super show: &rest)
+		super._send('show:', &rest)
 	#end:method
 
 #end:class or instance

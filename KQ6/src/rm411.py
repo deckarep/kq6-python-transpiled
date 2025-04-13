@@ -39,9 +39,9 @@ class rm411(LabRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
+		super._send('init:')
 		if proc913_0(1):
-			match (kernel.ScriptID(30, 0) prevEdgeHit:)
+			match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 				case 1:
 					proc401_1()
 				#end:case
@@ -55,36 +55,36 @@ class rm411(LabRoom):
 					proc401_2()
 				#end:case
 			#end:match
-			(global2 setScript: kernel.ScriptID(30, 1))
+			global2._send('setScript:', kernel.ScriptID(30, 1))
 		else:
-			(global102 number: 409 setLoop: -1 play:)
-			(westHalfTrapFloor init: stopUpd:)
-			(eastHalfTrapFloor init: stopUpd:)
-			(eastTrapLedge init: stopUpd:)
-			(westTrapLedge init: stopUpd:)
-			(northTrapLedge init: stopUpd:)
-			(global2 setScript: dieAlready)
+			global102._send('number:', 409, 'setLoop:', -1, 'play:')
+			westHalfTrapFloor._send('init:', 'stopUpd:')
+			eastHalfTrapFloor._send('init:', 'stopUpd:')
+			eastTrapLedge._send('init:', 'stopUpd:')
+			westTrapLedge._send('init:', 'stopUpd:')
+			northTrapLedge._send('init:', 'stopUpd:')
+			global2._send('setScript:', dieAlready)
 		#endif
-		match (kernel.ScriptID(30, 0) prevEdgeHit:)
+		match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 			case 1:
-				(kernel.ScriptID(30, 0) initCrypt: 1)
+				kernel.ScriptID(30, 0)._send('initCrypt:', 1)
 			#end:case
 			case 3:
-				(kernel.ScriptID(30, 0) initCrypt: 4)
-				(kernel.ScriptID(30, 7) addToPic:)
-				(kernel.ScriptID(30, 8) addToPic:)
+				kernel.ScriptID(30, 0)._send('initCrypt:', 4)
+				kernel.ScriptID(30, 7)._send('addToPic:')
+				kernel.ScriptID(30, 8)._send('addToPic:')
 			#end:case
 			case 4:
-				(kernel.ScriptID(30, 0) initCrypt: 4)
-				(kernel.ScriptID(30, 6) addToPic:)
-				(kernel.ScriptID(30, 10) addToPic:)
-				(kernel.ScriptID(30, 8) addToPic:)
+				kernel.ScriptID(30, 0)._send('initCrypt:', 4)
+				kernel.ScriptID(30, 6)._send('addToPic:')
+				kernel.ScriptID(30, 10)._send('addToPic:')
+				kernel.ScriptID(30, 8)._send('addToPic:')
 			#end:case
 			case 2:
-				(kernel.ScriptID(30, 0) initCrypt: 2)
-				(kernel.ScriptID(30, 5) addToPic:)
-				(kernel.ScriptID(30, 9) addToPic:)
-				(kernel.ScriptID(30, 8) addToPic:)
+				kernel.ScriptID(30, 0)._send('initCrypt:', 2)
+				kernel.ScriptID(30, 5)._send('addToPic:')
+				kernel.ScriptID(30, 9)._send('addToPic:')
+				kernel.ScriptID(30, 8)._send('addToPic:')
 			#end:case
 		#end:match
 	#end:method
@@ -101,20 +101,20 @@ class dieAlready(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global69 disable:)
-				match (kernel.ScriptID(30, 0) prevEdgeHit:)
+				global1._send('handsOff:')
+				global69._send('disable:')
+				match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 					case 4:
-						(global0 posn: 282 164 loop: 1 init:)
+						global0._send('posn:', 282, 164, 'loop:', 1, 'init:')
 					#end:case
 					case 2:
-						(global0 posn: 36 164 loop: 0 init:)
+						global0._send('posn:', 36, 164, 'loop:', 0, 'init:')
 					#end:case
 					case 3:
-						(global0 posn: 158 135 loop: 2 init:)
+						global0._send('posn:', 158, 135, 'loop:', 2, 'init:')
 					#end:case
 					case 1:
-						(global0 posn: 158 225 loop: 3 init:)
+						global0._send('posn:', 158, 225, 'loop:', 3, 'init:')
 					#end:case
 				#end:match
 				seconds = 2
@@ -124,26 +124,26 @@ class dieAlready(Script):
 					(and
 						(global12 == 425)
 						(not proc913_0(1))
-						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) < 4)
+						(kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:') < 4)
 					)
-					(self cue:)
+					self._send('cue:')
 				else:
-					(global91 say: 1 0 58 1 self 400)
+					global91._send('say:', 1, 0, 58, 1, self, 400)
 				#endif
 			#end:case
 			case 2:
-				match (kernel.ScriptID(30, 0) prevEdgeHit:)
+				match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 					case 4:
-						(global0 setMotion: PolyPath 215 164 self)
+						global0._send('setMotion:', PolyPath, 215, 164, self)
 					#end:case
 					case 2:
-						(global0 setMotion: PolyPath 108 164 self)
+						global0._send('setMotion:', PolyPath, 108, 164, self)
 					#end:case
 					case 3:
-						(global0 setMotion: PolyPath 158 156 self)
+						global0._send('setMotion:', PolyPath, 158, 156, self)
 					#end:case
 					case 1:
-						(global0 setMotion: PolyPath 158 185 self)
+						global0._send('setMotion:', PolyPath, 158, 185, self)
 					#end:case
 				#end:match
 			#end:case
@@ -152,16 +152,16 @@ class dieAlready(Script):
 					(and
 						(global12 == 425)
 						(not proc913_0(1))
-						((kernel.ScriptID(30, 0) timesGenieHasAppeared:) < 4)
+						(kernel.ScriptID(30, 0)._send('timesGenieHasAppeared:') < 4)
 					)
 					local0 = 1
-					(global91 say: 1 0 3 1 self 400)
+					global91._send('say:', 1, 0, 3, 1, self, 400)
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 4:
-				match (kernel.ScriptID(30, 0) prevEdgeHit:)
+				match kernel.ScriptID(30, 0)._send('prevEdgeHit:')
 					case 1:
 						temp0 = 3
 						temp1 = 0
@@ -183,39 +183,39 @@ class dieAlready(Script):
 						temp2 = 2
 					#end:case
 				#end:match
-				(global0
-					x: ((global0 x:) + temp1)
-					y: ((global0 y:) + temp2)
-					view: 4011
-					normal: 0
-					cycleSpeed: 6
-					setLoop: temp0
-					setCycle: CT 10 1 self
+				global0._send(
+					'x:', (global0._send('x:') + temp1),
+					'y:', (global0._send('y:') + temp2),
+					'view:', 4011,
+					'normal:', 0,
+					'cycleSpeed:', 6,
+					'setLoop:', temp0,
+					'setCycle:', CT, 10, 1, self
 				)
 			#end:case
 			case 5:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 6:
 				if local0:
 					proc913_1(59)
-					(global91 say: 1 0 3 2 self 400)
+					global91._send('say:', 1, 0, 3, 2, self, 400)
 				else:
-					(global91 say: 1 0 58 2 self 400)
+					global91._send('say:', 1, 0, 58, 2, self, 400)
 				#endif
 			#end:case
 			case 7:
-				(global102 number: 432 setLoop: 1 play: self)
+				global102._send('number:', 432, 'setLoop:', 1, 'play:', self)
 			#end:case
 			case 8:
 				proc913_2(59)
-				(global102 number: 307 setLoop: 1 play:)
+				global102._send('number:', 307, 'setLoop:', 1, 'play:')
 				kernel.ShakeScreen(2, 2)
 				ticks = 4
 			#end:case
 			case 9:
-				(global2 drawPic: 98 100)
-				(global5 eachElementDo: #hide)
+				global2._send('drawPic:', 98, 100)
+				global5._send('eachElementDo:', #hide)
 				cycles = 4
 			#end:case
 			case 10:

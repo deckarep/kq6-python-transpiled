@@ -22,9 +22,9 @@ class ArrayScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
+		global1._send('handsOff:')
 		start = 1
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -33,81 +33,81 @@ class ArrayScript(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp5 = 0
-		value = (self at: state)
+		value = self._send('at:', state)
 		state.post('++')
 		match value
 			case -4095:
-				temp0 = (self getValue:)
-				temp1 = (self getValue:)
-				(global0 setCycle: CT temp0 temp1 self)
+				temp0 = self._send('getValue:')
+				temp1 = self._send('getValue:')
+				global0._send('setCycle:', CT, temp0, temp1, self)
 			#end:case
 			case -4092:
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case -4094:
-				(global0 setCycle: End self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case -4088:
-				(global0 setCycle: Fwd)
+				global0._send('setCycle:', Fwd)
 			#end:case
 			case -4080:
-				(global0 setCycle: Rev)
+				global0._send('setCycle:', Rev)
 			#end:case
 			case -4064:
-				cycles = (self getValue:)
+				cycles = self._send('getValue:')
 			#end:case
 			case -4032:
-				seconds = (self getValue:)
+				seconds = self._send('getValue:')
 			#end:case
 			case -3968:
-				temp0 = (self getValue:)
-				temp1 = (self getValue:)
-				temp2 = (self getValue:)
-				(self play: temp0 temp1 temp2)
+				temp0 = self._send('getValue:')
+				temp1 = self._send('getValue:')
+				temp2 = self._send('getValue:')
+				self._send('play:', temp0, temp1, temp2)
 			#end:case
 			case -14:
-				(global1 handsOn:)
-				(self cue:)
+				global1._send('handsOn:')
+				self._send('cue:')
 			#end:case
 			case -15:
-				(global1 handsOff:)
-				(self cue:)
+				global1._send('handsOff:')
+				self._send('cue:')
 			#end:case
 			case -3840:
-				if (temp0 = (self getValue:) == -1):
+				if (temp0 = self._send('getValue:') == -1):
 					temp0 = global11
 				#endif
-				temp1 = (self getValue:)
-				temp2 = (self getValue:)
-				temp3 = (self getValue:)
-				temp4 = (self getValue:)
-				(global91 say: temp1 temp2 temp3 temp4 self temp0)
+				temp1 = self._send('getValue:')
+				temp2 = self._send('getValue:')
+				temp3 = self._send('getValue:')
+				temp4 = self._send('getValue:')
+				global91._send('say:', temp1, temp2, temp3, temp4, self, temp0)
 			#end:case
 			case -16:
-				temp0 = (self getValue:)
-				temp1 = (self getValue:)
+				temp0 = self._send('getValue:')
+				temp1 = self._send('getValue:')
 				kernel.UnLoad(temp0, temp1)
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case -14:
-				(global1 handsOn:)
-				(self cue:)
+				global1._send('handsOn:')
+				self._send('cue:')
 			#end:case
 			case -15:
-				(global1 handsOff:)
-				(self cue:)
+				global1._send('handsOff:')
+				self._send('cue:')
 			#end:case
 			case -1:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			else:
 				state.post('--')
-				(global0 view: (self getValue:) loop: (self getValue:))
-				if (temp0 = (self getValue:) != -1):
-					(global0 cel: temp0)
+				global0._send('view:', self._send('getValue:'), 'loop:', self._send('getValue:'))
+				if (temp0 = self._send('getValue:') != -1):
+					global0._send('cel:', temp0)
 				#endif
-				(global0 x: (self getValue:) y: (self getValue:))
-				(self cue:)
+				global0._send('x:', self._send('getValue:'), 'y:', self._send('getValue:'))
+				self._send('cue:')
 			#end:else
 		#end:match
 	#end:method
@@ -117,7 +117,7 @@ class ArrayScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self changeState: state)
+		self._send('changeState:', state)
 	#end:method
 
 	@classmethod
@@ -125,7 +125,7 @@ class ArrayScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		value = (self at: state)
+		value = self._send('at:', state)
 		state.post('++')
 		return value
 	#end:method

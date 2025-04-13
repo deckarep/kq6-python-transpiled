@@ -29,9 +29,9 @@ class Blink(Cycle):
 		if argc:
 			waitMin = (param2 / 2)
 			waitMax = (param2 + waitMin)
-			(super init: param1)
+			super._send('init:', param1)
 		else:
-			(super init:)
+			super._send('init:')
 		#endif
 	#end:method
 
@@ -44,16 +44,16 @@ class Blink(Cycle):
 			case waitCount:
 				if ((global88 - waitCount) > 0):
 					waitCount = 0
-					(self init:)
+					self._send('init:')
 				#endif
 			#end:case
 			case 
-				((temp0 = (self nextCel:) > (client lastCel:)) or (temp0 < 0)):
+				((temp0 = self._send('nextCel:') > client._send('lastCel:')) or (temp0 < 0)):
 				cycleDir = -cycleDir
-				(self cycleDone:)
+				self._send('cycleDone:')
 			#end:case
 			else:
-				(client cel: temp0)
+				client._send('cel:', temp0)
 			#end:else
 		)
 	#end:method
@@ -64,7 +64,7 @@ class Blink(Cycle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (cycleDir == -1):
-			(self init:)
+			self._send('init:')
 		else:
 			waitCount = (kernel.Random(waitMin, waitMax) + global88)
 		#endif
@@ -97,16 +97,16 @@ class Narrator(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global90 & 0x0002):
-			curVolume = (global1 masterVolume:)
+			curVolume = global1._send('masterVolume:')
 			if (curVolume >= 4):
-				(global1 masterVolume: curVolume)
+				global1._send('masterVolume:', curVolume)
 				temp2 = curVolume
 				
 					(temp0 = curVolume)
 					(temp0 >= proc999_3(3, (curVolume / 2)))
 					(temp0.post('--'))
 					
-					(global1 masterVolume: temp0)
+					global1._send('masterVolume:', temp0)
 					temp1 = 0
 					while (temp1 <= 400): # inline for
 					#end:loop
@@ -116,7 +116,7 @@ class Narrator(Prop):
 			#endif
 		#endif
 		if (((global90 & 0x0002) and (not modeless)) or (not kernel.HaveMouse())):
-			saveCursor = (global1 setCursor: global21 1)
+			saveCursor = global1._send('setCursor:', global21, 1)
 		#endif
 		global88 = (global86 + kernel.GetTime())
 		initialized = 1
@@ -128,31 +128,31 @@ class Narrator(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global69:
-			(global69 disable:)
+			global69._send('disable:')
 		#endif
 		if (not initialized):
-			(self init:)
+			self._send('init:')
 		#endif
 		caller = (param2 if ((argc > 1) and param2) else 0)
 		if (global90 & 0x0001):
-			(self startText: param1)
+			self._send('startText:', param1)
 		#endif
 		if (global90 & 0x0002):
-			(self startAudio: param1)
+			self._send('startAudio:', param1)
 		#endif
 		(cond
 			case modeless:
-				(global73 addToFront: self)
-				(global72 addToFront: self)
-				(global78 add: self)
+				global73._send('addToFront:', self)
+				global72._send('addToFront:', self)
+				global78._send('add:', self)
 			#end:case
 			case kernel.IsObject(global84):
-				(global84 add: self)
+				global84._send('add:', self)
 			#end:case
 			else:
-				(global84 = (EventHandler new:)
-					name: r"""fastCast"""
-					add: self
+				global84 = EventHandler._send('new:')._send(
+					'name:', r"""fastCast""",
+					'add:', self
 				)
 			#end:else
 		)
@@ -169,9 +169,9 @@ class Narrator(Prop):
 			ticks = proc999_3(240, (* global94 2 temp0 = kernel.StrLen(param1)))
 		#endif
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
-		(self display: param1)
+		self._send('display:', param1)
 		return temp0
 	#end:method
 
@@ -185,24 +185,24 @@ class Narrator(Prop):
 		else:
 			temp0 = talkWidth
 		#endif
-		(temp1 = (global38 new:) color: color back: back)
+		temp1 = global38._send('new:')._send('color:', color, 'back:', back)
 		if ((not kernel.HaveMouse()) and (global19 != 996)):
 			saveCursor = global19
-			(global1 setCursor: 996)
+			global1._send('setCursor:', 996)
 		else:
 			saveCursor = 0
 		#endif
 		if showTitle:
-			(Print addTitle: name)
+			Print._send('addTitle:', name)
 		#endif
-		(Print
-			window: temp1
-			posn: x y
-			font: font
-			width: temp0
-			addText: param1
-			modeless: 1
-			init:
+		Print._send(
+			'window:', temp1,
+			'posn:', x, y,
+			'font:', font,
+			'width:', temp0,
+			'addText:', param1,
+			'modeless:', 1,
+			'init:'
 		)
 	#end:method
 
@@ -235,7 +235,7 @@ class Narrator(Prop):
 				#endif
 				((not keepWindow) or (global90 & 0x0002))
 			)
-			(self dispose: disposeWhenDone)
+			self._send('dispose:', disposeWhenDone)
 			return 0
 		#endif
 		return 1
@@ -247,34 +247,34 @@ class Narrator(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (param1 claimed:):#end:case
+			case param1._send('claimed:'):#end:case
 			case (ticks == -1):
 				return 0
 			#end:case
 			else:
 				if (not cueVal):
-					match (param1 type:)
+					match param1._send('type:')
 						case 256:
 							cueVal = 0
 						#end:case
 						case 1:
-							cueVal = ((param1 modifiers:) & 0x0003)
+							cueVal = (param1._send('modifiers:') & 0x0003)
 						#end:case
 						case 4:
-							cueVal = ((param1 message:) == 27)
+							cueVal = (param1._send('message:') == 27)
 						#end:case
 					#end:match
 				#endif
 				if 
 					(or
-						((param1 type:) & 0x4101)
+						(param1._send('type:') & 0x4101)
 						(and
-							((param1 type:) & 0x0004)
-							proc999_5((param1 message:), 13, 27)
+							(param1._send('type:') & 0x0004)
+							proc999_5(param1._send('message:'), 13, 27)
 						)
 					)
-					(param1 claimed: 1)
-					(self dispose: disposeWhenDone)
+					param1._send('claimed:', 1)
+					self._send('dispose:', disposeWhenDone)
 				#endif
 			#end:else
 		)
@@ -289,14 +289,14 @@ class Narrator(Prop):
 		if ((not argc) or (param1 == 1)):
 			(cond
 				case modeless:
-					(global72 delete: self)
-					(global73 delete: self)
-					(global78 delete: self)
+					global72._send('delete:', self)
+					global73._send('delete:', self)
+					global78._send('delete:', self)
 				#end:case
-				case (global84 and (global84 contains: self)):
-					(global84 delete: self)
-					if (global84 isEmpty:):
-						(global84 dispose:)
+				case (global84 and global84._send('contains:', self)):
+					global84._send('delete:', self)
+					if global84._send('isEmpty:'):
+						global84._send('dispose:')
 						global84 = 0
 					#endif
 				#end:case
@@ -308,15 +308,15 @@ class Narrator(Prop):
 			initialized = 0
 		#endif
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
 		if (global90 & 0x0002):
 			
-				(temp0 = (global1 masterVolume:))
+				(temp0 = global1._send('masterVolume:'))
 				(temp0 <= curVolume)
 				(temp0.post('++'))
 				
-				(global1 masterVolume: temp0)
+				global1._send('masterVolume:', temp0)
 				temp1 = 0
 				while (temp1 <= 400): # inline for
 				#end:loop
@@ -325,10 +325,10 @@ class Narrator(Prop):
 			#end:loop
 		#endif
 		if (((global90 & 0x0002) and (not modeless)) or (not kernel.HaveMouse())):
-			(global1 setCursor: saveCursor)
+			global1._send('setCursor:', saveCursor)
 		#endif
 		if caller:
-			(caller cue: cueVal)
+			caller._send('cue:', cueVal)
 		#endif
 		cueVal = 0
 		kernel.DisposeClone(self)
@@ -369,9 +369,9 @@ class Talker(Narrator):
 					#endif
 				#endif
 			#endif
-			(self setSize:)
+			self._send('setSize:')
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -391,20 +391,20 @@ class Talker(Narrator):
 				#endif, (and
 					kernel.IsObject(bust)
 					(+
-						(bust nsLeft:)
-						kernel.CelWide((bust view:), (bust loop:), (bust cel:))
+						bust._send('nsLeft:')
+						kernel.CelWide(bust._send('view:'), bust._send('loop:'), bust._send('cel:'))
 					)
 				), (and
 					kernel.IsObject(eyes)
 					(+
-						(eyes nsLeft:)
-						kernel.CelWide((eyes view:), (eyes loop:), (eyes cel:))
+						eyes._send('nsLeft:')
+						kernel.CelWide(eyes._send('view:'), eyes._send('loop:'), eyes._send('cel:'))
 					)
 				), (and
 					kernel.IsObject(mouth)
 					(+
-						(mouth nsLeft:)
-						kernel.CelWide((mouth view:), (mouth loop:), (mouth cel:))
+						mouth._send('nsLeft:')
+						kernel.CelWide(mouth._send('view:'), mouth._send('loop:'), mouth._send('cel:'))
 					)
 				))
 			)
@@ -419,20 +419,20 @@ class Talker(Narrator):
 				#endif, (and
 					kernel.IsObject(bust)
 					(+
-						(bust nsTop:)
-						kernel.CelHigh((bust view:), (bust loop:), (bust cel:))
+						bust._send('nsTop:')
+						kernel.CelHigh(bust._send('view:'), bust._send('loop:'), bust._send('cel:'))
 					)
 				), (and
 					kernel.IsObject(eyes)
 					(+
-						(eyes nsTop:)
-						kernel.CelHigh((eyes view:), (eyes loop:), (eyes cel:))
+						eyes._send('nsTop:')
+						kernel.CelHigh(eyes._send('view:'), eyes._send('loop:'), eyes._send('cel:'))
 					)
 				), (and
 					kernel.IsObject(mouth)
 					(+
-						(mouth nsTop:)
-						kernel.CelHigh((mouth view:), (mouth loop:), (mouth cel:))
+						mouth._send('nsTop:')
+						kernel.CelHigh(mouth._send('view:'), mouth._send('loop:'), mouth._send('cel:'))
 					)
 				))
 			)
@@ -450,22 +450,21 @@ class Talker(Narrator):
 		temp0 = kernel.PicNotValid()
 		kernel.PicNotValid(1)
 		if bust:
-			kernel.DrawCel((bust view:), (bust loop:), (bust cel:), (+
-				(bust nsLeft:)
+			kernel.DrawCel(bust._send('view:'), bust._send('loop:'), bust._send('cel:'), (+
+				bust._send('nsLeft:')
 				nsLeft
-			), ((bust nsTop:) + nsTop), -1)
+			), (bust._send('nsTop:') + nsTop), -1)
 		#endif
 		if eyes:
-			kernel.DrawCel((eyes view:), (eyes loop:), (eyes cel:), (+
-				(eyes nsLeft:)
+			kernel.DrawCel(eyes._send('view:'), eyes._send('loop:'), eyes._send('cel:'), (+
+				eyes._send('nsLeft:')
 				nsLeft
-			), ((eyes nsTop:) + nsTop), -1)
+			), (eyes._send('nsTop:') + nsTop), -1)
 		#endif
 		if mouth:
-			kernel.DrawCel((mouth view:), (mouth loop:), (mouth cel:), (+
-				(mouth nsLeft:)
-				nsLeft
-			), ((mouth nsTop:) + nsTop), -1)
+			kernel.DrawCel(mouth._send('view:'), mouth._send('loop:'), mouth._send(
+				'cel:'
+			), (mouth._send('nsLeft:') + nsLeft), (mouth._send('nsTop:') + nsTop), -1)
 		#endif
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 		kernel.Graph(12, nsTop, nsLeft, nsBottom, nsRight, 1)
@@ -506,9 +505,9 @@ class Talker(Narrator):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if ((view > 0) and (not underBits)):
-			(self init:)
+			self._send('init:')
 		#endif
-		(super say: &rest)
+		super._send('say:', &rest)
 	#end:method
 
 	@classmethod
@@ -517,14 +516,14 @@ class Talker(Narrator):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not viewInPrint):
-			(self show:)
+			self._send('show:')
 		#endif
-		temp0 = (super startText: &rest)
+		temp0 = super._send('startText:', &rest)
 		if mouth:
-			(mouth setCycle: RandCycle (4 * temp0) 0 1)
+			mouth._send('setCycle:', RandCycle, (4 * temp0), 0, 1)
 		#endif
-		if (eyes and (not (eyes cycler:))):
-			(eyes setCycle: Blink blinkSpeed)
+		if (eyes and (not eyes._send('cycler:'))):
+			eyes._send('setCycle:', Blink, blinkSpeed)
 		#endif
 	#end:method
 
@@ -533,10 +532,10 @@ class Talker(Narrator):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(temp3 = (global38 new:) color: color back: back)
+		temp3 = global38._send('new:')._send('color:', color, 'back:', back)
 		if ((not kernel.HaveMouse()) and (global19 != 996)):
 			saveCursor = global19
-			(global1 setCursor: 996)
+			global1._send('setCursor:', 996)
 		else:
 			saveCursor = 0
 		#endif
@@ -545,20 +544,20 @@ class Talker(Narrator):
 				if useFrame:
 					loop
 				else:
-					(bust loop:)
+					bust._send('loop:')
 				#endif
 			)
 			if showTitle:
-				(Print addTitle: name)
+				Print._send('addTitle:', name)
 			#endif
-			(Print
-				window: temp3
-				posn: x y
-				modeless: 1
-				font: font
-				addText: param1
-				addIcon: view temp0 cel 0 0
-				init:
+			Print._send(
+				'window:', temp3,
+				'posn:', x, y,
+				'modeless:', 1,
+				'font:', font,
+				'addText:', param1,
+				'addIcon:', view, temp0, cel, 0, 0,
+				'init:'
 			)
 		else:
 			if (not (textX + textY)):
@@ -570,16 +569,16 @@ class Talker(Narrator):
 				temp1 = talkWidth
 			#endif
 			if showTitle:
-				(Print addTitle: name)
+				Print._send('addTitle:', name)
 			#endif
-			(Print
-				window: temp3
-				posn: (x + textX) (y + textY)
-				modeless: 1
-				font: font
-				width: temp1
-				addText: param1
-				init:
+			Print._send(
+				'window:', temp3,
+				'posn:', (x + textX), (y + textY),
+				'modeless:', 1,
+				'font:', font,
+				'width:', temp1,
+				'addText:', param1,
+				'init:'
 			)
 		#endif
 	#end:method
@@ -597,22 +596,22 @@ class Talker(Narrator):
 			temp4 = proc999_6(param1, 4)
 		#endif
 		if (raving and raveName):
-			(self showRave: temp0 temp1 temp2 temp3 temp4)
+			self._send('showRave:', temp0, temp1, temp2, temp3, temp4)
 		else:
-			(self show:)
+			self._send('show:')
 			if mouth:
 				if kernel.ResCheck(147, temp0, temp1, temp2, temp3, temp4):
-					(mouth setCycle: MouthSync temp0 temp1 temp2 temp3 temp4)
-					(super startAudio: param1)
+					mouth._send('setCycle:', MouthSync, temp0, temp1, temp2, temp3, temp4)
+					super._send('startAudio:', param1)
 				else:
-					temp18 = (super startAudio: param1)
-					(mouth setCycle: RandCycle (temp18 * 4) 0 1)
+					temp18 = super._send('startAudio:', param1)
+					mouth._send('setCycle:', RandCycle, (temp18 * 4), 0, 1)
 				#endif
 			else:
-				(super startAudio: param1)
+				super._send('startAudio:', param1)
 			#endif
-			if (eyes and (not (eyes cycler:))):
-				(eyes setCycle: Blink blinkSpeed)
+			if (eyes and (not eyes._send('cycler:'))):
+				eyes._send('setCycle:', Blink, blinkSpeed)
 			#endif
 		#endif
 	#end:method
@@ -622,36 +621,36 @@ class Talker(Narrator):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (param1 and (param1 cycler:)):
-			temp0 = (param1 cel:)
-			((param1 cycler:) doit:)
-			if (temp0 != (param1 cel:)):
-				kernel.DrawCel((param1 view:), (param1 loop:), (param1 cel:), (+
-					(param1 nsLeft:)
-					nsLeft
-				), ((param1 nsTop:) + nsTop), -1)
-				(param1
-					nsRight:
-						(+
-							(param1 nsLeft:)
-							kernel.CelWide((param1 view:), (param1 loop:), (param1
-								cel:
+		if (param1 and param1._send('cycler:')):
+			temp0 = param1._send('cel:')
+			param1._send('cycler:')._send('doit:')
+			if (temp0 != param1._send('cel:')):
+				kernel.DrawCel(param1._send('view:'), param1._send('loop:'), param1._send(
+					'cel:'
+				), (param1._send('nsLeft:') + nsLeft), (param1._send('nsTop:') + nsTop), -1)
+				param1._send(
+					'nsRight:', (+
+							param1._send('nsLeft:')
+							kernel.CelWide(param1._send('view:'), param1._send('loop:'), param1._send(
+								'cel:'
 							))
 						)
 				)
-				(param1
-					nsBottom:
-						(+
-							(param1 nsTop:)
-							kernel.CelHigh((param1 view:), (param1 loop:), (param1
-								cel:
+				param1._send(
+					'nsBottom:', (+
+							param1._send('nsTop:')
+							kernel.CelHigh(param1._send('view:'), param1._send('loop:'), param1._send(
+								'cel:'
 							))
 						)
 				)
-				kernel.Graph(12, ((param1 nsTop:) + nsTop), (+
-					(param1 nsLeft:)
+				kernel.Graph(12, (param1._send('nsTop:') + nsTop), (+
+					param1._send('nsLeft:')
 					nsLeft
-				), ((param1 nsBottom:) + nsTop), ((param1 nsRight:) + nsLeft), 1)
+				), (param1._send('nsBottom:') + nsTop), (+
+					param1._send('nsRight:')
+					nsLeft
+				), 1)
 			#endif
 		#endif
 	#end:method
@@ -661,11 +660,11 @@ class Talker(Narrator):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((super doit:) and mouth):
-			(self cycle: mouth)
+		if (super._send('doit:') and mouth):
+			self._send('cycle:', mouth)
 		#endif
 		if eyes:
-			(self cycle: eyes)
+			self._send('cycle:', eyes)
 		#endif
 	#end:method
 
@@ -678,7 +677,7 @@ class Talker(Narrator):
 		underBits = 0
 		kernel.Graph(13, nsTop, nsLeft, nsBottom, nsRight)
 		if global69:
-			(global69 enable:)
+			global69._send('enable:')
 		#endif
 	#end:method
 
@@ -688,17 +687,17 @@ class Talker(Narrator):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (mouth and underBits):
-			(mouth cel: 0)
-			kernel.DrawCel((mouth view:), (mouth loop:), 0, (+
-				(mouth nsLeft:)
+			mouth._send('cel:', 0)
+			kernel.DrawCel(mouth._send('view:'), mouth._send('loop:'), 0, (+
+				mouth._send('nsLeft:')
 				nsLeft
-			), ((mouth nsTop:) + nsTop), -1)
+			), (mouth._send('nsTop:') + nsTop), -1)
 		#endif
-		if (mouth and (mouth cycler:)):
-			if ((mouth cycler:) respondsTo: #cue):
-				((mouth cycler:) cue:)
+		if (mouth and mouth._send('cycler:')):
+			if mouth._send('cycler:')._send('respondsTo:', #cue):
+				mouth._send('cycler:')._send('cue:')
 			#endif
-			(mouth setCycle: 0)
+			mouth._send('setCycle:', 0)
 		#endif
 		if ((not argc) or (param1 == 1)):
 			if raving:
@@ -711,20 +710,20 @@ class Talker(Narrator):
 				raving = underBits = 0
 			#endif
 			if (eyes and underBits):
-				(eyes setCycle: 0 cel: 0)
-				kernel.DrawCel((eyes view:), (eyes loop:), 0, (+
-					(eyes nsLeft:)
+				eyes._send('setCycle:', 0, 'cel:', 0)
+				kernel.DrawCel(eyes._send('view:'), eyes._send('loop:'), 0, (+
+					eyes._send('nsLeft:')
 					nsLeft
-				), ((eyes nsTop:) + nsTop), -1)
+				), (eyes._send('nsTop:') + nsTop), -1)
 			#endif
 			if saveX:
 				x = saveX
 				y = saveY
 			#endif
 			saveY = saveX = 0
-			(self hide:)
+			self._send('hide:')
 		#endif
-		(super dispose: param1)
+		super._send('dispose:', param1)
 	#end:method
 
 #end:class or instance

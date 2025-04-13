@@ -36,21 +36,21 @@ class sCredits(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not register):
-			(global5 eachElementDo: #addToPic)
-			(global69 disable:)
-			(Cursor showCursor: 0)
+			global5._send('eachElementDo:', #addToPic)
+			global69._send('disable:')
+			Cursor._send('showCursor:', 0)
 			kernel.Load(135, 2207, 3110)
 			kernel.Load(143, 194)
 			kernel.Load(129, 98, 99)
-			(songTimer setReal: self 240)
+			songTimer._send('setReal:', self, 240)
 			if ((global90 == 2) and kernel.DoAudio(10, 10)):
 				kernel.DoAudio(10, 2, 2, 0, 236)
 			else:
-				(global102 number: 24 loop: 1 play: self)
+				global102._send('number:', 24, 'loop:', 1, 'play:', self)
 			#endif
 			register.post('++')
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -118,7 +118,7 @@ class sCredits(Script):
 					if local1:
 						local6 = 1
 					#endif
-					(self init:)
+					self._send('init:')
 				#endif
 			#end:case
 			case 3:
@@ -157,7 +157,7 @@ class sCredits(Script):
 				else:
 					kernel.DrawPic(99)
 				#endif
-				(Cursor showCursor: 1)
+				Cursor._send('showCursor:', 1)
 			#end:case
 			case 7:
 				temp550 = 100

@@ -30,12 +30,12 @@ def localproc_1(param1 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp3 = (param1 size:)
+	temp3 = param1._send('size:')
 	temp0 = 0
 	while (temp0 < temp3): # inline for
-		temp1 = (param1 at: temp0)
-		if (temp2 = (temp1 type:) >= 16):
-			(temp1 type: (temp2 - 16))
+		temp1 = param1._send('at:', temp0)
+		if (temp2 = temp1._send('type:') >= 16):
+			temp1._send('type:', (temp2 - 16))
 		#endif
 		# for:reinit
 		temp0.post('++')
@@ -66,9 +66,9 @@ class PAvoider(Code):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if kernel.IsObject(oldBlockerMover):
-			(oldBlockerMover dispose:)
+			oldBlockerMover._send('dispose:')
 		#endif
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -76,52 +76,52 @@ class PAvoider(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp9 = (client mover:)
-		if (oldBlocker and ((client distanceTo: oldBlocker) >= 20)):
-			(oldBlocker ignoreActors: 0)
+		temp9 = client._send('mover:')
+		if (oldBlocker and (client._send('distanceTo:', oldBlocker) >= 20)):
+			oldBlocker._send('ignoreActors:', 0)
 			if oldBlockerMover:
-				(oldBlocker mover: oldBlockerMover)
+				oldBlocker._send('mover:', oldBlockerMover)
 			#endif
 			oldMoverY = oldMoverX = -99
 			oldBlocker = oldBlockerMover = 0
 			if 
 				(and
 					temp9
-					kernel.IsObject((temp9 obstacles:))
-					((temp9 obstacles:) isEmpty:)
+					kernel.IsObject(temp9._send('obstacles:'))
+					temp9._send('obstacles:')._send('isEmpty:')
 				)
-				((temp9 obstacles:) dispose:)
-				(temp9 obstacles: 0)
+				temp9._send('obstacles:')._send('dispose:')
+				temp9._send('obstacles:', 0)
 			#endif
 		#endif
 		if 
 			(and
-				temp9 = (client mover:)
-				kernel.IsObject(temp4 = (temp9 doit:))
-				(not (temp9 completed:))
-				(temp9 isKindOf: PolyPath)
+				temp9 = client._send('mover:')
+				kernel.IsObject(temp4 = temp9._send('doit:'))
+				(not temp9._send('completed:'))
+				temp9._send('isKindOf:', PolyPath)
 			)
-			if (temp4 respondsTo: #mover):
-				oldBlockerMover = (temp4 mover:)
+			if temp4._send('respondsTo:', #mover):
+				oldBlockerMover = temp4._send('mover:')
 				if oldBlockerMover:
-					(temp4 mover: 0)
+					temp4._send('mover:', 0)
 				#endif
 			else:
 				oldBlockerMover = 0
 			#endif
-			oldMoverX = (temp9 finalX:)
-			oldMoverY = (temp9 finalY:)
+			oldMoverX = temp9._send('finalX:')
+			oldMoverY = temp9._send('finalY:')
 			oldBlocker = temp4
-			(oldBlocker ignoreActors: 1)
+			oldBlocker._send('ignoreActors:', 1)
 			(= temp5
 				(-
-					(temp4 brLeft:)
+					temp4._send('brLeft:')
 					(= temp2
 						(+
-							(2 * (client xStep:))
+							(2 * client._send('xStep:'))
 							(/
-								proc999_3(kernel.CelWide((client view:), 2, 0), kernel.CelWide((client
-									view:
+								proc999_3(kernel.CelWide(client._send('view:'), 2, 0), kernel.CelWide(client._send(
+									'view:'
 								), 0, 0))
 								2
 							)
@@ -129,16 +129,16 @@ class PAvoider(Code):
 					)
 				)
 			)
-			temp6 = kernel.CoordPri(1, kernel.CoordPri((temp4 y:)))
-			temp3 = (2 * (temp4 yStep:))
-			temp7 = ((temp4 brRight:) + temp2)
-			if ((temp8 = (+ (temp4 y:) temp3 2) - temp6) <= 3):
+			temp6 = kernel.CoordPri(1, kernel.CoordPri(temp4._send('y:')))
+			temp3 = (2 * temp4._send('yStep:'))
+			temp7 = (temp4._send('brRight:') + temp2)
+			if ((temp8 = (+ temp4._send('y:') temp3 2) - temp6) <= 3):
 				(temp6 -= 2)
 				(temp8 += 2)
 			#endif
-			temp0 = ((temp9 finalX:) - (client x:))
-			temp1 = ((temp9 finalY:) - (client y:))
-			temp23 = (client heading:)
+			temp0 = (temp9._send('finalX:') - client._send('x:'))
+			temp1 = (temp9._send('finalY:') - client._send('y:'))
+			temp23 = client._send('heading:')
 			(cond
 				case (<= 85 temp23 95):
 					temp14 = 0
@@ -156,110 +156,78 @@ class PAvoider(Code):
 			match temp14
 				case 3:
 					(= temp17
-						((Polygon new:)
-							init:
-								temp5
-								(client y:)
-								temp5
-								temp6
-								temp7
-								temp6
-								temp7
-								(client y:)
-								30583
-								0
-							type: 2
-							name: r"""isBlockedPoly"""
-							yourself:
+						Polygon._send('new:')._send(
+							'init:', temp5, client._send('y:'), temp5, temp6, temp7, temp6, temp7, client._send(
+									'y:'
+								), 30583, 0,
+							'type:', 2,
+							'name:', r"""isBlockedPoly""",
+							'yourself:'
 						)
 					)
 				#end:case
 				case 2:
 					(= temp17
-						((Polygon new:)
-							init:
-								temp7
-								(client y:)
-								temp7
-								temp8
-								temp5
-								temp8
-								temp5
-								(client y:)
-								30583
-								0
-							type: 2
-							name: r"""isBlockedPoly"""
-							yourself:
+						Polygon._send('new:')._send(
+							'init:', temp7, client._send('y:'), temp7, temp8, temp5, temp8, temp5, client._send(
+									'y:'
+								), 30583, 0,
+							'type:', 2,
+							'name:', r"""isBlockedPoly""",
+							'yourself:'
 						)
 					)
 				#end:case
 				case 0:
 					(= temp17
-						((Polygon new:)
-							init:
-								(client x:)
-								temp6
-								temp7
-								temp6
-								temp7
-								temp8
-								(client x:)
-								temp8
-								30583
-								0
-							type: 2
-							name: r"""isBlockedPoly"""
-							yourself:
+						Polygon._send('new:')._send(
+							'init:', client._send('x:'), temp6, temp7, temp6, temp7, temp8, client._send(
+									'x:'
+								), temp8, 30583, 0,
+							'type:', 2,
+							'name:', r"""isBlockedPoly""",
+							'yourself:'
 						)
 					)
 				#end:case
 				case 1:
 					(= temp17
-						((Polygon new:)
-							init:
-								(client x:)
-								temp8
-								temp5
-								temp8
-								temp5
-								temp6
-								(client x:)
-								temp6
-								30583
-								0
-							type: 2
-							name: r"""isBlockedPoly"""
-							yourself:
+						Polygon._send('new:')._send(
+							'init:', client._send('x:'), temp8, temp5, temp8, temp5, temp6, client._send(
+									'x:'
+								), temp6, 30583, 0,
+							'type:', 2,
+							'name:', r"""isBlockedPoly""",
+							'yourself:'
 						)
 					)
 				#end:case
 			#end:match
-			if (not (temp9 obstacles:)):
-				(temp9 obstacles: (List new:))
+			if (not temp9._send('obstacles:')):
+				temp9._send('obstacles:', List._send('new:'))
 			#endif
 			if 
 				(= temp16
-					kernel.MergePoly((temp17 points:), ((temp9 obstacles:)
-						elements:
-					), ((temp9 obstacles:) size:))
+					kernel.MergePoly(temp17._send('points:'), temp9._send('obstacles:')._send(
+						'elements:'
+					), temp9._send('obstacles:')._send('size:'))
 				)
-				(temp15 = (Polygon new:)
-					points: temp16
-					size: localproc_0(temp16)
-					type: 2
-					dynamic: 1
+				temp15 = Polygon._send('new:')._send(
+					'points:', temp16,
+					'size:', localproc_0(temp16),
+					'type:', 2,
+					'dynamic:', 1
 				)
 			#endif
-			((temp9 obstacles:) add: temp15)
-			(temp9 value: 2 init: client (temp9 finalX:) (temp9 finalY:))
-			((temp9 obstacles:) delete: temp15)
-			((temp9 obstacles:) delete: temp17)
-			if kernel.IsObject((temp9 obstacles:)):
-				localproc_1((temp9 obstacles:))
+			temp9._send('obstacles:')._send('add:', temp15)
+			temp9._send('value:', 2, 'init:', client, temp9._send('finalX:'), temp9._send('finalY:'))
+			temp9._send('obstacles:')._send('delete:', temp15)
+			temp9._send('obstacles:')._send('delete:', temp17)
+			if kernel.IsObject(temp9._send('obstacles:')):
+				localproc_1(temp9._send('obstacles:'))
 			#endif
-			(temp17 dispose:)
-			(temp15 dispose:)
+			temp17._send('dispose:')
+			temp15._send('dispose:')
 		#endif
 	#end:method
 

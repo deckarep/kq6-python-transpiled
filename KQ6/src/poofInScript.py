@@ -27,43 +27,43 @@ class poofInScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 15
 			#end:case
 			case 1:
-				(global1 handsOff:)
-				if (not (global0 x:)):
-					(global0 posn: 200 127)
+				global1._send('handsOff:')
+				if (not global0._send('x:')):
+					global0._send('posn:', 200, 127)
 				#endif
-				(localMusic2 loop: 1 number: 947 play:)
-				(global0
-					view: 207
-					init:
-					cycleSpeed: 10
-					normal: 0
-					setLoop: 1
-					cel: 0
-					setCycle: End self
+				localMusic2._send('loop:', 1, 'number:', 947, 'play:')
+				global0._send(
+					'view:', 207,
+					'init:',
+					'cycleSpeed:', 10,
+					'normal:', 0,
+					'setLoop:', 1,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					cycleSpeed: 10
-					view: 207
-					setLoop: 2
-					cel: 0
-					lastCel:
-					setCycle: Beg self
+				global0._send(
+					'normal:', 0,
+					'cycleSpeed:', 10,
+					'view:', 207,
+					'setLoop:', 2,
+					'cel:', 0,
+					'lastCel:',
+					'setCycle:', Beg, self
 				)
 			#end:case
 			case 3:
-				(global1 handsOn:)
-				(global0 reset:)
-				(localMusic2 stop: dispose:)
-				(self dispose:)
+				global1._send('handsOn:')
+				global0._send('reset:')
+				localMusic2._send('stop:', 'dispose:')
+				self._send('dispose:')
 				if (global11 == 450):
-					(global0 setScale: Scaler 100 30 126 70)
+					global0._send('setScale:', Scaler, 100, 30, 126, 70)
 				#endif
 				kernel.DisposeScript(89)
 			#end:case

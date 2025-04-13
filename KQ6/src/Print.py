@@ -24,8 +24,8 @@ def proc921_0():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp0 = (Print new:)
-	(temp0 addText: &rest init:)
+	temp0 = Print._send('new:')
+	temp0._send('addText:', &rest, 'init:')
 #end:procedure
 
 @SCI.procedure
@@ -33,8 +33,8 @@ def proc921_1():
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp0 = (Print new:)
-	(temp0 addTextF: &rest init:)
+	temp0 = Print._send('new:')
+	temp0._send('addTextF:', &rest, 'init:')
 #end:procedure
 
 @SCI.procedure
@@ -43,11 +43,11 @@ def proc921_2(param1 = None, param2 = None, param3 = None, param4 = None, *rest)
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if 
-		((Print new:)
-			font: (param4 if (argc > 3) else global22)
-			addText: (param3 if ((argc > 2) and param3) else r"""""")
-			addEdit: param1 param2 0 12 param1
-			init:
+		Print._send('new:')._send(
+			'font:', (param4 if (argc > 3) else global22),
+			'addText:', (param3 if ((argc > 2) and param3) else r""""""),
+			'addEdit:', param1, param2, 0, 12, param1,
+			'init:'
 		)
 		kernel.StrLen(param1)
 	#endif
@@ -105,7 +105,7 @@ class Print(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
-			dialog = (Dialog new:)
+			dialog = Dialog._send('new:')
 		#endif
 		if (font == -1):
 			font = global22
@@ -146,17 +146,16 @@ class Print(Obj):
 			kernel.StrCpy(temp7, param2[0])
 		#endif
 		if temp7:
-			(dialog
-				add:
-					((DButton new:)
-						value: param1
-						font: font
-						text: temp7
-						setSize:
-						moveTo: (4 + temp4) (4 + temp5)
-						yourself:
-					)
-				setSize:
+			dialog._send(
+				'add:', DButton._send('new:')._send(
+						'value:', param1,
+						'font:', font,
+						'text:', temp7,
+						'setSize:',
+						'moveTo:', (4 + temp4), (4 + temp5),
+						'yourself:'
+					),
+				'setSize:'
 			)
 		#endif
 	#end:method
@@ -167,7 +166,7 @@ class Print(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
-			dialog = (Dialog new:)
+			dialog = Dialog._send('new:')
 		#endif
 		kernel.StrCpy(param1, (param5 if (argc > 4) else r""""""))
 		if (argc > 2):
@@ -176,16 +175,15 @@ class Print(Obj):
 				temp1 = param4
 			#endif
 		#endif
-		(dialog
-			add:
-				((DEdit new:)
-					text: param1
-					max: param2
-					setSize:
-					moveTo: (temp0 + 4) (temp1 + 4)
-					yourself:
-				)
-			setSize:
+		dialog._send(
+			'add:', DEdit._send('new:')._send(
+					'text:', param1,
+					'max:', param2,
+					'setSize:',
+					'moveTo:', (temp0 + 4), (temp1 + 4),
+					'yourself:'
+				),
+			'setSize:'
 		)
 	#end:method
 
@@ -195,7 +193,7 @@ class Print(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
-			dialog = (Dialog new:)
+			dialog = Dialog._send('new:')
 		#endif
 		if (argc > 3):
 			temp0 = param4
@@ -204,22 +202,21 @@ class Print(Obj):
 			temp0 = temp1 = 0
 		#endif
 		if kernel.IsObject(param1):
-			(dialog
-				add: (param1 setSize: moveTo: (temp0 + 4) (temp1 + 4) yourself:)
-				setSize:
+			dialog._send(
+				'add:', param1._send('setSize:', 'moveTo:', (temp0 + 4), (temp1 + 4), 'yourself:'),
+				'setSize:'
 			)
 		else:
-			(dialog
-				add:
-					((DIcon new:)
-						view: param1
-						loop: param2
-						cel: param3
-						setSize:
-						moveTo: (temp0 + 4) (temp1 + 4)
-						yourself:
-					)
-				setSize:
+			dialog._send(
+				'add:', DIcon._send('new:')._send(
+						'view:', param1,
+						'loop:', param2,
+						'cel:', param3,
+						'setSize:',
+						'moveTo:', (temp0 + 4), (temp1 + 4),
+						'yourself:'
+					),
+				'setSize:'
 			)
 		#endif
 	#end:method
@@ -230,7 +227,7 @@ class Print(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not dialog):
-			dialog = (Dialog new:)
+			dialog = Dialog._send('new:')
 		#endif
 		if (font == -1):
 			font = global22
@@ -255,17 +252,16 @@ class Print(Obj):
 			if temp8 = kernel.Message(2, temp6, temp0, temp1, temp2, temp3):
 				temp7 = kernel.Memory(1, temp8)
 				if kernel.Message(0, temp6, temp0, temp1, temp2, temp3, temp7):
-					(dialog
-						add:
-							((DText new:)
-								text: temp7
-								font: font
-								mode: mode
-								setSize: width
-								moveTo: (4 + temp4) (4 + temp5)
-								yourself:
-							)
-						setSize:
+					dialog._send(
+						'add:', DText._send('new:')._send(
+								'text:', temp7,
+								'font:', font,
+								'mode:', mode,
+								'setSize:', width,
+								'moveTo:', (4 + temp4), (4 + temp5),
+								'yourself:'
+							),
+						'setSize:'
 					)
 				#endif
 			#endif
@@ -280,17 +276,16 @@ class Print(Obj):
 			#endif
 			temp7 = kernel.Memory(1, (kernel.StrLen(param1[0]) + 1))
 			kernel.StrCpy(temp7, param1[0])
-			(dialog
-				add:
-					((DText new:)
-						text: temp7
-						font: font
-						mode: mode
-						setSize: width
-						moveTo: (4 + temp4) (4 + temp5)
-						yourself:
-					)
-				setSize:
+			dialog._send(
+				'add:', DText._send('new:')._send(
+						'text:', temp7,
+						'font:', font,
+						'mode:', mode,
+						'setSize:', width,
+						'moveTo:', (4 + temp4), (4 + temp5),
+						'yourself:'
+					),
+				'setSize:'
 			)
 		#endif
 	#end:method
@@ -303,7 +298,7 @@ class Print(Obj):
 		temp0 = proc921_3(&rest)
 		temp1 = kernel.Memory(1, temp0)
 		kernel.Format(temp1, &rest)
-		(self addText: temp1)
+		self._send('addText:', temp1)
 		kernel.Memory(3, temp1)
 	#end:method
 
@@ -333,10 +328,10 @@ class Print(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global92 and (global92 contains: self)):
-			(global92 delete: self)
-			if (global92 isEmpty:):
-				(global92 dispose:)
+		if (global92 and global92._send('contains:', self)):
+			global92._send('delete:', self)
+			if global92._send('isEmpty:'):
+				global92._send('dispose:')
 				global92 = 0
 			#endif
 		#endif
@@ -346,8 +341,8 @@ class Print(Obj):
 		width = mode = title = first = saveCursor = window = 0
 		x = y = -1
 		modeless = 0
-		(global8 pause: 0)
-		(super dispose:)
+		global8._send('pause:', 0)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -358,11 +353,11 @@ class Print(Obj):
 		temp0 = caller
 		dialog = 0
 		if window:
-			(window dispose:)
+			window._send('dispose:')
 		#endif
-		(self dispose:)
+		self._send('dispose:')
 		if temp0:
-			(temp0 cue:)
+			temp0._send('cue:')
 		#endif
 	#end:method
 
@@ -385,15 +380,15 @@ class Print(Obj):
 			caller = param1
 		#endif
 		if (argc > 1):
-			(self addText: &rest)
+			self._send('addText:', &rest)
 		#endif
 		if (not modeless):
 			if (not kernel.IsObject(global92)):
-				global92 = ((EventHandler new:) name: r"""prints""")
+				global92 = EventHandler._send('new:')._send('name:', r"""prints""")
 			#endif
-			(global92 add: self)
+			global92._send('add:', self)
 		#endif
-		(self showSelf:)
+		self._send('showSelf:')
 	#end:method
 
 	@classmethod
@@ -401,7 +396,7 @@ class Print(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(dialog eachElementDo: #doit)
+		dialog._send('eachElementDo:', #doit)
 	#end:method
 
 	@classmethod
@@ -409,8 +404,8 @@ class Print(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (dialog handleEvent: param1):
-			(dialog dispose:)
+		if dialog._send('handleEvent:', param1):
+			dialog._send('dispose:')
 		#endif
 	#end:method
 
@@ -420,72 +415,72 @@ class Print(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if saveCursor:
-			(global1 setCursor: 999)
+			global1._send('setCursor:', 999)
 		#endif
 		if (not dialog):
-			dialog = (Dialog new:)
+			dialog = Dialog._send('new:')
 		#endif
-		(dialog
-			window: (window if window else global38)
-			name: r"""PODialog"""
-			caller: self
+		dialog._send(
+			'window:', (window if window else global38),
+			'name:', r"""PODialog""",
+			'caller:', self
 		)
-		(dialog text: title time: ticks setSize:)
-		(dialog center:)
+		dialog._send('text:', title, 'time:', ticks, 'setSize:')
+		dialog._send('center:')
 		(= temp3
 			if (x == -1):
-				(dialog nsLeft:)
+				dialog._send('nsLeft:')
 			else:
 				x
 			#endif
 		)
 		(= temp4
 			if (y == -1):
-				(dialog nsTop:)
+				dialog._send('nsTop:')
 			else:
 				y
 			#endif
 		)
-		(dialog moveTo: temp3 temp4)
+		dialog._send('moveTo:', temp3, temp4)
 		temp1 = kernel.GetPort()
-		(dialog open: (4 if title else 0) 15)
+		dialog._send('open:', (4 if title else 0), 15)
 		if modeless:
 			global41 = kernel.GetPort()
 			kernel.SetPort(temp1)
 			global25 = dialog
 		else:
-			(global8 pause: 1)
+			global8._send('pause:', 1)
 			(cond
 				case (not temp0 = first):
 					if 
 						(and
-							temp0 = (dialog firstTrue: #checkState 1)
-							(not (dialog firstTrue: #checkState 2))
+							temp0 = dialog._send('firstTrue:', #checkState, 1)
+							(not dialog._send('firstTrue:', #checkState, 2))
 						)
-						(temp0 state: (| (temp0 state:) 0x0002))
+						temp0._send('state:', (| temp0._send('state:') 0x0002))
 					#endif
 				#end:case
 				case (not kernel.IsObject(temp0)):
-					temp0 = (dialog at: temp0)
+					temp0 = dialog._send('at:', temp0)
 				#end:case
 			)
-			retValue = (dialog doit: temp0)
+			retValue = dialog._send('doit:', temp0)
 			kernel.SetPort(temp1)
 			(cond
 				case (retValue == -1):
 					retValue = 0
 				#end:case
-				case (kernel.IsObject(retValue) and (retValue isKindOf: DButton)):
-					retValue = (retValue value:)
+				case (kernel.IsObject(retValue) and retValue._send('isKindOf:', DButton)):
+					retValue = retValue._send('value:')
 				#end:case
-				case (not (dialog theItem:)):
+				case (not dialog._send('theItem:')):
 					retValue = 1
 				#end:case
 			)
 			if saveCursor:
-				(global1 setCursor: ((global69 curIcon:) cursor:))
+				global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
 			#endif
-			(dialog dispose:)
+			dialog._send('dispose:')
 			return retValue
 		#endif
 	#end:method

@@ -47,62 +47,33 @@ class rm350(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global102 number: 350 setLoop: -1 play:)
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						304
-						189
-						268
-						167
-						233
-						162
-						169
-						162
-						169
-						150
-						148
-						150
-						148
-						162
-						79
-						162
-						47
-						169
-						14
-						189
-						0
-						189
-						0
-						0
-						319
-						0
-						319
-						189
-					yourself:
+		super._send('init:', &rest)
+		global102._send('number:', 350, 'setLoop:', -1, 'play:')
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 304, 189, 268, 167, 233, 162, 169, 162, 169, 150, 148, 150, 148, 162, 79, 162, 47, 169, 14, 189, 0, 189, 0, 0, 319, 0, 319, 189,
+					'yourself:'
 				)
 		)
 		if (not proc913_0(2)):
 			proc958_0(128, 343, 344, 348, 3481, 349, 3491)
 		#endif
-		(global32 add: nests palace oracleMtn gate eachElementDo: #init)
-		(leftGuard init:)
-		(riteGuard init:)
-		(global0 reset: 3 posn: 160 188 init:)
+		global32._send('add:', nests, palace, oracleMtn, gate, 'eachElementDo:', #init)
+		leftGuard._send('init:')
+		riteGuard._send('init:')
+		global0._send('reset:', 3, 'posn:', 160, 188, 'init:')
 		if (not proc913_0(2)):
-			(global69
-				enable:
-				disable: 0 1 2 3 4 5 6
-				height: -100
-				activateHeight: -100
+			global69._send(
+				'enable:',
+				'disable:', 0, 1, 2, 3, 4, 5, 6,
+				'height:', -100,
+				'activateHeight:', -100
 			)
-			(Cursor showCursor: 0)
-			(global2 setScript: egoEnters)
+			Cursor._send('showCursor:', 0)
+			global2._send('setScript:', egoEnters)
 		else:
-			(global1 handsOn:)
+			global1._send('handsOn:')
 		#endif
 	#end:method
 
@@ -112,15 +83,15 @@ class rm350(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(cond
-			case (global2 script:):#end:case
-			case ((global0 onControl: 1) == 64):
-				(global2 setScript: stayOut)
+			case global2._send('script:'):#end:case
+			case (global0._send('onControl:', 1) == 64):
+				global2._send('setScript:', stayOut)
 			#end:case
-			case ((global0 edgeHit:) == 3):
-				(global2 setScript: walkOut)
+			case (global0._send('edgeHit:') == 3):
+				global2._send('setScript:', walkOut)
 			#end:case
 		)
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -128,8 +99,8 @@ class rm350(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 setScale: 0)
-		(super dispose:)
+		global0._send('setScale:', 0)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -139,7 +110,7 @@ class rm350(KQ6Room):
 
 		temp0 = 1
 		if (param1 == 87):
-			(global91 say: 0 0 94 1 0 899)
+			global91._send('say:', 0, 0, 94, 1, 0, 899)
 			temp0 = 0
 		#endif
 		return temp0
@@ -168,13 +139,13 @@ class nests(Feature):
 
 		match param1
 			case 1:
-				(global91 say: 6 1 0 1)
+				global91._send('say:', 6, 1, 0, 1)
 			#end:case
 			case 2:
-				(global91 say: 6 2 0 1)
+				global91._send('say:', 6, 2, 0, 1)
 			#end:case
 			else:
-				(global91 say: 6 5 0 1)
+				global91._send('say:', 6, 5, 0, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -194,13 +165,13 @@ class palace(Feature):
 
 		match param1
 			case 1:
-				(global91 say: 8 1 0 1)
+				global91._send('say:', 8, 1, 0, 1)
 			#end:case
 			case 2:
-				(global91 say: 6 2 0 1)
+				global91._send('say:', 6, 2, 0, 1)
 			#end:case
 			else:
-				(global91 say: 6 5 0 1)
+				global91._send('say:', 6, 5, 0, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -220,13 +191,13 @@ class oracleMtn(Feature):
 
 		match param1
 			case 1:
-				(global91 say: 7 1 0 1)
+				global91._send('say:', 7, 1, 0, 1)
 			#end:case
 			case 2:
-				(global91 say: 7 2 0 1)
+				global91._send('say:', 7, 2, 0, 1)
 			#end:case
 			else:
-				(global91 say: 7 5 0 1)
+				global91._send('say:', 7, 5, 0, 1)
 			#end:else
 		#end:match
 	#end:method
@@ -243,40 +214,40 @@ class stayOut(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: 0)
-				(leftGuard
-					view: 345
-					setLoop: 1
-					cel: 0
-					cycleSpeed: 8
-					setCycle: End
+				global1._send('handsOff:')
+				global0._send('setMotion:', 0)
+				leftGuard._send(
+					'view:', 345,
+					'setLoop:', 1,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End
 				)
-				(riteGuard
-					view: 345
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 8
-					setCycle: End self
+				riteGuard._send(
+					'view:', 345,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
-				(global91 say: 4 2 8 2 self)
+				global91._send('say:', 4, 2, 8, 2, self)
 			#end:case
 			case 2:
-				(global0
-					setLoop: (global0 cel:)
-					setMotion: MoveTo (global0 x:) ((global0 y:) + 5) self
+				global0._send(
+					'setLoop:', global0._send('cel:'),
+					'setMotion:', MoveTo, global0._send('x:'), (global0._send('y:') + 5), self
 				)
 			#end:case
 			case 3:
-				(global0 setLoop: -1)
-				(leftGuard setCycle: Beg)
-				(riteGuard setCycle: Beg self)
+				global0._send('setLoop:', -1)
+				leftGuard._send('setCycle:', Beg)
+				riteGuard._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -298,81 +269,81 @@ class egoEnters(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: MoveTo 160 160 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', MoveTo, 160, 160, self)
 			#end:case
 			case 1:
 				cycles = 6
 			#end:case
 			case 2:
-				(global91 say: 1 0 1 1 self)
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 3:
-				(leftGuard setCycle: StopWalk -1 setMotion: MoveTo 134 158)
-				(riteGuard setCycle: StopWalk -1 setMotion: MoveTo 189 158 self)
+				leftGuard._send('setCycle:', StopWalk, -1, 'setMotion:', MoveTo, 134, 158)
+				riteGuard._send('setCycle:', StopWalk, -1, 'setMotion:', MoveTo, 189, 158, self)
 			#end:case
 			case 4:
-				(leftGuard setHeading: 90 self)
-				(riteGuard setHeading: 270 self)
+				leftGuard._send('setHeading:', 90, self)
+				riteGuard._send('setHeading:', 270, self)
 			#end:case
 			case 5: 0#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(myConv
-					add: -1 1 0 1 2
-					add: -1 1 0 1 3
-					add: -1 1 0 1 4
-					add: -1 1 0 1 5
-					add: -1 1 0 1 6
-					add: -1 1 0 1 7
-					init: self
+				myConv._send(
+					'add:', -1, 1, 0, 1, 2,
+					'add:', -1, 1, 0, 1, 3,
+					'add:', -1, 1, 0, 1, 4,
+					'add:', -1, 1, 0, 1, 5,
+					'add:', -1, 1, 0, 1, 6,
+					'add:', -1, 1, 0, 1, 7,
+					'init:', self
 				)
 			#end:case
 			case 8:
-				(leftGuard dispose:)
-				(riteGuard dispose:)
-				(global0 hide:)
-				(dummyEgo view: 351 posn: 160 164 init: setCycle: End self)
+				leftGuard._send('dispose:')
+				riteGuard._send('dispose:')
+				global0._send('hide:')
+				dummyEgo._send('view:', 351, 'posn:', 160, 164, 'init:', 'setCycle:', End, self)
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 9:
-				(dummyEgo
-					view: 352
-					ignoreHorizon:
-					cycleSpeed: 6
-					moveSpeed: 6
-					posn: 160 164
-					setCycle: End self
+				dummyEgo._send(
+					'view:', 352,
+					'ignoreHorizon:',
+					'cycleSpeed:', 6,
+					'moveSpeed:', 6,
+					'posn:', 160, 164,
+					'setCycle:', End, self
 				)
 				kernel.UnLoad(128, 351)
 			#end:case
 			case 10:
-				(dummyEgo
-					view: 353
-					posn: 162 103
-					setCycle: Fwd
-					cycleSpeed: 3
-					setStep: 15 12
-					setMotion: MoveTo (global0 x:) -50 self
+				dummyEgo._send(
+					'view:', 353,
+					'posn:', 162, 103,
+					'setCycle:', Fwd,
+					'cycleSpeed:', 3,
+					'setStep:', 15, 12,
+					'setMotion:', MoveTo, global0._send('x:'), -50, self
 				)
 				kernel.UnLoad(128, 352)
 			#end:case
 			case 11:
-				(dummyEgo
-					view: 353
-					setScale: Scaler 50 49 190 0
-					setLoop: 1
-					setStep: 3 2
-					posn: 230 -20
-					setCycle: Fwd
-					setMotion: MoveTo 139 7 self
+				dummyEgo._send(
+					'view:', 353,
+					'setScale:', Scaler, 50, 49, 190, 0,
+					'setLoop:', 1,
+					'setStep:', 3, 2,
+					'posn:', 230, -20,
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 139, 7, self
 				)
 			#end:case
 			case 12:
-				(global102 fade: 0 20 15)
-				(global2 newRoom: 370)
+				global102._send('fade:', 0, 20, 15)
+				global2._send('newRoom:', 370)
 			#end:case
 		#end:match
 	#end:method
@@ -389,14 +360,14 @@ class walkOut(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0
-					setMotion: MoveTo (global0 x:) ((global0 y:) + 50) self
+				global1._send('handsOff:')
+				global0._send(
+					'setMotion:', MoveTo, global0._send('x:'), (global0._send('y:') + 50), self
 				)
 			#end:case
 			case 1:
-				(global102 fade: 0 15 15)
-				(global2 newRoom: 340)
+				global102._send('fade:', 0, 15, 15)
+				global2._send('newRoom:', 340)
 			#end:case
 		#end:match
 	#end:method
@@ -422,8 +393,8 @@ class leftGuard(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 0)
-		(super init:)
+		self._send('approachVerbs:', 0)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -434,14 +405,14 @@ class leftGuard(Actor):
 		match param1
 			case 2:
 				if proc913_0(101):
-					(global2 setScript: talkToGuards)
+					global2._send('setScript:', talkToGuards)
 				else:
 					proc913_1(101)
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -467,8 +438,8 @@ class riteGuard(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: 0)
-		(super init:)
+		self._send('approachVerbs:', 0)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -479,14 +450,14 @@ class riteGuard(Actor):
 		match param1
 			case 2:
 				if proc913_0(101):
-					(global2 setScript: talkToGuards)
+					global2._send('setScript:', talkToGuards)
 				else:
 					proc913_1(101)
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -503,22 +474,22 @@ class talkToGuards(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 160 160 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 160, 160, self)
 			#end:case
 			case 1:
 				cycles = 4
 			#end:case
 			case 2:
-				(global91 say: 4 2 8 0 self)
+				global91._send('say:', 4, 2, 8, 0, self)
 			#end:case
 			case 3:
-				(global0 setLoop: 3 setMotion: MoveTo 160 175 self)
+				global0._send('setLoop:', 3, 'setMotion:', MoveTo, 160, 175, self)
 			#end:case
 			case 4:
-				(global0 reset: 3)
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 3)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

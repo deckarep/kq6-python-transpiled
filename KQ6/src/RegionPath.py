@@ -45,24 +45,24 @@ class RegionPath(MoveTo):
 			#endif
 			if (not initialized):
 				if (not savedOldStuff):
-					theOldBits = (client illegalBits:)
-					theOldSignal = (client signal:)
+					theOldBits = client._send('illegalBits:')
+					theOldSignal = client._send('signal:')
 					savedOldStuff = 1
 				#endif
 				if (endType & 0x0002):
-					(self findPathend: next:)
-					(client posn: x y)
+					self._send('findPathend:', 'next:')
+					client._send('posn:', x, y)
 				else:
-					(self value: 0 nextRoom:)
+					self._send('value:', 0, 'nextRoom:')
 				#endif
 				initialized = 1
-				(client illegalBits: 0 ignoreActors: ignoreHorizon:)
+				client._send('illegalBits:', 0, 'ignoreActors:', 'ignoreHorizon:')
 			#endif
 			completed = 0
-			(self next:)
+			self._send('next:')
 		#endif
-		(super init:)
-		(self curRoomCheck:)
+		super._send('init:')
+		self._send('curRoomCheck:')
 	#end:method
 
 	@classmethod
@@ -70,29 +70,27 @@ class RegionPath(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (client z:)
+		temp0 = client._send('z:')
 		if (currentRoom == global11):
-			(client
-				z:
-					if (temp0 >= 1000):
+			client._send(
+				'z:', if (temp0 >= 1000):
 						(temp0 - 1000)
 					else:
 						temp0
-					#endif
-				illegalBits: theOldBits
-				signal: theOldSignal
+					#endif,
+				'illegalBits:', theOldBits,
+				'signal:', theOldSignal
 			)
 		else:
-			(client
-				z:
-					if (temp0 < 1000):
+			client._send(
+				'z:', if (temp0 < 1000):
 						(temp0 + 1000)
 					else:
 						temp0
-					#endif
-				illegalBits: 0
-				ignoreActors: 1
-				ignoreHorizon:
+					#endif,
+				'illegalBits:', 0,
+				'ignoreActors:', 1,
+				'ignoreHorizon:'
 			)
 		#endif
 	#end:method
@@ -102,8 +100,8 @@ class RegionPath(MoveTo):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		x = (self at: (self nextValue: 1))
-		y = (self at: (value + 1))
+		x = self._send('at:', self._send('nextValue:', 1))
+		y = self._send('at:', (value + 1))
 	#end:method
 
 	@classmethod
@@ -112,12 +110,12 @@ class RegionPath(MoveTo):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (endType & 0x0002):
-			(self findPrevroom:)
+			self._send('findPrevroom:')
 		else:
-			currentRoom = (self at: (value + 1))
+			currentRoom = self._send('at:', (value + 1))
 		#endif
-		(self next: curRoomCheck:)
-		(client posn: x y)
+		self._send('next:', 'curRoomCheck:')
+		client._send('posn:', x, y)
 	#end:method
 
 	@classmethod
@@ -126,21 +124,21 @@ class RegionPath(MoveTo):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		completed = 1
-		if (self atEnd:):
-			(self value: -1 initialized: 0)
+		if self._send('atEnd:'):
+			self._send('value:', -1, 'initialized:', 0)
 			if (endType & 0x0001):
-				(self init:)
+				self._send('init:')
 			else:
-				(super moveDone:)
+				super._send('moveDone:')
 			#endif
 		else:
 			if intermediate:
-				(intermediate cue: (value / 2))
+				intermediate._send('cue:', (value / 2))
 			#endif
-			if ((self at: (self nextValue:)) == 32767):
-				(self next: nextRoom:)
+			if (self._send('at:', self._send('nextValue:')) == 32767):
+				self._send('next:', 'nextRoom:')
 			#endif
-			(self init:)
+			self._send('init:')
 		#endif
 	#end:method
 
@@ -152,7 +150,7 @@ class RegionPath(MoveTo):
 		(return
 			(or
 				((endType & 0x0002) and ((value - 2) <= 0))
-				((self at: (value + 2)) == -32768)
+				(self._send('at:', (value + 2)) == -32768)
 			)
 		)
 	#end:method
@@ -172,8 +170,8 @@ class RegionPath(MoveTo):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if theRegion:
-			if (not (kernel.ScriptID(theRegion) keep:)):
-				(super dispose:)
+			if (not kernel.ScriptID(theRegion)._send('keep:')):
+				super._send('dispose:')
 			#endif
 		else:
 			proc921_1(r"""%s theRegion: not defined.""", name)
@@ -199,9 +197,9 @@ class RegionPath(MoveTo):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		value = 0
-		while ((self at: value) != -32768): # inline for
-			if ((self at: value) == 32767):
-				currentRoom = (self at: (value + 1))
+		while (self._send('at:', value) != -32768): # inline for
+			if (self._send('at:', value) == 32767):
+				currentRoom = self._send('at:', (value + 1))
 			#endif
 			# for:reinit
 			value.post('++')
@@ -215,8 +213,8 @@ class RegionPath(MoveTo):
 
 		temp0 = 0
 		while (temp0 < value): # inline for
-			if ((self at: temp0) == 32767):
-				currentRoom = (self at: (temp0 + 1))
+			if (self._send('at:', temp0) == 32767):
+				currentRoom = self._send('at:', (temp0 + 1))
 			#endif
 			# for:reinit
 			temp0.post('++')

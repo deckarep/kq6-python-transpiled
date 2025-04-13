@@ -42,11 +42,11 @@ class rm105(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global74 addToFront: self)
-		(global72 addToFront: self)
-		(global73 addToFront: self)
-		(self setScript: showMovie)
-		(super init: &rest)
+		global74._send('addToFront:', self)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
+		self._send('setScript:', showMovie)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -54,7 +54,7 @@ class rm105(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 restart: 1)
+		global1._send('restart:', 1)
 	#end:method
 
 	@classmethod
@@ -64,13 +64,13 @@ class rm105(KQ6Room):
 
 		kernel.DoAudio(3)
 		if local403:
-			(global1 masterVolume: local403)
+			global1._send('masterVolume:', local403)
 			local403 = 0
 		#endif
 		kernel.DrawPic(98)
 		kernel.SetVideoMode(0)
-		(Cursor showCursor: 1)
-		(global1 restart: 1)
+		Cursor._send('showCursor:', 1)
+		global1._send('restart:', 1)
 	#end:method
 
 	@classmethod
@@ -78,11 +78,11 @@ class rm105(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global74 delete: self)
-		(global72 delete: self)
-		(global73 delete: self)
+		global74._send('delete:', self)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
 		proc958_0(0, 929)
-		(super newRoom: &rest)
+		super._send('newRoom:', &rest)
 	#end:method
 
 #end:class or instance
@@ -99,9 +99,9 @@ class showMovie(Script):
 			case 0:
 				proc958_0(128, 1, 2, 3, 1091, 4)
 				proc958_0(129, 1, 107, 10, 2, 11, 141, 5, 7, 6)
-				(global69 disable: height: -100 activateHeight: -100)
-				(User controls: 1)
-				(Cursor showCursor: 0)
+				global69._send('disable:', 'height:', -100, 'activateHeight:', -100)
+				User._send('controls:', 1)
+				Cursor._send('showCursor:', 0)
 				cycles = 2
 			#end:case
 			case 1:
@@ -124,10 +124,10 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 3:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 4:
-				(global102 loop: 1 number: 105 play:)
+				global102._send('loop:', 1, 'number:', 105, 'play:')
 				kernel.Message(0, 105, 1, 0, 0, 1, @local1)
 				(= local401
 					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
@@ -135,13 +135,13 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 5:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 6:
 				seconds = 6
 			#end:case
 			case 7:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 8:
 				kernel.Display(105, 0, 108, local401)
@@ -152,7 +152,7 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 10:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 11:
 				cycles = 1
@@ -164,56 +164,56 @@ class showMovie(Script):
 			#end:case
 			case 13:
 				kernel.DrawPic(1)
-				(flames init:)
+				flames._send('init:')
 				cycles = 1
 			#end:case
 			case 14:
-				(toonAudio play: 1 0 0 2 self)
+				toonAudio._send('play:', 1, 0, 0, 2, self)
 			#end:case
 			case 15:
-				(alexMouth init: setCycle: MouthSync 105 1 0 0 3)
-				(toonAudio play: 1 0 0 3 self)
+				alexMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 3)
+				toonAudio._send('play:', 1, 0, 0, 3, self)
 			#end:case
 			case 16:
-				(alexMouth dispose: delete:)
-				(toonAudio play: 1 0 0 4 self)
+				alexMouth._send('dispose:', 'delete:')
+				toonAudio._send('play:', 1, 0, 0, 4, self)
 			#end:case
 			case 17:
-				(alexMouth init: setCycle: MouthSync 105 1 0 0 5)
-				(toonAudio play: 1 0 0 5 self)
+				alexMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 5)
+				toonAudio._send('play:', 1, 0, 0, 5, self)
 			#end:case
 			case 18:
-				(alexMouth dispose: delete:)
-				(toonAudio play: 1 0 0 6 self)
+				alexMouth._send('dispose:', 'delete:')
+				toonAudio._send('play:', 1, 0, 0, 6, self)
 			#end:case
 			case 19:
-				(alexMouth init: setCycle: MouthSync 105 1 0 0 7)
-				(toonAudio play: 1 0 0 7 self)
+				alexMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 7)
+				toonAudio._send('play:', 1, 0, 0, 7, self)
 			#end:case
 			case 20:
-				(alexMouth dispose: delete:)
-				(toonAudio play: 1 0 0 8 self)
+				alexMouth._send('dispose:', 'delete:')
+				toonAudio._send('play:', 1, 0, 0, 8, self)
 			#end:case
 			case 21:
-				(alexMouth init: setCycle: MouthSync 105 1 0 0 9)
-				(toonAudio play: 1 0 0 9 self)
+				alexMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 9)
+				toonAudio._send('play:', 1, 0, 0, 9, self)
 			#end:case
 			case 22:
-				(alexMouth dispose: delete:)
-				(flames dispose:)
+				alexMouth._send('dispose:', 'delete:')
+				flames._send('dispose:')
 				kernel.ShowMovie(r"""FS2Z.SEQ""", 10)
 				kernel.DrawPic(2)
 				seconds = 2
 			#end:case
 			case 23:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 24:
 				kernel.DrawPic(107)
 				cycles = 1
 			#end:case
 			case 25:
-				(global102 loop: -1 number: 120 play:)
+				global102._send('loop:', -1, 'number:', 120, 'play:')
 				kernel.Message(0, 105, 3, 0, 0, 1, @local1)
 				(= local401
 					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
@@ -221,13 +221,13 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 26:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 27:
 				seconds = 4
 			#end:case
 			case 28:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 29:
 				kernel.Display(105, 0, 108, local401)
@@ -238,7 +238,7 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 31:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 32:
 				kernel.ShowMovie(r"""CD1.SEQ""", 10)
@@ -249,39 +249,39 @@ class showMovie(Script):
 				seconds = 5
 			#end:case
 			case 34:
-				(global102 stop:)
-				(global102 loop: 1 number: 125 play:)
-				(global102 loop: 1 number: 107 play:)
+				global102._send('stop:')
+				global102._send('loop:', 1, 'number:', 125, 'play:')
+				global102._send('loop:', 1, 'number:', 107, 'play:')
 				kernel.ShowMovie(r"""CD6.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 35:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 36:
 				kernel.DrawPic(141)
 				cycles = 1
 			#end:case
 			case 37:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 38:
-				(cassMouth init: setCycle: MouthSync 105 1 0 0 10)
-				(toonAudio play: 1 0 0 10 self)
+				cassMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 10)
+				toonAudio._send('play:', 1, 0, 0, 10, self)
 			#end:case
 			case 39:
-				(cassMouth dispose: delete:)
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				cassMouth._send('dispose:', 'delete:')
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 				cycles = 2
 			#end:case
 			case 40:
-				(toonAudio play: 1 0 0 11 self)
+				toonAudio._send('play:', 1, 0, 0, 11, self)
 			#end:case
 			case 41:#end:case
 			case 42:
 				kernel.DrawPic(107)
-				(global102 number: 108 play:)
-				(toonAudio play: 1 0 0 12 self)
+				global102._send('number:', 108, 'play:')
+				toonAudio._send('play:', 1, 0, 0, 12, self)
 			#end:case
 			case 43:
 				kernel.Palette(4, 0, 231, 100)
@@ -290,70 +290,70 @@ class showMovie(Script):
 			#end:case
 			case 44:
 				kernel.DrawPic(5)
-				(flames2 init:)
+				flames2._send('init:')
 				cycles = 1
 			#end:case
 			case 45:
-				(momMouth init: setCycle: MouthSync 105 1 0 0 13)
-				(toonAudio play: 1 0 0 13 self)
+				momMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 13)
+				toonAudio._send('play:', 1, 0, 0, 13, self)
 			#end:case
 			case 46:
-				(momMouth dispose: delete:)
-				(alexMouth2 init: setCycle: MouthSync 105 1 0 0 14)
-				(toonAudio play: 1 0 0 14 self)
+				momMouth._send('dispose:', 'delete:')
+				alexMouth2._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 14)
+				toonAudio._send('play:', 1, 0, 0, 14, self)
 			#end:case
 			case 47:
-				(alexMouth2 dispose: delete:)
-				(momMouth init: setCycle: MouthSync 105 1 0 0 15)
-				(toonAudio play: 1 0 0 15 self)
+				alexMouth2._send('dispose:', 'delete:')
+				momMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 15)
+				toonAudio._send('play:', 1, 0, 0, 15, self)
 			#end:case
 			case 48:
-				(momMouth dispose: delete:)
-				(alexMouth2 init: setCycle: MouthSync 105 1 0 0 16)
-				(toonAudio play: 1 0 0 16 self)
+				momMouth._send('dispose:', 'delete:')
+				alexMouth2._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 16)
+				toonAudio._send('play:', 1, 0, 0, 16, self)
 			#end:case
 			case 49:
-				(alexMouth2 dispose: delete:)
-				(momMouth init: setCycle: MouthSync 105 1 0 0 17)
-				(toonAudio play: 1 0 0 17 self)
+				alexMouth2._send('dispose:', 'delete:')
+				momMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 17)
+				toonAudio._send('play:', 1, 0, 0, 17, self)
 			#end:case
 			case 50:
-				(momMouth dispose: delete:)
-				(alexMouth2 init: setCycle: MouthSync 105 1 0 0 18)
-				(toonAudio play: 1 0 0 18 self)
+				momMouth._send('dispose:', 'delete:')
+				alexMouth2._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 18)
+				toonAudio._send('play:', 1, 0, 0, 18, self)
 			#end:case
 			case 51:
-				(alexMouth2 dispose: delete:)
-				(momMouth init: setCycle: MouthSync 105 1 0 0 19)
-				(toonAudio play: 1 0 0 19 self)
+				alexMouth2._send('dispose:', 'delete:')
+				momMouth._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 19)
+				toonAudio._send('play:', 1, 0, 0, 19, self)
 			#end:case
 			case 52:
-				(momMouth dispose: delete:)
-				(alexMouth2 init: setCycle: MouthSync 105 1 0 0 20)
-				(toonAudio play: 1 0 0 20 self)
+				momMouth._send('dispose:', 'delete:')
+				alexMouth2._send('init:', 'setCycle:', MouthSync, 105, 1, 0, 0, 20)
+				toonAudio._send('play:', 1, 0, 0, 20, self)
 			#end:case
 			case 53:
-				(alexMouth2 dispose: delete:)
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				alexMouth2._send('dispose:', 'delete:')
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 54:
-				(flames2 dispose:)
+				flames2._send('dispose:')
 				kernel.DrawPic(107)
 				cycles = 2
 			#end:case
 			case 55:
-				(global102 stop: number: 121 play:)
+				global102._send('stop:', 'number:', 121, 'play:')
 				kernel.Message(0, 105, 1, 0, 0, 21, @local1)
 				(= local401
 					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 56:
 				seconds = 3
 			#end:case
 			case 57:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 58:
 				kernel.Display(105, 0, 108, local401)
@@ -366,20 +366,20 @@ class showMovie(Script):
 			case 60:
 				kernel.ShowMovie(r"""CLOUD.SEQ""", 10)
 				kernel.ShowMovie(r"""BIRDS.SEQ""", 10)
-				(global102 stop: number: 122 play:)
+				global102._send('stop:', 'number:', 122, 'play:')
 				kernel.ShowMovie(r"""OPEN.SEQ""", 10)
 				kernel.ShowMovie(r"""OPEN2.SEQ""", 10)
 				kernel.ShowMovie(r"""CLOSE.SEQ""", 10)
 				kernel.ShowMovie(r"""SCAN.SEQ""", 10)
 				kernel.ShowMovie(r"""SCOP.SEQ""", 10)
-				(toonAudio play: 1 0 0 22 self)
+				toonAudio._send('play:', 1, 0, 0, 22, self)
 			#end:case
 			case 61:
 				kernel.ShowMovie(r"""LAND.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 62:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 63:
 				kernel.DrawPic(107)
@@ -390,36 +390,36 @@ class showMovie(Script):
 				(= local401
 					kernel.Display(@local1, 100, 12, 81, 106, 300, 102, 98, 105, 3110, 101, 1, 107)
 				)
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 65:
 				seconds = 3
 			#end:case
 			case 66:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 67:
 				kernel.Display(105, 0, 108, local401)
 				cycles = 2
 			#end:case
 			case 68:
-				(global102 stop: number: 123 play:)
+				global102._send('stop:', 'number:', 123, 'play:')
 				kernel.DrawPic(7)
 				cycles = 1
 			#end:case
 			case 69:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 70:
 				kernel.ShowMovie(r"""BOAT.SEQ""", 10)
 				cycles = 1
 			#end:case
 			case 71:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 72:
 				kernel.DrawPic(107)
-				(global102 stop: number: 124 loop: 1 play: self)
+				global102._send('stop:', 'number:', 124, 'loop:', 1, 'play:', self)
 				kernel.Message(0, 105, 1, 0, 0, 23, @local1)
 				kernel.Display(105, 0, 108, local401)
 				(= local401
@@ -428,13 +428,13 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 73:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 74:
 				seconds = 7
 			#end:case
 			case 75:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 76:
 				kernel.Display(105, 0, 108, local401)
@@ -445,7 +445,7 @@ class showMovie(Script):
 				cycles = 1
 			#end:case
 			case 78:
-				(kernel.ScriptID(107, 2) doit: 0 self)
+				kernel.ScriptID(107, 2)._send('doit:', 0, self)
 			#end:case
 			case 79:
 				seconds = 2
@@ -456,11 +456,11 @@ class showMovie(Script):
 			#end:case
 			case 81:#end:case
 			case 82:
-				(kernel.ScriptID(107, 2) doit: 1 self)
+				kernel.ScriptID(107, 2)._send('doit:', 1, self)
 			#end:case
 			case 83:
 				kernel.DrawPic(107)
-				(self setScript: kernel.ScriptID(107, 0) self)
+				self._send('setScript:', kernel.ScriptID(107, 0), self)
 			#end:case
 			case 84:
 				temp0 = 100
@@ -480,9 +480,9 @@ class showMovie(Script):
 			#end:case
 			case 86:
 				kernel.SetVideoMode(0)
-				(global69 height: 0 activateHeight: 0)
-				(Cursor showCursor: 1)
-				(global2 newRoom: 200)
+				global69._send('height:', 0, 'activateHeight:', 0)
+				Cursor._send('showCursor:', 1)
+				global2._send('newRoom:', 200)
 			#end:case
 		#end:match
 	#end:method
@@ -497,9 +497,9 @@ class toonAudio(Audio):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global78 add: self)
+		global78._send('add:', self)
 		if (not local403):
-			local403 = (global1 masterVolume: ((global1 masterVolume:) - 4))
+			local403 = global1._send('masterVolume:', (global1._send('masterVolume:') - 4))
 		#endif
 		local0 = 0
 		(cond
@@ -508,10 +508,10 @@ class toonAudio(Audio):
 				if kernel.IsObject(param5):
 					local0 = param5
 				#endif
-				(self doit:)
+				self._send('doit:')
 			#end:case
 			case (kernel.IsObject(param5) and (local0 = param5 != 0)):
-				(local0 cue:)
+				local0._send('cue:')
 			#end:case
 		)
 	#end:method
@@ -527,14 +527,14 @@ class toonAudio(Audio):
 			if (local0 != 0):
 				temp0 = local0
 				local0 = 0
-				(global78 delete: self)
-				(global1 masterVolume: local403)
+				global78._send('delete:', self)
+				global1._send('masterVolume:', local403)
 				local403 = 0
-				(temp0 cue:)
+				temp0._send('cue:')
 			#endif
 		#endif
 		if ((not stopped) and (kernel.DoAudio(6) == -1) and ((loop > 1) or (loop == -1))):
-			(self play:)
+			self._send('play:')
 		#endif
 	#end:method
 
@@ -553,8 +553,8 @@ class flames(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: RandCycle)
+		super._send('init:', &rest)
+		self._send('setCycle:', RandCycle)
 	#end:method
 
 #end:class or instance
@@ -572,8 +572,8 @@ class flames2(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: RandCycle)
+		super._send('init:', &rest)
+		self._send('setCycle:', RandCycle)
 	#end:method
 
 #end:class or instance
@@ -590,8 +590,8 @@ class alexMouth(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self setPri: 14 ignoreActors: 1)
-		(super init: &rest)
+		self._send('setPri:', 14, 'ignoreActors:', 1)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

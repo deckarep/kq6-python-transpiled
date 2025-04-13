@@ -34,16 +34,16 @@ class rm100(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if ((global87 == 0) or (not global169)):
 			kernel.Palette(4, 0, 255, 0)
 			kernel.Load(129, 100)
-			(presents init:)
+			presents._send('init:')
 			kernel.DrawPic(99)
 		#endif
-		(global1 setCursor: blankCursor)
-		(global69 disable:)
-		(global2 setScript: introScript)
+		global1._send('setCursor:', blankCursor)
+		global69._send('disable:')
+		global2._send('setScript:', introScript)
 	#end:method
 
 	@classmethod
@@ -54,8 +54,8 @@ class rm100(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 height: 0 activateHeight: 0)
-		(super newRoom: &rest)
+		global69._send('height:', 0, 'activateHeight:', 0)
+		super._send('newRoom:', &rest)
 	#end:method
 
 #end:class or instance
@@ -68,8 +68,8 @@ class introScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (((param1 type:) & 0x0004) and ((param1 message:) == 27)):
-			(param1 claimed: 1)
+		if ((param1._send('type:') & 0x0004) and (param1._send('message:') == 27)):
+			param1._send('claimed:', 1)
 		#endif
 		return 0
 	#end:method
@@ -79,8 +79,8 @@ class introScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -90,49 +90,49 @@ class introScript(Script):
 
 		match state = param1
 			case 0:
-				(global72 add: self)
+				global72._send('add:', self)
 				if (global169 and kernel.Platform(7) and (global87 > 0)):
-					(self setScript: winLogo self)
+					self._send('setScript:', winLogo, self)
 				else:
-					(self setScript: dosLogo self)
+					self._send('setScript:', dosLogo, self)
 				#endif
 			#end:case
 			case 1:
-				(global2 drawPic: 100 9)
+				global2._send('drawPic:', 100, 9)
 				cycles = 1
 			#end:case
 			case 2:
 				if global169:
 					cycles = 1
 				else:
-					(FadeCode init: 100 1 self)
+					FadeCode._send('init:', 100, 1, self)
 				#endif
 			#end:case
 			case 3:
-				(six init:)
-				(global102 number: 2 loop: 1 play: self)
+				six._send('init:')
+				global102._send('number:', 2, 'loop:', 1, 'play:', self)
 				seconds = 5
 			#end:case
 			case 4:
-				(six setCycle: End)
+				six._send('setCycle:', End)
 			#end:case
 			case 5:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				seconds = 10
-				(global69
-					enable:
-					disable: 0 1 2 3 4 5
-					height: -100
-					activateHeight: -100
+				global69._send(
+					'enable:',
+					'disable:', 0, 1, 2, 3, 4, 5,
+					'height:', -100,
+					'activateHeight:', -100
 				)
 				kernel.Portrait(0, r"""ALEX""")
-				(Cursor showCursor: 1)
-				(global1 setCursor: global20)
-				(six stopUpd:)
-				(openingBut init: stopUpd:)
-				(playBut init: stopUpd:)
-				(helpBut init: stopUpd:)
-				(restoreBut init: stopUpd:)
+				Cursor._send('showCursor:', 1)
+				global1._send('setCursor:', global20)
+				six._send('stopUpd:')
+				openingBut._send('init:', 'stopUpd:')
+				playBut._send('init:', 'stopUpd:')
+				helpBut._send('init:', 'stopUpd:')
+				restoreBut._send('init:', 'stopUpd:')
 			#end:case
 			case 6:#end:case
 		#end:match
@@ -158,7 +158,7 @@ class FadeCode(Code):
 				#endif
 			#endif
 		#endif
-		(global78 add: self)
+		global78._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -173,9 +173,9 @@ class FadeCode(Code):
 			while (temp0 < 10): # inline for
 			#end:loop
 		else:
-			(global78 delete: self)
+			global78._send('delete:', self)
 			if (local3 and kernel.IsObject(local3)):
-				(local3 cue:)
+				local3._send('cue:')
 				local3 = 0
 			#endif
 		#endif
@@ -217,9 +217,9 @@ class ButtonActor(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global72 add: self)
-		(global73 add: self)
+		super._send('init:', &rest)
+		global72._send('add:', self)
+		global73._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -227,9 +227,9 @@ class ButtonActor(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(global73 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -239,21 +239,21 @@ class ButtonActor(Actor):
 
 		if 
 			(and
-				(not (param1 modifiers:))
+				(not param1._send('modifiers:'))
 				(or
-					((param1 type:) & 0x0001)
-					(((param1 type:) & 0x0004) and ((param1 message:) == 13))
+					(param1._send('type:') & 0x0001)
+					((param1._send('type:') & 0x0004) and (param1._send('message:') == 13))
 				)
-				(<= nsLeft (param1 x:) nsRight)
-				(<= nsTop (param1 y:) nsBottom)
+				(<= nsLeft param1._send('x:') nsRight)
+				(<= nsTop param1._send('y:') nsBottom)
 			)
-			((global2 script:) seconds: 0)
-			if (self flash: ((param1 type:) & 0x0004)):
-				(self cue:)
+			global2._send('script:')._send('seconds:', 0)
+			if self._send('flash:', (param1._send('type:') & 0x0004)):
+				self._send('cue:')
 			#endif
-			(param1 claimed: 1)
+			param1._send('claimed:', 1)
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -262,22 +262,22 @@ class ButtonActor(Actor):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		temp1 = 0
-		(self startUpd:)
-		while ((temp0 = (Event new:) type:) != (8 if param1 else 2)):
+		self._send('startUpd:')
+		while (temp0 = Event._send('new:')._send('type:') != (8 if param1 else 2)):
 
-			(temp0 localize:)
-			(self cel: (super onMe: temp0))
-			kernel.Animate((global5 elements:), 1)
-			(temp0 dispose:)
+			temp0._send('localize:')
+			self._send('cel:', super._send('onMe:', temp0))
+			kernel.Animate(global5._send('elements:'), 1)
+			temp0._send('dispose:')
 		#end:loop
 		if (cel == 1):
 			temp1 = 1
 		#endif
-		(self cel: 0 stopUpd:)
-		kernel.Animate((global5 elements:), 1)
-		(temp0 dispose:)
+		self._send('cel:', 0, 'stopUpd:')
+		kernel.Animate(global5._send('elements:'), 1)
+		temp0._send('dispose:')
 		if (not temp1):
-			((global2 script:) seconds: 8)
+			global2._send('script:')._send('seconds:', 8)
 		#endif
 		return temp1
 	#end:method
@@ -299,7 +299,7 @@ class openingBut(ButtonActor):
 
 		(cond
 			case (global169 and kernel.Platform(7) and kernel.DoSound(4)):
-				(global2 newRoom: 108)
+				global2._send('newRoom:', 108)
 			#end:case
 			case 
 				(and
@@ -308,10 +308,10 @@ class openingBut(ButtonActor):
 					(kernel.Graph(2) == 256)
 					kernel.DoSound(4)
 				):
-				(global2 newRoom: 105)
+				global2._send('newRoom:', 105)
 			#end:case
 			else:
-				(global2 newRoom: 106)
+				global2._send('newRoom:', 106)
 			#end:else
 		)
 	#end:method
@@ -331,7 +331,7 @@ class playBut(ButtonActor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2 newRoom: 200)
+		global2._send('newRoom:', 200)
 	#end:method
 
 #end:class or instance
@@ -349,7 +349,7 @@ class helpBut(ButtonActor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2 newRoom: 205)
+		global2._send('newRoom:', 205)
 	#end:method
 
 #end:class or instance
@@ -367,9 +367,9 @@ class restoreBut(ButtonActor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 restore:)
-		(global1 setCursor: global20)
-		((global2 script:) seconds: 8)
+		global1._send('restore:')
+		global1._send('setCursor:', global20)
+		global2._send('script:')._send('seconds:', 8)
 	#end:method
 
 #end:class or instance
@@ -393,24 +393,24 @@ class dosLogo(Script):
 
 		match state = param1
 			case 0:
-				(Cursor showCursor: 0)
-				(global102 number: 1 loop: 1)
-				(global102 play: self)
+				Cursor._send('showCursor:', 0)
+				global102._send('number:', 1, 'loop:', 1)
+				global102._send('play:', self)
 			#end:case
 			case 1:
 				if (not global169):
 					if (global87 == 0):
-						(FadeCode init: 100 1 self)
+						FadeCode._send('init:', 100, 1, self)
 					else:
-						(FadeCode init: 100 1)
+						FadeCode._send('init:', 100, 1)
 					#endif
 				#endif
 			#end:case
 			case 2:
-				(glint init: setCycle: End)
+				glint._send('init:', 'setCycle:', End)
 			#end:case
 			case 3:
-				(glint posn: 148 143 setCycle: End)
+				glint._send('posn:', 148, 143, 'setCycle:', End)
 			#end:case
 			case 4:
 				cycles = 1
@@ -419,19 +419,19 @@ class dosLogo(Script):
 				if global169:
 					cycles = 1
 				else:
-					(FadeCode init: 0 -1 self)
+					FadeCode._send('init:', 0, -1, self)
 				#endif
 			#end:case
 			case 6:
-				(presents dispose:)
-				(glint dispose:)
+				presents._send('dispose:')
+				glint._send('dispose:')
 				if global169:
-					(global2 drawPic: 98)
+					global2._send('drawPic:', 98)
 				#endif
 				cycles = 1
 			#end:case
 			case 7:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -448,7 +448,7 @@ class winLogo(Script):
 
 		match state = param1
 			case 0:
-				(global2 drawPic: 98)
+				global2._send('drawPic:', 98)
 				cycles = 1
 			#end:case
 			case 1:
@@ -461,7 +461,7 @@ class winLogo(Script):
 			#end:case
 			case 2:
 				kernel.ShowMovie(6)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

@@ -39,38 +39,38 @@ class rm370(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global72 add: self)
-		(global69
-			enable:
-			disable: 0 1 2 3 4 5 6
-			height: -100
-			activateHeight: -100
+		super._send('init:', &rest)
+		global72._send('add:', self)
+		global69._send(
+			'enable:',
+			'disable:', 0, 1, 2, 3, 4, 5, 6,
+			'height:', -100,
+			'activateHeight:', -100
 		)
-		(Cursor showCursor: 0)
-		(global102 number: 370 setLoop: -1 play:)
-		(egoLegs addToPic:)
-		(lHand init: stopUpd:)
-		(rHand init: stopUpd:)
-		(myHead init:)
-		(global0 view: 374 normal: 0 loop: 0 cel: 0 posn: 155 147 init:)
-		(kingarm init: stopUpd:)
-		(queenHand init:)
-		(candle1 init: setCycle: Fwd)
-		(candle2 init: setCycle: Fwd)
+		Cursor._send('showCursor:', 0)
+		global102._send('number:', 370, 'setLoop:', -1, 'play:')
+		egoLegs._send('addToPic:')
+		lHand._send('init:', 'stopUpd:')
+		rHand._send('init:', 'stopUpd:')
+		myHead._send('init:')
+		global0._send('view:', 374, 'normal:', 0, 'loop:', 0, 'cel:', 0, 'posn:', 155, 147, 'init:')
+		kingarm._send('init:', 'stopUpd:')
+		queenHand._send('init:')
+		candle1._send('init:', 'setCycle:', Fwd)
+		candle2._send('init:', 'setCycle:', Fwd)
 		(cond
 			case (proc913_0(1) and (not proc913_0(3))):
 				if (global90 == 2):
-					(global2 setScript: savedCelesteCD)
+					global2._send('setScript:', savedCelesteCD)
 				else:
-					(global2 setScript: savedCelesteTXT)
+					global2._send('setScript:', savedCelesteTXT)
 				#endif
 			#end:case
 			case (global90 == 2):
-				(global2 setScript: caughtAtGateCD)
+				global2._send('setScript:', caughtAtGateCD)
 			#end:case
 			else:
-				(global2 setScript: caughtAtGateTXT)
+				global2._send('setScript:', caughtAtGateTXT)
 			#end:else
 		)
 	#end:method
@@ -80,8 +80,8 @@ class rm370(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (((param1 type:) & 0x0004) and ((param1 message:) == 27)):
-			(param1 message: 114)
+		if ((param1._send('type:') & 0x0004) and (param1._send('message:') == 27)):
+			param1._send('message:', 114)
 		#endif
 		return 0
 	#end:method
@@ -91,14 +91,14 @@ class rm370(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 height: 0 activateHeight: 0)
-		(Cursor showCursor: 1)
-		(global0 setScale: 0)
-		(global69 enable: 6)
-		(global1 setCursor: global21)
-		(global72 delete: self)
+		global69._send('height:', 0, 'activateHeight:', 0)
+		Cursor._send('showCursor:', 1)
+		global0._send('setScale:', 0)
+		global69._send('enable:', 6)
+		global1._send('setCursor:', global21)
+		global72._send('delete:', self)
 		kernel.DisposeScript(371)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -114,7 +114,7 @@ class AlexPrint(AnimatePrint):
 		myMouth = alexHead
 		x = -1
 		y = 140
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -131,7 +131,7 @@ class AzurePrint(AnimatePrint):
 		myEyes = azureEyes
 		x = 10
 		y = 110
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -148,7 +148,7 @@ class AerielPrint(AnimatePrint):
 		myEyes = aerielEyes
 		x = 70
 		y = 110
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -163,13 +163,13 @@ class mouthScr(Script):
 
 		match state = param1
 			case 0:
-				(client setCycle: RandCycle)
+				client._send('setCycle:', RandCycle)
 				if (seconds = (register + 1) < 1):
 					seconds = 1
 				#endif
 			#end:case
 			case 1:
-				(client dispose:)
+				client._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -192,9 +192,9 @@ class alexHead(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(myHead hide:)
-		(super init:)
-		(self setScript: mouthScr 0 param1)
+		myHead._send('hide:')
+		super._send('init:')
+		self._send('setScript:', mouthScr, 0, param1)
 	#end:method
 
 	@classmethod
@@ -202,8 +202,8 @@ class alexHead(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(myHead show:)
-		(super dispose:)
+		myHead._send('show:')
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -221,21 +221,21 @@ class eyeScr(Script):
 				seconds = kernel.Random(2, 4)
 			#end:case
 			case 1:
-				(client show: setCycle: End self)
+				client._send('show:', 'setCycle:', End, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(client setCycle: Beg self)
+				client._send('setCycle:', Beg, self)
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(client hide:)
+				client._send('hide:')
 				state = -1
-				(self cue:)
+				self._send('cue:')
 			#end:case
 		#end:match
 	#end:method
@@ -257,8 +257,8 @@ class azureMouth(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(self setScript: mouthScr 0 param1)
+		super._send('init:')
+		self._send('setScript:', mouthScr, 0, param1)
 	#end:method
 
 #end:class or instance
@@ -278,8 +278,8 @@ class azureEyes(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(self hide: setScript: eyeScr)
+		super._send('init:')
+		self._send('hide:', 'setScript:', eyeScr)
 	#end:method
 
 #end:class or instance
@@ -299,8 +299,8 @@ class aerielMouth(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(self setScript: mouthScr 0 param1)
+		super._send('init:')
+		self._send('setScript:', mouthScr, 0, param1)
 	#end:method
 
 #end:class or instance
@@ -320,8 +320,8 @@ class aerielEyes(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init:)
-		(self hide: setScript: eyeScr)
+		super._send('init:')
+		self._send('hide:', 'setScript:', eyeScr)
 	#end:method
 
 #end:class or instance
@@ -347,18 +347,18 @@ class caughtAtGateCD(Script):
 				seconds = 2
 			#end:case
 			case 1:
-				(myConv
-					add: -1 1 0 1 1
-					add: -1 1 0 1 2
-					add: -1 1 0 1 3
-					add: -1 1 0 1 4
-					add: -1 1 0 1 5
-					add: -1 1 0 1 6
-					add: -1 1 0 1 7
-					add: -1 1 0 1 8
-					add: -1 1 0 1 9
-					add: -1 1 0 1 10
-					init: self
+				myConv._send(
+					'add:', -1, 1, 0, 1, 1,
+					'add:', -1, 1, 0, 1, 2,
+					'add:', -1, 1, 0, 1, 3,
+					'add:', -1, 1, 0, 1, 4,
+					'add:', -1, 1, 0, 1, 5,
+					'add:', -1, 1, 0, 1, 6,
+					'add:', -1, 1, 0, 1, 7,
+					'add:', -1, 1, 0, 1, 8,
+					'add:', -1, 1, 0, 1, 9,
+					'add:', -1, 1, 0, 1, 10,
+					'init:', self
 				)
 			#end:case
 			case 2:
@@ -366,18 +366,18 @@ class caughtAtGateCD(Script):
 				(cond
 					case 
 						(and
-							(global0 has: 2)
-							(global0 has: 18)
-							(global0 has: 48)
-							(global0 has: 41)
+							global0._send('has:', 2)
+							global0._send('has:', 18)
+							global0._send('has:', 48)
+							global0._send('has:', 41)
 						):
-						(global0 setScript: toLabyrinth)
+						global0._send('setScript:', toLabyrinth)
 					#end:case
 					case (global90 == 2):
-						(global0 setScript: toBeachCD)
+						global0._send('setScript:', toBeachCD)
 					#end:case
 					else:
-						(global0 setScript: toBeachTXT)
+						global0._send('setScript:', toBeachTXT)
 					#end:else
 				)
 			#end:case
@@ -399,89 +399,89 @@ class caughtAtGateTXT(CartoonScript):
 				seconds = 2
 			#end:case
 			case 1:
-				(kingarm setLoop: 2 setCycle: End)
-				(AzurePrint addText: 1 0 1 1 init:)
+				kingarm._send('setLoop:', 2, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 1, 1, 'init:')
 			#end:case
 			case 2:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 3:
-				(AlexPrint addText: 1 0 1 2 init:)
+				AlexPrint._send('addText:', 1, 0, 1, 2, 'init:')
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(AerielPrint addText: 1 0 1 3 init:)
+				AerielPrint._send('addText:', 1, 0, 1, 3, 'init:')
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(AzurePrint addText: 1 0 1 4 init:)
+				AzurePrint._send('addText:', 1, 0, 1, 4, 'init:')
 			#end:case
 			case 8:
 				cycles = 2
 			#end:case
 			case 9:
-				(kingarm setLoop: 1 setCycle: End)
-				(AzurePrint addText: 1 0 1 5 init:)
+				kingarm._send('setLoop:', 1, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 1, 5, 'init:')
 			#end:case
 			case 10:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 11:
-				(queenHand cel: 1)
-				(AerielPrint addText: 1 0 1 6 init:)
+				queenHand._send('cel:', 1)
+				AerielPrint._send('addText:', 1, 0, 1, 6, 'init:')
 			#end:case
 			case 12:
-				(queenHand cel: 0)
+				queenHand._send('cel:', 0)
 				cycles = 2
 			#end:case
 			case 13:
-				(AerielPrint addText: 1 0 1 7 init:)
+				AerielPrint._send('addText:', 1, 0, 1, 7, 'init:')
 			#end:case
 			case 14:
 				cycles = 2
 			#end:case
 			case 15:
-				(kingarm setLoop: 2 setCycle: End)
-				(AzurePrint addText: 1 0 1 8 init:)
+				kingarm._send('setLoop:', 2, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 1, 8, 'init:')
 			#end:case
 			case 16:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 17:
-				(AlexPrint addText: 1 0 1 9 init:)
+				AlexPrint._send('addText:', 1, 0, 1, 9, 'init:')
 			#end:case
 			case 18:
 				cycles = 2
 			#end:case
 			case 19:
-				(kingarm setLoop: 2 setCycle: End)
-				(AzurePrint addText: 1 0 1 10 init:)
+				kingarm._send('setLoop:', 2, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 1, 10, 'init:')
 			#end:case
 			case 20:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				proc913_1(2)
 				(cond
 					case 
 						(and
-							(global0 has: 2)
-							(global0 has: 18)
-							(global0 has: 48)
-							(global0 has: 41)
+							global0._send('has:', 2)
+							global0._send('has:', 18)
+							global0._send('has:', 48)
+							global0._send('has:', 41)
 						):
-						(global2 setScript: toLabyrinth)
+						global2._send('setScript:', toLabyrinth)
 					#end:case
 					case (global90 == 2):
-						(global2 setScript: toBeachCD)
+						global2._send('setScript:', toBeachCD)
 					#end:case
 					else:
-						(global2 setScript: toBeachTXT)
+						global2._send('setScript:', toBeachTXT)
 					#end:else
 				)
 			#end:case
@@ -504,9 +504,9 @@ class toLabyrinth(CartoonScript):
 			#end:case
 			case 1:
 				if (global90 == 2):
-					(global91 say: 1 0 2 1 self)
+					global91._send('say:', 1, 0, 2, 1, self)
 				else:
-					(AlexPrint addText: 1 0 2 1 init:)
+					AlexPrint._send('addText:', 1, 0, 2, 1, 'init:')
 				#endif
 			#end:case
 			case 2:
@@ -514,23 +514,23 @@ class toLabyrinth(CartoonScript):
 			#end:case
 			case 3:
 				if (global90 == 2):
-					(global91 say: 1 0 2 2 self)
+					global91._send('say:', 1, 0, 2, 2, self)
 				else:
-					(kingarm setLoop: 2 setCycle: End)
-					(AzurePrint addText: 1 0 2 2 init:)
+					kingarm._send('setLoop:', 2, 'setCycle:', End)
+					AzurePrint._send('addText:', 1, 0, 2, 2, 'init:')
 				#endif
 			#end:case
 			case 4:
-				(global0 hide:)
-				(egoLegs dispose:)
-				(lHand dispose:)
-				(rHand dispose:)
-				(myHead dispose:)
-				(kingarm dispose:)
-				(queenHand dispose:)
-				(candle1 dispose:)
-				(candle2 dispose:)
-				(global2 setScript: flyToCliff)
+				global0._send('hide:')
+				egoLegs._send('dispose:')
+				lHand._send('dispose:')
+				rHand._send('dispose:')
+				myHead._send('dispose:')
+				kingarm._send('dispose:')
+				queenHand._send('dispose:')
+				candle1._send('dispose:')
+				candle2._send('dispose:')
+				global2._send('setScript:', flyToCliff)
 			#end:case
 		#end:match
 	#end:method
@@ -547,28 +547,28 @@ class toBeachCD(Script):
 
 		match state = param1
 			case 0:
-				(myConv
-					add: -1 1 0 3 1
-					add: -1 1 0 3 2
-					add: -1 1 0 3 3
-					add: -1 1 0 3 4
-					add: -1 1 0 3 5
-					add: -1 1 0 3 6
-					add: -1 1 0 3 7
-					init: self
+				myConv._send(
+					'add:', -1, 1, 0, 3, 1,
+					'add:', -1, 1, 0, 3, 2,
+					'add:', -1, 1, 0, 3, 3,
+					'add:', -1, 1, 0, 3, 4,
+					'add:', -1, 1, 0, 3, 5,
+					'add:', -1, 1, 0, 3, 6,
+					'add:', -1, 1, 0, 3, 7,
+					'init:', self
 				)
 			#end:case
 			case 1:
-				(global0 hide:)
-				(egoLegs dispose:)
-				(lHand dispose:)
-				(rHand dispose:)
-				(myHead dispose:)
-				(kingarm dispose:)
-				(queenHand dispose:)
-				(candle1 dispose:)
-				(candle2 dispose:)
-				(global2 setScript: flyToBeach)
+				global0._send('hide:')
+				egoLegs._send('dispose:')
+				lHand._send('dispose:')
+				rHand._send('dispose:')
+				myHead._send('dispose:')
+				kingarm._send('dispose:')
+				queenHand._send('dispose:')
+				candle1._send('dispose:')
+				candle2._send('dispose:')
+				global2._send('setScript:', flyToBeach)
 			#end:case
 		#end:match
 	#end:method
@@ -585,63 +585,63 @@ class toBeachTXT(CartoonScript):
 
 		match state = param1
 			case 0:
-				(queenHand cel: 2)
-				(AerielPrint addText: 1 0 3 1 init:)
+				queenHand._send('cel:', 2)
+				AerielPrint._send('addText:', 1, 0, 3, 1, 'init:')
 			#end:case
 			case 1:
-				(queenHand cel: 0)
+				queenHand._send('cel:', 0)
 				cycles = 2
 			#end:case
 			case 2:
-				(kingarm setLoop: 2 setCycle: End)
-				(AzurePrint addText: 1 0 3 2 init:)
+				kingarm._send('setLoop:', 2, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 3, 2, 'init:')
 			#end:case
 			case 3:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 4:
-				(kingarm setLoop: 1 setCycle: End)
-				(AzurePrint addText: 1 0 3 3 init:)
+				kingarm._send('setLoop:', 1, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 3, 3, 'init:')
 			#end:case
 			case 5:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 6:
-				(AlexPrint addText: 1 0 3 4 init:)
+				AlexPrint._send('addText:', 1, 0, 3, 4, 'init:')
 			#end:case
 			case 7:
 				cycles = 2
 			#end:case
 			case 8:
-				(queenHand cel: 2)
-				(AerielPrint addText: 1 0 3 5 init:)
+				queenHand._send('cel:', 2)
+				AerielPrint._send('addText:', 1, 0, 3, 5, 'init:')
 			#end:case
 			case 9:
 				cycles = 2
 			#end:case
 			case 10:
-				(queenHand cel: 0)
-				(AerielPrint addText: 1 0 3 6 init:)
+				queenHand._send('cel:', 0)
+				AerielPrint._send('addText:', 1, 0, 3, 6, 'init:')
 			#end:case
 			case 11:
 				cycles = 2
 			#end:case
 			case 12:
-				(AlexPrint addText: 1 0 3 7 init:)
+				AlexPrint._send('addText:', 1, 0, 3, 7, 'init:')
 			#end:case
 			case 13:
-				(global0 hide:)
-				(egoLegs dispose:)
-				(lHand dispose:)
-				(rHand dispose:)
-				(myHead dispose:)
-				(kingarm dispose:)
-				(queenHand dispose:)
-				(candle1 dispose:)
-				(candle2 dispose:)
-				(global2 setScript: flyToBeach)
+				global0._send('hide:')
+				egoLegs._send('dispose:')
+				lHand._send('dispose:')
+				rHand._send('dispose:')
+				myHead._send('dispose:')
+				kingarm._send('dispose:')
+				queenHand._send('dispose:')
+				candle1._send('dispose:')
+				candle2._send('dispose:')
+				global2._send('setScript:', flyToBeach)
 			#end:case
 		#end:match
 	#end:method
@@ -661,19 +661,19 @@ class savedCelesteCD(CartoonScript):
 				seconds = 2
 			#end:case
 			case 1:
-				(myConv
-					add: -1 1 0 4 1
-					add: -1 1 0 4 2
-					add: -1 1 0 4 3
-					add: -1 1 0 4 4
-					add: -1 1 0 4 5
-					add: -1 1 0 4 6
-					add: -1 1 0 4 7
-					init: self
+				myConv._send(
+					'add:', -1, 1, 0, 4, 1,
+					'add:', -1, 1, 0, 4, 2,
+					'add:', -1, 1, 0, 4, 3,
+					'add:', -1, 1, 0, 4, 4,
+					'add:', -1, 1, 0, 4, 5,
+					'add:', -1, 1, 0, 4, 6,
+					'add:', -1, 1, 0, 4, 7,
+					'init:', self
 				)
 			#end:case
 			case 2:
-				(global2 setScript: flyToOracle)
+				global2._send('setScript:', flyToOracle)
 			#end:case
 		#end:match
 	#end:method
@@ -693,52 +693,52 @@ class savedCelesteTXT(CartoonScript):
 				seconds = 2
 			#end:case
 			case 1:
-				(kingarm setLoop: 1 setCycle: End)
-				(AzurePrint addText: 1 0 4 1 init:)
+				kingarm._send('setLoop:', 1, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 4, 1, 'init:')
 			#end:case
 			case 2:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 3:
-				(AzurePrint addText: 1 0 4 2 init:)
+				AzurePrint._send('addText:', 1, 0, 4, 2, 'init:')
 			#end:case
 			case 4:
 				cycles = 2
 			#end:case
 			case 5:
-				(AzurePrint addText: 1 0 4 3 init:)
+				AzurePrint._send('addText:', 1, 0, 4, 3, 'init:')
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(kingarm setLoop: 1 setCycle: End)
-				(AzurePrint addText: 1 0 4 4 init:)
+				kingarm._send('setLoop:', 1, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 4, 4, 'init:')
 			#end:case
 			case 8:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 9:
-				(AzurePrint addText: 1 0 4 5 init:)
+				AzurePrint._send('addText:', 1, 0, 4, 5, 'init:')
 			#end:case
 			case 10:
 				cycles = 2
 			#end:case
 			case 11:
-				(kingarm setLoop: 1 setCycle: End)
-				(AzurePrint addText: 1 0 4 6 init:)
+				kingarm._send('setLoop:', 1, 'setCycle:', End)
+				AzurePrint._send('addText:', 1, 0, 4, 6, 'init:')
 			#end:case
 			case 12:
-				(kingarm setCycle: Beg)
+				kingarm._send('setCycle:', Beg)
 				cycles = 2
 			#end:case
 			case 13:
-				(AlexPrint addText: 1 0 4 7 init:)
+				AlexPrint._send('addText:', 1, 0, 4, 7, 'init:')
 			#end:case
 			case 14:
-				(global2 setScript: flyToOracle)
+				global2._send('setScript:', flyToOracle)
 			#end:case
 		#end:match
 	#end:method
@@ -755,39 +755,39 @@ class flyToOracle(Script):
 
 		match state = param1
 			case 0:
-				(global0 hide:)
-				(egoLegs dispose:)
-				(lHand dispose:)
-				(rHand dispose:)
-				(myHead dispose:)
-				(kingarm dispose:)
-				(queenHand dispose:)
-				(candle1 dispose:)
-				(candle2 dispose:)
-				(global2 drawPic: 350 10)
+				global0._send('hide:')
+				egoLegs._send('dispose:')
+				lHand._send('dispose:')
+				rHand._send('dispose:')
+				myHead._send('dispose:')
+				kingarm._send('dispose:')
+				queenHand._send('dispose:')
+				candle1._send('dispose:')
+				candle2._send('dispose:')
+				global2._send('drawPic:', 350, 10)
 				seconds = 3
 			#end:case
 			case 1:
-				(flyer
-					posn: 139 11
-					setLoop: 1
-					setScale: Scaler 50 49 190 0
-					init:
-					setCycle: Fwd
-					setMotion: MoveTo 174 14 self
+				flyer._send(
+					'posn:', 139, 11,
+					'setLoop:', 1,
+					'setScale:', Scaler, 50, 49, 190, 0,
+					'init:',
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 174, 14, self
 				)
 			#end:case
 			case 2:
-				(flyer dispose:)
+				flyer._send('dispose:')
 				cycles = 2
 			#end:case
 			case 3:
-				(global2 drawPic: 98)
+				global2._send('drawPic:', 98)
 				seconds = 3
 			#end:case
 			case 4:
-				(global102 fade: 0 15 15)
-				(global2 newRoom: 380)
+				global102._send('fade:', 0, 15, 15)
+				global2._send('newRoom:', 380)
 			#end:case
 		#end:match
 	#end:method
@@ -804,19 +804,19 @@ class flyToCliff(Script):
 
 		match state = param1
 			case 0:
-				(global2 drawPic: 350 10)
-				(flyer
-					posn: 139 11
-					setLoop: 1
-					setScale: Scaler 50 49 190 0
-					init:
-					setCycle: Fwd
-					setMotion: MoveTo 280 -15 self
+				global2._send('drawPic:', 350, 10)
+				flyer._send(
+					'posn:', 139, 11,
+					'setLoop:', 1,
+					'setScale:', Scaler, 50, 49, 190, 0,
+					'init:',
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 280, -15, self
 				)
 			#end:case
 			case 1:
-				(global102 fade: 0 15 15)
-				(global2 newRoom: 340)
+				global102._send('fade:', 0, 15, 15)
+				global2._send('newRoom:', 340)
 			#end:case
 		#end:match
 	#end:method
@@ -833,19 +833,19 @@ class flyToBeach(Script):
 
 		match state = param1
 			case 0:
-				(global2 drawPic: 350 10)
-				(flyer
-					posn: 139 11
-					setLoop: 1
-					setScale: Scaler 50 49 190 0
-					init:
-					setCycle: Fwd
-					setMotion: MoveTo 280 -15 self
+				global2._send('drawPic:', 350, 10)
+				flyer._send(
+					'posn:', 139, 11,
+					'setLoop:', 1,
+					'setScale:', Scaler, 50, 49, 190, 0,
+					'init:',
+					'setCycle:', Fwd,
+					'setMotion:', MoveTo, 280, -15, self
 				)
 			#end:case
 			case 1:
-				(global102 fade: 0 15 15)
-				(global2 newRoom: 300)
+				global102._send('fade:', 0, 15, 15)
+				global2._send('newRoom:', 300)
 			#end:case
 		#end:match
 	#end:method

@@ -21,23 +21,23 @@ class GameControls(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global8 pause:)
-		if (global77 and (global77 respondsTo: #stop)):
-			(global77 stop:)
+		global8._send('pause:')
+		if (global77 and global77._send('respondsTo:', #stop)):
+			global77._send('stop:')
 		#endif
 		(state |= 0x0020)
 		if kernel.IsObject(window):
-			(window open:)
+			window._send('open:')
 		else:
 			(= window
-				((global38 new:)
-					top: 46
-					left: 24
-					bottom: 155
-					right: 296
-					priority: 15
-					open:
-					yourself:
+				global38._send('new:')._send(
+					'top:', 46,
+					'left:', 24,
+					'bottom:', 155,
+					'right:', 296,
+					'priority:', 15,
+					'open:',
+					'yourself:'
 				)
 			)
 		#endif
@@ -49,31 +49,27 @@ class GameControls(IconBar):
 			if (not kernel.IsObject(temp4 = kernel.NodeValue(temp2))):
 				return
 			#endif
-			if ((not ((temp4 signal:) & 0x0080)) and ((temp4 nsRight:) <= 0)):
-				(temp4 show: temp0 temp1)
-				temp0 = (20 + (temp4 nsRight:))
+			if ((not (temp4._send('signal:') & 0x0080)) and (temp4._send('nsRight:') <= 0)):
+				temp4._send('show:', temp0, temp1)
+				temp0 = (20 + temp4._send('nsRight:'))
 			else:
-				(temp4 show:)
+				temp4._send('show:')
 			#endif
 			# for:reinit
 			temp2 = temp3
 		#end:loop
 		if (not okButton):
-			okButton = kernel.NodeValue((self first:))
+			okButton = kernel.NodeValue(self._send('first:'))
 		#endif
 		if curIcon:
-			(global1
-				setCursor:
-					global19
-					1
-					(+
-						(curIcon nsLeft:)
-						(((curIcon nsRight:) - (curIcon nsLeft:)) / 2)
-					)
-					((curIcon nsBottom:) - 3)
+			global1._send(
+				'setCursor:', global19, 1, (+
+						curIcon._send('nsLeft:')
+						((curIcon._send('nsRight:') - curIcon._send('nsLeft:')) / 2)
+					), (curIcon._send('nsBottom:') - 3)
 			)
 		#endif
-		(self doit: hide:)
+		self._send('doit:', 'hide:')
 	#end:method
 
 	@classmethod
@@ -81,54 +77,44 @@ class GameControls(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp53 = (param1 type:)
-		temp54 = (param1 message:)
+		temp53 = param1._send('type:')
+		temp54 = param1._send('message:')
 		(cond
 			case (temp53 == 8192):
 				if 
 					(and
-						temp1 = (self firstTrue: #onMe param1)
-						(temp1 helpVerb:)
+						temp1 = self._send('firstTrue:', #onMe, param1)
+						temp1._send('helpVerb:')
 					)
 					temp2 = kernel.GetPort()
-					if (global38 respondsTo: #eraseOnly):
-						temp0 = (global38 eraseOnly:)
-						(global38 eraseOnly: 1)
-						(Print
-							font: global22
-							width: 250
-							addText:
-								(temp1 noun:)
-								(temp1 helpVerb:)
-								0
-								1
-								0
-								0
-								(temp1 modNum:)
-							init:
+					if global38._send('respondsTo:', #eraseOnly):
+						temp0 = global38._send('eraseOnly:')
+						global38._send('eraseOnly:', 1)
+						Print._send(
+							'font:', global22,
+							'width:', 250,
+							'addText:', temp1._send('noun:'), temp1._send('helpVerb:'), 0, 1, 0, 0, temp1._send(
+									'modNum:'
+								),
+							'init:'
 						)
-						(global38 eraseOnly: temp0)
+						global38._send('eraseOnly:', temp0)
 					else:
-						(Print
-							font: global22
-							width: 250
-							addText:
-								(temp1 noun:)
-								(temp1 helpVerb:)
-								0
-								1
-								0
-								0
-								(temp1 modNum:)
-							init:
+						Print._send(
+							'font:', global22,
+							'width:', 250,
+							'addText:', temp1._send('noun:'), temp1._send('helpVerb:'), 0, 1, 0, 0, temp1._send(
+									'modNum:'
+								),
+							'init:'
 						)
 					#endif
 					kernel.SetPort(temp2)
 				#endif
 				if helpIconItem:
-					(helpIconItem signal: ((helpIconItem signal:) & 0xffef))
+					helpIconItem._send('signal:', (helpIconItem._send('signal:') & 0xffef))
 				#endif
-				(global1 setCursor: 999)
+				global1._send('setCursor:', 999)
 				return 0
 			#end:case
 			case (temp53 & 0x0040):
@@ -138,17 +124,17 @@ class GameControls(IconBar):
 							case 
 								(and
 									kernel.IsObject(highlightedIcon)
-									(highlightedIcon respondsTo: #retreat)
+									highlightedIcon._send('respondsTo:', #retreat)
 								):
-								(highlightedIcon retreat:)
+								highlightedIcon._send('retreat:')
 								return 0
 							#end:case
 							case 
 								(or
 									(not kernel.IsObject(highlightedIcon))
-									((highlightedIcon signal:) & 0x0100)
+									(highlightedIcon._send('signal:') & 0x0100)
 								):
-								(self advance:)
+								self._send('advance:')
 								return 0
 							#end:case
 						)
@@ -158,28 +144,28 @@ class GameControls(IconBar):
 							case 
 								(and
 									kernel.IsObject(highlightedIcon)
-									(highlightedIcon respondsTo: #advance)
+									highlightedIcon._send('respondsTo:', #advance)
 								):
-								(highlightedIcon advance:)
+								highlightedIcon._send('advance:')
 								return 0
 							#end:case
 							case 
 								(or
 									(not kernel.IsObject(highlightedIcon))
-									((highlightedIcon signal:) & 0x0100)
+									(highlightedIcon._send('signal:') & 0x0100)
 								):
-								(self retreat:)
+								self._send('retreat:')
 								return 0
 							#end:case
 						)
 					#end:case
 					else:
-						(super dispatchEvent: param1)
+						super._send('dispatchEvent:', param1)
 					#end:else
 				#end:match
 			#end:case
 			else:
-				(super dispatchEvent: param1)
+				super._send('dispatchEvent:', param1)
 			#end:else
 		)
 	#end:method
@@ -189,7 +175,7 @@ class GameControls(IconBar):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param1 select: ((argc >= 2) and param2))
+		param1._send('select:', ((argc >= 2) and param2))
 	#end:method
 
 	@classmethod
@@ -204,11 +190,11 @@ class GameControls(IconBar):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if window:
-			(window dispose:)
+			window._send('dispose:')
 			window = 0
 		#endif
 		if (state & 0x0020):
-			(global8 pause: 0)
+			global8._send('pause:', 0)
 			(state &= 0xffdf)
 		#endif
 	#end:method
@@ -227,9 +213,9 @@ class ControlIcon(IconI):
 
 		if theObj:
 			if (signal & 0x0040):
-				((global63 if global63 else GameControls) hide:)
+				(global63 if global63 else GameControls)._send('hide:')
 			#endif
-			(global1 panelObj: theObj panelSelector: selector)
+			global1._send('panelObj:', theObj, 'panelSelector:', selector)
 		#endif
 	#end:method
 

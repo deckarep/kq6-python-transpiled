@@ -43,84 +43,84 @@ class nightmareCartoon(Script):
 
 		match state = param1
 			case 0:
-				(Cursor showCursor: 1)
-				(global0 hide:)
-				(nightmare init: setCycle: End self)
-				(global105 number: 346 loop: 1 play:)
+				Cursor._send('showCursor:', 1)
+				global0._send('hide:')
+				nightmare._send('init:', 'setCycle:', End, self)
+				global105._send('number:', 346, 'loop:', 1, 'play:')
 			#end:case
 			case 1:
 				ticks = 120
 			#end:case
 			case 2:
-				(nightmare posn: 180 126 view: 203 loop: 2 cel: 0)
-				(global0
-					show:
-					setScale: 0
-					normal: 0
-					view: 203
-					loop: 1
-					cel: 0
-					setSpeed: 6
-					setPri: 15
-					posn: 180 80
-					setCycle: End self
+				nightmare._send('posn:', 180, 126, 'view:', 203, 'loop:', 2, 'cel:', 0)
+				global0._send(
+					'show:',
+					'setScale:', 0,
+					'normal:', 0,
+					'view:', 203,
+					'loop:', 1,
+					'cel:', 0,
+					'setSpeed:', 6,
+					'setPri:', 15,
+					'posn:', 180, 80,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
 				cycles = 2
 			#end:case
 			case 4:
-				(global0
-					reset: 7
-					ignoreActors:
-					setPri: 15
-					posn: 199 126
-					setScale: Scaler 100 50 112 57
+				global0._send(
+					'reset:', 7,
+					'ignoreActors:',
+					'setPri:', 15,
+					'posn:', 199, 126,
+					'setScale:', Scaler, 100, 50, 112, 57
 				)
-				(global102 number: 915 loop: -1 play:)
+				global102._send('number:', 915, 'loop:', -1, 'play:')
 				cycles = 2
 			#end:case
 			case 5:
 				register = -1
-				(global91 say: 1 0 2 0 self)
+				global91._send('say:', 1, 0, 2, 0, self)
 			#end:case
 			case 6:
-				(global0 setMotion: MoveTo 169 137 self)
+				global0._send('setMotion:', MoveTo, 169, 137, self)
 			#end:case
 			case 7:
-				(global0 setHeading: 45 self)
+				global0._send('setHeading:', 45, self)
 			#end:case
 			case 8:
-				(nightmare
-					view: 2031
-					loop: 0
-					cel: 0
-					posn: 174 123
-					setCycle: End self
+				nightmare._send(
+					'view:', 2031,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', 174, 123,
+					'setCycle:', End, self
 				)
-				(global105 number: 346 loop: 1 play:)
+				global105._send('number:', 346, 'loop:', 1, 'play:')
 			#end:case
 			case 9:
 				if (local0[(local21 + 1)] != -1):
-					(nightmare
-						view: 2031
-						loop: 1
-						cel: register.post('++')
-						posn: local0[local21.post('++')] local0[local21.post('++')]
+					nightmare._send(
+						'view:', 2031,
+						'loop:', 1,
+						'cel:', register.post('++'),
+						'posn:', local0[local21.post('++')], local0[local21.post('++')]
 					)
 					state.post('--')
 				#endif
 				ticks = 10
 			#end:case
 			case 10:
-				(nightmare dispose:)
-				(global0 setPri: -1 ignoreActors: 0)
+				nightmare._send('dispose:')
+				global0._send('setPri:', -1, 'ignoreActors:', 0)
 				cycles = 2
 			#end:case
 			case 11:
-				(global1 handsOn:)
-				(global69 enable: 6)
-				(self dispose:)
+				global1._send('handsOn:')
+				global69._send('enable:', 6)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -130,7 +130,7 @@ class nightmareCartoon(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(202)
 	#end:method
 

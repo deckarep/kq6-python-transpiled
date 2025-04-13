@@ -27,11 +27,11 @@ class BabyTears(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(59):
-			(self loop: 7 x: 0 y: 135 textX: 10 textY: -125)
-			(super init: tWimpBust 0 tWimpMouth &rest)
+			self._send('loop:', 7, 'x:', 0, 'y:', 135, 'textX:', 10, 'textY:', -125)
+			super._send('init:', tWimpBust, 0, tWimpMouth, &rest)
 		else:
-			(self loop: 13 x: 44 y: 140 textX: -36 textY: -130)
-			(super init: 0 0 tMouth &rest)
+			self._send('loop:', 13, 'x:', 44, 'y:', 140, 'textX:', -36, 'textY:', -130)
+			super._send('init:', 0, 0, tMouth, &rest)
 		#endif
 	#end:method
 

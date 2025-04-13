@@ -51,17 +51,17 @@ def proc280_10(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	(cond
-		case (shopOwner cycler:):
-			(removeOwnerScr client: removeOwnerScr register: param1)
-			((shopOwner cycler:) caller: removeOwnerScr)
+		case shopOwner._send('cycler:'):
+			removeOwnerScr._send('client:', removeOwnerScr, 'register:', param1)
+			shopOwner._send('cycler:')._send('caller:', removeOwnerScr)
 		#end:case
-		case ((shopOwnerScr state:) == 5):
-			(removeOwnerScr client: removeOwnerScr register: param1)
-			(shopOwnerScr register: removeOwnerScr seconds: 0 ticks: 1)
+		case (shopOwnerScr._send('state:') == 5):
+			removeOwnerScr._send('client:', removeOwnerScr, 'register:', param1)
+			shopOwnerScr._send('register:', removeOwnerScr, 'seconds:', 0, 'ticks:', 1)
 		#end:case
 		else:
-			(shopOwner setScript: 0)
-			(param1 cue:)
+			shopOwner._send('setScript:', 0)
+			param1._send('cue:')
 		#end:else
 	)
 #end:procedure
@@ -72,12 +72,12 @@ def proc280_8(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if param1:
-		(global2
-			addObstacle: (roomPoly type: 3 points: @local4 size: 16 yourself:)
+		global2._send(
+			'addObstacle:', roomPoly._send('type:', 3, 'points:', @local4, 'size:', 16, 'yourself:')
 		)
 	else:
-		(global2
-			addObstacle: (roomPoly type: 3 points: @local36 size: 15 yourself:)
+		global2._send(
+			'addObstacle:', roomPoly._send('type:', 3, 'points:', @local36, 'size:', 15, 'yourself:')
 		)
 	#endif
 #end:procedure
@@ -94,46 +94,46 @@ class rm280(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if (global12 == 240):
-			(shopDoor cel: 5 init: setScript: doorScr)
+			shopDoor._send('cel:', 5, 'init:', 'setScript:', doorScr)
 		else:
-			(shopDoor init:)
+			shopDoor._send('init:')
 		#endif
 		if ((global12 == 145) and proc913_0(41)):
-			(global0 posn: 190 138)
+			global0._send('posn:', 190, 138)
 		else:
-			(global0 posn: 51 121)
+			global0._send('posn:', 51, 121)
 		#endif
-		(global0 init: reset: loop: 9 cel: 0 setScale: Scaler 105 90 139 121)
-		(shopOwner init:)
-		(mints init:)
-		if (((global9 at: 48) owner:) == global11):
-			(smTinderBox init:)
+		global0._send('init:', 'reset:', 'loop:', 9, 'cel:', 0, 'setScale:', Scaler, 105, 90, 139, 121)
+		shopOwner._send('init:')
+		mints._send('init:')
+		if (global9._send('at:', 48)._send('owner:') == global11):
+			smTinderBox._send('init:')
 		#endif
-		if (((global9 at: 3) owner:) == global11):
-			(smPBrush init:)
+		if (global9._send('at:', 3)._send('owner:') == global11):
+			smPBrush._send('init:')
 		#endif
-		if (((global9 at: 27) owner:) == global11):
-			(smBird init:)
+		if (global9._send('at:', 27)._send('owner:') == global11):
+			smBird._send('init:')
 		#endif
-		if (((global9 at: 14) owner:) == global11):
-			(smFlute init:)
+		if (global9._send('at:', 14)._send('owner:') == global11):
+			smFlute._send('init:')
 		#endif
-		if (proc913_0(29) and proc913_0(30) and (not (global0 has: 0))):
-			(map init:)
+		if (proc913_0(29) and proc913_0(30) and (not global0._send('has:', 0))):
+			map._send('init:')
 		#endif
 		(cond
 			case ((global12 == 145) and proc913_0(41)):
-				(global102 number: 240 loop: -1 play: 70)
-				(global1 handsOn:)
+				global102._send('number:', 240, 'loop:', -1, 'play:', 70)
+				global1._send('handsOn:')
 			#end:case
 			case (global12 == 145):
-				(global2 setScript: kernel.ScriptID(282, 0))
+				global2._send('setScript:', kernel.ScriptID(282, 0))
 			#end:case
 			case 
 				(or
-					(proc913_0(17) and (not (global0 has: 0)))
+					(proc913_0(17) and (not global0._send('has:', 0)))
 					(and
 						(not proc913_0(82))
 						(not proc913_0(28))
@@ -150,23 +150,23 @@ class rm280(KQ6Room):
 					proc913_1(158)
 				#endif
 				proc913_1(28)
-				(kernel.ScriptID(281, 0) init: 1)
+				kernel.ScriptID(281, 0)._send('init:', 1)
 				local66 = 1
 			#end:case
 			case ((not proc913_0(28)) and (global153 == 3)):
 				proc913_1(28)
-				(kernel.ScriptID(281, 0) init: 0)
+				kernel.ScriptID(281, 0)._send('init:', 0)
 				local66 = 1
 			#end:case
 		)
-		(global32
-			add: genericFeatures eastShelf northShelf
-			eachElementDo: #init
+		global32._send(
+			'add:', genericFeatures, eastShelf, northShelf,
+			'eachElementDo:', #init
 		)
-		if (not (global2 script:)):
+		if (not global2._send('script:')):
 			local80 = 1
-			(shopOwner
-				setScript: shopOwnerScr 0 (0 if (global12 == 145) else 1)
+			shopOwner._send(
+				'setScript:', shopOwnerScr, 0, (0 if (global12 == 145) else 1)
 			)
 		#endif
 		proc280_8(local66)
@@ -179,10 +179,10 @@ class rm280(KQ6Room):
 
 		temp0 = 1
 		if (param1 == 87):
-			if (global5 contains: kernel.ScriptID(281, 0)):
-				(global2 setScript: kernel.ScriptID(282, 1))
+			if global5._send('contains:', kernel.ScriptID(281, 0)):
+				global2._send('setScript:', kernel.ScriptID(282, 1))
 			else:
-				(global2 setScript: kernel.ScriptID(282, 5))
+				global2._send('setScript:', kernel.ScriptID(282, 5))
 			#endif
 			temp0 = 0
 		#endif
@@ -195,18 +195,18 @@ class rm280(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (global13 == 240):
-			(global102 fade: 127 15 15 0)
-			(kernel.ScriptID(10, 0) setIt: 512)
+			global102._send('fade:', 127, 15, 15, 0)
+			kernel.ScriptID(10, 0)._send('setIt:', 512)
 		else:
-			(global102 fade:)
+			global102._send('fade:')
 		#endif
-		(kernel.ScriptID(281, 0) dispose:)
+		kernel.ScriptID(281, 0)._send('dispose:')
 		kernel.DisposeScript(969)
 		kernel.DisposeScript(923)
 		kernel.DisposeScript(283)
 		kernel.DisposeScript(282)
 		proc913_2(49)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -221,42 +221,42 @@ class exitScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setHeading: 270 self)
+				global0._send('setHeading:', 270, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(global0
-					setSpeed: 6
-					normal: 0
-					setPri: 1
-					view: 2812
-					loop: 0
-					cel: 0
-					posn: 47 125
-					setScale: 0
-					scaleX: 117
-					scaleY: 117
-					scaleSignal: 1
-					setCycle: CT 2 1 self
+				global0._send(
+					'setSpeed:', 6,
+					'normal:', 0,
+					'setPri:', 1,
+					'view:', 2812,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', 47, 125,
+					'setScale:', 0,
+					'scaleX:', 117,
+					'scaleY:', 117,
+					'scaleSignal:', 1,
+					'setCycle:', CT, 2, 1, self
 				)
 			#end:case
 			case 4:
-				(global105 number: 901 loop: 1 play:)
-				(shopDoor setCycle: End self)
-				(global0 setCycle: End self)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				shopDoor._send('setCycle:', End, self)
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 5: 0#end:case
 			case 6:
 				cycles = 1
 			#end:case
 			case 7:
-				(global2 newRoom: 240)
+				global2._send('newRoom:', 240)
 			#end:case
 		#end:match
 	#end:method
@@ -276,14 +276,14 @@ class doorScr(Script):
 				ticks = 45
 			#end:case
 			case 1:
-				(client cycleSpeed: 8 setCycle: Beg self)
+				client._send('cycleSpeed:', 8, 'setCycle:', Beg, self)
 			#end:case
 			case 2:
 				cycles = 2
 			#end:case
 			case 3:
-				(client stopUpd:)
-				(global105 number: 902 loop: 1 play: self)
+				client._send('stopUpd:')
+				global105._send('number:', 902, 'loop:', 1, 'play:', self)
 			#end:case
 			case 4:
 				cycles = 2
@@ -292,7 +292,7 @@ class doorScr(Script):
 				kernel.UnLoad(132, 902)
 			#end:case
 			case 6:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -309,12 +309,12 @@ class removeOwnerScr(Script):
 
 		match state = param1
 			case 0:
-				(global78 add: self)
+				global78._send('add:', self)
 				cycles = 2
 			#end:case
 			case 1:
 				client = 0
-				(global78 delete: self)
+				global78._send('delete:', self)
 				proc280_10(register)
 				state = -1
 			#end:case
@@ -334,25 +334,25 @@ class shopOwnerScr(Script):
 		match state = param1
 			case 0:
 				if register:
-					(client view: 2841 loop: 1 cel: 0)
+					client._send('view:', 2841, 'loop:', 1, 'cel:', 0)
 				#endif
 				seconds = 2
 			#end:case
 			case 1:
 				if register:
-					(client setCycle: End self)
+					client._send('setCycle:', End, self)
 				else:
 					ticks = 1
 				#endif
 			#end:case
 			case 2:
-				(client view: 280 loop: 8 posn: 236 127 cel: 0)
+				client._send('view:', 280, 'loop:', 8, 'posn:', 236, 127, 'cel:', 0)
 				if (local80 and register):
 					local80 = 0
-					(global1 handsOn:)
-					(global91 say: 1 0 (67 if (global153 > 1) else 66))
+					global1._send('handsOn:')
+					global91._send('say:', 1, 0, (67 if (global153 > 1) else 66))
 				#endif
-				(client stopUpd:)
+				client._send('stopUpd:')
 				seconds = kernel.Random(10, 20)
 			#end:case
 			case 3:
@@ -360,19 +360,19 @@ class shopOwnerScr(Script):
 				cycles = 1
 			#end:case
 			case 4:
-				(client view: 285 loop: 0 cel: 0 setCycle: End self)
+				client._send('view:', 285, 'loop:', 0, 'cel:', 0, 'setCycle:', End, self)
 				state = 1
 			#end:case
 			case 5:
-				(client view: 2852 loop: 0 cel: 0 setCycle: End)
+				client._send('view:', 2852, 'loop:', 0, 'cel:', 0, 'setCycle:', End)
 				seconds = 10
 			#end:case
 			case 6:
-				(client
-					view: 2853
-					loop: 0
-					cel: 0
-					setCycle: End (register if register else removeOwnerScr)
+				client._send(
+					'view:', 2853,
+					'loop:', 0,
+					'cel:', 0,
+					'setCycle:', End, (register if register else removeOwnerScr)
 				)
 				state = 1
 			#end:case
@@ -385,7 +385,7 @@ class shopOwnerScr(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		register = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -400,22 +400,22 @@ class genericTalkScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 1:
 				kernel.UnLoad(128, 900)
 			#end:case
 			case 2:
-				(global91 say: 4 2 register 0 self)
+				global91._send('say:', 4, 2, register, 0, self)
 			#end:case
 			case 3:
-				(global0 reset: 0)
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global1 handsOn:)
-				(self dispose:)
+				global0._send('reset:', 0)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -438,8 +438,8 @@ class shopOwner(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 2 70)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 2, 70)
 	#end:method
 
 	@classmethod
@@ -451,67 +451,67 @@ class shopOwner(Actor):
 			case (param1 == 2):
 				(cond
 					case (global153 > 1):
-						(global2 setScript: kernel.ScriptID(284, 5))
+						global2._send('setScript:', kernel.ScriptID(284, 5))
 					#end:case
 					case (not proc913_1(64)):
-						(global2 setScript: genericTalkScr 0 61)
+						global2._send('setScript:', genericTalkScr, 0, 61)
 					#end:case
 					case ((not proc913_0(29)) and (not proc913_1(30))):
-						(global2 setScript: genericTalkScr 0 11)
+						global2._send('setScript:', genericTalkScr, 0, 11)
 					#end:case
 					case (not proc913_0(29)):
-						(global2 setScript: genericTalkScr 0 12)
+						global2._send('setScript:', genericTalkScr, 0, 12)
 					#end:case
 					case (not proc913_1(30)):
-						(global2 setScript: kernel.ScriptID(284, 0))
+						global2._send('setScript:', kernel.ScriptID(284, 0))
 					#end:case
 					else:
-						(global2 setScript: genericTalkScr 0 14)
+						global2._send('setScript:', genericTalkScr, 0, 14)
 					#end:else
 				)
 			#end:case
 			case (param1 == 70):
 				(cond
-					case ((global153 == 1) and (not (global5 contains: map))):
-						(global2 setScript: kernel.ScriptID(284, 1) self)
+					case ((global153 == 1) and (not global5._send('contains:', map))):
+						global2._send('setScript:', kernel.ScriptID(284, 1), self)
 					#end:case
 					case (global153 == 1):
-						(global2 setScript: kernel.ScriptID(284, 2))
+						global2._send('setScript:', kernel.ScriptID(284, 2))
 					#end:case
-					case ((global153 != 1) and (global0 has: 0)):
-						(global2 setScript: kernel.ScriptID(284, 3))
+					case ((global153 != 1) and global0._send('has:', 0)):
+						global2._send('setScript:', kernel.ScriptID(284, 3))
 					#end:case
 					else:
-						(global2 setScript: kernel.ScriptID(284, 4))
+						global2._send('setScript:', kernel.ScriptID(284, 4))
 					#end:else
 				)
 			#end:case
 			case (param1 == 40):
-				if (global5 contains: map):
-					(global2 setScript: kernel.ScriptID(283, 3))
+				if global5._send('contains:', map):
+					global2._send('setScript:', kernel.ScriptID(283, 3))
 				else:
-					(global2 setScript: kernel.ScriptID(283, 1))
+					global2._send('setScript:', kernel.ScriptID(283, 1))
 				#endif
 			#end:case
 			case proc999_5(param1, 37, 20, 29, 31):
-				(global2 setScript: kernel.ScriptID(283, 2) 0 param1)
+				global2._send('setScript:', kernel.ScriptID(283, 2), 0, param1)
 			#end:case
 			case (param1 == 66):
-				if (global0 has: 0):
-					(global2 setScript: kernel.ScriptID(285, 0) 0 proc913_0(36))
+				if global0._send('has:', 0):
+					global2._send('setScript:', kernel.ScriptID(285, 0), 0, proc913_0(36))
 				else:
-					(global2 setScript: kernel.ScriptID(285, 1) 0 proc913_0(36))
+					global2._send('setScript:', kernel.ScriptID(285, 1), 0, proc913_0(36))
 				#endif
 				proc913_1(36)
 			#end:case
 			case (param1 == 12):
-				(global2 setScript: kernel.ScriptID(285, 2))
+				global2._send('setScript:', kernel.ScriptID(285, 2))
 			#end:case
 			case proc999_5(param1, 13, 42, 27, 28, 39, 45, 7, 83):
 				if proc999_5(param1, 27, 28):
 					param1 = 42
 				#endif
-				(global2 setScript: kernel.ScriptID(286, 5) 0 param1)
+				global2._send('setScript:', kernel.ScriptID(286, 5), 0, param1)
 			#end:case
 			case 
 				(or
@@ -525,7 +525,7 @@ class shopOwner(Actor):
 				if (param1 == 17):
 					param1 = 48
 				#endif
-				(global2 setScript: kernel.ScriptID(286, 4) 0 param1)
+				global2._send('setScript:', kernel.ScriptID(286, 4), 0, param1)
 			#end:case
 			case 
 				(or
@@ -538,10 +538,10 @@ class shopOwner(Actor):
 				if (param1 == 18):
 					param1 = 15
 				#endif
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:case
 			else:
-				(global2 setScript: kernel.ScriptID(286, 4))
+				global2._send('setScript:', kernel.ScriptID(286, 4))
 			#end:else
 		)
 	#end:method
@@ -562,8 +562,8 @@ class SmallItem(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 1)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 1)
 	#end:method
 
 	@classmethod
@@ -572,9 +572,9 @@ class SmallItem(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 5, 1):
-			(global2 setScript: kernel.ScriptID(283, 4))
+			global2._send('setScript:', kernel.ScriptID(283, 4))
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -650,8 +650,8 @@ class shopDoor(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -660,9 +660,9 @@ class shopDoor(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 5):
-			(self setScript: exitScr)
+			self._send('setScript:', exitScr)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 
@@ -678,34 +678,34 @@ class takeMintScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				if (not proc913_1(90)):
-					(global1 givePoints: 1)
+					global1._send('givePoints:', 1)
 				#endif
-				(global0
-					setSpeed: 7
-					normal: 0
-					view: 2813
-					loop: 0
-					posn: 176 133
-					get: 23
-					setCycle: End self
+				global0._send(
+					'setSpeed:', 7,
+					'normal:', 0,
+					'view:', 2813,
+					'loop:', 0,
+					'posn:', 176, 133,
+					'get:', 23,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global0 reset: 0 posn: (mints approachX:) (mints approachY:))
+				global0._send('reset:', 0, 'posn:', mints._send('approachX:'), mints._send('approachY:'))
 				cycles = 2
 			#end:case
 			case 3:
 				kernel.UnLoad(128, 2813)
-				(global91 say: 7 5 34 1 self)
+				global91._send('say:', 7, 5, 34, 1, self)
 			#end:case
 			case 4:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -730,8 +730,8 @@ class mints(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5 1)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5, 1)
 	#end:method
 
 	@classmethod
@@ -742,24 +742,24 @@ class mints(View):
 		match param1
 			case 5:
 				if (global153 < 3):
-					if (not (global0 has: 23)):
-						(global2 setScript: takeMintScr)
+					if (not global0._send('has:', 23)):
+						global2._send('setScript:', takeMintScr)
 					else:
-						(global91 say: noun param1 35)
+						global91._send('say:', noun, param1, 35)
 					#endif
 				else:
-					(global91 say: 7 5 32)
+					global91._send('say:', 7, 5, 32)
 				#endif
 			#end:case
 			case 1:
 				if (global153 < 3):
-					(global91 say: noun param1 33)
+					global91._send('say:', noun, param1, 33)
 				else:
-					(global91 say: noun param1 32)
+					global91._send('say:', noun, param1, 32)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -776,17 +776,17 @@ class firstWallLookScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91
-					say: register 1 (58 if (register == 17) else 49) 0 self
+				global1._send('handsOff:')
+				global91._send(
+					'say:', register, 1, (58 if (register == 17) else 49), 0, self
 				)
 			#end:case
 			case 1:
-				(global91 say: register 1 50 0 self)
+				global91._send('say:', register, 1, 50, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -806,7 +806,7 @@ class northShelf(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		(state |= 0x0004)
 	#end:method
 
@@ -819,14 +819,11 @@ class northShelf(Feature):
 		match param1
 			case 1:
 				if ((local1 + 1) == 0):
-					(global2 setScript: firstWallLookScr 0 noun)
+					global2._send('setScript:', firstWallLookScr, 0, noun)
 					(local1 += 2)
 				else:
-					(global91
-						say:
-							noun
-							param1
-							match local1.post('++')
+					global91._send(
+						'say:', noun, param1, match local1.post('++')
 								case 0: 0#end:case
 								case 1: 50#end:case
 								case 2: 51#end:case
@@ -850,7 +847,7 @@ class northShelf(Feature):
 					case 
 						(or
 							(and
-								((global66 doit: param1) == -32768)
+								(global66._send('doit:', param1) == -32768)
 								(param1 = 0 or 1)
 							)
 							(param1 == 5)
@@ -861,7 +858,7 @@ class northShelf(Feature):
 						noun = 16
 					#end:case
 				)
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -881,7 +878,7 @@ class eastShelf(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		(state |= 0x0004)
 	#end:method
 
@@ -890,7 +887,7 @@ class eastShelf(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return ((super onMe: param1 &rest) and ((param1 x:) > 119))
+		return (super._send('onMe:', param1, &rest) and (param1._send('x:') > 119))
 	#end:method
 
 	@classmethod
@@ -902,14 +899,11 @@ class eastShelf(Feature):
 		match param1
 			case 1:
 				if ((local2 + 1) == 0):
-					(global2 setScript: firstWallLookScr 0 noun)
+					global2._send('setScript:', firstWallLookScr, 0, noun)
 					(local2 += 2)
 				else:
-					(global91
-						say:
-							noun
-							param1
-							match local2.post('++')
+					global91._send(
+						'say:', noun, param1, match local2.post('++')
 								case 0: 50#end:case
 								case 1: 51#end:case
 								case 2: 52#end:case
@@ -929,14 +923,14 @@ class eastShelf(Feature):
 				if 
 					(or
 						(and
-							((global66 doit: param1) == -32768)
+							(global66._send('doit:', param1) == -32768)
 							(param1 = 0 or 1)
 						)
 						(param1 == 5)
 					)
 					noun = 27
 				#endif
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -958,7 +952,7 @@ class genericFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		(state |= 0x0004)
 	#end:method
 
@@ -967,16 +961,16 @@ class genericFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
-		(self x: (param1 x:) y: (param1 y:))
+		temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
+		self._send('x:', param1._send('x:'), 'y:', param1._send('y:'))
 		local3 = 0
 		(= noun
 			match temp0
 				case 2:
-					(8 if ((param1 y:) > 85) else 15)
+					(8 if (param1._send('y:') > 85) else 15)
 				#end:case
 				case 4:
-					if ((param1 y:) > 136):
+					if (param1._send('y:') > 136):
 						local3 = 2
 						23
 					else:
@@ -985,7 +979,7 @@ class genericFeatures(Feature):
 					#endif
 				#end:case
 				case 8:
-					if ((param1 y:) > 146):
+					if (param1._send('y:') > 146):
 						local3 = 3
 						28
 					else:
@@ -998,10 +992,10 @@ class genericFeatures(Feature):
 					20
 				#end:case
 				case 256:
-					(32 if ((param1 x:) < 120) else 0)
+					(32 if (param1._send('x:') < 120) else 0)
 				#end:case
 				case 64:
-					if ((param1 y:) > 131):
+					if (param1._send('y:') > 131):
 						29
 					else:
 						local3 = 2
@@ -1009,10 +1003,10 @@ class genericFeatures(Feature):
 					#endif
 				#end:case
 				case 128:
-					(27 if ((param1 y:) > 131) else 0)
+					(27 if (param1._send('y:') > 131) else 0)
 				#end:case
 				case 512:
-					if ((param1 x:) > 176):
+					if (param1._send('x:') > 176):
 						local3 = 2
 						31
 					else:
@@ -1021,7 +1015,7 @@ class genericFeatures(Feature):
 					#endif
 				#end:case
 				case 1024:
-					if ((param1 x:) > 98):
+					if (param1._send('x:') > 98):
 						local3 = 3
 						30
 					else:
@@ -1043,15 +1037,15 @@ class genericFeatures(Feature):
 		if 
 			(or
 				(and
-					((global66 doit: param1) == -32768)
+					(global66._send('doit:', param1) == -32768)
 					(local3 & 0x0002)
 					(param1 = 0 or 1)
 				)
 				((param1 == 5) and (local3 & 0x0001))
 			)
-			(global91 say: 27 param1)
+			global91._send('say:', 27, param1)
 		else:
-			(super doVerb: param1 &rest)
+			super._send('doVerb:', param1, &rest)
 		#endif
 	#end:method
 

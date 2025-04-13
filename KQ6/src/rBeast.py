@@ -23,7 +23,7 @@ class rBeast(Rgn):
 
 		keep = proc999_5(param1, 500, 510, 520, 530, 540)
 		initialized = 0
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 #end:class or instance

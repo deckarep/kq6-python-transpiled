@@ -23,7 +23,7 @@ class Osc(Cycle):
 				caller = param3
 			#endif
 		#endif
-		(super init: param1)
+		super._send('init:', param1)
 	#end:method
 
 	@classmethod
@@ -31,11 +31,11 @@ class Osc(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((temp0 = (self nextCel:) > (client lastCel:)) or (temp0 < 0)):
+		if ((temp0 = self._send('nextCel:') > client._send('lastCel:')) or (temp0 < 0)):
 			cycleDir = -cycleDir
-			(self cycleDone:)
+			self._send('cycleDone:')
 		else:
-			(client cel: temp0)
+			client._send('cel:', temp0)
 		#endif
 	#end:method
 
@@ -45,13 +45,13 @@ class Osc(Cycle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if howManyCycles:
-			(client cel: (self nextCel:))
+			client._send('cel:', self._send('nextCel:'))
 			if (howManyCycles > 0):
 				howManyCycles.post('--')
 			#endif
 		else:
 			completed = 1
-			(self motionCue:)
+			self._send('motionCue:')
 		#endif
 	#end:method
 

@@ -40,7 +40,7 @@ class File(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not handle):
-			(self open:)
+			self._send('open:')
 		#endif
 		(return
 			if handle:
@@ -57,7 +57,7 @@ class File(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not handle):
-			(self open:)
+			self._send('open:')
 		#endif
 		if handle:
 			temp0 = 0
@@ -81,7 +81,7 @@ class File(Obj):
 			return 0
 		#endif
 		if (not handle):
-			(self open: 1)
+			self._send('open:', 1)
 		#endif
 		(return
 			if handle:
@@ -101,7 +101,7 @@ class File(Obj):
 			return 0
 		#endif
 		if (not handle):
-			(self open: 1)
+			self._send('open:', 1)
 		#endif
 		(return
 			if handle:
@@ -130,7 +130,7 @@ class File(Obj):
 
 		temp0 = (param2 if (argc >= 2) else 0)
 		if (not handle):
-			(self open: 1)
+			self._send('open:', 1)
 		#endif
 		(return
 			if handle:
@@ -158,7 +158,7 @@ class File(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if handle:
-			(self close:)
+			self._send('close:')
 		#endif
 		kernel.FileIO(4, name)
 	#end:method
@@ -168,8 +168,8 @@ class File(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self close:)
-		(super dispose:)
+		self._send('close:')
+		super._send('dispose:')
 	#end:method
 
 	@classmethod

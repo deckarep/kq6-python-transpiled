@@ -33,14 +33,14 @@ class tlkGeniePage(Kq6Talker):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
-		if ((global2 curPic:) == 160):
-			(self cel: 1 x: 80 y: 48 textX: 1 textY: -35 talkWidth: 213)
-			(super init: 0 0 tMouth &rest)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
+		if (global2._send('curPic:') == 160):
+			self._send('cel:', 1, 'x:', 80, 'y:', 48, 'textX:', 1, 'textY:', -35, 'talkWidth:', 213)
+			super._send('init:', 0, 0, tMouth, &rest)
 		else:
-			(self cel: 1 x: 5 y: 5 textX: 76 textY: 8 talkWidth: 213)
-			(super init: 0 0 0 &rest)
+			self._send('cel:', 1, 'x:', 5, 'y:', 5, 'textX:', 76, 'textY:', 8, 'talkWidth:', 213)
+			super._send('init:', 0, 0, 0, &rest)
 		#endif
 	#end:method
 

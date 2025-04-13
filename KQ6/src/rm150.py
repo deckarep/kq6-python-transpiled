@@ -38,7 +38,7 @@ class rm150(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global2 newRoom: 220)
+		global2._send('newRoom:', 220)
 	#end:method
 
 	@classmethod
@@ -46,12 +46,12 @@ class rm150(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable: 6)
-		(super init: &rest)
-		(global1 givePoints: 2)
-		(self setScript: roomScr)
-		(swordArm init:)
-		(global102 number: 150 loop: -1 play: self)
+		global69._send('disable:', 6)
+		super._send('init:', &rest)
+		global1._send('givePoints:', 2)
+		self._send('setScript:', roomScr)
+		swordArm._send('init:')
+		global102._send('number:', 150, 'loop:', -1, 'play:', self)
 	#end:method
 
 	@classmethod
@@ -59,8 +59,8 @@ class rm150(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable: 6)
-		(super dispose:)
+		global69._send('enable:', 6)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -80,23 +80,23 @@ class genieHeadScr(Script):
 
 		match state = param1
 			case 0:
-				(genie init:)
+				genie._send('init:')
 				cycles = 2
 			#end:case
 			case 1:
 				start = (state + 1)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 2:
-				(genie hide:)
+				genie._send('hide:')
 				if ((kernel.Random(0, 3) - 1) and (not local1)):
 					local1 = 1
 					local2 = 1
 					if kernel.Random(0, 1):
-						(eye1 init: cel: 0 setCycle: End self)
+						eye1._send('init:', 'cel:', 0, 'setCycle:', End, self)
 						local0 = 1
 					else:
-						(eye2 init: cel: 0 setCycle: End self)
+						eye2._send('init:', 'cel:', 0, 'setCycle:', End, self)
 						local0 = 0
 					#endif
 				else:
@@ -110,23 +110,23 @@ class genieHeadScr(Script):
 			#end:case
 			case 4:
 				if local0:
-					(eye1 dispose:)
+					eye1._send('dispose:')
 				else:
-					(eye2 dispose:)
+					eye2._send('dispose:')
 				#endif
 				cycles = 2
 			#end:case
 			case 5:
 				start = (state + 1)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 6:
-				(genie show:)
+				genie._send('show:')
 				cycles = 2
 			#end:case
 			case 7:
 				start = (state - 5)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -195,62 +195,62 @@ class roomScr(Script):
 				cycles = 3
 			#end:case
 			case 1:
-				(roomConv
-					add: -1 1 0 1 1
-					add: genieHeadScr
-					add: -1 1 0 1 2
-					add: genieHeadScr
-					add: -1 1 0 1 3
-					add: genieHeadScr
-					add: -1 1 0 1 4
-					add: genieHeadScr
-					add: -1 1 0 1 5
-					add: genieHeadScr
-					add: -1 1 0 1 6
-					add: genieHeadScr
-					add: -1 1 0 1 7
-					init: self
+				roomConv._send(
+					'add:', -1, 1, 0, 1, 1,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 2,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 3,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 4,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 5,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 6,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 7,
+					'init:', self
 				)
 			#end:case
 			case 2:
-				(roomConv
-					add: genieHeadScr
-					add: -1 1 0 1 8
-					add: -1 1 0 1 9
-					add: -1 1 0 1 10
-					add: -1 1 0 1 11
-					add: genieHeadScr
-					add: -1 1 0 1 12
-					add: genieHeadScr
-					add: -1 1 0 1 13
-					add: genieHeadScr
-					add: -1 1 0 1 14
-					add: genieHeadScr
-					add: -1 1 0 1 15
-					add: -1 1 0 1 16
-					add: genieHeadScr
-					init: self
+				roomConv._send(
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 8,
+					'add:', -1, 1, 0, 1, 9,
+					'add:', -1, 1, 0, 1, 10,
+					'add:', -1, 1, 0, 1, 11,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 12,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 13,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 14,
+					'add:', genieHeadScr,
+					'add:', -1, 1, 0, 1, 15,
+					'add:', -1, 1, 0, 1, 16,
+					'add:', genieHeadScr,
+					'init:', self
 				)
 			#end:case
 			case 3:
 				if (not local2):
-					if (global5 contains: genie):
-						(genie dispose:)
+					if global5._send('contains:', genie):
+						genie._send('dispose:')
 					#endif
-					(eye1 init: cel: 0 setCycle: End self)
+					eye1._send('init:', 'cel:', 0, 'setCycle:', End, self)
 				else:
 					state.post('++')
 					cycles = 1
 				#endif
 			#end:case
 			case 4:
-				(eye1 dispose:)
+				eye1._send('dispose:')
 				cycles = 2
 			#end:case
 			case 5:
-				(global105 number: 756 loop: 1 play:)
-				(swordArm setCycle: End)
-				(global102 fade:)
+				global105._send('number:', 756, 'loop:', 1, 'play:')
+				swordArm._send('setCycle:', End)
+				global102._send('fade:')
 			#end:case
 		#end:match
 	#end:method

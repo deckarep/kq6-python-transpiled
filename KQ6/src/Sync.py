@@ -71,17 +71,17 @@ class ScriptSync(Obj):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global82:
-			(self cue:)
+			self._send('cue:')
 		#endif
-		(global82 = (Sync new:)
-			init:
-			syncStart: param1 param2 param3 param4 param5
+		global82 = Sync._send('new:')._send(
+			'init:',
+			'syncStart:', param1, param2, param3, param4, param5
 		)
-		if ((global82 prevCue:) != -1):
+		if (global82._send('prevCue:') != -1):
 			playing = 1
-			(global6 add: self)
+			global6._send('add:', self)
 		#endif
-		(Timer setTicks: self kernel.DoAudio(1, param1, param2, param3, param4, param5))
+		Timer._send('setTicks:', self, kernel.DoAudio(1, param1, param2, param3, param4, param5))
 	#end:method
 
 	@classmethod
@@ -89,18 +89,18 @@ class ScriptSync(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global82 prevCue:) != -1):
+		if (global82._send('prevCue:') != -1):
 			while True: #repeat
-				if ((global82 prevCue:) == -1):
+				if (global82._send('prevCue:') == -1):
 					(break)
 				#endif
-				temp0 = (global82 syncTime:)
-				(global82 syncCheck:)
-				if (temp0 == (global82 syncTime:)):
+				temp0 = global82._send('syncTime:')
+				global82._send('syncCheck:')
+				if (temp0 == global82._send('syncTime:')):
 					(break)
 				#endif
 			#end:loop
-			prevSignal = (global82 prevCue:)
+			prevSignal = global82._send('prevCue:')
 		#endif
 	#end:method
 
@@ -109,12 +109,12 @@ class ScriptSync(Obj):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		kernel.Animate((global5 elements:), 0)
+		kernel.Animate(global5._send('elements:'), 0)
 		playing = 0
 		prevSignal = 32767
-		(global6 delete: self)
+		global6._send('delete:', self)
 		if global82:
-			(global82 syncStop: dispose:)
+			global82._send('syncStop:', 'dispose:')
 			global82 = 0
 		#endif
 	#end:method
@@ -128,11 +128,11 @@ class MouthSync(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1)
+		super._send('init:', param1)
 		if kernel.IsObject(global82):
-			(global82 syncStop: dispose:)
+			global82._send('syncStop:', 'dispose:')
 		#endif
-		(global82 = (Sync new:) syncStart: param2 param3 param4 param5 param6)
+		global82 = Sync._send('new:')._send('syncStart:', param2, param3, param4, param5, param6)
 	#end:method
 
 	@classmethod
@@ -140,27 +140,27 @@ class MouthSync(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
-		if ((global82 prevCue:) != -1):
-			temp2 = (global82 syncTime:)
+		super._send('doit:')
+		if (global82._send('prevCue:') != -1):
+			temp2 = global82._send('syncTime:')
 			temp3 = 0
 			while True: #repeat
-				temp1 = (global82 syncTime:)
-				(global82 syncCheck:)
-				if (temp1 == (global82 syncTime:)):
+				temp1 = global82._send('syncTime:')
+				global82._send('syncCheck:')
+				if (temp1 == global82._send('syncTime:')):
 					(break)
 				#endif
 			#end:loop
 			if 
 				(and
-					(temp2 != (global82 syncTime:))
-					((client cel:) != temp0 = (0x000f & (global82 prevCue:)))
+					(temp2 != global82._send('syncTime:'))
+					(client._send('cel:') != temp0 = (0x000f & global82._send('prevCue:')))
 				)
-				(client cel: temp0)
+				client._send('cel:', temp0)
 			#endif
 		else:
 			completed = 1
-			(self cycleDone:)
+			self._send('cycleDone:')
 		#endif
 	#end:method
 
@@ -169,9 +169,9 @@ class MouthSync(Cycle):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		if global82:
-			(global82 dispose:)
+			global82._send('dispose:')
 			global82 = 0
 		#endif
 	#end:method
@@ -182,10 +182,10 @@ class MouthSync(Cycle):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global82:
-			(global82 syncStop: dispose:)
+			global82._send('syncStop:', 'dispose:')
 			global82 = 0
 			if caller:
-				(caller cue:)
+				caller._send('cue:')
 				caller = 0
 			#endif
 		#endif

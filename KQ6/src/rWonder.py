@@ -42,7 +42,7 @@ class rWonder(Rgn):
 
 		keep = proc999_5(param1, 450, 460, 461, 470, 475, 480, 490)
 		initialized = 0
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 #end:class or instance

@@ -25,12 +25,12 @@ class closeupWedding(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		proc913_1(99)
-		(global2 noun: 3)
-		(kernel.ScriptID(80, 0) setFlag: 710 2048)
-		(global93 addToFront: self)
-		(global74 addToFront: self)
+		global2._send('noun:', 3)
+		kernel.ScriptID(80, 0)._send('setFlag:', 710, 2048)
+		global93._send('addToFront:', self)
+		global74._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -39,7 +39,7 @@ class closeupWedding(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		seconds = 0
-		(super setScript: &rest)
+		super._send('setScript:', &rest)
 	#end:method
 
 	@classmethod
@@ -49,14 +49,14 @@ class closeupWedding(Script):
 
 		if 
 			(and
-				((global69 at: 0) == (global69 curIcon:))
-				((param1 type:) & 0x1040)
+				(global69._send('at:', 0) == global69._send('curIcon:'))
+				(param1._send('type:') & 0x1040)
 			)
-			(param1 claimed: 1)
+			param1._send('claimed:', 1)
 			next = kernel.ScriptID(744, 1)
-			(self cue:)
+			self._send('cue:')
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -64,25 +64,25 @@ class closeupWedding(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 disable:)
-		(global93 delete: self)
-		(global74 delete: self)
-		(genieHead dispose: delete:)
-		(vizierHead dispose: delete:)
-		(saladinArm dispose: delete:)
-		(alexHead dispose: delete:)
-		(priestHead dispose: delete:)
-		(saladinHead dispose: delete:)
-		(glint1 dispose: delete:)
-		(glint2 dispose: delete:)
-		(global2 drawPic: 740)
+		global69._send('disable:')
+		global93._send('delete:', self)
+		global74._send('delete:', self)
+		genieHead._send('dispose:', 'delete:')
+		vizierHead._send('dispose:', 'delete:')
+		saladinArm._send('dispose:', 'delete:')
+		alexHead._send('dispose:', 'delete:')
+		priestHead._send('dispose:', 'delete:')
+		saladinHead._send('dispose:', 'delete:')
+		glint1._send('dispose:', 'delete:')
+		glint2._send('dispose:', 'delete:')
+		global2._send('drawPic:', 740)
 		proc913_2(99)
-		(global2 noun: 3)
-		(global5 eachElementDo: #show eachElementDo: #stopUpd)
-		(super dispose:)
-		(global0 startUpd:)
+		global2._send('noun:', 3)
+		global5._send('eachElementDo:', #show, 'eachElementDo:', #stopUpd)
+		super._send('dispose:')
+		global0._send('startUpd:')
 		if proc913_0(156):
-			(global0 posn: 149 144)
+			global0._send('posn:', 149, 144)
 		#endif
 		kernel.UnLoad(128, 160)
 		kernel.UnLoad(128, 161)
@@ -100,92 +100,92 @@ class closeupWedding(Script):
 
 		match state = param1
 			case 0:
-				(global5 eachElementDo: #startUpd)
-				(global69 disable:)
+				global5._send('eachElementDo:', #startUpd)
+				global69._send('disable:')
 				cycles = 1
 			#end:case
 			case 1:
-				(global5 eachElementDo: #hide)
-				(global2 drawPic: 160)
-				(global102 number: 740 loop: -1 play:)
-				(vizierHead addToPic:)
-				(saladinArm init: stopUpd:)
-				(saladinHead init:)
-				(alexHead init:)
-				(priestHead init:)
+				global5._send('eachElementDo:', #hide)
+				global2._send('drawPic:', 160)
+				global102._send('number:', 740, 'loop:', -1, 'play:')
+				vizierHead._send('addToPic:')
+				saladinArm._send('init:', 'stopUpd:')
+				saladinHead._send('init:')
+				alexHead._send('init:')
+				priestHead._send('init:')
 				seconds = cycles = 2
 			#end:case
 			case 2:
-				(global69 enable:)
+				global69._send('enable:')
 			#end:case
 			case 3:
-				(kernel.ScriptID(740, 7)
-					add: 160 1 0 1 1
-					add: 160 1 0 1 2
-					add: 160 1 0 1 3
-					add: 160 1 0 1 4
-					add: 160 1 0 1 5
-					add: 160 1 0 1 6
-					init: self
+				kernel.ScriptID(740, 7)._send(
+					'add:', 160, 1, 0, 1, 1,
+					'add:', 160, 1, 0, 1, 2,
+					'add:', 160, 1, 0, 1, 3,
+					'add:', 160, 1, 0, 1, 4,
+					'add:', 160, 1, 0, 1, 5,
+					'add:', 160, 1, 0, 1, 6,
+					'init:', self
 				)
 			#end:case
 			case 4:
-				(glint1 init: setCycle: End self)
-				(glint2 init: setCycle: End)
+				glint1._send('init:', 'setCycle:', End, self)
+				glint2._send('init:', 'setCycle:', End)
 			#end:case
 			case 5:
-				(global102 number: 746 loop: -1 play:)
-				(glint1 setCycle: Beg self)
-				(glint2 setCycle: Beg)
+				global102._send('number:', 746, 'loop:', -1, 'play:')
+				glint1._send('setCycle:', Beg, self)
+				glint2._send('setCycle:', Beg)
 			#end:case
 			case 6:
-				(kernel.ScriptID(740, 7) add: 160 1 0 1 7 add: 160 1 0 1 8 init: self)
+				kernel.ScriptID(740, 7)._send('add:', 160, 1, 0, 1, 7, 'add:', 160, 1, 0, 1, 8, 'init:', self)
 			#end:case
 			case 7:
-				(glint1 dispose:)
-				(glint2 dispose:)
-				(genieHead init: cel: 0)
+				glint1._send('dispose:')
+				glint2._send('dispose:')
+				genieHead._send('init:', 'cel:', 0)
 				cycles = 10
 			#end:case
 			case 8:
 				kernel.DisposeScript(939)
-				(saladinArm cel: 2 startUpd:)
-				if (not register = (kernel.ScriptID(80, 0) tstFlag: 709 128)):
-					(saladinArm setCycle: Beg self)
+				saladinArm._send('cel:', 2, 'startUpd:')
+				if (not register = kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128)):
+					saladinArm._send('setCycle:', Beg, self)
 				else:
-					(saladinArm setScript: drawSword self)
+					saladinArm._send('setScript:', drawSword, self)
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
 				if (not register):
 					next = 0
-					(global91 say: 1 0 2 0 self 160)
+					global91._send('say:', 1, 0, 2, 0, self, 160)
 				else:
-					(global1 handsOn:)
+					global1._send('handsOn:')
 					state.post('++')
 				#endif
 			#end:case
 			case 10:
-				(saladinArm setScript: 0 setCycle: End self)
+				saladinArm._send('setScript:', 0, 'setCycle:', End, self)
 			#end:case
 			case 11:
 				cycles = 3
 			#end:case
 			case 12:
-				(global1 handsOff:)
-				(global69 disable:)
+				global1._send('handsOff:')
+				global69._send('disable:')
 				if (not next):
 					if (not register):
 						kernel.UnLoad(128, 738)
-						(kernel.ScriptID(740, 5) view: 7424 loop: 0 cel: 0 setCycle: 0)
+						kernel.ScriptID(740, 5)._send('view:', 7424, 'loop:', 0, 'cel:', 0, 'setCycle:', 0)
 						next = kernel.ScriptID(742, 3)
 					else:
-						(kernel.ScriptID(744, 1) register: 29)
+						kernel.ScriptID(744, 1)._send('register:', 29)
 						next = kernel.ScriptID(744, 1)
 					#endif
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -200,11 +200,11 @@ class showMirror(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
-		(saladinHead dispose: delete:)
-		(priestHead dispose: delete:)
-		(alexHead dispose: delete:)
-		(mirror dispose:)
+		super._send('dispose:')
+		saladinHead._send('dispose:', 'delete:')
+		priestHead._send('dispose:', 'delete:')
+		alexHead._send('dispose:', 'delete:')
+		mirror._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -214,40 +214,40 @@ class showMirror(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(drawSword caller: 0)
-				(saladinArm setScript: 0)
-				if (saladinArm cel:):
-					(saladinArm setCycle: Beg self)
+				global1._send('handsOff:')
+				drawSword._send('caller:', 0)
+				saladinArm._send('setScript:', 0)
+				if saladinArm._send('cel:'):
+					saladinArm._send('setCycle:', Beg, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
-				(global91 say: 4 13 0 1 self 160)
+				global91._send('say:', 4, 13, 0, 1, self, 160)
 			#end:case
 			case 2:
-				(genieHead init: cel: 1 setCycle: End)
-				(mirror init: cel: 0 cycleSpeed: 15 setCycle: End self)
+				genieHead._send('init:', 'cel:', 1, 'setCycle:', End)
+				mirror._send('init:', 'cel:', 0, 'cycleSpeed:', 15, 'setCycle:', End, self)
 			#end:case
 			case 3:
-				(global1 givePoints: 3)
-				(saladinArm addToPic:)
-				(priestHead cel: 1 addToPic:)
-				(saladinHead cel: 1 addToPic:)
-				(alexHead cel: 1 addToPic:)
-				(genieHead addToPic:)
-				(mirror addToPic:)
+				global1._send('givePoints:', 3)
+				saladinArm._send('addToPic:')
+				priestHead._send('cel:', 1, 'addToPic:')
+				saladinHead._send('cel:', 1, 'addToPic:')
+				alexHead._send('cel:', 1, 'addToPic:')
+				genieHead._send('addToPic:')
+				mirror._send('addToPic:')
 				cycles = 18
 			#end:case
 			case 4:
-				(global91 say: 4 13 0 2 self 160)
+				global91._send('say:', 4, 13, 0, 2, self, 160)
 			#end:case
 			case 5:
-				(client seconds: 0 next: kernel.ScriptID(744, 0))
-				(kernel.ScriptID(740, 5) view: 7424 loop: 0 cel: 0 setCycle: 0)
-				(global69 disable:)
-				(client dispose:)
+				client._send('seconds:', 0, 'next:', kernel.ScriptID(744, 0))
+				kernel.ScriptID(740, 5)._send('view:', 7424, 'loop:', 0, 'cel:', 0, 'setCycle:', 0)
+				global69._send('disable:')
+				client._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -264,11 +264,11 @@ class showReplicaLamp(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 7 56 0 0 self 160)
+				global1._send('handsOff:')
+				global91._send('say:', 7, 56, 0, 0, self, 160)
 			#end:case
 			case 1:
-				(closeupWedding next: kernel.ScriptID(744, 1) changeState: 12)
+				closeupWedding._send('next:', kernel.ScriptID(744, 1), 'changeState:', 12)
 			#end:case
 		#end:match
 	#end:method
@@ -288,15 +288,15 @@ class drawSword(Script):
 				seconds = 4
 			#end:case
 			case 1:
-				if ((saladinArm cel:) > 0):
-					(saladinArm cel: ((saladinArm cel:) - 1) startUpd:)
+				if (saladinArm._send('cel:') > 0):
+					saladinArm._send('cel:', (saladinArm._send('cel:') - 1), 'startUpd:')
 					cycles = 2
 				else:
-					(self dispose:)
+					self._send('dispose:')
 				#endif
 			#end:case
 			case 2:
-				(saladinArm stopUpd:)
+				saladinArm._send('stopUpd:')
 				state = -1
 				cycles = 1
 			#end:case
@@ -316,8 +316,8 @@ class CloseupProp(Prop):
 
 		(return
 			(or
-				(super onMe: param1)
-				(controlColor & kernel.OnControl(4, (param1 x:), (param1 y:)))
+				super._send('onMe:', param1)
+				(controlColor & kernel.OnControl(4, param1._send('x:'), param1._send('y:')))
 			)
 		)
 	#end:method
@@ -345,35 +345,35 @@ class genieHead(CloseupProp):
 
 		(cond
 			case proc999_5(param1, 33, 18):
-				(global91 say: noun 18 0 0 0 modNum)
+				global91._send('say:', noun, 18, 0, 0, 0, modNum)
 			#end:case
 			case proc999_5(param1, 57, 58, 59, 60, 43):
-				(kernel.ScriptID(740, 7) add: modNum noun 43 0 1)
+				kernel.ScriptID(740, 7)._send('add:', modNum, noun, 43, 0, 1)
 				if (param1 != 43):
-					(kernel.ScriptID(740, 7) add: modNum noun 57 0 1)
+					kernel.ScriptID(740, 7)._send('add:', modNum, noun, 57, 0, 1)
 				else:
-					(kernel.ScriptID(740, 7) add: modNum noun 43 0 2)
+					kernel.ScriptID(740, 7)._send('add:', modNum, noun, 43, 0, 2)
 				#endif
-				(kernel.ScriptID(740, 7) init:)
+				kernel.ScriptID(740, 7)._send('init:')
 			#end:case
 			case proc999_5(param1, 56, 2):
-				(global1 handsOff:)
-				(closeupWedding seconds: 0 next: kernel.ScriptID(744, 1))
-				(global91 say: noun param1 0 0 closeupWedding modNum)
+				global1._send('handsOff:')
+				closeupWedding._send('seconds:', 0, 'next:', kernel.ScriptID(744, 1))
+				global91._send('say:', noun, param1, 0, 0, closeupWedding, modNum)
 			#end:case
 			case proc999_5(param1, 67, 63):
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc913_1(156)
-				(closeupWedding seconds: 0 next: kernel.ScriptID(744, 1))
-				(global91 say: 4 67 0 0 closeupWedding 160)
+				closeupWedding._send('seconds:', 0, 'next:', kernel.ScriptID(744, 1))
+				global91._send('say:', 4, 67, 0, 0, closeupWedding, 160)
 			#end:case
 			else:
 				match param1
 					case 13:
-						(closeupWedding setScript: showMirror)
+						closeupWedding._send('setScript:', showMirror)
 					#end:case
 					else:
-						(super doVerb: param1)
+						super._send('doVerb:', param1)
 					#end:else
 				#end:match
 			#end:else
@@ -401,17 +401,17 @@ class vizierHead(CloseupProp):
 		(cond
 			case proc999_5(param1, 33, 18):
 				param1 = 65
-				(super doVerb: 65)
+				super._send('doVerb:', 65)
 			#end:case
 			case proc999_5(param1, 57, 58, 59, 60, 43):
 				param1 = 43
-				(super doVerb: 43)
+				super._send('doVerb:', 43)
 			#end:case
 			case (param1 == 56):
-				(closeupWedding setScript: showReplicaLamp)
+				closeupWedding._send('setScript:', showReplicaLamp)
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		)
 	#end:method
@@ -432,7 +432,7 @@ class alexHead(CloseupProp):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 doVerb: &rest)
+		global0._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance
@@ -468,9 +468,9 @@ class saladinArm(CloseupProp):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 33, 18):
-			(global91 say: noun 33 0 0 0 modNum)
+			global91._send('say:', noun, 33, 0, 0, 0, modNum)
 		else:
-			(super doVerb: param1)
+			super._send('doVerb:', param1)
 		#endif
 	#end:method
 
@@ -489,7 +489,7 @@ class saladinHead(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(saladinArm doVerb: &rest)
+		saladinArm._send('doVerb:', &rest)
 	#end:method
 
 #end:class or instance

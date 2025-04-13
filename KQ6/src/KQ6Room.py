@@ -54,13 +54,13 @@ class NewRoomCue(Cue):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global18 delete: self)
-		if (global18 isEmpty:):
-			(global18 dispose:)
+		global18._send('delete:', self)
+		if global18._send('isEmpty:'):
+			global18._send('dispose:')
 			global18 = 0
 		#endif
-		(cuee newRoomCue: register)
-		(self dispose:)
+		cuee._send('newRoomCue:', register)
+		self._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -89,7 +89,7 @@ class KQ6Room(Rm):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		local0 = 0
-		(super init: &rest)
+		super._send('init:', &rest)
 		if ((global90 & 0x0001) and autoLoad):
 			if (modNum == -1):
 				modNum = global11
@@ -98,9 +98,9 @@ class KQ6Room(Rm):
 			kernel.Lock(143, modNum, 1)
 		#endif
 		if proc913_0(103):
-			(global1 handsOff:)
+			global1._send('handsOff:')
 			proc913_2(103)
-			(self setScript: kernel.ScriptID(89, 0))
+			self._send('setScript:', kernel.ScriptID(89, 0))
 		#endif
 	#end:method
 
@@ -113,32 +113,32 @@ class KQ6Room(Rm):
 			(and
 				(not script)
 				(not walkOffEdge)
-				temp0 = ((User alterEgo:) edgeHit:)
-				(not (self edgeToRoom: temp0))
+				temp0 = User._send('alterEgo:')._send('edgeHit:')
+				(not self._send('edgeToRoom:', temp0))
 			)
-			((User alterEgo:) edgeHit: 0 setMotion: 0)
+			User._send('alterEgo:')._send('edgeHit:', 0, 'setMotion:', 0)
 			match temp0
 				case 3:
-					(global0 y: 188)
+					global0._send('y:', 188)
 				#end:case
 				case 1:
-					(global0 y: (horizon + 1))
+					global0._send('y:', (horizon + 1))
 				#end:case
 				case 4:
-					(global0 x: 1)
+					global0._send('x:', 1)
 				#end:case
 				case 2:
-					(global0 x: 318)
+					global0._send('x:', 318)
 				#end:case
 			#end:match
 		#endif
 		(cond
 			case script:
-				(script doit:)
+				script._send('doit:')
 			#end:case
 			case local0: 0#end:case
-			case temp0 = (self edgeToRoom: ((User alterEgo:) edgeHit:)):
-				(self newRoom: temp0)
+			case temp0 = self._send('edgeToRoom:', User._send('alterEgo:')._send('edgeHit:')):
+				self._send('newRoom:', temp0)
 			#end:case
 		)
 	#end:method
@@ -149,24 +149,23 @@ class KQ6Room(Rm):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
 		if (not local0):
-			(global1 handsOff:)
+			global1._send('handsOff:')
 			kernel.Lock(143, modNum, 0)
 			if global25:
-				(global25 dispose:)
+				global25._send('dispose:')
 			#endif
 			if (not global18):
-				global18 = (Set new:)
+				global18 = Set._send('new:')
 			#endif
-			(global18
-				add:
-					((NewRoomCue new:)
-						cuee: self
-						cuer: self
-						register: param1
-						yourself:
+			global18._send(
+				'add:', NewRoomCue._send('new:')._send(
+						'cuee:', self,
+						'cuer:', self,
+						'register:', param1,
+						'yourself:'
 					)
 			)
 			local0 = 1
@@ -178,7 +177,7 @@ class KQ6Room(Rm):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super newRoom: &rest)
+		super._send('newRoom:', &rest)
 	#end:method
 
 	@classmethod
@@ -192,13 +191,13 @@ class KQ6Room(Rm):
 		(return
 			if 
 				(and
-					((global66 doit: param1) == -32768)
+					(global66._send('doit:', param1) == -32768)
 					kernel.Message(0, modNum, noun, 0, 0, 1)
 				)
-				(global91 say: noun 0 0 0 0 modNum)
+				global91._send('say:', noun, 0, 0, 0, 0, modNum)
 				1
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#endif
 		)
 	#end:method
@@ -210,27 +209,27 @@ class KQ6Room(Rm):
 
 		(cond
 			case kernel.IsObject(param1):
-				(super setScript: param1 &rest)
+				super._send('setScript:', param1, &rest)
 			#end:case
-			case ((global0 view:) != 900):
-				(KQ6Print
-					font: global22
-					posn: -1 10
-					say: 0 7 0 16 1 0 0 0
-					init:
+			case (global0._send('view:') != 900):
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', -1, 10,
+					'say:', 0, 7, 0, 16, 1, 0, 0, 0,
+					'init:'
 				)
 			#end:case
 			case 
 				(or
-					((global0 script:) and (param1 == 905))
-					((self script:) and (param1 == 905))
-					((param1 == 905) and (global11 == 480) and (global0 script:))
+					(global0._send('script:') and (param1 == 905))
+					(self._send('script:') and (param1 == 905))
+					((param1 == 905) and (global11 == 480) and global0._send('script:'))
 				):
-				(KQ6Print
-					font: global22
-					posn: -1 10
-					say: 0 7 0 16 1 0 0 0
-					init:
+				KQ6Print._send(
+					'font:', global22,
+					'posn:', -1, 10,
+					'say:', 0, 7, 0, 16, 1, 0, 0, 0,
+					'init:'
 				)
 			#end:case
 			case proc999_5(param1, 87, 85, 88, 90, 190, 915, 92, 93, 97, 96, 905):
@@ -240,38 +239,38 @@ class KQ6Room(Rm):
 						(cond
 							case 
 								proc999_5(global11, 600, 630, 640, 650, 660, 670, 680, 690):
-								(KQ6Print
-									font: global22
-									posn: -1 10
-									say: 0 0 0 88 1 0 0 899
-									init:
+								KQ6Print._send(
+									'font:', global22,
+									'posn:', -1, 10,
+									'say:', 0, 0, 0, 88, 1, 0, 0, 899,
+									'init:'
 								)
 							#end:case
 							case (global11 == 461):
-								(KQ6Print
-									font: global22
-									posn: -1 10
-									say: 0 0 0 5 1 0 0 899
-									init:
+								KQ6Print._send(
+									'font:', global22,
+									'posn:', -1, 10,
+									'say:', 0, 0, 0, 5, 1, 0, 0, 899,
+									'init:'
 								)
 							#end:case
 							case temp0 = localproc_0():
-								(KQ6Print
-									font: global22
-									posn: -1 10
-									say: 0 0 0 global11 1 0 0 899
-									init:
+								KQ6Print._send(
+									'font:', global22,
+									'posn:', -1, 10,
+									'say:', 0, 0, 0, global11, 1, 0, 0, 899,
+									'init:'
 								)
 							#end:case
 						)
 					#end:case
-					case (self scriptCheck: param1):
-						(super setScript: kernel.ScriptID(param1) &rest)
+					case self._send('scriptCheck:', param1):
+						super._send('setScript:', kernel.ScriptID(param1), &rest)
 					#end:case
 				)
 			#end:case
 			else:
-				(super setScript: kernel.ScriptID(param1) &rest)
+				super._send('setScript:', kernel.ScriptID(param1), &rest)
 			#end:else
 		)
 	#end:method

@@ -40,55 +40,55 @@ class Door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self approachVerbs: openVerb listenVerb)
+		self._send('approachVerbs:', openVerb, listenVerb)
 		if (forceOpen or (global12 and (global12 == entranceTo))):
 			state = 2
 		#endif
-		(super init:)
-		(self createPoly:)
-		(self ignoreActors: 1)
+		super._send('init:')
+		self._send('createPoly:')
+		self._send('ignoreActors:', 1)
 		if (state == 0):
 			cel = 0
 			if doubleDoor:
-				(doubleDoor setCel: 0)
+				doubleDoor._send('setCel:', 0)
 			#endif
 		else:
-			(global95 delete: doorPoly)
+			global95._send('delete:', doorPoly)
 			cel = (kernel.NumCels(self) - 1)
 			if doubleDoor:
-				(doubleDoor setCel: (kernel.NumCels(doubleDoor) - 1))
+				doubleDoor._send('setCel:', (kernel.NumCels(doubleDoor) - 1))
 			#endif
 		#endif
 		if (state == 2):
 			if closeScript:
-				(self setScript: closeScript)
+				self._send('setScript:', closeScript)
 			else:
 				match enterType
 					case 0:
-						(global0
-							posn: moveToX moveToY
-							setMotion: PolyPath approachX approachY self
+						global0._send(
+							'posn:', moveToX, moveToY,
+							'setMotion:', PolyPath, approachX, approachY, self
 						)
 					#end:case
 					case 1:
-						(global0
-							edgeHit: 0
-							posn: approachX approachY
-							setHeading: heading
+						global0._send(
+							'edgeHit:', 0,
+							'posn:', approachX, approachY,
+							'setHeading:', heading
 						)
 						if forceClose:
-							(self close:)
+							self._send('close:')
 						#endif
 					#end:case
 					case 2:
 						if forceClose:
-							(self close:)
+							self._send('close:')
 						#endif
 					#end:case
 				#end:match
 			#endif
 		else:
-			(self stopUpd:)
+			self._send('stopUpd:')
 		#endif
 	#end:method
 
@@ -100,16 +100,16 @@ class Door(Prop):
 		match param1
 			case openVerb:
 				if (state == 2):
-					(self close:)
+					self._send('close:')
 				else:
-					(self open:)
+					self._send('open:')
 				#endif
 			#end:case
 			case listenVerb:
-				(self listen:)
+				self._send('listen:')
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -123,18 +123,18 @@ class Door(Prop):
 			if (modNum == -1):
 				modNum = global11
 			#endif
-			(global91 say: noun 0 lockedCase 0 0 modNum)
+			global91._send('say:', noun, 0, lockedCase, 0, 0, modNum)
 		else:
-			if (global80 controls:):
-				(global1 handsOff:)
+			if global80._send('controls:'):
+				global1._send('handsOff:')
 			#endif
 			state = 1
-			(self setCycle: End self)
+			self._send('setCycle:', End, self)
 			if openSnd:
-				(doorSound number: openSnd play:)
+				doorSound._send('number:', openSnd, 'play:')
 			#endif
 			if doubleDoor:
-				(doubleDoor setCycle: End)
+				doubleDoor._send('setCycle:', End)
 			#endif
 		#endif
 	#end:method
@@ -145,12 +145,12 @@ class Door(Prop):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		state = 3
-		(self setCycle: Beg self)
+		self._send('setCycle:', Beg, self)
 		if closeSnd:
-			(doorSound number: closeSnd play:)
+			doorSound._send('number:', closeSnd, 'play:')
 		#endif
 		if doubleDoor:
-			(doubleDoor setCycle: Beg)
+			doubleDoor._send('setCycle:', Beg)
 		#endif
 	#end:method
 
@@ -162,44 +162,44 @@ class Door(Prop):
 		match state
 			case 3:
 				state = 0
-				(self stopUpd:)
-				(global95 add: doorPoly)
+				self._send('stopUpd:')
+				global95._send('add:', doorPoly)
 				if caller:
-					(caller cue:)
+					caller._send('cue:')
 				#endif
-				if (not (global80 controls:)):
-					(global1 handsOn: 1)
+				if (not global80._send('controls:')):
+					global1._send('handsOn:', 1)
 				#endif
 			#end:case
 			case 1:
 				state = 2
-				(self stopUpd:)
-				(global95 delete: doorPoly)
+				self._send('stopUpd:')
+				global95._send('delete:', doorPoly)
 				if caller:
-					(caller cue:)
+					caller._send('cue:')
 				#endif
 				if openScript:
-					(self setScript: openScript)
+					self._send('setScript:', openScript)
 				else:
 					match exitType
 						case 0:
 							if (moveToX or moveToY):
-								(global0
-									illegalBits: 0
-									setMotion: PolyPath moveToX moveToY self
+								global0._send(
+									'illegalBits:', 0,
+									'setMotion:', PolyPath, moveToX, moveToY, self
 								)
 							#endif
 						#end:case
 						case 1:
 							if (moveToX or moveToY):
-								(global0
-									setMotion: PolyPath moveToX moveToY self
+								global0._send(
+									'setMotion:', PolyPath, moveToX, moveToY, self
 								)
 							#endif
 						#end:case
 						case 2:
-							if (not (global80 controls:)):
-								(global1 handsOn: 1)
+							if (not global80._send('controls:')):
+								global1._send('handsOn:', 1)
 							#endif
 						#end:case
 					#end:match
@@ -209,46 +209,46 @@ class Door(Prop):
 				(cond
 					case 
 						(and
-							((global0 x:) == moveToX)
-							((global0 y:) == moveToY)
+							(global0._send('x:') == moveToX)
+							(global0._send('y:') == moveToY)
 						):
 						(cond
 							case entranceTo:
 								match entranceTo
-									case (global2 north:):
-										(global0 edgeHit: 1)
+									case global2._send('north:'):
+										global0._send('edgeHit:', 1)
 									#end:case
-									case (global2 south:):
-										(global0 edgeHit: 3)
+									case global2._send('south:'):
+										global0._send('edgeHit:', 3)
 									#end:case
-									case (global2 west:):
-										(global0 edgeHit: 4)
+									case global2._send('west:'):
+										global0._send('edgeHit:', 4)
 									#end:case
-									case (global2 east:):
-										(global0 edgeHit: 2)
+									case global2._send('east:'):
+										global0._send('edgeHit:', 2)
 									#end:case
 								#end:match
-								(global2 newRoom: entranceTo)
+								global2._send('newRoom:', entranceTo)
 							#end:case
 							case forceClose:
-								(self close:)
+								self._send('close:')
 							#end:case
 							case caller:
-								(caller cue:)
+								caller._send('cue:')
 							#end:case
 						)
 					#end:case
 					case 
 						(and
-							((global0 x:) == approachX)
-							((global0 y:) == approachY)
+							(global0._send('x:') == approachX)
+							(global0._send('y:') == approachY)
 						):
 						(cond
 							case forceClose:
-								(self close:)
+								self._send('close:')
 							#end:case
 							case caller:
-								(caller cue:)
+								caller._send('cue:')
 							#end:case
 						)
 					#end:case
@@ -265,23 +265,21 @@ class Door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		doorPoly = ((Polygon new:) type: 2 yourself:)
+		doorPoly = Polygon._send('new:')._send('type:', 2, 'yourself:')
 		if argc:
-			(doorPoly init: &rest)
+			doorPoly._send('init:', &rest)
 		else:
-			(doorPoly
-				init:
-					(brLeft - polyAdjust)
-					(brBottom + polyAdjust)
-					(brLeft - polyAdjust)
-					(brTop - polyAdjust)
-					(brRight + polyAdjust)
-					(brTop - polyAdjust)
-					(brRight + polyAdjust)
-					(brBottom + polyAdjust)
+			doorPoly._send(
+				'init:', (brLeft - polyAdjust), (brBottom + polyAdjust), (-
+						brLeft
+						polyAdjust
+					), (brTop - polyAdjust), (brRight + polyAdjust), (-
+						brTop
+						polyAdjust
+					), (brRight + polyAdjust), (brBottom + polyAdjust)
 			)
 		#endif
-		(global95 add: doorPoly)
+		global95._send('add:', doorPoly)
 	#end:method
 
 	@classmethod
@@ -289,9 +287,9 @@ class Door(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global95 delete: doorPoly)
-		(doorPoly dispose:)
-		(super dispose:)
+		global95._send('delete:', doorPoly)
+		doorPoly._send('dispose:')
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance

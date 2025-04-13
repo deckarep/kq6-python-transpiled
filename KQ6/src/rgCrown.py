@@ -23,12 +23,12 @@ def proc10_2(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	if (global2 script:):
-		((global2 script:)
-			setScript: param1 (global2 script:) (param2 if (argc > 1) else 0)
+	if global2._send('script:'):
+		global2._send('script:')._send(
+			'setScript:', param1, global2._send('script:'), (param2 if (argc > 1) else 0)
 		)
 	else:
-		(global2 setScript: param1 0 (param2 if (argc > 1) else 0))
+		global2._send('setScript:', param1, 0, (param2 if (argc > 1) else 0))
 	#endif
 #end:procedure
 
@@ -83,7 +83,7 @@ class rgCrown(Rgn):
 
 		keep = proc999_5(param1, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290)
 		initialized = 0
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -91,7 +91,7 @@ class rgCrown(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -107,9 +107,9 @@ class rocks(Feature):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc999_5(param1, 1, 5, 2):
-			(global91 say: noun param1 (1 if (param1 == 1) else 0) 0 0 0)
+			global91._send('say:', noun, param1, (1 if (param1 == 1) else 0), 0, 0, 0)
 		else:
-			(global91 say: noun 0 0 0 0 0)
+			global91._send('say:', noun, 0, 0, 0, 0, 0)
 		#endif
 	#end:method
 
@@ -118,7 +118,7 @@ class rocks(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		sightAngle = 26505
 	#end:method
 

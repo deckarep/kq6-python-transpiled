@@ -53,9 +53,9 @@ class NewProp(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 addToFront: self)
-		(global73 addToFront: self)
-		(super init: &rest)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -63,9 +63,9 @@ class NewProp(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(global73 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -76,17 +76,17 @@ class NewProp(Prop):
 		if 
 			(and
 				(not normal)
-				((param1 type:) & 0x4000)
-				(self onMe: param1)
-				(_approachVerbs & (global66 doit: (param1 message:)))
+				(param1._send('type:') & 0x4000)
+				self._send('onMe:', param1)
+				(_approachVerbs & global66._send('doit:', param1._send('message:')))
 			)
-			(CueObj state: 0 cycles: 0 client: self theVerb: (param1 message:))
-			(self doSpecial: (CueObj theVerb:))
-			(param1 claimed: 1)
-			(param1 claimed:)
+			CueObj._send('state:', 0, 'cycles:', 0, 'client:', self, 'theVerb:', param1._send('message:'))
+			self._send('doSpecial:', CueObj._send('theVerb:'))
+			param1._send('claimed:', 1)
+			param1._send('claimed:')
 			return
 		else:
-			(super handleEvent: param1)
+			super._send('handleEvent:', param1)
 		#endif
 	#end:method
 
@@ -95,7 +95,7 @@ class NewProp(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self cue:)
+		self._send('cue:')
 	#end:method
 
 	@classmethod
@@ -103,7 +103,7 @@ class NewProp(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global0 setMotion: PolyPath approachX approachY CueObj)
+		global0._send('setMotion:', PolyPath, approachX, approachY, CueObj)
 	#end:method
 
 #end:class or instance
@@ -128,239 +128,165 @@ class rm850(CastleRoom):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		proc958_0(128, 881, 883, 850)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						0
-						181
-						-10
-						181
-						-10
-						-10
-						319
-						-10
-						319
-						189
-						304
-						179
-						288
-						179
-						279
-						182
-						263
-						182
-						254
-						179
-						246
-						179
-						225
-						164
-						202
-						164
-						191
-						152
-						206
-						152
-						193
-						143
-						229
-						143
-						203
-						129
-						172
-						129
-						156
-						124
-						151
-						116
-						169
-						116
-						169
-						112
-						101
-						112
-						89
-						124
-						76
-						129
-						70
-						129
-						50
-						141
-						57
-						141
-						38
-						155
-						56
-						155
-						45
-						166
-						21
-						166
-					yourself:
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 0, 181, -10, 181, -10, -10, 319, -10, 319, 189, 304, 179, 288, 179, 279, 182, 263, 182, 254, 179, 246, 179, 225, 164, 202, 164, 191, 152, 206, 152, 193, 143, 229, 143, 203, 129, 172, 129, 156, 124, 151, 116, 169, 116, 169, 112, 101, 112, 89, 124, 76, 129, 70, 129, 50, 141, 57, 141, 38, 155, 56, 155, 45, 166, 21, 166,
+					'yourself:'
 				)
 		)
 		if 
 			(and
-				(global0 has: 20)
-				(((global9 at: 8) owner:) == 870)
-				(not (kernel.ScriptID(80, 0) tstFlag: 711 512))
-				((kernel.ScriptID(80, 0) guardTimer:) > 30)
+				global0._send('has:', 20)
+				(global9._send('at:', 8)._send('owner:') == 870)
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 512))
+				(kernel.ScriptID(80, 0)._send('guardTimer:') > 30)
 			)
-			(kernel.ScriptID(80, 0) setFlag: 711 512 guardTimer: 30)
+			kernel.ScriptID(80, 0)._send('setFlag:', 711, 512, 'guardTimer:', 30)
 		#endif
-		(portrait init: setPri: 0)
-		(super init: &rest)
-		(kernel.ScriptID(1015, 6) talkWidth: 150 x: 15 y: 20)
-		(kernel.ScriptID(1015, 7) talkWidth: 135 x: 160 y: 20)
-		if (((global9 at: 27) owner:) == 850):
-			(bird init:)
+		portrait._send('init:', 'setPri:', 0)
+		super._send('init:', &rest)
+		kernel.ScriptID(1015, 6)._send('talkWidth:', 150, 'x:', 15, 'y:', 20)
+		kernel.ScriptID(1015, 7)._send('talkWidth:', 135, 'x:', 160, 'y:', 20)
+		if (global9._send('at:', 27)._send('owner:') == 850):
+			bird._send('init:')
 		#endif
-		(global0
-			init:
-			setScale: Scaler maxScaleSize minScaleSize maxScaleY minScaleY
+		global0._send(
+			'init:',
+			'setScale:', Scaler, maxScaleSize, minScaleSize, maxScaleY, minScaleY
 		)
 		match global12
 			case 870:
-				if ((global102 number:) != 700):
-					(global102 fadeTo: 700 -1)
+				if (global102._send('number:') != 700):
+					global102._send('fadeTo:', 700, -1)
 				#endif
-				(global0 posn: 149 112)
+				global0._send('posn:', 149, 112)
 			#end:case
 			case 781:
-				(global102 fadeTo: 700 -1)
-				(global0 posn: (vizierDoor approachX:) (vizierDoor approachY:))
+				global102._send('fadeTo:', 700, -1)
+				global0._send('posn:', vizierDoor._send('approachX:'), vizierDoor._send('approachY:'))
 			#end:case
 			case 880:
-				(global0 loop: 1)
-				if ((global0 x:) > 126):
-					(global0 posn: 173 130)
+				global0._send('loop:', 1)
+				if (global0._send('x:') > 126):
+					global0._send('posn:', 173, 130)
 				else:
-					(global0 posn: 187 140)
+					global0._send('posn:', 187, 140)
 				#endif
 			#end:case
 			else:
 				local6 = 1
 				if 
 					(or
-						(not (kernel.ScriptID(80, 0) tstFlag: 709 512))
-						(kernel.ScriptID(80, 0) tstFlag: 710 1)
-						(not (kernel.ScriptID(80, 0) tstFlag: 709 128))
+						(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 512))
+						kernel.ScriptID(80, 0)._send('tstFlag:', 710, 1)
+						(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128))
 					)
-					(global0 posn: 230 185)
+					global0._send('posn:', 230, 185)
 				else:
-					(global0 posn: 160 185)
+					global0._send('posn:', 160, 185)
 				#endif
-				(kernel.ScriptID(80, 0) setFlag: 709 128)
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 128)
 			#end:else
 		#end:match
-		(kernel.ScriptID(80, 0) guard1Code: guardsCode guard2Code: guardsCode)
+		kernel.ScriptID(80, 0)._send('guard1Code:', guardsCode, 'guard2Code:', guardsCode)
 		spotEgoScr = captureEgo
 		if 
 			(or
-				(not (kernel.ScriptID(80, 0) tstFlag: 709 512))
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 512))
 				(and
-					(kernel.ScriptID(80, 0) tstFlag: 710 1)
-					(not (kernel.ScriptID(80, 0) tstFlag: 711 256))
+					kernel.ScriptID(80, 0)._send('tstFlag:', 710, 1)
+					(not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 256))
 				)
-				(not (kernel.ScriptID(80, 0) tstFlag: 709 128))
+				(not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128))
 			)
-			(kernel.ScriptID(80, 5)
-				init:
-				noun: 6
-				loop: 3
-				actions: guardDoVerb
-				okToCheck: okToCheckCode
+			kernel.ScriptID(80, 5)._send(
+				'init:',
+				'noun:', 6,
+				'loop:', 3,
+				'actions:', guardDoVerb,
+				'okToCheck:', okToCheckCode
 			)
-			(kernel.ScriptID(80, 5) signal: ((kernel.ScriptID(80, 5) signal:) & 0xefff))
-			(kernel.ScriptID(80, 6)
-				init:
-				noun: 6
-				loop: 3
-				actions: guardDoVerb
-				okToCheck: okToCheckCode
+			kernel.ScriptID(80, 5)._send('signal:', (kernel.ScriptID(80, 5)._send('signal:') & 0xefff))
+			kernel.ScriptID(80, 6)._send(
+				'init:',
+				'noun:', 6,
+				'loop:', 3,
+				'actions:', guardDoVerb,
+				'okToCheck:', okToCheckCode
 			)
-			(kernel.ScriptID(80, 6) signal: ((kernel.ScriptID(80, 6) signal:) & 0xefff))
+			kernel.ScriptID(80, 6)._send('signal:', (kernel.ScriptID(80, 6)._send('signal:') & 0xefff))
 			local1 = 1
 		#endif
-		(vizierDoor cel: ((global12 == 781) * 3) init:)
-		(global32
-			add:
-				floor
-				roomFeatures
-				studyDoor
-				cassima_door
-				pillar
-				chairs
-				hideFeature
-			eachElementDo: #init
+		vizierDoor._send('cel:', ((global12 == 781) * 3), 'init:')
+		global32._send(
+			'add:', floor, roomFeatures, studyDoor, cassima_door, pillar, chairs, hideFeature,
+			'eachElementDo:', #init
 		)
 		(cond
-			case (local1 and (kernel.ScriptID(80, 0) tstFlag: 711 128)):
-				(kernel.ScriptID(80, 5) loop: 2 posn: 118 116 okToCheck: 0)
-				(kernel.ScriptID(80, 6) loop: 2 posn: 133 117 okToCheck: 0)
-				(self setScript: walkOutAtWrongTime)
+			case (local1 and kernel.ScriptID(80, 0)._send('tstFlag:', 711, 128)):
+				kernel.ScriptID(80, 5)._send('loop:', 2, 'posn:', 118, 116, 'okToCheck:', 0)
+				kernel.ScriptID(80, 6)._send('loop:', 2, 'posn:', 133, 117, 'okToCheck:', 0)
+				self._send('setScript:', walkOutAtWrongTime)
 			#end:case
-			case (not (kernel.ScriptID(80, 0) tstFlag: 709 128)):
-				(kernel.ScriptID(80, 5) posn: 105 149)
-				(kernel.ScriptID(80, 6) posn: 143 150)
-				(self setScript: shouldNotHaveComeOut)
+			case (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128)):
+				kernel.ScriptID(80, 5)._send('posn:', 105, 149)
+				kernel.ScriptID(80, 6)._send('posn:', 143, 150)
+				self._send('setScript:', shouldNotHaveComeOut)
 			#end:case
 			case 
 				(and
-					(kernel.ScriptID(80, 0) tstFlag: 710 1)
-					(not (kernel.ScriptID(80, 0) tstFlag: 711 256))
+					kernel.ScriptID(80, 0)._send('tstFlag:', 710, 1)
+					(not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 256))
 				):
-				(kernel.ScriptID(80, 5) okToCheck: 0 posn: 126 231)
-				(kernel.ScriptID(80, 6) okToCheck: 0 posn: 163 233)
-				(self setScript: walkGuardsOnScreen)
+				kernel.ScriptID(80, 5)._send('okToCheck:', 0, 'posn:', 126, 231)
+				kernel.ScriptID(80, 6)._send('okToCheck:', 0, 'posn:', 163, 233)
+				self._send('setScript:', walkGuardsOnScreen)
 			#end:case
 			case (local6 and local1):
-				(global1 handsOff:)
-				(global0 setSpeed: 8)
-				(hideFeature doVerb: 5)
-				(kernel.ScriptID(80, 5) sightAngle: 180 posn: 105 149)
-				(kernel.ScriptID(80, 6) sightAngle: 180 posn: 143 150)
-				if (not (kernel.ScriptID(80, 0) tstFlag: 709 8)):
-					(kernel.ScriptID(80, 0) setFlag: 709 8)
-					(startGuardScr next: watchGuardsTalk)
-					(watchGuardsTalk next: guardPatrol)
+				global1._send('handsOff:')
+				global0._send('setSpeed:', 8)
+				hideFeature._send('doVerb:', 5)
+				kernel.ScriptID(80, 5)._send('sightAngle:', 180, 'posn:', 105, 149)
+				kernel.ScriptID(80, 6)._send('sightAngle:', 180, 'posn:', 143, 150)
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8)):
+					kernel.ScriptID(80, 0)._send('setFlag:', 709, 8)
+					startGuardScr._send('next:', watchGuardsTalk)
+					watchGuardsTalk._send('next:', guardPatrol)
 				else:
-					(startGuardScr next: guardPatrol)
+					startGuardScr._send('next:', guardPatrol)
 				#endif
-				(kernel.ScriptID(80, 5) setScript: startGuardScr)
+				kernel.ScriptID(80, 5)._send('setScript:', startGuardScr)
 			#end:case
 			else:
 				(cond
-					case (kernel.ScriptID(80, 0) tstFlag: 709 2):
-						(kernel.ScriptID(80, 5) posn: 118 116)
-						(kernel.ScriptID(80, 6) posn: 133 117)
+					case kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
+						kernel.ScriptID(80, 5)._send('posn:', 118, 116)
+						kernel.ScriptID(80, 6)._send('posn:', 133, 117)
 					#end:case
-					case (kernel.ScriptID(80, 0) tstFlag: 711 256):
+					case kernel.ScriptID(80, 0)._send('tstFlag:', 711, 256):
 						spotEgoScr = walkGuardsOnScreen
-						(kernel.ScriptID(80, 0) clrFlag: 710 1 guardTimer: 2)
+						kernel.ScriptID(80, 0)._send('clrFlag:', 710, 1, 'guardTimer:', 2)
 					#end:case
 					case local1:
-						(kernel.ScriptID(80, 5) posn: 118 126)
-						(kernel.ScriptID(80, 6) posn: 133 126)
-						(startGuardScr next: guardPatrol)
-						(kernel.ScriptID(80, 5) setScript: startGuardScr)
+						kernel.ScriptID(80, 5)._send('posn:', 118, 126)
+						kernel.ScriptID(80, 6)._send('posn:', 133, 126)
+						startGuardScr._send('next:', guardPatrol)
+						kernel.ScriptID(80, 5)._send('setScript:', startGuardScr)
 					#end:case
 				)
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				if (global12 == 781):
-					(global1 handsOff:)
+					global1._send('handsOff:')
 				#endif
 			#end:else
 		)
-		if (global0 scaler:):
-			((global0 scaler:) doit:)
+		if global0._send('scaler:'):
+			global0._send('scaler:')._send('doit:')
 		#endif
-		(kernel.ScriptID(80, 0) setupGuards:)
+		kernel.ScriptID(80, 0)._send('setupGuards:')
 		if local1:
-			(global105 number: 702 loop: 1 play:)
+			global105._send('number:', 702, 'loop:', 1, 'play:')
 		#endif
 	#end:method
 
@@ -369,31 +295,31 @@ class rm850(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		local0 = (global0 onControl: 1)
+		local0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case 
 				(and
-					((User alterEgo:) edgeHit:)
-					(kernel.ScriptID(80, 0) tstFlag: 709 2)
+					User._send('alterEgo:')._send('edgeHit:')
+					kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2)
 				):
-				(self setScript: weddingStarts)
+				self._send('setScript:', weddingStarts)
 			#end:case
 			case proc999_4(158, 0, 320, 115, global0):
-				(global2 newRoom: 870)
+				global2._send('newRoom:', 870)
 			#end:case
 			case (local0 & 0x2000):
-				(global2 newRoom: 781)
+				global2._send('newRoom:', 781)
 			#end:case
 			case (local0 & 0x1200):
-				(global2 newRoom: 880)
+				global2._send('newRoom:', 880)
 			#end:case
 		)
-		if ((not (kernel.ScriptID(80, 0) tstFlag: 710 2)) and ((global0 y:) < 117)):
-			(kernel.ScriptID(80, 0) setFlag: 710 2)
-			(global91 say: 3 3 17 0)
+		if ((not kernel.ScriptID(80, 0)._send('tstFlag:', 710, 2)) and (global0._send('y:') < 117)):
+			kernel.ScriptID(80, 0)._send('setFlag:', 710, 2)
+			global91._send('say:', 3, 3, 17, 0)
 		#endif
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -404,29 +330,29 @@ class rm850(CastleRoom):
 		(return
 			match param1
 				case 1:
-					(roomConv add: -1 noun param1 0 1)
+					roomConv._send('add:', -1, noun, param1, 0, 1)
 					1
 					if local1:
-						(roomConv add: -1 noun param1 21 1)
+						roomConv._send('add:', -1, noun, param1, 21, 1)
 						1
 					else:
-						(roomConv add: -1 noun param1 22 1)
+						roomConv._send('add:', -1, noun, param1, 22, 1)
 						1
 					#endif
-					(roomConv init:)
+					roomConv._send('init:')
 					1
 				#end:case
 				case 2:
 					if local1:
-						(global91 say: noun param1 21)
+						global91._send('say:', noun, param1, 21)
 						1
 					else:
-						(global91 say: noun param1 22)
+						global91._send('say:', noun, param1, 22)
 						1
 					#endif
 				#end:case
 				else:
-					(super doVerb: param1 &rest)
+					super._send('doVerb:', param1, &rest)
 					1
 				#end:else
 			#end:match
@@ -438,16 +364,16 @@ class rm850(CastleRoom):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (kernel.ScriptID(80, 5) script:):
-			(kernel.ScriptID(80, 5) setScript: 0)
+		if kernel.ScriptID(80, 5)._send('script:'):
+			kernel.ScriptID(80, 5)._send('setScript:', 0)
 		#endif
 		if (param1 != 730):
-			(kernel.ScriptID(80, 0) clrFlag: 711 16384)
+			kernel.ScriptID(80, 0)._send('clrFlag:', 711, 16384)
 		#endif
-		if (kernel.ScriptID(80, 0) tstFlag: 711 256):
-			(kernel.ScriptID(80, 0) guardTimer: 0)
+		if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 256):
+			kernel.ScriptID(80, 0)._send('guardTimer:', 0)
 		#endif
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -457,15 +383,15 @@ class rm850(CastleRoom):
 
 		match param1
 			case 1:
-				(self setScript: weddingStartsNow)
+				self._send('setScript:', weddingStartsNow)
 			#end:case
 			case 2:
-				(global91 say: 1 0 24 0)
+				global91._send('say:', 1, 0, 24, 0)
 				spotEgoScr = walkGuardsOnScreen
-				(kernel.ScriptID(80, 0) setFlag: 711 256 guardTimer: 5)
+				kernel.ScriptID(80, 0)._send('setFlag:', 711, 256, 'guardTimer:', 5)
 			#end:case
 			else:
-				(super warnUser: param1 &rest)
+				super._send('warnUser:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -480,10 +406,10 @@ class hideEgo(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global73 addToFront: self)
-		(global72 addToFront: self)
-		register = (kernel.ScriptID(80, 0) tstFlag: 709 8)
-		(super init: &rest)
+		global73._send('addToFront:', self)
+		global72._send('addToFront:', self)
+		register = kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -491,16 +417,16 @@ class hideEgo(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global0 mover:) and (state == 3)):
-			(global1 handsOff:)
+		if (global0._send('mover:') and (state == 3)):
+			global1._send('handsOff:')
 			if (not local4):
-				local4 = ((User curEvent:) x:)
-				local5 = ((User curEvent:) y:)
+				local4 = User._send('curEvent:')._send('x:')
+				local5 = User._send('curEvent:')._send('y:')
 				cycles = 3
 			#endif
-			(global0 setMotion: 0)
+			global0._send('setMotion:', 0)
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -508,30 +434,30 @@ class hideEgo(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((not (param1 modifiers:)) and (User input:)):
-			(param1 claimed: 1)
+		if ((not param1._send('modifiers:')) and User._send('input:')):
+			param1._send('claimed:', 1)
 			if 
 				(and
-					((global69 curIcon:) == (global69 at: 3))
+					(global69._send('curIcon:') == global69._send('at:', 3))
 					local1
 					(or
-						(kernel.ScriptID(80, 5) onMe: param1)
-						(kernel.ScriptID(80, 6) onMe: param1)
+						kernel.ScriptID(80, 5)._send('onMe:', param1)
+						kernel.ScriptID(80, 6)._send('onMe:', param1)
 					)
 				)
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				local8 = 1
-				(CueObj state: 0 cycles: 0 client: kernel.ScriptID(80, 5) theVerb: 2)
-				((CueObj client:) approachX: 218 approachY: 178)
-				(kernel.ScriptID(80, 5) okToCheck: 0)
-				(kernel.ScriptID(80, 6) okToCheck: 0)
-				(global91 say: 6 2 0 1 self)
+				CueObj._send('state:', 0, 'cycles:', 0, 'client:', kernel.ScriptID(80, 5), 'theVerb:', 2)
+				CueObj._send('client:')._send('approachX:', 218, 'approachY:', 178)
+				kernel.ScriptID(80, 5)._send('okToCheck:', 0)
+				kernel.ScriptID(80, 6)._send('okToCheck:', 0)
+				global91._send('say:', 6, 2, 0, 1, self)
 				next = talkToGuards
 			else:
-				(param1 claimed: 0)
+				param1._send('claimed:', 0)
 			#endif
 		#endif
-		(param1 claimed:)
+		param1._send('claimed:')
 	#end:method
 
 	@classmethod
@@ -541,31 +467,31 @@ class hideEgo(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setMotion: PolyPath 260 180 self)
+				global1._send('handsOff:')
+				global0._send('setMotion:', PolyPath, 260, 180, self)
 			#end:case
 			case 1:
-				(global0 setHeading: 225 self)
+				global0._send('setHeading:', 225, self)
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 881
-					setLoop: 2
-					cel: 0
-					x: 246
-					y: 188
-					setScale:
-					scaleX: 148
-					scaleY: 148
-					cycleSpeed: 8
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 881,
+					'setLoop:', 2,
+					'cel:', 0,
+					'x:', 246,
+					'y:', 188,
+					'setScale:',
+					'scaleX:', 148,
+					'scaleY:', 148,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 3:
 				if (not local9):
 					if register:
-						(global1 handsOn:)
+						global1._send('handsOn:')
 					#endif
 				else:
 					local9 = 0
@@ -573,50 +499,48 @@ class hideEgo(Script):
 				#endif
 			#end:case
 			case 4:
-				(global73 delete: self)
-				(global72 delete: self)
-				(kernel.ScriptID(80, 5) sightAngle: 40)
-				(kernel.ScriptID(80, 6) sightAngle: 40)
-				(global0 setCycle: Beg self)
+				global73._send('delete:', self)
+				global72._send('delete:', self)
+				kernel.ScriptID(80, 5)._send('sightAngle:', 40)
+				kernel.ScriptID(80, 6)._send('sightAngle:', 40)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 5:
-				(global0
-					reset: 5 900
-					posn: (hideFeature approachX:) (hideFeature approachY:)
+				global0._send(
+					'reset:', 5, 900,
+					'posn:', hideFeature._send('approachX:'), hideFeature._send('approachY:')
 				)
 				(cond
 					case 
 						(and
-							(CueObj client:)
-							((CueObj client:) approachX:)
+							CueObj._send('client:')
+							CueObj._send('client:')._send('approachX:')
 							(&
-								((CueObj client:) _approachVerbs:)
-								(global66 doit: (CueObj theVerb:))
+								CueObj._send('client:')._send('_approachVerbs:')
+								global66._send('doit:', CueObj._send('theVerb:'))
 							)
 						):
-						if ((CueObj client:) == hideFeature):
+						if (CueObj._send('client:') == hideFeature):
 							local10 = 1
-							((CueObj client:) doVerb: (CueObj theVerb:))
+							CueObj._send('client:')._send('doVerb:', CueObj._send('theVerb:'))
 						else:
-							(global0
-								setMotion:
-									PolyPath
-									((CueObj client:) approachX:)
-									(+
-										(global0 z:)
-										((CueObj client:) approachY:)
-									)
-									CueObj
+							global0._send(
+								'setMotion:', PolyPath, CueObj._send('client:')._send(
+										'approachX:'
+									), (+
+										global0._send('z:')
+										CueObj._send('client:')._send('approachY:')
+									), CueObj
 							)
 						#endif
 					#end:case
 					case local4:
-						(global0 setMotion: PolyPath local4 local5)
+						global0._send('setMotion:', PolyPath, local4, local5)
 					#end:case
 				)
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				local4 = local5 = register = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -633,43 +557,43 @@ class putDownBird(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global0 setHeading: 270 self)
+				global1._send('handsOff:')
+				global0._send('setHeading:', 270, self)
 			#end:case
 			case 1:
 				cycles = 3
 			#end:case
 			case 2:
-				(global91 say: 4 37 19 0 self)
+				global91._send('say:', 4, 37, 19, 0, self)
 			#end:case
 			case 3:
-				(global105 number: 930 loop: -1 play:)
-				(global0
-					normal: 0
-					view: 883
-					loop: 0
-					cel: 0
-					setScale:
-					scaleX: 85
-					scaleY: 85
-					cycleSpeed: 8
-					setCycle: Fwd
+				global105._send('number:', 930, 'loop:', -1, 'play:')
+				global0._send(
+					'normal:', 0,
+					'view:', 883,
+					'loop:', 0,
+					'cel:', 0,
+					'setScale:',
+					'scaleX:', 85,
+					'scaleY:', 85,
+					'cycleSpeed:', 8,
+					'setCycle:', Fwd
 				)
 				seconds = 5
 			#end:case
 			case 4:
-				(global105 loop: 1 stop:)
-				(global0 loop: 2 cel: 0 setCycle: End self)
+				global105._send('loop:', 1, 'stop:')
+				global0._send('loop:', 2, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 5:
-				(bird init:)
-				(global102 fadeTo: 931 -1)
-				(global0 put: 27 850)
-				(global0 reset: 1)
-				(global1 givePoints: 4)
-				(kernel.ScriptID(80, 0) setFlag: 711 16384)
-				(global1 handsOn:)
-				(self dispose:)
+				bird._send('init:')
+				global102._send('fadeTo:', 931, -1)
+				global0._send('put:', 27, 850)
+				global0._send('reset:', 1)
+				global1._send('givePoints:', 4)
+				kernel.ScriptID(80, 0)._send('setFlag:', 711, 16384)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -689,70 +613,70 @@ class timerScr(Script):
 				seconds = 7
 			#end:case
 			case 1:
-				(global91 say: 1 0 2 1 self 880)
+				global91._send('say:', 1, 0, 2, 1, self, 880)
 			#end:case
 			case 2:
-				if (local0 & (floor onMeCheck:)):
-					(global1 handsOff:)
-					(global2 spotEgo: proc80_7())
-					(self dispose:)
+				if (local0 & floor._send('onMeCheck:')):
+					global1._send('handsOff:')
+					global2._send('spotEgo:', proc80_7())
+					self._send('dispose:')
 				else:
-					(kernel.ScriptID(80, 6)
-						setMotion: MoveTo (bird x:) ((bird y:) - 2)
+					kernel.ScriptID(80, 6)._send(
+						'setMotion:', MoveTo, bird._send('x:'), (bird._send('y:') - 2)
 					)
-					(kernel.ScriptID(80, 5)
-						setMotion: MoveTo ((bird x:) - 30) (bird y:) self
+					kernel.ScriptID(80, 5)._send(
+						'setMotion:', MoveTo, (bird._send('x:') - 30), bird._send('y:'), self
 					)
 				#endif
 			#end:case
 			case 3:
-				(kernel.ScriptID(80, 5) setMotion: MoveTo 129 144 self)
+				kernel.ScriptID(80, 5)._send('setMotion:', MoveTo, 129, 144, self)
 			#end:case
 			case 4:
-				(kernel.ScriptID(80, 5) setHeading: 90 self)
+				kernel.ScriptID(80, 5)._send('setHeading:', 90, self)
 			#end:case
 			case 5:
 				cycles = 4
 			#end:case
 			case 6:
-				(roomConv add: 880 1 0 2 2 add: 880 1 0 2 3 init: self)
+				roomConv._send('add:', 880, 1, 0, 2, 2, 'add:', 880, 1, 0, 2, 3, 'init:', self)
 			#end:case
 			case 7:
-				(kernel.ScriptID(80, 5) view: 884 loop: 1 cel: 0 setCycle: CT 4 1 self)
-				(global102 fadeTo: 700 -1)
+				kernel.ScriptID(80, 5)._send('view:', 884, 'loop:', 1, 'cel:', 0, 'setCycle:', CT, 4, 1, self)
+				global102._send('fadeTo:', 700, -1)
 			#end:case
 			case 8:
-				(bird hide:)
-				(kernel.ScriptID(80, 5) setCycle: End self)
+				bird._send('hide:')
+				kernel.ScriptID(80, 5)._send('setCycle:', End, self)
 			#end:case
 			case 9:
-				(roomConv
-					add: 880 1 0 2 4
-					add: 880 1 0 2 5
-					add: 880 1 0 2 6
-					add: 880 1 0 2 7
-					add: 880 1 0 2 8
-					add: 880 1 0 2 9
-					add: 880 1 0 2 10
-					add: 880 1 0 2 11
-					add: 880 1 0 2 12
-					init: self
+				roomConv._send(
+					'add:', 880, 1, 0, 2, 4,
+					'add:', 880, 1, 0, 2, 5,
+					'add:', 880, 1, 0, 2, 6,
+					'add:', 880, 1, 0, 2, 7,
+					'add:', 880, 1, 0, 2, 8,
+					'add:', 880, 1, 0, 2, 9,
+					'add:', 880, 1, 0, 2, 10,
+					'add:', 880, 1, 0, 2, 11,
+					'add:', 880, 1, 0, 2, 12,
+					'init:', self
 				)
 			#end:case
 			case 10:
-				(kernel.ScriptID(80, 5) view: 724 loop: 4 cel: 0 setCycle: StopWalk -1)
-				(self setScript: walkGuardsOffScreen self)
+				kernel.ScriptID(80, 5)._send('view:', 724, 'loop:', 4, 'cel:', 0, 'setCycle:', StopWalk, -1)
+				self._send('setScript:', walkGuardsOffScreen, self)
 			#end:case
 			case 11:
-				(global91 say: 1 0 13 0 self)
+				global91._send('say:', 1, 0, 13, 0, self)
 			#end:case
 			case 12:
-				if ((global2 script:) == hideEgo):
-					(CueObj client: 0)
+				if (global2._send('script:') == hideEgo):
+					CueObj._send('client:', 0)
 					local4 = 0
-					(hideEgo caller: self)
-					if (((global2 script:) state:) == 3):
-						(hideEgo cue:)
+					hideEgo._send('caller:', self)
+					if (global2._send('script:')._send('state:') == 3):
+						hideEgo._send('cue:')
 					else:
 						local9 = 1
 					#endif
@@ -761,8 +685,8 @@ class timerScr(Script):
 				#endif
 			#end:case
 			case 13:
-				(global2 spotEgo: proc80_7())
-				(self dispose:)
+				global2._send('spotEgo:', proc80_7())
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -779,14 +703,14 @@ class walkGuardsOffScreen(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 5) setMotion: MoveTo 126 176 self)
-				(kernel.ScriptID(80, 6) setMotion: MoveTo 163 176)
+				kernel.ScriptID(80, 5)._send('setMotion:', MoveTo, 126, 176, self)
+				kernel.ScriptID(80, 6)._send('setMotion:', MoveTo, 163, 176)
 			#end:case
 			case 1:
 				if register:
-					(global2 spotEgo: proc80_7())
+					global2._send('spotEgo:', proc80_7())
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -802,7 +726,7 @@ class captureEgo(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		register = 0
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -812,19 +736,19 @@ class captureEgo(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 5) setScript: 0 setMotion: 0 okToCheck: 0)
-				(kernel.ScriptID(80, 6) setScript: 0 setMotion: 0 okToCheck: 0)
+				kernel.ScriptID(80, 5)._send('setScript:', 0, 'setMotion:', 0, 'okToCheck:', 0)
+				kernel.ScriptID(80, 6)._send('setScript:', 0, 'setMotion:', 0, 'okToCheck:', 0)
 				proc913_4(register, global0, self)
 			#end:case
 			case 1:
-				(global91 say: 1 0 9 1 self)
+				global91._send('say:', 1, 0, 9, 1, self)
 			#end:case
 			case 2:
 				(cond
-					case (not (global0 facingMe: kernel.ScriptID(80, 5))):
+					case (not global0._send('facingMe:', kernel.ScriptID(80, 5))):
 						proc913_4(kernel.ScriptID(80, 5), global0, self)
 					#end:case
-					case (not (global0 facingMe: kernel.ScriptID(80, 6))):
+					case (not global0._send('facingMe:', kernel.ScriptID(80, 6))):
 						proc913_4(kernel.ScriptID(80, 6), global0, self)
 					#end:case
 					else:
@@ -836,21 +760,21 @@ class captureEgo(Script):
 				proc913_4(global0, register, self)
 			#end:case
 			case 4:
-				(roomConv add: -1 1 0 9 2 add: -1 1 0 9 3 init: self)
+				roomConv._send('add:', -1, 1, 0, 9, 2, 'add:', -1, 1, 0, 9, 3, 'init:', self)
 			#end:case
 			case 5:
-				(proc80_7() setScript: kernel.ScriptID(80, 4) self 1)
+				proc80_7()._send('setScript:', kernel.ScriptID(80, 4), self, 1)
 			#end:case
 			case 6:
-				(roomConv
-					add: -1 1 0 9 4
-					add: -1 1 0 9 5
-					add: -1 1 0 9 6
-					init: self
+				roomConv._send(
+					'add:', -1, 1, 0, 9, 4,
+					'add:', -1, 1, 0, 9, 5,
+					'add:', -1, 1, 0, 9, 6,
+					'init:', self
 				)
 			#end:case
 			case 7:
-				(global2 newRoom: 820)
+				global2._send('newRoom:', 820)
 			#end:case
 		#end:match
 	#end:method
@@ -866,7 +790,7 @@ class walkGuardsOnScreen(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		register = 0
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -877,38 +801,38 @@ class walkGuardsOnScreen(Script):
 		match state = param1
 			case 0:
 				local1 = 1
-				(kernel.ScriptID(80, 0) clrFlag: 710 1)
-				(kernel.ScriptID(80, 5)
-					init:
-					posn: 126 231
-					setMotion: MoveTo 126 188 self
+				kernel.ScriptID(80, 0)._send('clrFlag:', 710, 1)
+				kernel.ScriptID(80, 5)._send(
+					'init:',
+					'posn:', 126, 231,
+					'setMotion:', MoveTo, 126, 188, self
 				)
-				(kernel.ScriptID(80, 6) init: posn: 163 233 setMotion: MoveTo 163 188)
-				(kernel.ScriptID(80, 0) setupGuards:)
+				kernel.ScriptID(80, 6)._send('init:', 'posn:', 163, 233, 'setMotion:', MoveTo, 163, 188)
+				kernel.ScriptID(80, 0)._send('setupGuards:')
 			#end:case
 			case 1:
-				(global91 say: 1 0 11 0 self)
+				global91._send('say:', 1, 0, 11, 0, self)
 			#end:case
 			case 2:
-				if ((global2 script:) == hideEgo):
-					(CueObj client: 0)
+				if (global2._send('script:') == hideEgo):
+					CueObj._send('client:', 0)
 					local4 = 0
-					(hideEgo caller: self)
-					if ((hideEgo state:) == 3):
-						(hideEgo cue:)
+					hideEgo._send('caller:', self)
+					if (hideEgo._send('state:') == 3):
+						hideEgo._send('cue:')
 					else:
 						local9 = 1
 					#endif
 				else:
-					(self cue:)
+					self._send('cue:')
 				#endif
 			#end:case
 			case 3:
-				if (not (vizierDoor cel:)):
-					(global2 spotEgoScr: captureEgo)
-					(global2 spotEgo: proc80_7())
+				if (not vizierDoor._send('cel:')):
+					global2._send('spotEgoScr:', captureEgo)
+					global2._send('spotEgo:', proc80_7())
 				else:
-					(kernel.ScriptID(80, 0) setFlag: 709 1)
+					kernel.ScriptID(80, 0)._send('setFlag:', 709, 1)
 				#endif
 			#end:case
 		#end:match
@@ -925,7 +849,7 @@ class shouldNotHaveComeOut(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		register = 0
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -935,15 +859,15 @@ class shouldNotHaveComeOut(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 5) okToCheck: 0)
-				(kernel.ScriptID(80, 6) okToCheck: 0)
+				kernel.ScriptID(80, 5)._send('okToCheck:', 0)
+				kernel.ScriptID(80, 6)._send('okToCheck:', 0)
 				cycles = 4
 			#end:case
 			case 1:
-				(global91 say: 1 0 3 0 self)
+				global91._send('say:', 1, 0, 3, 0, self)
 			#end:case
 			case 2:
-				(global2 spotEgo: proc80_7())
+				global2._send('spotEgo:', proc80_7())
 			#end:case
 		#end:match
 	#end:method
@@ -959,7 +883,7 @@ class talkToGuards(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		register = 0
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -969,25 +893,25 @@ class talkToGuards(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(kernel.ScriptID(80, 5) okToCheck: 0)
-				(kernel.ScriptID(80, 6) okToCheck: 0)
-				(kernel.ScriptID(80, 5) approachX: 0 approachY: 0)
+				global1._send('handsOff:')
+				kernel.ScriptID(80, 5)._send('okToCheck:', 0)
+				kernel.ScriptID(80, 6)._send('okToCheck:', 0)
+				kernel.ScriptID(80, 5)._send('approachX:', 0, 'approachY:', 0)
 				if (not local8):
-					(global91 say: 6 2 0 1 self)
+					global91._send('say:', 6, 2, 0, 1, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 1:
 				if (local0 & 0x0080):
-					(global0 setMotion: PolyPath 218 178 self)
+					global0._send('setMotion:', PolyPath, 218, 178, self)
 				else:
 					cycles = 1
 				#endif
 			#end:case
 			case 2:
-				if (not (global0 facingMe: kernel.ScriptID(80, 5))):
+				if (not global0._send('facingMe:', kernel.ScriptID(80, 5))):
 					proc913_4(global0, kernel.ScriptID(80, 5), self)
 				else:
 					cycles = 1
@@ -997,11 +921,11 @@ class talkToGuards(Script):
 				cycles = 1
 			#end:case
 			case 4:
-				(global91 say: 6 2 0 2 self oneOnly: 0)
+				global91._send('say:', 6, 2, 0, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 5:
-				(global2 spotEgo: proc80_7())
-				(self dispose:)
+				global2._send('spotEgo:', proc80_7())
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1018,11 +942,11 @@ class startGuardScr(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 5) ignoreActors: 1 setMotion: MoveTo 118 116 self)
-				(kernel.ScriptID(80, 6) setMotion: MoveTo 133 117)
+				kernel.ScriptID(80, 5)._send('ignoreActors:', 1, 'setMotion:', MoveTo, 118, 116, self)
+				kernel.ScriptID(80, 6)._send('setMotion:', MoveTo, 133, 117)
 			#end:case
 			case 1:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1042,11 +966,11 @@ class watchGuardsTalk(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 0 self)
+				global91._send('say:', 1, 0, 1, 0, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1070,16 +994,16 @@ class guardPatrol(Script):
 			#end:case
 			case 2:
 				if (not local7):
-					(kernel.ScriptID(80, 5) setMotion: MoveTo 102 145 self)
-					(kernel.ScriptID(80, 6) setMotion: MoveTo 143 145)
+					kernel.ScriptID(80, 5)._send('setMotion:', MoveTo, 102, 145, self)
+					kernel.ScriptID(80, 6)._send('setMotion:', MoveTo, 143, 145)
 				else:
-					(self dispose:)
+					self._send('dispose:')
 				#endif
 			#end:case
 			case 3:
 				state = -1
-				(kernel.ScriptID(80, 5) setMotion: MoveTo 115 114 self)
-				(kernel.ScriptID(80, 6) setMotion: MoveTo 130 114)
+				kernel.ScriptID(80, 5)._send('setMotion:', MoveTo, 115, 114, self)
+				kernel.ScriptID(80, 6)._send('setMotion:', MoveTo, 130, 114)
 			#end:case
 		#end:match
 	#end:method
@@ -1096,18 +1020,18 @@ class weddingStarts(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global102 number: 701 loop: -1 play:)
+				global1._send('handsOff:')
+				global102._send('number:', 701, 'loop:', -1, 'play:')
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 8 1 self)
+				global91._send('say:', 1, 0, 8, 1, self)
 			#end:case
 			case 2:
-				(global91 say: 1 0 8 2 self)
+				global91._send('say:', 1, 0, 8, 2, self)
 			#end:case
 			case 3:
-				(global2 newRoom: 730)
+				global2._send('newRoom:', 730)
 			#end:case
 		#end:match
 	#end:method
@@ -1124,17 +1048,17 @@ class weddingStartsNow(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(kernel.ScriptID(80, 0) setFlag: 711 16384)
+				global1._send('handsOff:')
+				kernel.ScriptID(80, 0)._send('setFlag:', 711, 16384)
 				cycles = 1
 			#end:case
 			case 1:
-				(global91 say: 1 0 8 0 self)
+				global91._send('say:', 1, 0, 8, 0, self)
 			#end:case
 			case 2:
-				(kernel.ScriptID(80, 5) setScript: walkGuardsOffScreen 0 1)
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(80, 5)._send('setScript:', walkGuardsOffScreen, 0, 1)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1154,14 +1078,14 @@ class walkOutAtWrongTime(Script):
 				cycles = 3
 			#end:case
 			case 1:
-				if (global5 contains: bird):
-					(global91 say: 1 0 33 0 self)
+				if global5._send('contains:', bird):
+					global91._send('say:', 1, 0, 33, 0, self)
 				else:
-					(global91 say: 1 0 7 0 self)
+					global91._send('say:', 1, 0, 7, 0, self)
 				#endif
 			#end:case
 			case 2:
-				(global2 spotEgo: proc80_7())
+				global2._send('spotEgo:', proc80_7())
 			#end:case
 		#end:match
 	#end:method
@@ -1179,20 +1103,20 @@ class lookThruKeyhole(Script):
 		match state = param1
 			case 0:
 				(= temp0
-					match (CueObj client:)
+					match CueObj._send('client:')
 						case vizierDoor: 795#end:case
 						case studyDoor: 798#end:case
 					#end:match
 				)
-				(kernel.ScriptID(82, 1)
-					noun: ((CueObj client:) noun:)
-					actions: keyHoleActions
-					init: temp0 0 0 92 54
+				kernel.ScriptID(82, 1)._send(
+					'noun:', CueObj._send('client:')._send('noun:'),
+					'actions:', keyHoleActions,
+					'init:', temp0, 0, 0, 92, 54
 				)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: ((CueObj client:) noun:) 1 29)
+				global91._send('say:', CueObj._send('client:')._send('noun:'), 1, 29)
 			#end:case
 		#end:match
 	#end:method
@@ -1215,8 +1139,8 @@ class bird(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: Fwd ignoreActors: setScript: timerScr)
+		super._send('init:', &rest)
+		self._send('setCycle:', Fwd, 'ignoreActors:', 'setScript:', timerScr)
 	#end:method
 
 #end:class or instance
@@ -1235,9 +1159,9 @@ class portrait(View):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		(= y
-			(112 if proc999_5(((global9 at: 26) owner:), 880, global0) else 100)
+			(112 if proc999_5(global9._send('at:', 26)._send('owner:'), 880, global0) else 100)
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -1260,16 +1184,16 @@ class vizierDoor(NewProp):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if cel:
-			(self setScript: closeMe)
+			self._send('setScript:', closeMe)
 		#endif
-		(super init: &rest)
+		super._send('init:', &rest)
 		if local1:
-			if (not (kernel.ScriptID(80, 0) tstFlag: 709 2)):
-				(self approachVerbs: 5)
+			if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2)):
+				self._send('approachVerbs:', 5)
 				normal = 0
 			#endif
 		else:
-			(self approachVerbs: 2 5)
+			self._send('approachVerbs:', 2, 5)
 		#endif
 	#end:method
 
@@ -1278,14 +1202,14 @@ class vizierDoor(NewProp):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((global69 curIcon:) == (global69 at: 2)):
-			if ((global0 view:) == 881):
+		if (global69._send('curIcon:') == global69._send('at:', 2)):
+			if (global0._send('view:') == 881):
 				sightAngle = 26505
 			else:
 				sightAngle = 40
 			#endif
 		#endif
-		return (super onMe: param1)
+		return super._send('onMe:', param1)
 	#end:method
 
 	@classmethod
@@ -1296,29 +1220,29 @@ class vizierDoor(NewProp):
 		if (not local1):
 			match param1
 				case 5:
-					if (not (kernel.ScriptID(80, 0) tstFlag: 711 1024)):
-						(kernel.ScriptID(80, 0) setFlag: 711 1024)
-						(global91 say: noun param1 31 1)
+					if (not kernel.ScriptID(80, 0)._send('tstFlag:', 711, 1024)):
+						kernel.ScriptID(80, 0)._send('setFlag:', 711, 1024)
+						global91._send('say:', noun, param1, 31, 1)
 					#endif
-					(global2 setScript: openVizDoor)
+					global2._send('setScript:', openVizDoor)
 				#end:case
 				case 1:
 					if (not local2):
 						local2.post('++')
-						(_approachVerbs |= (global66 doit: 1))
-						(global91 say: 10 param1 27)
+						(_approachVerbs |= global66._send('doit:', 1))
+						global91._send('say:', 10, param1, 27)
 					else:
-						(global2 setScript: kernel.ScriptID(82) 0 lookThruKeyhole)
+						global2._send('setScript:', kernel.ScriptID(82), 0, lookThruKeyhole)
 					#endif
 				#end:case
 				case 2:
-					(global91 say: noun param1 22)
+					global91._send('say:', noun, param1, 22)
 				#end:case
 				else:
-					if ((global66 doit: param1) == -32768):
-						(global91 say: 9 0)
+					if (global66._send('doit:', param1) == -32768):
+						global91._send('say:', 9, 0)
 					else:
-						(super doVerb: param1)
+						super._send('doVerb:', param1)
 					#endif
 				#end:else
 			#end:match
@@ -1327,26 +1251,26 @@ class vizierDoor(NewProp):
 				case 1:
 					if (not local2):
 						local2.post('++')
-						(global91 say: 10 param1 27)
+						global91._send('say:', 10, param1, 27)
 					else:
-						(global91 say: 10 1 28)
+						global91._send('say:', 10, 1, 28)
 					#endif
 				#end:case
 				case 5:
-					if (kernel.ScriptID(80, 0) tstFlag: 709 2):
-						(global91 say: 9 param1 25)
+					if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
+						global91._send('say:', 9, param1, 25)
 					else:
-						(global91 say: noun param1 21)
+						global91._send('say:', noun, param1, 21)
 					#endif
 				#end:case
 				case 2:
-					(global91 say: noun param1 21)
+					global91._send('say:', noun, param1, 21)
 				#end:case
 				else:
-					if ((global66 doit: param1) == -32768):
-						(global91 say: 9 0)
+					if (global66._send('doit:', param1) == -32768):
+						global91._send('say:', 9, 0)
 					else:
-						(global2 spotEgo: proc80_7())
+						global2._send('spotEgo:', proc80_7())
 					#endif
 				#end:else
 			#end:match
@@ -1358,11 +1282,11 @@ class vizierDoor(NewProp):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global105 flags: 1 stop:)
+		global105._send('flags:', 1, 'stop:')
 		if cel:
 			proc80_2(4)
 		else:
-			(self setPri: -1 stopUpd:)
+			self._send('setPri:', -1, 'stopUpd:')
 		#endif
 	#end:method
 
@@ -1373,10 +1297,10 @@ class vizierDoor(NewProp):
 
 		match param1
 			case 5:
-				(global91 say: 10 5 21 0 NewProp)
+				global91._send('say:', 10, 5, 21, 0, NewProp)
 			#end:case
 			else:
-				(super doSpecial:)
+				super._send('doSpecial:')
 			#end:else
 		#end:match
 	#end:method
@@ -1393,16 +1317,16 @@ class openVizDoor(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				cycles = 2
 			#end:case
 			case 1:
-				(global105 number: 901 loop: 1 flags: 0 play:)
-				(vizierDoor setPri: 10 setCycle: End self)
+				global105._send('number:', 901, 'loop:', 1, 'flags:', 0, 'play:')
+				vizierDoor._send('setPri:', 10, 'setCycle:', End, self)
 			#end:case
 			case 2:
-				(vizierDoor cue:)
-				(self dispose:)
+				vizierDoor._send('cue:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1422,14 +1346,14 @@ class closeMe(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(vizierDoor setPri: 10 setCycle: Beg self)
+				vizierDoor._send('setPri:', 10, 'setCycle:', Beg, self)
 			#end:case
 			case 2:
-				(global105 number: 902 loop: 1 play:)
-				if (kernel.ScriptID(80, 0) tstFlag: 709 128):
-					(global1 handsOn:)
+				global105._send('number:', 902, 'loop:', 1, 'play:')
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128):
+					global1._send('handsOn:')
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -1456,14 +1380,14 @@ class studyDoor(NewFeature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if local1:
-			if (not (kernel.ScriptID(80, 0) tstFlag: 709 2)):
-				(self approachVerbs: 5)
+			if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2)):
+				self._send('approachVerbs:', 5)
 				normal = 0
 			#endif
 		else:
-			(self approachVerbs: 2 5)
+			self._send('approachVerbs:', 2, 5)
 		#endif
 	#end:method
 
@@ -1474,12 +1398,12 @@ class studyDoor(NewFeature):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
 					(and
-						((global69 curIcon:) == (global69 at: 2))
+						(global69._send('curIcon:') == global69._send('at:', 2))
 						(or
-							(((global0 view:) == 881) and sightAngle = 26505)
+							((global0._send('view:') == 881) and sightAngle = 26505)
 							sightAngle = 40
 						)
 					)
@@ -1499,43 +1423,43 @@ class studyDoor(NewFeature):
 				(cond
 					case (not local3):
 						local3.post('++')
-						(global91 say: noun param1 27)
+						global91._send('say:', noun, param1, 27)
 						if (not local1):
-							(_approachVerbs |= (global66 doit: 1))
+							(_approachVerbs |= global66._send('doit:', 1))
 						#endif
 					#end:case
 					case local1:
-						(global91 say: noun param1 28)
+						global91._send('say:', noun, param1, 28)
 					#end:case
 					else:
-						(global2 setScript: kernel.ScriptID(82) 0 lookThruKeyhole)
+						global2._send('setScript:', kernel.ScriptID(82), 0, lookThruKeyhole)
 					#end:else
 				)
 			#end:case
 			case 2:
 				if local1:
-					(global91 say: 9 2 21 0)
+					global91._send('say:', 9, 2, 21, 0)
 				else:
 					proc913_1(59)
-					(global91 say: noun param1 22 0 self)
+					global91._send('say:', noun, param1, 22, 0, self)
 				#endif
 			#end:case
 			case 5:
-				if (kernel.ScriptID(80, 0) tstFlag: 709 2):
-					(global91 say: 9 param1 25)
+				if kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
+					global91._send('say:', 9, param1, 25)
 				else:
-					(global91 say: noun param1 22)
+					global91._send('say:', noun, param1, 22)
 				#endif
 			#end:case
 			case 64:
 				if local1:
-					(global91 say: noun param1 21)
+					global91._send('say:', noun, param1, 21)
 				else:
-					(global91 say: noun param1 22)
+					global91._send('say:', noun, param1, 22)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -1555,10 +1479,10 @@ class studyDoor(NewFeature):
 
 		match param1
 			case 5:
-				(global91 say: 10 5 21 0 NewFeature)
+				global91._send('say:', 10, 5, 21, 0, NewFeature)
 			#end:case
 			else:
-				(super doSpecial:)
+				super._send('doSpecial:')
 			#end:else
 		#end:match
 	#end:method
@@ -1576,7 +1500,7 @@ class floor(NewFeature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		normal = (not local1)
 	#end:method
 
@@ -1587,11 +1511,11 @@ class floor(NewFeature):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
 					(and
-						((global69 curIcon:) == (global69 useIconItem:))
-						((global69 curInvIcon:) == (global9 at: 27))
+						(global69._send('curIcon:') == global69._send('useIconItem:'))
+						(global69._send('curInvIcon:') == global9._send('at:', 27))
 						_approachVerbs = -32768
 						approachX = 161
 						approachY = 143
@@ -1613,12 +1537,12 @@ class floor(NewFeature):
 
 		match param1
 			case 37:
-				(kernel.ScriptID(80, 0) setFlag: 709 256)
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 256)
 				local7 = 1
-				(global2 setScript: putDownBird)
+				global2._send('setScript:', putDownBird)
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -1630,10 +1554,10 @@ class floor(NewFeature):
 
 		match param1
 			case 37:
-				(global91 say: 4 37 20 0 self)
+				global91._send('say:', 4, 37, 20, 0, self)
 			#end:case
 			else:
-				(super doSpecial:)
+				super._send('doSpecial:')
 			#end:else
 		#end:match
 	#end:method
@@ -1662,9 +1586,9 @@ class cassima_door(Feature):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
-					(((global0 view:) == 881) and sightAngle = 26505)
+					((global0._send('view:') == 881) and sightAngle = 26505)
 					sightAngle = 45
 				)
 			)
@@ -1692,9 +1616,9 @@ class pillar(Feature):
 
 		(return
 			(and
-				(super onMe: param1)
+				super._send('onMe:', param1)
 				(or
-					(((global0 view:) == 881) and sightAngle = 26505)
+					((global0._send('view:') == 881) and sightAngle = 26505)
 					sightAngle = 45
 				)
 				(or
@@ -1718,10 +1642,10 @@ class chairs(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		x = (param1 x:)
-		y = (param1 y:)
+		x = param1._send('x:')
+		y = param1._send('y:')
 		sightAngle = 26505
-		return (super onMe: param1)
+		return super._send('onMe:', param1)
 	#end:method
 
 #end:class or instance
@@ -1741,8 +1665,8 @@ class hideFeature(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self approachVerbs: 5)
+		super._send('init:', &rest)
+		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
@@ -1756,16 +1680,16 @@ class hideFeature(Feature):
 					case local10:
 						local10 = 0
 					#end:case
-					case ((global2 script:) != hideEgo):
-						(global2 setScript: hideEgo)
+					case (global2._send('script:') != hideEgo):
+						global2._send('setScript:', hideEgo)
 					#end:case
 					else:
-						(super doVerb: param1)
+						super._send('doVerb:', param1)
 					#end:else
 				)
 			#end:case
 			else:
-				(super doVerb: param1)
+				super._send('doVerb:', param1)
 			#end:else
 		#end:match
 	#end:method
@@ -1780,7 +1704,7 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		sightAngle = 26505
 	#end:method
 
@@ -1789,7 +1713,7 @@ class roomFeatures(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = kernel.OnControl(4, (param1 x:), (param1 y:))
+		temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
 		(return
 			(or
 				((0x0004 & temp0) and noun = 16)
@@ -1811,8 +1735,8 @@ class guardsCode(Code):
 
 		(return
 			(or
-				(((global0 view:) != 881) and (local0 & 0x0042))
-				((param1 onControl: 1) & 0x0040)
+				((global0._send('view:') != 881) and (local0 & 0x0042))
+				(param1._send('onControl:', 1) & 0x0040)
 			)
 		)
 	#end:method
@@ -1829,9 +1753,9 @@ class okToCheckCode(Code):
 
 		(return
 			(or
-				(< 90 (param1 heading:) 270)
-				((global0 y:) <= (param1 y:))
-				((global0 y:) <= 129)
+				(< 90 param1._send('heading:') 270)
+				(global0._send('y:') <= param1._send('y:'))
+				(global0._send('y:') <= 129)
 			)
 		)
 	#end:method
@@ -1849,15 +1773,15 @@ class guardDoVerb(Actions):
 		temp0 = 1
 		(cond
 			case (param1 == 2):
-				(global2 setScript: talkToGuards)
+				global2._send('setScript:', talkToGuards)
 			#end:case
-			case (kernel.ScriptID(80, 0) tstFlag: 709 2):
+			case kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2):
 				(cond
 					case proc999_5(param1, 5, 1):
-						(global91 say: 6 param1 25)
+						global91._send('say:', 6, param1, 25)
 					#end:case
-					case ((global66 doit: param1) == -32768):
-						(global91 say: 6 0 25)
+					case (global66._send('doit:', param1) == -32768):
+						global91._send('say:', 6, 0, 25)
 					#end:case
 					else:
 						temp0 = 0
@@ -1865,14 +1789,12 @@ class guardDoVerb(Actions):
 				)
 			#end:case
 			case (param1 == 37):
-				(CueObj client: floor state: 0 cycles: 0 theVerb: 37)
-				(KQ6Print posn: -1 10 say: 0 6 37 0 1 init:)
-				(global0
-					setMotion:
-						PolyPath
-						(floor approachX:)
-						(floor approachY:)
-						CueObj
+				CueObj._send('client:', floor, 'state:', 0, 'cycles:', 0, 'theVerb:', 37)
+				KQ6Print._send('posn:', -1, 10, 'say:', 0, 6, 37, 0, 1, 'init:')
+				global0._send(
+					'setMotion:', PolyPath, floor._send('approachX:'), floor._send(
+							'approachY:'
+						), CueObj
 				)
 			#end:case
 			else:
@@ -1900,7 +1822,7 @@ class keyHoleActions(Actions):
 		temp0 = 1
 		match param1
 			case 1:
-				(global91 say: ((CueObj client:) noun:) param1 29 2)
+				global91._send('say:', CueObj._send('client:')._send('noun:'), param1, 29, 2)
 			#end:case
 			else:
 				temp0 = 0

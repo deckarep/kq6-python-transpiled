@@ -30,17 +30,17 @@ class tlkWaiter(Kq6Talker):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
 		if (global90 == 2):
 			x = 100
 			y = 104
 			textX = -58
-			(super init: 0 0 waiterMouth &rest)
+			super._send('init:', 0, 0, waiterMouth, &rest)
 		else:
 			x = -1
 			textY = textX = y = 10
-			(super init: &rest)
+			super._send('init:', &rest)
 		#endif
 	#end:method
 

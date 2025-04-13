@@ -22,9 +22,9 @@ class PseudoMouse(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (param1 type:)
-		temp1 = (param1 message:)
-		temp2 = (param1 modifiers:)
+		temp0 = param1._send('type:')
+		temp1 = param1._send('message:')
+		temp2 = param1._send('modifiers:')
 		if (temp0 & 0x0040):
 			prevDir = temp1
 			(= cursorInc
@@ -37,20 +37,20 @@ class PseudoMouse(Code):
 			(cond
 				case (temp0 & 0x0004):
 					if prevDir:
-						(self doit:)
+						self._send('doit:')
 					else:
-						(param1 claimed: 0)
+						param1._send('claimed:', 0)
 						return
 					#endif
 				#end:case
 				case prevDir:
-					(self start:)
+					self._send('start:')
 				#end:case
 				else:
-					(self stop:)
+					self._send('stop:')
 				#end:else
 			)
-			(param1 claimed: 1)
+			param1._send('claimed:', 1)
 			return
 		#endif
 	#end:method
@@ -63,7 +63,7 @@ class PseudoMouse(Code):
 		if argc:
 			prevDir = param1
 		#endif
-		(global78 add: self)
+		global78._send('add:', self)
 	#end:method
 
 	@classmethod
@@ -72,7 +72,7 @@ class PseudoMouse(Code):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		prevDir = 0
-		(global78 delete: self)
+		global78._send('delete:', self)
 	#end:method
 
 	@classmethod
@@ -80,8 +80,8 @@ class PseudoMouse(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global24 x:)
-		temp1 = (global24 y:)
+		temp0 = global24._send('x:')
+		temp1 = global24._send('y:')
 		match prevDir
 			case 1:
 				(temp1 -= cursorInc)
@@ -112,7 +112,7 @@ class PseudoMouse(Code):
 				(temp1 -= cursorInc)
 			#end:case
 		#end:match
-		(global1 setCursor: global19 1 temp0 temp1)
+		global1._send('setCursor:', global19, 1, temp0, temp1)
 	#end:method
 
 #end:class or instance

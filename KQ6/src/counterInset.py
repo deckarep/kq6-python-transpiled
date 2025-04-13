@@ -47,26 +47,26 @@ class counterInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		if (((global9 at: 48) owner:) == global11):
-			(tinderBox init:)
+		super._send('init:', &rest)
+		if (global9._send('at:', 48)._send('owner:') == global11):
+			tinderBox._send('init:')
 		#endif
-		if (((global9 at: 3) owner:) == global11):
-			(paintBrush init:)
+		if (global9._send('at:', 3)._send('owner:') == global11):
+			paintBrush._send('init:')
 		#endif
-		if (((global9 at: 27) owner:) == global11):
-			(windupBird init:)
+		if (global9._send('at:', 27)._send('owner:') == global11):
+			windupBird._send('init:')
 		#endif
-		if (((global9 at: 14) owner:) == global11):
-			(flute init:)
+		if (global9._send('at:', 14)._send('owner:') == global11):
+			flute._send('init:')
 		#endif
-		if (((global2 script:) == lookAtCounterScr) and 1):
-			(global91 say: 9 1)
+		if ((global2._send('script:') == lookAtCounterScr) and 1):
+			global91._send('say:', 9, 1)
 		#endif
-		if (proc913_0(29) and proc913_0(30) and (not (global0 has: 0))):
-			(counterMap init:)
+		if (proc913_0(29) and proc913_0(30) and (not global0._send('has:', 0))):
+			counterMap._send('init:')
 		#endif
-		(self setScript: initDoneScr)
+		self._send('setScript:', initDoneScr)
 	#end:method
 
 	@classmethod
@@ -75,7 +75,7 @@ class counterInset(Inset):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script doit:)
+			script._send('doit:')
 		#endif
 	#end:method
 
@@ -84,8 +84,8 @@ class counterInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super drawInset:)
-		(insetView ignoreActors: addToPic:)
+		super._send('drawInset:')
+		insetView._send('ignoreActors:', 'addToPic:')
 	#end:method
 
 	@classmethod
@@ -93,15 +93,15 @@ class counterInset(Inset):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global69 enable: 6)
-		(global1 handsOff:)
+		global69._send('enable:', 6)
+		global1._send('handsOff:')
 		kernel.DisposeClone(insetView)
 		if (not local0):
 			proc913_2(51)
 			proc913_2(50)
 		#endif
-		(super dispose: &rest)
-		(global2 drawPic: global11 100)
+		super._send('dispose:', &rest)
+		global2._send('drawPic:', global11, 100)
 	#end:method
 
 #end:class or instance
@@ -122,14 +122,14 @@ class counterItemObj(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if (argc > 0):
 			item = param1
 		#endif
 		invItemNum = local1[item]
 		lookFlagNum = (baseFlag + item)
 		sightAngle = 26505
-		(self addToPic:)
+		self._send('addToPic:')
 	#end:method
 
 	@classmethod
@@ -141,26 +141,26 @@ class counterItemObj(View):
 			case 1:
 				if (not proc913_0(lookFlagNum)):
 					proc913_1(lookFlagNum)
-					(global91 say: noun 1 42 0 0 280)
+					global91._send('say:', noun, 1, 42, 0, 0, 280)
 				else:
-					(global91 say: noun 1 43)
+					global91._send('say:', noun, 1, 43)
 				#endif
 			#end:case
 			case 5:
 				local0 = 1
-				if (global2 script:):
-					((global2 script:)
-						setScript: itemTradeScr (counterInset caller:) noun
+				if global2._send('script:'):
+					global2._send('script:')._send(
+						'setScript:', itemTradeScr, counterInset._send('caller:'), noun
 					)
 				else:
-					(global2
-						setScript: itemTradeScr (counterInset caller:) noun
+					global2._send(
+						'setScript:', itemTradeScr, counterInset._send('caller:'), noun
 					)
 				#endif
-				(counterInset caller: 0)
+				counterInset._send('caller:', 0)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -233,11 +233,8 @@ class counterMap(View):
 
 		match param1
 			case 5:
-				(global91
-					say:
-						noun
-						param1
-						(cond
+				global91._send(
+					'say:', noun, param1, (cond
 							case proc913_0(50): 16#end:case
 							case proc913_0(51): 39#end:case
 							else: 0#end:else
@@ -245,7 +242,7 @@ class counterMap(View):
 				)
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -255,9 +252,9 @@ class counterMap(View):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		sightAngle = 26505
-		(self addToPic:)
+		self._send('addToPic:')
 	#end:method
 
 #end:class or instance
@@ -275,7 +272,7 @@ class itemTradeScr(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(counterInset dispose:)
+				counterInset._send('dispose:')
 				cycles = 2
 			#end:case
 			case 2:
@@ -285,7 +282,7 @@ class itemTradeScr(Script):
 				temp1 = 0
 				temp0 = 0
 				while (temp0 < 4): # inline for
-					if (global0 has: local1[temp0]):
+					if global0._send('has:', local1[temp0]):
 						temp1 = 1
 						(break)
 					#endif
@@ -295,26 +292,23 @@ class itemTradeScr(Script):
 				(cond
 					case temp1:
 						state = 5
-						(global91 say: register 5 41 1 self)
+						global91._send('say:', register, 5, 41, 1, self)
 					#end:case
 					case (proc913_0(50) or proc913_0(51)):
 						state = 3
 						local22 = (4 if proc913_0(50) else 6)
-						(global91 say: register 5 16 1 self)
+						global91._send('say:', register, 5, 16, 1, self)
 					#end:case
 					else:
 						state = 7
-						(global91 say: register 5 38 1 self)
+						global91._send('say:', register, 5, 38, 1, self)
 					#end:else
 				)
 			#end:case
 			case 4:
 				state = local22
-				(self
-					setScript:
-						kernel.ScriptID(287, 1)
-						self
-						match register
+				self._send(
+					'setScript:', kernel.ScriptID(287, 1), self, match register
 							case 11: 2#end:case
 							case 10: 0#end:case
 							case 12: 3#end:case
@@ -324,29 +318,29 @@ class itemTradeScr(Script):
 			#end:case
 			case 5:
 				state = 8
-				(global91 say: 10 5 16 2 self oneOnly: 0)
+				global91._send('say:', 10, 5, 16, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 6:
 				state = 8
-				(global91 say: 10 5 41 2 self oneOnly: 0)
+				global91._send('say:', 10, 5, 41, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 7:
 				state = 8
-				(global91
-					say: register 5 (39 if (global153 == 1) else 40) 0 self
+				global91._send(
+					'say:', register, 5, (39 if (global153 == 1) else 40), 0, self
 				)
 			#end:case
 			case 8:
 				state = 8
-				(global91 say: 10 5 38 2 self)
+				global91._send('say:', 10, 5, 38, 2, self)
 			#end:case
 			case 9:
 				proc913_2(50)
 				proc913_2(51)
 				if (client == global2):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -363,11 +357,11 @@ class lookAtCounterScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
 			#end:case
 			case 1:
-				(global0 normal: 0 view: 280 loop: 7 cel: 0)
+				global0._send('normal:', 0, 'view:', 280, 'loop:', 7, 'cel:', 0)
 				cycles = 2
 			#end:case
 			case 2:
@@ -375,15 +369,15 @@ class lookAtCounterScr(Script):
 				cycles = 2
 			#end:case
 			case 3:
-				(counterInset init: self global2)
+				counterInset._send('init:', self, global2)
 			#end:case
 			case 4:
-				(global0 reset: 0)
+				global0._send('reset:', 0)
 				cycles = 2
 			#end:case
 			case 5:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -393,7 +387,7 @@ class lookAtCounterScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(283)
 	#end:method
 
@@ -409,15 +403,13 @@ class buyItemWithCoinScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
 			#end:case
 			case 1:
-				(self
-					setScript:
-						kernel.ScriptID(286, 1)
-						self
-						if proc913_1(109):
+				self._send(
+					'setScript:', kernel.ScriptID(286, 1), self, if 
+							proc913_1(109)
 							register = 69
 							-32768
 						else:
@@ -427,16 +419,11 @@ class buyItemWithCoinScr(Script):
 				)
 			#end:case
 			case 2:
-				(global91 say: 4 40 register 1 script)
+				global91._send('say:', 4, 40, register, 1, script)
 			#end:case
 			case 3:
-				(global91
-					say:
-						4
-						40
-						register
-						2
-						if (register != 23):
+				global91._send(
+					'say:', 4, 40, register, 2, if (register != 23):
 							state.post('++')
 							self
 						else:
@@ -445,39 +432,39 @@ class buyItemWithCoinScr(Script):
 				)
 			#end:case
 			case 4:
-				(global91 say: 4 40 23 3 self oneOnly: 0)
+				global91._send('say:', 4, 40, 23, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
 				proc913_1(50)
-				(counterInset init: self global2)
+				counterInset._send('init:', self, global2)
 			#end:case
 			case 7:
 				cycles = 2
 			#end:case
 			case 8:
 				if (not local0):
-					(global91 say: 1 5 63 0 self)
+					global91._send('say:', 1, 5, 63, 0, self)
 				else:
 					state.post('++')
-					(global1 givePoints: 2)
-					(global0 put: 9 global11)
+					global1._send('givePoints:', 2)
+					global0._send('put:', 9, global11)
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
-				(self setScript: kernel.ScriptID(286, 0) self 1)
+				self._send('setScript:', kernel.ScriptID(286, 0), self, 1)
 			#end:case
 			case 10:
-				(global0 reset: 0)
+				global0._send('reset:', 0)
 				cycles = 2
 			#end:case
 			case 11:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -487,7 +474,7 @@ class buyItemWithCoinScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(283)
 	#end:method
 
@@ -503,7 +490,7 @@ class genericExchangeScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
 			#end:case
 			case 1:
@@ -515,56 +502,56 @@ class genericExchangeScr(Script):
 						case 31: 2#end:case
 					#end:match
 				)
-				(self setScript: kernel.ScriptID(287, 0) self register)
+				self._send('setScript:', kernel.ScriptID(287, 0), self, register)
 			#end:case
 			case 2:
-				(global91 say: 4 20 24 1 script)
+				global91._send('say:', 4, 20, 24, 1, script)
 			#end:case
 			case 3:
 				if (global153 == 1):
-					(global91 say: 4 20 24 2 self)
+					global91._send('say:', 4, 20, 24, 2, self)
 				else:
-					(global91 say: 4 20 25 1 self)
+					global91._send('say:', 4, 20, 25, 1, self)
 				#endif
 			#end:case
 			case 4:
-				(global91 say: 4 20 24 3 self)
+				global91._send('say:', 4, 20, 24, 3, self)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
 				proc913_1(51)
-				(counterInset init: self global2)
+				counterInset._send('init:', self, global2)
 			#end:case
 			case 7:
 				cycles = 10
 			#end:case
 			case 8:
 				if (not local0):
-					(global91 say: 1 5 63 1 self)
+					global91._send('say:', 1, 5, 63, 1, self)
 				else:
 					(state += 2)
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
-				(global91 say: 1 5 64 2 self)
+				global91._send('say:', 1, 5, 64, 2, self)
 			#end:case
 			case 10:
-				(self setScript: kernel.ScriptID(287, 1) self register)
+				self._send('setScript:', kernel.ScriptID(287, 1), self, register)
 			#end:case
 			case 11:
 				cycles = 2
 			#end:case
 			case 12:
-				(global0 reset: 0)
+				global0._send('reset:', 0)
 				cycles = 2
 			#end:case
 			case 13:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -574,7 +561,7 @@ class genericExchangeScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(283)
 	#end:method
 
@@ -590,15 +577,13 @@ class offerCoinForMapScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc280_10(self)
 			#end:case
 			case 1:
-				(self
-					setScript:
-						kernel.ScriptID(286, 1)
-						self
-						if proc913_1(109):
+				self._send(
+					'setScript:', kernel.ScriptID(286, 1), self, if 
+							proc913_1(109)
 							register = 70
 							-32768
 						else:
@@ -608,16 +593,11 @@ class offerCoinForMapScr(Script):
 				)
 			#end:case
 			case 2:
-				(global91 say: 4 40 register 1 script)
+				global91._send('say:', 4, 40, register, 1, script)
 			#end:case
 			case 3:
-				(global91
-					say:
-						4
-						40
-						register
-						2
-						if (register != 22):
+				global91._send(
+					'say:', 4, 40, register, 2, if (register != 22):
 							state.post('++')
 							self
 						else:
@@ -626,39 +606,39 @@ class offerCoinForMapScr(Script):
 				)
 			#end:case
 			case 4:
-				(global91 say: 4 40 22 3 self oneOnly: 0)
+				global91._send('say:', 4, 40, 22, 3, self, 'oneOnly:', 0)
 			#end:case
 			case 5:
 				cycles = 2
 			#end:case
 			case 6:
 				proc913_1(50)
-				(counterInset init: self global2)
+				counterInset._send('init:', self, global2)
 			#end:case
 			case 7:
 				cycles = 2
 			#end:case
 			case 8:
 				if (not local0):
-					(global91 say: 1 5 63 0 self)
+					global91._send('say:', 1, 5, 63, 0, self)
 				else:
 					state.post('++')
-					(global1 givePoints: 2)
-					(global0 put: 9 global11)
+					global1._send('givePoints:', 2)
+					global0._send('put:', 9, global11)
 					cycles = 1
 				#endif
 			#end:case
 			case 9:
-				(self setScript: kernel.ScriptID(286, 0) self)
+				self._send('setScript:', kernel.ScriptID(286, 0), self)
 			#end:case
 			case 10:
-				(global0 reset: 0)
+				global0._send('reset:', 0)
 				cycles = 2
 			#end:case
 			case 11:
-				(kernel.ScriptID(280, 2) setScript: kernel.ScriptID(280, 9))
-				(global1 handsOn:)
-				(self dispose:)
+				kernel.ScriptID(280, 2)._send('setScript:', kernel.ScriptID(280, 9))
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -668,7 +648,7 @@ class offerCoinForMapScr(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(283)
 	#end:method
 
@@ -687,12 +667,12 @@ class initDoneScr(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global1 handsOn:)
-				(global69 curIcon: (global69 at: 1))
-				(global1 setCursor: ((global69 curIcon:) cursor:))
-				(global69 disable: 0 3 4 5 6)
+				global1._send('handsOn:')
+				global69._send('curIcon:', global69._send('at:', 1))
+				global1._send('setCursor:', global69._send('curIcon:')._send('cursor:'))
+				global69._send('disable:', 0, 3, 4, 5, 6)
 				local0 = 0
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

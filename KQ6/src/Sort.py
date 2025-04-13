@@ -18,20 +18,20 @@ def proc966_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	temp3 = (List new:)
-	while temp1 = kernel.FirstNode((param1 elements:)):
+	temp3 = List._send('new:')
+	while temp1 = kernel.FirstNode(param1._send('elements:')):
 
 		temp2 = kernel.NodeValue(temp1)
 		while temp1:
 
-			if (param2 doit: temp0 = kernel.NodeValue(temp1) temp2 &rest):
+			if param2._send('doit:', temp0 = kernel.NodeValue(temp1), temp2, &rest):
 				temp2 = temp0
 			#endif
 			temp1 = kernel.NextNode(temp1)
 		#end:loop
-		(TE doit: temp2 param1 temp3)
+		TE._send('doit:', temp2, param1, temp3)
 	#end:loop
-	(temp3 eachElementDo: #perform TE temp3 param1 dispose:)
+	temp3._send('eachElementDo:', #perform, TE, temp3, param1, 'dispose:')
 #end:procedure
 
 @SCI.instance
@@ -42,8 +42,8 @@ class TE(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(param3 addToEnd: param1)
-		(param2 delete: param1)
+		param3._send('addToEnd:', param1)
+		param2._send('delete:', param1)
 	#end:method
 
 #end:class or instance

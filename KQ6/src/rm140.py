@@ -47,29 +47,29 @@ class rm140(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		local72 = global91
 		global91 = localMessager
-		(global69 disable:)
+		global69._send('disable:')
 		proc913_1(59)
-		(singSing init:)
-		(leftArm init:)
-		local0 = ((global9 at: 47) owner:)
-		local1 = ((global9 at: 39) owner:)
-		local2 = ((global9 at: 38) owner:)
+		singSing._send('init:')
+		leftArm._send('init:')
+		local0 = global9._send('at:', 47)._send('owner:')
+		local1 = global9._send('at:', 39)._send('owner:')
+		local2 = global9._send('at:', 38)._send('owner:')
 		(cond
 			case (local0 == global11):
-				(self setScript: poemSegueScr)
+				self._send('setScript:', poemSegueScr)
 			#end:case
 			case (local2 == global11):
-				(self setScript: roseSegueScr)
+				self._send('setScript:', roseSegueScr)
 			#end:case
 			case (local1 == global11):
-				(self setScript: ringSegueScr)
+				self._send('setScript:', ringSegueScr)
 			#end:case
 		)
-		(global105 fade:)
-		(global104 number: 140 loop: -1 play:)
+		global105._send('fade:')
+		global104._send('number:', 140, 'loop:', -1, 'play:')
 	#end:method
 
 	@classmethod
@@ -80,8 +80,8 @@ class rm140(KQ6Room):
 		global91 = local72
 		proc913_2(59)
 		kernel.DisposeScript(371)
-		(super dispose: &rest)
-		(global69 enable:)
+		super._send('dispose:', &rest)
+		global69._send('enable:')
 	#end:method
 
 #end:class or instance
@@ -97,7 +97,7 @@ class cassyPrint(AnimatePrint):
 		myMouth = cassyMouth
 		x = -1
 		y = 15
-		(super init:)
+		super._send('init:')
 	#end:method
 
 #end:class or instance
@@ -114,19 +114,19 @@ class singSingEnterScr(Script):
 			case 0:
 				match register
 					case 0:
-						(followItem view: 1412)
+						followItem._send('view:', 1412)
 					#end:case
 					case 2:
-						(followItem view: 1411)
+						followItem._send('view:', 1411)
 					#end:case
 					case 1:
-						(followItem view: 1414)
+						followItem._send('view:', 1414)
 					#end:case
 				#end:match
-				(leftArm setCycle: End)
+				leftArm._send('setCycle:', End)
 				state.post('++')
-				(followItem init:)
-				(self cue:)
+				followItem._send('init:')
+				self._send('cue:')
 			#end:case
 			case 1:
 				ticks = 15
@@ -135,24 +135,24 @@ class singSingEnterScr(Script):
 				if (local3[local69.post('++')] != -1):
 					(state -= 2)
 					if (local3[local69] == -99):
-						(singSing loop: ((singSing loop:) + 1))
-						(followItem loop: ((followItem loop:) + 1))
+						singSing._send('loop:', (singSing._send('loop:') + 1))
+						followItem._send('loop:', (followItem._send('loop:') + 1))
 						local69.post('++')
 					#endif
 					temp40 = local3[local69]
 					temp41 = local3[local69.post('++')]
 					temp42 = local3[local69.post('++')]
-					(singSing posn: temp40 temp41 cel: temp42)
-					(followItem posn: temp40 temp41 cel: temp42)
+					singSing._send('posn:', temp40, temp41, 'cel:', temp42)
+					followItem._send('posn:', temp40, temp41, 'cel:', temp42)
 				#endif
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 3:
-				(cHead init: 0)
+				cHead._send('init:', 0)
 				seconds = 2
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -170,24 +170,24 @@ class singSingLeaveScr(Script):
 		match state = param1
 			case 0:
 				if (not local71):
-					(leftArm view: 1401 loop: 0 cel: 2)
-					(rightArm dispose:)
+					leftArm._send('view:', 1401, 'loop:', 0, 'cel:', 2)
+					rightArm._send('dispose:')
 				#endif
 				match register
 					case 1:
-						(followItem init: loop: 1 view: 1413)
+						followItem._send('init:', 'loop:', 1, 'view:', 1413)
 					#end:case
 					case 2:
-						(followItem init: view: 1411 loop: 3)
+						followItem._send('init:', 'view:', 1411, 'loop:', 3)
 					#end:case
 					else:
 						register = 0
 					#end:else
 				#end:match
 				local69 = -1
-				(singSing loop: 3)
+				singSing._send('loop:', 3)
 				state.post('++')
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 1:
 				ticks = 20
@@ -196,24 +196,24 @@ class singSingLeaveScr(Script):
 				if (local38[local69.post('++')] != -1):
 					(state -= 2)
 					if (local38[local69] == -99):
-						(singSing loop: ((singSing loop:) + 1))
+						singSing._send('loop:', (singSing._send('loop:') + 1))
 						if register:
-							(followItem loop: ((followItem loop:) + 1))
+							followItem._send('loop:', (followItem._send('loop:') + 1))
 						#endif
 						local69.post('++')
 					#endif
 					temp0 = local38[local69]
 					temp1 = local38[local69.post('++')]
 					temp2 = local38[local69.post('++')]
-					(singSing posn: temp0 temp1 cel: temp2)
+					singSing._send('posn:', temp0, temp1, 'cel:', temp2)
 					if register:
-						(followItem posn: temp0 temp1 cel: temp2)
+						followItem._send('posn:', temp0, temp1, 'cel:', temp2)
 					#endif
 				#endif
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 3:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -229,25 +229,25 @@ class ringSegueScr(CartoonScript):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if script:
-			(script dispose:)
+			script._send('dispose:')
 		#endif
 		match state = param1
 			case 0:
-				(self setScript: singSingEnterScr self 0)
+				self._send('setScript:', singSingEnterScr, self, 0)
 			#end:case
 			case 1:
 				cycles = 2
 			#end:case
 			case 2:
-				(global91 say: 1 0 1 1 self)
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 3:
 				ticks = 12
 			#end:case
 			case 4:
-				(rightArm init:)
-				(followItem dispose:)
-				(leftArm view: 1422 loop: 0 cel: 0 setCycle: CT 1 1 self)
+				rightArm._send('init:')
+				followItem._send('dispose:')
+				leftArm._send('view:', 1422, 'loop:', 0, 'cel:', 0, 'setCycle:', CT, 1, 1, self)
 			#end:case
 			case 5:
 				cycles = 2
@@ -256,48 +256,48 @@ class ringSegueScr(CartoonScript):
 				cycles = 2
 			#end:case
 			case 7:
-				(global91 say: 1 0 1 2 self)
+				global91._send('say:', 1, 0, 1, 2, self)
 			#end:case
 			case 8:
 				cycles = 2
 			#end:case
 			case 9:
-				(global91 say: 1 0 1 3 self)
+				global91._send('say:', 1, 0, 1, 3, self)
 			#end:case
 			case 10:
-				(cHead dispose:)
+				cHead._send('dispose:')
 				ticks = 12
 			#end:case
 			case 11:
-				(leftArm loop: 1 cel: 0 setCycle: End self)
+				leftArm._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 12:
 				ticks = 30
 			#end:case
 			case 13:
-				(global91 say: 1 0 1 4 self)
+				global91._send('say:', 1, 0, 1, 4, self)
 			#end:case
 			case 14:
 				ticks = 12
 			#end:case
 			case 15:
-				(leftArm view: 1423 loop: 0 cel: 0 setCycle: End self)
+				leftArm._send('view:', 1423, 'loop:', 0, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 16:
 				cycles = 2
 			#end:case
 			case 17:
 				if ((local2 == 210) and (local0 == 210)):
-					(global91 say: 1 0 8 1 self)
+					global91._send('say:', 1, 0, 8, 1, self)
 				else:
-					(global91 say: 1 0 1 5 self)
+					global91._send('say:', 1, 0, 1, 5, self)
 				#endif
 			#end:case
 			case 18:
-				(self setScript: singSingLeaveScr self 1)
+				self._send('setScript:', singSingLeaveScr, self, 1)
 			#end:case
 			case 19:
-				(global2 newRoom: 210)
+				global2._send('newRoom:', 210)
 			#end:case
 		#end:match
 	#end:method
@@ -314,7 +314,7 @@ class roseSegueScr(CartoonScript):
 
 		match state = param1
 			case 0:
-				(self setScript: singSingEnterScr self 1)
+				self._send('setScript:', singSingEnterScr, self, 1)
 			#end:case
 			case 1:
 				cycles = 2
@@ -327,19 +327,19 @@ class roseSegueScr(CartoonScript):
 						else: 4#end:else
 					)
 				)
-				(self cue:)
+				self._send('cue:')
 			#end:case
 			case 3:
-				(rightArm init:)
-				(followItem dispose:)
-				(leftArm view: 1424 loop: 0 cel: 0)
+				rightArm._send('init:')
+				followItem._send('dispose:')
+				leftArm._send('view:', 1424, 'loop:', 0, 'cel:', 0)
 				if (register == 4):
-					(cHead init: 0)
-					(leftArm setCycle: End self)
+					cHead._send('init:', 0)
+					leftArm._send('setCycle:', End, self)
 				else:
-					(cHead init: 1)
+					cHead._send('init:', 1)
 					local71 = 1
-					(leftArm setCycle: CT 1 1 self)
+					leftArm._send('setCycle:', CT, 1, 1, self)
 				#endif
 			#end:case
 			case 4:
@@ -348,43 +348,43 @@ class roseSegueScr(CartoonScript):
 			case 5:
 				if (register != 4):
 					state = 10
-					(global91 say: 1 0 register 1 self)
+					global91._send('say:', 1, 0, register, 1, self)
 				else:
-					(leftArm setPri: 15)
-					(leftArm setCycle: Beg self)
+					leftArm._send('setPri:', 15)
+					leftArm._send('setCycle:', Beg, self)
 				#endif
 			#end:case
 			case 6:
-				(global91 say: 1 0 register 1 self)
+				global91._send('say:', 1, 0, register, 1, self)
 			#end:case
 			case 7:
 				if (register == 4):
-					(cHead init: 0)
+					cHead._send('init:', 0)
 				#endif
 				cycles = 2
 			#end:case
 			case 8:
 				if (local0 != 210):
 					state = 10
-					(global91 say: 1 0 9 1 self)
+					global91._send('say:', 1, 0, 9, 1, self)
 				else:
-					(global91 say: 1 0 register 2 self)
+					global91._send('say:', 1, 0, register, 2, self)
 				#endif
 			#end:case
 			case 9:
 				cycles = 2
 			#end:case
 			case 10:
-				(global91 say: 1 0 register 3 self)
+				global91._send('say:', 1, 0, register, 3, self)
 			#end:case
 			case 11:
-				if (global5 contains: cHead):
-					(cHead dispose:)
+				if global5._send('contains:', cHead):
+					cHead._send('dispose:')
 				#endif
-				(self setScript: singSingLeaveScr self)
+				self._send('setScript:', singSingLeaveScr, self)
 			#end:case
 			case 12:
-				(global2 newRoom: 210)
+				global2._send('newRoom:', 210)
 			#end:case
 		#end:match
 	#end:method
@@ -401,34 +401,34 @@ class poemSegueScr(CartoonScript):
 
 		match state = param1
 			case 0:
-				(self setScript: singSingEnterScr self 2)
+				self._send('setScript:', singSingEnterScr, self, 2)
 			#end:case
 			case 1:
 				register = (3 if (local1 != 210) else 2)
 				cycles = 2
 			#end:case
 			case 2:
-				(global91 say: 1 0 register 1 self)
+				global91._send('say:', 1, 0, register, 1, self)
 			#end:case
 			case 3:
 				ticks = 25
 			#end:case
 			case 4:
-				(leftArm view: 1421 loop: 0 cel: 0 setCycle: End self)
-				(followItem dispose:)
-				(rightArm init:)
+				leftArm._send('view:', 1421, 'loop:', 0, 'cel:', 0, 'setCycle:', End, self)
+				followItem._send('dispose:')
+				rightArm._send('init:')
 				if (local1 != 210):
-					(cHead init: 1)
+					cHead._send('init:', 1)
 				#endif
 			#end:case
 			case 5:
-				(global91 say: 1 0 register 2 self)
+				global91._send('say:', 1, 0, register, 2, self)
 			#end:case
 			case 6:
 				cycles = 2
 			#end:case
 			case 7:
-				(global91 say: 1 0 register 3 self)
+				global91._send('say:', 1, 0, register, 3, self)
 				if (register == 3):
 					(state += 9)
 				#endif
@@ -437,46 +437,48 @@ class poemSegueScr(CartoonScript):
 				cycles = 2
 			#end:case
 			case 9:
-				(cHead init: 2)
-				(global91 say: 1 0 register 4 self 140)
+				cHead._send('init:', 2)
+				global91._send('say:', 1, 0, register, 4, self, 140)
 			#end:case
 			case 10:
 				cycles = 2
 			#end:case
 			case 11:
 				if (local2 == 210):
-					(global91 say: 1 0 7 1 self)
+					global91._send('say:', 1, 0, 7, 1, self)
 				else:
-					(global91 say: 1 0 register 5 self)
+					global91._send('say:', 1, 0, register, 5, self)
 				#endif
 			#end:case
 			case 12:
-				(leftArm loop: 1 cel: 0 setCycle: End self)
+				leftArm._send('loop:', 1, 'cel:', 0, 'setCycle:', End, self)
 			#end:case
 			case 13:
 				ticks = 20
 			#end:case
 			case 14:
-				(leftArm setCycle: Beg self)
+				leftArm._send('setCycle:', Beg, self)
 			#end:case
 			case 15:
 				cycles = 2
 			#end:case
 			case 16:
-				(leftArm loop: 0 cel: 0)
+				leftArm._send('loop:', 0, 'cel:', 0)
 				ticks = 30
 			#end:case
 			case 17:
-				(cHead dispose:)
-				(self
-					setScript:
-						singSingLeaveScr
-						self
-						(2 if proc999_5(register, 7, 2) else 0)
+				cHead._send('dispose:')
+				self._send(
+					'setScript:', singSingLeaveScr, self, if 
+							proc999_5(register, 7, 2)
+							2
+						else:
+							0
+						#endif
 				)
 			#end:case
 			case 18:
-				(global2 newRoom: 210)
+				global2._send('newRoom:', 210)
 			#end:case
 		#end:match
 	#end:method
@@ -498,8 +500,8 @@ class singSing(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self loop: 0 setPri: 14)
+		super._send('init:', &rest)
+		self._send('loop:', 0, 'setPri:', 14)
 	#end:method
 
 #end:class or instance
@@ -577,7 +579,7 @@ class cHead(Prop):
 				case 2: 2#end:case
 			#end:match
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance
@@ -615,14 +617,14 @@ class Cassima(Kq6Talker):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if (global5 contains: cHead):
+		if global5._send('contains:', cHead):
 			cel = 1
-			(self x: 94 y: 87 textX: -60 textY: 30)
-			(super init: 0 0 cassyMouth &rest)
+			self._send('x:', 94, 'y:', 87, 'textX:', -60, 'textY:', 30)
+			super._send('init:', 0, 0, cassyMouth, &rest)
 		else:
 			cel = 1
-			(self x: 97 y: 85 textX: -60 textY: 30)
-			(super init: 0 0 cassyMouth2 &rest)
+			self._send('x:', 97, 'y:', 85, 'textX:', -60, 'textY:', 30)
+			super._send('init:', 0, 0, cassyMouth2, &rest)
 		#endif
 	#end:method
 

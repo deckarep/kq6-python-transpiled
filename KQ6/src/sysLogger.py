@@ -93,12 +93,11 @@ class sysLogger(Code):
 		if temp4 = (0 == kernel.StrLen(@global42)):
 			while (not (< 0 kernel.StrLen(@temp78) 19)):
 
-				(Print
-					font: 999
-					addText:
-						r"""Enter drive letter, path, and your name\n(no extension, max 40 characters)"""
-					addEdit: @temp78 40 0 20
-					init:
+				Print._send(
+					'font:', 999,
+					'addText:', r"""Enter drive letter, path, and your name\n(no extension, max 40 characters)""",
+					'addEdit:', @temp78, 40, 0, 20,
+					'init:'
 				)
 			#end:loop
 			kernel.StrCpy(@global42, @temp78, 40)
@@ -113,11 +112,11 @@ class sysLogger(Code):
 			kernel.StrCpy(@temp48, r"""resource.cfg""")
 		#endif
 		if temp4:
-			(Print
-				font: 999
-				addText: r"""Enter your login name\n(max 8 characters):"""
-				addEdit: @temp138 12 0 20
-				init:
+			Print._send(
+				'font:', 999,
+				'addText:', r"""Enter your login name\n(max 8 characters):""",
+				'addEdit:', @temp138, 12, 0, 20,
+				'init:'
 			)
 			kernel.StrAt(@temp138, 8, 0)
 		#endif
@@ -125,12 +124,11 @@ class sysLogger(Code):
 			(and
 				(or
 					(not temp4)
-					(Print
-						font: 999
-						addText:
-							r"""Enter configuration file name\n(or hit return to skip):"""
-						addEdit: @temp48 30 0 20
-						init:
+					Print._send(
+						'font:', 999,
+						'addText:', r"""Enter configuration file name\n(or hit return to skip):""",
+						'addEdit:', @temp48, 30, 0, 20,
+						'init:'
 					)
 				)
 				(-1 == local0 = kernel.FileIO(0, @temp48, 1))
@@ -207,13 +205,13 @@ class sysLogger(Code):
 				(or
 					(-1 == local0 = kernel.FileIO(0, @temp78, 1))
 					(kernel.Format(@temp8, 952, 8, @temp78) and 0)
-					(Print
-						font: 999
-						addText: @temp8
-						addButton: 0 r"""Append to it""" 0 12
-						addButton: 1 r"""Overwrite it""" 75 12
-						saveCursor: 1
-						init:
+					Print._send(
+						'font:', 999,
+						'addText:', @temp8,
+						'addButton:', 0, r"""Append to it""", 0, 12,
+						'addButton:', 1, r"""Overwrite it""", 75, 12,
+						'saveCursor:', 1,
+						'init:'
 					)
 				)
 			)
@@ -223,24 +221,24 @@ class sysLogger(Code):
 			local0 = kernel.FileIO(0, @temp78, 0)
 		#endif
 		if (-1 == local0):
-			(Print
-				font: 999
-				addTextF: r"""Error: Couldn't open %s""" @temp78
-				init:
+			Print._send(
+				'font:', 999,
+				'addTextF:', r"""Error: Couldn't open %s""", @temp78,
+				'init:'
 			)
 		else:
-			localproc_0(1, r"""GAME""", (global1 name:))
+			localproc_0(1, r"""GAME""", global1._send('name:'))
 			localproc_0(1, r"""VERSION""", global27)
 			localproc_0(7, r"""QA-DATE""")
 			localproc_0(1, r"""ANALYST""", @temp138)
-			localproc_0(1, r"""SEVERITY""", (Print
-				font: 999
-				addText: r"""Severity of bug..."""
-				addButton: r"""F""" r"""FATAL""" 0 12
-				addButton: r"""N""" r"""NON-FATAL""" 40 12
-				addButton: r"""S""" r"""SUGGESTION""" 110 12
-				saveCursor: 1
-				init:
+			localproc_0(1, r"""SEVERITY""", Print._send(
+				'font:', 999,
+				'addText:', r"""Severity of bug...""",
+				'addButton:', r"""F""", r"""FATAL""", 0, 12,
+				'addButton:', r"""N""", r"""NON-FATAL""", 40, 12,
+				'addButton:', r"""S""", r"""SUGGESTION""", 110, 12,
+				'saveCursor:', 1,
+				'init:'
 			))
 			temp0 = 1
 			temp6 = 1
@@ -255,65 +253,65 @@ class sysLogger(Code):
 				#endif
 				temp0.post('++')
 			#end:loop
-			localproc_0(1, r"""DEPARTMENT""", (Print
-				font: 999
-				addText: r"""Who can fix bug..."""
-				addButton: r"""P""" r"""PROG""" 0 12
-				addButton: r"""A""" r"""ART""" 40 12
-				addButton: r"""D""" r"""DESIGN""" 80 12
-				saveCursor: 1
-				init:
+			localproc_0(1, r"""DEPARTMENT""", Print._send(
+				'font:', 999,
+				'addText:', r"""Who can fix bug...""",
+				'addButton:', r"""P""", r"""PROG""", 0, 12,
+				'addButton:', r"""A""", r"""ART""", 40, 12,
+				'addButton:', r"""D""", r"""DESIGN""", 80, 12,
+				'saveCursor:', 1,
+				'init:'
 			))
 			localproc_0(2, r"""ROOM""", global11)
-			temp0 = (global2 script:)
-			localproc_0(1, r"""ROOM-SCRIPT""", (temp0 and (temp0 name:)))
-			localproc_0(2, r"""ROOM-STATE""", (temp0 and (temp0 state:)))
-			localproc_0(2, r"""EGO-X""", (global0 x:))
-			localproc_0(2, r"""EGO-Y""", (global0 y:))
-			localproc_0(2, r"""EGO-Z""", (global0 z:))
-			temp0 = (global0 script:)
-			localproc_0(1, r"""EGO-SCRIPT""", (temp0 and (temp0 name:)))
-			localproc_0(2, r"""EGO-STATE""", (temp0 and (temp0 state:)))
-			localproc_0(2, r"""EGO-VIEW""", (global0 view:))
-			localproc_0(2, r"""EGO-LOOP""", (global0 loop:))
-			localproc_0(2, r"""EGO-CEL""", (global0 cel:))
-			localproc_0(2, r"""EGO-PRIORITY""", (global0 priority:))
-			localproc_0(2, r"""EGO-HEADING""", (global0 heading:))
+			temp0 = global2._send('script:')
+			localproc_0(1, r"""ROOM-SCRIPT""", (temp0 and temp0._send('name:')))
+			localproc_0(2, r"""ROOM-STATE""", (temp0 and temp0._send('state:')))
+			localproc_0(2, r"""EGO-X""", global0._send('x:'))
+			localproc_0(2, r"""EGO-Y""", global0._send('y:'))
+			localproc_0(2, r"""EGO-Z""", global0._send('z:'))
+			temp0 = global0._send('script:')
+			localproc_0(1, r"""EGO-SCRIPT""", (temp0 and temp0._send('name:')))
+			localproc_0(2, r"""EGO-STATE""", (temp0 and temp0._send('state:')))
+			localproc_0(2, r"""EGO-VIEW""", global0._send('view:'))
+			localproc_0(2, r"""EGO-LOOP""", global0._send('loop:'))
+			localproc_0(2, r"""EGO-CEL""", global0._send('cel:'))
+			localproc_0(2, r"""EGO-PRIORITY""", global0._send('priority:'))
+			localproc_0(2, r"""EGO-HEADING""", global0._send('heading:'))
 			localproc_0(1, r"""CYCLER""", (and
-				(global0 cycler:)
-				((global0 cycler:) name:)
+				global0._send('cycler:')
+				global0._send('cycler:')._send('name:')
 			))
-			temp0 = (global0 mover:)
-			localproc_0(1, r"""EGO-MOVER""", (temp0 and (temp0 name:)))
+			temp0 = global0._send('mover:')
+			localproc_0(1, r"""EGO-MOVER""", (temp0 and temp0._send('name:')))
 			localproc_0(2, r"""MOVER-X""", (cond
 				case (not temp0): 0#end:case
-				case (temp0 isMemberOf: PolyPath):
-					(temp0 finalX:)
+				case temp0._send('isMemberOf:', PolyPath):
+					temp0._send('finalX:')
 				#end:case
 				else:
-					(temp0 x:)
+					temp0._send('x:')
 				#end:else
 			))
 			localproc_0(2, r"""MOVER-Y""", (cond
 				case (not temp0): 0#end:case
-				case (temp0 isMemberOf: PolyPath):
-					(temp0 finalY:)
+				case temp0._send('isMemberOf:', PolyPath):
+					temp0._send('finalY:')
 				#end:case
 				else:
-					(temp0 y:)
+					temp0._send('y:')
 				#end:else
 			))
-			localproc_0(2, r"""EGO-MOVESPD""", (global0 moveSpeed:))
-			localproc_0(4, r"""SIGNAL-BITS""", (global0 signal:))
-			localproc_0(4, r"""ILLEGAL-BITS""", (global0 illegalBits:))
+			localproc_0(2, r"""EGO-MOVESPD""", global0._send('moveSpeed:'))
+			localproc_0(4, r"""SIGNAL-BITS""", global0._send('signal:'))
+			localproc_0(4, r"""ILLEGAL-BITS""", global0._send('illegalBits:'))
 			localproc_0(2, r"""HOWFAST""", global87)
-			localproc_0(1, r"""ICONBAR""", (global69 and (global69 name:)))
+			localproc_0(1, r"""ICONBAR""", (global69 and global69._send('name:')))
 			localproc_0(1, r"""CUR-ICON""", (and
 				global69
-				(global69 curIcon:)
-				((global69 curIcon:) name:)
+				global69._send('curIcon:')
+				global69._send('curIcon:')._send('name:')
 			))
-			localproc_0(2, r"""DETAIL-LEVEL""", (global1 detailLevel:))
+			localproc_0(2, r"""DETAIL-LEVEL""", global1._send('detailLevel:'))
 			localproc_0(2, r"""CD-AUDIO""", (global90 & 0x0002))
 			localproc_0(1, r"""VIDEO-DRV""", @temp238)
 			localproc_0(1, r"""SOUND-DRV""", @temp278)
@@ -335,10 +333,10 @@ class sysLogger(Code):
 				(-1 == local0 = kernel.FileIO(0, @temp78, 2))
 				(-1 == local0 = kernel.FileIO(0, @temp78, 0))
 			)
-			(Print
-				font: 999
-				addTextF: r"""Error: Couldn't open memory file %s!""" @temp78
-				init:
+			Print._send(
+				'font:', 999,
+				'addTextF:', r"""Error: Couldn't open memory file %s!""", @temp78,
+				'init:'
 			)
 		else:
 			kernel.FileIO(6, local0, @temp138)

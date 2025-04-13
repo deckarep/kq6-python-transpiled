@@ -33,19 +33,19 @@ class Allaria(Kq6Talker):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if proc913_0(91):
-			(self view: 8993)
-			(tBust view: 8993)
-			(tEyes view: 8993)
+			self._send('view:', 8993)
+			tBust._send('view:', 8993)
+			tEyes._send('view:', 8993)
 			raveName = r"""ALLARIAD"""
-			(tMouth view: 8993)
+			tMouth._send('view:', 8993)
 		else:
-			(self view: 8992)
-			(tBust view: 8992)
-			(tEyes view: 8992)
-			(tMouth view: 8992)
+			self._send('view:', 8992)
+			tBust._send('view:', 8992)
+			tEyes._send('view:', 8992)
+			tMouth._send('view:', 8992)
 			raveName = r"""ALLARIA"""
 		#endif
-		(super init: tBust tEyes tMouth &rest)
+		super._send('init:', tBust, tEyes, tMouth, &rest)
 	#end:method
 
 #end:class or instance

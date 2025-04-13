@@ -15,7 +15,7 @@ class TimedCue(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: param1 param1)
+		super._send('init:', param1, param1)
 		if (argc >= 2):
 			seconds = param2
 			if (argc >= 3):
@@ -30,7 +30,7 @@ class TimedCue(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if state.post('++'):
-			(self dispose:)
+			self._send('dispose:')
 		#endif
 	#end:method
 

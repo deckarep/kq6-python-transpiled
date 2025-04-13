@@ -27,8 +27,8 @@ class Follow(Motion):
 				#endif
 			#endif
 		#endif
-		if ((client distanceTo: who) > distance):
-			(super init: client (who x:) (who y:))
+		if (client._send('distanceTo:', who) > distance):
+			super._send('init:', client, who._send('x:'), who._send('y:'))
 		#endif
 	#end:method
 
@@ -37,7 +37,7 @@ class Follow(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return ((client distanceTo: who) <= distance)
+		return (client._send('distanceTo:', who) <= distance)
 	#end:method
 
 	@classmethod
@@ -47,10 +47,10 @@ class Follow(Motion):
 
 		(cond
 			case argc:
-				(super setTarget: &rest)
+				super._send('setTarget:', &rest)
 			#end:case
-			case (not (self onTarget:)):
-				(super setTarget: (who x:) (who y:))
+			case (not self._send('onTarget:')):
+				super._send('setTarget:', who._send('x:'), who._send('y:'))
 			#end:case
 		)
 	#end:method
@@ -60,22 +60,22 @@ class Follow(Motion):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		if ((client distanceTo: who) > distance):
+		if (client._send('distanceTo:', who) > distance):
 			if (b-moveCnt == 0):
-				(super init: client (who x:) (who y:))
+				super._send('init:', client, who._send('x:'), who._send('y:'))
 			#endif
-			(super doit:)
+			super._send('doit:')
 		else:
-			xLast = (client x:)
-			yLast = (client y:)
+			xLast = client._send('x:')
+			yLast = client._send('y:')
 			if 
 				(!=
-					temp0 = kernel.GetAngle(xLast, yLast, (who x:), (who y:))
-					(client heading:)
+					temp0 = kernel.GetAngle(xLast, yLast, who._send('x:'), who._send('y:'))
+					client._send('heading:')
 				)
-				(client heading: temp0)
-				if (client looper:):
-					((client looper:) doit: client temp0)
+				client._send('heading:', temp0)
+				if client._send('looper:'):
+					client._send('looper:')._send('doit:', client, temp0)
 				else:
 					kernel.DirLoop(client, temp0)
 				#endif

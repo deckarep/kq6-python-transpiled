@@ -33,8 +33,8 @@ class guardsScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOn:)
-		(super dispose:)
+		global1._send('handsOn:')
+		super._send('dispose:')
 		kernel.DisposeScript(802)
 	#end:method
 
@@ -45,67 +45,67 @@ class guardsScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91
-					say: 6 1 (24 + (kernel.ScriptID(80, 0) tstFlag: 709 32)) 1 self
+				global1._send('handsOff:')
+				global91._send(
+					'say:', 6, 1, (24 + kernel.ScriptID(80, 0)._send('tstFlag:', 709, 32)), 1, self
 				)
 			#end:case
 			case 1:
-				local0 = (global0 x:)
-				local1 = (global0 y:)
-				(global0
-					normal: 0
-					view: 802
-					loop: 0
-					cel: 0
-					posn: 297 173
-					setScale: 0
-					scaleX: 128
-					scaleY: 128
-					cycleSpeed: 8
-					setCycle: End self
+				local0 = global0._send('x:')
+				local1 = global0._send('y:')
+				global0._send(
+					'normal:', 0,
+					'view:', 802,
+					'loop:', 0,
+					'cel:', 0,
+					'posn:', 297, 173,
+					'setScale:', 0,
+					'scaleX:', 128,
+					'scaleY:', 128,
+					'cycleSpeed:', 8,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global5 eachElementDo: #startUpd)
+				global5._send('eachElementDo:', #startUpd)
 				cycles = 4
 			#end:case
 			case 3:
-				(global69 disable:)
-				(global5 eachElementDo: #hide)
-				(global2 drawPic: 802 10)
-				(background addToPic:)
-				(guard1 init: stopUpd:)
-				(guard2 init: stopUpd:)
-				if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
-					(global1 givePoints: 2)
-					(saladin init: stopUpd:)
+				global69._send('disable:')
+				global5._send('eachElementDo:', #hide)
+				global2._send('drawPic:', 802, 10)
+				background._send('addToPic:')
+				guard1._send('init:', 'stopUpd:')
+				guard2._send('init:', 'stopUpd:')
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 32)):
+					global1._send('givePoints:', 2)
+					saladin._send('init:', 'stopUpd:')
 				#endif
 				cycles = 4
 			#end:case
 			case 4:
-				(global69 enable:)
-				if (not (kernel.ScriptID(80, 0) tstFlag: 709 32)):
-					(self setScript: overHearGuards self)
+				global69._send('enable:')
+				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 32)):
+					self._send('setScript:', overHearGuards, self)
 				else:
-					(self setScript: guardsNotHere self)
+					self._send('setScript:', guardsNotHere, self)
 				#endif
 			#end:case
 			case 5:
-				(background dispose:)
-				(guard1 dispose: delete:)
-				(guard2 dispose: delete:)
-				(saladin dispose: delete:)
+				background._send('dispose:')
+				guard1._send('dispose:', 'delete:')
+				guard2._send('dispose:', 'delete:')
+				saladin._send('dispose:', 'delete:')
 				proc800_1()
-				(global0 setCycle: Beg self)
+				global0._send('setCycle:', Beg, self)
 			#end:case
 			case 6:
-				(global69 enable:)
-				(global0 posn: local0 local1 reset: 0)
+				global69._send('enable:')
+				global0._send('posn:', local0, local1, 'reset:', 0)
 				cycles = 2
 			#end:case
 			case 7:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -122,32 +122,31 @@ class overHearGuards(Script):
 
 		match state = param1
 			case 0:
-				(kernel.ScriptID(80, 0) setFlag: 709 32)
+				kernel.ScriptID(80, 0)._send('setFlag:', 709, 32)
 				cycles = 3
 			#end:case
 			case 1:
-				(global91 say: 6 1 24 2 self oneOnly: 0)
+				global91._send('say:', 6, 1, 24, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 2:
-				(Print
-					font: global22
-					width: 250
-					posn: 20 139
-					addText:
-						r"""He was speakin' to that door--black magic, is what I say! I heard him say 'Ali', but then Bay came up and started yappin at me."""
-					modeless: 1
-					init:
+				Print._send(
+					'font:', global22,
+					'width:', 250,
+					'posn:', 20, 139,
+					'addText:', r"""He was speakin' to that door--black magic, is what I say! I heard him say 'Ali', but then Bay came up and started yappin at me.""",
+					'modeless:', 1,
+					'init:'
 				)
 				seconds = 10
 			#end:case
 			case 3:
 				if global25:
-					(global25 dispose:)
+					global25._send('dispose:')
 				#endif
 				cycles = 10
 			#end:case
 			case 4:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -167,10 +166,10 @@ class guardsNotHere(Script):
 				cycles = 3
 			#end:case
 			case 1:
-				(global91 say: 6 1 25 2 self oneOnly: 0)
+				global91._send('say:', 6, 1, 25, 2, self, 'oneOnly:', 0)
 			#end:case
 			case 2:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

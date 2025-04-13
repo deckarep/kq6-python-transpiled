@@ -20,9 +20,9 @@ class CartoonScript(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		countDown = time
-		(super init: &rest)
-		(global72 addToFront: self)
-		(global73 addToFront: self)
+		super._send('init:', &rest)
+		global72._send('addToFront:', self)
+		global73._send('addToFront:', self)
 	#end:method
 
 	@classmethod
@@ -30,9 +30,9 @@ class CartoonScript(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global72 delete: self)
-		(global73 delete: self)
-		(super dispose:)
+		global72._send('delete:', self)
+		global73._send('delete:', self)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -41,12 +41,12 @@ class CartoonScript(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
-			(global80 canInput: 1)
+			global80._send('canInput:', 1)
 			if (countDown > 0):
 				countDown.post('--')
 			#endif
 		#endif
-		(super doit:)
+		super._send('doit:')
 	#end:method
 
 	@classmethod
@@ -58,14 +58,14 @@ class CartoonScript(Script):
 			(and
 				global25
 				(or
-					(((param1 type:) == 4) and ((param1 message:) == 13))
-					((param1 type:) == 1)
+					((param1._send('type:') == 4) and (param1._send('message:') == 13))
+					(param1._send('type:') == 1)
 				)
 			)
-			(param1 claimed: 1)
+			param1._send('claimed:', 1)
 			if (not countDown):
-				(global80 canInput: 0)
-				(global25 seconds: 0 dispose:)
+				global80._send('canInput:', 0)
+				global25._send('seconds:', 0, 'dispose:')
 				countDown = time
 			#endif
 		#endif

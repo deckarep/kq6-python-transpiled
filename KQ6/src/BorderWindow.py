@@ -52,31 +52,31 @@ def localproc_1(param1 = None, *rest):
 
 	(= temp1
 		(cond
-			case ((param1 bottom:) > 185):
-				(185 - (param1 bottom:))
+			case (param1._send('bottom:') > 185):
+				(185 - param1._send('bottom:'))
 			#end:case
-			case ((param1 top:) < 10):
-				(10 - (param1 top:))
+			case (param1._send('top:') < 10):
+				(10 - param1._send('top:'))
 			#end:case
 			else: 0#end:else
 		)
 	)
 	(= temp0
 		(cond
-			case ((param1 right:) > 315):
-				(315 - (param1 right:))
+			case (param1._send('right:') > 315):
+				(315 - param1._send('right:'))
 			#end:case
-			case ((param1 left:) < 5):
-				(5 - (param1 left:))
+			case (param1._send('left:') < 5):
+				(5 - param1._send('left:'))
 			#end:case
 			else: 0#end:else
 		)
 	)
-	(param1
-		top: ((param1 top:) + temp1)
-		bottom: ((param1 bottom:) + temp1)
-		left: ((param1 left:) + temp0)
-		right: ((param1 right:) + temp0)
+	param1._send(
+		'top:', (param1._send('top:') + temp1),
+		'bottom:', (param1._send('bottom:') + temp1),
+		'left:', (param1._send('left:') + temp0),
+		'right:', (param1._send('right:') + temp0)
 	)
 #end:procedure
 
@@ -105,7 +105,7 @@ class BorderWindow(SysWindow):
 		lsRight = (+ right bevelWid shadowWid)
 		lsBottom = (+ bottom bevelWid shadowWid)
 		type = 128
-		(super open:)
+		super._send('open:')
 		localproc_0(top, left, bottom, right, back, topBordColor, lftBordColor, botBordColor, rgtBordColor, bevelWid, shadowWid, priority, temp1)
 		temp0 = kernel.GetPort()
 		kernel.SetPort(0)
@@ -118,7 +118,7 @@ class BorderWindow(SysWindow):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.SetPort(0)
 	#end:method
 
@@ -163,7 +163,7 @@ class InsetWindow(BorderWindow):
 		(right += (bevelWid + sideBordWid))
 		xOffset = (bevelWid + sideBordWid)
 		yOffset = (bevelWid + topBordHgt)
-		(super open:)
+		super._send('open:')
 		localproc_0(temp2, temp3, temp4, temp5, insideColor, topBordColor2, lftBordColor2, botBordColor2, rgtBordColor2, bevWid, shadWid, priority, temp0)
 		temp1 = kernel.GetPort()
 		kernel.SetPort(0)

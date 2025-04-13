@@ -46,11 +46,11 @@ def localproc_0(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if param1:
-		local7 = (global89 x:)
-		local8 = (global89 talkWidth:)
-		(global89 x: 20 talkWidth: 100)
+		local7 = global89._send('x:')
+		local8 = global89._send('talkWidth:')
+		global89._send('x:', 20, 'talkWidth:', 100)
 	else:
-		(global89 x: local7 talkWidth: local8)
+		global89._send('x:', local7, 'talkWidth:', local8)
 	#endif
 #end:procedure
 
@@ -60,11 +60,11 @@ def localproc_1(param1 = None, *rest):
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
 	if param1:
-		local7 = (global89 x:)
-		local8 = (global89 talkWidth:)
-		(global89 x: 200 talkWidth: 100)
+		local7 = global89._send('x:')
+		local8 = global89._send('talkWidth:')
+		global89._send('x:', 200, 'talkWidth:', 100)
 	else:
-		(global89 x: local7 talkWidth: local8)
+		global89._send('x:', local7, 'talkWidth:', local8)
 	#endif
 #end:procedure
 
@@ -75,10 +75,10 @@ def localproc_2():
 
 	(return
 		(cond
-			case (((global0 heading:) > 45) and ((global0 heading:) < 135)): 0#end:case
-			case (((global0 heading:) > 134) and ((global0 heading:) < 225)): 2#end:case
-			case (((global0 heading:) > 224) and ((global0 heading:) < 315)): 1#end:case
-			case (((global0 heading:) > 314) or ((global0 heading:) < 45)): 3#end:case
+			case ((global0._send('heading:') > 45) and (global0._send('heading:') < 135)): 0#end:case
+			case ((global0._send('heading:') > 134) and (global0._send('heading:') < 225)): 2#end:case
+			case ((global0._send('heading:') > 224) and (global0._send('heading:') < 315)): 1#end:case
+			case ((global0._send('heading:') > 314) or (global0._send('heading:') < 45)): 3#end:case
 		)
 	)
 #end:procedure
@@ -100,7 +100,7 @@ class rm550Messager(Kq6Messager):
 			)
 			return
 		else:
-			(super findTalker: param1)
+			super._send('findTalker:', param1)
 		#endif
 	#end:method
 
@@ -124,197 +124,62 @@ class rm550(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(global1 handsOff:)
+		super._send('init:', &rest)
+		global1._send('handsOff:')
 		local6 = global91
 		global91 = rm550Messager
-		(global2
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						319
-						106
-						259
-						107
-						224
-						84
-						222
-						92
-						189
-						86
-						170
-						95
-						168
-						89
-						171
-						83
-						133
-						87
-						130
-						83
-						143
-						78
-						165
-						68
-						155
-						63
-						142
-						60
-						124
-						48
-						140
-						0
-						319
-						0
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						260
-						127
-						237
-						129
-						217
-						132
-						186
-						128
-						181
-						119
-						218
-						112
-						233
-						101
-						255
-						121
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						152
-						112
-						140
-						112
-						139
-						120
-						118
-						120
-						108
-						118
-						100
-						111
-						85
-						110
-						86
-						106
-						115
-						101
-						129
-						103
-						153
-						109
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						93
-						76
-						81
-						70
-						65
-						71
-						57
-						67
-						30
-						68
-						20
-						58
-						0
-						58
-						0
-						0
-						93
-						0
-						110
-						51
-						132
-						59
-						143
-						67
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						132
-						144
-						164
-						170
-						119
-						189
-						0
-						189
-						0
-						132
-						50
-						126
-						75
-						129
-						96
-						135
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						319
-						165
-						291
-						165
-						282
-						169
-						247
-						168
-						229
-						162
-						243
-						158
-						294
-						149
-						319
-						153
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init: 240 189 136 189 166 185 206 185
-					yourself:
+		global2._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 319, 106, 259, 107, 224, 84, 222, 92, 189, 86, 170, 95, 168, 89, 171, 83, 133, 87, 130, 83, 143, 78, 165, 68, 155, 63, 142, 60, 124, 48, 140, 0, 319, 0,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 260, 127, 237, 129, 217, 132, 186, 128, 181, 119, 218, 112, 233, 101, 255, 121,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 152, 112, 140, 112, 139, 120, 118, 120, 108, 118, 100, 111, 85, 110, 86, 106, 115, 101, 129, 103, 153, 109,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 93, 76, 81, 70, 65, 71, 57, 67, 30, 68, 20, 58, 0, 58, 0, 0, 93, 0, 110, 51, 132, 59, 143, 67,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 132, 144, 164, 170, 119, 189, 0, 189, 0, 132, 50, 126, 75, 129, 96, 135,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 319, 165, 291, 165, 282, 169, 247, 168, 229, 162, 243, 158, 294, 149, 319, 153,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 240, 189, 136, 189, 166, 185, 206, 185,
+					'yourself:'
 				)
 		)
-		(water1 init: setCycle: Fwd)
-		(water2 init: setCycle: Fwd)
-		(water3 init: setCycle: Fwd)
-		(water4 init: setCycle: Fwd)
-		(oceanSound number: 915 loop: -1 flags: 1 play:)
-		(global103 number: 550 flags: 1 loop: -1 play:)
-		(ocean1 init:)
-		(ocean2 init:)
-		(trees1 init:)
-		(trees2 init:)
-		(rocks init:)
-		(nePath init:)
-		(nwPath init:)
-		(global0 actions: egoDoVerb setScale: Scaler 100 70 190 53 setPri: -1)
+		water1._send('init:', 'setCycle:', Fwd)
+		water2._send('init:', 'setCycle:', Fwd)
+		water3._send('init:', 'setCycle:', Fwd)
+		water4._send('init:', 'setCycle:', Fwd)
+		oceanSound._send('number:', 915, 'loop:', -1, 'flags:', 1, 'play:')
+		global103._send('number:', 550, 'flags:', 1, 'loop:', -1, 'play:')
+		ocean1._send('init:')
+		ocean2._send('init:')
+		trees1._send('init:')
+		trees2._send('init:')
+		rocks._send('init:')
+		nePath._send('init:')
+		nwPath._send('init:')
+		global0._send('actions:', egoDoVerb, 'setScale:', Scaler, 100, 70, 190, 53, 'setPri:', -1)
 		if (proc913_0(25) and (not proc913_0(14))):
-			(druid1 init: setScale: -1 global0)
-			(druid2 init: setScale: -1 global0 setScript: waitForCapture)
+			druid1._send('init:', 'setScale:', -1, global0)
+			druid2._send('init:', 'setScale:', -1, global0, 'setScript:', waitForCapture)
 			local5 = 1
 		#endif
 		if proc999_5(global12, 560, 580):
-			(self setScript: egoEnters)
+			self._send('setScript:', egoEnters)
 		#endif
 	#end:method
 
@@ -323,23 +188,23 @@ class rm550(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case (temp0 & 0x2000):
-				(global1 handsOff:)
-				(global2 setScript: walkNorthScript)
+				global1._send('handsOff:')
+				global2._send('setScript:', walkNorthScript)
 			#end:case
 			case (temp0 & 0x0010):
-				if ((global0 view:) != 308):
+				if (global0._send('view:') != 308):
 					temp1 = localproc_2()
-					(global0
-						ignoreActors: 1
-						illegalBits: 0
-						view: 308
-						setPri: 15
-						setLoop: temp1
-						setLoop: -1
+					global0._send(
+						'ignoreActors:', 1,
+						'illegalBits:', 0,
+						'view:', 308,
+						'setPri:', 15,
+						'setLoop:', temp1,
+						'setLoop:', -1
 					)
 					local0 = 0
 				#endif
@@ -347,57 +212,57 @@ class rm550(KQ6Room):
 			case (temp0 & 0x0020):
 				if (not local9):
 					local9 = 1
-					(global104 number: 922 loop: -1 flags: 1 play:)
+					global104._send('number:', 922, 'loop:', -1, 'flags:', 1, 'play:')
 				#endif
 				if local3:
 					local0 = 0
 					local3 = 0
-					(global91 say: 4 3 6)
-					(global0 setMotion: 0)
+					global91._send('say:', 4, 3, 6)
+					global0._send('setMotion:', 0)
 				#endif
 			#end:case
 			case (temp0 & 0x0040):
-				if ((global0 view:) != 3081):
+				if (global0._send('view:') != 3081):
 					temp1 = localproc_2()
-					(global0
-						ignoreActors: 1
-						illegalBits: 0
-						view: 3081
-						setPri: 15
-						setLoop: temp1
-						setLoop: -1
+					global0._send(
+						'ignoreActors:', 1,
+						'illegalBits:', 0,
+						'view:', 3081,
+						'setPri:', 15,
+						'setLoop:', temp1,
+						'setLoop:', -1
 					)
 				#endif
 			#end:case
 			case (temp0 & 0x0100):
 				if (not local4):
-					(global0 setMotion: 0)
+					global0._send('setMotion:', 0)
 					while True: #repeat
-						(global0 posn: ((global0 x:) - 1) ((global0 y:) - 1))
-						(breakif ((global0 onControl: 1) & 0x0080))
+						global0._send('posn:', (global0._send('x:') - 1), (global0._send('y:') - 1))
+						(breakif (global0._send('onControl:', 1) & 0x0080))
 					#end:loop
-					(global91 say: 4 3 6)
+					global91._send('say:', 4, 3, 6)
 					local0 = 0
 					local4 = 1
 				else:
-					(global1 handsOff:)
-					(self setScript: wateryDeathScr)
+					global1._send('handsOff:')
+					self._send('setScript:', wateryDeathScr)
 				#endif
 			#end:case
 			case 
 				(and
 					(not (temp0 & 0x01f0))
-					((global0 view:) == 308)
+					(global0._send('view:') == 308)
 					(not local0)
 				):
-				(global104 fade:)
+				global104._send('fade:')
 				local9 = 0
-				(global0 reset: 3)
+				global0._send('reset:', 3)
 				local4 = 0
 				local0 = 1
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -406,9 +271,9 @@ class rm550(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (not proc999_5(param1, 560, 580)):
-			(global103 stop: number: 0)
+			global103._send('stop:', 'number:', 0)
 		#endif
-		(super newRoom: param1)
+		super._send('newRoom:', param1)
 	#end:method
 
 	@classmethod
@@ -417,7 +282,7 @@ class rm550(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		global91 = local6
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(939)
 	#end:method
 
@@ -473,13 +338,13 @@ class rocks(Feature):
 
 		(cond
 			case (param1 == 1):
-				(global91 say: noun param1 10 0 0 0)
+				global91._send('say:', noun, param1, 10, 0, 0, 0)
 			#end:case
 			case proc999_5(param1, 2, 5):
-				(global91 say: noun param1 0 0 0 0)
+				global91._send('say:', noun, param1, 0, 0, 0, 0)
 			#end:case
 			else:
-				(global91 say: noun 0 0 0 0 0)
+				global91._send('say:', noun, 0, 0, 0, 0, 0)
 			#end:else
 		)
 	#end:method
@@ -515,8 +380,8 @@ class druid1(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: StopWalk -1)
+		super._send('init:', &rest)
+		self._send('setCycle:', StopWalk, -1)
 	#end:method
 
 #end:class or instance
@@ -535,8 +400,8 @@ class druid2(Actor):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
-		(self setCycle: StopWalk -1)
+		super._send('init:', &rest)
+		self._send('setCycle:', StopWalk, -1)
 	#end:method
 
 #end:class or instance
@@ -606,16 +471,16 @@ class walkNorthScript(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 138 58 self)
+				global0._send('setMotion:', PolyPath, 138, 58, self)
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 122 47 self)
+				global0._send('setMotion:', PolyPath, 122, 47, self)
 			#end:case
 			case 2:
-				(global0 setHeading: 45 self)
+				global0._send('setHeading:', 45, self)
 			#end:case
 			case 3:
-				(global2 newRoom: 580)
+				global2._send('newRoom:', 580)
 			#end:case
 		#end:match
 	#end:method
@@ -634,24 +499,24 @@ class egoEnters(Script):
 			case 0:
 				match global12
 					case 580:
-						(global0
-							init:
-							posn: 126 55
-							setMotion: PolyPath 127 87 self
+						global0._send(
+							'init:',
+							'posn:', 126, 55,
+							'setMotion:', PolyPath, 127, 87, self
 						)
 					#end:case
 					else:
-						(global0
-							init:
-							posn: 1 95
-							setMotion: PolyPath 40 95 self
+						global0._send(
+							'init:',
+							'posn:', 1, 95,
+							'setMotion:', PolyPath, 40, 95, self
 						)
 					#end:else
 				#end:match
 			#end:case
 			case 1:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -666,10 +531,10 @@ class waitForCapture(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super doit:)
-		if ((not state) and (not (global2 script:))):
-			(global1 handsOff:)
-			(global2 setScript: captured)
+		super._send('doit:')
+		if ((not state) and (not global2._send('script:'))):
+			global1._send('handsOff:')
+			global2._send('setScript:', captured)
 		#endif
 	#end:method
 
@@ -695,75 +560,73 @@ class captured(Script):
 
 		match state = param1
 			case 0:
-				(global0 setHeading: 315 self)
+				global0._send('setHeading:', 315, self)
 			#end:case
 			case 1:
 				localproc_0(1)
-				(global91 say: 1 0 2 1 self)
+				global91._send('say:', 1, 0, 2, 1, self)
 				localproc_0(0)
 			#end:case
 			case 2:
 				localproc_1(1)
-				(global91 say: 1 0 2 2 self)
+				global91._send('say:', 1, 0, 2, 2, self)
 				localproc_1(0)
 			#end:case
 			case 3:
 				localproc_0(1)
-				(global91 say: 1 0 2 3 self)
+				global91._send('say:', 1, 0, 2, 3, self)
 				localproc_0(0)
 			#end:case
 			case 4:
-				(druid1
-					setMotion:
-						MoveTo
-						((global0 x:) - 25)
-						((global0 y:) + 3)
-						self
-					setCycle: Walk
+				druid1._send(
+					'setMotion:', MoveTo, (global0._send('x:') - 25), (+
+							global0._send('y:')
+							3
+						), self,
+					'setCycle:', Walk
 				)
-				(druid2
-					setMotion:
-						MoveTo
-						((global0 x:) + 24)
-						((global0 y:) + 4)
-						self
-					setCycle: Walk
+				druid2._send(
+					'setMotion:', MoveTo, (global0._send('x:') + 24), (+
+							global0._send('y:')
+							4
+						), self,
+					'setCycle:', Walk
 				)
 			#end:case
 			case 5:
-				(druid1 dispose:)
-				(druid2 dispose:)
-				(global0
-					normal: 0
-					view: 554
-					cycleSpeed: 10
-					cel: 0
-					setLoop: 0
-					setCycle: End self
+				druid1._send('dispose:')
+				druid2._send('dispose:')
+				global0._send(
+					'normal:', 0,
+					'view:', 554,
+					'cycleSpeed:', 10,
+					'cel:', 0,
+					'setLoop:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 6:
-				(global91 say: 1 0 2 4 self)
+				global91._send('say:', 1, 0, 2, 4, self)
 			#end:case
 			case 7:
 				localproc_0(1)
-				(global91 say: 1 0 2 5 self)
+				global91._send('say:', 1, 0, 2, 5, self)
 				localproc_0(0)
 			#end:case
 			case 8:
-				(global0
-					view: 5806
-					setLoop: 0
-					cycleSpeed: 6
-					setCycle: Walk
-					setMotion: PolyPath 126 85 self
+				global0._send(
+					'view:', 5806,
+					'setLoop:', 0,
+					'cycleSpeed:', 6,
+					'setCycle:', Walk,
+					'setMotion:', PolyPath, 126, 85, self
 				)
 			#end:case
 			case 9:
-				(global0 setMotion: PolyPath 150 66 self)
+				global0._send('setMotion:', PolyPath, 150, 66, self)
 			#end:case
 			case 10:
-				(global2 newRoom: 580)
+				global2._send('newRoom:', 580)
 			#end:case
 		#end:match
 	#end:method
@@ -780,28 +643,28 @@ class wateryDeathScr(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
-				(global91 say: 4 3 9 0 self)
+				global1._send('handsOff:')
+				global91._send('say:', 4, 3, 9, 0, self)
 			#end:case
 			case 1:
-				(global2 walkOffEdge: 1)
-				(global104 stop: number: 921 loop: 1 play:)
-				(global0
-					normal: 0
-					view: 269
-					setLoop: 1
-					cel: 0
-					cycleSpeed: 6
-					setCycle: Osc
+				global2._send('walkOffEdge:', 1)
+				global104._send('stop:', 'number:', 921, 'loop:', 1, 'play:')
+				global0._send(
+					'normal:', 0,
+					'view:', 269,
+					'setLoop:', 1,
+					'cel:', 0,
+					'cycleSpeed:', 6,
+					'setCycle:', Osc
 				)
-				if ((global0 y:) > 137):
-					(global0 setMotion: PolyPath 267 220 self)
+				if (global0._send('y:') > 137):
+					global0._send('setMotion:', PolyPath, 267, 220, self)
 				else:
-					(global0 setMotion: PolyPath 340 118 self)
+					global0._send('setMotion:', PolyPath, 340, 118, self)
 				#endif
 			#end:case
 			case 2:
-				(global2 newRoom: 135)
+				global2._send('newRoom:', 135)
 			#end:case
 		#end:match
 	#end:method
@@ -818,7 +681,7 @@ class egoDoVerb(Actions):
 
 		match param1
 			case 12:
-				(global2 setScript: 130)
+				global2._send('setScript:', 130)
 				return 1
 			#end:case
 			else:

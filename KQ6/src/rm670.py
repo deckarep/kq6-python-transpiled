@@ -48,81 +48,29 @@ class rm670(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global1 handsOff:)
-		(self
-			addObstacle:
-				((Polygon new:)
-					type: 2
-					init:
-						224
-						76
-						319
-						76
-						319
-						189
-						95
-						189
-						44
-						165
-						27
-						143
-						64
-						118
-						105
-						113
-						162
-						91
-						168
-						86
-						184
-						86
-					yourself:
-				)
-				((Polygon new:)
-					type: 2
-					init:
-						181
-						81
-						163
-						81
-						102
-						108
-						71
-						109
-						45
-						115
-						26
-						127
-						8
-						146
-						10
-						172
-						30
-						189
-						0
-						189
-						0
-						0
-						319
-						0
-						319
-						72
-						215
-						72
-					yourself:
+		global1._send('handsOff:')
+		self._send(
+			'addObstacle:', Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 224, 76, 319, 76, 319, 189, 95, 189, 44, 165, 27, 143, 64, 118, 105, 113, 162, 91, 168, 86, 184, 86,
+					'yourself:'
+				), Polygon._send('new:')._send(
+					'type:', 2,
+					'init:', 181, 81, 163, 81, 102, 108, 71, 109, 45, 115, 26, 127, 8, 146, 10, 172, 30, 189, 0, 189, 0, 0, 319, 0, 319, 72, 215, 72,
+					'yourself:'
 				)
 		)
-		(super init:)
+		super._send('init:')
 		kernel.Lock(143, 670, 0)
-		(global0 init: reset: posn: 49 230 setScale: Scaler 90 80 250 50)
-		(self setScript: enterRoomScript)
-		(torch1 setCycle: Fwd ignoreActors: 1 init:)
-		(torch2 setCycle: Fwd ignoreActors: 1 init:)
-		(shimmer1 setCycle: Fwd ignoreActors: 1 init:)
-		(shimmer2 setCycle: Fwd ignoreActors: 1 init:)
-		(gate init: ignoreHorizon: 1 ignoreActors: 1)
-		(path init:)
-		(river init:)
+		global0._send('init:', 'reset:', 'posn:', 49, 230, 'setScale:', Scaler, 90, 80, 250, 50)
+		self._send('setScript:', enterRoomScript)
+		torch1._send('setCycle:', Fwd, 'ignoreActors:', 1, 'init:')
+		torch2._send('setCycle:', Fwd, 'ignoreActors:', 1, 'init:')
+		shimmer1._send('setCycle:', Fwd, 'ignoreActors:', 1, 'init:')
+		shimmer2._send('setCycle:', Fwd, 'ignoreActors:', 1, 'init:')
+		gate._send('init:', 'ignoreHorizon:', 1, 'ignoreActors:', 1)
+		path._send('init:')
+		river._send('init:')
 	#end:method
 
 	@classmethod
@@ -133,14 +81,14 @@ class rm670(KQ6Room):
 		(return
 			if (param1 == 1):
 				if local0:
-					(global91 say: noun param1 3)
+					global91._send('say:', noun, param1, 3)
 					1
 				else:
-					(global91 say: noun param1 4)
+					global91._send('say:', noun, param1, 4)
 					1
 				#endif
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#endif
 		)
 	#end:method
@@ -151,10 +99,10 @@ class rm670(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (param1 == 660):
-			(global1 handsOff:)
-			(self setScript: dontGoAlex)
+			global1._send('handsOff:')
+			self._send('setScript:', dontGoAlex)
 		else:
-			(super newRoom: param1 &rest)
+			super._send('newRoom:', param1, &rest)
 		#endif
 	#end:method
 
@@ -163,15 +111,15 @@ class rm670(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		temp0 = (global0 onControl: 1)
+		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
 			case ((temp0 & 0x4000) and (not local0)):
-				(global1 handsOff:)
-				(self setScript: convertGate)
+				global1._send('handsOff:')
+				self._send('setScript:', convertGate)
 			#end:case
 		)
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -180,21 +128,21 @@ class rm670(KQ6Room):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if global25:
-			(global25 dispose:)
+			global25._send('dispose:')
 		#endif
-		kernel.DrawPic((global2 picture:))
-		(global0 reset:)
-		(gate view: 677)
-		(shimmer1 view: 670 loop: 1)
-		(shimmer2 view: 670 loop: 1)
-		(torch1 view: 670)
-		(torch2 view: 670)
-		(global5 eachElementDo: #show)
+		kernel.DrawPic(global2._send('picture:'))
+		global0._send('reset:')
+		gate._send('view:', 677)
+		shimmer1._send('view:', 670, 'loop:', 1)
+		shimmer2._send('view:', 670, 'loop:', 1)
+		torch1._send('view:', 670)
+		torch2._send('view:', 670)
+		global5._send('eachElementDo:', #show)
 		if param1:
-			(script cue:)
+			script._send('cue:')
 		else:
-			(global1 handsOff:)
-			(self setScript: killAlexScript)
+			global1._send('handsOff:')
+			self._send('setScript:', killAlexScript)
 		#endif
 	#end:method
 
@@ -203,7 +151,7 @@ class rm670(KQ6Room):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 		proc958_0(0, 916)
 	#end:method
 
@@ -245,7 +193,7 @@ class shimmer1(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(river doVerb: param1 &rest)
+		river._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -263,7 +211,7 @@ class shimmer2(Prop):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(river doVerb: param1 &rest)
+		river._send('doVerb:', param1, &rest)
 	#end:method
 
 #end:class or instance
@@ -287,8 +235,8 @@ class river(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 addToFront: self)
-		(super init: &rest)
+		global93._send('addToFront:', self)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -296,8 +244,8 @@ class river(Feature):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global93 delete: self)
-		(super dispose: &rest)
+		global93._send('delete:', self)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -307,18 +255,18 @@ class river(Feature):
 
 		match param1
 			case 3:
-				(global1 handsOff:)
-				(global2 setScript: walkInWater)
+				global1._send('handsOff:')
+				global2._send('setScript:', walkInWater)
 			#end:case
 			case 44:
 				if proc913_0(58):
-					(global91 say: noun param1 14)
+					global91._send('say:', noun, param1, 14)
 				else:
-					(global91 say: noun param1 15)
+					global91._send('say:', noun, param1, 15)
 				#endif
 			#end:case
 			else:
-				(super doVerb: param1 &rest)
+				super._send('doVerb:', param1, &rest)
 			#end:else
 		#end:match
 	#end:method
@@ -344,13 +292,13 @@ class gate(Actor):
 		if 
 			(and
 				local0
-				(not (global2 script:))
-				((global0 distanceTo: self) < 40)
+				(not global2._send('script:'))
+				(global0._send('distanceTo:', self) < 40)
 			)
-			(global1 handsOff:)
-			(global2 setScript: walkCloseToGate)
+			global1._send('handsOff:')
+			global2._send('setScript:', walkCloseToGate)
 		#endif
-		(super doit: &rest)
+		super._send('doit:', &rest)
 	#end:method
 
 	@classmethod
@@ -361,41 +309,41 @@ class gate(Actor):
 		(cond
 			case (param1 == 2):
 				if local0:
-					(global1 handsOff:)
-					(gate setScript: 0)
-					(global2 setScript: talkGate)
+					global1._send('handsOff:')
+					gate._send('setScript:', 0)
+					global2._send('setScript:', talkGate)
 				else:
-					(global91 say: noun param1 4)
+					global91._send('say:', noun, param1, 4)
 				#endif
 			#end:case
 			case (param1 == 5):
 				if local0:
-					(global1 handsOff:)
-					(global2 setScript: handGateDead)
+					global1._send('handsOff:')
+					global2._send('setScript:', handGateDead)
 				else:
-					(global1 handsOff:)
-					(global2 setScript: handGate)
+					global1._send('handsOff:')
+					global2._send('setScript:', handGate)
 				#endif
 			#end:case
 			case (param1 == 1):
 				if local0:
-					(global91 say: noun param1 3)
+					global91._send('say:', noun, param1, 3)
 				else:
-					(global91 say: noun param1 4)
+					global91._send('say:', noun, param1, 4)
 				#endif
 			#end:case
 			case proc999_5(param1, 48, 35, 28, 16, 13):
 				if local0:
-					(global91 say: noun param1 3 0)
+					global91._send('say:', noun, param1, 3, 0)
 				else:
-					(global91 say: noun param1 4 0)
+					global91._send('say:', noun, param1, 4, 0)
 				#endif
 			#end:case
 			case local0:
-				(global91 say: noun 0 3)
+				global91._send('say:', noun, 0, 3)
 			#end:case
 			else:
-				(global91 say: noun 0 4)
+				global91._send('say:', noun, 0, 4)
 			#end:else
 		)
 	#end:method
@@ -422,11 +370,11 @@ class enterRoomScript(Script):
 				cycles = 2
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath (global0 x:) 186 self)
+				global0._send('setMotion:', PolyPath, global0._send('x:'), 186, self)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -443,26 +391,26 @@ class convertGate(Script):
 
 		match state = param1
 			case 0:
-				(global102 pause: 1)
-				(gateMorph number: 670 loop: 1 play: self)
-				(gate
-					view: 675
-					ignoreHorizon: 1
-					setLoop: 0
-					cel: 0
-					posn: 210 48
-					setCycle: End self
+				global102._send('pause:', 1)
+				gateMorph._send('number:', 670, 'loop:', 1, 'play:', self)
+				gate._send(
+					'view:', 675,
+					'ignoreHorizon:', 1,
+					'setLoop:', 0,
+					'cel:', 0,
+					'posn:', 210, 48,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 1: 0#end:case
 			case 2:
-				(global102 pause: 0)
+				global102._send('pause:', 0)
 				local0 = 1
-				(gate view: 677 setLoop: 0 cel: 0 setScript: randomMsg)
+				gate._send('view:', 677, 'setLoop:', 0, 'cel:', 0, 'setScript:', randomMsg)
 				if (client == global2):
-					(global1 handsOn:)
+					global1._send('handsOn:')
 				#endif
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -479,16 +427,16 @@ class dontGoAlex(Script):
 
 		match state = param1
 			case 0:
-				(global91 say: 4 3 8 0 self)
+				global91._send('say:', 4, 3, 8, 0, self)
 			#end:case
 			case 1:
-				(global0
-					setMotion: MoveTo (global0 x:) ((global0 y:) - 10) self
+				global0._send(
+					'setMotion:', MoveTo, global0._send('x:'), (global0._send('y:') - 10), self
 				)
 			#end:case
 			case 2:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -507,100 +455,98 @@ class talkGate(Script):
 			case 0:
 				if 
 					(>
-						kernel.GetDistance((global0 x:), (global0 y:), (gate x:), (gate
-							y:
-						))
+						kernel.GetDistance(global0._send('x:'), global0._send('y:'), gate._send(
+							'x:'
+						), gate._send('y:'))
 						50
 					)
-					(global0
-						setMotion:
-							PolyPath
-							(gate approachX:)
-							(gate approachY:)
-							self
+					global0._send(
+						'setMotion:', PolyPath, gate._send('approachX:'), gate._send(
+								'approachY:'
+							), self
 					)
 				else:
 					proc913_4(global0, gate, self)
 				#endif
 			#end:case
 			case 1:
-				(theConv
-					add: -1 2 2 3 1
-					add: -1 2 2 3 2
-					add: -1 2 2 3 3
-					add: -1 2 2 3 4
-					add: -1 2 2 3 5
-					add: -1 2 2 3 6
-					add: -1 2 2 3 7
-					add: -1 2 2 3 8
-					add: -1 2 2 3 9
-					add: -1 2 2 3 10
-					add: -1 2 2 3 11
-					add: -1 2 2 3 12
-					init: self
+				theConv._send(
+					'add:', -1, 2, 2, 3, 1,
+					'add:', -1, 2, 2, 3, 2,
+					'add:', -1, 2, 2, 3, 3,
+					'add:', -1, 2, 2, 3, 4,
+					'add:', -1, 2, 2, 3, 5,
+					'add:', -1, 2, 2, 3, 6,
+					'add:', -1, 2, 2, 3, 7,
+					'add:', -1, 2, 2, 3, 8,
+					'add:', -1, 2, 2, 3, 9,
+					'add:', -1, 2, 2, 3, 10,
+					'add:', -1, 2, 2, 3, 11,
+					'add:', -1, 2, 2, 3, 12,
+					'init:', self
 				)
 			#end:case
 			case 2:
-				(User canInput: 1 canControl: 1)
-				(global5 eachElementDo: #hide)
+				User._send('canInput:', 1, 'canControl:', 1)
+				global5._send('eachElementDo:', #hide)
 				proc913_1(49)
 				kernel.DrawPic(98)
 				cycles = 2
 			#end:case
 			case 3:
-				(docoProtect init: @local1 4 26)
+				docoProtect._send('init:', @local1, 4, 26)
 			#end:case
 			case 4:
-				(global1 givePoints: 3)
-				(global1 setCursor: global21)
+				global1._send('givePoints:', 3)
+				global1._send('setCursor:', global21)
 				cycles = 2
 			#end:case
 			case 5:
 				proc913_2(49)
-				(global91 say: 1 5 1 0 self)
+				global91._send('say:', 1, 5, 1, 0, self)
 			#end:case
 			case 6:
-				(global102 pause: 1)
-				(gateMorph number: 671 loop: 1 play: self)
-				(gate view: 675 setLoop: 0)
-				(gate cel: (gate lastCel:) setCycle: Beg self)
+				global102._send('pause:', 1)
+				gateMorph._send('number:', 671, 'loop:', 1, 'play:', self)
+				gate._send('view:', 675, 'setLoop:', 0)
+				gate._send('cel:', gate._send('lastCel:'), 'setCycle:', Beg, self)
 			#end:case
 			case 7: 0#end:case
 			case 8:
-				(gate view: 672 setLoop: 0 cel: 0 posn: 216 36)
+				gate._send('view:', 672, 'setLoop:', 0, 'cel:', 0, 'posn:', 216, 36)
 				cycles = 5
 			#end:case
 			case 9:
-				(gate
-					view: 672
-					setCel: 0
-					setLoop: 1
-					posn: 216 36
-					ignoreActors: 1
-					setPri: 5
-					setCycle: End self
+				gate._send(
+					'view:', 672,
+					'setCel:', 0,
+					'setLoop:', 1,
+					'posn:', 216, 36,
+					'ignoreActors:', 1,
+					'setPri:', 5,
+					'setCycle:', End, self
 				)
-				(gateMorph number: 342 loop: 1 play: self)
+				gateMorph._send('number:', 342, 'loop:', 1, 'play:', self)
 			#end:case
 			case 10: 0#end:case
 			case 11:
-				(global102 pause: 0)
+				global102._send('pause:', 0)
 				local0 = 0
-				(global0
-					ignoreHorizon: 1
-					setPri: ((gate priority:) + 1)
-					setMotion: PolyPath 217 74 self
+				global0._send(
+					'ignoreHorizon:', 1,
+					'setPri:', (gate._send('priority:') + 1),
+					'setMotion:', PolyPath, 217, 74, self
 				)
 			#end:case
 			case 12:
-				(global0
-					setPri: ((gate priority:) - 1)
-					setMotion: PolyPath 248 74 self
+				global0._send(
+					'setPri:', (gate._send('priority:') - 1),
+					'setMotion:', PolyPath, 248, 74, self
 				)
 			#end:case
 			case 13:
-				(global69 enable:)
-				(global2 newRoom: 680)
+				global69._send('enable:')
+				global2._send('newRoom:', 680)
 			#end:case
 		#end:match
 	#end:method
@@ -617,41 +563,41 @@ class killAlexScript(Script):
 
 		match state = param1
 			case 0:
-				(global1 setCursor: global21)
+				global1._send('setCursor:', global21)
 				cycles = 2
 			#end:case
 			case 1:
-				(gate setScript: 0)
-				(global91 say: 1 5 2 1 self)
+				gate._send('setScript:', 0)
+				global91._send('say:', 1, 5, 2, 1, self)
 			#end:case
 			case 2:
-				(global91 say: 1 5 2 2 self)
+				global91._send('say:', 1, 5, 2, 2, self)
 			#end:case
 			case 3:
-				(global0 setMotion: PolyPath 182 81 self)
+				global0._send('setMotion:', PolyPath, 182, 81, self)
 			#end:case
 			case 4:
-				(global0
-					normal: 0
-					view: 673
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 5
-					setScale: 0
-					posn: ((gate x:) + 3) ((gate y:) + 20)
-					setCycle: CT 6 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 673,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 5,
+					'setScale:', 0,
+					'posn:', (gate._send('x:') + 3), (gate._send('y:') + 20),
+					'setCycle:', CT, 6, 1, self
 				)
 			#end:case
 			case 5:
-				(global0 setCycle: End self)
-				(eatSound play:)
+				global0._send('setCycle:', End, self)
+				eatSound._send('play:')
 			#end:case
 			case 6:
-				(global0 dispose:)
+				global0._send('dispose:')
 				cycles = 30
 			#end:case
 			case 7:
-				(global91 say: 1 5 2 3 self)
+				global91._send('say:', 1, 5, 2, 3, self)
 			#end:case
 			case 8:
 				proc0_1(17)
@@ -678,38 +624,38 @@ class handGateDead(Script):
 
 		match state = param1
 			case 0:
-				(gate setScript: 0)
-				(global91 say: 2 5 3 1 self)
+				gate._send('setScript:', 0)
+				global91._send('say:', 2, 5, 3, 1, self)
 			#end:case
 			case 1:
-				(global0 setMotion: PolyPath 182 81 self)
+				global0._send('setMotion:', PolyPath, 182, 81, self)
 			#end:case
 			case 2:
-				(global91 say: 2 5 3 2 self)
+				global91._send('say:', 2, 5, 3, 2, self)
 			#end:case
 			case 3:
-				(global0
-					normal: 0
-					view: 673
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 5
-					setScale: 0
-					posn: ((gate x:) + 3) ((gate y:) + 20)
-					setScale: 0
-					setCycle: CT 6 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 673,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 5,
+					'setScale:', 0,
+					'posn:', (gate._send('x:') + 3), (gate._send('y:') + 20),
+					'setScale:', 0,
+					'setCycle:', CT, 6, 1, self
 				)
 			#end:case
 			case 4:
-				(global0 setCycle: End self)
-				(eatSound play:)
+				global0._send('setCycle:', End, self)
+				eatSound._send('play:')
 			#end:case
 			case 5:
-				(global0 dispose:)
+				global0._send('dispose:')
 				cycles = 30
 			#end:case
 			case 6:
-				(global91 say: 2 5 3 3 self)
+				global91._send('say:', 2, 5, 3, 3, self)
 			#end:case
 			case 7:
 				cycles = 2
@@ -732,38 +678,38 @@ class handGate(Script):
 
 		match state = param1
 			case 0:
-				(global0 setMotion: PolyPath 184 82 self)
+				global0._send('setMotion:', PolyPath, 184, 82, self)
 			#end:case
 			case 1:
-				(global0
-					normal: 0
-					view: 673
-					setLoop: 1
-					cel: 0
-					posn: 178 82
-					setScale: 0
-					setCycle: End self
+				global0._send(
+					'normal:', 0,
+					'view:', 673,
+					'setLoop:', 1,
+					'cel:', 0,
+					'posn:', 178, 82,
+					'setScale:', 0,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 2:
-				(global91 say: 2 5 4 1 self)
+				global91._send('say:', 2, 5, 4, 1, self)
 			#end:case
 			case 3:
-				(global91 say: 2 5 4 2 self)
+				global91._send('say:', 2, 5, 4, 2, self)
 			#end:case
 			case 4:
-				(global0 reset: 6 setScale: Scaler 90 80 250 50)
-				(self setScript: convertGate self)
+				global0._send('reset:', 6, 'setScale:', Scaler, 90, 80, 250, 50)
+				self._send('setScript:', convertGate, self)
 			#end:case
 			case 5:
-				(global91 say: 2 5 4 3 self)
+				global91._send('say:', 2, 5, 4, 3, self)
 			#end:case
 			case 6:
-				(global91 say: 2 5 4 4 self)
+				global91._send('say:', 2, 5, 4, 4, self)
 			#end:case
 			case 7:
-				(global1 handsOn:)
-				(self dispose:)
+				global1._send('handsOn:')
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -785,18 +731,18 @@ class randomMsg(Script):
 			case 1:
 				match temp0 = kernel.Random(1, 3)
 					case 1:
-						(global91 say: 6 0 10 0 self)
+						global91._send('say:', 6, 0, 10, 0, self)
 					#end:case
 					case 2:
-						(global91 say: 6 0 11 0 self)
+						global91._send('say:', 6, 0, 11, 0, self)
 					#end:case
 					case 3:
-						(global91 say: 6 0 12 0 self)
+						global91._send('say:', 6, 0, 12, 0, self)
 					#end:case
 				#end:match
 			#end:case
 			case 2:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
@@ -813,34 +759,34 @@ class walkCloseToGate(Script):
 
 		match state = param1
 			case 0:
-				(gate setScript: 0)
+				gate._send('setScript:', 0)
 				local0 = 0
-				(global91 say: 4 3 13 1 self)
+				global91._send('say:', 4, 3, 13, 1, self)
 			#end:case
 			case 1:
-				(global91 say: 4 3 13 2 self)
+				global91._send('say:', 4, 3, 13, 2, self)
 			#end:case
 			case 2:
-				(global0
-					normal: 0
-					view: 673
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 5
-					posn: ((gate x:) + 3) ((gate y:) + 20)
-					setCycle: CT 6 1 self
+				global0._send(
+					'normal:', 0,
+					'view:', 673,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 5,
+					'posn:', (gate._send('x:') + 3), (gate._send('y:') + 20),
+					'setCycle:', CT, 6, 1, self
 				)
 			#end:case
 			case 3:
-				(global0 setCycle: End self)
-				(eatSound play:)
+				global0._send('setCycle:', End, self)
+				eatSound._send('play:')
 			#end:case
 			case 4:
-				(global0 dispose:)
+				global0._send('dispose:')
 				cycles = 30
 			#end:case
 			case 5:
-				(global91 say: 4 3 13 3 self)
+				global91._send('say:', 4, 3, 13, 3, self)
 			#end:case
 			case 6:
 				cycles = 2
@@ -870,50 +816,50 @@ class walkInWater(Script):
 
 		match state = param1
 			case 0:
-				(gate setScript: 0)
-				(global0 setMotion: PolyPath 138 103 self)
+				gate._send('setScript:', 0)
+				global0._send('setMotion:', PolyPath, 138, 103, self)
 			#end:case
 			case 1:
 				kernel.Load(128, 674)
 				cycles = 2
 			#end:case
 			case 2:
-				(global102 number: 653 loop: 1 play:)
-				(global0
-					normal: 0
-					view: 674
-					setLoop: 0
-					cel: 0
-					cycleSpeed: 3
-					setCycle: CT 8 1 self
+				global102._send('number:', 653, 'loop:', 1, 'play:')
+				global0._send(
+					'normal:', 0,
+					'view:', 674,
+					'setLoop:', 0,
+					'cel:', 0,
+					'cycleSpeed:', 3,
+					'setCycle:', CT, 8, 1, self
 				)
 			#end:case
 			case 3:
-				(splashSound play:)
-				(global0 setCycle: End self)
+				splashSound._send('play:')
+				global0._send('setCycle:', End, self)
 			#end:case
 			case 4:
-				(global0 dispose:)
+				global0._send('dispose:')
 				cycles = 2
 			#end:case
 			case 5:
 				if local0:
-					(global91 say: 3 3 3 1 self)
+					global91._send('say:', 3, 3, 3, 1, self)
 				else:
-					(global91 say: 3 3 4 1 self)
+					global91._send('say:', 3, 3, 4, 1, self)
 				#endif
 			#end:case
 			case 6:
 				if local0:
-					(global91 say: 3 3 3 2 self)
+					global91._send('say:', 3, 3, 3, 2, self)
 				else:
-					(global91 say: 3 3 4 2 self)
+					global91._send('say:', 3, 3, 4, 2, self)
 					cycles = 1
 				#endif
 			#end:case
 			case 7:
 				if local0:
-					(global91 say: 3 3 3 3 self)
+					global91._send('say:', 3, 3, 3, 3, self)
 				else:
 					cycles = 1
 				#endif
@@ -944,21 +890,21 @@ class docoProtect(GatePanel):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(gate setScript: 0)
-		(global0 view: 2002)
-		(gate view: 2002)
-		(torch1 view: 2002)
-		(torch2 view: 2002)
-		(shimmer1 view: 2002)
-		(shimmer2 view: 2002)
-		(KQ6Print
-			modeless: 1
-			width: 290
-			posn: 10 146
-			say: 1 0 0 0 1 0 0 671
-			init:
+		gate._send('setScript:', 0)
+		global0._send('view:', 2002)
+		gate._send('view:', 2002)
+		torch1._send('view:', 2002)
+		torch2._send('view:', 2002)
+		shimmer1._send('view:', 2002)
+		shimmer2._send('view:', 2002)
+		KQ6Print._send(
+			'modeless:', 1,
+			'width:', 290,
+			'posn:', 10, 146,
+			'say:', 1, 0, 0, 0, 1, 0, 0, 671,
+			'init:'
 		)
-		(super init: &rest)
+		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
@@ -970,8 +916,8 @@ class docoProtect(GatePanel):
 		if (not proc999_5(value, 26, 27, 29, 30)):
 			if (not (local27[(value / 16)] & (0x8000 >> (mod value 16)))):
 				(local27[(value / 16)] |= (0x8000 >> (mod value 16)))
-				temp0 = (super drawButton: &rest)
-				(global104 number: 910 setLoop: 1 play:)
+				temp0 = super._send('drawButton:', &rest)
+				global104._send('number:', 910, 'setLoop:', 1, 'play:')
 			else:
 				temp0 = 0
 			#endif

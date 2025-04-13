@@ -23,12 +23,12 @@ class AnimatePrint(Print):
 		modeless = 1
 		ticks = 120
 		if myMouth:
-			(myMouth init: theLength)
+			myMouth._send('init:', theLength)
 		#endif
 		if myEyes:
-			(myEyes init:)
+			myEyes._send('init:')
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -38,7 +38,7 @@ class AnimatePrint(Print):
 
 		width = 230
 		theLength = (kernel.Message(2, global11, param1, param2, param3, param4) / 12)
-		(super addText: param1 param2 param3 param4 &rest)
+		super._send('addText:', param1, param2, param3, param4, &rest)
 	#end:method
 
 	@classmethod
@@ -47,13 +47,13 @@ class AnimatePrint(Print):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if myMouth:
-			(myMouth dispose:)
+			myMouth._send('dispose:')
 		#endif
 		if myEyes:
-			(myEyes dispose:)
+			myEyes._send('dispose:')
 		#endif
-		(super dispose:)
-		((global2 script:) cue:)
+		super._send('dispose:')
+		global2._send('script:')._send('cue:')
 	#end:method
 
 #end:class or instance

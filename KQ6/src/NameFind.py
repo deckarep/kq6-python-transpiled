@@ -18,7 +18,7 @@ def proc974_0(param1 = None, param2 = None, *rest):
 	# Python3 magic, for those function which use argc.
 	argc = sum(v is not None for v in locals().values()) + len(rest)
 
-	(param2 firstTrue: #perform NC param1)
+	param2._send('firstTrue:', #perform, NC, param1)
 #end:procedure
 
 @SCI.instance
@@ -29,7 +29,7 @@ class NC(Code):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		return (0 == kernel.StrCmp((param1 name:), param2))
+		return (0 == kernel.StrCmp(param1._send('name:'), param2))
 	#end:method
 
 #end:class or instance

@@ -26,7 +26,7 @@ class bypassingWaiter(Script):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super dispose:)
+		super._send('dispose:')
 		kernel.DisposeScript(731)
 	#end:method
 
@@ -37,41 +37,41 @@ class bypassingWaiter(Script):
 
 		match state = param1
 			case 0:
-				(global1 handsOff:)
+				global1._send('handsOff:')
 				proc913_1(59)
 				cycles = 2
 			#end:case
 			case 1:
-				(global91 say: 1 0 1 1 self)
+				global91._send('say:', 1, 0, 1, 1, self)
 			#end:case
 			case 2:
-				(self setScript: convScript self)
+				self._send('setScript:', convScript, self)
 			#end:case
 			case 3:
-				(global91 say: 1 0 1 2 self)
+				global91._send('say:', 1, 0, 1, 2, self)
 			#end:case
 			case 4:
-				(self setScript: convScript self)
+				self._send('setScript:', convScript, self)
 			#end:case
 			case 5:
-				(global91 say: 1 0 1 3 self)
+				global91._send('say:', 1, 0, 1, 3, self)
 			#end:case
 			case 6:
-				(self setScript: convScript self)
+				self._send('setScript:', convScript, self)
 			#end:case
 			case 7:
-				(global91 say: 1 0 1 4 self)
+				global91._send('say:', 1, 0, 1, 4, self)
 			#end:case
 			case 8:
-				(self setScript: convScript self)
+				self._send('setScript:', convScript, self)
 			#end:case
 			case 9:
 				cycles = 2
 			#end:case
 			case 10:
-				(global1 handsOn:)
+				global1._send('handsOn:')
 				proc913_2(59)
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method
@@ -87,7 +87,7 @@ class convScript(Script):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		start = (state + 1)
-		(super dispose: &rest)
+		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
@@ -97,101 +97,101 @@ class convScript(Script):
 
 		match state = param1
 			case 0:
-				(global0 setHeading: 315)
-				(global105 number: 901 loop: 1 play:)
-				(global104 number: 731 loop: -1 play:)
-				(kernel.ScriptID(730, 1) setCycle: End self)
+				global0._send('setHeading:', 315)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				global104._send('number:', 731, 'loop:', -1, 'play:')
+				kernel.ScriptID(730, 1)._send('setCycle:', End, self)
 			#end:case
 			case 1:
-				(global105 stop:)
-				(self dispose:)
+				global105._send('stop:')
+				self._send('dispose:')
 			#end:case
 			case 2:
-				(waiter
-					init:
-					ignoreActors:
-					illegalBits: 0
-					cel: 0
-					setCycle: CT 4 1 self
+				waiter._send(
+					'init:',
+					'ignoreActors:',
+					'illegalBits:', 0,
+					'cel:', 0,
+					'setCycle:', CT, 4, 1, self
 				)
 			#end:case
 			case 3:
-				(kernel.ScriptID(730, 1) cel: 0 stopUpd:)
-				(global104 stop:)
-				(global105 number: 902 loop: 1 play:)
-				(waiter cel: 5 setCycle: End self)
+				kernel.ScriptID(730, 1)._send('cel:', 0, 'stopUpd:')
+				global104._send('stop:')
+				global105._send('number:', 902, 'loop:', 1, 'play:')
+				waiter._send('cel:', 5, 'setCycle:', End, self)
 			#end:case
 			case 4:
-				(waiter
-					posn: 104 143
-					setLoop: ((waiter loop:) + 1)
-					setCycle: CT 5 1 self
+				waiter._send(
+					'posn:', 104, 143,
+					'setLoop:', (waiter._send('loop:') + 1),
+					'setCycle:', CT, 5, 1, self
 				)
 			#end:case
 			case 5:
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 			case 6:
-				(waiter setCycle: End self)
+				waiter._send('setCycle:', End, self)
 			#end:case
 			case 7:
-				(waiter
-					setCycle: Walk
-					posn: 106 143
-					setLoop: ((waiter loop:) + 1)
-					cel: 0
-					setMotion: MoveTo 230 144 self
+				waiter._send(
+					'setCycle:', Walk,
+					'posn:', 106, 143,
+					'setLoop:', (waiter._send('loop:') + 1),
+					'cel:', 0,
+					'setMotion:', MoveTo, 230, 144, self
 				)
 			#end:case
 			case 8:
-				(waiter
-					setLoop: ((waiter loop:) + 1)
-					posn: 227 144
-					cel: 0
-					setCycle: End self
+				waiter._send(
+					'setLoop:', (waiter._send('loop:') + 1),
+					'posn:', 227, 144,
+					'cel:', 0,
+					'setCycle:', End, self
 				)
-				(global105 number: 901 loop: 1 play:)
-				(kernel.ScriptID(730, 2) hide:)
+				global105._send('number:', 901, 'loop:', 1, 'play:')
+				kernel.ScriptID(730, 2)._send('hide:')
 			#end:case
 			case 9:
-				(waiter dispose: setCycle: 0)
-				(kernel.ScriptID(730, 2) show: cel: 3 setCycle: Beg self)
+				waiter._send('dispose:', 'setCycle:', 0)
+				kernel.ScriptID(730, 2)._send('show:', 'cel:', 3, 'setCycle:', Beg, self)
 			#end:case
 			case 10:
-				(global105 number: 902 loop: 1 play:)
-				(kernel.ScriptID(730, 2) stopUpd:)
-				(kernel.ScriptID(730, 1) stopUpd:)
-				(self dispose:)
+				global105._send('number:', 902, 'loop:', 1, 'play:')
+				kernel.ScriptID(730, 2)._send('stopUpd:')
+				kernel.ScriptID(730, 1)._send('stopUpd:')
+				self._send('dispose:')
 			#end:case
 			case 11:
-				(global0 setMotion: MoveTo 259 167 self)
+				global0._send('setMotion:', MoveTo, 259, 167, self)
 			#end:case
 			case 12:
-				(global0 setHeading: 315 self)
+				global0._send('setHeading:', 315, self)
 			#end:case
 			case 13:
-				(global0
-					view: 734
-					normal: 0
-					setScale: 0
-					cycleSpeed: 9
-					setLoop: 1
-					cel: 0
-					posn: 251 168
-					setCycle: End self
+				global0._send(
+					'view:', 734,
+					'normal:', 0,
+					'setScale:', 0,
+					'cycleSpeed:', 9,
+					'setLoop:', 1,
+					'cel:', 0,
+					'posn:', 251, 168,
+					'setCycle:', End, self
 				)
 			#end:case
 			case 14:
-				(global0 setLoop: 2 cel: 0 posn: 253 169 setCycle: End self)
+				global0._send('setLoop:', 2, 'cel:', 0, 'posn:', 253, 169, 'setCycle:', End, self)
 			#end:case
 			case 15:
-				(global0 setLoop: 3 cel: 0 posn: 264 169 setCycle: End self)
+				global0._send('setLoop:', 3, 'cel:', 0, 'posn:', 264, 169, 'setCycle:', End, self)
 			#end:case
 			case 16:
-				(global0 reset: 0 posn: 260 165)
-				(global0 put: 5)
+				global0._send('reset:', 0, 'posn:', 260, 165)
+				global0._send('put:', 5)
 				proc730_3()
-				(self dispose:)
+				self._send('dispose:')
 			#end:case
 		#end:match
 	#end:method

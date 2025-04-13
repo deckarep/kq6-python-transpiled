@@ -39,51 +39,51 @@ class Gauge(Dialog):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		window = SysWindow
-		(self update: param1)
-		(local2 = (DButton new:) text: lower moveTo: 4 4 setSize:)
-		(self add: local2 setSize:)
-		(local3 = (DText new:)
-			text: @local7
-			moveTo: ((local2 nsRight:) + 4) 4
-			font: 0
-			setSize:
+		self._send('update:', param1)
+		local2 = DButton._send('new:')._send('text:', lower, 'moveTo:', 4, 4, 'setSize:')
+		self._send('add:', local2, 'setSize:')
+		local3 = DText._send('new:')._send(
+			'text:', @local7,
+			'moveTo:', (local2._send('nsRight:') + 4), 4,
+			'font:', 0,
+			'setSize:'
 		)
-		(self add: local3 setSize:)
-		(local1 = (DButton new:)
-			text: higher
-			moveTo: ((local3 nsRight:) + 4) 4
-			setSize:
+		self._send('add:', local3, 'setSize:')
+		local1 = DButton._send('new:')._send(
+			'text:', higher,
+			'moveTo:', (local3._send('nsRight:') + 4), 4,
+			'setSize:'
 		)
-		(self add: local1 setSize:)
+		self._send('add:', local1, 'setSize:')
 		(nsBottom += 8)
-		(local4 = (DButton new:) text: r"""OK""" setSize: moveTo: 4 nsBottom)
-		(local5 = (DButton new:)
-			text: r"""Normal"""
-			setSize:
-			moveTo: ((local4 nsRight:) + 4) nsBottom
+		local4 = DButton._send('new:')._send('text:', r"""OK""", 'setSize:', 'moveTo:', 4, nsBottom)
+		local5 = DButton._send('new:')._send(
+			'text:', r"""Normal""",
+			'setSize:',
+			'moveTo:', (local4._send('nsRight:') + 4), nsBottom
 		)
-		(local6 = (DButton new:)
-			text: r"""Cancel"""
-			setSize:
-			moveTo: ((local5 nsRight:) + 4) nsBottom
+		local6 = DButton._send('new:')._send(
+			'text:', r"""Cancel""",
+			'setSize:',
+			'moveTo:', (local5._send('nsRight:') + 4), nsBottom
 		)
-		(self add: local4 local5 local6 setSize:)
-		temp0 = ((nsRight - (local6 nsRight:)) - 4)
-		(local0 = (DText new:)
-			text: description
-			font: global23
-			setSize: (nsRight - 8)
-			moveTo: 4 4
+		self._send('add:', local4, local5, local6, 'setSize:')
+		temp0 = ((nsRight - local6._send('nsRight:')) - 4)
+		local0 = DText._send('new:')._send(
+			'text:', description,
+			'font:', global23,
+			'setSize:', (nsRight - 8),
+			'moveTo:', 4, 4
 		)
-		temp1 = ((local0 nsBottom:) + 4)
-		(self add: local0)
-		(local1 move: 0 temp1)
-		(local2 move: 0 temp1)
-		(local3 move: 0 temp1)
-		(local4 move: temp0 temp1)
-		(local5 move: temp0 temp1)
-		(local6 move: temp0 temp1)
-		(self setSize: center: open: 4 15)
+		temp1 = (local0._send('nsBottom:') + 4)
+		self._send('add:', local0)
+		local1._send('move:', 0, temp1)
+		local2._send('move:', 0, temp1)
+		local3._send('move:', 0, temp1)
+		local4._send('move:', temp0, temp1)
+		local5._send('move:', temp0, temp1)
+		local6._send('move:', temp0, temp1)
+		self._send('setSize:', 'center:', 'open:', 4, 15)
 	#end:method
 
 	@classmethod
@@ -91,13 +91,13 @@ class Gauge(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(self init: param1)
+		self._send('init:', param1)
 		temp1 = param1
 		while True: #repeat
-			(self update: temp1)
-			(local3 draw:)
+			self._send('update:', temp1)
+			local3._send('draw:')
 			(cond
-				case (temp0 = (super doit: local4) == local1):
+				case (temp0 = super._send('doit:', local4) == local1):
 					if (temp1 < maximum):
 						temp1.post('++')
 					#endif
@@ -119,7 +119,7 @@ class Gauge(Dialog):
 				#end:case
 			)
 		#end:loop
-		(self dispose:)
+		self._send('dispose:')
 		return temp1
 	#end:method
 
@@ -142,33 +142,33 @@ class Gauge(Dialog):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		match (param1 type:)
+		match param1._send('type:')
 			case 4:
-				match (param1 message:)
+				match param1._send('message:')
 					case 19200:
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 						return local2
 					#end:case
 					case 19712:
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 						return local1
 					#end:case
 				#end:match
 			#end:case
 			case 64:
-				match (param1 message:)
+				match param1._send('message:')
 					case 7:
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 						return local2
 					#end:case
 					case 3:
-						(param1 claimed: 1)
+						param1._send('claimed:', 1)
 						return local1
 					#end:case
 				#end:match
 			#end:case
 		#end:match
-		(super handleEvent: param1)
+		super._send('handleEvent:', param1)
 	#end:method
 
 #end:class or instance

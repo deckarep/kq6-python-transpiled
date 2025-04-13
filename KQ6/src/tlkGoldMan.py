@@ -28,9 +28,9 @@ class tlkGoldMan(Narrator):
 
 		font = global22
 		keepWindow = 1
-		color = (Kq6Window color:)
-		back = (Kq6Window back:)
-		(super init: &rest)
+		color = Kq6Window._send('color:')
+		back = Kq6Window._send('back:')
+		super._send('init:', &rest)
 	#end:method
 
 #end:class or instance

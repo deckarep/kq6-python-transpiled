@@ -31,28 +31,28 @@ class PolyPath(Motion):
 						obstacles = param6
 					#end:case
 					case (not kernel.IsObject(obstacles)):
-						obstacles = (global2 obstacles:)
+						obstacles = global2._send('obstacles:')
 					#end:case
 				)
 				if points:
 					kernel.Memory(3, points)
 				#endif
 				(= points
-					kernel.AvoidPath((param1 x:), (param1 y:), finalX = param2, (=
-						finalY
-						param3
-					), (obstacles and (obstacles elements:)), (and
+					kernel.AvoidPath(param1._send('x:'), param1._send('y:'), (=
+						finalX
+						param2
+					), finalY = param3, (obstacles and obstacles._send('elements:')), (and
 						obstacles
-						(obstacles size:)
+						obstacles._send('size:')
 					), (param5 if (argc >= 5) else 1))
 				)
 				if (argc > 3):
 					caller = param4
 				#endif
 			#endif
-			(self setTarget:)
+			self._send('setTarget:')
 		#endif
-		(super init:)
+		super._send('init:')
 	#end:method
 
 	@classmethod
@@ -64,7 +64,7 @@ class PolyPath(Motion):
 			kernel.Memory(3, points)
 		#endif
 		points = 0
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 	@classmethod
@@ -76,10 +76,10 @@ class PolyPath(Motion):
 			x = proc999_6(points, value)
 			y = proc999_6(points, value.post('++'))
 			value.post('++')
-			if (kernel.IsObject(global95) and temp3 = (global95 size:)):
+			if (kernel.IsObject(global95) and temp3 = global95._send('size:')):
 				(= temp0
-					kernel.AvoidPath((client x:), (client y:), x, y, (global95
-						elements:
+					kernel.AvoidPath(client._send('x:'), client._send('y:'), x, y, global95._send(
+						'elements:'
 					), temp3, 0)
 				)
 				temp1 = proc999_6(temp0, 2)
@@ -100,9 +100,9 @@ class PolyPath(Motion):
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
 		if (proc999_6(points, value) == 30583):
-			(super moveDone:)
+			super._send('moveDone:')
 		else:
-			(self setTarget: init:)
+			self._send('setTarget:', 'init:')
 		#endif
 	#end:method
 

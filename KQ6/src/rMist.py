@@ -28,7 +28,7 @@ class rMist(Rgn):
 
 		keep = proc999_5(param1, 550, 560, 570, 580)
 		initialized = 0
-		(super newRoom: param1 &rest)
+		super._send('newRoom:', param1, &rest)
 	#end:method
 
 	@classmethod
@@ -36,16 +36,16 @@ class rMist(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(super init: &rest)
+		super._send('init:', &rest)
 		if (((global11 == 550) or (global11 == 560)) and (not proc913_0(14))):
 			if (not musicPlaying):
-				(global102 number: 551 loop: -1 play:)
+				global102._send('number:', 551, 'loop:', -1, 'play:')
 				musicPlaying = 1
 			#endif
-			(self setScript: hintDrums)
+			self._send('setScript:', hintDrums)
 		#endif
 		if (global11 == 580):
-			(global102 stop:)
+			global102._send('stop:')
 		#endif
 	#end:method
 
@@ -54,9 +54,9 @@ class rMist(Rgn):
 		# Python3 magic, for those function which use argc.
 		argc = sum(v is not None for v in locals().values()) + len(rest)
 
-		(global102 stop:)
+		global102._send('stop:')
 		proc913_1(25)
-		(super dispose:)
+		super._send('dispose:')
 	#end:method
 
 #end:class or instance
@@ -76,16 +76,16 @@ class hintDrums(Script):
 			case 1:
 				(cond
 					case proc913_0(74):
-						(self dispose:)
+						self._send('dispose:')
 					#end:case
-					case (global2 script:):
-						(self init:)
+					case global2._send('script:'):
+						self._send('init:')
 					#end:case
 					case (global11 == 550):
-						(global91 say: 1 0 5 1 self)
+						global91._send('say:', 1, 0, 5, 1, self)
 					#end:case
 					case (global11 == 560):
-						(global91 say: 1 0 1 1 self)
+						global91._send('say:', 1, 0, 1, 1, self)
 					#end:case
 				)
 			#end:case
@@ -93,7 +93,7 @@ class hintDrums(Script):
 				seconds = 27
 			#end:case
 			case 3:
-				(self init:)
+				self._send('init:')
 			#end:case
 		#end:match
 	#end:method
