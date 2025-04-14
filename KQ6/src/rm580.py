@@ -39,9 +39,6 @@ class rm580Messager(Kq6Messager):
 	#property vars (may be empty)
 	@classmethod
 	def findTalker(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(= temp0
 				match param1
@@ -99,9 +96,6 @@ class rm580(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		local1 = global91
 		global91 = rm580Messager
@@ -176,9 +170,6 @@ class rm580(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global102._send('fade:')
 		global91 = local1
 		super._send('newRoom:', param1)
@@ -186,9 +177,6 @@ class rm580(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.DisposeScript(939)
 		kernel.Palette(4, 0, 255, 100)
@@ -201,9 +189,6 @@ class egoEnters(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				(cond
@@ -257,9 +242,6 @@ class getEmbers(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 208, 130, self)
@@ -331,9 +313,6 @@ class meetDruidsOne(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				proc913_1(14)
@@ -398,9 +377,6 @@ class meetDruidsTwo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				druid._send(
@@ -445,9 +421,6 @@ class continueDruids(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 1, 0, 1, 4, self)
@@ -614,9 +587,6 @@ class inTheCage(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 5
@@ -702,9 +672,6 @@ class makeRain(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 5
@@ -1050,9 +1017,6 @@ class fire(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		bonfire._send('doVerb:', param1, &rest)
 	#end:method
 
@@ -1070,9 +1034,6 @@ class smoke(Prop):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:', &rest)
 		cel = fire._send('cel:')
 	#end:method
@@ -1175,9 +1136,6 @@ class bonfire(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 57, 58, 59, 60, 96):
 			global91._send('say:', noun, 56, 0)
 		else:
@@ -1226,9 +1184,6 @@ class cageInset(Inset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		inEgo._send('init:', 'setPri:', 14)
 		inFire._send('init:', 'setCycle:', Fwd, 'cycleSpeed:', 10, 'setPri:', 14)
@@ -1243,9 +1198,6 @@ class cageInset(Inset):
 
 	@classmethod
 	def drawInset():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (picture > 0):
 			if global169:
 				kernel.DrawPic(picture, 15, (0 if anOverlay else 1))
@@ -1278,9 +1230,6 @@ class cageInset(Inset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		inEgo._send('dispose:')
 		inFire._send('dispose:')
 		inBillow._send('dispose:')
@@ -1295,9 +1244,6 @@ class inView(View):
 	#property vars (may be empty)
 	@classmethod
 	def handleEvent():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 0
 	#end:method
 

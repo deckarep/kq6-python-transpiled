@@ -46,9 +46,6 @@ class rm690(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Load(128, 691)
 		flame._send('init:', 'setCycle:', Fwd)
 		alex._send('init:')
@@ -66,9 +63,6 @@ class rm690(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		introGhost._send('setCycle:', 0)
 		proc958_0(0, 942)
 		super._send('newRoom:', &rest)
@@ -93,9 +87,6 @@ class alex(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 31:
 				global91._send('say:', noun, param1, 0)
@@ -133,9 +124,6 @@ class lord(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 28, 8, 14, 30, 31, 47, 50, 1, 32, 65, 68, 33, 70, 16, 37):
 			global91._send('say:', noun, param1)
 		else:
@@ -190,9 +178,6 @@ class introScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 5
@@ -254,9 +239,6 @@ class deadTouch(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global102._send('number:', 682, 'loop:', 1, 'play:')
@@ -306,9 +288,6 @@ class deadTouch(Script):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if ((state == 5) and (global102._send('prevSignal:') == -1)):
 			self._send('cue:')
@@ -322,9 +301,6 @@ class deadInHereScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 1
@@ -387,9 +363,6 @@ class DeathWindow(SysWindow):
 	#property vars (may be empty)
 	@classmethod
 	def open():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		color = 47
 		back = 0
 		super._send('open:', &rest)
@@ -402,9 +375,6 @@ class issueChallenge(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				local0 = 0
@@ -492,9 +462,6 @@ class holdUpMirror(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 5
@@ -586,9 +553,6 @@ class alexHand(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 1
@@ -607,9 +571,6 @@ class eyeScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 5
@@ -682,18 +643,12 @@ class introGhost(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('ignoreActors:', 1, 'ignoreHorizon:', 1, 'illegalBits:', 0)
 		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('dispose:')
 	#end:method
 
@@ -711,9 +666,6 @@ class deadEyes(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		lord._send('doVerb:', param1, &rest)
 	#end:method
 

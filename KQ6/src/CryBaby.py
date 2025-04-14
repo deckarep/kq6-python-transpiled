@@ -37,18 +37,12 @@ local3 = None
 
 @SCI.procedure
 def proc481_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', takeBottleAway, 0, kernel.ScriptID(480, 6))
 #end:procedure
 
 @SCI.procedure
 def proc481_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	if (not proc913_0(118)):
 		proc913_1(118)
@@ -84,9 +78,6 @@ def proc481_1(param1 = None, *rest):
 
 @SCI.procedure
 def proc481_3(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	match param1
 		case 1:
@@ -106,9 +97,6 @@ def proc481_3(param1 = None, *rest):
 
 @SCI.procedure
 def proc481_6():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	cryMusic._send('stop:', 'dispose:')
 	suckMusic._send('stop:', 'dispose:')
 	if global5._send('contains:', babyFace1):
@@ -128,9 +116,6 @@ def proc481_6():
 
 @SCI.procedure
 def proc481_7():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if (babyFace1._send('bottleNum:') != kernel.ScriptID(40, 0)._send('bottleSucker:')):
 		babyFace1._send('init:', 'setCycle:', Fwd)
 	#endif
@@ -157,9 +142,6 @@ class CryBaby(Prop):
 	
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		cryMusic._send('stop:', 'dispose:')
 		suckMusic._send('stop:', 'dispose:')
 		super._send('dispose:')
@@ -167,9 +149,6 @@ class CryBaby(Prop):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 57, 58, 59, 60, 96):
 			if (kernel.ScriptID(40, 0)._send('bottleSucker:') == self._send('bottleNum:')):
 				global91._send('say:', 9, 56, 17, 0, 0, 480)
@@ -281,9 +260,6 @@ class inventOnBaby(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -399,9 +375,6 @@ class cryMusic(Kq6Sound):
 	
 	@classmethod
 	def check():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (local0 and kernel.DoAudio(4) and (kernel.DoAudio(6) == -1) and (not global84)):
 			self._send('play:')
 		#endif
@@ -410,18 +383,12 @@ class cryMusic(Kq6Sound):
 
 	@classmethod
 	def stop():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local0 = 0
 		super._send('stop:')
 	#end:method
 
 	@classmethod
 	def play():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local0 = 1
 		super._send('play:')
 	#end:method
@@ -441,9 +408,6 @@ class giveBabyBottle(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -537,9 +501,6 @@ class getBabyTears(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -598,9 +559,6 @@ class takeBottleAway(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

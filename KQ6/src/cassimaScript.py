@@ -27,18 +27,12 @@ class cassimaScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.DisposeScript(801)
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('input:')
@@ -58,9 +52,6 @@ class cassimaScript(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -199,9 +190,6 @@ class sentRing(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 1, 0, 8, 1, self)
@@ -234,9 +222,6 @@ class noRing(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(800, 2)._send('add:', -1, 1, 0, 9, 1, 'add:', -1, 1, 0, 9, 2, 'init:', self)
@@ -278,18 +263,12 @@ class endDialog(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc913_2(102)
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 16):
@@ -354,9 +333,6 @@ class watchedVizInStudy(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(800, 2)._send(
@@ -394,9 +370,6 @@ class didn_tWatchVizInStudy(Script):
 	
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(800, 2)._send(
@@ -434,9 +407,6 @@ class giveLetter(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -522,9 +492,6 @@ class giveDagger(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('put:', 8, 870)
@@ -589,18 +556,12 @@ class convScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		start = (state + 1)
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cassima._send('cycleSpeed:', 8, 'setCycle:', End, self)
@@ -618,9 +579,6 @@ class cassimaStands(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cassima._send(
@@ -650,9 +608,6 @@ class ringScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		start = (state + 1)
 		register = 0
 		super._send('dispose:')
@@ -660,9 +615,6 @@ class ringScr(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cassima._send('setMotion:', MoveTo, 140, 146, self)
@@ -776,9 +728,6 @@ class cassimaInset(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((global2._send('script:') == endDialog) and (endDialog._send('seconds:') < 2)):
 			endDialog._send('seconds:', 4)
 		#endif
@@ -866,9 +815,6 @@ class cassimaFeature(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 8, 61):
 			cassimaInset._send('doVerb:', param1)
 		else:

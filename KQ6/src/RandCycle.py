@@ -43,9 +43,6 @@ class RandCycle(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((count > temp0 = kernel.GetTime()) or (count == -1)):
 			if ((temp0 - cycleCnt) > client._send('cycleSpeed:')):
 				client._send('cel:', self._send('nextCel:'))
@@ -61,9 +58,6 @@ class RandCycle(Cycle):
 
 	@classmethod
 	def nextCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			if (kernel.NumCels(client) != 1):
 				while (temp0 = kernel.Random(0, client._send('lastCel:')) == client._send('cel:')):
@@ -76,9 +70,6 @@ class RandCycle(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		completed = 1
 		if caller:
 			global37 = 1

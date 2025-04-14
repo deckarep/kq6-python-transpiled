@@ -32,9 +32,6 @@ class clown(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 5, 1):
 				global91._send('say:', noun, param1, (7 if proc913_0(10) else 8), 0, 0, 270)
@@ -92,9 +89,6 @@ class clown(Actor):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send(
 			'approachVerbs:', 5, 2, 70,
@@ -111,9 +105,6 @@ class clownScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('view:', 2721, 'loop:', 0)
@@ -140,9 +131,6 @@ class clownExitScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -210,9 +198,6 @@ class clownExitScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		proc913_2(53)
 		if (not proc999_5(global153, 3, 4)):

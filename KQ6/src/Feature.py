@@ -16,9 +16,6 @@ class CueObj(Script):
 	
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 1:
 				global0._send(
@@ -118,9 +115,6 @@ class Feature(Obj):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case param1._send('claimed:'):
 				return 1
@@ -168,18 +162,12 @@ class Feature(Obj):
 
 	@classmethod
 	def notFacing():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global0._send('setMotion:', 0)
 		CueObj._send('client:', self, 'state:', 0, 'cycles:', 0, 'cue:')
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = (global65 if global65 else dftDoVerb)
 		if (modNum == -1):
 			modNum = global11
@@ -231,17 +219,11 @@ class Feature(Obj):
 
 	@classmethod
 	def isNotHidden():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 1
 	#end:method
 
 	@classmethod
 	def onMe(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(param1):
 			temp0 = param1._send('x:')
 			temp1 = param1._send('y:')
@@ -285,9 +267,6 @@ class Feature(Obj):
 
 	@classmethod
 	def setName(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(state |= 0x0001)
 		name = kernel.Memory(1, (kernel.StrLen(param1) + 1))
 		kernel.StrCpy(name, param1)
@@ -321,9 +300,6 @@ class Feature(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if actions:
 			actions._send('dispose:')
 			actions = 0
@@ -347,9 +323,6 @@ class dftDoVerb(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 1
 	#end:method
 
@@ -359,9 +332,6 @@ class Actions(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 0
 	#end:method
 

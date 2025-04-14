@@ -28,9 +28,6 @@ class ownerTalkScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -99,9 +96,6 @@ class ownerTalkScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
@@ -113,9 +107,6 @@ class ringMapNotOutScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -171,9 +162,6 @@ class ringMapNotOutScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
@@ -185,9 +173,6 @@ class ringForMapActIScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('put:', 39, global11)
@@ -261,9 +246,6 @@ class ringForMapActIScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
@@ -275,9 +257,6 @@ class ringForMapNotActIScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('get:', 0, 'put:', 39, global11)
@@ -318,9 +297,6 @@ class ringForMapNotActIScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
@@ -332,9 +308,6 @@ class ringForPearlScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('put:', 39, 'get:', 30)
@@ -377,9 +350,6 @@ class ringForPearlScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method
@@ -391,9 +361,6 @@ class talkAfterActI(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -428,9 +395,6 @@ class talkAfterActI(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(284)
 	#end:method

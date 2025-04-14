@@ -23,9 +23,6 @@ class rm108(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		global69._send('disable:', 'height:', -100, 'activateHeight:', -100)
 		global74._send('addToFront:', self)
@@ -37,9 +34,6 @@ class rm108(KQ6Room):
 
 	@classmethod
 	def handleEvent():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ShowMovie(3)
 		kernel.ShowMovie(6)
 		global69._send('disable:', 'height:', 0, 'activateHeight:', 0)
@@ -48,9 +42,6 @@ class rm108(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global74._send('delete:', self)
 		global72._send('delete:', self)
 		global73._send('delete:', self)
@@ -65,9 +56,6 @@ class sShowMovieWin(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 10

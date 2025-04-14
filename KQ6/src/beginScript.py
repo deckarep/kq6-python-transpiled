@@ -41,9 +41,6 @@ class beginScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -87,9 +84,6 @@ class riddleBookScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local9 = global91
 		global91 = rBookMessager
 		local0 = global5
@@ -118,9 +112,6 @@ class riddleBookScript(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				background._send('init:')
@@ -197,9 +188,6 @@ class background(Feature):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		riddleBookScript._send('cue:')
 	#end:method
 
@@ -214,9 +202,6 @@ class bookView(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 1):
 			riddleBookScript._send('state:', (riddleBookScript._send('state:') - 3), 'cue:')
 		else:
@@ -231,9 +216,6 @@ class rBookMessager(Kq6Messager):
 	#property vars (may be empty)
 	@classmethod
 	def findTalker(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 99):
 			temp0 = localNarrator
 			return
@@ -251,9 +233,6 @@ class localNarrator(Kq6Narrator):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		talkWidth = 280
 		super._send('init:', &rest)
 	#end:method

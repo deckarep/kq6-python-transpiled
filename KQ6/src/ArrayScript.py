@@ -19,9 +19,6 @@ class ArrayScript(Script):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		start = 1
 		super._send('init:', &rest)
@@ -29,9 +26,6 @@ class ArrayScript(Script):
 
 	@classmethod
 	def changeState():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp5 = 0
 		value = self._send('at:', state)
 		state.post('++')
@@ -114,17 +108,11 @@ class ArrayScript(Script):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('changeState:', state)
 	#end:method
 
 	@classmethod
 	def getValue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		value = self._send('at:', state)
 		state.post('++')
 		return value
@@ -132,18 +120,12 @@ class ArrayScript(Script):
 
 	@classmethod
 	def play():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc921_0(r"""Need play: method""")
 		cycles = 1
 	#end:method
 
 	@classmethod
 	def at():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc921_0(r"""Need at: method""")
 		kernel.SetDebug()
 		global4 = 1

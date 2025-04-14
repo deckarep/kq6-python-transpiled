@@ -16,9 +16,6 @@ class CartoonScript(Script):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		countDown = time
 		super._send('init:', &rest)
 		global72._send('addToFront:', self)
@@ -27,9 +24,6 @@ class CartoonScript(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		global73._send('delete:', self)
 		super._send('dispose:')
@@ -37,9 +31,6 @@ class CartoonScript(Script):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global25:
 			global80._send('canInput:', 1)
 			if (countDown > 0):
@@ -51,9 +42,6 @@ class CartoonScript(Script):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				global25

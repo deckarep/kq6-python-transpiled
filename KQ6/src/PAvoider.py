@@ -12,9 +12,6 @@ import System
 
 @SCI.procedure
 def localproc_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp3 = -100
 	temp0 = 0
 	while (temp3 != 30583): # inline for
@@ -27,9 +24,6 @@ def localproc_0(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp3 = param1._send('size:')
 	temp0 = 0
 	while (temp0 < temp3): # inline for
@@ -62,9 +56,6 @@ class PAvoider(Code):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(oldBlockerMover):
 			oldBlockerMover._send('dispose:')
 		#endif
@@ -73,9 +64,6 @@ class PAvoider(Code):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp9 = client._send('mover:')
 		if (oldBlocker and (client._send('distanceTo:', oldBlocker) >= 20)):
 			oldBlocker._send('ignoreActors:', 0)

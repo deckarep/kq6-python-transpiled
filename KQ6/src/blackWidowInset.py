@@ -41,9 +41,6 @@ class blackWidowInset(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global69._send('disable:', 6)
 		global102._send('fade:', 0, 10, 10)
@@ -61,18 +58,12 @@ class blackWidowInset(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:', 6)
 		super._send('newRoom:', &rest)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc913_2(59)
 		super._send('dispose:')
 	#end:method
@@ -94,9 +85,6 @@ class looseThread(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if (not proc913_0(160)):
@@ -128,9 +116,6 @@ class parchment(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if local0:
@@ -181,9 +166,6 @@ class spider(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', touchSpider)
@@ -196,9 +178,6 @@ class spider(Actor):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('sightAngle:', 180, 'setCycle:', Fwd)
 		super._send('init:', &rest)
 	#end:method
@@ -213,9 +192,6 @@ class roomAtLarge(Feature):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOn:')
 		global2._send('newRoom:', 460)
 	#end:method
@@ -231,9 +207,6 @@ class web(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				global91._send('say:', 9, 1, 0, 1, 0, 460)
@@ -261,9 +234,6 @@ class spiderRush(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -284,9 +254,6 @@ class bitParchment(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 12, 5, 11, 1, self, 460)
@@ -305,9 +272,6 @@ class touchSpider(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 11, 5, 0, 1, self, 460)
@@ -327,9 +291,6 @@ class unravelWeb(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('givePoints:', 1)
@@ -372,9 +333,6 @@ class helloScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

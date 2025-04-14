@@ -21,18 +21,12 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc921_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = Print._send('new:')
 	temp0._send('addText:', &rest, 'init:')
 #end:procedure
 
 @SCI.procedure
 def proc921_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = Print._send('new:')
 	temp0._send('addTextF:', &rest, 'init:')
 #end:procedure
@@ -55,9 +49,6 @@ def proc921_2(param1 = None, param2 = None, param3 = None, param4 = None, *rest)
 
 @SCI.procedure
 def proc921_3(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = temp1 = kernel.StrLen(param1)
 	temp2 = 0
 	temp3 = 0
@@ -292,9 +283,6 @@ class Print(Obj):
 
 	@classmethod
 	def addTextF():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = proc921_3(&rest)
 		temp1 = kernel.Memory(1, temp0)
 		kernel.Format(temp1, &rest)
@@ -325,9 +313,6 @@ class Print(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global92 and global92._send('contains:', self)):
 			global92._send('delete:', self)
 			if global92._send('isEmpty:'):
@@ -347,9 +332,6 @@ class Print(Obj):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = caller
 		dialog = 0
 		if window:
@@ -363,9 +345,6 @@ class Print(Obj):
 
 	@classmethod
 	def posn(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = param1
 		y = param2
 	#end:method
@@ -393,17 +372,11 @@ class Print(Obj):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		dialog._send('eachElementDo:', #doit)
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if dialog._send('handleEvent:', param1):
 			dialog._send('dispose:')
 		#endif
@@ -411,9 +384,6 @@ class Print(Obj):
 
 	@classmethod
 	def showSelf():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if saveCursor:
 			global1._send('setCursor:', 999)
 		#endif

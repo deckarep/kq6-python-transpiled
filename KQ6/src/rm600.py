@@ -46,9 +46,6 @@ class rm600(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'addObstacle:', Polygon._send('new:')._send(
 					'type:', 2,
@@ -83,9 +80,6 @@ class rm600(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		deadGuy._send('setMotion:', 0, 'setCycle:', 0)
 		deadGuy2._send('setMotion:', 0, 'setCycle:', 0)
 		super._send('newRoom:', param1)
@@ -93,9 +87,6 @@ class rm600(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		proc958_0(0, 964, 942)
 	#end:method
@@ -132,9 +123,6 @@ class queen(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				if global0._send('has:', 28):
@@ -169,9 +157,6 @@ class deadGuy(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global1._send('handsOff:')
 			global2._send('setScript:', egoIsDead, 0, self)
@@ -182,9 +167,6 @@ class deadGuy(Actor):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not local61)
@@ -211,9 +193,6 @@ class deadGuy2(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global1._send('handsOff:')
 			global2._send('setScript:', egoIsDead, 0, self)
@@ -224,9 +203,6 @@ class deadGuy2(Actor):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not local61)
@@ -248,9 +224,6 @@ class deadOneScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 8
@@ -290,9 +263,6 @@ class deadTwoScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 8
@@ -332,9 +302,6 @@ class queenScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 1
@@ -372,9 +339,6 @@ class egoGetTicket(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				local59 = deadGuy._send('mover:')
@@ -460,9 +424,6 @@ class egoIsDead(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				deadGuy._send('setMotion:', 0)
@@ -526,9 +487,6 @@ class horseToon(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				horse._send(

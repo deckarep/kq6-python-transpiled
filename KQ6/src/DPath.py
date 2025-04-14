@@ -42,9 +42,6 @@ class DPath(Motion):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(points):
 			points._send('dispose:')
 		#endif
@@ -53,9 +50,6 @@ class DPath(Motion):
 
 	@classmethod
 	def setTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (points._send('at:', value) != -32768):
 			x = points._send('at:', value)
 			y = points._send('at:', value.post('++'))
@@ -65,9 +59,6 @@ class DPath(Motion):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (points._send('at:', value) == -32768):
 			super._send('moveDone:')
 		else:

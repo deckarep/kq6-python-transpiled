@@ -31,9 +31,6 @@ class speedRoom(Rm):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		temp0 = kernel.FileIO(0, r"""version""", 1)
 		kernel.FileIO(5, global27, 10, temp0)
@@ -50,9 +47,6 @@ class speedRoom(Rm):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		temp0 = 0
 		while (temp0 < 500): # inline for
@@ -71,9 +65,6 @@ class speedTest(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.Load(128, 99)
@@ -115,9 +106,6 @@ class startGame(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= global87
 			(cond
 				case 

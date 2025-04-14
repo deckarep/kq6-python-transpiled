@@ -43,9 +43,6 @@ class ROsc(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((temp0 = self._send('nextCel:') > lastC) or (temp0 < firstC)):
 			cycleDir = -cycleDir
 			self._send('cycleDone:')
@@ -56,9 +53,6 @@ class ROsc(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if cycles:
 			client._send('cel:', self._send('nextCel:'))
 			if (cycles > 0):

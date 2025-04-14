@@ -31,9 +31,6 @@ class rm155(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global69._send('disable:')
 		self._send('setScript:', backgroundScr)
@@ -41,9 +38,6 @@ class rm155(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:')
 		super._send('dispose:')
 	#end:method
@@ -55,9 +49,6 @@ class backgroundScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global12 > 500):
@@ -162,9 +153,6 @@ class isle1(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global12 == 340):
 			self._send('view:', 137)
 		else:
@@ -186,9 +174,6 @@ class isle2(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global12 == 340):
 			self._send('view:', 137)
 		else:

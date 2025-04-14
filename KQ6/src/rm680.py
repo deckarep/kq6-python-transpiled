@@ -40,9 +40,6 @@ class rm680Messager(Kq6Messager):
 	#property vars (may be empty)
 	@classmethod
 	def findTalker(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(= temp0
 				match param1
@@ -67,9 +64,6 @@ class rm680(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:')
 		global1._send('handsOff:')
 		self._send(
@@ -153,9 +147,6 @@ class rm680(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case script: 0#end:case
 			case (global0._send('y:') <= 168):
@@ -168,9 +159,6 @@ class rm680(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 670):
 			global1._send('handsOff:')
 			self._send('setScript:', dontGoAlex)
@@ -181,9 +169,6 @@ class rm680(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global91 = local0
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(942)
@@ -475,9 +460,6 @@ class rGuard(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 5, 1):
 				super._send('doVerb:', param1, &rest)
@@ -506,9 +488,6 @@ class lGuard(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 5, 1):
 				super._send('doVerb:', param1, &rest)
@@ -531,9 +510,6 @@ class pgrScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(3, 10)
@@ -565,9 +541,6 @@ class pglScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(3, 10)
@@ -599,9 +572,6 @@ class lordGhoulScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(10, 30)
@@ -626,9 +596,6 @@ class dontGoAlex(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 1, 0, 5, 1, self)
@@ -652,9 +619,6 @@ class talkGuards(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 6, 2, 0, 1, self)
@@ -675,9 +639,6 @@ class giveGuards(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 6, 0, 0, 1, self)
@@ -698,9 +659,6 @@ class takeHimAway(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (client == global2):
@@ -745,9 +703,6 @@ class wonDeadScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 1

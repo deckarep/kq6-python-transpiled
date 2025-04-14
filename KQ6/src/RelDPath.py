@@ -12,9 +12,6 @@ class RelDPath(DPath):
 	#property vars (may be empty)
 	@classmethod
 	def setTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (points._send('at:', value) != -32768):
 			(x += points._send('at:', value))
 			(y += points._send('at:', value.post('++')))

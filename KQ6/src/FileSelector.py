@@ -10,9 +10,6 @@ import Dialog
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = (param2 - 1)
 	while (temp0 > 0): # inline for
 		temp15 = 0
@@ -88,9 +85,6 @@ class FileSelector(DSelector):
 
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('setSize:')
 		kernel.TextSize(@temp0[0], r"""M""", font)
 		nsRight = (nsLeft + (temp0[3] * x))
@@ -98,9 +92,6 @@ class FileSelector(DSelector):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if text:
 			kernel.Memory(3, text)
 			text = 0

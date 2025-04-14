@@ -102,9 +102,6 @@ def proc12_0(param1 = None, param2 = None, *rest):
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = temp2 = kernel.Memory(5, param1)
 	temp1 = kernel.Memory(5, param2)
 	temp0 = (kernel.CosMult(param3, temp0) - kernel.SinMult(param3, temp1))
@@ -142,9 +139,6 @@ class walkEgoInScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('reset:', 'setMotion:', PolyPath, local0, local1, self)
@@ -165,9 +159,6 @@ class walkEgoInScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		register = 0
 		kernel.DisposeScript(12)
@@ -180,9 +171,6 @@ class walkEgoOutScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', 0)
@@ -199,9 +187,6 @@ class walkEgoOutScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DisposeScript(12)
 	#end:method

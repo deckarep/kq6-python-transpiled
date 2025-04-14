@@ -36,9 +36,6 @@ class rm370(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global72._send('add:', self)
 		global69._send(
@@ -77,9 +74,6 @@ class rm370(KQ6Room):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((param1._send('type:') & 0x0004) and (param1._send('message:') == 27)):
 			param1._send('message:', 114)
 		#endif
@@ -88,9 +82,6 @@ class rm370(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('height:', 0, 'activateHeight:', 0)
 		Cursor._send('showCursor:', 1)
 		global0._send('setScale:', 0)
@@ -108,9 +99,6 @@ class AlexPrint(AnimatePrint):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		myMouth = alexHead
 		x = -1
 		y = 140
@@ -124,9 +112,6 @@ class AzurePrint(AnimatePrint):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		myMouth = azureMouth
 		myEyes = azureEyes
 		x = 10
@@ -141,9 +126,6 @@ class AerielPrint(AnimatePrint):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		myMouth = aerielMouth
 		myEyes = aerielEyes
 		x = 70
@@ -158,9 +140,6 @@ class mouthScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('setCycle:', RandCycle)
@@ -189,9 +168,6 @@ class alexHead(Prop):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		myHead._send('hide:')
 		super._send('init:')
 		self._send('setScript:', mouthScr, 0, param1)
@@ -199,9 +175,6 @@ class alexHead(Prop):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		myHead._send('show:')
 		super._send('dispose:')
 	#end:method
@@ -213,9 +186,6 @@ class eyeScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(2, 4)
@@ -254,9 +224,6 @@ class azureMouth(Prop):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		self._send('setScript:', mouthScr, 0, param1)
 	#end:method
@@ -275,9 +242,6 @@ class azureEyes(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		self._send('hide:', 'setScript:', eyeScr)
 	#end:method
@@ -296,9 +260,6 @@ class aerielMouth(Prop):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		self._send('setScript:', mouthScr, 0, param1)
 	#end:method
@@ -317,9 +278,6 @@ class aerielEyes(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		self._send('hide:', 'setScript:', eyeScr)
 	#end:method
@@ -339,9 +297,6 @@ class caughtAtGateCD(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 2
@@ -391,9 +346,6 @@ class caughtAtGateTXT(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 2
@@ -495,9 +447,6 @@ class toLabyrinth(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -542,9 +491,6 @@ class toBeachCD(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				myConv._send(
@@ -580,9 +526,6 @@ class toBeachTXT(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				queenHand._send('cel:', 2)
@@ -653,9 +596,6 @@ class savedCelesteCD(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 2
@@ -685,9 +625,6 @@ class savedCelesteTXT(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 2
@@ -750,9 +687,6 @@ class flyToOracle(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('hide:')
@@ -799,9 +733,6 @@ class flyToCliff(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global2._send('drawPic:', 350, 10)
@@ -828,9 +759,6 @@ class flyToBeach(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global2._send('drawPic:', 350, 10)

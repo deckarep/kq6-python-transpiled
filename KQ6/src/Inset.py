@@ -62,9 +62,6 @@ class Inset(Code):
 
 	@classmethod
 	def init(param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		owner = param2
 		owner._send('inset:', self)
 		register = param3
@@ -94,9 +91,6 @@ class Inset(Code):
 
 	@classmethod
 	def drawInset():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (picture > 0):
 			if global169:
 				kernel.DrawPic(picture, 15, (0 if anOverlay else 1))
@@ -128,9 +122,6 @@ class Inset(Code):
 
 	@classmethod
 	def restore():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('drawInset:')
 		if inset:
 			inset._send('oldATPs:')._send('doit:')
@@ -140,9 +131,6 @@ class Inset(Code):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (inset and inset._send('handleEvent:', param1)): 0#end:case
 			case (param1._send('type:') & 0x4000):
@@ -165,9 +153,6 @@ class Inset(Code):
 
 	@classmethod
 	def onMe(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(param1):
 			temp0 = param1._send('x:')
 			temp1 = param1._send('y:')
@@ -184,9 +169,6 @@ class Inset(Code):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (modNum == -1):
 			modNum = global11
 		#endif
@@ -197,9 +179,6 @@ class Inset(Code):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('doit:')
 		#endif
@@ -210,9 +189,6 @@ class Inset(Code):
 
 	@classmethod
 	def refresh():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case view:
 				if global169:
@@ -308,9 +284,6 @@ class Inset(Code):
 
 	@classmethod
 	def hideCast(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		temp1 = (1000 if param1 else -1000)
 		while (temp0 < global5._send('size:')):
@@ -328,9 +301,6 @@ class inView(View):
 	#property vars (may be empty)
 	@classmethod
 	def handleEvent():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 0
 	#end:method
 

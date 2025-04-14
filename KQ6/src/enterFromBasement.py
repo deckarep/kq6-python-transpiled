@@ -22,9 +22,6 @@ class enterFromBasement(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		register = kernel.ScriptID(80, 0)._send('tstFlag:', 709, 2)
 		if (not register):
@@ -41,18 +38,12 @@ class enterFromBasement(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.DisposeScript(732)
 	#end:method
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 10
@@ -108,17 +99,11 @@ class guardsCaptureEgo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global102._send('stop:')

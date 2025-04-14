@@ -24,45 +24,30 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc483_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', getBottle, 0, param1)
 #end:procedure
 
 @SCI.procedure
 def proc483_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', getGrapes)
 #end:procedure
 
 @SCI.procedure
 def proc483_2(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', getTomato, 0, param1)
 #end:procedure
 
 @SCI.procedure
 def proc483_3(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', pickLettuce, 0, param1)
 #end:procedure
 
 @SCI.procedure
 def proc483_4(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', chokeDie, 0, param1)
 #end:procedure
@@ -77,9 +62,6 @@ class getGrapes(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -111,9 +93,6 @@ class getTomato(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -166,9 +145,6 @@ class pickLettuce(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -228,9 +204,6 @@ class chokeDie(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -300,9 +273,6 @@ class getBottle(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

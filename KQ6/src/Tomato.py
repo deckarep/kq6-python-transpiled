@@ -20,9 +20,6 @@ class Tomato(Kq6Talker):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case ((global11 == 470) and (global9._send('at:', 49)._send('owner:') == global11)):
 				self._send(

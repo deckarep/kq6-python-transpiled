@@ -17,17 +17,11 @@ class DCIcon(DIcon):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		cycler = Fwd._send('new:')._send('init:', self)
 	#end:method
 
 	@classmethod
 	def cycle():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if cycler:
 			temp0 = cel
 			cycler._send('doit:')
@@ -39,9 +33,6 @@ class DCIcon(DIcon):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if cycler:
 			cycler._send('dispose:')
 		#endif
@@ -50,9 +41,6 @@ class DCIcon(DIcon):
 
 	@classmethod
 	def lastCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (kernel.NumCels(self) - 1)
 	#end:method
 

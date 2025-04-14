@@ -24,9 +24,6 @@ class Kq6IconBar(IconBar):
 	
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (state & 0x0020):
 			global8._send('pause:', 0)
 			(state &= 0xffdf)
@@ -64,9 +61,6 @@ class Kq6IconBar(IconBar):
 
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global8._send('pause:')
 		(state |= 0x0020)
 		global1._send('setCursor:', 999, 1)
@@ -135,9 +129,6 @@ class Kq6IconBar(IconBar):
 
 	@classmethod
 	def advance():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
@@ -155,9 +146,6 @@ class Kq6IconBar(IconBar):
 
 	@classmethod
 	def retreat():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
@@ -175,9 +163,6 @@ class Kq6IconBar(IconBar):
 
 	@classmethod
 	def updateInvIcon():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (curInvIcon and (not (useIconItem._send('state:') & 0x0004))):
 			curInvIcon._send('view:', (973 if hiRes else 970))
 			if global0._send('has:', global9._send('indexOf:', curInvIcon)):
@@ -224,9 +209,6 @@ class Kq6IconBar(IconBar):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		param1._send('localize:')
 		temp1 = param1._send('type:')
 		(cond
@@ -392,9 +374,6 @@ class Kq6IconItem(IconI):
 
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				(>=
@@ -526,9 +505,6 @@ class Kq6IconItem(IconI):
 
 	@classmethod
 	def mask():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DrawCel(maskView, maskLoop, maskCel, (+
 			nsLeft
 			(/

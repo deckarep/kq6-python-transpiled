@@ -35,17 +35,11 @@ class rm150(KQ6Room):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('newRoom:', 220)
 	#end:method
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:', 6)
 		super._send('init:', &rest)
 		global1._send('givePoints:', 2)
@@ -56,9 +50,6 @@ class rm150(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:', 6)
 		super._send('dispose:')
 	#end:method
@@ -75,9 +66,6 @@ class genieHeadScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				genie._send('init:')
@@ -187,9 +175,6 @@ class roomScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 3

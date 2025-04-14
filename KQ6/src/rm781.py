@@ -43,9 +43,6 @@ class rm781(CastleRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc958_0(128, 787, 785, 786, 724, 726)
 		global0._send('init:', 'setPri:', 13, 'setScale:', Scaler, 118, 70, 190, 140)
 		self._send(
@@ -87,9 +84,6 @@ class rm781(CastleRoom):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
@@ -102,9 +96,6 @@ class rm781(CastleRoom):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			match param1
 				case 1:
@@ -125,9 +116,6 @@ class rm781(CastleRoom):
 
 	@classmethod
 	def warnUser(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				if inset:
@@ -145,9 +133,6 @@ class rm781(CastleRoom):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global0._send('setPri:', -1)
 		super._send('dispose:')
 	#end:method
@@ -159,9 +144,6 @@ class hallDoorEntrance(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				door._send('cel:', 4, 'forceUpd:')
@@ -199,9 +181,6 @@ class openTrunk(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -279,9 +258,6 @@ class openEbonyBox(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -329,9 +305,6 @@ class wardrobeEntrance(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -380,9 +353,6 @@ class they_reBack(Script):
 	
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -428,9 +398,6 @@ class openWardrobe(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not local1):
 			match state = param1
 				case 0:
@@ -516,9 +483,6 @@ class door(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global1._send('handsOff:')
@@ -544,9 +508,6 @@ class door(Prop):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global105._send('stop:')
 		proc80_2(2)
 	#end:method
@@ -558,9 +519,6 @@ class hallScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if register = (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 128)):
 			tempGuard1._send(
 				'view:', kernel.ScriptID(80, 6)._send('view:'),
@@ -581,9 +539,6 @@ class hallScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if register:
 			tempGuard1._send('dispose:')
 			tempGuard2._send('dispose:')
@@ -593,9 +548,6 @@ class hallScr(Script):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if client:
 			super._send('cue:', &rest)
 		else:
@@ -605,9 +557,6 @@ class hallScr(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if register:
@@ -646,9 +595,6 @@ class keyHoleDoVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 1
 		match param1
 			case 1:
@@ -681,9 +627,6 @@ class tempGuard1(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', Walk, 'setStep:', 4, 2, 'actions:', keyHoleDoVerb)
 	#end:method
@@ -704,9 +647,6 @@ class tempGuard2(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', Walk, 'setStep:', 4, 2, 'actions:', keyHoleDoVerb)
 	#end:method
@@ -740,18 +680,12 @@ class wardrobeDoor(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global2._send('setScript:', openWardrobe)
 		else:
@@ -777,18 +711,12 @@ class trunkLid(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5, 35, 64)
 	#end:method
 
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		trunk._send('doVerb:', &rest)
 	#end:method
 
@@ -817,9 +745,6 @@ class candles(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCycle:', Fwd)
 		super._send('init:', &rest)
 	#end:method
@@ -865,9 +790,6 @@ class bedATP(View):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = param1._send('x:')
 		temp1 = param1._send('y:')
 		approachY = approachX = _approachVerbs = 0
@@ -899,9 +821,6 @@ class bedATP(View):
 
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (noun == 12):
 			wardrobeDoor._send('doVerb:', &rest)
 		else:
@@ -923,9 +842,6 @@ class fireplaceATP(View):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = param1._send('x:')
 		temp1 = param1._send('y:')
 		(return
@@ -978,18 +894,12 @@ class trunk(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5, 35, 64)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 5, 35, 64):
 				global2._send('setScript:', openTrunk, 0, param1)
@@ -1034,18 +944,12 @@ class box(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', openEbonyBox)
@@ -1084,9 +988,6 @@ class chestInset(Inset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:', 6)
 		global0._send('setPri:', 0, 'stopUpd:')
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
@@ -1100,9 +1001,6 @@ class chestInset(Inset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:', 6)
 		if (caller == openTrunk):
 			global1._send('handsOff:')
@@ -1122,9 +1020,6 @@ class ebonyBoxInset(Inset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:', 6)
 		global0._send('stopUpd:')
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
@@ -1139,18 +1034,12 @@ class ebonyBoxInset(Inset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:', 6)
 		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (inset and inset._send('handleEvent:', param1)): 0#end:case
 			case (param1._send('type:') & 0x4000):
@@ -1173,9 +1062,6 @@ class ebonyBoxInset(Inset):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				global91._send('say:', 14, param1)
@@ -1202,9 +1088,6 @@ class letterInset(Inset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:', 6)
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
 		y = (100 - (kernel.CelHigh(view, loop, cel) / 2))
@@ -1213,9 +1096,6 @@ class letterInset(Inset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:', 6)
 		super._send('dispose:')
 	#end:method
@@ -1232,9 +1112,6 @@ class InsetView(View):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = (param1._send('x:') + offsetX)
 		y = (param1._send('y:') + offsetY)
 		super._send('init:', &rest)
@@ -1254,9 +1131,6 @@ class papers_ChestInset(InsetView):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				if global0._send('has:', 20):
@@ -1292,9 +1166,6 @@ class viewLetter(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1342,9 +1213,6 @@ class books_ChestInset(InsetView):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				papers_ChestInset._send('doVerb:', param1)
@@ -1375,9 +1243,6 @@ class vase_ChestInset(InsetView):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				papers_ChestInset._send('doVerb:', param1)
@@ -1407,9 +1272,6 @@ class lid_ChestInset(InsetView):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			chestInset._send('dispose:')
 		else:
@@ -1430,9 +1292,6 @@ class paper_BoxInset(InsetView):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 1):
 			if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 64)):
 				global1._send('givePoints:', 1)
@@ -1468,9 +1327,6 @@ class dice_BoxInset(InsetView):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = param1._send('x:')
 		temp1 = param1._send('y:')
 		(return
@@ -1496,9 +1352,6 @@ class lid_BoxInset(InsetView):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				self._send('startUpd:')

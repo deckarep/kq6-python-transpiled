@@ -26,9 +26,6 @@ class rm415(LabRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global9._send('at:', 11)._send('owner:') == global11):
 			theSkull._send('init:', 'stopUpd:')
 			global2._send(
@@ -61,9 +58,6 @@ class rm415(LabRoom):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ScriptID(30, 3)._send('show:')
 	#end:method
 
@@ -83,9 +77,6 @@ class theSkull(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', getSkull)
@@ -111,9 +102,6 @@ class skelton1(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 0):
 			global91._send('say:', 10, 5, 0, 1)
 		else:
@@ -137,9 +125,6 @@ class skelton2(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 0):
 			global91._send('say:', 10, 5, 0, 1)
 		else:
@@ -163,9 +148,6 @@ class skelton3(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 0):
 			global91._send('say:', 10, 5, 0, 1)
 		else:
@@ -180,9 +162,6 @@ class getSkull(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

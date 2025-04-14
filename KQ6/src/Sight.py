@@ -17,9 +17,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc982_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(return
 		(not
 			((<= 0 param1._send('x:') 319) and (<= 0 (param1._send('y:') - param1._send('z:')) 189))

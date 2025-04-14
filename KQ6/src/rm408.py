@@ -27,9 +27,6 @@ class rm408(LabRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc402_0()
 		super._send('init:', &rest)
 		if (global9._send('at:', 43)._send('owner:') == 408):
@@ -42,9 +39,6 @@ class rm408(LabRoom):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ScriptID(30, 7)._send('addToPic:')
 		kernel.ScriptID(30, 3)._send('show:')
 	#end:method
@@ -64,17 +58,11 @@ class theShield(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', getShield)
@@ -92,9 +80,6 @@ class getShield(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

@@ -10,9 +10,6 @@ import Window
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, param7 = None, param8 = None, param9 = None, param10 = None, param11 = None, param12 = None, param13 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = kernel.GetPort()
 	kernel.SetPort(0)
 	kernel.Graph(11, param1, param2, (param3 + 1), (param4 + 1), param13, param5, param12)
@@ -47,9 +44,6 @@ def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, para
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(= temp1
 		(cond
 			case (param1._send('bottom:') > 185):
@@ -92,9 +86,6 @@ class BorderWindow(SysWindow):
 	
 	@classmethod
 	def open():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.SetPort(0)
 		temp1 = 1
 		if (priority != -1):
@@ -115,9 +106,6 @@ class BorderWindow(SysWindow):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.SetPort(0)
 	#end:method
@@ -146,9 +134,6 @@ class InsetWindow(BorderWindow):
 	
 	@classmethod
 	def open():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 1
 		if (priority != -1):
 			(temp0 |= 0x0002)

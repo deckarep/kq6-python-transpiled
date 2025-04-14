@@ -15,9 +15,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc966_0(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp3 = List._send('new:')
 	while temp1 = kernel.FirstNode(param1._send('elements:')):
 
@@ -39,9 +36,6 @@ class TE(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		param3._send('addToEnd:', param1)
 		param2._send('delete:', param1)
 	#end:method

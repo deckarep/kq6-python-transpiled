@@ -27,25 +27,16 @@ class Cat(Actor):
 	
 	@classmethod
 	def canBeHere():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 1
 	#end:method
 
 	@classmethod
 	def findPosn():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 1
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case super._send('handleEvent:', param1):#end:case
 			case (active and (param1._send('type:') == 2)):
@@ -67,9 +58,6 @@ class Cat(Actor):
 
 	@classmethod
 	def track(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.LocalToGlobal(param1)
 		dx = (x - param1._send('x:'))
 		dy = (y - param1._send('y:'))
@@ -97,9 +85,6 @@ class Cat(Actor):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (not doCast):
 				active = 0

@@ -19,9 +19,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc70_1(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = -1
 	while temp1 = proc999_6(param2, temp0.post('++')):
 
@@ -44,25 +41,16 @@ class rgDead(Rgn):
 	
 	@classmethod
 	def isSet(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (flag1 & param1)
 	#end:method
 
 	@classmethod
 	def clrIt(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(flag1 &= (flag1 ^ param1))
 	#end:method
 
 	@classmethod
 	def setIt(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = param1
 		(flag1 |= param1)
 		return (temp0 & param1)
@@ -70,9 +58,6 @@ class rgDead(Rgn):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		keep = proc999_5(param1, 600, 605, 615, 620, 630, 640, 650, 660, 670, 680, 690)
 		initialized = 0
 		super._send('newRoom:', param1, &rest)
@@ -80,9 +65,6 @@ class rgDead(Rgn):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('cue:')
 		proc913_1(121)
 	#end:method

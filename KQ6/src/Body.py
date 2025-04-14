@@ -46,9 +46,6 @@ class Body(Ego):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		(cond
 			case self._send('isStopped:'):
@@ -77,9 +74,6 @@ class Body(Ego):
 
 	@classmethod
 	def findStep():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = (temp2 if temp2 = (scaleX / 15) else 1)
 		temp1 = (temp2 if temp2 = (scaleY / 63) else 1)
 		if ((temp0 != xStep) or (temp1 != yStep)):
@@ -89,9 +83,6 @@ class Body(Ego):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= oldScaleSignal
 			oldMaxScale = oldBackSize = oldFrontY = oldBackY = 0
 		)
@@ -172,9 +163,6 @@ class Body(Ego):
 
 	@classmethod
 	def put():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('put:', &rest)
 		global69._send('curIcon:', global69._send('walkIconItem:'))
 	#end:method

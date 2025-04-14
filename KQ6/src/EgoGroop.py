@@ -21,9 +21,6 @@ class EgoGroop(Grooper):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(global0._send('loop:') == (kernel.NumLoops(global0) - 1))
@@ -36,9 +33,6 @@ class EgoGroop(Grooper):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('cue:')
 		dontHead = 1
 		if ((global0._send('view:') == 900) and global1._send('isHandsOn:')):

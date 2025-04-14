@@ -35,17 +35,11 @@ class InvI(IconI):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (super._send('onMe:', param1) and (not (signal & 0x0004)))
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (modNum == -1):
 			modNum = global11
 		#endif
@@ -89,25 +83,16 @@ class InvI(IconI):
 
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DrawCel(view, loop, cel, nsLeft, nsTop, -1)
 	#end:method
 
 	@classmethod
 	def ownedBy(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (owner == param1)
 	#end:method
 
 	@classmethod
 	def moveTo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		owner = param1
 		if (value and (param1 == global0)):
 			global1._send('changeScore:', value)
@@ -129,9 +114,6 @@ class Inv(IconBar):
 	
 	@classmethod
 	def drawInvWindow(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global170 = 0
 		temp0 = temp1 = temp2 = temp3 = temp4 = temp5 = 0
 		temp8 = self._send('first:')
@@ -318,17 +300,11 @@ class Inv(IconBar):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		heading = normalHeading
 	#end:method
 
 	@classmethod
 	def ownedBy(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('firstTrue:', #ownedBy, param1)
 	#end:method
 
@@ -443,9 +419,6 @@ class Inv(IconBar):
 	#end:method
 
 	(procedure (localproc_0param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp2
 			(((param1._send('nsRight:') - param1._send('nsLeft:')) / 2) + param1._send('nsLeft:'))
 		)
@@ -474,9 +447,6 @@ class Inv(IconBar):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		while temp1 = global80._send('curEvent:')._send('new:')._send('type:'):
 
 		#end:loop
@@ -710,9 +680,6 @@ class Inv(IconBar):
 
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (state & 0x0020):
 			global8._send('pause:', 0)
 			(state &= 0xffdf)

@@ -35,9 +35,6 @@ class rm405(LabRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(1):
 			global2._send(
 				'addObstacle:', Polygon._send('new:')._send(
@@ -78,9 +75,6 @@ class rm405(LabRoom):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case global2._send('script:'):#end:case
 			case (global0._send('edgeHit:') == 3):
@@ -93,9 +87,6 @@ class rm405(LabRoom):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				if proc913_0(1):
@@ -127,9 +118,6 @@ class door(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('approachVerbs:', 5)
 		if proc913_0(1):
 			self._send('x:', 259)
@@ -141,9 +129,6 @@ class door(Prop):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if (not proc913_0(1)):
@@ -188,9 +173,6 @@ class lBlock(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				myConv._send('add:', 400, 6, 1, 9, 1, 'add:', 400, 6, 1, 9, 2, 'init:')
@@ -217,9 +199,6 @@ class rBlock(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		lBlock._send('doVerb:', param1)
 	#end:method
 
@@ -230,9 +209,6 @@ class walkOut(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -251,9 +227,6 @@ class closeEntranceDoor(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

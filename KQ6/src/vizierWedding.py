@@ -38,9 +38,6 @@ class vizierWedding(Script):
 	#property vars (may be empty)
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(global69._send('at:', 0) == global69._send('curIcon:'))
@@ -59,9 +56,6 @@ class vizierWedding(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global93._send('delete:', self)
 		global74._send('delete:', self)
 		global73._send('delete:', self)
@@ -71,9 +65,6 @@ class vizierWedding(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(1005, 28)._send('talkWidth:', 87, 'textX:', 60, 'textY:', 23)
@@ -166,18 +157,12 @@ class stopWedding(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.DisposeScript(964)
 	#end:method
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -218,9 +203,6 @@ class genieScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if ((not local0) and User._send('alterEgo:')._send('edgeHit:')):
 			local0 = 1
@@ -230,9 +212,6 @@ class genieScr(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				self._send('setScript:', kernel.ScriptID(752, 2), self, kernel.ScriptID(740, 3))
@@ -341,9 +320,6 @@ class killDog(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global106._send('setLoop:', 2, 'cel:', 0, 'setCycle:', End, self)
@@ -362,9 +338,6 @@ class genieReappears(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.UnLoad(128, 748)
@@ -446,9 +419,6 @@ class giveMint(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -479,9 +449,6 @@ class triedToEscape(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -500,9 +467,6 @@ class preachPriest(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (not kernel.ScriptID(740, 1)._send('cel:')):
@@ -531,18 +495,12 @@ class king(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', Walk, 'setScale:', Scaler, 100, 75, 189, 134)
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('view:', 7464, 'loop:', 0, 'cel:', 2, 'addToPic:')
 	#end:method
 
@@ -562,9 +520,6 @@ class kingQueenEntry(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				king._send(

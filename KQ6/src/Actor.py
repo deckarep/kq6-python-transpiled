@@ -37,9 +37,6 @@ class View(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = (global10 if (signal & 0x0020) else global5)
 		(signal &= 0x7fff)
 		if (not temp0._send('contains:', self)):
@@ -78,34 +75,22 @@ class View(Feature):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('startUpd:', 'hide:')
 		(signal |= 0x8000)
 	#end:method
 
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(signal |= 0x0008)
 	#end:method
 
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(signal &= 0xfff7)
 	#end:method
 
 	@classmethod
 	def delete():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (signal & 0x8000):
 			(signal &= 0x7fff)
 			(cond
@@ -136,26 +121,17 @@ class View(Feature):
 
 	@classmethod
 	def stopUpd():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(signal |= 0x0001)
 		(signal &= 0xfffd)
 	#end:method
 
 	@classmethod
 	def forceUpd():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(signal |= 0x0040)
 	#end:method
 
 	@classmethod
 	def startUpd():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(signal |= 0x0002)
 		(signal &= 0xfffe)
 	#end:method
@@ -235,9 +211,6 @@ class View(Feature):
 
 	@classmethod
 	def addToPic():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', self):
 			(signal |= 0x8021)
 		else:
@@ -248,17 +221,11 @@ class View(Feature):
 
 	@classmethod
 	def lastCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (kernel.NumCels(self) - 1)
 	#end:method
 
 	@classmethod
 	def showSelf():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send('addText:', name, 'addIcon:', view, loop, cel, 'init:')
 	#end:method
 
@@ -270,17 +237,11 @@ class View(Feature):
 
 	@classmethod
 	def isNotHidden():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (not (signal & 0x0088))
 	#end:method
 
 	@classmethod
 	def onMe(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(param1):
 			temp0 = param1._send('x:')
 			temp1 = param1._send('y:')
@@ -354,9 +315,6 @@ class Prop(View):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (signal & 0x8000):
 			return
 		#endif
@@ -376,9 +334,6 @@ class Prop(View):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('handleEvent:', param1)
 		#endif
@@ -387,9 +342,6 @@ class Prop(View):
 
 	@classmethod
 	def setCycle(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if cycler:
 			cycler._send('dispose:')
 		#endif
@@ -410,9 +362,6 @@ class Prop(View):
 
 	@classmethod
 	def delete():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (signal & 0x8000):
 			self._send('setScript:', 0, 'setCycle:', 0)
 			if timer:
@@ -428,9 +377,6 @@ class Prop(View):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('cue:')
 		#endif
@@ -438,9 +384,6 @@ class Prop(View):
 
 	@classmethod
 	def setScript(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(script):
 			script._send('dispose:')
 		#endif
@@ -451,9 +394,6 @@ class Prop(View):
 
 	@classmethod
 	def motionCue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (cycler and cycler._send('completed:')):
 			cycler._send('motionCue:')
 		#endif
@@ -543,9 +483,6 @@ class Actor(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		xLast = x
 		yLast = y
@@ -553,9 +490,6 @@ class Actor(Prop):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (signal & 0x8000):
 			return
 		#endif
@@ -607,9 +541,6 @@ class Actor(Prop):
 
 	@classmethod
 	def posn(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('posn:', param1, param2, &rest)
 		xLast = param1
 		yLast = param2
@@ -617,9 +548,6 @@ class Actor(Prop):
 
 	@classmethod
 	def setMotion(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (mover and (mover != -1)):
 			mover._send('dispose:')
 		#endif
@@ -640,9 +568,6 @@ class Actor(Prop):
 
 	@classmethod
 	def setAvoider(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if avoider:
 			avoider._send('dispose:')
 		#endif
@@ -660,9 +585,6 @@ class Actor(Prop):
 
 	@classmethod
 	def isStopped():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(or
 				(not kernel.IsObject(mover))
@@ -673,17 +595,11 @@ class Actor(Prop):
 
 	@classmethod
 	def isBlocked():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (signal & 0x0400)
 	#end:method
 
 	@classmethod
 	def delete():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (signal & 0x8000):
 			if (mover != -1):
 				self._send('setMotion:', 0)
@@ -757,9 +673,6 @@ class Actor(Prop):
 
 	@classmethod
 	def observeBlocks():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not blocks):
 			blocks = Set._send('new:')
 		#endif
@@ -768,9 +681,6 @@ class Actor(Prop):
 
 	@classmethod
 	def ignoreBlocks():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if blocks:
 			blocks._send('delete:', &rest)
 			if blocks._send('isEmpty:'):
@@ -782,17 +692,11 @@ class Actor(Prop):
 
 	@classmethod
 	def distanceTo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.GetDistance(x, y, param1._send('x:'), param1._send('y:'), global31)
 	#end:method
 
 	@classmethod
 	def cantBeHere():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if baseSetter:
 			baseSetter._send('doit:', self)
 		else:
@@ -816,9 +720,6 @@ class Actor(Prop):
 
 	@classmethod
 	def inRect(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return ((param1 <= x) and (x <= param3) and (param2 <= y) and (y <= param4))
 	#end:method
 
@@ -863,9 +764,6 @@ class Actor(Prop):
 
 	@classmethod
 	def setDirection(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp0
 			if (temp1 = global2._send('vanishingY:') == -30000):
 				x
@@ -938,9 +836,6 @@ class Actor(Prop):
 
 	@classmethod
 	def motionCue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (mover and mover._send('completed:')):
 			mover._send('motionCue:')
 		#endif

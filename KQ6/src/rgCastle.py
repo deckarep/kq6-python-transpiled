@@ -38,9 +38,6 @@ local2 = None
 
 @SCI.procedure
 def proc80_2(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global1._send('handsOff:')
 	match param1
 		case 4:
@@ -64,9 +61,6 @@ def proc80_2(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp2 = (global0._send('brLeft:') - param2)
 	temp0 = (global0._send('brTop:') - param3)
 	temp3 = (global0._send('brRight:') + param2)
@@ -95,9 +89,6 @@ def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
 
 @SCI.procedure
 def proc80_7():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = localproc_1(kernel.ScriptID(80, 5))
 	temp1 = localproc_1(kernel.ScriptID(80, 6))
 	if (temp0 <= temp1):
@@ -109,9 +100,6 @@ def proc80_7():
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if global5._send('contains:', param1):
 		(= temp0
 			kernel.GetDistance(param1._send('x:'), param1._send('y:'), global0._send('x:'), global0._send('y:'), 60)
@@ -140,18 +128,12 @@ class CastleRoom(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		scalerCode = spotEgoScr = 0
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((global103._send('prevSignal:') != -1) and (global103._send('number:') == 710)):
 			global103._send('fade:')
 		#endif
@@ -160,9 +142,6 @@ class CastleRoom(KQ6Room):
 
 	@classmethod
 	def spotEgo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global102._send('stop:')
 		global103._send('number:', 710, 'loop:', -1, 'play:')
 		if spotEgoScr:
@@ -174,9 +153,6 @@ class CastleRoom(KQ6Room):
 
 	@classmethod
 	def scriptCheck(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		if 
 			(and
@@ -213,9 +189,6 @@ class GuardDog(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setScale:')
 		super._send('init:', &rest)
 		self._send(
@@ -231,9 +204,6 @@ class GuardDog(Actor):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if 
 			(and
@@ -254,9 +224,6 @@ class GuardDog(Actor):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		regPathID = checkCode = okToCheck = 0
 		if kernel.IsObject(scaler):
 			scaler._send('dispose:')
@@ -285,9 +252,6 @@ class rgCastle(Rgn):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = kernel.GetTime(1)
 		(cond
 			case 
@@ -366,9 +330,6 @@ class rgCastle(Rgn):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ScriptID(80, 0)._send(
 			'keep:', proc999_5(param1, 700, 710, 720, 730, 740, 750, 760, 770, 780, 781, 790, 800, 810, 820, 840, 850, 860, 870, 880, 180, 743)
 		)
@@ -380,18 +341,12 @@ class rgCastle(Rgn):
 
 	@classmethod
 	def doLoiter():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		loiterTimer = 0
 		global2._send('doLoiter:')
 	#end:method
 
 	@classmethod
 	def setupGuards():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', guard1):
 			guard1._send('checkCode:', guard1Code)
 			if (not kernel.IsObject(guard1._send('scaler:'))):
@@ -450,9 +405,6 @@ class rgCastle(Rgn):
 
 	@classmethod
 	def tstFlag(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (1 if (self._send('param1:') & param2) else 0)
 	#end:method
 
@@ -463,9 +415,6 @@ class guardsGetEgo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		rgCastle._send('rFlag1:', (| rgCastle._send('rFlag1:') 0x2000), 'dungeonEntered:', 3)
 		register = 0
 		super._send('dispose:')
@@ -473,9 +422,6 @@ class guardsGetEgo(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -564,9 +510,6 @@ class guard1(GuardDog):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		if (global6._send('size:') == 3):
 			checkCode = kernel.ScriptID(81, 0)._send('guard1Code:')
@@ -604,9 +547,6 @@ class guard2(GuardDog):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		if (global6._send('size:') == 3):
 			checkCode = kernel.ScriptID(81, 0)._send('guard2Code:')

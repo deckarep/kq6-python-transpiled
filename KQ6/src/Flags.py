@@ -15,9 +15,6 @@ class Flags(Obj):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (size and (not array)):
 			self._send('setSize:', size)
 		#endif
@@ -25,9 +22,6 @@ class Flags(Obj):
 
 	@classmethod
 	def setSize(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = (param1 / 16)
 		if (mod param1 16):
 			temp0.post('++')
@@ -44,9 +38,6 @@ class Flags(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if array:
 			kernel.Memory(3, array)
 			array = 0
@@ -92,9 +83,6 @@ class Flags(Obj):
 
 	@classmethod
 	def test(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = ((param1 / 16) * 2)
 		(return
 			(temp0 = kernel.Memory(5, (array + temp1)) & (0x8000 >> (mod param1 16)))

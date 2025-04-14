@@ -39,9 +39,6 @@ class rm105(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global74._send('addToFront:', self)
 		global72._send('addToFront:', self)
 		global73._send('addToFront:', self)
@@ -51,17 +48,11 @@ class rm105(KQ6Room):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('restart:', 1)
 	#end:method
 
 	@classmethod
 	def handleEvent():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoAudio(3)
 		if local403:
 			global1._send('masterVolume:', local403)
@@ -75,9 +66,6 @@ class rm105(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global74._send('delete:', self)
 		global72._send('delete:', self)
 		global73._send('delete:', self)
@@ -92,9 +80,6 @@ class showMovie(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				proc958_0(128, 1, 2, 3, 1091, 4)
@@ -494,9 +479,6 @@ class toonAudio(Audio):
 	#property vars (may be empty)
 	@classmethod
 	def play(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global78._send('add:', self)
 		if (not local403):
 			local403 = global1._send('masterVolume:', (global1._send('masterVolume:') - 4))
@@ -518,9 +500,6 @@ class toonAudio(Audio):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((not stopped) and (kernel.DoAudio(6) == -1) and (loop == 1)):
 			doNotStop = 0
 			stopped = 1
@@ -550,9 +529,6 @@ class flames(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', RandCycle)
 	#end:method
@@ -569,9 +545,6 @@ class flames2(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', RandCycle)
 	#end:method
@@ -587,9 +560,6 @@ class alexMouth(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setPri:', 14, 'ignoreActors:', 1)
 		super._send('init:', &rest)
 	#end:method

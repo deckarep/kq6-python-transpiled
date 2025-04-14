@@ -55,9 +55,6 @@ local540 = None
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if 
 		(and
 			((param1 - 32) == param3)
@@ -72,9 +69,6 @@ def localproc_0(param1 = None, param2 = None, param3 = None, param4 = None, *res
 
 @SCI.procedure
 def localproc_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = 0
 	while (temp0 < 20): # inline for
 		local101[temp0] = aTile._send('new:')._send(
@@ -103,9 +97,6 @@ def localproc_1():
 
 @SCI.procedure
 def localproc_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = 0
 	while (temp0 < 20): # inline for
 		local101[temp0]._send('dispose:')
@@ -116,9 +107,6 @@ def localproc_2():
 
 @SCI.procedure
 def localproc_3():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	proc913_1(95)
 	global1._send('givePoints:', 3)
 #end:procedure
@@ -135,9 +123,6 @@ class rm410(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send(
 			'addObstacle:', Polygon._send('new:')._send(
 					'type:', 2,
@@ -173,9 +158,6 @@ class rm410(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not proc913_0(1)):
 			global72._send('delete:', self)
 			global73._send('delete:', self)
@@ -185,9 +167,6 @@ class rm410(KQ6Room):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(or
 				(and
@@ -220,9 +199,6 @@ class rm410(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(1):
 			(cond
 				case global2._send('script:'):#end:case
@@ -241,9 +217,6 @@ class rm410(KQ6Room):
 
 	@classmethod
 	def scriptCheck():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global91._send('say:', 0, 0, 154, 1, 0, 899)
 		return 0
 	#end:method
@@ -267,9 +240,6 @@ class aSandBlast(Prop):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('dispose:')
 	#end:method
 
@@ -284,9 +254,6 @@ class FloorTile(Feature):
 	
 	@classmethod
 	def setScript(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(script):
 			script._send('dispose:')
 		#endif
@@ -297,9 +264,6 @@ class FloorTile(Feature):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		if (not proc913_0(1)):
 			global72._send('addToFront:', self)
@@ -309,9 +273,6 @@ class FloorTile(Feature):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not proc913_0(1)):
 			global72._send('delete:', self)
 			global73._send('delete:', self)
@@ -321,9 +282,6 @@ class FloorTile(Feature):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				match tileType
@@ -361,9 +319,6 @@ class FloorTile(Feature):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('canInput:')
@@ -392,9 +347,6 @@ class goToTile(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -462,9 +414,6 @@ class backOfDoors(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setOnMeCheck:', 1, 2, 4)
 		super._send('init:', &rest)
 		if (not proc913_0(1)):
@@ -475,9 +424,6 @@ class backOfDoors(Feature):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not proc913_0(1)):
 			global72._send('delete:', self)
 			global73._send('delete:', self)
@@ -487,9 +433,6 @@ class backOfDoors(Feature):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('canInput:')
@@ -560,9 +503,6 @@ class door(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setOnMeCheck:', 1, 8, 16384, 128, 8192)
 		super._send('init:', &rest)
 		if (not proc913_0(1)):
@@ -573,9 +513,6 @@ class door(Feature):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not proc913_0(1)):
 			global72._send('delete:', self)
 			global73._send('delete:', self)
@@ -585,9 +522,6 @@ class door(Feature):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('canInput:')
@@ -665,9 +599,6 @@ class egoEnters(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -713,9 +644,6 @@ class doorDeathMsgPause(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -778,9 +706,6 @@ class fireAllSpikes(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global0._send('x:') < 135):
@@ -847,9 +772,6 @@ class aSpikeScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				ticks = 4
@@ -910,9 +832,6 @@ class killEgo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if local406:
@@ -973,9 +892,6 @@ class egoDoVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				return 0

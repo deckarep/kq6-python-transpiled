@@ -39,9 +39,6 @@ class genieKickingItScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('loop:', 0, 'cel:', 0, 'setCycle:', End, self)
@@ -86,9 +83,6 @@ class genieKickingItScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', genieEye):
 			genieEye._send('dispose:')
 		#endif
@@ -114,9 +108,6 @@ class bookShopGenie(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 63):
 			global2._send('setScript:', kernel.ScriptID(278))
 		else:
@@ -126,9 +117,6 @@ class bookShopGenie(Actor):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setScript:', genieKickingItScr, 'approachVerbs:', 2, 0)
 	#end:method

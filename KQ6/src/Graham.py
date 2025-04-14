@@ -27,9 +27,6 @@ class Graham(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', tBust, tEyes, tMouth, &rest)
 	#end:method
 

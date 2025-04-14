@@ -19,9 +19,6 @@ class PseudoMouse(Code):
 	
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = param1._send('type:')
 		temp1 = param1._send('message:')
 		temp2 = param1._send('modifiers:')
@@ -68,18 +65,12 @@ class PseudoMouse(Code):
 
 	@classmethod
 	def stop():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		prevDir = 0
 		global78._send('delete:', self)
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = global24._send('x:')
 		temp1 = global24._send('y:')
 		match prevDir

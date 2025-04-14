@@ -23,9 +23,6 @@ class BabyTears(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(59):
 			self._send('loop:', 7, 'x:', 0, 'y:', 135, 'textX:', 10, 'textY:', -125)
 			super._send('init:', tWimpBust, 0, tWimpMouth, &rest)

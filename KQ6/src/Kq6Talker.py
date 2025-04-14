@@ -87,18 +87,12 @@ class Kq6Narrator(Narrator):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('font:', global22, 'color:', Kq6Window._send('color:'), 'back:', Kq6Window._send('back:'))
 		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
 	def display(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((x + talkWidth) > 318):
 			temp0 = (318 - x)
 		else:

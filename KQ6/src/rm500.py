@@ -52,9 +52,6 @@ class rm500(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Load(128, 308)
 		global2._send(
 			'addObstacle:', Polygon._send('new:')._send(
@@ -100,9 +97,6 @@ class rm500(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local4 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
@@ -156,9 +150,6 @@ class rm500(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global102._send('fade:')
 		global105._send('fade:', 0, 50, 50, 1)
 		super._send('newRoom:', param1)
@@ -252,9 +243,6 @@ class dangle(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 85:
 				if (not global162):
@@ -328,9 +316,6 @@ class raccoon(Actor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('dispose:')
 	#end:method
 
@@ -368,9 +353,6 @@ class branch(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		trees._send('doVerb:', param1)
 	#end:method
 
@@ -392,9 +374,6 @@ class rocks(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (param1 == 1):
 				global91._send('say:', noun, param1, 2, 0, 0, 0)
@@ -415,9 +394,6 @@ class partKludgeScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('setCycle:', 0, 'setLoop:', 0)
@@ -477,9 +453,6 @@ class getDangPartScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				dangle._send('setLoop:', 0, 'setCycle:', 0)
@@ -549,9 +522,6 @@ class wateryDeathScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 4, 3, 7, 0, self)
@@ -583,9 +553,6 @@ class dangleScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 2
@@ -609,9 +576,6 @@ class deerScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(2, 5)
@@ -636,9 +600,6 @@ class egoDoVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 12:
 				global2._send('setScript:', 130)

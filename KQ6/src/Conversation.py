@@ -26,9 +26,6 @@ class MessageObj(Obj):
 	
 	@classmethod
 	def showSelf():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= whoSays
 			global91._send(
 				'findTalker:', kernel.Message(0, modNum, noun, verb, case, if 
@@ -83,9 +80,6 @@ class Conversation(List):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #perform, cleanCode)
 		global78._send('delete:', self)
 		if global25:
@@ -104,9 +98,6 @@ class Conversation(List):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('doit:')
 		#endif
@@ -140,9 +131,6 @@ class Conversation(List):
 
 	@classmethod
 	def setScript(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(script):
 			script._send('dispose:')
 		#endif
@@ -153,9 +141,6 @@ class Conversation(List):
 
 	@classmethod
 	def load(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = proc999_6(param1, 0)
 		temp1 = proc999_6(param1, 1)
 		temp2 = proc999_6(param1, 2)
@@ -241,9 +226,6 @@ class cleanCode(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if param1._send('isKindOf:', Script):
 			param1._send('caller:', 0)
 		#endif

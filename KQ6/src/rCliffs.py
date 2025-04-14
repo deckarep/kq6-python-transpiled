@@ -41,9 +41,6 @@ local328 = None
 
 @SCI.procedure
 def proc21_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if (kernel.ScriptID(21, 0)._send('stepSound:') == 1):
 		kernel.ScriptID(21, 0)._send('stepSound:', 4)
 	else:
@@ -71,9 +68,6 @@ class rCliffs(Rgn):
 	
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		keep = proc999_5(param1, 300, 320)
 		initialized = 0
 		super._send('newRoom:', param1, &rest)
@@ -81,34 +75,22 @@ class rCliffs(Rgn):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local325 = 1
 		local326 = kernel.Random(500, 1000)
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local325 = 0
 	#end:method
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:', 6)
 		super._send('dispose:')
 	#end:method
@@ -124,9 +106,6 @@ class CliffRoom(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not rockList):
 			rockList = Set._send('new:')._send('add:')
 		#endif
@@ -165,9 +144,6 @@ class CliffRoom(KQ6Room):
 
 	@classmethod
 	def callForRocks():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global11 == 300):
 			self._send('rockCount:', 0, 'maxRocks:', 9)
 		else:
@@ -178,9 +154,6 @@ class CliffRoom(KQ6Room):
 
 	@classmethod
 	def makeARock():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (rockCount == maxRocks):
 			if (global11 == 300):
 				global91._send('say:', 8, 5, 18, 2, 0, 21)
@@ -246,9 +219,6 @@ class CliffRoom(KQ6Room):
 
 	@classmethod
 	def allRocksOut(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		rCliffs._send('cheatCount:', 0)
 		if (global11 == 300):
 			temp1 = 9
@@ -299,9 +269,6 @@ class CliffRoom(KQ6Room):
 
 	@classmethod
 	def dumpRocks():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if rockList:
 			rockList._send('release:')
 		#endif
@@ -327,9 +294,6 @@ class CliffRoom(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global74._send('delete:', global2)
 		if rockList:
 			rockList._send('release:', 'dispose:')
@@ -340,9 +304,6 @@ class CliffRoom(KQ6Room):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('controls:')
@@ -392,9 +353,6 @@ class RockStep(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				global91._send('say:', 6, 1, 0, 1, 0, 21)
@@ -413,9 +371,6 @@ class RockStep(Prop):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global72._send('addToFront:', self)
 		global73._send('addToFront:', self)
@@ -423,9 +378,6 @@ class RockStep(Prop):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		global73._send('delete:', self)
 		super._send('dispose:')
@@ -433,17 +385,11 @@ class RockStep(Prop):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('makeARock:')
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if local325:
 			(cond
 				case global0._send('script:'):#end:case
@@ -460,9 +406,6 @@ class RockStep(Prop):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('canInput:')
@@ -603,9 +546,6 @@ class PuzzleInset(View):
 	
 	@classmethod
 	def doButton(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < buttNumber): # inline for
 			if 
@@ -665,17 +605,11 @@ class PuzzleInset(View):
 
 	@classmethod
 	def puzzSolved():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('setScript:', puzzleSolvedPause, 0, self)
 	#end:method
 
 	@classmethod
 	def cue(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('buttonCount:', (self._send('buttonCount:') + 1))
 		(cond
 			case ((param1 == correctButton) or (param1 == -1)):
@@ -696,9 +630,6 @@ class PuzzleInset(View):
 
 	@classmethod
 	def dumpButtons():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < 28): # inline for
 			if (local218[temp0] != 0):
@@ -712,9 +643,6 @@ class PuzzleInset(View):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:', 3, 0, 4, 5, 6)
 		temp0 = 0
 		while (temp0 < 28): # inline for
@@ -731,9 +659,6 @@ class PuzzleInset(View):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		rCliffs._send('puzzleIsUp:', 0)
 		self._send('dumpButtons:')
 		correctButton = (local324 = buttonCount = 0 + 1)
@@ -748,9 +673,6 @@ class PuzzleInset(View):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('canInput:')
@@ -829,9 +751,6 @@ class stepDown(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1052,9 +971,6 @@ class takeFirstStep(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1101,9 +1017,6 @@ class takeStep(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1258,9 +1171,6 @@ class nextScreenUp(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1323,9 +1233,6 @@ class notifyTheRoom(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('givePoints:', 1)
@@ -1375,9 +1282,6 @@ class egoWobbles(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global104._send('number:', 305, 'setLoop:', 1, 'play:')
@@ -1432,9 +1336,6 @@ class seeYa(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1494,9 +1395,6 @@ class clearTheButtons(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -1526,9 +1424,6 @@ class puzzleSolvedPause(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 1
@@ -1557,9 +1452,6 @@ class egoStepVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				return 0

@@ -32,9 +32,6 @@ local200 = [r"""WINDOW""", 0, 0, r"""Create""", 0, 0, r"""Position""", 0, 0, r""
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if (kernel.StrLen(param1) > param2):
 		kernel.StrAt(param1, param2, 0)
 		kernel.StrAt(param1, param2.post('--'), 46)
@@ -46,9 +43,6 @@ def localproc_0(param1 = None, param2 = None, *rest):
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = param1._send('noun:')
 	temp1 = param1._send('verb:')
 	temp2 = param1._send('case:')
@@ -110,9 +104,6 @@ def localproc_1(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_2(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	Print._send(
 		'addTitle:', @local42,
 		'font:', 0,
@@ -131,9 +122,6 @@ class mainMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local62)
 	#end:method
 
@@ -144,9 +132,6 @@ class editBMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local90)
 	#end:method
 
@@ -157,9 +142,6 @@ class editTMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local112)
 	#end:method
 
@@ -170,9 +152,6 @@ class editEMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local137)
 	#end:method
 
@@ -183,9 +162,6 @@ class editIMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local159)
 	#end:method
 
@@ -196,9 +172,6 @@ class editSMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local181)
 	#end:method
 
@@ -209,9 +182,6 @@ class editWMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local200)
 	#end:method
 
@@ -227,9 +197,6 @@ class DlgWindow(SysWindow):
 	
 	@classmethod
 	def open():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		type = (4 if title else 0)
 		temp0 = kernel.GetPort()
 		super._send('open:', &rest)
@@ -239,18 +206,12 @@ class DlgWindow(SysWindow):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		local1 = 0
 	#end:method
 
 	@classmethod
 	def create():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 190
 		temp1 = 320
 		temp2 = 0
@@ -277,9 +238,6 @@ class DlgWindow(SysWindow):
 
 	@classmethod
 	def moveTo(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < DialogEditor._send('size:')): # inline for
 			temp1 = DialogEditor._send('at:', temp0)
@@ -296,9 +254,6 @@ class DlgWindow(SysWindow):
 
 	@classmethod
 	def editMsg():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if localproc_1(self):
 			if title:
 				kernel.Memory(3, title)
@@ -311,9 +266,6 @@ class DlgWindow(SysWindow):
 
 	@classmethod
 	def editPosn():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if local1:
 			proc921_0(r"""Click to where the top left of the window should be""")
 			while (temp0 = Event._send('new:')._send('type:') != 1):
@@ -335,9 +287,6 @@ class DlgWindow(SysWindow):
 
 	@classmethod
 	def editTitle():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match localproc_2(self)
 			case 0:
 				return
@@ -372,9 +321,6 @@ class _DItem(Class_255_0):
 	
 	@classmethod
 	def select(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('hide:')
 		if param1:
 			(state |= 0x0008)
@@ -386,9 +332,6 @@ class _DItem(Class_255_0):
 
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if underBits:
 			kernel.Graph(8, underBits)
 			temp0 = (nsTop - 1)
@@ -402,9 +345,6 @@ class _DItem(Class_255_0):
 
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = (nsTop - 1)
 		temp1 = (nsLeft - 1)
 		temp2 = (nsBottom + 1)
@@ -419,9 +359,6 @@ class _DItem(Class_255_0):
 
 	@classmethod
 	def editPosn():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", nsLeft)
 		kernel.Format(@temp25, r"""%d""", nsTop)
 		if 
@@ -446,9 +383,6 @@ class _DItem(Class_255_0):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		param1._send('claimed:', 1)
 		temp0 = self._send('track:', param1)
@@ -456,9 +390,6 @@ class _DItem(Class_255_0):
 
 	@classmethod
 	def track(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1._send('type:') == 1):
 			self._send('hide:')
 			while True: #repeat
@@ -487,9 +418,6 @@ class _DItem(Class_255_0):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('hide:')
 		super._send('dispose:', &rest)
 	#end:method
@@ -523,9 +451,6 @@ class _DText(_DItem):
 
 	@classmethod
 	def editFont():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp25
 			Print._send(
 				'addTitle:', @local42,
@@ -551,9 +476,6 @@ class _DText(_DItem):
 
 	@classmethod
 	def editJust():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		(= temp25
 			Print._send(
@@ -587,9 +509,6 @@ class _DText(_DItem):
 
 	@classmethod
 	def editMsg():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if localproc_1(self):
 			kernel.Memory(3, text)
 			text = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
@@ -600,9 +519,6 @@ class _DText(_DItem):
 
 	@classmethod
 	def editText():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match localproc_2(self)
 			case 0:
 				return
@@ -629,9 +545,6 @@ class _DText(_DItem):
 
 	@classmethod
 	def editWidth():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", width)
 		(= temp25
 			Print._send(
@@ -653,9 +566,6 @@ class _DText(_DItem):
 
 	@classmethod
 	def showHelp():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'font:', global22,
 			'width:', 250,
@@ -675,18 +585,12 @@ class _DIcon(_DItem):
 	
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
 		nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 	#end:method
 
 	@classmethod
 	def editView():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", view)
 		(= temp25
 			Print._send(
@@ -709,9 +613,6 @@ class _DIcon(_DItem):
 
 	@classmethod
 	def editLoop():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", loop)
 		(= temp25
 			Print._send(
@@ -734,9 +635,6 @@ class _DIcon(_DItem):
 
 	@classmethod
 	def editCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", cel)
 		(= temp25
 			Print._send(
@@ -759,9 +657,6 @@ class _DIcon(_DItem):
 
 	@classmethod
 	def showHelp():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'font:', global22,
 			'width:', 250,
@@ -786,9 +681,6 @@ class _DButton(_DItem):
 	
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.TextSize(@temp0[0], text, font, 0, 0)
 		(temp0[2] += 2)
 		(temp0[3] += 2)
@@ -799,9 +691,6 @@ class _DButton(_DItem):
 
 	@classmethod
 	def editFont():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp25
 			Print._send(
 				'addTitle:', @local42,
@@ -827,9 +716,6 @@ class _DButton(_DItem):
 
 	@classmethod
 	def editMsg():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if localproc_1(self):
 			kernel.Memory(3, text)
 			text = kernel.Memory(1, kernel.Message(2, modNum, noun, verb, case, seq))
@@ -840,9 +726,6 @@ class _DButton(_DItem):
 
 	@classmethod
 	def editText():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match localproc_2(self)
 			case 0:
 				return
@@ -869,9 +752,6 @@ class _DButton(_DItem):
 
 	@classmethod
 	def editValue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", value)
 		(= temp25
 			Print._send(
@@ -893,9 +773,6 @@ class _DButton(_DItem):
 
 	@classmethod
 	def showHelp():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'font:', global22,
 			'width:', 250,
@@ -917,9 +794,6 @@ class _DEdit(_DItem):
 	
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (nsTop + temp0[2])
 		nsRight = (nsLeft + ((* temp0[3] max 3) / 4))
@@ -928,9 +802,6 @@ class _DEdit(_DItem):
 
 	@classmethod
 	def editFont():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp25
 			Print._send(
 				'addTitle:', @local42,
@@ -956,9 +827,6 @@ class _DEdit(_DItem):
 
 	@classmethod
 	def editLength():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", max)
 		(= temp25
 			Print._send(
@@ -980,9 +848,6 @@ class _DEdit(_DItem):
 
 	@classmethod
 	def editText():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'addTitle:', @local42,
 			'addText:', r"""Enter new default text:""",
@@ -994,9 +859,6 @@ class _DEdit(_DItem):
 
 	@classmethod
 	def showHelp():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'font:', global22,
 			'width:', 250,
@@ -1016,9 +878,6 @@ class _DSelector(_DItem):
 	
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (+ nsTop 20 (temp0[2] * y))
 		nsRight = (nsLeft + ((* temp0[3] x 3) / 4))
@@ -1026,9 +885,6 @@ class _DSelector(_DItem):
 
 	@classmethod
 	def editLength():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", y)
 		(= temp25
 			Print._send(
@@ -1050,9 +906,6 @@ class _DSelector(_DItem):
 
 	@classmethod
 	def editWidth():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(@temp0, r"""%d""", x)
 		(= temp25
 			Print._send(
@@ -1074,9 +927,6 @@ class _DSelector(_DItem):
 
 	@classmethod
 	def showHelp():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'font:', global22,
 			'width:', 250,
@@ -1095,9 +945,6 @@ class DialogEditor(List):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local0 = global38
 		kernel.StrCpy(@local42, r"""DialogEditor__v1.1""")
 		global38 = SysWindow._send('color:', 0, 'back:', 255)
@@ -1107,9 +954,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		mainMenu._send('dispose:')
 		DlgWindow._send('dispose:')
 		global38 = local0
@@ -1123,9 +967,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if curMenu:
 			curMenu._send('dispose:')
 		#endif
@@ -1148,9 +989,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def delItem():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if size:
 			if 
 				Print._send(
@@ -1174,9 +1012,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def exit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not local1):
 			DlgWindow._send('create:')
 		#endif
@@ -1275,9 +1110,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('init:')
 		while True: #repeat
 			temp0 = Event._send('new:')
@@ -1293,9 +1125,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1._send('type:')
 			case 0:#end:case
 			case 1:
@@ -1717,9 +1546,6 @@ class DialogEditor(List):
 
 	@classmethod
 	def writeFile(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp102 = -1
 		temp103 = 0
 		temp104 = 0

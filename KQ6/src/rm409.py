@@ -44,9 +44,6 @@ class rm409(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if rLab._send('hiddenDoorOpen:'):
 			local0 = 54
 			global2._send(
@@ -88,9 +85,6 @@ class rm409(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case global2._send('script:'):#end:case
 			case global0._send('inRect:', 287, 167, 319, 189):
@@ -107,9 +101,6 @@ class rm409(KQ6Room):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			match param1
 				case 1:
@@ -145,18 +136,12 @@ class tapestry(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('stopUpd:')
 		super._send('init:')
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 0:
 				if rLab._send('seenSecretLatch:'):
@@ -197,9 +182,6 @@ class door(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('approachVerbs:', 5)
 		if rLab._send('hiddenDoorOpen:'):
 			self._send('cel:', 5, 'stopUpd:')
@@ -211,9 +193,6 @@ class door(Prop):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 25:
 				proc404_0(2)
@@ -283,9 +262,6 @@ class openDoor(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('approachVerbs:', 5)
 		self._send('stopUpd:')
 		super._send('init:')
@@ -293,9 +269,6 @@ class openDoor(View):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		door._send('doVerb:', param1, &rest)
 	#end:method
 
@@ -316,9 +289,6 @@ class myTorch(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('stopUpd:')
 		super._send('init:')
 		myFlame._send('init:')
@@ -340,9 +310,6 @@ class myFlame(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCycle:', Fwd, 'checkDetail:')
 		super._send('init:')
 	#end:method
@@ -363,9 +330,6 @@ class myFlick(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCycle:', RandCycle, 'checkDetail:')
 		super._send('init:')
 	#end:method
@@ -389,9 +353,6 @@ class walkIn(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -442,9 +403,6 @@ class walkOut(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -477,9 +435,6 @@ class lookAtTapestry(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -506,9 +461,6 @@ class liftTapestry(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

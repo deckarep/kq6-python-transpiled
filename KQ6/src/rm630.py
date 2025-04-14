@@ -77,9 +77,6 @@ class rm630(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		super._send('init:', &rest)
 		if (global12 == 640):
@@ -129,9 +126,6 @@ class rm630(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:', &rest)
 		if (not script):
 			match temp0 = global0._send('onControl:', 1)
@@ -164,9 +158,6 @@ class rm630(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global102._send('number:') == 630):
 			global102._send('fade:')
 		#endif
@@ -175,9 +166,6 @@ class rm630(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		proc958_0(0, 942, 964)
 	#end:method
@@ -198,9 +186,6 @@ class FixedScaler(Code):
 	
 	@classmethod
 	def init(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		backSize = (frontSize = param2 - 1)
 		param2 = ((param2 * 128) / 100)
 		param1._send('scaleX:', param2, 'scaleY:', param2)
@@ -213,9 +198,6 @@ class downToMidScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
@@ -277,9 +259,6 @@ class downToBottomScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
@@ -338,9 +317,6 @@ class upToTopScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
@@ -403,9 +379,6 @@ class upToMidScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global0._send('mover:') and global0._send('mover:')._send('isKindOf:', PolyPath)):
@@ -472,9 +445,6 @@ class fromEntranceScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', DPath, 176, 91, 140, 103, 176, 108, self)
@@ -493,9 +463,6 @@ class toEntranceScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -523,9 +490,6 @@ class zombie(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			if local73:
 				global91._send('say:', noun, param1, 7, 1)
@@ -540,9 +504,6 @@ class zombie(Actor):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not global2._send('script:'))
@@ -575,9 +536,6 @@ class zombieScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(20, 30)
@@ -610,9 +568,6 @@ class egoDeadScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				zombie._send('setMotion:', 0)
@@ -675,9 +630,6 @@ class ghoul1Scr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('show:', 'setCycle:', MCyc, @local0, self)
@@ -710,9 +662,6 @@ class uWorldEntrance(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				super._send('doVerb:', param1, &rest)
@@ -744,9 +693,6 @@ class moon(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				super._send('doVerb:', param1, &rest)
@@ -775,9 +721,6 @@ class bats(Actor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		ghoul1._send(
 			'init:',
 			'setPri:', 10,
@@ -802,9 +745,6 @@ class motherGhost(Actor):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if 
 			(and
@@ -819,9 +759,6 @@ class motherGhost(Actor):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				(cond
@@ -858,9 +795,6 @@ class motherGhostScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('loop:', 0, 'posn:', 109, 82, 'cycleSpeed:', 20, 'setCycle:', Fwd)
@@ -885,9 +819,6 @@ class getHankyScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				local77 = zombie._send('mover:')

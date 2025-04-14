@@ -42,9 +42,6 @@ class rm520(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Load(128, 308)
 		global2._send(
 			'addObstacle:', Polygon._send('new:')._send(
@@ -119,9 +116,6 @@ class rm520(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.GameIsRestarting() and (not proc913_0(13))):
 			boilFx._send('play:')
 		#endif
@@ -141,9 +135,6 @@ class rm520(KQ6Room):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			match param1
 				case 1:
@@ -192,9 +183,6 @@ class theHuntersLamp(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				global91._send('say:', noun, param1)
@@ -231,9 +219,6 @@ class splash(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('x:', (global0._send('x:') + 16), 'y:', (global0._send('y:') - 32))
 		super._send('init:')
 	#end:method
@@ -248,9 +233,6 @@ class finishedPond(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (param1 == 5):
 				global1._send('handsOff:')
@@ -298,9 +280,6 @@ class boilingPond(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		finishedPond._send('doVerb:', param1, &rest)
 	#end:method
 
@@ -317,9 +296,6 @@ class bunny(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('ignoreActors:', 1, 'setLoop:', self._send('loop:'))
 		super._send('init:', &rest)
 	#end:method
@@ -331,9 +307,6 @@ class feelPond(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', MoveTo, 99, 148, self)
@@ -375,9 +348,6 @@ class getLamp(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 119, 99, self)
@@ -415,9 +385,6 @@ class throwLettuceInPond(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -500,9 +467,6 @@ class bravePond(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				(cond
@@ -586,9 +550,6 @@ class egoBoilsScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 3, 3, 3, 1, self)
@@ -662,9 +623,6 @@ class rocks(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (param1 == 1):
 				global91._send('say:', noun, param1, 2, 0, 0, 0)
@@ -698,9 +656,6 @@ class squirrel(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		if proc913_0(13):
 			self._send('setScript:', squirrelScript)
@@ -716,9 +671,6 @@ class squirrelScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 10
@@ -740,9 +692,6 @@ class bunnyScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				bunny._send('setCycle:', Fwd, 'setMotion:', MoveTo, 206, 179, self)

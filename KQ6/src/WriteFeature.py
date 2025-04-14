@@ -37,17 +37,11 @@ local393 = None
 
 @SCI.procedure
 def localproc_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	param1._send('sightAngle:', proc255_1(r"""sight angle?""", 40))
 #end:procedure
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	proc921_0(r"""Click left mouse button on top left corner""")
 	while (temp0 = Event._send('new:')._send('type:') != 1):
 
@@ -87,9 +81,6 @@ def localproc_1(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_2(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	param1._send(
 		'view:', proc255_1(r"""View?""", global2._send('curPic:')),
 		'loop:', proc255_1(r"""Loop?""", 0),
@@ -113,9 +104,6 @@ def localproc_2(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_3(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if 
 		Print._send(
 			'addText:', r"""Where should the approach point be?""",
@@ -179,9 +167,6 @@ def localproc_3(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_4():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(= local391
 		Print._send(
 			'addText:', r"""doVerb method?""",
@@ -194,9 +179,6 @@ def localproc_4():
 
 @SCI.procedure
 def localproc_5(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	local393._send('name:', @global42, 'writeString:', param1, 'close:')
 #end:procedure
 
@@ -204,9 +186,6 @@ class Class_948_0
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('setCursor:', 999)
 		local392 = global38
 		global38 = wfWin
@@ -299,9 +278,6 @@ class Class_948_1
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.FileIO(10, @global42):
 			kernel.Format(@temp492, r"""The file '%s' already exists""", @global42)
 			if 
@@ -454,9 +430,6 @@ class Class_948_1
 
 	@classmethod
 	def writeList(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		param1._send('eachElementDo:', #perform, self)
 		Class_948_0._send('doit:')
 		kernel.DisposeScript(948)
@@ -471,9 +444,6 @@ class selectorI(DSelector):
 	
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('handleEvent:', param1)
 		temp0 = param1._send('type:')
 		temp1 = param1._send('message:')
@@ -503,9 +473,6 @@ class clearBut(DButton):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < 6): # inline for
 			kernel.StrAt(local380, (temp0 * 18), 32)
@@ -526,9 +493,6 @@ class allBut(DButton):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < 6): # inline for
 			kernel.StrAt(local380, (temp0 * 18), 62)

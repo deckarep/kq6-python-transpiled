@@ -24,9 +24,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc451_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global2._send('setScript:', boreTheOyster, 0, param1)
 #end:procedure
 
@@ -35,9 +32,6 @@ class boreTheOyster(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -252,9 +246,6 @@ class grabPearl(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('givePoints:', 1)
@@ -348,9 +339,6 @@ class almostGotScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				arm._send('init:', 'setCycle:', CT, 1, 1, self)
@@ -395,9 +383,6 @@ class OI(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global91._send('say:', noun, param1, 0, 1, 0, 451)
@@ -413,9 +398,6 @@ class OI(View):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global103._send('number:', 450, 'setLoop:', -1, 'play:')
 		global73._send('addToFront:', self)
 		global72._send('addToFront:', self)
@@ -428,9 +410,6 @@ class OI(View):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global73._send('delete:', self)
 		global72._send('delete:', self)
 		global2._send('cue:')
@@ -444,9 +423,6 @@ class OI(View):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not param1._send('modifiers:'))
@@ -509,9 +485,6 @@ class insetOyster(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global91._send('say:', noun, param1, 0, 1, 0, 451)
@@ -541,9 +514,6 @@ class botShell(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global91._send('say:', noun, param1, 0, 1, 0, 451)
@@ -572,9 +542,6 @@ class pearl(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if (insetOyster._send('cel:') != insetOyster._send('lastCel:')):

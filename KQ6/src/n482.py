@@ -27,26 +27,17 @@ local0 = None
 
 @SCI.procedure
 def proc482_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', grabForHole)
 #end:procedure
 
 @SCI.procedure
 def proc482_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global0._send('setScript:', getHole)
 #end:procedure
 
 @SCI.procedure
 def proc482_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(480, 5)._send('register:', 1)
 	global0._send('setScript:', lookThruHole)
 #end:procedure
@@ -56,9 +47,6 @@ class getHole(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -151,9 +139,6 @@ class grabForHole(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -209,9 +194,6 @@ class lookThruHole(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -306,18 +288,12 @@ class holeInset(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		fields._send('init:')
 		super._send('init:')
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		fields._send('dispose:')
 		super._send('dispose:')
 	#end:method

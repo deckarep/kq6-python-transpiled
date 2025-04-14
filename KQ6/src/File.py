@@ -36,9 +36,6 @@ class File(Obj):
 
 	@classmethod
 	def write(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not handle):
 			self._send('open:')
 		#endif
@@ -114,9 +111,6 @@ class File(Obj):
 
 	@classmethod
 	def rename(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not temp0 = kernel.FileIO(11, name, param1)):
 			name = param1
 		#endif
@@ -143,9 +137,6 @@ class File(Obj):
 
 	@classmethod
 	def close():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if handle:
 			kernel.FileIO(1, handle)
 			handle = 0
@@ -154,9 +145,6 @@ class File(Obj):
 
 	@classmethod
 	def delete():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if handle:
 			self._send('close:')
 		#endif
@@ -165,18 +153,12 @@ class File(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('close:')
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def showStr(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(param1, r"""File: %s""", name)
 	#end:method
 

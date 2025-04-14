@@ -20,9 +20,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc281_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if global5._send('contains:', eye):
 		eye._send('dispose:')
 	#endif
@@ -44,9 +41,6 @@ class pawnShopGenie(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 13:
 				global2._send('setScript:', kernel.ScriptID(282, 3))
@@ -70,9 +64,6 @@ class pawnShopGenie(Actor):
 
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 2, 0)
 		if param1:
@@ -84,9 +75,6 @@ class pawnShopGenie(Actor):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		self._send('delete:')
 		kernel.DisposeScript(281)
@@ -110,9 +98,6 @@ class genieBrowseScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				pawnShopGenie._send('view:', 2831, 'loop:', 0, 'cel:', 0)

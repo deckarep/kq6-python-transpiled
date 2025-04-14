@@ -35,9 +35,6 @@ class ForwardFrom(Fwd):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send('cel:', startAt)
 		if (not cycleCount.post('--')):
 			completed = 1

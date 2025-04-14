@@ -78,9 +78,6 @@ class rgCrown(Rgn):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		keep = proc999_5(param1, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290)
 		initialized = 0
 		super._send('newRoom:', param1, &rest)
@@ -88,9 +85,6 @@ class rgCrown(Rgn):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 	#end:method
 
@@ -103,9 +97,6 @@ class rocks(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 1, 5, 2):
 			global91._send('say:', noun, param1, (1 if (param1 == 1) else 0), 0, 0, 0)
 		else:
@@ -115,9 +106,6 @@ class rocks(Feature):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		sightAngle = 26505
 	#end:method

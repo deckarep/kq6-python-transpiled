@@ -33,9 +33,6 @@ local4 = None
 
 @SCI.procedure
 def localproc_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if kernel.ScriptID(820, 4)._send('cycler:'):
 		kernel.ScriptID(820, 4)._send('setCycle:', 0, 'stopUpd:')
 		kernel.ScriptID(820, 5)._send('setCycle:', 0, 'stopUpd:')
@@ -44,9 +41,6 @@ def localproc_0():
 
 @SCI.procedure
 def localproc_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if (not kernel.ScriptID(820, 4)._send('cycler:')):
 		kernel.ScriptID(820, 4)._send('startUpd:', 'setCycle:', Fwd)
 		kernel.ScriptID(820, 5)._send('startUpd:', 'setCycle:', RandCycle)
@@ -58,9 +52,6 @@ class boyGhostScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOn:')
 		super._send('dispose:')
 		boyGhost._send('delete:')
@@ -69,9 +60,6 @@ class boyGhostScript(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.Load(128, 763)
@@ -215,9 +203,6 @@ class showNonHanky(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -284,18 +269,12 @@ class cryBaby(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local2 = 30
 		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local3 = kernel.GetTime(1)
 		if ((not local1) and (local4 != local3) and (global11 == global13)):
 			local4 = local3
@@ -308,9 +287,6 @@ class cryBaby(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not next):
 			match state = param1
 				case 0:
@@ -374,9 +350,6 @@ class noHanky(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				KQ6Print._send('posn:', -1, 10, 'say:', 0, 1, 0, 5, 1, 'init:', self)
@@ -474,9 +447,6 @@ class justCryToMama(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				boyGhost._send('view:', 763, 'setLoop:', 1, 'x:', 258, 'y:', 117)
@@ -513,18 +483,12 @@ class boyGhost(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('hide:', 'setScript:', boyGhostScript, 'approachVerbs:', 50)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				if (boyGhostScript._send('state:') == 3):

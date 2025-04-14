@@ -52,9 +52,6 @@ class ScaleTo(Scaler):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((global88 - waitCount) > 0):
 			(= temp0
 				if scaleDir:
@@ -80,9 +77,6 @@ class ScaleTo(Scaler):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		endScale = 0
 		step = 6
 		waitCount = 1

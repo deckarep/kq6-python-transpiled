@@ -93,9 +93,6 @@ def localproc_0(param1 = None, *rest):
 
 @SCI.procedure
 def proc800_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global2._send('drawPic:', global2._send('picture:'))
 	if (local0 == 3):
 		upHallleft._send('addToPic:')
@@ -126,9 +123,6 @@ class rm800(CastleRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match global12
 			case 810:
 				local0 = 3
@@ -188,9 +182,6 @@ class rm800(CastleRoom):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local135 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
@@ -207,9 +198,6 @@ class rm800(CastleRoom):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			match param1
 				case 1:
@@ -230,9 +218,6 @@ class firstEntry(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -254,9 +239,6 @@ class firstTimeOnSecondLevel(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 10
@@ -289,9 +271,6 @@ class changeLandings(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -381,9 +360,6 @@ class getOnStairs(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -414,9 +390,6 @@ class climbStairs(Script):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global74._send('addToFront:', self)
 		global73._send('addToFront:', self)
 		super._send('init:', &rest)
@@ -424,9 +397,6 @@ class climbStairs(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global74._send('delete:', self)
 		global73._send('delete:', self)
 		super._send('dispose:')
@@ -434,17 +404,11 @@ class climbStairs(Script):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 0
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case ((local0 == 2) and (local135 & 0x1000)):
 				client._send('setScript:', getOnStairs, 0, 0)
@@ -459,9 +423,6 @@ class climbStairs(Script):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((param1._send('type:') != 16384) and (not param1._send('modifiers:'))):
 			if (param1._send('type:') & 0x0001):
 				local134 = 1
@@ -510,9 +471,6 @@ class secretDoorMove(Script):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		register = (((register == -1) * 2) - 1)
 		if (register == -1):
 			global2._send('south:', 0)
@@ -528,9 +486,6 @@ class secretDoorMove(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (register == 1):
 			global2._send('south:', 720)
 			next = exitRoom
@@ -543,9 +498,6 @@ class secretDoorMove(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 1
@@ -582,9 +534,6 @@ class exitRoom(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', MoveTo, global0._send('x:'), 200, self)
@@ -611,18 +560,12 @@ class stoneDoor(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachX:', 188, 'approachY:', 183, 'approachVerbs:', 5, 'stopUpd:')
 	#end:method
 
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				(local131 != 3)
@@ -635,9 +578,6 @@ class stoneDoor(Actor):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if (not script):
@@ -662,9 +602,6 @@ class chink(View):
 	
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (local0 != 3):
 			self._send('posn:', 289, 128)
 		else:
@@ -675,18 +612,12 @@ class chink(View):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5, 1)
 	#end:method
 
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				super._send('onMe:', param1)
@@ -705,9 +636,6 @@ class chink(View):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case ((global66._send('doit:', param1) == -32768) and (not param1 = 0)):
 				global91._send('say:', 7, param1)
@@ -740,18 +668,12 @@ class beam(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		cel = (kernel.NumCels(self) - 1)
 		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((not (signal & 0x0008)) and (global0._send('view:') != 802)):
 			if 
 				(and
@@ -770,9 +692,6 @@ class beam(View):
 
 	@classmethod
 	def addToPic():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (local0 != 3):
 			self._send('posn:', 289, 128, 0, 'loop:', 4)
 		else:
@@ -798,27 +717,18 @@ class Stair(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global93._send('add:', self)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global93._send('delete:', self)
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(local0 != 2)
@@ -835,9 +745,6 @@ class Stair(View):
 
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				super._send('onMe:', param1)
@@ -951,9 +858,6 @@ class walls(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				roomConv._send('add:', -1, noun, param1, 26)

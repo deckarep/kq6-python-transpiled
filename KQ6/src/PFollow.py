@@ -48,9 +48,6 @@ class PFollow(PolyPath):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (kernel.GetDistance(targetX, targetY, who._send('x:'), who._send('y:')) > distance):
 				if points:
@@ -79,9 +76,6 @@ class PFollow(PolyPath):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setTarget:', 'init:')
 	#end:method
 

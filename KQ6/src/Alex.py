@@ -26,9 +26,6 @@ class Alex(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (proc913_0(59) and (global11 != 850)):
 				self._send('cel:', 1, 'x:', 5, 'y:', 5, 'textX:', 76, 'textY:', 8, 'talkWidth:', 213)

@@ -63,9 +63,6 @@ class flipPoly(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = kernel.Memory(1, (4 * temp2 = param1._send('size:')))
 		temp0 = 0
 		while (temp0 < temp2): # inline for
@@ -96,9 +93,6 @@ class flipFeature(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(param1._send('onMeCheck:')):
 			proc926_0(param1._send('onMeCheck:'))
 		else:

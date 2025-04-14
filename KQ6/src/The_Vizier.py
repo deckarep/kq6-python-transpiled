@@ -30,9 +30,6 @@ class The_Vizier(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc913_0(59):
 				self._send('cel:', 1)
@@ -87,9 +84,6 @@ class tBust(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(59):
 			self._send('cel:', 1)
 		#endif
@@ -108,9 +102,6 @@ class tEyes(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(59):
 			self._send('cel:', 1)
 		#endif

@@ -24,9 +24,6 @@ class Audio(Obj):
 	
 	@classmethod
 	def play(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local0 = 0
 		(cond
 			case kernel.DoAudio(2, number):
@@ -44,18 +41,12 @@ class Audio(Obj):
 
 	@classmethod
 	def stop():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		stopped = 1
 		kernel.DoAudio(3)
 	#end:method
 
 	@classmethod
 	def pause():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not paused):
 			kernel.DoAudio(4)
 			self._send('paused:', 1)
@@ -64,9 +55,6 @@ class Audio(Obj):
 
 	@classmethod
 	def resume():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if paused:
 			kernel.DoAudio(5)
 			self._send('paused:', 0)
@@ -75,9 +63,6 @@ class Audio(Obj):
 
 	@classmethod
 	def setLoop(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('loop:', param1)
 	#end:method
 
@@ -93,9 +78,6 @@ class Audio(Obj):
 
 	@classmethod
 	def check():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((not stopped) and (kernel.DoAudio(6) == -1) and (loop == 1)):
 			doNotStop = 0
 			stopped = 1

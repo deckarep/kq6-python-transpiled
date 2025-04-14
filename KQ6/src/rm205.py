@@ -37,9 +37,6 @@ class rm205(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global102._send('number:', 915, 'loop:', -1, 'play:')
 		global103._send('number:', 916, 'loop:', -1, 'play:')
@@ -58,9 +55,6 @@ class rm205(KQ6Room):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not param1._send('modifiers:'))
@@ -172,9 +166,6 @@ class demoMessager(Messager):
 	#property vars (may be empty)
 	@classmethod
 	def findTalker(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp0
 			match param1
 				case 2: Alex_Demo#end:case
@@ -190,9 +181,6 @@ class helpScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('reset:', 2)
@@ -617,9 +605,6 @@ class otherIconsScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				ourCursor._send('setMotion:', MoveTo, 154, 23, self)
@@ -702,9 +687,6 @@ class inventoryScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				ourCursor._send('setMotion:', MoveTo, 253, 23, self)
@@ -985,9 +967,6 @@ class controlPanelScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				ourCursor._send('setMotion:', MoveTo, 297, 23, self)
@@ -1179,9 +1158,6 @@ class doneScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 0, 0, 4, 1, self)
@@ -1212,9 +1188,6 @@ class objectGlitter(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = kernel.Random(5, 10)
@@ -1233,9 +1206,6 @@ class takeRingScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1289,9 +1259,6 @@ class ourCursor(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setLoop:', 1, 'setPri:', 15)
 		super._send('init:', &rest)
 	#end:method
@@ -1407,9 +1374,6 @@ class royalRing(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('cel:', 0, 'setCycle:', End, 'setScript:', kernel.Clone(objectGlitter))
 		super._send('init:', &rest)
 	#end:method
@@ -1427,18 +1391,12 @@ class theControlPanel(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('addToPic:')
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		kernel.DrawPic(global2._send('picture:'))
 	#end:method
@@ -1621,9 +1579,6 @@ class Alex_Demo(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if local1:
 			if local0:
 				self._send(

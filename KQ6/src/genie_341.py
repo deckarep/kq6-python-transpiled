@@ -36,33 +36,21 @@ local2 = None
 
 @SCI.procedure
 def proc341_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	genie._send('init:')
 #end:procedure
 
 @SCI.procedure
 def proc341_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	genie._send('setScript:', genieTrap)
 #end:procedure
 
 @SCI.procedure
 def proc341_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	genie._send('dispose:')
 #end:procedure
 
 @SCI.procedure
 def proc341_3():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	genie._send('addToPic:')
 #end:procedure
 
@@ -84,18 +72,12 @@ class eyeGlint(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setPri:', 15, 'setCycle:', End, self)
 		super._send('init:')
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (cel == 2):
 			self._send('setPri:', 15, 'setCycle:', Beg, self)
 		else:
@@ -120,9 +102,6 @@ class genie(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send(
 			'addObstacle:', geniePoly._send(
 					'type:', 2,
@@ -136,9 +115,6 @@ class genie(Actor):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global104._send('fade:', 0, 6, 6)
 		eyeGlint._send('dispose:')
 		global2._send('obstacles:')._send('delete:', geniePoly)
@@ -149,9 +125,6 @@ class genie(Actor):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				if local0:
@@ -182,9 +155,6 @@ class poofAwayScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				genie._send('setScript:', 0, 'setCycle:', 0, 'setMotion:', 0)
@@ -216,9 +186,6 @@ class genieAsMintJunkie(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -308,9 +275,6 @@ class genieTrap(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				proc913_1(4)

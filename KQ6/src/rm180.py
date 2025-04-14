@@ -31,9 +31,6 @@ class rm180(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		if (global12 == 99):
 			global102._send('number:', 752, 'setLoop:', -1, 'play:')
@@ -49,9 +46,6 @@ class sKissStuff(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -284,9 +278,6 @@ class rightGuard(Actor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('cue:')
 		self._send('dispose:')
 	#end:method
@@ -304,9 +295,6 @@ class body(Actor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('cue:')
 		self._send('dispose:')
 	#end:method

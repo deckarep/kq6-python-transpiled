@@ -34,9 +34,6 @@ class rm145(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:')
 		super._send('init:', &rest)
 		global2._send('setScript:', seqScr)
@@ -44,9 +41,6 @@ class rm145(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('enable:')
 		proc913_2(133)
 		kernel.DisposeScript(960)
@@ -67,9 +61,6 @@ class eyeCue(TimedCue):
 	
 	@classmethod
 	def init(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', param1, 0, 0)
 		ticks = param2
 	#end:method
@@ -141,9 +132,6 @@ class seqScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -274,9 +262,6 @@ class seqScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global102._send('fade:')
 		super._send('dispose:')
 		genie._send('dispose:')
@@ -315,9 +300,6 @@ class genieFallScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				proc913_1(133)
@@ -363,9 +345,6 @@ class genieFallScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		start = (state + 1)
 	#end:method
@@ -377,9 +356,6 @@ class genieBottleScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global103._send('number:', 943, 'loop:', 1, 'play:')
@@ -406,9 +382,6 @@ class eyeGlintScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (kernel.Random(0, 1) and global5._send('contains:', genie)):

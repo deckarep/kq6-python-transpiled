@@ -30,9 +30,6 @@ class GatePanel(View):
 	
 	@classmethod
 	def init(param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		strPointer = param1
 		strLen = param2
 		maxLen = param3
@@ -48,9 +45,6 @@ class GatePanel(View):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		failed = charCount = strPointer = 0
 		super._send('dispose:')
 		global72._send('delete:', self)
@@ -60,9 +54,6 @@ class GatePanel(View):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if User._send('canInput:'):
 			param1._send('claimed:', 1)
 			(cond
@@ -118,9 +109,6 @@ class GatePanel(View):
 
 	@classmethod
 	def calcPosn(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= column
 			proc999_3(1, proc999_2((((param1._send('x:') - x) / offsetX) + 1), maxCol))
 		)
@@ -129,9 +117,6 @@ class GatePanel(View):
 
 	@classmethod
 	def calcValue(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		value = 0
 		if strPointer:
@@ -157,9 +142,6 @@ class GatePanel(View):
 
 	@classmethod
 	def moveCursorPosn(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('calcPosn:', param1)
 		temp0 = ((x + (column * offsetX)) - (offsetX / 2))
 		temp1 = ((y + ((row + 1) * offsetY)) - cursorSpace)
@@ -190,9 +172,6 @@ class GatePanel(View):
 
 	@classmethod
 	def buttonSetup():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(value, 26, 27, 29, 30):
 			return 0
 		#endif
@@ -205,9 +184,6 @@ class GatePanel(View):
 
 	@classmethod
 	def failCheck(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 and (param1 != value)):
 			failed = 1
 		#endif
@@ -215,9 +191,6 @@ class GatePanel(View):
 
 	@classmethod
 	def drawButton(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DrawCel(view, param1, param2, param3, param4, 15)
 		return 1
 	#end:method

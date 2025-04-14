@@ -67,9 +67,6 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def curRoomCheck():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = client._send('z:')
 		if (currentRoom == global11):
 			client._send(
@@ -97,18 +94,12 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def next():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = self._send('at:', self._send('nextValue:', 1))
 		y = self._send('at:', (value + 1))
 	#end:method
 
 	@classmethod
 	def nextRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (endType & 0x0002):
 			self._send('findPrevroom:')
 		else:
@@ -120,9 +111,6 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		completed = 1
 		if self._send('atEnd:'):
 			self._send('value:', -1, 'initialized:', 0)
@@ -144,9 +132,6 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def atEnd():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(or
 				((endType & 0x0002) and ((value - 2) <= 0))
@@ -157,18 +142,12 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def at():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc921_1(r"""%s needs an 'at:' method.""", name)
 		return 0
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if theRegion:
 			if (not kernel.ScriptID(theRegion)._send('keep:')):
 				super._send('dispose:')
@@ -193,9 +172,6 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def findPathend():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		value = 0
 		while (self._send('at:', value) != -32768): # inline for
 			if (self._send('at:', value) == 32767):
@@ -208,9 +184,6 @@ class RegionPath(MoveTo):
 
 	@classmethod
 	def findPrevroom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < value): # inline for
 			if (self._send('at:', temp0) == 32767):

@@ -23,9 +23,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc999_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(return
 		if (param1 < 0):
 			-1
@@ -37,9 +34,6 @@ def proc999_0(param1 = None, *rest):
 
 @SCI.procedure
 def proc999_1(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if ((param1 -= (param2 * (param1 / param2))) < 0):
 		(param1 += param2)
 	#endif
@@ -121,17 +115,11 @@ def proc999_5(param1 = None, param2 = None, *rest):
 
 @SCI.procedure
 def proc999_6(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.Memory(5, (param1 + (2 * param2)))
 #end:procedure
 
 @SCI.procedure
 def proc999_7(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	param1._send('param2:', &rest)
 #end:procedure
 
@@ -139,9 +127,6 @@ class Obj
 	#property vars (may be empty)
 	@classmethod
 	def new():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Clone(self)
 	#end:method
 
@@ -150,57 +135,36 @@ class Obj
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return self
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DisposeClone(self)
 	#end:method
 
 	@classmethod
 	def showStr(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.StrCpy(param1, name)
 	#end:method
 
 	@classmethod
 	def showSelf():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc921_0(self._send('showStr:', @temp0))
 	#end:method
 
 	@classmethod
 	def perform(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		param1._send('doit:', self, &rest)
 	#end:method
 
 	@classmethod
 	def respondsTo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.RespondsTo(self, param1)
 	#end:method
 
 	@classmethod
 	def isMemberOf(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(or
 				(param1 == self)
@@ -215,9 +179,6 @@ class Obj
 
 	@classmethod
 	def isKindOf(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(or
 				(and
@@ -235,9 +196,6 @@ class Obj
 
 	@classmethod
 	def yourself():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return self
 	#end:method
 
@@ -257,25 +215,16 @@ class Collect(Obj):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #doit, &rest)
 	#end:method
 
 	@classmethod
 	def showStr(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(param1, 999, 0, name, size)
 	#end:method
 
 	@classmethod
 	def showSelf():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc921_0(self._send('showStr:', @temp0))
 		self._send('eachElementDo:', #showSelf)
 	#end:method
@@ -318,9 +267,6 @@ class Collect(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if elements:
 			self._send('eachElementDo:', #dispose)
 			kernel.DisposeList(elements)
@@ -331,41 +277,26 @@ class Collect(Obj):
 
 	@classmethod
 	def first():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.FirstNode(elements)
 	#end:method
 
 	@classmethod
 	def next(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.NextNode(param1)
 	#end:method
 
 	@classmethod
 	def isEmpty():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return ((elements == 0) or kernel.EmptyList(elements))
 	#end:method
 
 	@classmethod
 	def contains(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.FindKey(elements, param1)
 	#end:method
 
 	@classmethod
 	def eachElementDo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
@@ -380,9 +311,6 @@ class Collect(Obj):
 
 	@classmethod
 	def firstTrue(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
@@ -398,9 +326,6 @@ class Collect(Obj):
 
 	@classmethod
 	def allTrue(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
@@ -416,9 +341,6 @@ class Collect(Obj):
 
 	@classmethod
 	def release():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = kernel.FirstNode(elements)
 		while temp0: # inline for
 			temp1 = kernel.NextNode(temp0)
@@ -430,9 +352,6 @@ class Collect(Obj):
 
 	@classmethod
 	def isDuplicate():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 0
 	#end:method
 
@@ -442,17 +361,11 @@ class List(Collect):
 	#property vars (may be empty)
 	@classmethod
 	def showStr(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(param1, 999, 1, name, size)
 	#end:method
 
 	@classmethod
 	def at(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		
 			(temp0 = kernel.FirstNode(elements))
 			(param1 and temp0)
@@ -473,17 +386,11 @@ class List(Collect):
 
 	@classmethod
 	def last():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.LastNode(elements)
 	#end:method
 
 	@classmethod
 	def prev(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.PrevNode(param1)
 	#end:method
 
@@ -553,9 +460,6 @@ class List(Collect):
 
 	@classmethod
 	def indexOf(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		temp1 = kernel.FirstNode(elements)
 		while temp1: # inline for
@@ -575,17 +479,11 @@ class Set(List):
 	#property vars (may be empty)
 	@classmethod
 	def showStr(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Format(param1, 999, 2, name, size)
 	#end:method
 
 	@classmethod
 	def isDuplicate(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('contains:', param1)
 	#end:method
 
@@ -595,9 +493,6 @@ class EventHandler(Set):
 	#property vars (may be empty)
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp3 = kernel.Clone(param1)
 		
 			(temp0 = kernel.FirstNode(elements))
@@ -635,9 +530,6 @@ class Script(Obj):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('doit:')
 		#endif
@@ -685,9 +577,6 @@ class Script(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(script):
 			script._send('dispose:')
 		#endif
@@ -724,17 +613,11 @@ class Script(Obj):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		state = param1
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if client:
 			self._send('changeState:', (state + 1), &rest)
 		#endif
@@ -742,9 +625,6 @@ class Script(Obj):
 
 	@classmethod
 	def setScript(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.IsObject(script):
 			script._send('dispose:')
 		#endif
@@ -755,9 +635,6 @@ class Script(Obj):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('handleEvent:', param1)
 		#endif
@@ -788,9 +665,6 @@ class Event(Obj):
 
 	@classmethod
 	def localize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not (type & 0x4000)):
 			temp0 = kernel.GetPort()
 			(cond
@@ -811,9 +685,6 @@ class Event(Obj):
 
 	@classmethod
 	def globalize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not (type & 0x4000)):
 			temp0 = kernel.GetPort()
 			(cond
@@ -846,9 +717,6 @@ class Cursor(Obj):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (hotSpotX or hotSpotY):
 			kernel.SetCursor(view, loop, cel, hotSpotX, hotSpotY)
 		else:
@@ -858,17 +726,11 @@ class Cursor(Obj):
 
 	@classmethod
 	def posn(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.SetCursor(param1, param2)
 	#end:method
 
 	@classmethod
 	def posnHotSpot(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		hotSpotX = param1
 		hotSpotY = param2
 		self._send('init:')
@@ -876,18 +738,12 @@ class Cursor(Obj):
 
 	@classmethod
 	def setLoop(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		loop = param1
 		self._send('init:')
 	#end:method
 
 	@classmethod
 	def setCel(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		cel = param1
 		self._send('init:')
 	#end:method

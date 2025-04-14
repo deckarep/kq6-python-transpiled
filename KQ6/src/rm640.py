@@ -47,9 +47,6 @@ class rm640(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send(
 			'addObstacle:', Polygon._send('new:')._send(
 					'type:', 2,
@@ -118,9 +115,6 @@ class rm640(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:', &rest)
 		temp0 = global0._send('onControl:', 1)
 		(cond
@@ -134,9 +128,6 @@ class rm640(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 		proc958_0(0, 969, 942)
 	#end:method
@@ -148,9 +139,6 @@ class musicStuffScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global102._send('number:', 640, 'loop:', 1, 'play:', self)
@@ -170,9 +158,6 @@ class goNoFarther(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				doorMaster._send(
@@ -241,9 +226,6 @@ class deathCartoonScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		(cond
 			case (global0._send('has:', 44) or proc913_0(115)): 0#end:case
@@ -277,9 +259,6 @@ class deathCartoonScr(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -379,9 +358,6 @@ class modeLessScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				KQ6Print._send(
@@ -423,9 +399,6 @@ class egoGiveTicketScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('givePoints:', 3)
@@ -477,9 +450,6 @@ class takeTicketScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (client != egoGiveTicketScr):
@@ -524,9 +494,6 @@ class ghostLineScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('setCycle:', End, self)
@@ -586,9 +553,6 @@ class playXylophone(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 200, 185, self)
@@ -695,9 +659,6 @@ class playXylophone(Script):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if ((state == 6) and (global102._send('prevSignal:') == -1)):
 			global0._send('setCycle:', 0)
@@ -715,9 +676,6 @@ class keyDanceScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if 
 			(and
@@ -734,9 +692,6 @@ class keyDanceScript(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				register = 0
@@ -811,9 +766,6 @@ class skelLeftScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				skelLeft._send('view:', 6403, 'setLoop:', 1, 'cel:', 0, 'setCycle:', Fwd)
@@ -832,9 +784,6 @@ class skelRightScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				skelRight._send('view:', 6403, 'setLoop:', 0, 'cel:', 0, 'setCycle:', Fwd)
@@ -853,9 +802,6 @@ class doorScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				doorMaster._send('setCycle:', Fwd)
@@ -874,9 +820,6 @@ class chorusScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				chorusRight._send('setCycle:', Fwd, 'setMotion:', MoveTo, 160, 184, self)
@@ -907,9 +850,6 @@ class getKeyScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send(
@@ -957,9 +897,6 @@ class ghostScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('setCycle:', MCyc, @local62, self)
@@ -1001,9 +938,6 @@ class chorusMid(Actor):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'cel:', chorusRight._send('cel:'),
 			'x:', (chorusRight._send('x:') - 25),
@@ -1025,9 +959,6 @@ class chorusLeft(Actor):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'cel:', chorusRight._send('cel:'),
 			'x:', (chorusRight._send('x:') - 50),
@@ -1049,9 +980,6 @@ class boneMallet(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global1._send('handsOff:')
 			global2._send('setScript:', playXylophone)
@@ -1096,9 +1024,6 @@ class doorMaster(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global91._send('say:', noun, param1, 0, 0)
@@ -1136,9 +1061,6 @@ class boneKey(Prop):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if keyDanceScript._send('register:'):
 			self._send(
 				'cel:', keyMaster._send('cel:'),
@@ -1151,9 +1073,6 @@ class boneKey(Prop):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if proc913_0(115):
@@ -1217,27 +1136,18 @@ class door(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global93._send('addToFront:', self)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global93._send('delete:', self)
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 5, 3):
 			global91._send('say:', 8, 3, 0, 1)
 			global0._send('setMotion:', PolyPath, approachX, approachY)
@@ -1264,9 +1174,6 @@ class xylophone(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global1._send('handsOff:')
 			global2._send('setScript:', playXylophone)

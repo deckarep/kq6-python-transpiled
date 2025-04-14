@@ -31,9 +31,6 @@ class Cycle(Obj):
 
 	@classmethod
 	def nextCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			if (kernel.Abs((global88 - cycleCnt)) < client._send('cycleSpeed:')):
 				client._send('cel:')
@@ -49,9 +46,6 @@ class Cycle(Obj):
 
 	@classmethod
 	def motionCue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send('cycler:', 0)
 		if (completed and kernel.IsObject(caller)):
 			caller._send('cue:')
@@ -65,9 +59,6 @@ class Fwd(Cycle):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (temp0 = self._send('nextCel:') > client._send('lastCel:')):
 			self._send('cycleDone:')
 		else:
@@ -77,9 +68,6 @@ class Fwd(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send('cel:', 0)
 	#end:method
 
@@ -89,9 +77,6 @@ class Walk(Fwd):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not client._send('isStopped:')):
 			super._send('doit:')
 		#endif
@@ -119,9 +104,6 @@ class CT(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = client._send('lastCel:')
 		if (endCel > temp1):
 			endCel = temp1
@@ -141,9 +123,6 @@ class CT(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		completed = 1
 		if caller:
 			global37 = 1
@@ -185,9 +164,6 @@ class SyncWalk(Fwd):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				kernel.IsObject(temp0 = client._send('mover:'))
@@ -201,9 +177,6 @@ class SyncWalk(Fwd):
 
 	@classmethod
 	def nextCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		cycleCnt = (global88 + client._send('cycleSpeed:'))
 		super._send('nextCel:')
 	#end:method
@@ -258,9 +231,6 @@ class Motion(Obj):
 
 	@classmethod
 	def onTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return ((client._send('x:') == x) and (client._send('y:') == y))
 	#end:method
 
@@ -277,9 +247,6 @@ class Motion(Obj):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.Abs((global88 - b-moveCnt)) >= client._send('moveSpeed:')):
 			b-moveCnt = global88
 			kernel.DoBresen(self)
@@ -288,9 +255,6 @@ class Motion(Obj):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		completed = 1
 		if caller:
 			global37 = 1
@@ -301,9 +265,6 @@ class Motion(Obj):
 
 	@classmethod
 	def motionCue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send('mover:', 0)
 		if (completed and kernel.IsObject(caller)):
 			caller._send('cue:')
@@ -317,9 +278,6 @@ class MoveTo(Motion):
 	#property vars (may be empty)
 	@classmethod
 	def onTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				(kernel.Abs((client._send('x:') - x)) <= client._send('xStep:'))

@@ -32,9 +32,6 @@ class sCredits(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not register):
 			global5._send('eachElementDo:', #addToPic)
 			global69._send('disable:')
@@ -55,9 +52,6 @@ class sCredits(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if local1:

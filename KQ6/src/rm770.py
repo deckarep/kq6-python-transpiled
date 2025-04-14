@@ -31,9 +31,6 @@ local0 = None
 
 @SCI.procedure
 def localproc_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if 
 		(and
 			kernel.ScriptID(80, 0)._send('tstFlag:', 710, 4096)
@@ -57,18 +54,12 @@ class StolenItem(Feature):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = param1._send('x:')
 		return super._send('onMe:', param1)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				roomConv._send(
@@ -116,9 +107,6 @@ class rm770(CastleRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		proc958_0(128, 771, 770)
 		kernel.ScriptID(81, 0)._send('clrFlag:', 709, 1, 2)
@@ -166,9 +154,6 @@ class rm770(CastleRoom):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.ScriptID(80, 0)._send('tstFlag:', 711, 512):
 			kernel.ScriptID(80, 0)._send('weddingRemind:', 1)
 		#endif
@@ -182,9 +167,6 @@ class removeDrape(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -240,9 +222,6 @@ class replaceDrape(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -285,18 +264,12 @@ class drape(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5, 'ignoreActors:', 1)
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				if (not kernel.ScriptID(80, 0)._send('tstFlag:', 709, 8)):
@@ -382,9 +355,6 @@ class table(Feature):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = param1._send('x:')
 		return super._send('onMe:', param1)
 	#end:method
@@ -406,9 +376,6 @@ class roomFeatures(Feature):
 	#property vars (may be empty)
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = kernel.OnControl(4, param1._send('x:'), param1._send('y:'))
 		x = param1._send('x:')
 		(return
@@ -438,9 +405,6 @@ class entryScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 15

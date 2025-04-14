@@ -24,9 +24,6 @@ class clownScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				clown._send('init:', 'setMotion:', PolyPath, 124, 119, self)
@@ -73,9 +70,6 @@ class clownScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.DisposeScript(224)
 	#end:method
@@ -87,9 +81,6 @@ class ModStopWalk(StopWalk):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if client._send('isStopped:'):
 			(cond
 				case ((vStopped == -1) and (client._send('loop:') != 4)):
@@ -139,9 +130,6 @@ class clown(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setScale:', 'setCycle:', ModStopWalk, -1)
 	#end:method

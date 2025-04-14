@@ -18,9 +18,6 @@ class GameControls(IconBar):
 	
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global8._send('pause:')
 		if (global77 and global77._send('respondsTo:', #stop)):
 			global77._send('stop:')
@@ -74,9 +71,6 @@ class GameControls(IconBar):
 
 	@classmethod
 	def dispatchEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp53 = param1._send('type:')
 		temp54 = param1._send('message:')
 		(cond
@@ -186,9 +180,6 @@ class GameControls(IconBar):
 
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if window:
 			window._send('dispose:')
 			window = 0
@@ -208,9 +199,6 @@ class ControlIcon(IconI):
 	
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if theObj:
 			if (signal & 0x0040):
 				(global63 if global63 else GameControls)._send('hide:')

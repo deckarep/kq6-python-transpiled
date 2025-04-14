@@ -37,9 +37,6 @@ local2 = None
 
 @SCI.procedure
 def proc441_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global1._send('handsOff:')
 	local0 = 9
 	kernel.ScriptID(30, 0)._send('setScript:', 0)
@@ -51,9 +48,6 @@ def proc441_0(param1 = None, *rest):
 
 @SCI.procedure
 def proc441_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	minotaur._send('init:')
 	celeste._send('init:')
 	local0 = 8
@@ -62,9 +56,6 @@ def proc441_1():
 
 @SCI.procedure
 def proc441_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global2._send('setScript:', stepInFurther)
 #end:procedure
 
@@ -87,9 +78,6 @@ class minotaur(Actor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not kernel.ScriptID(30, 0)._send('seenByMino:')):
 			proc441_0(0)
 		#endif
@@ -97,9 +85,6 @@ class minotaur(Actor):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 2:
 				global91._send('say:', 4, 2, local0, 0, self, 440)
@@ -139,9 +124,6 @@ class minotaur(Actor):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCycle:', RandCycle)
 		super._send('init:')
 	#end:method
@@ -159,18 +141,12 @@ class celeste(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCycle:', RandCycle)
 		super._send('init:')
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not kernel.ScriptID(30, 0)._send('seenByMino:')):
 			proc441_0(0)
 		#endif
@@ -178,9 +154,6 @@ class celeste(Actor):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				global91._send('say:', 5, 1, local0, 1, 0, 440)
@@ -204,9 +177,6 @@ class stepInFurther(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -225,9 +195,6 @@ class handToHand(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -246,9 +213,6 @@ class minoTrigger(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 111, 174, self)
@@ -404,9 +368,6 @@ class minotaurCharging(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if global1._send('isHandsOn:'):
@@ -521,9 +482,6 @@ class hornSwaggled(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send(
@@ -594,9 +552,6 @@ class backup(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('hide:')
@@ -670,9 +625,6 @@ class freeCeleste(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 118, 149, self)

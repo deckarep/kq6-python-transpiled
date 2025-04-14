@@ -20,9 +20,6 @@ class Participle(Kq6Talker):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match global11
 			case 500:
 				self._send(

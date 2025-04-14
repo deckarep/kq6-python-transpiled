@@ -28,9 +28,6 @@ class Genie(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global11 == 145):
 			self._send('view:', 1466, 'loop:', 3, 'talkWidth:', 175)
 			if proc913_0(133):

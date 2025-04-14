@@ -65,9 +65,6 @@ class rm320(CliffRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		if (global12 == 300):
 			self._send('style:', 14)
@@ -104,17 +101,11 @@ class rm320(CliffRoom):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('setScript:', insetDispose)
 	#end:method
 
 	@classmethod
 	def cue(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				global0._send('signal:', 8192)
@@ -139,9 +130,6 @@ class PuzzleBackup(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global72._send('addToFront:', self)
 		global73._send('addToFront:', self)
@@ -150,9 +138,6 @@ class PuzzleBackup(View):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		global73._send('delete:', self)
 		global74._send('delete:', self)
@@ -161,9 +146,6 @@ class PuzzleBackup(View):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				User._send('canInput:')
@@ -242,9 +224,6 @@ class puzzle1(PuzzleInset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'buttTop:', @local253,
 			'buttLeft:', @local305,
@@ -264,9 +243,6 @@ class puzzle1(PuzzleInset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		headStone._send('dispose:')
 		headStoneWords._send('dispose:')
 		super._send('dispose:')
@@ -291,9 +267,6 @@ class puzzle2(PuzzleInset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'buttTop:', @local461,
 			'buttLeft:', @local465,
@@ -312,9 +285,6 @@ class puzzle2(PuzzleInset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		rollos._send('dispose:')
 		super._send('dispose:')
 		global0._send('view:', 301, 'setLoop:', 1)
@@ -338,9 +308,6 @@ class puzzle3(PuzzleInset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'buttTop:', @local253,
 			'buttLeft:', @local305,
@@ -360,9 +327,6 @@ class puzzle3(PuzzleInset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		headStone._send('dispose:')
 		headStoneWords._send('dispose:')
 		super._send('dispose:')
@@ -387,9 +351,6 @@ class puzzle4(PuzzleInset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'buttTop:', @local1,
 			'buttLeft:', @local29,
@@ -408,9 +369,6 @@ class puzzle4(PuzzleInset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		words._send('dispose:')
 		super._send('dispose:')
 		global0._send('view:', 301, 'setLoop:', 1)
@@ -431,9 +389,6 @@ class words(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		puzzle4._send('doVerb:', param1, &rest)
 	#end:method
 
@@ -462,9 +417,6 @@ class headStone(PuzzleBackup):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', puzzle1):
 			puzzle1._send('doVerb:', param1, &rest)
 		else:
@@ -485,9 +437,6 @@ class headStoneWords(PuzzleBackup):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', puzzle1):
 			puzzle1._send('doVerb:', param1, &rest)
 		else:
@@ -506,27 +455,18 @@ class theRoom(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global93._send('add:', self)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global93._send('delete:', self)
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 3:
 				proc913_1(59)
@@ -552,9 +492,6 @@ class writ(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global72._send('add:', self)
 		global73._send('add:', self)
@@ -563,9 +500,6 @@ class writ(View):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		global73._send('delete:', self)
 		global74._send('delete:', self)
@@ -574,9 +508,6 @@ class writ(View):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not kernel.ScriptID(21, 0)._send('puzzleIsUp:'))
@@ -646,9 +577,6 @@ class insetDispose(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -675,9 +603,6 @@ class nextCliffUp(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -753,9 +678,6 @@ class downToBeach(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -817,9 +739,6 @@ class nextCliffDown(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1118,9 +1037,6 @@ class insetInit(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(21, 0)._send('cue:')
@@ -1140,9 +1056,6 @@ class dieHard(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -1215,9 +1128,6 @@ class egoStepVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				return 0

@@ -70,9 +70,6 @@ class Orbit(Motion):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('init:')
 	#end:method
 

@@ -20,9 +20,6 @@ class ColorInit(Code):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.Graph(2) > 16):
 			proc913_1(48)
 			global111 = kernel.Palette(5, 31, 31, 31)

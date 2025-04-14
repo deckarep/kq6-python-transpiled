@@ -34,9 +34,6 @@ class Follow(Motion):
 
 	@classmethod
 	def onTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (client._send('distanceTo:', who) <= distance)
 	#end:method
 
@@ -57,9 +54,6 @@ class Follow(Motion):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (client._send('distanceTo:', who) > distance):
 			if (b-moveCnt == 0):
 				super._send('init:', client, who._send('x:'), who._send('y:'))

@@ -42,9 +42,6 @@ class rm135(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global69._send('disable:')
 		Seagull._send('init:')
@@ -71,9 +68,6 @@ class gnomesDeath(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send(
@@ -186,9 +180,6 @@ class egoDrowns(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if local0:
@@ -282,18 +273,12 @@ class Seagull(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('ignoreActors:', 1, 'ignoreHorizon:', 1, 'illegalBits:', 0, 'fly:')
 	#end:method
 
 	@classmethod
 	def fly():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match kernel.Random(1, 4)
 			case 1:
 				if (local1 == 1):
@@ -332,9 +317,6 @@ class Seagull(Actor):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('fly:')
 	#end:method
 

@@ -22,9 +22,6 @@ class closeupWedding(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		proc913_1(99)
 		global2._send('noun:', 3)
@@ -35,18 +32,12 @@ class closeupWedding(Script):
 
 	@classmethod
 	def setScript():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		seconds = 0
 		super._send('setScript:', &rest)
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(global69._send('at:', 0) == global69._send('curIcon:'))
@@ -61,9 +52,6 @@ class closeupWedding(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:')
 		global93._send('delete:', self)
 		global74._send('delete:', self)
@@ -95,9 +83,6 @@ class closeupWedding(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global5._send('eachElementDo:', #startUpd)
@@ -197,9 +182,6 @@ class showMirror(Script):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		saladinHead._send('dispose:', 'delete:')
 		priestHead._send('dispose:', 'delete:')
@@ -209,9 +191,6 @@ class showMirror(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -259,9 +238,6 @@ class showReplicaLamp(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -280,9 +256,6 @@ class drawSword(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				seconds = 4
@@ -311,9 +284,6 @@ class CloseupProp(Prop):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(or
 				super._send('onMe:', param1)
@@ -340,9 +310,6 @@ class genieHead(CloseupProp):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 33, 18):
 				global91._send('say:', noun, 18, 0, 0, 0, modNum)
@@ -395,9 +362,6 @@ class vizierHead(CloseupProp):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 33, 18):
 				param1 = 65
@@ -429,9 +393,6 @@ class alexHead(CloseupProp):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global0._send('doVerb:', &rest)
 	#end:method
 
@@ -464,9 +425,6 @@ class saladinArm(CloseupProp):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 33, 18):
 			global91._send('say:', noun, 33, 0, 0, 0, modNum)
 		else:
@@ -486,9 +444,6 @@ class saladinHead(View):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		saladinArm._send('doVerb:', &rest)
 	#end:method
 

@@ -60,9 +60,6 @@ def localproc_0(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_1(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(return
 		(+
 			(((param1 / 2) + 1) * ((param3 / 2) + 1))
@@ -73,9 +70,6 @@ def localproc_1(param1 = None, param2 = None, param3 = None, param4 = None, *res
 
 @SCI.procedure
 def localproc_2(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if 
 		(and
 			(<=
@@ -115,9 +109,6 @@ def localproc_2(param1 = None, param2 = None, param3 = None, param4 = None, para
 
 @SCI.procedure
 def localproc_3(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	Print._send(
 		'width:', 240,
 		'font:', 999,
@@ -135,9 +126,6 @@ class ClickMenu(Obj):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		text = kernel.Memory(2, 81)
 		kernel.Memory(6, text, 0)
 		temp1 = array = param1
@@ -169,9 +157,6 @@ class ClickMenu(Obj):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1._send('type:') != 1):
 			return 0
 		#endif
@@ -194,9 +179,6 @@ class ClickMenu(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Memory(3, text)
 		super._send('dispose:')
 	#end:method
@@ -208,9 +190,6 @@ class editMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local46)
 	#end:method
 
@@ -221,9 +200,6 @@ class addMenu(ClickMenu):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', @local71)
 	#end:method
 
@@ -237,25 +213,16 @@ class Class_943_1
 	
 	@classmethod
 	def new():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Clone(self)
 	#end:method
 
 	@classmethod
 	def yourself():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return self
 	#end:method
 
 	@classmethod
 	def draw(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (local0 == 4):
 			temp0 = -1
 			temp1 = (3 if (param2 == 1) else 4)
@@ -268,9 +235,6 @@ class Class_943_1
 
 	@classmethod
 	def save(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		localproc_0(x, y, param1._send('x:'), param1._send('y:'))
 		if underBits:
 			kernel.UnLoad(133, underBits)
@@ -280,9 +244,6 @@ class Class_943_1
 
 	@classmethod
 	def restore():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if underBits:
 			kernel.Graph(8, underBits)
 			underBits = 0
@@ -291,9 +252,6 @@ class Class_943_1
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if underBits:
 			kernel.UnLoad(133, underBits)
 			underBits = 0
@@ -318,9 +276,6 @@ class _EditablePolygon(List):
 	
 	@classmethod
 	def getAccessType():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(= temp0
 				Print._send(
@@ -339,9 +294,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def writeFile(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param2 == srcList):
 			param1._send(
 				'writeString:', r"""\t\t\t((Polygon new:)\0d\n""", r"""\t\t\t\ttype:\t\t""", match type
@@ -380,9 +332,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def check():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = self._send('first:')
 		while temp0: # inline for
 			temp2 = kernel.NodeValue(temp0)
@@ -464,9 +413,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def writeObstacle():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = kernel.Memory(2, (size * 4))
 		temp2 = kernel.FirstNode(elements)
 		temp0 = temp1
@@ -503,41 +449,26 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def movePt(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		curPt._send('x:', param1, 'y:', param2)
 	#end:method
 
 	@classmethod
 	def restore():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachLineDo:', #restore)
 	#end:method
 
 	@classmethod
 	def save():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachLineDo:', #save)
 	#end:method
 
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachLineDo:', #draw, srcList)
 	#end:method
 
 	@classmethod
 	def add(param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send(
 			'add:', curPt = Class_943_1._send('new:')._send('x:', param1, 'y:', param2, 'yourself:')
 		)
@@ -546,17 +477,11 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def advance():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCur:', self._send('next:', curNode))
 	#end:method
 
 	@classmethod
 	def retreat():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCur:', self._send('prev:', curNode))
 	#end:method
 
@@ -575,17 +500,11 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def setCurClosest(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('setCur:', kernel.FindKey(elements, closestPt), param1)
 	#end:method
 
 	@classmethod
 	def startRedraw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if temp0 = self._send('next:', curNode):
 			temp3 = kernel.NodeValue(temp0)
 		else:
@@ -607,18 +526,12 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def endRedraw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		localproc_0(curPt._send('x:'), curPt._send('y:'), lsLeft, lsTop, lsRight, lsBottom)
 		kernel.Graph(12, local42, local43, local44, local45, local0)
 	#end:method
 
 	@classmethod
 	def getDistToPt(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp4 = 32767
 		temp1 = self._send('first:')
 		temp0 = self._send('last:')
@@ -641,9 +554,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def getDistToLine(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (size < 2):
 			return self._send('getDistToPt:', param1, param2, &rest)
 		#endif
@@ -675,9 +585,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def insertPt(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = Class_943_1._send('new:')._send('x:', param1, 'y:', param2, 'yourself:')
 		self._send('addAfter:', closestPt, temp0)
 		self._send('setCur:', kernel.FindKey(elements, temp0))
@@ -685,9 +592,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def eachLineDo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = self._send('first:')
 		temp4 = self._send('last:')
 		while ((temp0 != temp4) or closed):
@@ -703,9 +607,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def deletePt():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (curNode == temp0 = self._send('prev:', curNode)):
 			temp0 = 0
 		#endif
@@ -716,9 +617,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def next(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = super._send('next:', param1)
 		if (closed and (not temp0)):
 			return super._send('first:')
@@ -728,9 +626,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def prev(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = super._send('prev:', param1)
 		if (closed and (not temp0)):
 			return super._send('last:')
@@ -740,9 +635,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def saveForUndo():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = temp0 = kernel.Memory(2, (2 * ((2 * size) + 3)))
 		kernel.Memory(6, temp1, closed)
 		(temp1 += 2)
@@ -764,9 +656,6 @@ class _EditablePolygon(List):
 
 	@classmethod
 	def undo(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #dispose, 'release:')
 		closed = kernel.Memory(5, param1)
 		(param1 += 2)
@@ -791,9 +680,6 @@ class readObstacle(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp2 = PolyEdit._send('add:')
 		temp0 = 0
 		temp1 = param1._send('points:')
@@ -829,9 +715,6 @@ class PolyEdit(List):
 	
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = x
 		temp2 = y
 		x = param1._send('x:')
@@ -1000,9 +883,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if curMenu:
 			curMenu._send('dispose:')
 		#endif
@@ -1021,9 +901,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def readObstacles():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global2._send('obstacles:'):
 			global2._send('obstacles:')._send('eachElementDo:', #perform, readObstacle, 0)
 		#endif
@@ -1034,9 +911,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def writeObstacles():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global2._send('obstacles:'):
 			global2._send('obstacles:')._send('eachElementDo:', #dispose, 'release:')
 		#endif
@@ -1045,18 +919,12 @@ class PolyEdit(List):
 
 	@classmethod
 	def add():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('add:', curPolygon = _EditablePolygon._send('new:'))
 		return curPolygon
 	#end:method
 
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #restore)
 		self._send('eachElementDo:', #save)
 		self._send('eachElementDo:', #draw)
@@ -1065,9 +933,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def selectPt():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('select:', 486, 1)
 		temp0 = Event._send('new:')
 		kernel.GlobalToLocal(temp0)
@@ -1078,9 +943,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def addPt():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('saveForUndo:')
 		if (not curPolygon):
 			self._send('add:')
@@ -1091,9 +953,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def finishAdding():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case curPolygon:
 				curPolygon._send('closed:', 1)
@@ -1118,9 +977,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def movePt(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		curPolygon._send('startRedraw:')
 		self._send('eachElementDo:', #restore)
 		curPolygon._send('movePt:', param1, param2)
@@ -1131,9 +987,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def insertPt():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #restore)
 		self._send('select:', 485, 0)
 		self._send('saveForUndo:')
@@ -1146,9 +999,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def delete():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = curPolygon
 		self._send('advanceRetreat:', 130, 65)
 		if (curPolygon == temp0):
@@ -1160,9 +1010,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def deletePt():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #restore)
 		self._send('select:', 486, 0)
 		self._send('saveForUndo:')
@@ -1180,9 +1027,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def select(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 32767
 		temp1 = 0
 		temp4 = kernel.FirstNode(elements)
@@ -1200,9 +1044,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def advanceRetreat(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = kernel.FindKey(elements, curPolygon)
 		if 
 			(and
@@ -1234,9 +1075,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def undo():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not undoPoly):
 			proc921_0(r"""Nothing to undo""")
 			return
@@ -1274,9 +1112,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def showMap(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == -1):
 			if (local0 == 1):
 				param1 = 4
@@ -1295,9 +1130,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DrawPic(global2._send('curPic:'), 100, 1)
 		if (global36 != -1):
 			kernel.DrawPic(global36, 100, 0)
@@ -1316,9 +1148,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('init:')
 		while True: #repeat
 			temp0 = Event._send('new:')
@@ -1334,9 +1163,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def exit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (state == 0):
 			self._send('finishAdding:')
 		#endif
@@ -1410,9 +1236,6 @@ class PolyEdit(List):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('writeObstacles:')
 		if curMenu:
 			curMenu._send('dispose:')

@@ -44,9 +44,6 @@ class rm140(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		local72 = global91
 		global91 = localMessager
@@ -74,9 +71,6 @@ class rm140(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global91 = local72
 		proc913_2(59)
 		kernel.DisposeScript(371)
@@ -91,9 +85,6 @@ class cassyPrint(AnimatePrint):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		myMouth = cassyMouth
 		x = -1
 		y = 15
@@ -107,9 +98,6 @@ class singSingEnterScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				match register
@@ -164,9 +152,6 @@ class singSingLeaveScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (not local71):
@@ -225,9 +210,6 @@ class ringSegueScr(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('dispose:')
 		#endif
@@ -309,9 +291,6 @@ class roseSegueScr(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				self._send('setScript:', singSingEnterScr, self, 1)
@@ -396,9 +375,6 @@ class poemSegueScr(CartoonScript):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				self._send('setScript:', singSingEnterScr, self, 2)
@@ -497,9 +473,6 @@ class singSing(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('loop:', 0, 'setPri:', 14)
 	#end:method
@@ -569,9 +542,6 @@ class cHead(Prop):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= loop
 			match param1
 				case 0: 0#end:case
@@ -589,9 +559,6 @@ class localMessager(Messager):
 	#property vars (may be empty)
 	@classmethod
 	def findTalker(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp0
 			match param1
 				case 28: Cassima#end:case
@@ -614,9 +581,6 @@ class Cassima(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', cHead):
 			cel = 1
 			self._send('x:', 94, 'y:', 87, 'textX:', -60, 'textY:', 30)

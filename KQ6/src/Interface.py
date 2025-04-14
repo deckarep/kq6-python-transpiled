@@ -19,9 +19,6 @@ SCI.public_exports(
 
 @SCI.procedure
 def proc255_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	temp0 = Event._send('new:')
 	temp1 = (temp0._send('type:') != 2)
 	temp0._send('dispose:')
@@ -48,9 +45,6 @@ def proc255_1(param1 = None, param2 = None, *rest):
 
 @SCI.procedure
 def proc255_2(param1 = None, param2 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(return
 		(and
 			(< param1._send('nsLeft:') param2._send('x:') param1._send('nsRight:'))
@@ -73,9 +67,6 @@ class Class_255_0(Obj):
 	
 	@classmethod
 	def enable(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if param1:
 			(state |= 0x0001)
 		else:
@@ -85,9 +76,6 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def select(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if param1:
 			(state |= 0x0008)
 		else:
@@ -98,9 +86,6 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if param1._send('claimed:'):
 			return 0
 		#endif
@@ -124,9 +109,6 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def check(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				(param1._send('x:') >= nsLeft)
@@ -139,9 +121,6 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def track(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (1 == param1._send('type:')):
 			temp1 = 0
 			while True: #repeat
@@ -165,25 +144,16 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def isType(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (type == param1)
 	#end:method
 
 	@classmethod
 	def checkState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (state & param1)
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return value
 	#end:method
 
@@ -192,9 +162,6 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def move(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(nsRight += param1)
 		(nsLeft += param1)
 		(nsTop += param2)
@@ -203,17 +170,11 @@ class Class_255_0(Obj):
 
 	@classmethod
 	def moveTo(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('move:', (param1 - nsLeft), (param2 - nsTop))
 	#end:method
 
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DrawControl(self)
 	#end:method
 
@@ -246,9 +207,6 @@ class DText(Class_255_0):
 
 	@classmethod
 	def new():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('new:')._send('font:', global22, 'yourself:')
 	#end:method
 
@@ -264,9 +222,6 @@ class DText(Class_255_0):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				global17
@@ -300,9 +255,6 @@ class DText(Class_255_0):
 
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		rects = kernel.DrawControl(self)
 	#end:method
 
@@ -327,9 +279,6 @@ class Dialog(List):
 	
 	@classmethod
 	def open(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.PicNotValid() and global5):
 			kernel.Animate(global5._send('elements:'), 0)
 		#endif
@@ -350,9 +299,6 @@ class Dialog(List):
 
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #draw)
 	#end:method
 
@@ -417,9 +363,6 @@ class Dialog(List):
 
 	@classmethod
 	def check():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if seconds:
 			temp0 = kernel.GetTime(1)
 			if (lastSeconds != temp0):
@@ -431,9 +374,6 @@ class Dialog(List):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #dispose, 'release:')
 		if (self == global25):
 			kernel.SetPort(global41)
@@ -454,9 +394,6 @@ class Dialog(List):
 
 	@classmethod
 	def advance():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if theItem:
 			theItem._send('select:', 0)
 			temp1 = self._send('contains:', theItem)
@@ -481,9 +418,6 @@ class Dialog(List):
 
 	@classmethod
 	def retreat():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if theItem:
 			theItem._send('select:', 0)
 			temp1 = self._send('contains:', theItem)
@@ -508,9 +442,6 @@ class Dialog(List):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1._send('type:') & 0x0040):
 			match param1._send('message:')
 				case 5:
@@ -615,9 +546,6 @@ class Dialog(List):
 
 	@classmethod
 	def move(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(nsRight += param1)
 		(nsLeft += param1)
 		(nsTop += param2)
@@ -626,17 +554,11 @@ class Dialog(List):
 
 	@classmethod
 	def moveTo(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('move:', (param1 - nsLeft), (param2 - nsTop))
 	#end:method
 
 	@classmethod
 	def center():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'moveTo:', (+
 					window._send('brLeft:')
@@ -662,9 +584,6 @@ class Dialog(List):
 
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if text:
 			kernel.TextSize(@temp2[0], text, font, -1, 0)
 			nsTop = temp2[0]
@@ -704,9 +623,6 @@ class checkHiliteCode(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(param1._send('state:') & 0x0001)

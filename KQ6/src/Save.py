@@ -34,9 +34,6 @@ local65
 
 @SCI.procedure
 def localproc_0():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(return
 		(cond
 			case (self == Restore): 0#end:case
@@ -49,9 +46,6 @@ def localproc_0():
 
 @SCI.procedure
 def proc990_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	while True: #repeat
 		if 
 			(not
@@ -84,9 +78,6 @@ def proc990_0(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if (local2 < 20):
 		kernel.CheckFreeSpace(global29)
 	#endif
@@ -94,9 +85,6 @@ def localproc_1():
 
 @SCI.procedure
 def localproc_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	Print._send('font:', 0, 'addText:', 3, 0, 0, 1, 0, 0, 990, 'init:')
 #end:procedure
 
@@ -104,17 +92,11 @@ class SRDialog(Dialog):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', &rest)
 	#end:method
 
 	@classmethod
 	def init(param1 = None, param2 = None, param3 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		window = global38
 		nsBottom = 0
 		if (local2 = kernel.GetSaveFiles(global1._send('name:'), param2, param3) == -1):
@@ -368,9 +350,6 @@ class Restore(SRDialog):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Message(0, 990, 20, 0, 0, 1, @local65)
 		text = @local65
 		super._send('init:', &rest)
@@ -382,9 +361,6 @@ class Save(SRDialog):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Message(0, 990, 21, 0, 0, 1, @local65)
 		text = @local65
 		super._send('init:', &rest)
@@ -397,9 +373,6 @@ class GetReplaceName(Dialog):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		window = global38
 		kernel.Message(0, 990, 33, 0, 0, 1, @temp1)
 		text1._send('text:', @temp1, 'setSize:', 'moveTo:', 4, 4)
@@ -451,9 +424,6 @@ class okI(DButton):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -464,9 +434,6 @@ class cancelI(DButton):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -477,9 +444,6 @@ class changeDirI(DButton):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -490,9 +454,6 @@ class deleteI(DButton):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -505,9 +466,6 @@ class textI(DText):
 	
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -520,9 +478,6 @@ class text1(DText):
 	
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -535,9 +490,6 @@ class text2(DText):
 	
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -548,9 +500,6 @@ class oldName(DText):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -568,9 +517,6 @@ class button1(DButton):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 
@@ -581,9 +527,6 @@ class button2(DButton):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:', 1)
 	#end:method
 

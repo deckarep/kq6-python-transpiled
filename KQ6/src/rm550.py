@@ -42,9 +42,6 @@ local9 = None
 
 @SCI.procedure
 def localproc_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if param1:
 		local7 = global89._send('x:')
 		local8 = global89._send('talkWidth:')
@@ -56,9 +53,6 @@ def localproc_0(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if param1:
 		local7 = global89._send('x:')
 		local8 = global89._send('talkWidth:')
@@ -70,9 +64,6 @@ def localproc_1(param1 = None, *rest):
 
 @SCI.procedure
 def localproc_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	(return
 		(cond
 			case ((global0._send('heading:') > 45) and (global0._send('heading:') < 135)): 0#end:case
@@ -88,9 +79,6 @@ class rm550Messager(Kq6Messager):
 	#property vars (may be empty)
 	@classmethod
 	def findTalker(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(= temp0
 				match param1
@@ -121,9 +109,6 @@ class rm550(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global1._send('handsOff:')
 		local6 = global91
@@ -185,9 +170,6 @@ class rm550(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
@@ -267,9 +249,6 @@ class rm550(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not proc999_5(param1, 560, 580)):
 			global103._send('stop:', 'number:', 0)
 		#endif
@@ -278,9 +257,6 @@ class rm550(KQ6Room):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global91 = local6
 		super._send('dispose:')
 		kernel.DisposeScript(939)
@@ -333,9 +309,6 @@ class rocks(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (param1 == 1):
 				global91._send('say:', noun, param1, 10, 0, 0, 0)
@@ -377,9 +350,6 @@ class druid1(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', StopWalk, -1)
 	#end:method
@@ -397,9 +367,6 @@ class druid2(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('setCycle:', StopWalk, -1)
 	#end:method
@@ -466,9 +433,6 @@ class walkNorthScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 138, 58, self)
@@ -492,9 +456,6 @@ class egoEnters(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				match global12
@@ -528,9 +489,6 @@ class waitForCapture(Script):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if ((not state) and (not global2._send('script:'))):
 			global1._send('handsOff:')
@@ -540,9 +498,6 @@ class waitForCapture(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0: 0#end:case
 		#end:match
@@ -555,9 +510,6 @@ class captured(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setHeading:', 315, self)
@@ -638,9 +590,6 @@ class wateryDeathScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -676,9 +625,6 @@ class egoDoVerb(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 12:
 				global2._send('setScript:', 130)

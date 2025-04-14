@@ -37,9 +37,6 @@ class Sound(Obj):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		prevSignal = signal = 0
 		global8._send('add:', self)
 		kernel.DoSound(6, self)
@@ -72,9 +69,6 @@ class Sound(Obj):
 
 	@classmethod
 	def stop():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if handle:
 			kernel.DoSound(17, self)
 			kernel.DoSound(9, self)
@@ -105,9 +99,6 @@ class Sound(Obj):
 
 	@classmethod
 	def release():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoSound(12, self, 0)
 	#end:method
 
@@ -151,33 +142,21 @@ class Sound(Obj):
 
 	@classmethod
 	def setVol(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoSound(14, self, param1)
 	#end:method
 
 	@classmethod
 	def setPri(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoSound(15, self, param1)
 	#end:method
 
 	@classmethod
 	def setLoop(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoSound(16, self, param1)
 	#end:method
 
 	@classmethod
 	def send(param1 = None, param2 = None, param3 = None, param4 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (<= 1 param1 15):
 			if (param2 < 128):
 				kernel.DoSound(18, self, param1, 176, param2, param3)
@@ -189,9 +168,6 @@ class Sound(Obj):
 
 	@classmethod
 	def check():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if handle:
 			kernel.DoSound(17, self)
 		#endif
@@ -206,9 +182,6 @@ class Sound(Obj):
 
 	@classmethod
 	def clean(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((not owner) or (owner == param1)):
 			self._send('dispose:')
 		#endif
@@ -216,9 +189,6 @@ class Sound(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global8._send('delete:', self)
 		if nodePtr:
 			kernel.DoSound(7, self)
@@ -252,9 +222,6 @@ class Sound(Obj):
 
 	@classmethod
 	def changeState():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoSound(20, self)
 	#end:method
 

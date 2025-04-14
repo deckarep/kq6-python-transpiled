@@ -35,9 +35,6 @@ class Approach(Motion):
 
 	@classmethod
 	def onTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (client._send('distanceTo:', who) <= distance)
 	#end:method
 
@@ -58,9 +55,6 @@ class Approach(Motion):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if self._send('onTarget:'):
 			self._send('moveDone:')
 		else:

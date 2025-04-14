@@ -20,9 +20,6 @@ class Sync(Obj):
 	
 	@classmethod
 	def syncStart(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DoSync(0, self, param1, param2, param3, param4, param5)
 		if (syncCue != -1):
 			prevCue = syncCue
@@ -32,9 +29,6 @@ class Sync(Obj):
 
 	@classmethod
 	def syncCheck():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(syncCue != -1)
@@ -51,9 +45,6 @@ class Sync(Obj):
 
 	@classmethod
 	def syncStop():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		prevCue = -1
 		kernel.DoSync(2)
 	#end:method
@@ -67,9 +58,6 @@ class ScriptSync(Obj):
 	
 	@classmethod
 	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global82:
 			self._send('cue:')
 		#endif
@@ -86,9 +74,6 @@ class ScriptSync(Obj):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global82._send('prevCue:') != -1):
 			while True: #repeat
 				if (global82._send('prevCue:') == -1):
@@ -106,9 +91,6 @@ class ScriptSync(Obj):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Animate(global5._send('elements:'), 0)
 		playing = 0
 		prevSignal = 32767
@@ -125,9 +107,6 @@ class MouthSync(Cycle):
 	#property vars (may be empty)
 	@classmethod
 	def init(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', param1)
 		if kernel.IsObject(global82):
 			global82._send('syncStop:', 'dispose:')
@@ -137,9 +116,6 @@ class MouthSync(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if (global82._send('prevCue:') != -1):
 			temp2 = global82._send('syncTime:')
@@ -166,9 +142,6 @@ class MouthSync(Cycle):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		if global82:
 			global82._send('dispose:')
@@ -178,9 +151,6 @@ class MouthSync(Cycle):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global82:
 			global82._send('syncStop:', 'dispose:')
 			global82 = 0

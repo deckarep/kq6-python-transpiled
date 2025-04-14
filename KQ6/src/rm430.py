@@ -26,9 +26,6 @@ class rm430(LabRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc401_3()
 		super._send('init:', &rest)
 		theCorpseNorth._send('init:', 'stopUpd:')
@@ -44,9 +41,6 @@ class rm430(LabRoom):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ScriptID(30, 6)._send('addToPic:')
 		kernel.ScriptID(30, 10)._send('addToPic:')
 		kernel.ScriptID(30, 8)._send('addToPic:')
@@ -68,9 +62,6 @@ class theGlint(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		theDeadMansCoin._send('init:')
 		self._send('setScript:', glintCoinEyes)
 		super._send('init:', &rest)
@@ -78,9 +69,6 @@ class theGlint(Prop):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global0._send('setScript:', getCoins)
@@ -109,9 +97,6 @@ class theDeadMansCoin(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global0._send('setScript:', getCoins)
@@ -143,9 +128,6 @@ class theCorpseNorth(View):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', theDeadMansCoin):
 			self._send('noun:', 13)
 		else:
@@ -156,9 +138,6 @@ class theCorpseNorth(View):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 7:
 				global91._send('say:', 13, 7, 0, 1, 0, 400)
@@ -187,9 +166,6 @@ class getCoins(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -244,9 +220,6 @@ class glintCoinEyes(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				theGlint._send('setCycle:', Beg, self)

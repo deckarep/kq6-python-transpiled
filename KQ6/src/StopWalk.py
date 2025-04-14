@@ -35,9 +35,6 @@ class StopWalk(Fwd):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (client._send('view:') == vStopped):
 			client._send('view:', vWalking)
 		#endif
@@ -46,9 +43,6 @@ class StopWalk(Fwd):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if client._send('isStopped:'):
 			(cond
 				case 

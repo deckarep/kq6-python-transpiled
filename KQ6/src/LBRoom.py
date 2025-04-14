@@ -33,9 +33,6 @@ class LBRoom(LabRoom):
 	#property vars (may be empty)
 	@classmethod
 	def makeDoors(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			proc999_5(param1, 19, 22, 35, 38, 51, 67, 85, 87, 97, 99, 101, 103, 113, 115, 117, 146, 149, 161, 163, 165, 168, 177, 179, 184, 193, 197, 200, 209, 213, 216, 226, 228, 230, 243)
 			kernel.ScriptID(30, 7)._send('addToPic:')
@@ -61,9 +58,6 @@ class LBRoom(LabRoom):
 
 	@classmethod
 	def makePolys(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 149, 177):
 				proc401_4()
@@ -134,9 +128,6 @@ class LBRoom(LabRoom):
 
 	@classmethod
 	def dumpPolys():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global2._send('obstacles:'):
 			global2._send('obstacles:')._send('dispose:')
 		#endif
@@ -145,9 +136,6 @@ class LBRoom(LabRoom):
 
 	@classmethod
 	def calcRoom(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (temp1 = param1 < 0):
 			temp0 = 0
 			while local100[temp0]: # inline for
@@ -219,9 +207,6 @@ class LBRoom(LabRoom):
 
 	@classmethod
 	def initPseudoRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if global5._send('contains:', kernel.ScriptID(30, 12)):
 			kernel.ScriptID(30, 12)._send('dispose:')
 		#endif
@@ -246,9 +231,6 @@ class LBRoom(LabRoom):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		if (global102._send('number:') != 400):
 			global102._send('number:', 400, 'setLoop:', -1, 'play:')
@@ -287,9 +269,6 @@ class LBRoom(LabRoom):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if kernel.ScriptID(30, 0)._send('holeIsUp:'):
 			kernel.ScriptID(30, 0)._send('holeIsUp:', 0)
 			proc404_2()

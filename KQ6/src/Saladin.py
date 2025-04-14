@@ -29,9 +29,6 @@ class Saladin(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case ((global2._send('curPic:') == 165) and (global11 == 740)):
 				self._send('cel:', 1, 'x:', 1, 'y:', 1, 'textX:', 5, 'textY:', 8, 'keepWindow:', 0)

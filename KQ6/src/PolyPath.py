@@ -57,9 +57,6 @@ class PolyPath(Motion):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if points:
 			kernel.Memory(3, points)
 		#endif
@@ -69,9 +66,6 @@ class PolyPath(Motion):
 
 	@classmethod
 	def setTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (proc999_6(points, value) != 30583):
 			x = proc999_6(points, value)
 			y = proc999_6(points, value.post('++'))
@@ -96,9 +90,6 @@ class PolyPath(Motion):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (proc999_6(points, value) == 30583):
 			super._send('moveDone:')
 		else:

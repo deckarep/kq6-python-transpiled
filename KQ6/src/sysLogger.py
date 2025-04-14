@@ -24,9 +24,6 @@ local0 = None
 
 @SCI.procedure
 def localproc_0(param1 = None, param2 = None, param3 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.Format(@temp0, 952, 0, param2)
 	kernel.FileIO(6, local0, @temp0)
 	temp0 = 0
@@ -74,9 +71,6 @@ class sysLogger(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp7 = global85
 		global85 = 999
 		(= temp8

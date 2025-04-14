@@ -35,9 +35,6 @@ class lampSeller(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 43:
 				self._send('setScript:', kernel.ScriptID(11, 2))
@@ -68,9 +65,6 @@ class lampSeller(Actor):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		polePoly._send('init:')
 		self._send('setScript:', lampSellerScr)
@@ -78,9 +72,6 @@ class lampSeller(Actor):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		polePoly._send('dispose:')
 	#end:method
@@ -92,9 +83,6 @@ class lampSellerScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(241, 0)._send('loop:', 0, 'cel:', 0, 'setCycle:', 0, 'setSpeed:', 6)
@@ -169,9 +157,6 @@ class lampSellerScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc913_2(59)
 		register = 0
 		super._send('dispose:')
@@ -188,9 +173,6 @@ class polePoly(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= onMeCheck
 			Polygon._send('new:')._send(
 				'type:', 3,

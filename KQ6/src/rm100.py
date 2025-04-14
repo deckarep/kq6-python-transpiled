@@ -31,9 +31,6 @@ class rm100(KQ6Room):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		if ((global87 == 0) or (not global169)):
 			kernel.Palette(4, 0, 255, 0)
@@ -51,9 +48,6 @@ class rm100(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('height:', 0, 'activateHeight:', 0)
 		super._send('newRoom:', &rest)
 	#end:method
@@ -65,9 +59,6 @@ class introScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((param1._send('type:') & 0x0004) and (param1._send('message:') == 27)):
 			param1._send('claimed:', 1)
 		#endif
@@ -76,18 +67,12 @@ class introScript(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		super._send('dispose:')
 	#end:method
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global72._send('add:', self)
@@ -163,9 +148,6 @@ class FadeCode(Code):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (local0 != local2):
 			(local0 += (1 * local1))
 			kernel.Palette(4, 0, 255, local0)
@@ -214,9 +196,6 @@ class ButtonActor(Actor):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global72._send('add:', self)
 		global73._send('add:', self)
@@ -224,9 +203,6 @@ class ButtonActor(Actor):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		global73._send('delete:', self)
 		super._send('dispose:')
@@ -234,9 +210,6 @@ class ButtonActor(Actor):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not param1._send('modifiers:'))
@@ -258,9 +231,6 @@ class ButtonActor(Actor):
 
 	@classmethod
 	def flash(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = 0
 		self._send('startUpd:')
 		while (temp0 = Event._send('new:')._send('type:') != (8 if param1 else 2)):
@@ -294,9 +264,6 @@ class openingBut(ButtonActor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (global169 and kernel.Platform(7) and kernel.DoSound(4)):
 				global2._send('newRoom:', 108)
@@ -328,9 +295,6 @@ class playBut(ButtonActor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('newRoom:', 200)
 	#end:method
 
@@ -346,9 +310,6 @@ class helpBut(ButtonActor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('newRoom:', 205)
 	#end:method
 
@@ -364,9 +325,6 @@ class restoreBut(ButtonActor):
 	
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('restore:')
 		global1._send('setCursor:', global20)
 		global2._send('script:')._send('seconds:', 8)
@@ -388,9 +346,6 @@ class dosLogo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				Cursor._send('showCursor:', 0)
@@ -443,9 +398,6 @@ class winLogo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global2._send('drawPic:', 98)

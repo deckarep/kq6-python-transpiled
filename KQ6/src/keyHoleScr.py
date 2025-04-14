@@ -30,18 +30,12 @@ class keyHoleScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc913_1(49)
 		super._send('init:', &rest)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc913_2(49)
 		register = 0
 		super._send('dispose:')
@@ -51,9 +45,6 @@ class keyHoleScr(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -111,9 +102,6 @@ class keyHole(Inset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global0._send('stopUpd:')
 		x = (160 - (kernel.CelWide(view, loop, cel) / 2))
 		y = (100 - (kernel.CelHigh(view, loop, cel) / 2))
@@ -122,9 +110,6 @@ class keyHole(Inset):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if script:
 			script._send('doit:')
 		#endif
@@ -132,9 +117,6 @@ class keyHole(Inset):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		keyHoleView._send('dispose:')
 		keyHoleScr._send('script:')._send('dispose:')
 		super._send('dispose:')
@@ -142,9 +124,6 @@ class keyHole(Inset):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(not
 				(and

@@ -24,9 +24,6 @@ class Messager(Obj):
 	
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		talkerSet._send('dispose:')
 		if global69:
 			global69._send('state:', oldIconBarState)
@@ -205,9 +202,6 @@ class Messager(Obj):
 
 	@classmethod
 	def findTalker():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send(
 			'width:', 200,
 			'addText:', r"""<Messager findTalker:>\n\tCan't find talker or\n\tfindTalker method not over-ridden""",
@@ -223,9 +217,6 @@ class talkerSet(Set):
 	#property vars (may be empty)
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'eachElementDo:', #caller, 0,
 			'eachElementDo:', #dispose, global91._send('disposeWhenDone:'),

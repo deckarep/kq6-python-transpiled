@@ -39,9 +39,6 @@ class rm406(LabRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ScriptID(30, 0)._send('labCoords:', 152)
 		if ((global12 == 435) and (not proc913_0(1))):
 			proc958_0(128, 391, 392, 393, 432)
@@ -79,9 +76,6 @@ class rm406(LabRoom):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.ScriptID(30, 5)._send('addToPic:')
 		kernel.ScriptID(30, 9)._send('addToPic:')
 		kernel.ScriptID(30, 3)._send('init:', 'show:')
@@ -89,9 +83,6 @@ class rm406(LabRoom):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			match param1
 				case 20:
@@ -140,9 +131,6 @@ class rm406(LabRoom):
 
 	@classmethod
 	def scriptCheck():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		if (local1 < 100):
 			global91._send('say:', 3, 0, 36, 1, 0, 400)
@@ -169,9 +157,6 @@ class fallDownInLight(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -212,9 +197,6 @@ class lightItUp(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -304,9 +286,6 @@ class shiftThePalette(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.Palette(1, 400)
@@ -361,9 +340,6 @@ class timerMinotaurKillEgo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setStep:', 3, 15, 'setMotion:', MoveTo, 165, 160, self)
@@ -501,9 +477,6 @@ class lookAround(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if (global87 == 0):
@@ -536,9 +509,6 @@ class egoDoTinderBoxCode(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 1
 		match param1
 			case 20:

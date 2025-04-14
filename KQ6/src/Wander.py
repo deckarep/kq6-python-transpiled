@@ -29,26 +29,17 @@ class Wander(Motion):
 
 	@classmethod
 	def setTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = (client._send('x:') + (distance - kernel.Random(0, temp0 = (distance * 2))))
 		y = (client._send('y:') + (distance - kernel.Random(0, temp0)))
 	#end:method
 
 	@classmethod
 	def onTarget():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 0
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if client._send('isStopped:'):
 			self._send('moveDone:')
@@ -57,9 +48,6 @@ class Wander(Motion):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('init:')
 	#end:method
 

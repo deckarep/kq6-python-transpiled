@@ -16,9 +16,6 @@ class NewFeature(Feature):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('addToFront:', self)
 		global73._send('addToFront:', self)
 		super._send('init:', &rest)
@@ -26,9 +23,6 @@ class NewFeature(Feature):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global72._send('delete:', self)
 		global73._send('delete:', self)
 		super._send('dispose:')
@@ -36,9 +30,6 @@ class NewFeature(Feature):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not normal)
@@ -57,17 +48,11 @@ class NewFeature(Feature):
 
 	@classmethod
 	def doSpecial():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('cue:')
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global0._send('setMotion:', PolyPath, approachX, approachY, CueObj)
 	#end:method
 

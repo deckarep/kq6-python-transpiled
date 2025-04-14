@@ -28,9 +28,6 @@ class Slider(IconI):
 	
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('show:', &rest)
 		if (not sRight):
 			sLeft = nsLeft
@@ -114,9 +111,6 @@ class Slider(IconI):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if theObj:
 			proc999_7(theObj, selector, &rest)
 		#endif
@@ -124,9 +118,6 @@ class Slider(IconI):
 
 	@classmethod
 	def posnToValue(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(+
 				bottomValue
@@ -176,9 +167,6 @@ class Slider(IconI):
 
 	@classmethod
 	def advance():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'move:', proc999_3(yStep, (-
 					sTop
@@ -197,9 +185,6 @@ class Slider(IconI):
 
 	@classmethod
 	def retreat():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send(
 			'move:', proc999_2(-yStep, (-
 					sTop

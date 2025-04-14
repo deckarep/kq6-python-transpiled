@@ -35,18 +35,12 @@ class egaToon(KQ6Room):
 	
 	@classmethod
 	def handleEvent():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Cursor._send('showCursor:', 1)
 		global1._send('restart:', 1)
 	#end:method
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		Cursor._send('showCursor:', 0)
 		global69._send('disable:', 'height:', -100, 'activateHeight:', -100)
@@ -61,9 +55,6 @@ class egaToon(KQ6Room):
 
 	@classmethod
 	def newRoom():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global69._send('disable:', 'height:', 0, 'activateHeight:', 0)
 		Cursor._send('showCursor:', 1)
 		global74._send('delete:', self)
@@ -79,9 +70,6 @@ class findSize(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.TextSize(@local404, param1, 3110, 315)
 		return ((180 - (local404[2] - local404[0])) / 2)
 	#end:method
@@ -93,9 +81,6 @@ class openingScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 15
@@ -189,9 +174,6 @@ class playMusic(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global102._send('loop:', -1, 'number:', 105, 'play:')

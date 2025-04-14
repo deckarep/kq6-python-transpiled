@@ -28,9 +28,6 @@ class Osc(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((temp0 = self._send('nextCel:') > client._send('lastCel:')) or (temp0 < 0)):
 			cycleDir = -cycleDir
 			self._send('cycleDone:')
@@ -41,9 +38,6 @@ class Osc(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if howManyCycles:
 			client._send('cel:', self._send('nextCel:'))
 			if (howManyCycles > 0):

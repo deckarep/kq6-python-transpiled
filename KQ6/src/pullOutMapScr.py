@@ -43,9 +43,6 @@ class pullOutMapScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				temp0 = 0
@@ -129,9 +126,6 @@ class MapScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local0 = global5
 		local1 = global32
 		local2 = global10
@@ -155,9 +149,6 @@ class MapScr(Script):
 
 	@classmethod
 	def resetHandlers():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global73._send('delete:', self, 'dispose:')
 		global72._send('delete:', self, 'dispose:')
 		global93._send('delete:', self, 'dispose:')
@@ -168,9 +159,6 @@ class MapScr(Script):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(not param1._send('modifiers:'))
@@ -202,9 +190,6 @@ class MapScr(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.DrawPic(130, 10)
@@ -341,9 +326,6 @@ class HighliteMap(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local8 = self
 		if (param1 == 5):
 			MapScr._send('resetHandlers:')
@@ -370,9 +352,6 @@ class HighliteMap(Feature):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		theMapObj = Actor._send('new:')._send(
 			'view:', view,
 			'setPri:', 15,
@@ -400,9 +379,6 @@ class mistsProp(Prop):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		mists._send('doVerb:', &rest)
 	#end:method
 
@@ -471,9 +447,6 @@ class mists(HighliteMap):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(3):
 			mistsLabel._send('init:')
 			mistsProp._send('init:')
@@ -483,9 +456,6 @@ class mists(HighliteMap):
 
 	@classmethod
 	def onMe():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(3):
 			noun = 3
 		else:
@@ -496,9 +466,6 @@ class mists(HighliteMap):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = proc913_0(3)
 		(cond
 			case ((param1 == 5) and temp0):
@@ -528,9 +495,6 @@ class northMarker(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global91._send('say:', 6, param1, 0, 0, 0, 130)
 		else:
@@ -549,9 +513,6 @@ class mapTitle(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global91._send('say:', 6, param1, 0, 0, 0, 130)
 		else:
@@ -572,9 +533,6 @@ class mistsLabel(Actor):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		mists._send('doVerb:', &rest)
 	#end:method
 
@@ -587,9 +545,6 @@ class exitFeature(Feature):
 	
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		MapScr._send('resetHandlers:', 'register:', 1, 'cue:')
 	#end:method
 

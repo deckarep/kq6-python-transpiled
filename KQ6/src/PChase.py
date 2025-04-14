@@ -53,9 +53,6 @@ class PChase(PolyPath):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (kernel.GetDistance(targetX, targetY, who._send('x:'), who._send('y:')) > distance):
 				if points:
@@ -76,9 +73,6 @@ class PChase(PolyPath):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (temp0 = client._send('distanceTo:', who) <= distance):
 				super._send('moveDone:')

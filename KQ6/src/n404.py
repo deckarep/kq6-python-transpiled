@@ -31,17 +31,11 @@ local3 = None
 
 @SCI.procedure
 def proc404_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	global0._send('setScript:', holeOnWall, 0, param1)
 #end:procedure
 
 @SCI.procedure
 def proc404_1():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	kernel.ScriptID(30, 0)._send('holeIsUp:', 1)
 	match kernel.ScriptID(30, 0)._send('holeWall:')
 		case 2:
@@ -58,9 +52,6 @@ def proc404_1():
 
 @SCI.procedure
 def proc404_2():
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if global5._send('contains:', aHole):
 		aHole._send('dispose:', 'delete:')
 	#endif
@@ -81,9 +72,6 @@ class aHole(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 1:
 				global0._send('setScript:', lookInHole)
@@ -185,9 +173,6 @@ class holeOnWall(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('put:', 18, global11)
@@ -386,9 +371,6 @@ class lookInHole(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -507,9 +489,6 @@ class getHole(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

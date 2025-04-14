@@ -37,9 +37,6 @@ class Path(MoveTo):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if self._send('atEnd:'):
 			super._send('moveDone:')
 		else:
@@ -53,18 +50,12 @@ class Path(MoveTo):
 
 	@classmethod
 	def next():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = self._send('at:', value.post('++'))
 		y = self._send('at:', value.post('++'))
 	#end:method
 
 	@classmethod
 	def atEnd():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(or
 				(self._send('at:', (value + 1)) == -32768)
@@ -75,9 +66,6 @@ class Path(MoveTo):
 
 	@classmethod
 	def at():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send('addTextF:', r"""%s needs an 'at:' method.""", name, 'init:')
 		return 0
 	#end:method
@@ -88,9 +76,6 @@ class RelPath(Path):
 	#property vars (may be empty)
 	@classmethod
 	def next():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(x += self._send('at:', value.post('++')))
 		(y += self._send('at:', value.post('++')))
 	#end:method

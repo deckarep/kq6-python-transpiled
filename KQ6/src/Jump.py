@@ -66,9 +66,6 @@ class Jump(Motion):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.Abs((global88 - b-moveCnt)) >= client._send('moveSpeed:')):
 			b-moveCnt = global88
 			xLast = client._send('x:')
@@ -111,9 +108,6 @@ class Jump(Motion):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send('illegalBits:', illegalBits, 'signal:', signal)
 		if caller:
 			global37 = 1
@@ -123,9 +117,6 @@ class Jump(Motion):
 
 	@classmethod
 	def setTest():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= dx
 			if ((client._send('x:') > x) or ((client._send('x:') == x) and (xStep > 0))):
 				-1
@@ -144,9 +135,6 @@ class Jump(Motion):
 
 	@classmethod
 	def motionCue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send('mover:', 0)
 		if (completed and kernel.IsObject(caller)):
 			caller._send('cue:')
@@ -193,9 +181,6 @@ class JumpTo(Jump):
 
 	@classmethod
 	def moveDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (x != 20000):
 			client._send('x:', x)
 		#endif

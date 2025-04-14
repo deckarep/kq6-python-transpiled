@@ -14,9 +14,6 @@ class uEvt(Event):
 	#property vars (may be empty)
 	@classmethod
 	def new():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		type = message = modifiers = y = x = claimed = port = 0
 		kernel.GetEvent(32767, self)
 		return self
@@ -37,9 +34,6 @@ class User(Obj):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		curEvent = uEvt
 	#end:method
 
@@ -56,18 +50,12 @@ class User(Obj):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		curEvent._send('new:')
 		self._send('handleEvent:', curEvent)
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global70 = param1._send('x:')
 		global71 = param1._send('y:')
 		temp0 = param1._send('type:')
@@ -255,18 +243,12 @@ class OnMeAndLowY(Code):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		theObj = 0
 		lastY = -1
 	#end:method
 
 	@classmethod
 	def doit(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1._send('onMe:', param2) and (param1._send('y:') > lastY)):
 			theObj = param1
 			lastY = theObj._send('y:')
@@ -280,9 +262,6 @@ class findNoun(Code):
 	#property vars (may be empty)
 	@classmethod
 	def doit(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (param1._send('noun:') == param2)
 	#end:method
 

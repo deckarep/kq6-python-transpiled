@@ -18,9 +18,6 @@ class Timer(Obj):
 	client = 0
 	
 	(procedure (localproc_0):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = client
 		client = 0
 		if kernel.IsObject(temp0):
@@ -35,9 +32,6 @@ class Timer(Obj):
 
 	@classmethod
 	def new():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			if (self == Timer):
 				super._send('new:')
@@ -49,9 +43,6 @@ class Timer(Obj):
 
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client = param1
 		global7._send('add:', self)
 		if param1._send('respondsTo:', #timer):
@@ -64,9 +55,6 @@ class Timer(Obj):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (cycleCnt != -1):
 				if (not cycleCnt.post('--')):
@@ -89,9 +77,6 @@ class Timer(Obj):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.IsObject(client) and client._send('respondsTo:', #timer)):
 			client._send('timer:', 0)
 		#endif
@@ -100,9 +85,6 @@ class Timer(Obj):
 
 	@classmethod
 	def delete():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (client == 0):
 			global7._send('delete:', self)
 			super._send('dispose:')
@@ -111,9 +93,6 @@ class Timer(Obj):
 
 	@classmethod
 	def setCycle(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp0
 			if (-info- & 0x8000):
 				self._send('new:')
@@ -176,9 +155,6 @@ class Timer(Obj):
 
 	@classmethod
 	def setTicks(param1 = None, param2 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(= temp0
 			if (-info- & 0x8000):
 				self._send('new:')
@@ -198,17 +174,11 @@ class TO(Obj):
 	
 	@classmethod
 	def set(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		timeLeft = param1
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if timeLeft:
 			timeLeft.post('--')
 		#endif

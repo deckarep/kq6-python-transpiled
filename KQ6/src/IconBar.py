@@ -59,9 +59,6 @@ class IconI(Obj):
 
 	@classmethod
 	def mask():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DrawCel(maskView, maskLoop, maskCel, (+
 			nsLeft
 			(/
@@ -79,9 +76,6 @@ class IconI(Obj):
 
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(return
 			(and
 				(param1._send('x:') >= nsLeft)
@@ -221,9 +215,6 @@ class IconBar(Set):
 	
 	@classmethod
 	def findIcon(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while (temp0 < size): # inline for
 			temp1 = self._send('at:', temp0)
@@ -238,9 +229,6 @@ class IconBar(Set):
 
 	@classmethod
 	def noClickHelp():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = temp2 = 0
 		temp3 = kernel.GetPort()
 		temp4 = global38._send('eraseOnly:')
@@ -291,9 +279,6 @@ class IconBar(Set):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		param1._send('localize:')
 		temp1 = param1._send('type:')
 		(cond
@@ -470,9 +455,6 @@ class IconBar(Set):
 
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global8._send('pause:')
 		(state |= 0x0020)
 		global1._send('setCursor:', 999, 1)
@@ -549,9 +531,6 @@ class IconBar(Set):
 
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (state & 0x0020):
 			global8._send('pause:', 0)
 			(state &= 0xffdf)
@@ -583,9 +562,6 @@ class IconBar(Set):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		while ((state & 0x0020) and temp0 = global80._send('curEvent:')._send('new:')):
 
 			temp1 = temp0._send('type:')
@@ -621,9 +597,6 @@ class IconBar(Set):
 
 	@classmethod
 	def dispatchEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = param1._send('x:')
 		temp0 = param1._send('y:')
 		temp2 = param1._send('type:')
@@ -759,9 +732,6 @@ class IconBar(Set):
 
 	@classmethod
 	def advance():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
@@ -779,9 +749,6 @@ class IconBar(Set):
 
 	@classmethod
 	def retreat():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = 1
 		while (temp1 <= size): # inline for
 			(= temp0
@@ -836,9 +803,6 @@ class IconBar(Set):
 
 	@classmethod
 	def advanceCurIcon():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (state & 0x0004):
 			return
 		#endif
@@ -864,9 +828,6 @@ class IconBar(Set):
 
 	@classmethod
 	def swapCurIcon():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (state & 0x0004):
 				return

@@ -84,9 +84,6 @@ def localproc_0():
 
 @SCI.procedure
 def localproc_1(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if (local0 == 2):
 		return (320 - param1)
 	else:
@@ -108,9 +105,6 @@ class rm790(CastleRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global12 == 750):
 			(style |= 0x4000)
 		else:
@@ -164,9 +158,6 @@ class rm790(CastleRoom):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
@@ -203,26 +194,17 @@ class rm790(CastleRoom):
 
 	@classmethod
 	def doLoiter():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('setScript:', castSpell, 0, 2)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('dispose:')
 		kernel.DisposeScript(752)
 	#end:method
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		lTimer._send('dispose:', 'delete:')
 		rTimer._send('dispose:', 'delete:')
 		super._send('newRoom:', param1)
@@ -235,9 +217,6 @@ class changeTowerRooms(Script):
 	#property vars (may be empty)
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global1._send('handsOff:')
 		super._send('init:', &rest)
 		register = local2
@@ -245,9 +224,6 @@ class changeTowerRooms(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				kernel.ScriptID(80, 0)._send('loiterTimer:', 0)
@@ -348,9 +324,6 @@ class enterFromTop(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				cycles = 2
@@ -372,9 +345,6 @@ class castSpell(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -433,9 +403,6 @@ class getEgo(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send(
@@ -506,9 +473,6 @@ class vizier(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = localproc_1(20)
 		y = 39
 		super._send('init:', &rest)
@@ -521,9 +485,6 @@ class vizier(Actor):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		local1.post('++')
 		self._send('dispose:')
 	#end:method
@@ -538,17 +499,11 @@ class doorFeature(Feature):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (super._send('onMe:', param1) and (local0 == 1))
 	#end:method
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', castSpell, 0, 1)
@@ -627,18 +582,12 @@ class rglow(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		rTimer._send('setCycle:', self, kernel.Random(10, 30))
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('cel:', kernel.Random(0, 2))
 		rflame._send('cycleSpeed:', kernel.Random(4, 8))
 		rTimer._send('setCycle:', self, kernel.Random(2, 20))
@@ -655,18 +604,12 @@ class lglow(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		lTimer._send('setCycle:', self, kernel.Random(10, 30))
 	#end:method
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('cel:', kernel.Random(0, 2))
 		lflame._send('cycleSpeed:', kernel.Random(4, 8))
 		lTimer._send('setCycle:', self, kernel.Random(2, 20))

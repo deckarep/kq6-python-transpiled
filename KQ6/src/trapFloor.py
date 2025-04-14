@@ -28,9 +28,6 @@ class trapFloor(LabRoom):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc401_2()
 		super._send('init:', &rest)
 		kernel.ScriptID(30, 0)._send('initCrypt:', 2)
@@ -47,9 +44,6 @@ class fallTrapFloor(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')

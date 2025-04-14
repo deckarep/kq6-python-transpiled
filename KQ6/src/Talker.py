@@ -37,9 +37,6 @@ class Blink(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case waitCount:
 				if ((global88 - waitCount) > 0):
@@ -60,9 +57,6 @@ class Blink(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (cycleDir == -1):
 			self._send('init:')
 		else:
@@ -93,9 +87,6 @@ class Narrator(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global90 & 0x0002):
 			curVolume = global1._send('masterVolume:')
 			if (curVolume >= 4):
@@ -162,9 +153,6 @@ class Narrator(Prop):
 
 	@classmethod
 	def startText(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not (global90 & 0x0002)):
 			ticks = proc999_3(240, (* global94 2 temp0 = kernel.StrLen(param1)))
 		#endif
@@ -177,9 +165,6 @@ class Narrator(Prop):
 
 	@classmethod
 	def display(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((x + talkWidth) > 318):
 			temp0 = (318 - x)
 		else:
@@ -208,9 +193,6 @@ class Narrator(Prop):
 
 	@classmethod
 	def startAudio(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = proc999_6(param1, 0)
 		temp1 = proc999_6(param1, 1)
 		temp2 = proc999_6(param1, 2)
@@ -221,9 +203,6 @@ class Narrator(Prop):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(ticks != -1)
@@ -243,9 +222,6 @@ class Narrator(Prop):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case param1._send('claimed:'):#end:case
 			case (ticks == -1):
@@ -376,9 +352,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		nsLeft = x
 		nsTop = y
 		(= nsRight
@@ -441,9 +414,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def show():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not underBits):
 			underBits = kernel.Graph(7, nsTop, nsLeft, nsBottom, nsRight, 3)
 		#endif
@@ -473,9 +443,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def showRave(param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not underBits):
 			(= underBits
 				kernel.Graph(15, y, x, (y + ((kernel.CelHigh(5, 0, 0) * 5) / 11)), (+
@@ -501,9 +468,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def say():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((view > 0) and (not underBits)):
 			self._send('init:')
 		#endif
@@ -512,9 +476,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def startText():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not viewInPrint):
 			self._send('show:')
 		#endif
@@ -529,9 +490,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def display(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp3 = global38._send('new:')._send('color:', color, 'back:', back)
 		if ((not kernel.HaveMouse()) and (global19 != 996)):
 			saveCursor = global19
@@ -585,9 +543,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def startAudio(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (raving or ((not raving) and mouth)):
 			temp0 = proc999_6(param1, 0)
 			temp1 = proc999_6(param1, 1)
@@ -618,9 +573,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def cycle(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 and param1._send('cycler:')):
 			temp0 = param1._send('cel:')
 			param1._send('cycler:')._send('doit:')
@@ -657,9 +609,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (super._send('doit:') and mouth):
 			self._send('cycle:', mouth)
 		#endif
@@ -670,9 +619,6 @@ class Talker(Narrator):
 
 	@classmethod
 	def hide():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.Graph(8, underBits)
 		underBits = 0
 		kernel.Graph(13, nsTop, nsLeft, nsBottom, nsRight)

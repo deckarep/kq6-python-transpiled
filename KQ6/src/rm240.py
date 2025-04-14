@@ -40,9 +40,6 @@ local59 = [0, -10, 319, -10, 326, 175, 243, 150, 231, 149, 204, 140, 181, 134, 1
 
 @SCI.procedure
 def localproc_0(param1 = None, *rest):
-	# Python3 magic, for those function which use argc.
-	argc = sum(v is not None for v in locals().values()) + len(rest)
-
 	if param1:
 		global2._send('addObstacle:', roomPoly._send('points:', @local59, 'yourself:'))
 	else:
@@ -60,9 +57,6 @@ class rm240(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		proc958_0(128, 240, 241)
 		kernel.Load(143, picture)
 		super._send('init:', &rest)
@@ -134,9 +128,6 @@ class rm240(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = global0._send('onControl:', 1)
 		(cond
 			case script: 0#end:case
@@ -150,9 +141,6 @@ class rm240(KQ6Room):
 
 	@classmethod
 	def edgeToRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 3):
 			global102._send('fade:', 0, 10, 10, 0)
 			proc12_0(param1, -45)
@@ -164,9 +152,6 @@ class rm240(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((param1 == 210) and global5._send('contains:', clown)):
 			kernel.ScriptID(10, 0)._send('setIt:', 2)
 		#endif
@@ -179,18 +164,12 @@ class rm240(KQ6Room):
 
 	@classmethod
 	def notify():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global2._send('obstacles:')._send('delete:', roomPoly)
 		localproc_0(0)
 	#end:method
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(global13, 270, 280):
 			global102._send('fade:', 70, 10, 15, 0)
 		#endif
@@ -217,9 +196,6 @@ class procInset(Inset):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		global1._send('handsOn:')
 		global69._send('disable:', 0, 1, 3, 4, 5, 6)
@@ -227,17 +203,11 @@ class procInset(Inset):
 
 	@classmethod
 	def doVerb():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		Print._send('font:', global22, 'posn:', 160, 30, 'width:', 138, 'addText:', 10, 1, 0, 1, 'init:')
 	#end:method
 
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not temp0 = super._send('onMe:', param1, &rest)):
 			global1._send('handsOn:')
 			global69._send('enable:', 6)
@@ -252,9 +222,6 @@ class exitToVillage2Scr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -276,9 +243,6 @@ class enterFromVillage2Scr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send(
@@ -312,9 +276,6 @@ class exitToShopScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -366,9 +327,6 @@ class enterFromShopScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', 0, 'view:', 241, 'loop:', 2, 'cel:', 0, 'normal:', 0)
@@ -415,9 +373,6 @@ class dumpTrashScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				proc913_1(110)
@@ -458,9 +413,6 @@ class searchUrnScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -524,9 +476,6 @@ class searchUrnScr(Script):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.DisposeScript(231)
 		super._send('dispose:')
 		register = 0
@@ -539,9 +488,6 @@ class villagersScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('hide:')
@@ -667,9 +613,6 @@ class clownScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				client._send('setMotion:', PolyPath, 156, 250, self)
@@ -693,9 +636,6 @@ class lookAtProcScr(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global1._send('handsOff:')
@@ -794,9 +734,6 @@ class bshopDoor(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global2._send('setScript:', exitToShopScr, 0, 0)
 		else:
@@ -806,9 +743,6 @@ class bshopDoor(Prop):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5)
 	#end:method
@@ -828,9 +762,6 @@ class pshopDoor(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', exitToShopScr, 0, 1)
@@ -846,9 +777,6 @@ class pshopDoor(Prop):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5)
 	#end:method
@@ -863,9 +791,6 @@ class randomVillagers(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (global66._send('doit:', param1) == -32768):
 			param1 = 5
 		#endif
@@ -888,9 +813,6 @@ class clown(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send(
 			'setScale:', Scaler, 90, 72, 188, 95,
@@ -957,9 +879,6 @@ class proclamation(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 1, 5):
 			global2._send('setScript:', lookAtProcScr)
 		else:
@@ -981,9 +900,6 @@ class pot(Feature):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(kernel.OnControl(4, param1._send('x:'), param1._send('y:')) == onMeCheck)
@@ -997,9 +913,6 @@ class pot(Feature):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				global2._send('setScript:', searchUrnScr)
@@ -1012,9 +925,6 @@ class pot(Feature):
 
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:', &rest)
 		self._send('approachVerbs:', 5)
 	#end:method
@@ -1028,9 +938,6 @@ class genericFeatures(Feature):
 	
 	@classmethod
 	def onMe(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		x = param1._send('x:')
 		y = param1._send('y:')
 		(return
@@ -1121,9 +1028,6 @@ class genericFeatures(Feature):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case ((param1 == 5) and proc999_5(noun, 11, 26, 24)):
 				global91._send('say:', 24, param1)

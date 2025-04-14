@@ -50,9 +50,6 @@ class MCyc(Cycle):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.Abs((global88 - cycleCnt)) >= client._send('cycleSpeed:')):
 			cycleCnt = global88
 			self._send('nextCel:')
@@ -61,9 +58,6 @@ class MCyc(Cycle):
 
 	@classmethod
 	def nextCel():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		client._send(
 			'loop:', proc999_6(points, value),
 			'cel:', proc999_6(points, (value + 1)),
@@ -82,9 +76,6 @@ class MCyc(Cycle):
 
 	@classmethod
 	def cycleDone():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		completed = 1
 		value = 0
 		if caller:

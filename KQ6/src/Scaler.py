@@ -43,9 +43,6 @@ class Scaler(Code):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (temp0 = client._send('y:') < backY):
 				temp1 = backSize

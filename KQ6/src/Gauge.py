@@ -35,9 +35,6 @@ class Gauge(Dialog):
 	
 	@classmethod
 	def init(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		window = SysWindow
 		self._send('update:', param1)
 		local2 = DButton._send('new:')._send('text:', lower, 'moveTo:', 4, 4, 'setSize:')
@@ -88,9 +85,6 @@ class Gauge(Dialog):
 
 	@classmethod
 	def doit(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('init:', param1)
 		temp1 = param1
 		while True: #repeat
@@ -125,9 +119,6 @@ class Gauge(Dialog):
 
 	@classmethod
 	def update(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = (maximum - minimum)
 		temp0 = 0
 		while (temp0 < temp1): # inline for
@@ -139,9 +130,6 @@ class Gauge(Dialog):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1._send('type:')
 			case 4:
 				match param1._send('message:')

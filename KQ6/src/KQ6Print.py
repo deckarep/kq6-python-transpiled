@@ -28,9 +28,6 @@ class myDialog(Dialog):
 	#property vars (may be empty)
 	@classmethod
 	def check():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (super._send('check:') or (kernel.DoAudio(6) == -1)):
 			return 1
 		#endif
@@ -38,9 +35,6 @@ class myDialog(Dialog):
 
 	@classmethod
 	def handleEvent():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (kernel.DoAudio(6) == -1):
 			return -2
 		else:
@@ -51,9 +45,6 @@ class myDialog(Dialog):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not (kernel.DoAudio(6) == -1)):
 			kernel.DoAudio(3)
 		#endif
@@ -127,9 +118,6 @@ class KQ6Print(Print):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if modeless:
 			global69._send('enable:', 6)
 		#endif
@@ -238,9 +226,6 @@ class KQ6Print(Print):
 
 	@classmethod
 	def showSelf():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if 
 			(and
 				(= temp6

@@ -29,9 +29,6 @@ class Allaria(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(91):
 			self._send('view:', 8993)
 			tBust._send('view:', 8993)

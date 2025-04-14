@@ -49,9 +49,6 @@ class rm510(KQ6Room):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(8):
 			self._send(
 				'addObstacle:', poly1After._send(
@@ -113,9 +110,6 @@ class rm510(KQ6Room):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case 
 				(and
@@ -147,9 +141,6 @@ class rm510(KQ6Room):
 
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((param1 == south) and (not script) and global5._send('contains:', genie)):
 			global1._send('handsOff:')
 			genie._send('setScript:', 0)
@@ -161,9 +152,6 @@ class rm510(KQ6Room):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 1):
 			if global5._send('contains:', genie):
 				theConv._send('add:', -1, noun, param1, 'add:', -1, noun, param1, 9, 'init:')
@@ -205,9 +193,6 @@ class brick(View):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (param1 == 5):
 			global0._send('setScript:', getBrick)
 		else:
@@ -227,9 +212,6 @@ class genie(Actor):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 67:
 				global1._send('handsOff:')
@@ -273,9 +255,6 @@ class archer(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 1, 5, 2):
 				if proc913_0(8):
@@ -302,9 +281,6 @@ class archer(Prop):
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:', &rest)
 		if ((loop != 6) and (not global2._send('script:'))):
 			self._send(
@@ -359,9 +335,6 @@ class wall(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc999_5(param1, 1, 5, 2):
 			super._send('doVerb:', param1)
 		else:
@@ -379,9 +352,6 @@ class path(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if ((param1 == 1) or (param1 == 5) or (param1 == 2)):
 			super._send('doVerb:', param1)
 		else:
@@ -402,9 +372,6 @@ class roses(Prop):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case proc999_5(param1, 1, 2, 5):
 				(cond
@@ -502,9 +469,6 @@ class roseFeature(Feature):
 	
 	@classmethod
 	def onMe():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(8):
 			self._send('approachVerbs:', 1, 5)
 		#endif
@@ -513,9 +477,6 @@ class roseFeature(Feature):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (param1 == 5):
 				(cond
@@ -567,9 +528,6 @@ class garden(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 5:
 				if proc913_0(8):
@@ -619,9 +577,6 @@ class rocks(Feature):
 	
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		(cond
 			case (param1 == 1):
 				global91._send('say:', noun, param1, 2, 0, 0, 0)
@@ -642,9 +597,6 @@ class interruptGenieScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				local1 = genie._send('script:')
@@ -736,9 +688,6 @@ class genieMadScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				genie._send('x:', (genie._send('x:') - 9), 'y:', (genie._send('y:') + 12), 'setLoop:', 6)
@@ -799,9 +748,6 @@ class getBrick(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send('setMotion:', PolyPath, 251, 160, self)
@@ -844,9 +790,6 @@ class walkPastArcher(Script):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if 
 			(and
@@ -861,9 +804,6 @@ class walkPastArcher(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				if register:
@@ -968,9 +908,6 @@ class walkPastArcherGenie(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				proc913_1(163)
@@ -1075,9 +1012,6 @@ class genieEatsPeppermint(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				genie._send('setLoop:', 7, 'setCel:', 0, 'setCycle:', End, self)
@@ -1181,9 +1115,6 @@ class genieDigging(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				genie._send('setLoop:', 0, 'cycleSpeed:', 10, 'setCycle:', Fwd)
@@ -1219,9 +1150,6 @@ class genieSummoning(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				self._send('setScript:', genieDigging)
@@ -1267,9 +1195,6 @@ class genieOuttaHere(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				genie._send('cycleSpeed:', 15, 'setLoop:', 7, 'setCycle:', End, self)
@@ -1320,9 +1245,6 @@ class rosesClose(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global91._send('say:', 1, 0, 21, 1, self)
@@ -1354,9 +1276,6 @@ class cutEmBaby(Script):
 	#property vars (may be empty)
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		if 
 			(and
@@ -1371,9 +1290,6 @@ class cutEmBaby(Script):
 
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				register = -1
@@ -1450,9 +1366,6 @@ class pickRoseScript(Script):
 	#property vars (may be empty)
 	@classmethod
 	def changeState(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state = param1
 			case 0:
 				global0._send(
@@ -1490,9 +1403,6 @@ class egoUseShieldCode(Actions):
 	#property vars (may be empty)
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case 17:
 				global1._send('handsOff:')

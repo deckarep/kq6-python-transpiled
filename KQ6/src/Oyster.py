@@ -22,9 +22,6 @@ class Oyster(Kq6Talker):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if proc913_0(59):
 			self._send('view:', 890, 'loop:', 0, 'cel:', 1, 'x:', 255, 'y:', 5, 'textX:', -239, 'textY:', 8)
 			super._send('init:', 0, 0, 0, &rest)

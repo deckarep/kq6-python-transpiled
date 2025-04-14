@@ -18,9 +18,6 @@ class rBeast(Rgn):
 	#property vars (may be empty)
 	@classmethod
 	def newRoom(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		keep = proc999_5(param1, 500, 510, 520, 530, 540)
 		initialized = 0
 		super._send('newRoom:', param1, &rest)

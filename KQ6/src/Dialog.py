@@ -19,9 +19,6 @@ class DIcon(Class_255_0):
 	
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		nsRight = (nsLeft + kernel.CelWide(view, loop, cel))
 		nsBottom = (nsTop + kernel.CelHigh(view, loop, cel))
 	#end:method
@@ -48,9 +45,6 @@ class DButton(Class_255_0):
 
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.TextSize(@temp0[0], text, font, 0, 0)
 		(temp0[2] += 2)
 		(temp0[3] += 2)
@@ -72,18 +66,12 @@ class DEdit(Class_255_0):
 	
 	@classmethod
 	def track(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.EditControl(self, param1)
 		return self
 	#end:method
 
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		font = global85
 		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (nsTop + temp0[2])
@@ -106,9 +94,6 @@ class DSelector(Class_255_0):
 	
 	@classmethod
 	def indexOf(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = text
 		temp1 = 0
 		while (temp1 < 300): # inline for
@@ -126,17 +111,11 @@ class DSelector(Class_255_0):
 
 	@classmethod
 	def at(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return (text + (x * param1))
 	#end:method
 
 	@classmethod
 	def setSize():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		kernel.TextSize(@temp0[0], r"""M""", font, 0, 0)
 		nsBottom = (+ nsTop 20 (temp0[2] * y))
 		nsRight = (nsLeft + ((* temp0[3] x 3) / 4))
@@ -146,9 +125,6 @@ class DSelector(Class_255_0):
 
 	@classmethod
 	def retreat(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp0 = 0
 		while param1:
 
@@ -175,9 +151,6 @@ class DSelector(Class_255_0):
 
 	@classmethod
 	def advance(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if (not kernel.StrAt(cursor, 0)):
 			return
 		#endif
@@ -207,9 +180,6 @@ class DSelector(Class_255_0):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if param1._send('claimed:'):
 			return 0
 		#endif
@@ -286,18 +256,12 @@ class Controls(List):
 	#property vars (may be empty)
 	@classmethod
 	def draw():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('eachElementDo:', #setSize)
 		self._send('eachElementDo:', #draw)
 	#end:method
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if param1._send('claimed:'):
 			return 0
 		#endif

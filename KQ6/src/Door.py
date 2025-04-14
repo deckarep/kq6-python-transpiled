@@ -37,9 +37,6 @@ class Door(Prop):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		self._send('approachVerbs:', openVerb, listenVerb)
 		if (forceOpen or (global12 and (global12 == entranceTo))):
 			state = 2
@@ -94,9 +91,6 @@ class Door(Prop):
 
 	@classmethod
 	def doVerb(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match param1
 			case openVerb:
 				if (state == 2):
@@ -116,9 +110,6 @@ class Door(Prop):
 
 	@classmethod
 	def open():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if locked:
 			if (modNum == -1):
 				modNum = global11
@@ -141,9 +132,6 @@ class Door(Prop):
 
 	@classmethod
 	def close():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		state = 3
 		self._send('setCycle:', Beg, self)
 		if closeSnd:
@@ -156,9 +144,6 @@ class Door(Prop):
 
 	@classmethod
 	def cue():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		match state
 			case 3:
 				state = 0
@@ -284,9 +269,6 @@ class Door(Prop):
 
 	@classmethod
 	def dispose():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		global95._send('delete:', doorPoly)
 		doorPoly._send('dispose:')
 		super._send('dispose:')

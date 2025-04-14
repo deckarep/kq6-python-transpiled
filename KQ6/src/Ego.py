@@ -18,9 +18,6 @@ class Ego(Actor):
 	
 	@classmethod
 	def init():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('init:')
 		if (not cycler):
 			self._send('setCycle:', Walk)
@@ -29,17 +26,11 @@ class Ego(Actor):
 
 	@classmethod
 	def facingMe():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		return 1
 	#end:method
 
 	@classmethod
 	def doit():
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		super._send('doit:')
 		(= edgeHit
 			(cond
@@ -85,9 +76,6 @@ class Ego(Actor):
 
 	@classmethod
 	def has(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		if temp0 = global9._send('at:', param1):
 			temp0._send('ownedBy:', self)
 		#endif
@@ -95,9 +83,6 @@ class Ego(Actor):
 
 	@classmethod
 	def handleEvent(param1 = None, *rest):
-		# Python3 magic, for those function which use argc.
-		argc = sum(v is not None for v in locals().values()) + len(rest)
-
 		temp1 = param1._send('type:')
 		temp2 = param1._send('message:')
 		(cond
